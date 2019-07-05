@@ -10,6 +10,17 @@ function hsCamelCase(name) {
     return name;
 }
 
+const webpackExternals = {
+    d3:             'd3',
+    d3Axis:         'd3-axis',
+    fs:             'fs',           // node.fs
+    path:           'path',         // node.path
+    url:            'url',          // node.url
+    http:           'http',         // node.http
+    crypto:         'crypto',       // node.crypto
+    child_process:  'child_process' // node.child_process
+};
+
 module.exports = (grunt, dir, dependencies, type, lib) => {
     const devPath = dir.slice(0, dir.indexOf('/dev/')+5);
     const pkg = grunt.file.readJSON(dir+'/package.json');
@@ -48,14 +59,14 @@ module.exports = (grunt, dir, dependencies, type, lib) => {
     grunt.registerTask('build-js',      ['tslint:src', 'ts:src']);
     // grunt.registerTask('build-spec',    ['tslint:spec', 'ts:test']);    
     grunt.registerTask('build-base',    ['clean:dist', 'build-html', 'build-css', 'copy:bin', 'copy:example']);
-    grunt.registerTask('buildMin',      ['build-base', 'build-js', 'webpack:appProd', 'doc', 'test', 'coveralls']);
+    grunt.registerTask('buildMin',      ['build-base', 'build-js', 'webpack:appDev', 'webpack:appProd', 'doc', 'test', 'coveralls']);
     grunt.registerTask('buildDev',      ['build-base', 'build-js', 'webpack:appDev']);
 
     //------ Entry-point MultiTasks
     grunt.registerTask('default',       ['product']);	
     grunt.registerTask('dev',           ['buildDev', 'stage']);
     grunt.registerTask('product',       ['buildMin', 'stage']);	
-    grunt.registerTask('travis',        ['buildMin']);	
+    grunt.registerTask('travis',        ['build-base', 'build-js', 'webpack:appDev', 'webpack:appProd', 'test']);	
     grunt.registerTask('help',          ['h']);	
 
     grunt.registerMultiTask('sourceCode', translateSourcesToHTML);  
@@ -119,8 +130,6 @@ module.exports = (grunt, dir, dependencies, type, lib) => {
                     src:['**/*'], dest:`node_modules/${libPath}/` },
                 { expand:true, cwd: './',                  // copy css and map
                     src:['*.css*'], dest:`node_modules/${libPath}/` },
-                // { expand:true, cwd: 'docs/data',            // copy source htmls to hsDocs
-                //     src:['**/*', '!index.json'], dest:`${devPath}/hsApps/hsDocs/docs/data` }
             ]},
             app2NPM: { files: [ 
                 { expand:true, cwd: 'bin',                  // copy everything from bin
@@ -210,10 +219,7 @@ module.exports = (grunt, dir, dependencies, type, lib) => {
                     path: path.resolve(dir, './bin'),
                     library: lib
                 },
-                externals: {
-                    d3: 'd3',
-                    d3Axis: 'd3-axis'
-                },
+                externals: webpackExternals,
                 plugins: [
                     new UglifyJsPlugin({
                         uglifyOptions: {
@@ -231,7 +237,8 @@ module.exports = (grunt, dir, dependencies, type, lib) => {
                     filename: `${lib}.js`,
                     path: path.resolve(dir, './bin'),
                     library: lib
-                }
+                },
+                externals: webpackExternals,
             // },
             // test: {
             //     entry: './bin/index.js',
@@ -260,7 +267,7 @@ module.exports = (grunt, dir, dependencies, type, lib) => {
         },
         coveralls: {
             src: `docs/data/src/${lib}/coverage/lcov.info`,
-            options: { force: false }
+            options: { force: true }
         },
 
         watch: {
