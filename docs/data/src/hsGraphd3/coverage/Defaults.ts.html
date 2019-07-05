@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for Defaults.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="prettify.css" />
+    <link rel="stylesheet" href="base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="index.html">hsGraphd3: All files</a> Defaults.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">15.38% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>2/13</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/5</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>0/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">15.38% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>2/13</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * # Defaults Configuration
+ * 
+ */
+&nbsp;
+/** */
+&nbsp;
+import { GraphDefaults }    from './DefaultTypes';
+import { PlotDefaults }     from './DefaultTypes';
+import { SeriesDefaults }   from './DefaultTypes';
+import { AxesDefaults }     from './DefaultTypes';
+import { Color }            from './DefaultTypes';
+import { RectStyle }        from './DefaultTypes';
+import { Line }             from './DefaultTypes';
+import { UnitVp }           from './ConfigTypes';
+import { ScaleDefaults }    from './DefaultTypes';
+import { TextStyle }        from './DefaultTypes';
+import { GraphCfg }         from './ConfigTypes';
+&nbsp;
+&nbsp;
+/**
+ * Create a `Config` object and populate it with default values.
+ */
+export class Defaults {
+    private <span class="cstat-no" title="statement not covered" >axes = {};</span>
+    private config: GraphCfg;
+    private <span class="cstat-no" title="statement not covered" >scales = {};</span>
+&nbsp;
+<span class="fstat-no" title="function not covered" >    constructor(</span>config: GraphCfg) {}
+&nbsp;
+<span class="fstat-no" title="function not covered" >    get </span>Graph():GraphDefaults {
+<span class="cstat-no" title="statement not covered" >        return { canvas: defaultRect('#fff', 2, '#ccc') };</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    get </span>Plot():PlotDefaults {
+<span class="cstat-no" title="statement not covered" >        return { area: defaultRect('#fff') };</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    get </span>Series():SeriesDefaults[]  {
+<span class="cstat-no" title="statement not covered" >        return [];</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    get </span>Axes():AxesDefaults { <span class="cstat-no" title="statement not covered" >return {</span>
+        hor: {
+            line:       defaultLine(2),
+            tickMarks:  defaultLine(2),
+            tickLabel:  defaultText()
+        },
+        ver: {
+            line:       defaultLine(2),
+            tickMarks:  defaultLine(2),
+            tickLabel:  defaultText()
+        }
+    };}
+&nbsp;
+<span class="fstat-no" title="function not covered" >    Scales</span>(dataCol: string):ScaleDefaults {
+<span class="cstat-no" title="statement not covered" >        return this.scales[dataCol] = this.scales[dataCol] || defaultScale(0, 100);</span>
+    }
+}
+&nbsp;
+export function <span class="fstat-no" title="function not covered" >defaultLine(</span>width:UnitVp, color:Color=<span class="branch-0 cbranch-no" title="branch not covered" >'#000')</span>:Line {
+<span class="cstat-no" title="statement not covered" >    return {</span>
+        width: width,
+        color: color,
+        opacity: 1
+    };
+}
+&nbsp;
+/**
+ * convenience function to create a default `RectStyle` object with configurable fill color and border. 
+ * @param area  the fill color
+ * @param borderWidth the border width in pixel
+ * @param borderColor the border color
+ */
+function <span class="fstat-no" title="function not covered" >defaultRect(</span>area:Color, borderWidth:UnitVp=<span class="branch-0 cbranch-no" title="branch not covered" >0,</span> borderColor:Color=<span class="branch-0 cbranch-no" title="branch not covered" >'#fff')</span>:RectStyle {
+<span class="cstat-no" title="statement not covered" >    return {</span>
+        rx: 0,
+        ry: 0,
+        fill: {
+            color: area,
+            opacity: 1
+        },
+        stroke: {
+            width: borderWidth,
+            color: borderColor,
+            opacity: 1
+        }
+    };
+}
+&nbsp;
+function <span class="fstat-no" title="function not covered" >defaultScale(</span>minRange: number, maxRange:number):ScaleDefaults { <span class="cstat-no" title="statement not covered" >return {</span>
+    type:   'linear',
+    domain: {min: 'auto', max: 'auto'},
+    range:  { min: minRange, max: maxRange }
+};}
+&nbsp;
+function <span class="fstat-no" title="function not covered" >defaultText(</span>):TextStyle {
+<span class="cstat-no" title="statement not covered" >    return {</span>
+        color: '#000',
+        font: {
+            family: 'sans-serif',
+            size:   20,
+            style: 'normal',    // 'normal', 'italic'
+            weight: 'normal'    // 'normal', 'bold'
+        }
+    };
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+
+</div>
+<script src="prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="sorter.js"></script>
+</body>
+</html>
