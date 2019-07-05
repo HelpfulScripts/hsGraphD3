@@ -1,0 +1,66 @@
+{
+  "name": "hsgraphd3",
+  "main": "./index.js",
+  "types": "./index.d.ts",
+  "version": "0.0.1",
+  "keywords": [
+    "es6",
+    "d3js",
+    "graph",
+    "plot",
+    "chart",
+    "svg"
+  ],
+  "description": "Helpful Scripts Convenience wrapper for D3js to simplify creation of standard graph elements from data",
+  "license": "MIT",
+  "homepage": "http://helpfulscripts.github.io/hsGraph/#!/api/hsGraphD3/0",
+  "author": {
+    "name": "masterscripter",
+    "email": "helpfulscripts@gmail.com"
+  },
+  "scripts": {
+    "build": "grunt build",
+    "test": "grunt test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/HelpfulScripts/hsGraphD3.git"
+  },
+  "engines": {
+    "node": ">= 10.14.0"
+  },
+  "plugins": [
+    "plugins/markdown"
+  ],
+  "devDependencies": {
+    "@types/node": "^7.0.66",
+    "@types/mithril": "^1.1.12",
+    "@types/jest": "^23.3.1",
+    "grunt": "^1.0.3",
+    "grunt-contrib-clean": "^1.0.0",
+    "grunt-contrib-concat": "^1.0.1",
+    "grunt-contrib-copy": "^1.0.0",
+    "grunt-contrib-less": "^2.0.0",
+    "grunt-contrib-uglify": "^2.0.0",
+    "grunt-contrib-watch": "^1.1.0",
+    "grunt-ts": "^6.0.0-beta.19",
+    "grunt-tslint": "^4.0.1",
+    "grunt-typedoc": "^0.2.4",
+    "grunt-webpack": "^3.1.2",
+    "handlebars": ">=4.0.14",
+    "coveralls": "^3.0.2",
+    "grunt-coveralls": "^2.0.0",
+    "jest": "^23.6.0",
+    "ts-jest": "^23.1.14",
+    "tslint": "^4.5.1",
+    "typedoc": "^0.12.0",
+    "typescript": "^3.2.2",
+    "uglifyjs-webpack-plugin": "^1.2.5",
+    "webpack": "^4.25.0"
+  },
+  "dependencies": {
+    "hsdatab": "^2.4.7",
+    "hsutil": "*",
+    "d3": "^5.9.2"
+  }
+}
