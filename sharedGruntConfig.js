@@ -42,7 +42,7 @@ module.exports = (grunt, dir, dependencies, type, lib) => {
     grunt.loadNpmTasks('grunt-coveralls');
 
     //------ Add Doc Tasks
-    grunt.registerTask('doc', ['clean:docs', 'copy:docsHtml', 'typedoc', 'sourceCode', 'copy:docs2NPM']);
+    grunt.registerTask('doc', ['clean:docs', 'copy:docs', 'typedoc', 'sourceCode', 'copy:docs2NPM']);
 
     //------ Add Staging Tasks
     grunt.registerTask('stage', [`${(type === 'app')? 'copy:app2NPM': 'copy:lib2NPM'}`]);
@@ -108,12 +108,18 @@ module.exports = (grunt, dir, dependencies, type, lib) => {
                 }
             ]},
             // create docs/html files
-            docsHtml: { files: [
+            docs: { files: [
                 { expand:true, cwd: devPath+'/local/',  // default docs index.html from 'local' admin project 
                     src:['index.html'], dest:'docs' 
                 },
                 { expand:true, cwd: './src/docs',       // project-specific docs index*.html
                     src:['index*.html'], dest:'docs' 
+                },
+                { expand:true, cwd: './',               // project-specific docs css files
+                    src:[`${lib}.css*`], dest:'docs' 
+                },
+                { expand:true, cwd: './bin',            // project-specific docs css files
+                    src:[`${lib}.js`, `${lib}.min.js`], dest:'docs' 
                 }
             ]},
             example:{ expand:true, cwd: 'src/example', 
