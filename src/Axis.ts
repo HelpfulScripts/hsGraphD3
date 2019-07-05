@@ -1,0 +1,58 @@
+/**
+ * # Axis class
+ * 
+ */
+
+ /** */
+import { Data }             from 'hsdatab';
+import { log as gLog }      from 'hsutil';   const log = gLog('d3.Axis');
+import { GraphComponent }   from './GraphComponent'; 
+import { GraphCfg }         from './ConfigTypes';
+import { d3Base }           from './ConfigTypes';
+import { AxisDefaults }     from './DefaultTypes';
+import { defaultLine }      from './Defaults';
+import * as d3Axis          from "d3-axis";
+
+const axisWidth:number = 50;
+const tickWidth:number = 10;
+
+export enum Direction {
+    Horizontal  = 'hor',
+    Vertical    = 'ver'
+}
+
+export class Axis extends GraphComponent {
+    private dir: Direction;
+    private svg: d3Base;
+    private defaults: AxisDefaults;
+
+    constructor(cfg:GraphCfg, dir:Direction) {
+        super(cfg);
+        this.dir = dir;
+        this.svg = cfg.baseSVG.append('g').classed(`${dir}Axis`, true);
+    }
+
+    render(data:Data) {
+        const scales = this.config.scales;
+        const style = this.config.defaults.Axes[this.dir];
+        let axis;
+        this.svg
+            .attr('stroke', style.line.color)
+            .attr('stroke-width', style.line.width)
+            .attr('stroke-opacity', style.line.opacity);
+
+        if (this.dir===Direction.Horizontal) {
+            const yCrossing = Math.max(axisWidth, Math.min(scales.ver.scale(0), this.config.viewPort.height-axisWidth));
+            axis = d3Axis.axisTop(this.config.scales.hor.scale);
+            this.svg.attr("transform", `translate(0, ${yCrossing})`);
+        } else {
+            const xCrossing = Math.max(axisWidth, Math.min(scales.hor.scale(0), this.config.viewPort.width-axisWidth));
+            axis = d3Axis.axisRight(this.config.scales.ver.scale);
+            this.svg.attr("transform", `translate(${xCrossing}, 0)`);
+        }
+        axis.tickSize(tickWidth);
+        this.svg.call(axis);
+        this.svg.selectAll('text').transition().duration(1000)
+            .attr('style', `font-family:${style.tickLabel.font.family}; font-size:${style.tickLabel.font.size}px; font-style:${style.tickLabel.font.style}; font-weight:${style.tickLabel.font.weight};`);
+    }
+}
