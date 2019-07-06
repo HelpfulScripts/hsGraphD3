@@ -11,8 +11,6 @@ function hsCamelCase(name) {
 }
 
 const webpackExternals = {
-    d3:             'd3',
-    d3Axis:         'd3-axis',
     fs:             'fs',           // node.fs
     path:           'path',         // node.path
     url:            'url',          // node.url
@@ -223,7 +221,8 @@ module.exports = (grunt, dir, dependencies, type, lib) => {
                     filename: `${lib}.min.js`,
                     // chunkFilename: '[name].bundle.js',
                     path: path.resolve(dir, './bin'),
-                    library: lib
+                    library: lib,
+                    libraryTarget: "this"
                 },
                 externals: webpackExternals,
                 plugins: [
@@ -242,7 +241,8 @@ module.exports = (grunt, dir, dependencies, type, lib) => {
                 output: {
                     filename: `${lib}.js`,
                     path: path.resolve(dir, './bin'),
-                    library: lib
+                    library: lib,
+                    libraryTarget: "this"
                 },
                 externals: webpackExternals,
             // },

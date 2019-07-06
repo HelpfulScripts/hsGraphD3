@@ -50,7 +50,7 @@
 
  /** */
 
-import { log as gLog }      from 'hsutil';   const log = gLog('d3.Graph');
+import { log as gLog }      from 'hsutil';   const log = gLog('Graph');
 import * as d3              from 'd3'; 
 
 import { Data, NumDomain }  from 'hsdatab';
