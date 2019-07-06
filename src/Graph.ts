@@ -1,7 +1,7 @@
 /**
  * ## d3 Graphs
  * 
- * <example height=200px libs={hsGraphd3:'hsGraphD3',hsDatab:'hsDatab',d3:'https://d3js.org/d3.v5.min.js'}>
+ * <example height=200px libs={hsGraphD3:'hsGraphD3',hsDatab:'hsDatab',d3:'https://d3js.org/d3.v5.min.js'}>
  * <file name='script.js'>
  * // create data set:
  * const data = new hsDatab.Data({
@@ -11,7 +11,7 @@
  * });
  * 
  * // setup and plot the data:
- * const graph = new hsGraphd3.Graph(root);
+ * const graph = new hsGraphD3.Graph(root);
  * graph.addSeries('bubble', 'time', 'volume', 'costs');
  * graph.addSeries('bubble', 'time', 'volume', 'costs');
  * 
