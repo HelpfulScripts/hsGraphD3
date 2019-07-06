@@ -1,7 +1,7 @@
 /**
  * ## d3 Graphs
  * 
- * <example height=200px libs={hsGraphd3:'hsGraphd3',hsDatab:'hsDatab',d3:'https://d3js.org/d3.v5.min.js'}>
+ * <example height=200px libs={hsGraphd3:'hsGraphD3',hsDatab:'hsDatab',d3:'https://d3js.org/d3.v5.min.js'}>
  * <file name='script.js'>
  * // create data set:
  * const data = new hsDatab.Data({
