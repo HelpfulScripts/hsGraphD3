@@ -110,7 +110,7 @@ module.exports = (grunt, dir, dependencies, type, lib) => {
             // create docs/html files
             docs: { files: [
                 { expand:true, cwd: devPath+'/local/',  // default docs index.html from 'local' admin project 
-                    src:['index.html'], dest:'docs' 
+                    src:['index*.html'], dest:'docs' 
                 },
                 { expand:true, cwd: './src/docs',       // project-specific docs index*.html
                     src:['index*.html'], dest:'docs' 
