@@ -4,7 +4,7 @@
 
 /** */
 
-import { Data, NumDomain }  from '../../node_modules/hsdatab/index';
+import { Data, NumDomain }  from 'hsdatab';
 import { Defaults }         from './Defaults';
 
 /** viewport units */

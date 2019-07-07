@@ -3829,7 +3829,7 @@
 						"type": "reference",
 						"name": "LogType"
 					},
-					"defaultValue": " gLog('d3.Graph')"
+					"defaultValue": " gLog('Graph')"
 				},
 				{
 					"id": 237,
@@ -5028,7 +5028,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/overview.ts",
 			"comment": {
 				"shortText": "# hsGraphD3",
-				"text": "Helpful Scripts Graph convenience wrapper for D3js.\n[`[Github page]`](https://github.com/HelpfulScripts/hsGraphd3)\n[`[Coverage Info]`](./data/src/hsGraph/coverage/)\n___\n\n"
+				"text": "Helpful Scripts Graph convenience wrapper for D3js.\n[`[Github page]`](https://github.com/HelpfulScripts/hsGraphd3)\n[`[Coverage Info]`](./data/src/hsGraph/coverage/)\n___\n`hsGraphD3` provides convienent programmatic shortcuts to plotting data with [`D3js`](https://d3js.org/).\n\n## Usage\n1. create a {@link Graph `Graph`} object with a root DOM element to attach to: `graph = new hsGraphD3.Graph(root);'\n2. add desired series configuartions, specifying the type of series, as well as the column names to use for the x- and y-axes,\nand other variables, depending on the series type.\n3. render the graph for a given data set: `graph.render(data);`\n\n## Example\n<example height=200px libs={hsGraphD3:'hsGraphD3',hsDatab:'hsDatab',d3:'https://d3js.org/d3.v5.min.js'}>\n<file name='script.js'>\n// create data set:\nconst data = new hsDatab.Data({\n   colNames:['date', 'time', 'volume', 'costs'],\n   rows:[['1/1/14', -1,  0.2, 0.3], ['1/1/16', 0.2, 0.7, 0.2], ['9/1/16', 0.4, 0.1, 0.3],\n         ['5/1/17', 0.6, 0,   0.1], ['7/1/18', 0.8, 0.3, 0.5], ['1/1/19', 1,   0.2, 0.4]]\n});\n\n// setup and plot the data:\nconst graph = new hsGraphD3.Graph(root);\ngraph.addSeries('bubble', 'time', 'volume', 'costs');\ngraph.addSeries('bubble', 'time', 'volume', 'costs');\n\n//with (graph.defaults.Scales('costs').scale) {\n//     range.min = 0\n//     range.min = 20\n//}\n\nwith (graph.defaults.Graph.canvas) {\n     fill.color = '#eee';\n     stroke.width = 0;\n}\nwith (graph.defaults.Axes.hor) {\n     tickLabel.font.size = 200;\n}\nwith (graph.defaults.Plot.area) {\n     //fill.color = '#fcc';\n}\ngraph.render(data);\n\n// change values avery 2s:\nsetInterval(() => {\n   data.getData().map(row => {\n     //row[1] = Math.random()*graph.config.viewPort.width;\n     row[2] = Math.random()*graph.config.viewPort.height;\n     row[3] = Math.random()*50;\n     graph.render(data);\n   });\n   data.sort('ascending', 'x');\n}, 2000);\n\n\n</file>\n</example>\n"
 			},
 			"sources": [
 				{

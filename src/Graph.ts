@@ -54,6 +54,7 @@ import { log as gLog }      from 'hsutil';   const log = gLog('Graph');
 import * as d3              from 'd3'; 
 
 import { Data, NumDomain }  from 'hsdatab';
+import { DataSet }          from 'hsdatab';
 import { GraphCfg, UnitVp } from './ConfigTypes';
 import { d3Base }           from './ConfigTypes';
 // import { Scale, scaleTypes }from './ConfigTypes';
@@ -136,12 +137,15 @@ export class Graph extends GraphComponent {
      * renders all Graph elements using `data`
      * @param data 
      */
-    public render(data:Data) {
-        this.setScales(data);
+    public render(data:Data|DataSet) {
+        let d:Data;
+        if (data instanceof Data) { d = data; } 
+        else { d = new Data(data); }
+        this.setScales(d);
         this.drawCanvas(this.config);
         this.plot.setBorders(10, 10, 10, 10);
-        this.plot.render(data);
-        this.axes.forEach(a => a.render(data));
+        this.plot.render(d);
+        this.axes.forEach(a => a.render(d));
     }
 
     /**

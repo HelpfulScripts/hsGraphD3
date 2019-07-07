@@ -5,8 +5,8 @@
 
 /** */
 
-import { Data, NumDomain }  from '../../node_modules/hsdatab/index';
-import { log as gLog }      from '../../node_modules/hsutil/index';   const log = gLog('d3.Plot');
+import { Data, NumDomain }  from 'hsdatab';
+import { log as gLog }      from 'hsutil';   const log = gLog('d3.Plot');
 import { GraphCfg, PlotFn } from './ConfigTypes';
 import { PlotFnDef }        from './ConfigTypes';
 import { PlotCfg }          from './ConfigTypes';

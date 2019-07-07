@@ -4,10 +4,10 @@
 
 /** */
 
-import { log as gLog }  from '../../node_modules/hsutil/index';   const log = gLog('d3.GraphComponent');
+import { log as gLog }  from 'hsutil';   const log = gLog('d3.GraphComponent');
 import { Defaults }     from './Defaults';
 
-import { Data }         from '../../node_modules/hsdatab/index';
+import { Data }         from 'hsdatab';
 import { GraphCfg }     from './ConfigTypes';
 
 const vpWidth:number    = 1000;
