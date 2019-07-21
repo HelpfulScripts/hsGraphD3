@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">38.46% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>10/26</span>
+        <span class='fraction'>13/26</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">50% </span>
@@ -30,18 +30,18 @@
         <span class='fraction'>2/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">33.33% </span>
+        <span class="strong">66.67% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/3</span>
+        <span class='fraction'>2/3</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">36% </span>
+        <span class="strong">48% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>9/25</span>
+        <span class='fraction'>12/25</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -97,10 +97,7 @@
 52
 53
 54
-55
-56
-57
-58</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+55</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -109,8 +106,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -128,10 +123,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -168,8 +162,6 @@ import { log as gLog }      from 'hsutil';   const log = gLog('d3.Axis');
 import { GraphComponent }   from './GraphComponent'; 
 import { GraphCfg }         from './ConfigTypes';
 import { d3Base }           from './ConfigTypes';
-import { AxisDefaults }     from './DefaultTypes';
-import { defaultLine }      from './Defaults';
 import * as d3Axis          from "d3-axis";
 &nbsp;
 const axisWidth:number = 50;
@@ -183,17 +175,16 @@ export enum Direction {
 export class Axis extends GraphComponent {
     private dir: Direction;
     private svg: d3Base;
-    private defaults: AxisDefaults;
 &nbsp;
-<span class="fstat-no" title="function not covered" >    constructor(</span>cfg:GraphCfg, dir:Direction) {
-<span class="cstat-no" title="statement not covered" >        super(cfg);</span>
-<span class="cstat-no" title="statement not covered" >        this.dir = dir;</span>
-<span class="cstat-no" title="statement not covered" >        this.svg = cfg.baseSVG.append('g').classed(`${dir}Axis`, true);</span>
+    constructor(cfg:GraphCfg, dir:Direction) {
+        super(cfg);
+        this.dir = dir;
+        this.svg = cfg.baseSVG.select('.axes').append('g').classed(`${dir}Axis`, true);
     }
 &nbsp;
 <span class="fstat-no" title="function not covered" >    render</span>(data:Data) {
         const scales = <span class="cstat-no" title="statement not covered" >this.config.scales;</span>
-        const style = <span class="cstat-no" title="statement not covered" >this.config.defaults.Axes[this.dir];</span>
+        const style = <span class="cstat-no" title="statement not covered" >this.config.defaults.axes[this.dir];</span>
         let axis;
 <span class="cstat-no" title="statement not covered" >        this.svg</span>
             .attr('stroke', style.line.color)

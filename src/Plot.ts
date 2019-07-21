@@ -7,50 +7,52 @@
 
 import { Data, NumDomain }  from 'hsdatab';
 import { log as gLog }      from 'hsutil';   const log = gLog('d3.Plot');
-import { GraphCfg, PlotFn } from './ConfigTypes';
-import { PlotFnDef }        from './ConfigTypes';
+import { GraphCfg, d3Base } from './ConfigTypes';
 import { PlotCfg }          from './ConfigTypes';
-import { UnitVp }           from './ConfigTypes';
 import { GraphComponent }   from './GraphComponent'; 
+import { BaseType }         from 'd3';
 
-/** import and register 'bubble' plot */
-import { bubble }           from './bubble'; 
+export type d3Selection = d3.Selection<BaseType, unknown, BaseType, unknown>; 
 
 const DEF_RADIUS:number = 5;
+
+export class PlotClass { 
+    constructor(desc:PlotCfg, ...params:string[]) {
+        desc.cfg.scales.hor.dataCol = params[0]; // x
+        desc.cfg.scales.ver.dataCol = params[1]; // y
+        desc.cfg.defaults.scales[params[0]] = desc.cfg.defaults.scales[params[0]] || desc.cfg.defaults.defaultScale();
+        desc.cfg.defaults.scales[params[1]] = desc.cfg.defaults.scales[params[1]] || desc.cfg.defaults.defaultScale();
+    }
+    public render(data:Data, series:d3Selection): void {}
+}
+
+export abstract class PlotFactory {
+    abstract newPlot(desc:PlotCfg, ...params:string[]): PlotClass;
+}
 
 export class Plot extends GraphComponent {
     /*------------ Static implementation----- */
     /** a map of plot types to corresponding plot functions. New plot types are added via a call to `register`. */
-    protected static plotFnMap: any = {};
+    protected static plotFnMap: {[plotKey:string]: PlotFactory} = {};
 
     /** registers a new plot type with corresponding function. */
-    public static register(key:string, fn:PlotFnDef) {
-        this.plotFnMap[key] = fn;
+    public static register(key:string, factory:PlotFactory) {
+        this.plotFnMap[key] = factory;
         log.info(`registered plot type '${key}'`);
     }
 
     /*------------ Instance implementation----- */
     private desc: PlotCfg;
-    private series:PlotFn[] = [];
+    private series:PlotClass[] = [];
 
     constructor(cfg:GraphCfg) {
         super(cfg);
         this.desc = {
             cfg: cfg,
-            margin: { left:0, top:0, right:0, bottom:0},
-            plotBase: cfg.baseSVG.append('svg').classed('plotSVG', true)
+            plotBase: cfg.baseSVG.select('.series')
         };
-        const margin = this.desc.margin;
+        const margin = this.config.defaults.plot.margin;
         this.desc.plotBase.append('rect').classed('plotRect', true);
-        Plot.register('bubble', bubble);
-    }
-
-    setBorders(left:UnitVp, top:UnitVp, right:UnitVp, bottom:UnitVp) {
-        const margin = this.desc.margin;
-        margin.left     = left;
-        margin.right    = right;
-        margin.top      = top;
-        margin.bottom   = bottom;
     }
 
     /**
@@ -59,11 +61,15 @@ export class Plot extends GraphComponent {
      * @param params the column name of the parameters used to plot the series
      */
     addSeries(type:string, ...params:string[]) {
-        const fn = Plot.plotFnMap[type];
-        const seriesKey = `${type} ${params.join(' ')}`;
-        this.series[seriesKey] = [type].concat(params);
-        if (fn) {
-            this.series.push((data:Data) => fn(data, this.desc, ...params));
+        const factory = Plot.plotFnMap[type];
+
+        // this.series[seriesKey] = [type].concat(params);
+        if (factory) {
+            const svg = this.desc.plotBase; 
+            svg.append('g').classed(`series${this.series.length}`,true);
+            const seriesKey = `${type} ${params.join(' ')}`;
+            const plot = factory.newPlot(this.desc, ...params);
+            this.series.push(plot);
             log.info(`added series ${this.series.length} as '${seriesKey}'`);
         } else {
             log.error(`unknown plot type ${type}; available types are:\n   '${Object.keys(Plot.plotFnMap).join("'\n   '")}'`);
@@ -75,24 +81,27 @@ export class Plot extends GraphComponent {
      * @param data 
      */
     render(data:Data) {
-        this.renderPlotArea();
-        this.series.forEach((s:PlotFn) => s(data));
+//        this.renderPlotArea();
+        const svg = this.desc.cfg.baseSVG; 
+        this.series.forEach((s:PlotClass, i:number) => {
+            s.render(data, svg.selectAll(`.series${i}`));
+        });
     }
 
-    private renderPlotArea() {
-        const margin = this.desc.margin;
-        const plotArea = this.desc.cfg.defaults.Plot.area;
-        this.desc.plotBase.select('.plotRect')
-            .attr('x', margin.left)
-            .attr('y', margin.top)
-            .attr('width', this.desc.cfg.viewPort.width - margin.left - margin.right)
-            .attr('height',this.desc.cfg.viewPort.height - margin.top - margin.bottom)
-            .attr('rx', plotArea.rx)
-            .attr('ry', plotArea.ry)
-            .attr('stroke', plotArea.stroke.color)
-            .attr('stroke-width', plotArea.stroke.width)
-            .attr('stroke-opacity', plotArea.stroke.opacity)
-            .attr('fill', plotArea.fill.color)
-            .attr('fill-opacity', plotArea.fill.opacity);
-    }
+    // private renderPlotArea() {
+    //     const margin = this.config.defaults.plot.margin;
+    //     const plotArea = this.desc.cfg.defaults.plot.area;
+    //     this.desc.plotBase.select('.plotRect')
+    //         .attr('x', margin.left)
+    //         .attr('y', margin.top)
+    //         .attr('width', this.desc.cfg.viewPort.width - margin.left - margin.right)
+    //         .attr('height',this.desc.cfg.viewPort.height - margin.top - margin.bottom)
+    //         .attr('rx', plotArea.rx)
+    //         .attr('ry', plotArea.ry)
+    //         .attr('stroke', plotArea.stroke.color)
+    //         .attr('stroke-width', plotArea.stroke.width)
+    //         .attr('stroke-opacity', plotArea.stroke.opacity)
+    //         .attr('fill', plotArea.fill.color)
+    //         .attr('fill-opacity', plotArea.fill.opacity);
+    // }
 }

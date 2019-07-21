@@ -22,25 +22,24 @@ import { GraphCfg }         from './ConfigTypes';
  * Create a `Config` object and populate it with default values.
  */
 export class Defaults {
-    private axes = {};
-    private config: GraphCfg;
-    private scales = {};
+    // private axes = {};
+    // private config: GraphCfg;
+    // private theScales = {};
 
-    constructor(config: GraphCfg) {}
+    constructor(config: GraphCfg) { }
 
-    get Graph():GraphDefaults {
-        return { canvas: defaultRect('#fff', 2, '#ccc') };
-    }
+    graph:GraphDefaults = {
+        canvas: defaultRect('#fff', 2, '#ccc')
+    };
 
-    get Plot():PlotDefaults {
-        return { area: defaultRect('#fff') };
-    }
+    plot:PlotDefaults = {
+        area: defaultRect('#fff'),
+        margin: { left:10, top:10, right:10, bottom:10}
+    };
 
-    get Series():SeriesDefaults[]  {
-        return [];
-    }
+    series:SeriesDefaults[] = [];
 
-    get Axes():AxesDefaults { return {
+    axes:AxesDefaults = { 
         hor: {
             line:       defaultLine(2),
             tickMarks:  defaultLine(2),
@@ -51,10 +50,16 @@ export class Defaults {
             tickMarks:  defaultLine(2),
             tickLabel:  defaultText()
         }
-    };}
+    };
 
-    Scales(dataCol: string):ScaleDefaults {
-        return this.scales[dataCol] = this.scales[dataCol] || defaultScale(0, 100);
+    scales:{[column:string]: ScaleDefaults} = {};
+
+    defaultScale():ScaleDefaults { 
+        return {
+            type:   'linear',
+            domain: {min: 'auto', max: 'auto'}, //  data domain
+            range:  { min: 0, max: 1 }          //  canvas range
+        };
     }
 }
 
@@ -87,12 +92,6 @@ function defaultRect(area:Color, borderWidth:UnitVp=0, borderColor:Color='#fff')
         }
     };
 }
-
-function defaultScale(minRange: number, maxRange:number):ScaleDefaults { return {
-    type:   'linear',
-    domain: {min: 'auto', max: 'auto'},
-    range:  { min: minRange, max: maxRange }
-};}
 
 function defaultText():TextStyle {
     return {

@@ -24,48 +24,47 @@
  * ```
  * 
  * ## Example
- * <example height=200px libs={hsGraphD3:'hsGraphD3',hsDatab:'hsDatab',d3:'https://d3js.org/d3.v5.min.js'}>
+ * <example height=200px libs={hsGraphD3:'hsGraphD3',d3:'d3'}>
  * <file name='script.js'>
  * // create data set:
- * const data = new hsDatab.Data({
+ * const data = {
  *    colNames:['date', 'time', 'volume', 'costs'], 
  *    rows:[['1/1/14', -1,  0.2, 0.3], ['1/1/16', 0.2, 0.7, 0.2], ['9/1/16', 0.4, 0.1, 0.3],
  *          ['5/1/17', 0.6, 0,   0.1], ['7/1/18', 0.8, 0.3, 0.5], ['1/1/19', 1,   0.2, 0.4]]
- * });
+ * };
  * 
  * // setup and plot the data:
  * const graph = new hsGraphD3.Graph(root);
  * graph.addSeries('bubble', 'time', 'volume', 'costs');
  * graph.addSeries('bubble', 'time', 'volume', 'costs');
  * 
- * //with (graph.defaults.Scales('costs').scale) {
- * //     range.min = 0
- * //     range.min = 20
- * //}
+ * const def = graph.defaults;
+ * with (def.graph.canvas) {
+ *      fill.color = '#fcfcfc';
+ *      stroke.width = 10;
+ *      stroke.color = '#88f';
+ * }
  * 
- * with (graph.defaults.Graph.canvas) {
- *      fill.color = '#eee';
- *      stroke.width = 0;
+ * def.axes.hor.tickLabel.font.size = 10;
+ * with (graph.defaults.scales.costs.range) {
+ *      min = 10;
+ *      max = 80;
  * }
- * with (graph.defaults.Axes.hor) {
- *      tickLabel.font.size = 200;
- * }
- * with (graph.defaults.Plot.area) {
- *      //fill.color = '#fcc';
- * }
+ * 
  * graph.render(data);
  * 
- * // change values avery 2s:
- * setInterval(() => {
- *    data.getData().map(row => {
- *      //row[1] = Math.random()*graph.config.viewPort.width;
- *      row[2] = Math.random()*graph.config.viewPort.height;
- *      row[3] = Math.random()*50;
- *      graph.render(data);
- *    });
- *    data.sort('ascending', 'x');
- * }, 2000);
+ * // to dynamically update, we change values avery 2s:
+ * setInterval(update, 2000);
  * 
+ * function update() {
+ *    data.rows.map(row => {
+ *       //row[1] = Math.random()*graph.config.viewPort.width;
+ *       row[2] = Math.random()*graph.config.viewPort.height;
+ *       row[3] = Math.random()*50;
+ *    });
+ *    graph.render(data);
+ * }
+
  * 
  * </file>
  * </example>

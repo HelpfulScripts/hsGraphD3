@@ -1,48 +1,43 @@
 /**
  * ## d3 Graphs
  * 
- * <example height=200px libs={hsGraphD3:'hsGraphD3',hsDatab:'hsDatab',d3:'https://d3js.org/d3.v5.min.js'}>
+ * <example height=200px libs={hsGraphD3:'hsGraphD3',d3:'d3'}>
  * <file name='script.js'>
  * // create data set:
- * const data = new hsDatab.Data({
- *    colNames:['date', 'time', 'volume', 'costs'], 
- *    rows:[['1/1/14', -1,  0.2, 0.3], ['1/1/16', 0.2, 0.7, 0.2], ['9/1/16', 0.4, 0.1, 0.3],
- *          ['5/1/17', 0.6, 0,   0.1], ['7/1/18', 0.8, 0.3, 0.5], ['1/1/19', 1,   0.2, 0.4]]
- * });
+ * const data = [['date', 'time', 'volume', 'costs'], ['1/1/14', -1,  0.2, 0.3], 
+ *  ['1/1/16', 0.2, 0.7, 0.2], ['9/1/16', 0.4, 0.1, 0.3],
+ *  ['5/1/17', 0.6, 0,   0.1], ['7/1/18', 0.8, 0.3, 0.5], ['1/1/19', 1,   0.2, 0.4]];
  * 
  * // setup and plot the data:
  * const graph = new hsGraphD3.Graph(root);
  * graph.addSeries('bubble', 'time', 'volume', 'costs');
  * graph.addSeries('bubble', 'time', 'volume', 'costs');
  * 
- * //with (graph.defaults.Scales('costs').scale) {
- * //     range.min = 0
- * //     range.min = 20
- * //}
- * 
- * with (graph.defaults.Graph.canvas) {
- *      fill.color = '#eee';
+ * with (graph.defaults.graph.canvas) {
+ *      fill.color = '#fcfcfc';
  *      stroke.width = 0;
  * }
- * with (graph.defaults.Axes.hor) {
- *      tickLabel.font.size = 200;
+ * with (graph.defaults.axes.hor) {
+ *      tickLabel.font.size = 10;
  * }
- * with (graph.defaults.Plot.area) {
- *      //fill.color = '#fcc';
+ * with (graph.defaults.scales.costs.range) {
+ *      min = 10;
+ *      max = 80;
  * }
  * graph.render(data);
  * 
  * // change values avery 2s:
- * setInterval(() => {
- *    data.getData().map(row => {
- *      //row[1] = Math.random()*graph.config.viewPort.width;
- *      row[2] = Math.random()*graph.config.viewPort.height;
- *      row[3] = Math.random()*50;
- *      graph.render(data);
- *    });
- *    data.sort('ascending', 'x');
- * }, 2000);
+ * setInterval(update, 2000);
  * 
+ * function update() {
+ *    data.map((row, i) => {
+ *      if (i>0) {
+ *          row[2] = Math.random()*graph.config.viewPort.height;
+ *          row[3] = Math.random()*50;
+ *      }
+ *    });
+ *    graph.render(data);
+ * }
  * 
  * </file>
  * </example>
@@ -54,10 +49,10 @@ import { log as gLog }      from 'hsutil';   const log = gLog('Graph');
 import * as d3              from 'd3'; 
 
 import { Data, NumDomain }  from 'hsdatab';
+import { DataTable }   from 'hsdatab';
 import { DataSet }          from 'hsdatab';
 import { GraphCfg, UnitVp } from './ConfigTypes';
 import { d3Base }           from './ConfigTypes';
-// import { Scale, scaleTypes }from './ConfigTypes';
 import { Defaults }         from './Defaults';
 import { Plot }             from './Plot';
 import { Axis, Direction }  from './Axis';
@@ -84,7 +79,13 @@ function createBaseSVG(cfg: GraphCfg):d3Base {
         ;
     cfg.baseSVG = svg;
     svg.append('rect')
-        .classed('baseRect', true)
+        .classed('graphArea', true)
+        .attr('x', 0)
+        .attr('y', 0);
+    svg.append('g').classed('axes', true);
+    svg.append('g').classed('series', true);
+    svg.append('rect')
+        .classed('graphBorder', true)
         .attr('x', 0)
         .attr('y', 0);
     return svg;
@@ -137,13 +138,12 @@ export class Graph extends GraphComponent {
      * renders all Graph elements using `data`
      * @param data 
      */
-    public render(data:Data|DataSet) {
+    public render(data:Data|DataSet|DataTable) {
         let d:Data;
         if (data instanceof Data) { d = data; } 
         else { d = new Data(data); }
         this.setScales(d);
         this.drawCanvas(this.config);
-        this.plot.setBorders(10, 10, 10, 10);
         this.plot.render(d);
         this.axes.forEach(a => a.render(d));
     }
@@ -155,8 +155,6 @@ export class Graph extends GraphComponent {
      */
     public addSeries(type:string, x:string, y:string, ...params:string[]) {
         this.resize();
-        this.config.scales.hor.dataCol = x;
-        this.config.scales.ver.dataCol = y;
         this.plot.addSeries(type, x, y, ...params);
     }
 
@@ -165,8 +163,15 @@ export class Graph extends GraphComponent {
      * @param cfg 
      */
     private drawCanvas(cfg: GraphCfg) {
-        const canvas = cfg.defaults.Graph.canvas;
-        d3.select('.baseRect')
+        const canvas = cfg.defaults.graph.canvas;
+        d3.select('.graphArea')
+        .attr('width', cfg.viewPort.width)
+        .attr('height', cfg.viewPort.height)
+        .attr('rx', canvas.rx)
+        .attr('ry', canvas.ry)
+        .attr('fill', canvas.fill.color)
+        .attr('fill-opacity', canvas.fill.opacity);
+        d3.select('.graphBorder')
         .attr('width', cfg.viewPort.width)
         .attr('height', cfg.viewPort.height)
         .attr('rx', canvas.rx)
@@ -174,8 +179,7 @@ export class Graph extends GraphComponent {
         .attr('stroke', canvas.stroke.color)
         .attr('stroke-width', canvas.stroke.width)
         .attr('stroke-opacity', canvas.stroke.opacity)
-        .attr('fill', canvas.fill.color)
-        .attr('fill-opacity', canvas.fill.opacity);
+        .attr('fill-opacity', 0);
     }
 
     private setScales(data:Data) {

@@ -9,8 +9,6 @@ import { log as gLog }      from 'hsutil';   const log = gLog('d3.Axis');
 import { GraphComponent }   from './GraphComponent'; 
 import { GraphCfg }         from './ConfigTypes';
 import { d3Base }           from './ConfigTypes';
-import { AxisDefaults }     from './DefaultTypes';
-import { defaultLine }      from './Defaults';
 import * as d3Axis          from "d3-axis";
 
 const axisWidth:number = 50;
@@ -24,17 +22,16 @@ export enum Direction {
 export class Axis extends GraphComponent {
     private dir: Direction;
     private svg: d3Base;
-    private defaults: AxisDefaults;
 
     constructor(cfg:GraphCfg, dir:Direction) {
         super(cfg);
         this.dir = dir;
-        this.svg = cfg.baseSVG.append('g').classed(`${dir}Axis`, true);
+        this.svg = cfg.baseSVG.select('.axes').append('g').classed(`${dir}Axis`, true);
     }
 
     render(data:Data) {
         const scales = this.config.scales;
-        const style = this.config.defaults.Axes[this.dir];
+        const style = this.config.defaults.axes[this.dir];
         let axis;
         this.svg
             .attr('stroke', style.line.color)

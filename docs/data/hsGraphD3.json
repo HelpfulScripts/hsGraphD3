@@ -5,7 +5,7 @@
 	"flags": {},
 	"children": [
 		{
-			"id": 146,
+			"id": 143,
 			"name": "\"Axis\"",
 			"kind": 1,
 			"kindString": "External module",
@@ -18,7 +18,7 @@
 			},
 			"children": [
 				{
-					"id": 147,
+					"id": 144,
 					"name": "Direction",
 					"kind": 4,
 					"kindString": "Enumeration",
@@ -27,7 +27,7 @@
 					},
 					"children": [
 						{
-							"id": 148,
+							"id": 145,
 							"name": "Horizontal",
 							"kind": 16,
 							"kindString": "Enumeration member",
@@ -37,14 +37,14 @@
 							"sources": [
 								{
 									"fileName": "Axis.ts",
-									"line": 20,
+									"line": 18,
 									"character": 14
 								}
 							],
 							"defaultValue": "\"hor\""
 						},
 						{
-							"id": 149,
+							"id": 146,
 							"name": "Vertical",
 							"kind": 16,
 							"kindString": "Enumeration member",
@@ -54,7 +54,7 @@
 							"sources": [
 								{
 									"fileName": "Axis.ts",
-									"line": 21,
+									"line": 19,
 									"character": 12
 								}
 							],
@@ -66,21 +66,21 @@
 							"title": "Enumeration members",
 							"kind": 16,
 							"children": [
-								148,
-								149
+								145,
+								146
 							]
 						}
 					],
 					"sources": [
 						{
 							"fileName": "Axis.ts",
-							"line": 19,
+							"line": 17,
 							"character": 21
 						}
 					]
 				},
 				{
-					"id": 150,
+					"id": 147,
 					"name": "Axis",
 					"kind": 128,
 					"kindString": "Class",
@@ -89,7 +89,7 @@
 					},
 					"children": [
 						{
-							"id": 154,
+							"id": 150,
 							"name": "constructor",
 							"kind": 512,
 							"kindString": "Constructor",
@@ -98,14 +98,14 @@
 							},
 							"signatures": [
 								{
-									"id": 155,
+									"id": 151,
 									"name": "new Axis",
 									"kind": 16384,
 									"kindString": "Constructor signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 156,
+											"id": 152,
 											"name": "cfg",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -113,11 +113,11 @@
 											"type": {
 												"type": "reference",
 												"name": "GraphCfg",
-												"id": 15
+												"id": 7
 											}
 										},
 										{
-											"id": 157,
+											"id": 153,
 											"name": "dir",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -125,37 +125,37 @@
 											"type": {
 												"type": "reference",
 												"name": "Direction",
-												"id": 147
+												"id": 144
 											}
 										}
 									],
 									"type": {
 										"type": "reference",
 										"name": "Axis",
-										"id": 150
+										"id": 147
 									},
 									"overwrites": {
 										"type": "reference",
 										"name": "GraphComponent.__constructor",
-										"id": 138
+										"id": 135
 									}
 								}
 							],
 							"sources": [
 								{
 									"fileName": "Axis.ts",
-									"line": 27,
-									"character": 35
+									"line": 24,
+									"character": 24
 								}
 							],
 							"overwrites": {
 								"type": "reference",
 								"name": "GraphComponent.__constructor",
-								"id": 138
+								"id": 135
 							}
 						},
 						{
-							"id": 161,
+							"id": 157,
 							"name": "config",
 							"kind": 1024,
 							"kindString": "Property",
@@ -173,38 +173,16 @@
 							"type": {
 								"type": "reference",
 								"name": "GraphCfg",
-								"id": 15
+								"id": 7
 							},
 							"inheritedFrom": {
 								"type": "reference",
 								"name": "GraphComponent.config",
-								"id": 137
+								"id": 134
 							}
 						},
 						{
-							"id": 153,
-							"name": "defaults",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isPrivate": true,
-								"isExported": true
-							},
-							"sources": [
-								{
-									"fileName": "Axis.ts",
-									"line": 27,
-									"character": 20
-								}
-							],
-							"type": {
-								"type": "reference",
-								"name": "AxisDefaults",
-								"id": 89
-							}
-						},
-						{
-							"id": 151,
+							"id": 148,
 							"name": "dir",
 							"kind": 1024,
 							"kindString": "Property",
@@ -215,18 +193,18 @@
 							"sources": [
 								{
 									"fileName": "Axis.ts",
-									"line": 25,
+									"line": 23,
 									"character": 15
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "Direction",
-								"id": 147
+								"id": 144
 							}
 						},
 						{
-							"id": 152,
+							"id": 149,
 							"name": "svg",
 							"kind": 1024,
 							"kindString": "Property",
@@ -237,18 +215,18 @@
 							"sources": [
 								{
 									"fileName": "Axis.ts",
-									"line": 26,
+									"line": 24,
 									"character": 15
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "d3Base",
-								"id": 47
+								"id": 33
 							}
 						},
 						{
-							"id": 158,
+							"id": 154,
 							"name": "render",
 							"kind": 2048,
 							"kindString": "Method",
@@ -257,14 +235,14 @@
 							},
 							"signatures": [
 								{
-									"id": 159,
+									"id": 155,
 									"name": "render",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 160,
+											"id": 156,
 											"name": "data",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -282,21 +260,21 @@
 									"overwrites": {
 										"type": "reference",
 										"name": "GraphComponent.render",
-										"id": 141
+										"id": 138
 									}
 								}
 							],
 							"sources": [
 								{
 									"fileName": "Axis.ts",
-									"line": 35,
+									"line": 32,
 									"character": 10
 								}
 							],
 							"overwrites": {
 								"type": "reference",
 								"name": "GraphComponent.render",
-								"id": 141
+								"id": 138
 							}
 						}
 					],
@@ -305,31 +283,30 @@
 							"title": "Constructors",
 							"kind": 512,
 							"children": [
-								154
+								150
 							]
 						},
 						{
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								161,
-								153,
-								151,
-								152
+								157,
+								148,
+								149
 							]
 						},
 						{
 							"title": "Methods",
 							"kind": 2048,
 							"children": [
-								158
+								154
 							]
 						}
 					],
 					"sources": [
 						{
 							"fileName": "Axis.ts",
-							"line": 24,
+							"line": 22,
 							"character": 17
 						}
 					],
@@ -337,12 +314,12 @@
 						{
 							"type": "reference",
 							"name": "GraphComponent",
-							"id": 136
+							"id": 133
 						}
 					]
 				},
 				{
-					"id": 163,
+					"id": 159,
 					"name": "axisWidth",
 					"kind": 32,
 					"kindString": "Variable",
@@ -352,7 +329,7 @@
 					"sources": [
 						{
 							"fileName": "Axis.ts",
-							"line": 16,
+							"line": 14,
 							"character": 15
 						}
 					],
@@ -363,7 +340,7 @@
 					"defaultValue": "50"
 				},
 				{
-					"id": 162,
+					"id": 158,
 					"name": "log",
 					"kind": 32,
 					"kindString": "Variable",
@@ -384,7 +361,7 @@
 					"defaultValue": " gLog('d3.Axis')"
 				},
 				{
-					"id": 164,
+					"id": 160,
 					"name": "tickWidth",
 					"kind": 32,
 					"kindString": "Variable",
@@ -394,7 +371,7 @@
 					"sources": [
 						{
 							"fileName": "Axis.ts",
-							"line": 17,
+							"line": 15,
 							"character": 15
 						}
 					],
@@ -410,23 +387,23 @@
 					"title": "Enumerations",
 					"kind": 4,
 					"children": [
-						147
+						144
 					]
 				},
 				{
 					"title": "Classes",
 					"kind": 128,
 					"children": [
-						150
+						147
 					]
 				},
 				{
 					"title": "Variables",
 					"kind": 32,
 					"children": [
-						163,
-						162,
-						164
+						159,
+						158,
+						160
 					]
 				}
 			],
@@ -452,7 +429,7 @@
 			},
 			"children": [
 				{
-					"id": 15,
+					"id": 7,
 					"name": "GraphCfg",
 					"kind": 256,
 					"kindString": "Interface",
@@ -461,7 +438,7 @@
 					},
 					"children": [
 						{
-							"id": 17,
+							"id": 9,
 							"name": "baseSVG",
 							"kind": 1024,
 							"kindString": "Property",
@@ -471,18 +448,18 @@
 							"sources": [
 								{
 									"fileName": "ConfigTypes.ts",
-									"line": 35,
+									"line": 27,
 									"character": 11
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "d3Base",
-								"id": 47
+								"id": 33
 							}
 						},
 						{
-							"id": 18,
+							"id": 10,
 							"name": "client",
 							"kind": 1024,
 							"kindString": "Property",
@@ -492,18 +469,18 @@
 							"sources": [
 								{
 									"fileName": "ConfigTypes.ts",
-									"line": 36,
+									"line": 28,
 									"character": 10
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "RectDef",
-								"id": 10
+								"id": 2
 							}
 						},
 						{
-							"id": 23,
+							"id": 15,
 							"name": "defaults",
 							"kind": 1024,
 							"kindString": "Property",
@@ -513,18 +490,18 @@
 							"sources": [
 								{
 									"fileName": "ConfigTypes.ts",
-									"line": 41,
+									"line": 33,
 									"character": 12
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "Defaults",
-								"id": 100
+								"id": 92
 							}
 						},
 						{
-							"id": 16,
+							"id": 8,
 							"name": "root",
 							"kind": 1024,
 							"kindString": "Property",
@@ -534,7 +511,7 @@
 							"sources": [
 								{
 									"fileName": "ConfigTypes.ts",
-									"line": 34,
+									"line": 26,
 									"character": 8
 								}
 							],
@@ -544,7 +521,7 @@
 							}
 						},
 						{
-							"id": 24,
+							"id": 16,
 							"name": "scales",
 							"kind": 1024,
 							"kindString": "Property",
@@ -554,21 +531,21 @@
 							"sources": [
 								{
 									"fileName": "ConfigTypes.ts",
-									"line": 42,
+									"line": 34,
 									"character": 10
 								}
 							],
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 25,
+									"id": 17,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
 									"flags": {},
 									"children": [
 										{
-											"id": 26,
+											"id": 18,
 											"name": "hor",
 											"kind": 32,
 											"kindString": "Variable",
@@ -576,21 +553,21 @@
 											"sources": [
 												{
 													"fileName": "ConfigTypes.ts",
-													"line": 43,
+													"line": 35,
 													"character": 11
 												}
 											],
 											"type": {
 												"type": "reflection",
 												"declaration": {
-													"id": 27,
+													"id": 19,
 													"name": "__type",
 													"kind": 65536,
 													"kindString": "Type literal",
 													"flags": {},
 													"children": [
 														{
-															"id": 28,
+															"id": 20,
 															"name": "dataCol",
 															"kind": 32,
 															"kindString": "Variable",
@@ -598,7 +575,7 @@
 															"sources": [
 																{
 																	"fileName": "ConfigTypes.ts",
-																	"line": 43,
+																	"line": 35,
 																	"character": 22
 																}
 															],
@@ -608,7 +585,7 @@
 															}
 														},
 														{
-															"id": 29,
+															"id": 21,
 															"name": "scale",
 															"kind": 32,
 															"kindString": "Variable",
@@ -616,7 +593,7 @@
 															"sources": [
 																{
 																	"fileName": "ConfigTypes.ts",
-																	"line": 43,
+																	"line": 35,
 																	"character": 37
 																}
 															],
@@ -631,15 +608,15 @@
 															"title": "Variables",
 															"kind": 32,
 															"children": [
-																28,
-																29
+																20,
+																21
 															]
 														}
 													],
 													"sources": [
 														{
 															"fileName": "ConfigTypes.ts",
-															"line": 43,
+															"line": 35,
 															"character": 12
 														}
 													]
@@ -647,7 +624,7 @@
 											}
 										},
 										{
-											"id": 30,
+											"id": 22,
 											"name": "ver",
 											"kind": 32,
 											"kindString": "Variable",
@@ -655,21 +632,21 @@
 											"sources": [
 												{
 													"fileName": "ConfigTypes.ts",
-													"line": 44,
+													"line": 36,
 													"character": 11
 												}
 											],
 											"type": {
 												"type": "reflection",
 												"declaration": {
-													"id": 31,
+													"id": 23,
 													"name": "__type",
 													"kind": 65536,
 													"kindString": "Type literal",
 													"flags": {},
 													"children": [
 														{
-															"id": 32,
+															"id": 24,
 															"name": "dataCol",
 															"kind": 32,
 															"kindString": "Variable",
@@ -677,7 +654,7 @@
 															"sources": [
 																{
 																	"fileName": "ConfigTypes.ts",
-																	"line": 44,
+																	"line": 36,
 																	"character": 22
 																}
 															],
@@ -687,7 +664,7 @@
 															}
 														},
 														{
-															"id": 33,
+															"id": 25,
 															"name": "scale",
 															"kind": 32,
 															"kindString": "Variable",
@@ -695,7 +672,7 @@
 															"sources": [
 																{
 																	"fileName": "ConfigTypes.ts",
-																	"line": 44,
+																	"line": 36,
 																	"character": 37
 																}
 															],
@@ -710,15 +687,15 @@
 															"title": "Variables",
 															"kind": 32,
 															"children": [
-																32,
-																33
+																24,
+																25
 															]
 														}
 													],
 													"sources": [
 														{
 															"fileName": "ConfigTypes.ts",
-															"line": 44,
+															"line": 36,
 															"character": 12
 														}
 													]
@@ -731,15 +708,15 @@
 											"title": "Variables",
 											"kind": 32,
 											"children": [
-												26,
-												30
+												18,
+												22
 											]
 										}
 									],
 									"sources": [
 										{
 											"fileName": "ConfigTypes.ts",
-											"line": 42,
+											"line": 34,
 											"character": 11
 										}
 									]
@@ -747,7 +724,7 @@
 							}
 						},
 						{
-							"id": 19,
+							"id": 11,
 							"name": "viewPort",
 							"kind": 1024,
 							"kindString": "Property",
@@ -757,21 +734,21 @@
 							"sources": [
 								{
 									"fileName": "ConfigTypes.ts",
-									"line": 37,
+									"line": 29,
 									"character": 12
 								}
 							],
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 20,
+									"id": 12,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
 									"flags": {},
 									"children": [
 										{
-											"id": 22,
+											"id": 14,
 											"name": "height",
 											"kind": 32,
 											"kindString": "Variable",
@@ -779,18 +756,18 @@
 											"sources": [
 												{
 													"fileName": "ConfigTypes.ts",
-													"line": 39,
+													"line": 31,
 													"character": 14
 												}
 											],
 											"type": {
 												"type": "reference",
 												"name": "UnitVp",
-												"id": 43
+												"id": 29
 											}
 										},
 										{
-											"id": 21,
+											"id": 13,
 											"name": "width",
 											"kind": 32,
 											"kindString": "Variable",
@@ -798,14 +775,14 @@
 											"sources": [
 												{
 													"fileName": "ConfigTypes.ts",
-													"line": 38,
+													"line": 30,
 													"character": 13
 												}
 											],
 											"type": {
 												"type": "reference",
 												"name": "UnitVp",
-												"id": 43
+												"id": 29
 											}
 										}
 									],
@@ -814,15 +791,15 @@
 											"title": "Variables",
 											"kind": 32,
 											"children": [
-												22,
-												21
+												14,
+												13
 											]
 										}
 									],
 									"sources": [
 										{
 											"fileName": "ConfigTypes.ts",
-											"line": 37,
+											"line": 29,
 											"character": 13
 										}
 									]
@@ -835,25 +812,25 @@
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								17,
-								18,
-								23,
+								9,
+								10,
+								15,
+								8,
 								16,
-								24,
-								19
+								11
 							]
 						}
 					],
 					"sources": [
 						{
 							"fileName": "ConfigTypes.ts",
-							"line": 33,
+							"line": 25,
 							"character": 25
 						}
 					]
 				},
 				{
-					"id": 34,
+					"id": 26,
 					"name": "PlotCfg",
 					"kind": 256,
 					"kindString": "Interface",
@@ -862,7 +839,7 @@
 					},
 					"children": [
 						{
-							"id": 35,
+							"id": 27,
 							"name": "cfg",
 							"kind": 1024,
 							"kindString": "Property",
@@ -872,137 +849,18 @@
 							"sources": [
 								{
 									"fileName": "ConfigTypes.ts",
-									"line": 49,
+									"line": 41,
 									"character": 7
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "GraphCfg",
-								"id": 15
+								"id": 7
 							}
 						},
 						{
-							"id": 37,
-							"name": "margin",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isExported": true
-							},
-							"sources": [
-								{
-									"fileName": "ConfigTypes.ts",
-									"line": 51,
-									"character": 10
-								}
-							],
-							"type": {
-								"type": "reflection",
-								"declaration": {
-									"id": 38,
-									"name": "__type",
-									"kind": 65536,
-									"kindString": "Type literal",
-									"flags": {},
-									"children": [
-										{
-											"id": 42,
-											"name": "bottom",
-											"kind": 32,
-											"kindString": "Variable",
-											"flags": {},
-											"sources": [
-												{
-													"fileName": "ConfigTypes.ts",
-													"line": 51,
-													"character": 63
-												}
-											],
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											}
-										},
-										{
-											"id": 39,
-											"name": "left",
-											"kind": 32,
-											"kindString": "Variable",
-											"flags": {},
-											"sources": [
-												{
-													"fileName": "ConfigTypes.ts",
-													"line": 51,
-													"character": 22
-												}
-											],
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											}
-										},
-										{
-											"id": 41,
-											"name": "right",
-											"kind": 32,
-											"kindString": "Variable",
-											"flags": {},
-											"sources": [
-												{
-													"fileName": "ConfigTypes.ts",
-													"line": 51,
-													"character": 48
-												}
-											],
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											}
-										},
-										{
-											"id": 40,
-											"name": "top",
-											"kind": 32,
-											"kindString": "Variable",
-											"flags": {},
-											"sources": [
-												{
-													"fileName": "ConfigTypes.ts",
-													"line": 51,
-													"character": 34
-												}
-											],
-											"type": {
-												"type": "intrinsic",
-												"name": "number"
-											}
-										}
-									],
-									"groups": [
-										{
-											"title": "Variables",
-											"kind": 32,
-											"children": [
-												42,
-												39,
-												41,
-												40
-											]
-										}
-									],
-									"sources": [
-										{
-											"fileName": "ConfigTypes.ts",
-											"line": 51,
-											"character": 11
-										}
-									]
-								}
-							}
-						},
-						{
-							"id": 36,
+							"id": 28,
 							"name": "plotBase",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1012,14 +870,14 @@
 							"sources": [
 								{
 									"fileName": "ConfigTypes.ts",
-									"line": 50,
+									"line": 42,
 									"character": 12
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "d3Base",
-								"id": 47
+								"id": 33
 							}
 						}
 					],
@@ -1028,146 +886,21 @@
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								35,
-								37,
-								36
+								27,
+								28
 							]
 						}
 					],
 					"sources": [
 						{
 							"fileName": "ConfigTypes.ts",
-							"line": 48,
+							"line": 40,
 							"character": 24
 						}
 					]
 				},
 				{
 					"id": 2,
-					"name": "PlotFn",
-					"kind": 256,
-					"kindString": "Interface",
-					"flags": {
-						"isExported": true
-					},
-					"signatures": [
-						{
-							"id": 3,
-							"name": "__call",
-							"kind": 4096,
-							"kindString": "Call signature",
-							"flags": {},
-							"parameters": [
-								{
-									"id": 4,
-									"name": "data",
-									"kind": 32768,
-									"kindString": "Parameter",
-									"flags": {},
-									"type": {
-										"type": "reference",
-										"name": "Data"
-									}
-								}
-							],
-							"type": {
-								"type": "intrinsic",
-								"name": "void"
-							}
-						}
-					],
-					"sources": [
-						{
-							"fileName": "ConfigTypes.ts",
-							"line": 19,
-							"character": 23
-						}
-					]
-				},
-				{
-					"id": 5,
-					"name": "PlotFnDef",
-					"kind": 256,
-					"kindString": "Interface",
-					"flags": {
-						"isExported": true
-					},
-					"signatures": [
-						{
-							"id": 6,
-							"name": "__call",
-							"kind": 4096,
-							"kindString": "Call signature",
-							"flags": {},
-							"parameters": [
-								{
-									"id": 7,
-									"name": "data",
-									"kind": 32768,
-									"kindString": "Parameter",
-									"flags": {},
-									"type": {
-										"type": "reference",
-										"name": "Data"
-									}
-								},
-								{
-									"id": 8,
-									"name": "desc",
-									"kind": 32768,
-									"kindString": "Parameter",
-									"flags": {},
-									"type": {
-										"type": "reference",
-										"name": "PlotCfg",
-										"id": 34
-									}
-								},
-								{
-									"id": 9,
-									"name": "rest",
-									"kind": 32768,
-									"kindString": "Parameter",
-									"flags": {
-										"isRest": true
-									},
-									"type": {
-										"type": "reference",
-										"name": "Array",
-										"typeArguments": [
-											{
-												"type": "union",
-												"types": [
-													{
-														"type": "intrinsic",
-														"name": "string"
-													},
-													{
-														"type": "intrinsic",
-														"name": "number"
-													}
-												]
-											}
-										]
-									}
-								}
-							],
-							"type": {
-								"type": "intrinsic",
-								"name": "void"
-							}
-						}
-					],
-					"sources": [
-						{
-							"fileName": "ConfigTypes.ts",
-							"line": 20,
-							"character": 26
-						}
-					]
-				},
-				{
-					"id": 10,
 					"name": "RectDef",
 					"kind": 256,
 					"kindString": "Interface",
@@ -1176,7 +909,7 @@
 					},
 					"children": [
 						{
-							"id": 14,
+							"id": 6,
 							"name": "height",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1186,18 +919,18 @@
 							"sources": [
 								{
 									"fileName": "ConfigTypes.ts",
-									"line": 21,
+									"line": 19,
 									"character": 67
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "UnitVp",
-								"id": 43
+								"id": 29
 							}
 						},
 						{
-							"id": 13,
+							"id": 5,
 							"name": "width",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1207,18 +940,18 @@
 							"sources": [
 								{
 									"fileName": "ConfigTypes.ts",
-									"line": 21,
+									"line": 19,
 									"character": 52
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "UnitVp",
-								"id": 43
+								"id": 29
 							}
 						},
 						{
-							"id": 11,
+							"id": 3,
 							"name": "x",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1228,18 +961,18 @@
 							"sources": [
 								{
 									"fileName": "ConfigTypes.ts",
-									"line": 21,
+									"line": 19,
 									"character": 28
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "UnitVp",
-								"id": 43
+								"id": 29
 							}
 						},
 						{
-							"id": 12,
+							"id": 4,
 							"name": "y",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1249,14 +982,14 @@
 							"sources": [
 								{
 									"fileName": "ConfigTypes.ts",
-									"line": 21,
+									"line": 19,
 									"character": 38
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "UnitVp",
-								"id": 43
+								"id": 29
 							}
 						}
 					],
@@ -1265,23 +998,23 @@
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								14,
-								13,
-								11,
-								12
+								6,
+								5,
+								3,
+								4
 							]
 						}
 					],
 					"sources": [
 						{
 							"fileName": "ConfigTypes.ts",
-							"line": 21,
+							"line": 19,
 							"character": 24
 						}
 					]
 				},
 				{
-					"id": 45,
+					"id": 31,
 					"name": "Unit",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -1308,13 +1041,13 @@
 							{
 								"type": "reference",
 								"name": "UnitPx",
-								"id": 44
+								"id": 30
 							}
 						]
 					}
 				},
 				{
-					"id": 44,
+					"id": 30,
 					"name": "UnitPx",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -1337,7 +1070,7 @@
 					}
 				},
 				{
-					"id": 43,
+					"id": 29,
 					"name": "UnitVp",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -1360,7 +1093,7 @@
 					}
 				},
 				{
-					"id": 47,
+					"id": 33,
 					"name": "d3Base",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -1370,7 +1103,7 @@
 					"sources": [
 						{
 							"fileName": "ConfigTypes.ts",
-							"line": 31,
+							"line": 23,
 							"character": 18
 						}
 					],
@@ -1398,7 +1131,7 @@
 					}
 				},
 				{
-					"id": 46,
+					"id": 32,
 					"name": "scaleTypes",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -1408,7 +1141,7 @@
 					"sources": [
 						{
 							"fileName": "ConfigTypes.ts",
-							"line": 23,
+							"line": 21,
 							"character": 22
 						}
 					],
@@ -1432,22 +1165,20 @@
 					"title": "Interfaces",
 					"kind": 256,
 					"children": [
-						15,
-						34,
-						2,
-						5,
-						10
+						7,
+						26,
+						2
 					]
 				},
 				{
 					"title": "Type aliases",
 					"kind": 4194304,
 					"children": [
-						45,
-						44,
-						43,
-						47,
-						46
+						31,
+						30,
+						29,
+						33,
+						32
 					]
 				}
 			],
@@ -1460,7 +1191,7 @@
 			]
 		},
 		{
-			"id": 48,
+			"id": 34,
 			"name": "\"DefaultTypes\"",
 			"kind": 1,
 			"kindString": "External module",
@@ -1473,7 +1204,7 @@
 			},
 			"children": [
 				{
-					"id": 49,
+					"id": 35,
 					"name": "Area",
 					"kind": 256,
 					"kindString": "Interface",
@@ -1482,7 +1213,7 @@
 					},
 					"children": [
 						{
-							"id": 50,
+							"id": 36,
 							"name": "color",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1499,11 +1230,11 @@
 							"type": {
 								"type": "reference",
 								"name": "Color",
-								"id": 96
+								"id": 88
 							}
 						},
 						{
-							"id": 51,
+							"id": 37,
 							"name": "opacity",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1520,7 +1251,7 @@
 							"type": {
 								"type": "reference",
 								"name": "ZeroToOne",
-								"id": 97
+								"id": 89
 							}
 						}
 					],
@@ -1529,8 +1260,8 @@
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								50,
-								51
+								36,
+								37
 							]
 						}
 					],
@@ -1543,7 +1274,7 @@
 					]
 				},
 				{
-					"id": 93,
+					"id": 85,
 					"name": "AxesDefaults",
 					"kind": 256,
 					"kindString": "Interface",
@@ -1552,29 +1283,8 @@
 					},
 					"children": [
 						{
-							"id": 94,
+							"id": 86,
 							"name": "hor",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isExported": true
-							},
-							"sources": [
-								{
-									"fileName": "DefaultTypes.ts",
-									"line": 72,
-									"character": 7
-								}
-							],
-							"type": {
-								"type": "reference",
-								"name": "AxisDefaults",
-								"id": 89
-							}
-						},
-						{
-							"id": 95,
-							"name": "ver",
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {
@@ -1590,7 +1300,28 @@
 							"type": {
 								"type": "reference",
 								"name": "AxisDefaults",
-								"id": 89
+								"id": 81
+							}
+						},
+						{
+							"id": 87,
+							"name": "ver",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {
+								"isExported": true
+							},
+							"sources": [
+								{
+									"fileName": "DefaultTypes.ts",
+									"line": 74,
+									"character": 7
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "AxisDefaults",
+								"id": 81
 							}
 						}
 					],
@@ -1599,21 +1330,21 @@
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								94,
-								95
+								86,
+								87
 							]
 						}
 					],
 					"sources": [
 						{
 							"fileName": "DefaultTypes.ts",
-							"line": 71,
+							"line": 72,
 							"character": 29
 						}
 					]
 				},
 				{
-					"id": 89,
+					"id": 81,
 					"name": "AxisDefaults",
 					"kind": 256,
 					"kindString": "Interface",
@@ -1622,7 +1353,7 @@
 					},
 					"children": [
 						{
-							"id": 90,
+							"id": 82,
 							"name": "line",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1632,19 +1363,40 @@
 							"sources": [
 								{
 									"fileName": "DefaultTypes.ts",
-									"line": 66,
+									"line": 67,
 									"character": 8
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "Line",
-								"id": 52
+								"id": 38
 							}
 						},
 						{
-							"id": 92,
+							"id": 84,
 							"name": "tickLabel",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {
+								"isExported": true
+							},
+							"sources": [
+								{
+									"fileName": "DefaultTypes.ts",
+									"line": 69,
+									"character": 13
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "TextStyle",
+								"id": 47
+							}
+						},
+						{
+							"id": 83,
+							"name": "tickMarks",
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {
@@ -1659,29 +1411,8 @@
 							],
 							"type": {
 								"type": "reference",
-								"name": "TextStyle",
-								"id": 61
-							}
-						},
-						{
-							"id": 91,
-							"name": "tickMarks",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isExported": true
-							},
-							"sources": [
-								{
-									"fileName": "DefaultTypes.ts",
-									"line": 67,
-									"character": 13
-								}
-							],
-							"type": {
-								"type": "reference",
 								"name": "Line",
-								"id": 52
+								"id": 38
 							}
 						}
 					],
@@ -1690,22 +1421,22 @@
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								90,
-								92,
-								91
+								82,
+								84,
+								83
 							]
 						}
 					],
 					"sources": [
 						{
 							"fileName": "DefaultTypes.ts",
-							"line": 65,
+							"line": 66,
 							"character": 29
 						}
 					]
 				},
 				{
-					"id": 69,
+					"id": 55,
 					"name": "GraphDefaults",
 					"kind": 256,
 					"kindString": "Interface",
@@ -1714,7 +1445,7 @@
 					},
 					"children": [
 						{
-							"id": 70,
+							"id": 56,
 							"name": "canvas",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1731,7 +1462,7 @@
 							"type": {
 								"type": "reference",
 								"name": "RectStyle",
-								"id": 56
+								"id": 42
 							}
 						}
 					],
@@ -1740,7 +1471,7 @@
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								70
+								56
 							]
 						}
 					],
@@ -1753,7 +1484,7 @@
 					]
 				},
 				{
-					"id": 52,
+					"id": 38,
 					"name": "Line",
 					"kind": 256,
 					"kindString": "Interface",
@@ -1762,7 +1493,7 @@
 					},
 					"children": [
 						{
-							"id": 54,
+							"id": 40,
 							"name": "color",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1779,11 +1510,11 @@
 							"type": {
 								"type": "reference",
 								"name": "Color",
-								"id": 96
+								"id": 88
 							}
 						},
 						{
-							"id": 55,
+							"id": 41,
 							"name": "opacity",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1800,11 +1531,11 @@
 							"type": {
 								"type": "reference",
 								"name": "ZeroToOne",
-								"id": 97
+								"id": 89
 							}
 						},
 						{
-							"id": 53,
+							"id": 39,
 							"name": "width",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1821,7 +1552,7 @@
 							"type": {
 								"type": "reference",
 								"name": "UnitVp",
-								"id": 43
+								"id": 29
 							}
 						}
 					],
@@ -1830,9 +1561,9 @@
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								54,
-								55,
-								53
+								40,
+								41,
+								39
 							]
 						}
 					],
@@ -1845,7 +1576,7 @@
 					]
 				},
 				{
-					"id": 71,
+					"id": 57,
 					"name": "PlotDefaults",
 					"kind": 256,
 					"kindString": "Interface",
@@ -1854,7 +1585,7 @@
 					},
 					"children": [
 						{
-							"id": 72,
+							"id": 58,
 							"name": "area",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1871,7 +1602,126 @@
 							"type": {
 								"type": "reference",
 								"name": "RectStyle",
-								"id": 56
+								"id": 42
+							}
+						},
+						{
+							"id": 59,
+							"name": "margin",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {
+								"isExported": true
+							},
+							"sources": [
+								{
+									"fileName": "DefaultTypes.ts",
+									"line": 49,
+									"character": 10
+								}
+							],
+							"type": {
+								"type": "reflection",
+								"declaration": {
+									"id": 60,
+									"name": "__type",
+									"kind": 65536,
+									"kindString": "Type literal",
+									"flags": {},
+									"children": [
+										{
+											"id": 64,
+											"name": "bottom",
+											"kind": 32,
+											"kindString": "Variable",
+											"flags": {},
+											"sources": [
+												{
+													"fileName": "DefaultTypes.ts",
+													"line": 49,
+													"character": 59
+												}
+											],
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										},
+										{
+											"id": 61,
+											"name": "left",
+											"kind": 32,
+											"kindString": "Variable",
+											"flags": {},
+											"sources": [
+												{
+													"fileName": "DefaultTypes.ts",
+													"line": 49,
+													"character": 18
+												}
+											],
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										},
+										{
+											"id": 63,
+											"name": "right",
+											"kind": 32,
+											"kindString": "Variable",
+											"flags": {},
+											"sources": [
+												{
+													"fileName": "DefaultTypes.ts",
+													"line": 49,
+													"character": 44
+												}
+											],
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										},
+										{
+											"id": 62,
+											"name": "top",
+											"kind": 32,
+											"kindString": "Variable",
+											"flags": {},
+											"sources": [
+												{
+													"fileName": "DefaultTypes.ts",
+													"line": 49,
+													"character": 30
+												}
+											],
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											}
+										}
+									],
+									"groups": [
+										{
+											"title": "Variables",
+											"kind": 32,
+											"children": [
+												64,
+												61,
+												63,
+												62
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "DefaultTypes.ts",
+											"line": 49,
+											"character": 11
+										}
+									]
+								}
 							}
 						}
 					],
@@ -1880,7 +1730,8 @@
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								72
+								58,
+								59
 							]
 						}
 					],
@@ -1893,7 +1744,7 @@
 					]
 				},
 				{
-					"id": 56,
+					"id": 42,
 					"name": "RectStyle",
 					"kind": 256,
 					"kindString": "Interface",
@@ -1902,7 +1753,7 @@
 					},
 					"children": [
 						{
-							"id": 59,
+							"id": 45,
 							"name": "fill",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1919,11 +1770,11 @@
 							"type": {
 								"type": "reference",
 								"name": "Area",
-								"id": 49
+								"id": 35
 							}
 						},
 						{
-							"id": 57,
+							"id": 43,
 							"name": "rx",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1940,11 +1791,11 @@
 							"type": {
 								"type": "reference",
 								"name": "UnitVp",
-								"id": 43
+								"id": 29
 							}
 						},
 						{
-							"id": 58,
+							"id": 44,
 							"name": "ry",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1961,11 +1812,11 @@
 							"type": {
 								"type": "reference",
 								"name": "UnitVp",
-								"id": 43
+								"id": 29
 							}
 						},
 						{
-							"id": 60,
+							"id": 46,
 							"name": "stroke",
 							"kind": 1024,
 							"kindString": "Property",
@@ -1982,7 +1833,7 @@
 							"type": {
 								"type": "reference",
 								"name": "Line",
-								"id": 52
+								"id": 38
 							}
 						}
 					],
@@ -1991,10 +1842,10 @@
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								59,
-								57,
-								58,
-								60
+								45,
+								43,
+								44,
+								46
 							]
 						}
 					],
@@ -2007,7 +1858,7 @@
 					]
 				},
 				{
-					"id": 79,
+					"id": 71,
 					"name": "ScaleDefaults",
 					"kind": 256,
 					"kindString": "Interface",
@@ -2016,7 +1867,7 @@
 					},
 					"children": [
 						{
-							"id": 81,
+							"id": 73,
 							"name": "domain",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2026,7 +1877,7 @@
 							"sources": [
 								{
 									"fileName": "DefaultTypes.ts",
-									"line": 61,
+									"line": 62,
 									"character": 10
 								}
 							],
@@ -2036,14 +1887,14 @@
 									{
 										"type": "reflection",
 										"declaration": {
-											"id": 82,
+											"id": 74,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 84,
+													"id": 76,
 													"name": "max",
 													"kind": 32,
 													"kindString": "Variable",
@@ -2051,7 +1902,7 @@
 													"sources": [
 														{
 															"fileName": "DefaultTypes.ts",
-															"line": 61,
+															"line": 62,
 															"character": 36
 														}
 													],
@@ -2070,7 +1921,7 @@
 													}
 												},
 												{
-													"id": 83,
+													"id": 75,
 													"name": "min",
 													"kind": 32,
 													"kindString": "Variable",
@@ -2078,7 +1929,7 @@
 													"sources": [
 														{
 															"fileName": "DefaultTypes.ts",
-															"line": 61,
+															"line": 62,
 															"character": 16
 														}
 													],
@@ -2102,15 +1953,15 @@
 													"title": "Variables",
 													"kind": 32,
 													"children": [
-														84,
-														83
+														76,
+														75
 													]
 												}
 											],
 											"sources": [
 												{
 													"fileName": "DefaultTypes.ts",
-													"line": 61,
+													"line": 62,
 													"character": 11
 												}
 											]
@@ -2127,7 +1978,7 @@
 							}
 						},
 						{
-							"id": 85,
+							"id": 77,
 							"name": "range",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2137,21 +1988,21 @@
 							"sources": [
 								{
 									"fileName": "DefaultTypes.ts",
-									"line": 62,
+									"line": 63,
 									"character": 9
 								}
 							],
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 86,
+									"id": 78,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
 									"flags": {},
 									"children": [
 										{
-											"id": 88,
+											"id": 80,
 											"name": "max",
 											"kind": 32,
 											"kindString": "Variable",
@@ -2159,18 +2010,18 @@
 											"sources": [
 												{
 													"fileName": "DefaultTypes.ts",
-													"line": 62,
+													"line": 63,
 													"character": 30
 												}
 											],
 											"type": {
 												"type": "reference",
 												"name": "UnitVp",
-												"id": 43
+												"id": 29
 											}
 										},
 										{
-											"id": 87,
+											"id": 79,
 											"name": "min",
 											"kind": 32,
 											"kindString": "Variable",
@@ -2178,14 +2029,14 @@
 											"sources": [
 												{
 													"fileName": "DefaultTypes.ts",
-													"line": 62,
+													"line": 63,
 													"character": 17
 												}
 											],
 											"type": {
 												"type": "reference",
 												"name": "UnitVp",
-												"id": 43
+												"id": 29
 											}
 										}
 									],
@@ -2194,15 +2045,15 @@
 											"title": "Variables",
 											"kind": 32,
 											"children": [
-												88,
-												87
+												80,
+												79
 											]
 										}
 									],
 									"sources": [
 										{
 											"fileName": "DefaultTypes.ts",
-											"line": 62,
+											"line": 63,
 											"character": 10
 										}
 									]
@@ -2210,7 +2061,7 @@
 							}
 						},
 						{
-							"id": 80,
+							"id": 72,
 							"name": "type",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2220,14 +2071,14 @@
 							"sources": [
 								{
 									"fileName": "DefaultTypes.ts",
-									"line": 60,
+									"line": 61,
 									"character": 8
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "scaleTypes",
-								"id": 46
+								"id": 32
 							}
 						}
 					],
@@ -2236,22 +2087,22 @@
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								81,
-								85,
-								80
+								73,
+								77,
+								72
 							]
 						}
 					],
 					"sources": [
 						{
 							"fileName": "DefaultTypes.ts",
-							"line": 59,
+							"line": 60,
 							"character": 30
 						}
 					]
 				},
 				{
-					"id": 73,
+					"id": 65,
 					"name": "SeriesDefaults",
 					"kind": 256,
 					"kindString": "Interface",
@@ -2260,7 +2111,7 @@
 					},
 					"children": [
 						{
-							"id": 74,
+							"id": 66,
 							"name": "line",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2270,18 +2121,18 @@
 							"sources": [
 								{
 									"fileName": "DefaultTypes.ts",
-									"line": 52,
+									"line": 53,
 									"character": 8
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "Line",
-								"id": 52
+								"id": 38
 							}
 						},
 						{
-							"id": 75,
+							"id": 67,
 							"name": "marker",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2291,21 +2142,21 @@
 							"sources": [
 								{
 									"fileName": "DefaultTypes.ts",
-									"line": 53,
+									"line": 54,
 									"character": 10
 								}
 							],
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 76,
+									"id": 68,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
 									"flags": {},
 									"children": [
 										{
-											"id": 77,
+											"id": 69,
 											"name": "fill",
 											"kind": 32,
 											"kindString": "Variable",
@@ -2313,18 +2164,18 @@
 											"sources": [
 												{
 													"fileName": "DefaultTypes.ts",
-													"line": 54,
+													"line": 55,
 													"character": 12
 												}
 											],
 											"type": {
 												"type": "reference",
 												"name": "Area",
-												"id": 49
+												"id": 35
 											}
 										},
 										{
-											"id": 78,
+											"id": 70,
 											"name": "stroke",
 											"kind": 32,
 											"kindString": "Variable",
@@ -2332,14 +2183,14 @@
 											"sources": [
 												{
 													"fileName": "DefaultTypes.ts",
-													"line": 55,
+													"line": 56,
 													"character": 14
 												}
 											],
 											"type": {
 												"type": "reference",
 												"name": "Line",
-												"id": 52
+												"id": 38
 											}
 										}
 									],
@@ -2348,15 +2199,15 @@
 											"title": "Variables",
 											"kind": 32,
 											"children": [
-												77,
-												78
+												69,
+												70
 											]
 										}
 									],
 									"sources": [
 										{
 											"fileName": "DefaultTypes.ts",
-											"line": 53,
+											"line": 54,
 											"character": 11
 										}
 									]
@@ -2369,21 +2220,21 @@
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								74,
-								75
+								66,
+								67
 							]
 						}
 					],
 					"sources": [
 						{
 							"fileName": "DefaultTypes.ts",
-							"line": 51,
+							"line": 52,
 							"character": 31
 						}
 					]
 				},
 				{
-					"id": 61,
+					"id": 47,
 					"name": "TextStyle",
 					"kind": 256,
 					"kindString": "Interface",
@@ -2392,7 +2243,7 @@
 					},
 					"children": [
 						{
-							"id": 62,
+							"id": 48,
 							"name": "color",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2409,11 +2260,11 @@
 							"type": {
 								"type": "reference",
 								"name": "Color",
-								"id": 96
+								"id": 88
 							}
 						},
 						{
-							"id": 63,
+							"id": 49,
 							"name": "font",
 							"kind": 1024,
 							"kindString": "Property",
@@ -2430,14 +2281,14 @@
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 64,
+									"id": 50,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
 									"flags": {},
 									"children": [
 										{
-											"id": 65,
+											"id": 51,
 											"name": "family",
 											"kind": 32,
 											"kindString": "Variable",
@@ -2455,7 +2306,7 @@
 											}
 										},
 										{
-											"id": 66,
+											"id": 52,
 											"name": "size",
 											"kind": 32,
 											"kindString": "Variable",
@@ -2470,11 +2321,11 @@
 											"type": {
 												"type": "reference",
 												"name": "UnitVp",
-												"id": 43
+												"id": 29
 											}
 										},
 										{
-											"id": 67,
+											"id": 53,
 											"name": "style",
 											"kind": 32,
 											"kindString": "Variable",
@@ -2492,7 +2343,7 @@
 											}
 										},
 										{
-											"id": 68,
+											"id": 54,
 											"name": "weight",
 											"kind": 32,
 											"kindString": "Variable",
@@ -2515,10 +2366,10 @@
 											"title": "Variables",
 											"kind": 32,
 											"children": [
-												65,
-												66,
-												67,
-												68
+												51,
+												52,
+												53,
+												54
 											]
 										}
 									],
@@ -2538,8 +2389,8 @@
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								62,
-								63
+								48,
+								49
 							]
 						}
 					],
@@ -2552,7 +2403,7 @@
 					]
 				},
 				{
-					"id": 96,
+					"id": 88,
 					"name": "Color",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -2572,7 +2423,7 @@
 					}
 				},
 				{
-					"id": 98,
+					"id": 90,
 					"name": "Index",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -2592,7 +2443,7 @@
 					}
 				},
 				{
-					"id": 97,
+					"id": 89,
 					"name": "ZeroToOne",
 					"kind": 4194304,
 					"kindString": "Type alias",
@@ -2617,25 +2468,25 @@
 					"title": "Interfaces",
 					"kind": 256,
 					"children": [
-						49,
-						93,
-						89,
-						69,
-						52,
+						35,
+						85,
+						81,
+						55,
+						38,
+						57,
+						42,
 						71,
-						56,
-						79,
-						73,
-						61
+						65,
+						47
 					]
 				},
 				{
 					"title": "Type aliases",
 					"kind": 4194304,
 					"children": [
-						96,
-						98,
-						97
+						88,
+						90,
+						89
 					]
 				}
 			],
@@ -2648,7 +2499,7 @@
 			]
 		},
 		{
-			"id": 99,
+			"id": 91,
 			"name": "\"Defaults\"",
 			"kind": 1,
 			"kindString": "External module",
@@ -2661,7 +2512,7 @@
 			},
 			"children": [
 				{
-					"id": 100,
+					"id": 92,
 					"name": "Defaults",
 					"kind": 128,
 					"kindString": "Class",
@@ -2673,7 +2524,7 @@
 					},
 					"children": [
 						{
-							"id": 106,
+							"id": 93,
 							"name": "constructor",
 							"kind": 512,
 							"kindString": "Constructor",
@@ -2682,14 +2533,14 @@
 							},
 							"signatures": [
 								{
-									"id": 107,
+									"id": 94,
 									"name": "new Defaults",
 									"kind": 16384,
 									"kindString": "Constructor signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 108,
+											"id": 95,
 											"name": "config",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -2697,219 +2548,111 @@
 											"type": {
 												"type": "reference",
 												"name": "GraphCfg",
-												"id": 15
+												"id": 7
 											}
 										}
 									],
 									"type": {
 										"type": "reference",
 										"name": "Defaults",
-										"id": 100
+										"id": 92
 									}
 								}
 							],
 							"sources": [
 								{
 									"fileName": "Defaults.ts",
-									"line": 27,
-									"character": 24
+									"line": 24,
+									"character": 23
 								}
 							]
 						},
 						{
-							"id": 101,
-							"name": "axes",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isPrivate": true,
-								"isExported": true
-							},
-							"sources": [
-								{
-									"fileName": "Defaults.ts",
-									"line": 25,
-									"character": 16
-								}
-							],
-							"type": {
-								"type": "reflection",
-								"declaration": {
-									"id": 102,
-									"name": "__type",
-									"kind": 65536,
-									"kindString": "Type literal",
-									"flags": {}
-								}
-							}
-						},
-						{
-							"id": 103,
-							"name": "config",
-							"kind": 1024,
-							"kindString": "Property",
-							"flags": {
-								"isPrivate": true,
-								"isExported": true
-							},
-							"sources": [
-								{
-									"fileName": "Defaults.ts",
-									"line": 26,
-									"character": 18
-								}
-							],
-							"type": {
-								"type": "reference",
-								"name": "GraphCfg",
-								"id": 15
-							}
-						},
-						{
-							"id": 104,
+							"id": 115,
 							"name": "scales",
 							"kind": 1024,
 							"kindString": "Property",
 							"flags": {
-								"isPrivate": true,
 								"isExported": true
 							},
 							"sources": [
 								{
 									"fileName": "Defaults.ts",
-									"line": 27,
-									"character": 18
+									"line": 55,
+									"character": 10
 								}
 							],
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 105,
+									"id": 116,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
-									"flags": {}
+									"flags": {},
+									"indexSignature": {
+										"id": 117,
+										"name": "__index",
+										"kind": 8192,
+										"kindString": "Index signature",
+										"flags": {},
+										"parameters": [
+											{
+												"id": 118,
+												"name": "column",
+												"kind": 32768,
+												"kindString": "Parameter",
+												"flags": {},
+												"type": {
+													"type": "intrinsic",
+													"name": "string"
+												}
+											}
+										],
+										"type": {
+											"type": "reference",
+											"name": "ScaleDefaults",
+											"id": 71
+										}
+									},
+									"sources": [
+										{
+											"fileName": "Defaults.ts",
+											"line": 55,
+											"character": 11
+										}
+									]
 								}
 							}
 						},
 						{
-							"id": 115,
-							"name": "Axes",
-							"kind": 262144,
-							"kindString": "Accessor",
+							"id": 105,
+							"name": "series",
+							"kind": 1024,
+							"kindString": "Property",
 							"flags": {
 								"isExported": true
 							},
-							"getSignature": {
-								"id": 116,
-								"name": "__get",
-								"kind": 524288,
-								"kindString": "Get signature",
-								"flags": {},
-								"type": {
+							"sources": [
+								{
+									"fileName": "Defaults.ts",
+									"line": 40,
+									"character": 10
+								}
+							],
+							"type": {
+								"type": "array",
+								"elementType": {
 									"type": "reference",
-									"name": "AxesDefaults",
-									"id": 93
+									"name": "SeriesDefaults",
+									"id": 65
 								}
 							},
-							"sources": [
-								{
-									"fileName": "Defaults.ts",
-									"line": 43,
-									"character": 12
-								}
-							]
+							"defaultValue": " []"
 						},
 						{
-							"id": 109,
-							"name": "Graph",
-							"kind": 262144,
-							"kindString": "Accessor",
-							"flags": {
-								"isExported": true
-							},
-							"getSignature": {
-								"id": 110,
-								"name": "__get",
-								"kind": 524288,
-								"kindString": "Get signature",
-								"flags": {},
-								"type": {
-									"type": "reference",
-									"name": "GraphDefaults",
-									"id": 69
-								}
-							},
-							"sources": [
-								{
-									"fileName": "Defaults.ts",
-									"line": 31,
-									"character": 13
-								}
-							]
-						},
-						{
-							"id": 111,
-							"name": "Plot",
-							"kind": 262144,
-							"kindString": "Accessor",
-							"flags": {
-								"isExported": true
-							},
-							"getSignature": {
-								"id": 112,
-								"name": "__get",
-								"kind": 524288,
-								"kindString": "Get signature",
-								"flags": {},
-								"type": {
-									"type": "reference",
-									"name": "PlotDefaults",
-									"id": 71
-								}
-							},
-							"sources": [
-								{
-									"fileName": "Defaults.ts",
-									"line": 35,
-									"character": 12
-								}
-							]
-						},
-						{
-							"id": 113,
-							"name": "Series",
-							"kind": 262144,
-							"kindString": "Accessor",
-							"flags": {
-								"isExported": true
-							},
-							"getSignature": {
-								"id": 114,
-								"name": "__get",
-								"kind": 524288,
-								"kindString": "Get signature",
-								"flags": {},
-								"type": {
-									"type": "array",
-									"elementType": {
-										"type": "reference",
-										"name": "SeriesDefaults",
-										"id": 73
-									}
-								}
-							},
-							"sources": [
-								{
-									"fileName": "Defaults.ts",
-									"line": 39,
-									"character": 14
-								}
-							]
-						},
-						{
-							"id": 117,
-							"name": "Scales",
+							"id": 119,
+							"name": "defaultScale",
 							"kind": 2048,
 							"kindString": "Method",
 							"flags": {
@@ -2917,38 +2660,486 @@
 							},
 							"signatures": [
 								{
-									"id": 118,
-									"name": "Scales",
+									"id": 120,
+									"name": "defaultScale",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
-									"parameters": [
-										{
-											"id": 119,
-											"name": "dataCol",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {},
-											"type": {
-												"type": "intrinsic",
-												"name": "string"
-											}
-										}
-									],
 									"type": {
 										"type": "reference",
 										"name": "ScaleDefaults",
-										"id": 79
+										"id": 71
 									}
 								}
 							],
 							"sources": [
 								{
 									"fileName": "Defaults.ts",
-									"line": 56,
-									"character": 10
+									"line": 57,
+									"character": 16
 								}
 							]
+						},
+						{
+							"id": 106,
+							"name": "axes",
+							"kind": 2097152,
+							"kindString": "Object literal",
+							"flags": {
+								"isExported": true
+							},
+							"children": [
+								{
+									"id": 107,
+									"name": "hor",
+									"kind": 2097152,
+									"kindString": "Object literal",
+									"flags": {
+										"isExported": true
+									},
+									"children": [
+										{
+											"id": 108,
+											"name": "line",
+											"kind": 32,
+											"kindString": "Variable",
+											"flags": {
+												"isExported": true
+											},
+											"sources": [
+												{
+													"fileName": "Defaults.ts",
+													"line": 44,
+													"character": 16
+												}
+											],
+											"type": {
+												"type": "reference",
+												"name": "Line",
+												"id": 38
+											},
+											"defaultValue": "       defaultLine(2)"
+										},
+										{
+											"id": 110,
+											"name": "tickLabel",
+											"kind": 32,
+											"kindString": "Variable",
+											"flags": {
+												"isExported": true
+											},
+											"sources": [
+												{
+													"fileName": "Defaults.ts",
+													"line": 46,
+													"character": 21
+												}
+											],
+											"type": {
+												"type": "reference",
+												"name": "TextStyle",
+												"id": 47
+											},
+											"defaultValue": "  defaultText()"
+										},
+										{
+											"id": 109,
+											"name": "tickMarks",
+											"kind": 32,
+											"kindString": "Variable",
+											"flags": {
+												"isExported": true
+											},
+											"sources": [
+												{
+													"fileName": "Defaults.ts",
+													"line": 45,
+													"character": 21
+												}
+											],
+											"type": {
+												"type": "reference",
+												"name": "Line",
+												"id": 38
+											},
+											"defaultValue": "  defaultLine(2)"
+										}
+									],
+									"groups": [
+										{
+											"title": "Variables",
+											"kind": 32,
+											"children": [
+												108,
+												110,
+												109
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "Defaults.ts",
+											"line": 43,
+											"character": 11
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "object"
+									}
+								},
+								{
+									"id": 111,
+									"name": "ver",
+									"kind": 2097152,
+									"kindString": "Object literal",
+									"flags": {
+										"isExported": true
+									},
+									"children": [
+										{
+											"id": 112,
+											"name": "line",
+											"kind": 32,
+											"kindString": "Variable",
+											"flags": {
+												"isExported": true
+											},
+											"sources": [
+												{
+													"fileName": "Defaults.ts",
+													"line": 49,
+													"character": 16
+												}
+											],
+											"type": {
+												"type": "reference",
+												"name": "Line",
+												"id": 38
+											},
+											"defaultValue": "       defaultLine(2)"
+										},
+										{
+											"id": 114,
+											"name": "tickLabel",
+											"kind": 32,
+											"kindString": "Variable",
+											"flags": {
+												"isExported": true
+											},
+											"sources": [
+												{
+													"fileName": "Defaults.ts",
+													"line": 51,
+													"character": 21
+												}
+											],
+											"type": {
+												"type": "reference",
+												"name": "TextStyle",
+												"id": 47
+											},
+											"defaultValue": "  defaultText()"
+										},
+										{
+											"id": 113,
+											"name": "tickMarks",
+											"kind": 32,
+											"kindString": "Variable",
+											"flags": {
+												"isExported": true
+											},
+											"sources": [
+												{
+													"fileName": "Defaults.ts",
+													"line": 50,
+													"character": 21
+												}
+											],
+											"type": {
+												"type": "reference",
+												"name": "Line",
+												"id": 38
+											},
+											"defaultValue": "  defaultLine(2)"
+										}
+									],
+									"groups": [
+										{
+											"title": "Variables",
+											"kind": 32,
+											"children": [
+												112,
+												114,
+												113
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "Defaults.ts",
+											"line": 48,
+											"character": 11
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "object"
+									}
+								}
+							],
+							"groups": [
+								{
+									"title": "Object literals",
+									"kind": 2097152,
+									"children": [
+										107,
+										111
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "Defaults.ts",
+									"line": 42,
+									"character": 8
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "object"
+							}
+						},
+						{
+							"id": 96,
+							"name": "graph",
+							"kind": 2097152,
+							"kindString": "Object literal",
+							"flags": {
+								"isExported": true
+							},
+							"children": [
+								{
+									"id": 97,
+									"name": "canvas",
+									"kind": 32,
+									"kindString": "Variable",
+									"flags": {
+										"isExported": true
+									},
+									"sources": [
+										{
+											"fileName": "Defaults.ts",
+											"line": 32,
+											"character": 14
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "RectStyle",
+										"id": 42
+									},
+									"defaultValue": " defaultRect('#fff', 2, '#ccc')"
+								}
+							],
+							"groups": [
+								{
+									"title": "Variables",
+									"kind": 32,
+									"children": [
+										97
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "Defaults.ts",
+									"line": 31,
+									"character": 9
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "object"
+							}
+						},
+						{
+							"id": 98,
+							"name": "plot",
+							"kind": 2097152,
+							"kindString": "Object literal",
+							"flags": {
+								"isExported": true
+							},
+							"children": [
+								{
+									"id": 99,
+									"name": "area",
+									"kind": 32,
+									"kindString": "Variable",
+									"flags": {
+										"isExported": true
+									},
+									"sources": [
+										{
+											"fileName": "Defaults.ts",
+											"line": 36,
+											"character": 12
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "RectStyle",
+										"id": 42
+									},
+									"defaultValue": " defaultRect('#fff')"
+								},
+								{
+									"id": 100,
+									"name": "margin",
+									"kind": 2097152,
+									"kindString": "Object literal",
+									"flags": {
+										"isExported": true
+									},
+									"children": [
+										{
+											"id": 104,
+											"name": "bottom",
+											"kind": 32,
+											"kindString": "Variable",
+											"flags": {
+												"isExported": true
+											},
+											"sources": [
+												{
+													"fileName": "Defaults.ts",
+													"line": 37,
+													"character": 51
+												}
+											],
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "10"
+										},
+										{
+											"id": 101,
+											"name": "left",
+											"kind": 32,
+											"kindString": "Variable",
+											"flags": {
+												"isExported": true
+											},
+											"sources": [
+												{
+													"fileName": "Defaults.ts",
+													"line": 37,
+													"character": 22
+												}
+											],
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "10"
+										},
+										{
+											"id": 103,
+											"name": "right",
+											"kind": 32,
+											"kindString": "Variable",
+											"flags": {
+												"isExported": true
+											},
+											"sources": [
+												{
+													"fileName": "Defaults.ts",
+													"line": 37,
+													"character": 40
+												}
+											],
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "10"
+										},
+										{
+											"id": 102,
+											"name": "top",
+											"kind": 32,
+											"kindString": "Variable",
+											"flags": {
+												"isExported": true
+											},
+											"sources": [
+												{
+													"fileName": "Defaults.ts",
+													"line": 37,
+													"character": 30
+												}
+											],
+											"type": {
+												"type": "intrinsic",
+												"name": "number"
+											},
+											"defaultValue": "10"
+										}
+									],
+									"groups": [
+										{
+											"title": "Variables",
+											"kind": 32,
+											"children": [
+												104,
+												101,
+												103,
+												102
+											]
+										}
+									],
+									"sources": [
+										{
+											"fileName": "Defaults.ts",
+											"line": 37,
+											"character": 14
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "object"
+									}
+								}
+							],
+							"groups": [
+								{
+									"title": "Variables",
+									"kind": 32,
+									"children": [
+										99
+									]
+								},
+								{
+									"title": "Object literals",
+									"kind": 2097152,
+									"children": [
+										100
+									]
+								}
+							],
+							"sources": [
+								{
+									"fileName": "Defaults.ts",
+									"line": 35,
+									"character": 8
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "object"
+							}
 						}
 					],
 					"groups": [
@@ -2956,33 +3147,31 @@
 							"title": "Constructors",
 							"kind": 512,
 							"children": [
-								106
+								93
 							]
 						},
 						{
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								101,
-								103,
-								104
-							]
-						},
-						{
-							"title": "Accessors",
-							"kind": 262144,
-							"children": [
 								115,
-								109,
-								111,
-								113
+								105
 							]
 						},
 						{
 							"title": "Methods",
 							"kind": 2048,
 							"children": [
-								117
+								119
+							]
+						},
+						{
+							"title": "Object literals",
+							"kind": 2097152,
+							"children": [
+								106,
+								96,
+								98
 							]
 						}
 					],
@@ -2995,7 +3184,7 @@
 					]
 				},
 				{
-					"id": 120,
+					"id": 121,
 					"name": "defaultLine",
 					"kind": 64,
 					"kindString": "Function",
@@ -3004,14 +3193,14 @@
 					},
 					"signatures": [
 						{
-							"id": 121,
+							"id": 122,
 							"name": "defaultLine",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 122,
+									"id": 123,
 									"name": "width",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3019,11 +3208,11 @@
 									"type": {
 										"type": "reference",
 										"name": "UnitVp",
-										"id": 43
+										"id": 29
 									}
 								},
 								{
-									"id": 123,
+									"id": 124,
 									"name": "color",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3031,7 +3220,7 @@
 									"type": {
 										"type": "reference",
 										"name": "Color",
-										"id": 96
+										"id": 88
 									},
 									"defaultValue": "\"#000\""
 								}
@@ -3039,27 +3228,27 @@
 							"type": {
 								"type": "reference",
 								"name": "Line",
-								"id": 52
+								"id": 38
 							}
 						}
 					],
 					"sources": [
 						{
 							"fileName": "Defaults.ts",
-							"line": 61,
+							"line": 66,
 							"character": 27
 						}
 					]
 				},
 				{
-					"id": 124,
+					"id": 125,
 					"name": "defaultRect",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 125,
+							"id": 126,
 							"name": "defaultRect",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -3069,7 +3258,7 @@
 							},
 							"parameters": [
 								{
-									"id": 126,
+									"id": 127,
 									"name": "area",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3080,11 +3269,11 @@
 									"type": {
 										"type": "reference",
 										"name": "Color",
-										"id": 96
+										"id": 88
 									}
 								},
 								{
-									"id": 127,
+									"id": 128,
 									"name": "borderWidth",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3095,12 +3284,12 @@
 									"type": {
 										"type": "reference",
 										"name": "UnitVp",
-										"id": 43
+										"id": 29
 									},
 									"defaultValue": "0"
 								},
 								{
-									"id": 128,
+									"id": 129,
 									"name": "borderColor",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3111,7 +3300,7 @@
 									"type": {
 										"type": "reference",
 										"name": "Color",
-										"id": 96
+										"id": 88
 									},
 									"defaultValue": "\"#fff\""
 								}
@@ -3119,79 +3308,27 @@
 							"type": {
 								"type": "reference",
 								"name": "RectStyle",
-								"id": 56
+								"id": 42
 							}
 						}
 					],
 					"sources": [
 						{
 							"fileName": "Defaults.ts",
-							"line": 75,
+							"line": 80,
 							"character": 20
 						}
 					]
 				},
 				{
-					"id": 129,
-					"name": "defaultScale",
-					"kind": 64,
-					"kindString": "Function",
-					"flags": {},
-					"signatures": [
-						{
-							"id": 130,
-							"name": "defaultScale",
-							"kind": 4096,
-							"kindString": "Call signature",
-							"flags": {},
-							"parameters": [
-								{
-									"id": 131,
-									"name": "minRange",
-									"kind": 32768,
-									"kindString": "Parameter",
-									"flags": {},
-									"type": {
-										"type": "intrinsic",
-										"name": "number"
-									}
-								},
-								{
-									"id": 132,
-									"name": "maxRange",
-									"kind": 32768,
-									"kindString": "Parameter",
-									"flags": {},
-									"type": {
-										"type": "intrinsic",
-										"name": "number"
-									}
-								}
-							],
-							"type": {
-								"type": "reference",
-								"name": "ScaleDefaults",
-								"id": 79
-							}
-						}
-					],
-					"sources": [
-						{
-							"fileName": "Defaults.ts",
-							"line": 91,
-							"character": 21
-						}
-					]
-				},
-				{
-					"id": 133,
+					"id": 130,
 					"name": "defaultText",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 134,
+							"id": 131,
 							"name": "defaultText",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -3199,14 +3336,14 @@
 							"type": {
 								"type": "reference",
 								"name": "TextStyle",
-								"id": 61
+								"id": 47
 							}
 						}
 					],
 					"sources": [
 						{
 							"fileName": "Defaults.ts",
-							"line": 97,
+							"line": 96,
 							"character": 20
 						}
 					]
@@ -3217,17 +3354,16 @@
 					"title": "Classes",
 					"kind": 128,
 					"children": [
-						100
+						92
 					]
 				},
 				{
 					"title": "Functions",
 					"kind": 64,
 					"children": [
-						120,
-						124,
-						129,
-						133
+						121,
+						125,
+						130
 					]
 				}
 			],
@@ -3240,7 +3376,7 @@
 			]
 		},
 		{
-			"id": 205,
+			"id": 201,
 			"name": "\"Graph\"",
 			"kind": 1,
 			"kindString": "External module",
@@ -3250,11 +3386,11 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
 			"comment": {
 				"shortText": "## d3 Graphs",
-				"text": "<example height=200px libs={hsGraphD3:'hsGraphD3',hsDatab:'hsDatab',d3:'https://d3js.org/d3.v5.min.js'}>\n<file name='script.js'>\n// create data set:\nconst data = new hsDatab.Data({\n   colNames:['date', 'time', 'volume', 'costs'],\n   rows:[['1/1/14', -1,  0.2, 0.3], ['1/1/16', 0.2, 0.7, 0.2], ['9/1/16', 0.4, 0.1, 0.3],\n         ['5/1/17', 0.6, 0,   0.1], ['7/1/18', 0.8, 0.3, 0.5], ['1/1/19', 1,   0.2, 0.4]]\n});\n\n// setup and plot the data:\nconst graph = new hsGraphD3.Graph(root);\ngraph.addSeries('bubble', 'time', 'volume', 'costs');\ngraph.addSeries('bubble', 'time', 'volume', 'costs');\n\n//with (graph.defaults.Scales('costs').scale) {\n//     range.min = 0\n//     range.min = 20\n//}\n\nwith (graph.defaults.Graph.canvas) {\n     fill.color = '#eee';\n     stroke.width = 0;\n}\nwith (graph.defaults.Axes.hor) {\n     tickLabel.font.size = 200;\n}\nwith (graph.defaults.Plot.area) {\n     //fill.color = '#fcc';\n}\ngraph.render(data);\n\n// change values avery 2s:\nsetInterval(() => {\n   data.getData().map(row => {\n     //row[1] = Math.random()*graph.config.viewPort.width;\n     row[2] = Math.random()*graph.config.viewPort.height;\n     row[3] = Math.random()*50;\n     graph.render(data);\n   });\n   data.sort('ascending', 'x');\n}, 2000);\n\n\n</file>\n</example>\n"
+				"text": "<example height=200px libs={hsGraphD3:'hsGraphD3',d3:'d3'}>\n<file name='script.js'>\n// create data set:\nconst data = [['date', 'time', 'volume', 'costs'], ['1/1/14', -1,  0.2, 0.3],\n ['1/1/16', 0.2, 0.7, 0.2], ['9/1/16', 0.4, 0.1, 0.3],\n ['5/1/17', 0.6, 0,   0.1], ['7/1/18', 0.8, 0.3, 0.5], ['1/1/19', 1,   0.2, 0.4]];\n\n// setup and plot the data:\nconst graph = new hsGraphD3.Graph(root);\ngraph.addSeries('bubble', 'time', 'volume', 'costs');\ngraph.addSeries('bubble', 'time', 'volume', 'costs');\n\nwith (graph.defaults.graph.canvas) {\n     fill.color = '#fcfcfc';\n     stroke.width = 0;\n}\nwith (graph.defaults.axes.hor) {\n     tickLabel.font.size = 10;\n}\nwith (graph.defaults.scales.costs.range) {\n     min = 10;\n     max = 80;\n}\ngraph.render(data);\n\n// change values avery 2s:\nsetInterval(update, 2000);\n\nfunction update() {\n   data.map((row, i) => {\n     if (i>0) {\n         row[2] = Math.random()*graph.config.viewPort.height;\n         row[3] = Math.random()*50;\n     }\n   });\n   graph.render(data);\n}\n\n</file>\n</example>\n"
 			},
 			"children": [
 				{
-					"id": 206,
+					"id": 202,
 					"name": "Graph",
 					"kind": 128,
 					"kindString": "Class",
@@ -3263,7 +3399,7 @@
 					},
 					"children": [
 						{
-							"id": 213,
+							"id": 209,
 							"name": "constructor",
 							"kind": 512,
 							"kindString": "Constructor",
@@ -3272,14 +3408,14 @@
 							},
 							"signatures": [
 								{
-									"id": 214,
+									"id": 210,
 									"name": "new Graph",
 									"kind": 16384,
 									"kindString": "Constructor signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 215,
+											"id": 211,
 											"name": "root",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -3293,30 +3429,30 @@
 									"type": {
 										"type": "reference",
 										"name": "Graph",
-										"id": 206
+										"id": 202
 									},
 									"overwrites": {
 										"type": "reference",
 										"name": "GraphComponent.__constructor",
-										"id": 138
+										"id": 135
 									}
 								}
 							],
 							"sources": [
 								{
 									"fileName": "Graph.ts",
-									"line": 104,
+									"line": 106,
 									"character": 73
 								}
 							],
 							"overwrites": {
 								"type": "reference",
 								"name": "GraphComponent.__constructor",
-								"id": 138
+								"id": 135
 							}
 						},
 						{
-							"id": 208,
+							"id": 204,
 							"name": "axes",
 							"kind": 1024,
 							"kindString": "Property",
@@ -3327,7 +3463,7 @@
 							"sources": [
 								{
 									"fileName": "Graph.ts",
-									"line": 103,
+									"line": 105,
 									"character": 16
 								}
 							],
@@ -3336,13 +3472,13 @@
 								"elementType": {
 									"type": "reference",
 									"name": "Axis",
-									"id": 150
+									"id": 147
 								}
 							},
 							"defaultValue": " []"
 						},
 						{
-							"id": 235,
+							"id": 231,
 							"name": "config",
 							"kind": 1024,
 							"kindString": "Property",
@@ -3360,16 +3496,16 @@
 							"type": {
 								"type": "reference",
 								"name": "GraphCfg",
-								"id": 15
+								"id": 7
 							},
 							"inheritedFrom": {
 								"type": "reference",
 								"name": "GraphComponent.config",
-								"id": 137
+								"id": 134
 							}
 						},
 						{
-							"id": 209,
+							"id": 205,
 							"name": "cumulativeDomains",
 							"kind": 1024,
 							"kindString": "Property",
@@ -3380,27 +3516,27 @@
 							"sources": [
 								{
 									"fileName": "Graph.ts",
-									"line": 104,
+									"line": 106,
 									"character": 29
 								}
 							],
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 210,
+									"id": 206,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
 									"flags": {},
 									"indexSignature": {
-										"id": 211,
+										"id": 207,
 										"name": "__index",
 										"kind": 8192,
 										"kindString": "Index signature",
 										"flags": {},
 										"parameters": [
 											{
-												"id": 212,
+												"id": 208,
 												"name": "colName",
 												"kind": 32768,
 												"kindString": "Parameter",
@@ -3428,7 +3564,7 @@
 									"sources": [
 										{
 											"fileName": "Graph.ts",
-											"line": 104,
+											"line": 106,
 											"character": 30
 										}
 									]
@@ -3436,7 +3572,7 @@
 							}
 						},
 						{
-							"id": 207,
+							"id": 203,
 							"name": "plot",
 							"kind": 1024,
 							"kindString": "Property",
@@ -3447,7 +3583,7 @@
 							"sources": [
 								{
 									"fileName": "Graph.ts",
-									"line": 102,
+									"line": 104,
 									"character": 16
 								}
 							],
@@ -3458,7 +3594,7 @@
 							}
 						},
 						{
-							"id": 216,
+							"id": 212,
 							"name": "defaults",
 							"kind": 262144,
 							"kindString": "Accessor",
@@ -3467,7 +3603,7 @@
 								"isPublic": true
 							},
 							"getSignature": {
-								"id": 217,
+								"id": 213,
 								"name": "__get",
 								"kind": 524288,
 								"kindString": "Get signature",
@@ -3475,19 +3611,19 @@
 								"type": {
 									"type": "reference",
 									"name": "Defaults",
-									"id": 100
+									"id": 92
 								}
 							},
 							"sources": [
 								{
 									"fileName": "Graph.ts",
-									"line": 118,
+									"line": 120,
 									"character": 23
 								}
 							]
 						},
 						{
-							"id": 223,
+							"id": 219,
 							"name": "addSeries",
 							"kind": 2048,
 							"kindString": "Method",
@@ -3497,7 +3633,7 @@
 							},
 							"signatures": [
 								{
-									"id": 224,
+									"id": 220,
 									"name": "addSeries",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -3507,7 +3643,7 @@
 									},
 									"parameters": [
 										{
-											"id": 225,
+											"id": 221,
 											"name": "type",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -3521,7 +3657,7 @@
 											}
 										},
 										{
-											"id": 226,
+											"id": 222,
 											"name": "x",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -3532,7 +3668,7 @@
 											}
 										},
 										{
-											"id": 227,
+											"id": 223,
 											"name": "y",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -3543,7 +3679,7 @@
 											}
 										},
 										{
-											"id": 228,
+											"id": 224,
 											"name": "params",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -3571,13 +3707,13 @@
 							"sources": [
 								{
 									"fileName": "Graph.ts",
-									"line": 152,
+									"line": 156,
 									"character": 20
 								}
 							]
 						},
 						{
-							"id": 229,
+							"id": 225,
 							"name": "drawCanvas",
 							"kind": 2048,
 							"kindString": "Method",
@@ -3587,7 +3723,7 @@
 							},
 							"signatures": [
 								{
-									"id": 230,
+									"id": 226,
 									"name": "drawCanvas",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -3597,7 +3733,7 @@
 									},
 									"parameters": [
 										{
-											"id": 231,
+											"id": 227,
 											"name": "cfg",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -3608,7 +3744,7 @@
 											"type": {
 												"type": "reference",
 												"name": "GraphCfg",
-												"id": 15
+												"id": 7
 											}
 										}
 									],
@@ -3621,13 +3757,13 @@
 							"sources": [
 								{
 									"fileName": "Graph.ts",
-									"line": 163,
+									"line": 165,
 									"character": 22
 								}
 							]
 						},
 						{
-							"id": 220,
+							"id": 216,
 							"name": "render",
 							"kind": 2048,
 							"kindString": "Method",
@@ -3637,7 +3773,7 @@
 							},
 							"signatures": [
 								{
-									"id": 221,
+									"id": 217,
 									"name": "render",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -3647,7 +3783,7 @@
 									},
 									"parameters": [
 										{
-											"id": 222,
+											"id": 218,
 											"name": "data",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -3656,8 +3792,21 @@
 												"text": "\n"
 											},
 											"type": {
-												"type": "reference",
-												"name": "Data"
+												"type": "union",
+												"types": [
+													{
+														"type": "reference",
+														"name": "Data"
+													},
+													{
+														"type": "reference",
+														"name": "DataSet"
+													},
+													{
+														"type": "reference",
+														"name": "DataTable"
+													}
+												]
 											}
 										}
 									],
@@ -3668,25 +3817,25 @@
 									"overwrites": {
 										"type": "reference",
 										"name": "GraphComponent.render",
-										"id": 141
+										"id": 138
 									}
 								}
 							],
 							"sources": [
 								{
 									"fileName": "Graph.ts",
-									"line": 139,
+									"line": 141,
 									"character": 17
 								}
 							],
 							"overwrites": {
 								"type": "reference",
 								"name": "GraphComponent.render",
-								"id": 141
+								"id": 138
 							}
 						},
 						{
-							"id": 218,
+							"id": 214,
 							"name": "resize",
 							"kind": 2048,
 							"kindString": "Method",
@@ -3695,7 +3844,7 @@
 							},
 							"signatures": [
 								{
-									"id": 219,
+									"id": 215,
 									"name": "resize",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -3709,13 +3858,13 @@
 							"sources": [
 								{
 									"fileName": "Graph.ts",
-									"line": 122,
+									"line": 124,
 									"character": 10
 								}
 							]
 						},
 						{
-							"id": 232,
+							"id": 228,
 							"name": "setScales",
 							"kind": 2048,
 							"kindString": "Method",
@@ -3725,14 +3874,14 @@
 							},
 							"signatures": [
 								{
-									"id": 233,
+									"id": 229,
 									"name": "setScales",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 234,
+											"id": 230,
 											"name": "data",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -3752,7 +3901,7 @@
 							"sources": [
 								{
 									"fileName": "Graph.ts",
-									"line": 177,
+									"line": 185,
 									"character": 21
 								}
 							]
@@ -3763,42 +3912,42 @@
 							"title": "Constructors",
 							"kind": 512,
 							"children": [
-								213
+								209
 							]
 						},
 						{
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								208,
-								235,
-								209,
-								207
+								204,
+								231,
+								205,
+								203
 							]
 						},
 						{
 							"title": "Accessors",
 							"kind": 262144,
 							"children": [
-								216
+								212
 							]
 						},
 						{
 							"title": "Methods",
 							"kind": 2048,
 							"children": [
-								223,
-								229,
-								220,
-								218,
-								232
+								219,
+								225,
+								216,
+								214,
+								228
 							]
 						}
 					],
 					"sources": [
 						{
 							"fileName": "Graph.ts",
-							"line": 101,
+							"line": 103,
 							"character": 18
 						}
 					],
@@ -3806,12 +3955,12 @@
 						{
 							"type": "reference",
 							"name": "GraphComponent",
-							"id": 136
+							"id": 133
 						}
 					]
 				},
 				{
-					"id": 236,
+					"id": 232,
 					"name": "log",
 					"kind": 32,
 					"kindString": "Variable",
@@ -3821,7 +3970,7 @@
 					"sources": [
 						{
 							"fileName": "Graph.ts",
-							"line": 53,
+							"line": 48,
 							"character": 54
 						}
 					],
@@ -3832,7 +3981,7 @@
 					"defaultValue": " gLog('Graph')"
 				},
 				{
-					"id": 237,
+					"id": 233,
 					"name": "margin",
 					"kind": 32,
 					"kindString": "Variable",
@@ -3842,7 +3991,7 @@
 					"sources": [
 						{
 							"fileName": "Graph.ts",
-							"line": 65,
+							"line": 61,
 							"character": 12
 						}
 					],
@@ -3853,14 +4002,14 @@
 					"defaultValue": "10"
 				},
 				{
-					"id": 238,
+					"id": 234,
 					"name": "createBaseSVG",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 239,
+							"id": 235,
 							"name": "createBaseSVG",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -3870,7 +4019,7 @@
 							},
 							"parameters": [
 								{
-									"id": 240,
+									"id": 236,
 									"name": "cfg",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3881,34 +4030,34 @@
 									"type": {
 										"type": "reference",
 										"name": "GraphCfg",
-										"id": 15
+										"id": 7
 									}
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "d3Base",
-								"id": 47
+								"id": 33
 							}
 						}
 					],
 					"sources": [
 						{
 							"fileName": "Graph.ts",
-							"line": 74,
+							"line": 70,
 							"character": 22
 						}
 					]
 				},
 				{
-					"id": 241,
+					"id": 237,
 					"name": "updateBaseSVG",
 					"kind": 64,
 					"kindString": "Function",
 					"flags": {},
 					"signatures": [
 						{
-							"id": 242,
+							"id": 238,
 							"name": "updateBaseSVG",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -3918,7 +4067,7 @@
 							},
 							"parameters": [
 								{
-									"id": 243,
+									"id": 239,
 									"name": "cfg",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3929,7 +4078,7 @@
 									"type": {
 										"type": "reference",
 										"name": "GraphCfg",
-										"id": 15
+										"id": 7
 									}
 								}
 							],
@@ -3942,7 +4091,7 @@
 					"sources": [
 						{
 							"fileName": "Graph.ts",
-							"line": 96,
+							"line": 98,
 							"character": 22
 						}
 					]
@@ -3953,23 +4102,23 @@
 					"title": "Classes",
 					"kind": 128,
 					"children": [
-						206
+						202
 					]
 				},
 				{
 					"title": "Variables",
 					"kind": 32,
 					"children": [
-						236,
-						237
+						232,
+						233
 					]
 				},
 				{
 					"title": "Functions",
 					"kind": 64,
 					"children": [
-						238,
-						241
+						234,
+						237
 					]
 				}
 			],
@@ -3982,7 +4131,7 @@
 			]
 		},
 		{
-			"id": 135,
+			"id": 132,
 			"name": "\"GraphComponent\"",
 			"kind": 1,
 			"kindString": "External module",
@@ -3993,7 +4142,7 @@
 			"comment": {},
 			"children": [
 				{
-					"id": 136,
+					"id": 133,
 					"name": "GraphComponent",
 					"kind": 128,
 					"kindString": "Class",
@@ -4003,7 +4152,7 @@
 					},
 					"children": [
 						{
-							"id": 138,
+							"id": 135,
 							"name": "constructor",
 							"kind": 512,
 							"kindString": "Constructor",
@@ -4012,14 +4161,14 @@
 							},
 							"signatures": [
 								{
-									"id": 139,
+									"id": 136,
 									"name": "new GraphComponent",
 									"kind": 16384,
 									"kindString": "Constructor signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 140,
+											"id": 137,
 											"name": "cfg",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4029,14 +4178,14 @@
 											"type": {
 												"type": "reference",
 												"name": "GraphCfg",
-												"id": 15
+												"id": 7
 											}
 										}
 									],
 									"type": {
 										"type": "reference",
 										"name": "GraphComponent",
-										"id": 136
+										"id": 133
 									}
 								}
 							],
@@ -4049,7 +4198,7 @@
 							]
 						},
 						{
-							"id": 137,
+							"id": 134,
 							"name": "config",
 							"kind": 1024,
 							"kindString": "Property",
@@ -4067,11 +4216,11 @@
 							"type": {
 								"type": "reference",
 								"name": "GraphCfg",
-								"id": 15
+								"id": 7
 							}
 						},
 						{
-							"id": 141,
+							"id": 138,
 							"name": "render",
 							"kind": 2048,
 							"kindString": "Method",
@@ -4082,14 +4231,14 @@
 							},
 							"signatures": [
 								{
-									"id": 142,
+									"id": 139,
 									"name": "render",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 143,
+											"id": 140,
 											"name": "data",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4120,21 +4269,21 @@
 							"title": "Constructors",
 							"kind": 512,
 							"children": [
-								138
+								135
 							]
 						},
 						{
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								137
+								134
 							]
 						},
 						{
 							"title": "Methods",
 							"kind": 2048,
 							"children": [
-								141
+								138
 							]
 						}
 					],
@@ -4149,7 +4298,7 @@
 						{
 							"type": "reference",
 							"name": "Axis",
-							"id": 150
+							"id": 147
 						},
 						{
 							"type": "reference",
@@ -4159,12 +4308,12 @@
 						{
 							"type": "reference",
 							"name": "Graph",
-							"id": 206
+							"id": 202
 						}
 					]
 				},
 				{
-					"id": 144,
+					"id": 141,
 					"name": "log",
 					"kind": 32,
 					"kindString": "Variable",
@@ -4175,7 +4324,7 @@
 						{
 							"fileName": "GraphComponent.ts",
 							"line": 7,
-							"character": 75
+							"character": 50
 						}
 					],
 					"type": {
@@ -4185,7 +4334,7 @@
 					"defaultValue": " gLog('d3.GraphComponent')"
 				},
 				{
-					"id": 145,
+					"id": 142,
 					"name": "vpWidth",
 					"kind": 32,
 					"kindString": "Variable",
@@ -4211,15 +4360,15 @@
 					"title": "Classes",
 					"kind": 128,
 					"children": [
-						136
+						133
 					]
 				},
 				{
 					"title": "Variables",
 					"kind": 32,
 					"children": [
-						144,
-						145
+						141,
+						142
 					]
 				}
 			],
@@ -4232,7 +4381,7 @@
 			]
 		},
 		{
-			"id": 175,
+			"id": 161,
 			"name": "\"Plot\"",
 			"kind": 1,
 			"kindString": "External module",
@@ -4254,7 +4403,7 @@
 					},
 					"children": [
 						{
-							"id": 184,
+							"id": 187,
 							"name": "constructor",
 							"kind": 512,
 							"kindString": "Constructor",
@@ -4263,14 +4412,14 @@
 							},
 							"signatures": [
 								{
-									"id": 185,
+									"id": 188,
 									"name": "new Plot",
 									"kind": 16384,
 									"kindString": "Constructor signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 186,
+											"id": 189,
 											"name": "cfg",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4278,7 +4427,7 @@
 											"type": {
 												"type": "reference",
 												"name": "GraphCfg",
-												"id": 15
+												"id": 7
 											}
 										}
 									],
@@ -4290,25 +4439,25 @@
 									"overwrites": {
 										"type": "reference",
 										"name": "GraphComponent.__constructor",
-										"id": 138
+										"id": 135
 									}
 								}
 							],
 							"sources": [
 								{
 									"fileName": "Plot.ts",
-									"line": 34,
-									"character": 33
+									"line": 46,
+									"character": 36
 								}
 							],
 							"overwrites": {
 								"type": "reference",
 								"name": "GraphComponent.__constructor",
-								"id": 138
+								"id": 135
 							}
 						},
 						{
-							"id": 202,
+							"id": 197,
 							"name": "config",
 							"kind": 1024,
 							"kindString": "Property",
@@ -4326,16 +4475,16 @@
 							"type": {
 								"type": "reference",
 								"name": "GraphCfg",
-								"id": 15
+								"id": 7
 							},
 							"inheritedFrom": {
 								"type": "reference",
 								"name": "GraphComponent.config",
-								"id": 137
+								"id": 134
 							}
 						},
 						{
-							"id": 182,
+							"id": 185,
 							"name": "desc",
 							"kind": 1024,
 							"kindString": "Property",
@@ -4346,18 +4495,18 @@
 							"sources": [
 								{
 									"fileName": "Plot.ts",
-									"line": 33,
+									"line": 45,
 									"character": 16
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "PlotCfg",
-								"id": 34
+								"id": 26
 							}
 						},
 						{
-							"id": 183,
+							"id": 186,
 							"name": "series",
 							"kind": 1024,
 							"kindString": "Property",
@@ -4368,7 +4517,7 @@
 							"sources": [
 								{
 									"fileName": "Plot.ts",
-									"line": 34,
+									"line": 46,
 									"character": 18
 								}
 							],
@@ -4376,8 +4525,8 @@
 								"type": "array",
 								"elementType": {
 									"type": "reference",
-									"name": "PlotFn",
-									"id": 2
+									"name": "PlotClass",
+									"id": 162
 								}
 							},
 							"defaultValue": " []"
@@ -4398,17 +4547,55 @@
 							"sources": [
 								{
 									"fileName": "Plot.ts",
-									"line": 24,
+									"line": 36,
 									"character": 30
 								}
 							],
 							"type": {
-								"type": "intrinsic",
-								"name": "any"
+								"type": "reflection",
+								"declaration": {
+									"id": 178,
+									"name": "__type",
+									"kind": 65536,
+									"kindString": "Type literal",
+									"flags": {},
+									"indexSignature": {
+										"id": 179,
+										"name": "__index",
+										"kind": 8192,
+										"kindString": "Index signature",
+										"flags": {},
+										"parameters": [
+											{
+												"id": 180,
+												"name": "plotKey",
+												"kind": 32768,
+												"kindString": "Parameter",
+												"flags": {},
+												"type": {
+													"type": "intrinsic",
+													"name": "string"
+												}
+											}
+										],
+										"type": {
+											"type": "reference",
+											"name": "PlotFactory",
+											"id": 171
+										}
+									},
+									"sources": [
+										{
+											"fileName": "Plot.ts",
+											"line": 36,
+											"character": 31
+										}
+									]
+								}
 							}
 						},
 						{
-							"id": 193,
+							"id": 190,
 							"name": "addSeries",
 							"kind": 2048,
 							"kindString": "Method",
@@ -4417,7 +4604,7 @@
 							},
 							"signatures": [
 								{
-									"id": 194,
+									"id": 191,
 									"name": "addSeries",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -4427,7 +4614,7 @@
 									},
 									"parameters": [
 										{
-											"id": 195,
+											"id": 192,
 											"name": "type",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4441,7 +4628,7 @@
 											}
 										},
 										{
-											"id": 196,
+											"id": 193,
 											"name": "params",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4469,13 +4656,13 @@
 							"sources": [
 								{
 									"fileName": "Plot.ts",
-									"line": 61,
+									"line": 63,
 									"character": 13
 								}
 							]
 						},
 						{
-							"id": 197,
+							"id": 194,
 							"name": "render",
 							"kind": 2048,
 							"kindString": "Method",
@@ -4484,7 +4671,7 @@
 							},
 							"signatures": [
 								{
-									"id": 198,
+									"id": 195,
 									"name": "render",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -4494,7 +4681,7 @@
 									},
 									"parameters": [
 										{
-											"id": 199,
+											"id": 196,
 											"name": "data",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4515,134 +4702,25 @@
 									"overwrites": {
 										"type": "reference",
 										"name": "GraphComponent.render",
-										"id": 141
+										"id": 138
 									}
 								}
 							],
 							"sources": [
 								{
 									"fileName": "Plot.ts",
-									"line": 77,
+									"line": 83,
 									"character": 10
 								}
 							],
 							"overwrites": {
 								"type": "reference",
 								"name": "GraphComponent.render",
-								"id": 141
+								"id": 138
 							}
 						},
 						{
-							"id": 200,
-							"name": "renderPlotArea",
-							"kind": 2048,
-							"kindString": "Method",
-							"flags": {
-								"isPrivate": true,
-								"isExported": true
-							},
-							"signatures": [
-								{
-									"id": 201,
-									"name": "renderPlotArea",
-									"kind": 4096,
-									"kindString": "Call signature",
-									"flags": {},
-									"type": {
-										"type": "intrinsic",
-										"name": "void"
-									}
-								}
-							],
-							"sources": [
-								{
-									"fileName": "Plot.ts",
-									"line": 82,
-									"character": 26
-								}
-							]
-						},
-						{
-							"id": 187,
-							"name": "setBorders",
-							"kind": 2048,
-							"kindString": "Method",
-							"flags": {
-								"isExported": true
-							},
-							"signatures": [
-								{
-									"id": 188,
-									"name": "setBorders",
-									"kind": 4096,
-									"kindString": "Call signature",
-									"flags": {},
-									"parameters": [
-										{
-											"id": 189,
-											"name": "left",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {},
-											"type": {
-												"type": "reference",
-												"name": "UnitVp",
-												"id": 43
-											}
-										},
-										{
-											"id": 190,
-											"name": "top",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {},
-											"type": {
-												"type": "reference",
-												"name": "UnitVp",
-												"id": 43
-											}
-										},
-										{
-											"id": 191,
-											"name": "right",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {},
-											"type": {
-												"type": "reference",
-												"name": "UnitVp",
-												"id": 43
-											}
-										},
-										{
-											"id": 192,
-											"name": "bottom",
-											"kind": 32768,
-											"kindString": "Parameter",
-											"flags": {},
-											"type": {
-												"type": "reference",
-												"name": "UnitVp",
-												"id": 43
-											}
-										}
-									],
-									"type": {
-										"type": "intrinsic",
-										"name": "void"
-									}
-								}
-							],
-							"sources": [
-								{
-									"fileName": "Plot.ts",
-									"line": 48,
-									"character": 14
-								}
-							]
-						},
-						{
-							"id": 178,
+							"id": 181,
 							"name": "register",
 							"kind": 2048,
 							"kindString": "Method",
@@ -4653,7 +4731,7 @@
 							},
 							"signatures": [
 								{
-									"id": 179,
+									"id": 182,
 									"name": "register",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -4663,7 +4741,7 @@
 									},
 									"parameters": [
 										{
-											"id": 180,
+											"id": 183,
 											"name": "key",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4674,15 +4752,15 @@
 											}
 										},
 										{
-											"id": 181,
-											"name": "fn",
+											"id": 184,
+											"name": "factory",
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
 											"type": {
 												"type": "reference",
-												"name": "PlotFnDef",
-												"id": 5
+												"name": "PlotFactory",
+												"id": 171
 											}
 										}
 									],
@@ -4695,7 +4773,7 @@
 							"sources": [
 								{
 									"fileName": "Plot.ts",
-									"line": 27,
+									"line": 39,
 									"character": 26
 								}
 							]
@@ -4706,16 +4784,16 @@
 							"title": "Constructors",
 							"kind": 512,
 							"children": [
-								184
+								187
 							]
 						},
 						{
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								202,
-								182,
-								183,
+								197,
+								185,
+								186,
 								177
 							]
 						},
@@ -4723,18 +4801,16 @@
 							"title": "Methods",
 							"kind": 2048,
 							"children": [
-								193,
-								197,
-								200,
-								187,
-								178
+								190,
+								194,
+								181
 							]
 						}
 					],
 					"sources": [
 						{
 							"fileName": "Plot.ts",
-							"line": 21,
+							"line": 33,
 							"character": 17
 						}
 					],
@@ -4742,12 +4818,302 @@
 						{
 							"type": "reference",
 							"name": "GraphComponent",
-							"id": 136
+							"id": 133
 						}
 					]
 				},
 				{
-					"id": 204,
+					"id": 162,
+					"name": "PlotClass",
+					"kind": 128,
+					"kindString": "Class",
+					"flags": {
+						"isExported": true
+					},
+					"children": [
+						{
+							"id": 163,
+							"name": "constructor",
+							"kind": 512,
+							"kindString": "Constructor",
+							"flags": {
+								"isExported": true
+							},
+							"signatures": [
+								{
+									"id": 164,
+									"name": "new PlotClass",
+									"kind": 16384,
+									"kindString": "Constructor signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 165,
+											"name": "desc",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "PlotCfg",
+												"id": 26
+											}
+										},
+										{
+											"id": 166,
+											"name": "params",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {
+												"isRest": true
+											},
+											"type": {
+												"type": "array",
+												"elementType": {
+													"type": "intrinsic",
+													"name": "string"
+												}
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "PlotClass",
+										"id": 162
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "Plot.ts",
+									"line": 19,
+									"character": 24
+								}
+							]
+						},
+						{
+							"id": 167,
+							"name": "render",
+							"kind": 2048,
+							"kindString": "Method",
+							"flags": {
+								"isExported": true,
+								"isPublic": true
+							},
+							"signatures": [
+								{
+									"id": 168,
+									"name": "render",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 169,
+											"name": "data",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "Data"
+											}
+										},
+										{
+											"id": 170,
+											"name": "series",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "d3Selection",
+												"id": 199
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "Plot.ts",
+									"line": 26,
+									"character": 17
+								}
+							]
+						}
+					],
+					"groups": [
+						{
+							"title": "Constructors",
+							"kind": 512,
+							"children": [
+								163
+							]
+						},
+						{
+							"title": "Methods",
+							"kind": 2048,
+							"children": [
+								167
+							]
+						}
+					],
+					"sources": [
+						{
+							"fileName": "Plot.ts",
+							"line": 19,
+							"character": 22
+						}
+					],
+					"extendedBy": [
+						{
+							"type": "reference",
+							"name": "Bubble",
+							"id": 248
+						}
+					]
+				},
+				{
+					"id": 171,
+					"name": "PlotFactory",
+					"kind": 128,
+					"kindString": "Class",
+					"flags": {
+						"isExported": true,
+						"isAbstract": true
+					},
+					"children": [
+						{
+							"id": 172,
+							"name": "newPlot",
+							"kind": 2048,
+							"kindString": "Method",
+							"flags": {
+								"isExported": true,
+								"isAbstract": true
+							},
+							"signatures": [
+								{
+									"id": 173,
+									"name": "newPlot",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 174,
+											"name": "desc",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "PlotCfg",
+												"id": 26
+											}
+										},
+										{
+											"id": 175,
+											"name": "params",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {
+												"isRest": true
+											},
+											"type": {
+												"type": "array",
+												"elementType": {
+													"type": "intrinsic",
+													"name": "string"
+												}
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "PlotClass",
+										"id": 162
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "Plot.ts",
+									"line": 30,
+									"character": 20
+								}
+							]
+						}
+					],
+					"groups": [
+						{
+							"title": "Methods",
+							"kind": 2048,
+							"children": [
+								172
+							]
+						}
+					],
+					"sources": [
+						{
+							"fileName": "Plot.ts",
+							"line": 29,
+							"character": 33
+						}
+					],
+					"extendedBy": [
+						{
+							"type": "reference",
+							"name": "BubbleFatory",
+							"id": 241
+						}
+					]
+				},
+				{
+					"id": 199,
+					"name": "d3Selection",
+					"kind": 4194304,
+					"kindString": "Type alias",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "Plot.ts",
+							"line": 15,
+							"character": 23
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "Selection",
+						"typeArguments": [
+							{
+								"type": "reference",
+								"name": "BaseType"
+							},
+							{
+								"type": "intrinsic",
+								"name": "unknown"
+							},
+							{
+								"type": "reference",
+								"name": "BaseType"
+							},
+							{
+								"type": "intrinsic",
+								"name": "unknown"
+							}
+						]
+					}
+				},
+				{
+					"id": 200,
 					"name": "DEF_RADIUS",
 					"kind": 32,
 					"kindString": "Variable",
@@ -4757,7 +5123,7 @@
 					"sources": [
 						{
 							"fileName": "Plot.ts",
-							"line": 19,
+							"line": 17,
 							"character": 16
 						}
 					],
@@ -4768,7 +5134,7 @@
 					"defaultValue": "5"
 				},
 				{
-					"id": 203,
+					"id": 198,
 					"name": "log",
 					"kind": 32,
 					"kindString": "Variable",
@@ -4779,7 +5145,7 @@
 						{
 							"fileName": "Plot.ts",
 							"line": 9,
-							"character": 79
+							"character": 54
 						}
 					],
 					"type": {
@@ -4794,15 +5160,24 @@
 					"title": "Classes",
 					"kind": 128,
 					"children": [
-						176
+						176,
+						162,
+						171
+					]
+				},
+				{
+					"title": "Type aliases",
+					"kind": 4194304,
+					"children": [
+						199
 					]
 				},
 				{
 					"title": "Variables",
 					"kind": 32,
 					"children": [
-						204,
-						203
+						200,
+						198
 					]
 				}
 			],
@@ -4815,193 +5190,7 @@
 			]
 		},
 		{
-			"id": 165,
-			"name": "\"bubble\"",
-			"kind": 1,
-			"kindString": "External module",
-			"flags": {
-				"isExported": true
-			},
-			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/bubble.ts",
-			"children": [
-				{
-					"id": 167,
-					"name": "DEF_RADIUS",
-					"kind": 32,
-					"kindString": "Variable",
-					"flags": {
-						"isConst": true
-					},
-					"sources": [
-						{
-							"fileName": "bubble.ts",
-							"line": 12,
-							"character": 16
-						}
-					],
-					"type": {
-						"type": "intrinsic",
-						"name": "number"
-					},
-					"defaultValue": "5"
-				},
-				{
-					"id": 166,
-					"name": "log",
-					"kind": 32,
-					"kindString": "Variable",
-					"flags": {
-						"isConst": true
-					},
-					"sources": [
-						{
-							"fileName": "bubble.ts",
-							"line": 5,
-							"character": 54
-						}
-					],
-					"type": {
-						"type": "reference",
-						"name": "LogType"
-					},
-					"defaultValue": " gLog('d3.bubble')"
-				},
-				{
-					"id": 168,
-					"name": "bubble",
-					"kind": 64,
-					"kindString": "Function",
-					"flags": {
-						"isExported": true,
-						"isConst": true
-					},
-					"comment": {
-						"shortText": "bubble chart:"
-					},
-					"signatures": [
-						{
-							"id": 169,
-							"name": "bubble",
-							"kind": 4096,
-							"kindString": "Call signature",
-							"flags": {},
-							"comment": {
-								"shortText": "bubble chart:"
-							},
-							"parameters": [
-								{
-									"id": 170,
-									"name": "data",
-									"kind": 32768,
-									"kindString": "Parameter",
-									"flags": {},
-									"comment": {
-										"shortText": "a {@link hsDatab:Data `Data`} object containing the"
-									},
-									"type": {
-										"type": "reference",
-										"name": "Data"
-									}
-								},
-								{
-									"id": 171,
-									"name": "desc",
-									"kind": 32768,
-									"kindString": "Parameter",
-									"flags": {},
-									"type": {
-										"type": "reference",
-										"name": "PlotCfg",
-										"id": 34
-									}
-								},
-								{
-									"id": 172,
-									"name": "cx",
-									"kind": 32768,
-									"kindString": "Parameter",
-									"flags": {},
-									"comment": {
-										"shortText": "string column name for x-center coordinates"
-									},
-									"type": {
-										"type": "intrinsic",
-										"name": "string"
-									}
-								},
-								{
-									"id": 173,
-									"name": "cy",
-									"kind": 32768,
-									"kindString": "Parameter",
-									"flags": {},
-									"comment": {
-										"shortText": "string column name for y-center coordinates"
-									},
-									"type": {
-										"type": "intrinsic",
-										"name": "string"
-									}
-								},
-								{
-									"id": 174,
-									"name": "r",
-									"kind": 32768,
-									"kindString": "Parameter",
-									"flags": {
-										"isOptional": true
-									},
-									"comment": {
-										"shortText": "string column name for radius coordinates\n"
-									},
-									"type": {
-										"type": "intrinsic",
-										"name": "string"
-									}
-								}
-							],
-							"type": {
-								"type": "intrinsic",
-								"name": "void"
-							}
-						}
-					],
-					"sources": [
-						{
-							"fileName": "bubble.ts",
-							"line": 21,
-							"character": 19
-						}
-					]
-				}
-			],
-			"groups": [
-				{
-					"title": "Variables",
-					"kind": 32,
-					"children": [
-						167,
-						166
-					]
-				},
-				{
-					"title": "Functions",
-					"kind": 64,
-					"children": [
-						168
-					]
-				}
-			],
-			"sources": [
-				{
-					"fileName": "bubble.ts",
-					"line": 1,
-					"character": 0
-				}
-			]
-		},
-		{
-			"id": 244,
+			"id": 265,
 			"name": "\"index\"",
 			"kind": 1,
 			"kindString": "External module",
@@ -5018,7 +5207,7 @@
 			]
 		},
 		{
-			"id": 245,
+			"id": 266,
 			"name": "\"overview\"",
 			"kind": 1,
 			"kindString": "External module",
@@ -5028,11 +5217,525 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/overview.ts",
 			"comment": {
 				"shortText": "# hsGraphD3",
-				"text": "Helpful Scripts Graph convenience wrapper for D3js.\n[`[Github page]`](https://github.com/HelpfulScripts/hsGraphd3)\n[`[Coverage Info]`](./data/src/hsGraph/coverage/)\n___\n`hsGraphD3` provides convienent programmatic shortcuts to plotting data with [`D3js`](https://d3js.org/).\n\n## Usage\n1. create a {@link Graph `Graph`} object with a root DOM element to attach to: `graph = new hsGraphD3.Graph(root);'\n2. add desired series configuartions, specifying the type of series, as well as the column names to use for the x- and y-axes,\nand other variables, depending on the series type.\n3. render the graph for a given data set: `graph.render(data);`\n\n## Example\n<example height=200px libs={hsGraphD3:'hsGraphD3',hsDatab:'hsDatab',d3:'https://d3js.org/d3.v5.min.js'}>\n<file name='script.js'>\n// create data set:\nconst data = new hsDatab.Data({\n   colNames:['date', 'time', 'volume', 'costs'],\n   rows:[['1/1/14', -1,  0.2, 0.3], ['1/1/16', 0.2, 0.7, 0.2], ['9/1/16', 0.4, 0.1, 0.3],\n         ['5/1/17', 0.6, 0,   0.1], ['7/1/18', 0.8, 0.3, 0.5], ['1/1/19', 1,   0.2, 0.4]]\n});\n\n// setup and plot the data:\nconst graph = new hsGraphD3.Graph(root);\ngraph.addSeries('bubble', 'time', 'volume', 'costs');\ngraph.addSeries('bubble', 'time', 'volume', 'costs');\n\n//with (graph.defaults.Scales('costs').scale) {\n//     range.min = 0\n//     range.min = 20\n//}\n\nwith (graph.defaults.Graph.canvas) {\n     fill.color = '#eee';\n     stroke.width = 0;\n}\nwith (graph.defaults.Axes.hor) {\n     tickLabel.font.size = 200;\n}\nwith (graph.defaults.Plot.area) {\n     //fill.color = '#fcc';\n}\ngraph.render(data);\n\n// change values avery 2s:\nsetInterval(() => {\n   data.getData().map(row => {\n     //row[1] = Math.random()*graph.config.viewPort.width;\n     row[2] = Math.random()*graph.config.viewPort.height;\n     row[3] = Math.random()*50;\n     graph.render(data);\n   });\n   data.sort('ascending', 'x');\n}, 2000);\n\n\n</file>\n</example>\n"
+				"text": "Helpful Scripts Graph convenience wrapper for D3js.\n[`[Github page]`](https://github.com/HelpfulScripts/hsGraphd3)\n[`[Coverage Info]`](./data/src/hsGraph/coverage/)\n___\n`hsGraphD3` provides convienent programmatic shortcuts to plotting data with [`D3js`](https://d3js.org/).\n\n## Usage\n1. create a {@link Graph `Graph`} object with a root DOM element to attach to: `graph = new hsGraphD3.Graph(root);'\n2. add desired series configuartions, specifying the type of series, as well as the column names to use for the x- and y-axes,\nand other variables, depending on the series type.\n3. render the graph for a given data set: `graph.render(data);`\n\n## Data\nData is provided either as a [`Data`](https://helpfulscripts.github.io/hsDatab/#!/api/hsDatab/0) object, or in the form\n```\n{\nname?:  string;\ncolNames:  string[];\nrows:   <number|string|Date>[][];\n}\n```\n\n## Example\n<example height=200px libs={hsGraphD3:'hsGraphD3',d3:'d3'}>\n<file name='script.js'>\n// create data set:\nconst data = {\n   colNames:['date', 'time', 'volume', 'costs'],\n   rows:[['1/1/14', -1,  0.2, 0.3], ['1/1/16', 0.2, 0.7, 0.2], ['9/1/16', 0.4, 0.1, 0.3],\n         ['5/1/17', 0.6, 0,   0.1], ['7/1/18', 0.8, 0.3, 0.5], ['1/1/19', 1,   0.2, 0.4]]\n};\n\n// setup and plot the data:\nconst graph = new hsGraphD3.Graph(root);\ngraph.addSeries('bubble', 'time', 'volume', 'costs');\ngraph.addSeries('bubble', 'time', 'volume', 'costs');\n\nconst def = graph.defaults;\nwith (def.graph.canvas) {\n     fill.color = '#fcfcfc';\n     stroke.width = 10;\n     stroke.color = '#88f';\n}\n\ndef.axes.hor.tickLabel.font.size = 10;\nwith (graph.defaults.scales.costs.range) {\n     min = 10;\n     max = 80;\n}\n\ngraph.render(data);\n\n// to dynamically update, we change values avery 2s:\nsetInterval(update, 2000);\n\nfunction update() {\n   data.rows.map(row => {\n      //row[1] = Math.random()*graph.config.viewPort.width;\n      row[2] = Math.random()*graph.config.viewPort.height;\n      row[3] = Math.random()*50;\n   });\n   graph.render(data);\n}\n\n\n</file>\n</example>\n"
 			},
 			"sources": [
 				{
 					"fileName": "overview.ts",
+					"line": 1,
+					"character": 0
+				}
+			]
+		},
+		{
+			"id": 240,
+			"name": "\"plots/Bubble\"",
+			"kind": 1,
+			"kindString": "External module",
+			"flags": {
+				"isExported": true
+			},
+			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/Bubble.ts",
+			"children": [
+				{
+					"id": 248,
+					"name": "Bubble",
+					"kind": 128,
+					"kindString": "Class",
+					"flags": {},
+					"children": [
+						{
+							"id": 249,
+							"name": "constructor",
+							"kind": 512,
+							"kindString": "Constructor",
+							"flags": {},
+							"comment": {
+								"shortText": "plot constructor"
+							},
+							"signatures": [
+								{
+									"id": 254,
+									"name": "new Bubble",
+									"kind": 16384,
+									"kindString": "Constructor signature",
+									"flags": {},
+									"comment": {
+										"shortText": "plot constructor"
+									},
+									"parameters": [
+										{
+											"id": 255,
+											"name": "desc",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "PlotCfg",
+												"id": 26
+											}
+										},
+										{
+											"id": 256,
+											"name": "cx",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"comment": {
+												"shortText": "string column name for x-center coordinates"
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "string"
+											}
+										},
+										{
+											"id": 257,
+											"name": "cy",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"comment": {
+												"shortText": "string column name for y-center coordinates"
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "string"
+											}
+										},
+										{
+											"id": 258,
+											"name": "r",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {
+												"isOptional": true
+											},
+											"comment": {
+												"shortText": "string column name for radius coordinates\n"
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "string"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "Bubble",
+										"id": 248
+									},
+									"overwrites": {
+										"type": "reference",
+										"name": "PlotClass.__constructor",
+										"id": 163
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "plots/Bubble.ts",
+									"line": 22,
+									"character": 32
+								}
+							],
+							"overwrites": {
+								"type": "reference",
+								"name": "PlotClass.__constructor",
+								"id": 163
+							}
+						},
+						{
+							"id": 251,
+							"name": "cx",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {
+								"isConstructorProperty": true,
+								"isProtected": true
+							},
+							"comment": {
+								"shortText": "string column name for x-center coordinates"
+							},
+							"sources": [
+								{
+									"fileName": "plots/Bubble.ts",
+									"line": 29,
+									"character": 53
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						},
+						{
+							"id": 252,
+							"name": "cy",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {
+								"isConstructorProperty": true,
+								"isProtected": true
+							},
+							"comment": {
+								"shortText": "string column name for y-center coordinates"
+							},
+							"sources": [
+								{
+									"fileName": "plots/Bubble.ts",
+									"line": 29,
+									"character": 74
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						},
+						{
+							"id": 250,
+							"name": "desc",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {
+								"isConstructorProperty": true,
+								"isProtected": true
+							},
+							"sources": [
+								{
+									"fileName": "plots/Bubble.ts",
+									"line": 29,
+									"character": 30
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "PlotCfg",
+								"id": 26
+							}
+						},
+						{
+							"id": 253,
+							"name": "r",
+							"kind": 1024,
+							"kindString": "Property",
+							"flags": {
+								"isConstructorProperty": true,
+								"isProtected": true,
+								"isOptional": true
+							},
+							"comment": {
+								"shortText": "string column name for radius coordinates\n"
+							},
+							"sources": [
+								{
+									"fileName": "plots/Bubble.ts",
+									"line": 29,
+									"character": 94
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						},
+						{
+							"id": 259,
+							"name": "render",
+							"kind": 2048,
+							"kindString": "Method",
+							"flags": {},
+							"signatures": [
+								{
+									"id": 260,
+									"name": "render",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"comment": {},
+									"parameters": [
+										{
+											"id": 261,
+											"name": "data",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"comment": {
+												"text": "a {@link hsDatab:Data `Data`} object containing the\n"
+											},
+											"type": {
+												"type": "reference",
+												"name": "Data"
+											}
+										},
+										{
+											"id": 262,
+											"name": "series",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "d3Selection",
+												"id": 199
+											}
+										}
+									],
+									"type": {
+										"type": "intrinsic",
+										"name": "void"
+									},
+									"overwrites": {
+										"type": "reference",
+										"name": "PlotClass.render",
+										"id": 167
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "plots/Bubble.ts",
+									"line": 38,
+									"character": 10
+								}
+							],
+							"overwrites": {
+								"type": "reference",
+								"name": "PlotClass.render",
+								"id": 167
+							}
+						}
+					],
+					"groups": [
+						{
+							"title": "Constructors",
+							"kind": 512,
+							"children": [
+								249
+							]
+						},
+						{
+							"title": "Properties",
+							"kind": 1024,
+							"children": [
+								251,
+								252,
+								250,
+								253
+							]
+						},
+						{
+							"title": "Methods",
+							"kind": 2048,
+							"children": [
+								259
+							]
+						}
+					],
+					"sources": [
+						{
+							"fileName": "plots/Bubble.ts",
+							"line": 22,
+							"character": 12
+						}
+					],
+					"extendedTypes": [
+						{
+							"type": "reference",
+							"name": "PlotClass",
+							"id": 162
+						}
+					]
+				},
+				{
+					"id": 241,
+					"name": "BubbleFatory",
+					"kind": 128,
+					"kindString": "Class",
+					"flags": {
+						"isExported": true
+					},
+					"children": [
+						{
+							"id": 242,
+							"name": "newPlot",
+							"kind": 2048,
+							"kindString": "Method",
+							"flags": {
+								"isExported": true
+							},
+							"signatures": [
+								{
+									"id": 243,
+									"name": "newPlot",
+									"kind": 4096,
+									"kindString": "Call signature",
+									"flags": {},
+									"parameters": [
+										{
+											"id": 244,
+											"name": "desc",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "PlotCfg",
+												"id": 26
+											}
+										},
+										{
+											"id": 245,
+											"name": "cx",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "intrinsic",
+												"name": "string"
+											}
+										},
+										{
+											"id": 246,
+											"name": "cy",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {},
+											"type": {
+												"type": "intrinsic",
+												"name": "string"
+											}
+										},
+										{
+											"id": 247,
+											"name": "r",
+											"kind": 32768,
+											"kindString": "Parameter",
+											"flags": {
+												"isOptional": true
+											},
+											"type": {
+												"type": "intrinsic",
+												"name": "string"
+											}
+										}
+									],
+									"type": {
+										"type": "reference",
+										"name": "PlotClass",
+										"id": 162
+									},
+									"overwrites": {
+										"type": "reference",
+										"name": "PlotFactory.newPlot",
+										"id": 172
+									}
+								}
+							],
+							"sources": [
+								{
+									"fileName": "plots/Bubble.ts",
+									"line": 17,
+									"character": 11
+								}
+							],
+							"overwrites": {
+								"type": "reference",
+								"name": "PlotFactory.newPlot",
+								"id": 172
+							}
+						}
+					],
+					"groups": [
+						{
+							"title": "Methods",
+							"kind": 2048,
+							"children": [
+								242
+							]
+						}
+					],
+					"sources": [
+						{
+							"fileName": "plots/Bubble.ts",
+							"line": 16,
+							"character": 25
+						}
+					],
+					"extendedTypes": [
+						{
+							"type": "reference",
+							"name": "PlotFactory",
+							"id": 171
+						}
+					]
+				},
+				{
+					"id": 264,
+					"name": "DEF_RADIUS",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {
+						"isConst": true
+					},
+					"sources": [
+						{
+							"fileName": "plots/Bubble.ts",
+							"line": 14,
+							"character": 16
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					},
+					"defaultValue": "5"
+				},
+				{
+					"id": 263,
+					"name": "log",
+					"kind": 32,
+					"kindString": "Variable",
+					"flags": {
+						"isConst": true
+					},
+					"sources": [
+						{
+							"fileName": "plots/Bubble.ts",
+							"line": 5,
+							"character": 54
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "LogType"
+					},
+					"defaultValue": " gLog('d3.bubble')"
+				}
+			],
+			"groups": [
+				{
+					"title": "Classes",
+					"kind": 128,
+					"children": [
+						248,
+						241
+					]
+				},
+				{
+					"title": "Variables",
+					"kind": 32,
+					"children": [
+						264,
+						263
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "plots/Bubble.ts",
 					"line": 1,
 					"character": 0
 				}
@@ -5044,16 +5747,16 @@
 			"title": "External modules",
 			"kind": 1,
 			"children": [
-				146,
+				143,
 				1,
-				48,
-				99,
-				205,
-				135,
-				175,
-				165,
-				244,
-				245
+				34,
+				91,
+				201,
+				132,
+				161,
+				265,
+				266,
+				240
 			]
 		}
 	]

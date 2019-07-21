@@ -46,6 +46,7 @@ export interface GraphDefaults {
 
 export interface PlotDefaults {
     area: RectStyle;
+    margin: { left:number, top:number, right:number, bottom:number};
 }
 
 export interface SeriesDefaults {
