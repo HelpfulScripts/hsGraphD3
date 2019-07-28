@@ -18,10 +18,12 @@ const DEF_RADIUS:number = 5;
 
 export class PlotClass { 
     constructor(desc:PlotCfg, ...params:string[]) {
+        const scales = desc.cfg.defaults.scales;
+log.info(`PlotClass `);        
         desc.cfg.scales.hor.dataCol = params[0]; // x
         desc.cfg.scales.ver.dataCol = params[1]; // y
-        desc.cfg.defaults.scales[params[0]] = desc.cfg.defaults.scales[params[0]] || desc.cfg.defaults.defaultScale();
-        desc.cfg.defaults.scales[params[1]] = desc.cfg.defaults.scales[params[1]] || desc.cfg.defaults.defaultScale();
+        scales[params[0]] = scales[params[0]] || scales.hor || desc.cfg.defaults.defaultScale(0, 1);
+        scales[params[1]] = scales[params[1]] || scales.ver || desc.cfg.defaults.defaultScale(0, 1);
     }
     public render(data:Data, series:d3Selection): void {}
 }

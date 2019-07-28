@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for Axis.ts</title>
+    <title>Code coverage report for Grid.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="prettify.css" />
     <link rel="stylesheet" href="base.css" />
@@ -16,32 +16,32 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="index.html">hsGraphD3: All files</a> Axis.ts
+      <a href="index.html">hsGraphD3: All files</a> Grid.ts
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">48.15% </span>
+        <span class="strong">51.85% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>13/27</span>
+        <span class='fraction'>14/27</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">18.18% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>2/4</span>
+        <span class='fraction'>2/11</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">40% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/3</span>
+        <span class='fraction'>2/5</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">46.15% </span>
+        <span class="strong">48% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>12/26</span>
+        <span class='fraction'>12/25</span>
       </div>
     </div>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -109,9 +109,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -123,18 +121,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -143,70 +134,79 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
- * # Axis class
+ * # Grid class
  * 
  */
 &nbsp;
  /** */
 import { Data }             from 'hsdatab';
-import { log as gLog }      from 'hsutil';   const log = gLog('d3.Axis');
+import { log as gLog }      from 'hsutil';   const log = gLog('d3.Grid');
 import { GraphComponent }   from './GraphComponent'; 
 import { GraphCfg }         from './ConfigTypes';
 import { d3Base }           from './ConfigTypes';
 import * as d3Axis          from "d3-axis";
-&nbsp;
-const axisWidth:number = 50;    // the space needed next to the axis for printing tick labels
-const tickWidth:number = 10;
-&nbsp;
-export enum Direction {
-    Horizontal  = 'hor',
-    Vertical    = 'ver'
+import { Direction }       from './Axis';
+ 
+export enum MajorMinor {
+    major   = 'major',
+    minor   = 'minor'
 }
 &nbsp;
-export class Axis extends GraphComponent {
-    private dir: Direction;
+export class Grid extends GraphComponent {
     private svg: d3Base;
-&nbsp;
-    constructor(cfg:GraphCfg, dir:Direction) {
+    private hor: boolean;
+ 
+    constructor(cfg:GraphCfg, protected dir:Direction, protected type=<span class="branch-0 cbranch-no" title="branch not covered" >MajorMinor.major)</span> {
         super(cfg);
-        this.dir = dir;
-        this.svg = cfg.baseSVG.select('.axes').append('g').classed(`${dir}Axis`, true);
+        const baseClass = `${dir}-${type}-Grid`;
+        this.hor = this.dir===Direction.Horizontal;
+        this.svg = cfg.baseSVG.select('.grid').append('g').classed(baseClass, true);
     }
-&nbsp;
+ 
 <span class="fstat-no" title="function not covered" >    render</span>() {
-        const scales = <span class="cstat-no" title="statement not covered" >this.config.scales;</span>
-        const style = <span class="cstat-no" title="statement not covered" >this.config.defaults.axes[this.dir];</span>
-        let axis;
+        const count = <span class="cstat-no" title="statement not covered" >this.type===MajorMinor.major? 2 : 10;</span>
+        const scales = <span class="cstat-no" title="statement not covered" >this.config.defaults.scales;</span>
+        const scaleX = <span class="cstat-no" title="statement not covered" >this.config.scales.hor.scale;</span>
+        const scaleY = <span class="cstat-no" title="statement not covered" >this.config.scales.ver.scale;</span>
+        const style = <span class="cstat-no" title="statement not covered" >this.config.defaults.grid[this.dir][this.type];</span>
 <span class="cstat-no" title="statement not covered" >        this.svg</span>
-            .attr('stroke', style.line.color)
-            .attr('stroke-width', style.line.width)
-            .attr('stroke-opacity', style.line.opacity);
-&nbsp;
-<span class="cstat-no" title="statement not covered" >        if (this.dir===Direction.Horizontal) {</span>
-            const yCrossing = <span class="cstat-no" title="statement not covered" >Math.max(axisWidth, Math.min(scales.ver.scale(0), this.config.viewPort.height-axisWidth));</span>
-            const horCol = <span class="cstat-no" title="statement not covered" >scales.hor.dataCol;</span>
-<span class="cstat-no" title="statement not covered" >            axis = d3Axis.axisTop(scales.hor.scale);</span>
-<span class="cstat-no" title="statement not covered" >            this.svg.attr("transform", `translate(0, ${yCrossing})`);</span>
-        } else {
-            const xCrossing = <span class="cstat-no" title="statement not covered" >Math.max(axisWidth, Math.min(scales.hor.scale(0), this.config.viewPort.width-axisWidth));</span>
-<span class="cstat-no" title="statement not covered" >            axis = d3Axis.axisRight(scales.ver.scale);</span>
-<span class="cstat-no" title="statement not covered" >            this.svg.attr("transform", `translate(${xCrossing}, 0)`);</span>
-        }
-<span class="cstat-no" title="statement not covered" >        axis.tickSize(tickWidth);</span>
-<span class="cstat-no" title="statement not covered" >        this.svg.call(axis);</span>
-<span class="cstat-no" title="statement not covered" >        this.svg.selectAll('text').transition().duration(1000)</span>
-            .attr('style', `font-family:${style.tickLabel.font.family}; font-size:${style.tickLabel.font.size}px; font-style:${style.tickLabel.font.style}; font-weight:${style.tickLabel.font.weight};`);
+            .attr('stroke', style.color)
+            .attr('stroke-width', style.width)
+            .attr('stroke-opacity', style.opacity);
+        const c = <span class="cstat-no" title="statement not covered" >{</span>
+            range:  this.hor? scales.hor.range : scales.ver.range,
+            scale:  this.hor? scaleY : scaleX,  
+            dim:    this.hor? { fix:'x', var:'y'} : { fix:'y', var:'x'},
+            // ticks:  (this.hor? scaleY : scaleX).ticks(count)
+        };
+        const gridlines = <span class="cstat-no" title="statement not covered" >this.svg.selectAll("line").data(c.scale.ticks(count));</span>
+<span class="cstat-no" title="statement not covered" >        gridlines.exit().remove(); </span>         // remove unneeded circles
+<span class="cstat-no" title="statement not covered" >        gridlines.enter().append('line')    // add new circles</span>
+        .attr(`${c.dim.fix}1`, c.range.min)
+        .attr(`${c.dim.fix}2`, c.range.max);
+<span class="cstat-no" title="statement not covered" >        gridlines.transition().duration(1000)</span>
+        .attr(`${c.dim.var}1`, <span class="fstat-no" title="function not covered" >d </span>=&gt; <span class="cstat-no" title="statement not covered" >c.scale(&lt;number&gt;d))</span>
+        .attr(`${c.dim.var}2`, <span class="fstat-no" title="function not covered" >d </span>=&gt; <span class="cstat-no" title="statement not covered" >c.scale(&lt;number&gt;d))</span>;
     }
 }</pre></td></tr>
 </table></pre>

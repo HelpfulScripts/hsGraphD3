@@ -49,13 +49,14 @@ import { log as gLog }      from 'hsutil';   const log = gLog('Graph');
 import * as d3              from 'd3'; 
 
 import { Data, NumDomain }  from 'hsdatab';
-import { DataTable }   from 'hsdatab';
+import { DataTable }        from 'hsdatab';
 import { DataSet }          from 'hsdatab';
-import { GraphCfg, UnitVp } from './ConfigTypes';
+import { GraphCfg }         from './ConfigTypes';
 import { d3Base }           from './ConfigTypes';
 import { Defaults }         from './Defaults';
 import { Plot }             from './Plot';
 import { Axis, Direction }  from './Axis';
+import { Grid, MajorMinor } from './Grid';
 import { GraphComponent }   from './GraphComponent';
 
 const margin:number = 10;
@@ -78,16 +79,11 @@ function createBaseSVG(cfg: GraphCfg):d3Base {
         .attr('preserveAspectRatio', 'xMinYMin meet')
         ;
     cfg.baseSVG = svg;
-    svg.append('rect')
-        .classed('graphArea', true)
-        .attr('x', 0)
-        .attr('y', 0);
+    svg.append('rect').classed('graphArea', true).attr('x', 0).attr('y', 0);
+    svg.append('g').classed('grid', true);
     svg.append('g').classed('axes', true);
     svg.append('g').classed('series', true);
-    svg.append('rect')
-        .classed('graphBorder', true)
-        .attr('x', 0)
-        .attr('y', 0);
+    svg.append('rect').classed('graphBorder', true).attr('x', 0).attr('y', 0);
     return svg;
 }
 
@@ -103,6 +99,7 @@ function updateBaseSVG(cfg: GraphCfg) {
 export class Graph extends GraphComponent {
     private plot:Plot;
     private axes:Axis[] = [];
+    private grids:Grid[] = [];
     private cumulativeDomains: {[colName:string]: [number, number]} = {};
 
     constructor(root:any) { 
@@ -114,6 +111,10 @@ export class Graph extends GraphComponent {
         this.plot = new Plot(this.config);
         this.axes.push(new Axis(this.config, Direction.Horizontal));
         this.axes.push(new Axis(this.config, Direction.Vertical));
+        this.grids.push(new Grid(this.config, Direction.Horizontal, MajorMinor.major));
+        this.grids.push(new Grid(this.config, Direction.Horizontal, MajorMinor.minor));
+        this.grids.push(new Grid(this.config, Direction.Vertical, MajorMinor.major));
+        this.grids.push(new Grid(this.config, Direction.Vertical, MajorMinor.minor));
         window.onresize = () => this.resize();
     }
 
@@ -139,13 +140,13 @@ export class Graph extends GraphComponent {
      * @param data 
      */
     public render(data:Data|DataSet|DataTable) {
-        let d:Data;
-        if (data instanceof Data) { d = data; } 
-        else { d = new Data(data); }
+        log.debug(log.inspect(this.defaults, 10));        
+        let d:Data = (data instanceof Data)? data : new Data(data);
         this.setScales(d);
         this.drawCanvas(this.config);
+        this.grids.forEach(a => a.render());
         this.plot.render(d);
-        this.axes.forEach(a => a.render(d));
+        this.axes.forEach(a => a.render());
     }
 
     /**
@@ -191,13 +192,20 @@ export class Graph extends GraphComponent {
             domains[colName][1] = Math.max(domains[colName][1], dataDom[1]);
             return domains[colName];
         }
+        const cfg = this.defaults.scales;
+        const horCol = this.config.scales.hor.dataCol;
+        const verCol = this.config.scales.ver.dataCol;
         const hor = this.config.scales.hor;
         const ver = this.config.scales.ver;
-        hor.scale = d3.scaleLinear()
+        if (cfg[horCol].type === 'linear') {
+            hor.scale = d3.scaleLinear()
             .domain(expandDomain(this.cumulativeDomains, hor.dataCol))
-            .range([margin, this.config.viewPort.width-2*margin]);
-        ver.scale = d3.scaleLinear()
+            .range([cfg[horCol].range.min, cfg[horCol].range.max]);
+        }
+        if (cfg[verCol].type === 'linear') {
+            ver.scale = d3.scaleLinear()
             .domain(expandDomain(this.cumulativeDomains, ver.dataCol))
-            .range([this.config.viewPort.height-2*margin, margin]);
+            .range([cfg[verCol].range.min, cfg[verCol].range.max]);
+        }
     }
 }

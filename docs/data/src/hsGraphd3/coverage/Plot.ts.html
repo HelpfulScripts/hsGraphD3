@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">41.94% </span>
+        <span class="strong">39.39% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>13/31</span>
+        <span class='fraction'>13/33</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>0/6</span>
+        <span class='fraction'>0/8</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">14.29% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>1/7</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">40% </span>
+        <span class="strong">37.5% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>12/30</span>
+        <span class='fraction'>12/32</span>
       </div>
     </div>
   </div>
@@ -149,7 +149,9 @@
 104
 105
 106
-107</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+107
+108
+109</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -169,6 +171,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -275,10 +279,12 @@ const DEF_RADIUS:number = 5;
 &nbsp;
 export class PlotClass { 
 <span class="fstat-no" title="function not covered" >    constructor(</span>desc:PlotCfg, ...params:string[]) {
+        const scales = <span class="cstat-no" title="statement not covered" >desc.cfg.defaults.scales;</span>
+<span class="cstat-no" title="statement not covered" >log.info(`PlotClass `);        </span>
 <span class="cstat-no" title="statement not covered" >        desc.cfg.scales.hor.dataCol = params[0]; </span>// x
 <span class="cstat-no" title="statement not covered" >        desc.cfg.scales.ver.dataCol = params[1]; </span>// y
-<span class="cstat-no" title="statement not covered" >        desc.cfg.defaults.scales[params[0]] = desc.cfg.defaults.scales[params[0]] || desc.cfg.defaults.defaultScale();</span>
-<span class="cstat-no" title="statement not covered" >        desc.cfg.defaults.scales[params[1]] = desc.cfg.defaults.scales[params[1]] || desc.cfg.defaults.defaultScale();</span>
+<span class="cstat-no" title="statement not covered" >        scales[params[0]] = scales[params[0]] || scales.hor || desc.cfg.defaults.defaultScale(0, 1);</span>
+<span class="cstat-no" title="statement not covered" >        scales[params[1]] = scales[params[1]] || scales.ver || desc.cfg.defaults.defaultScale(0, 1);</span>
     }
     public <span class="fstat-no" title="function not covered" >render</span>(data:Data, series:d3Selection): void {}
 }

@@ -5,17 +5,9 @@
 
 /** */
 
-import { GraphDefaults }    from './DefaultTypes';
-import { PlotDefaults }     from './DefaultTypes';
-import { SeriesDefaults }   from './DefaultTypes';
-import { AxesDefaults }     from './DefaultTypes';
-import { Color }            from './DefaultTypes';
-import { RectStyle }        from './DefaultTypes';
-import { Line }             from './DefaultTypes';
-import { UnitVp }           from './ConfigTypes';
-import { ScaleDefaults }    from './DefaultTypes';
-import { TextStyle }        from './DefaultTypes';
-import { GraphCfg }         from './ConfigTypes';
+import * as d       from './DefaultTypes';
+import { UnitVp }   from './ConfigTypes';
+import { GraphCfg } from './ConfigTypes';
 
 
 /**
@@ -26,20 +18,20 @@ export class Defaults {
     // private config: GraphCfg;
     // private theScales = {};
 
-    constructor(config: GraphCfg) { }
+    constructor(protected config: GraphCfg) { }
 
-    graph:GraphDefaults = {
+    graph:d.GraphDefaults = {
         canvas: defaultRect('#fff', 2, '#ccc')
     };
 
-    plot:PlotDefaults = {
+    plot:d.PlotDefaults = {
         area: defaultRect('#fff'),
         margin: { left:10, top:10, right:10, bottom:10}
     };
 
-    series:SeriesDefaults[] = [];
+    series:d.SeriesDefaults[] = [];
 
-    axes:AxesDefaults = { 
+    axes:d.AxesDefaults = { 
         hor: {
             line:       defaultLine(2),
             tickMarks:  defaultLine(2),
@@ -52,18 +44,32 @@ export class Defaults {
         }
     };
 
-    scales:{[column:string]: ScaleDefaults} = {};
+    grid:d.GridDefaults = {
+        hor: {
+            major: defaultLine(1,'#444'),
+            minor: defaultLine(2, '#eee')
+        },
+        ver: {
+            major: defaultLine(1,'#444'),
+            minor: defaultLine(2, '#eee')
+        }
+    };
 
-    defaultScale():ScaleDefaults { 
+    scales:{[column:string]: d.ScaleDefaults} = {
+        hor: this.defaultScale(0, this.config.viewPort.width),
+        ver: this.defaultScale(0, this.config.viewPort.height)
+    };
+
+    defaultScale(minRange=0, maxRange=1):d.ScaleDefaults { 
         return {
             type:   'linear',
             domain: {min: 'auto', max: 'auto'}, //  data domain
-            range:  { min: 0, max: 1 }          //  canvas range
+            range:  { min: minRange, max: maxRange }          //  canvas range
         };
     }
 }
 
-export function defaultLine(width:UnitVp, color:Color='#000'):Line {
+export function defaultLine(width:UnitVp, color:d.Color='#000'):d.Line {
     return {
         width: width,
         color: color,
@@ -77,7 +83,7 @@ export function defaultLine(width:UnitVp, color:Color='#000'):Line {
  * @param borderWidth the border width in pixel
  * @param borderColor the border color
  */
-function defaultRect(area:Color, borderWidth:UnitVp=0, borderColor:Color='#fff'):RectStyle {
+function defaultRect(area:d.Color, borderWidth:UnitVp=0, borderColor:d.Color='#fff'):d.RectStyle {
     return {
         rx: 0,
         ry: 0,
@@ -93,7 +99,7 @@ function defaultRect(area:Color, borderWidth:UnitVp=0, borderColor:Color='#fff')
     };
 }
 
-function defaultText():TextStyle {
+function defaultText():d.TextStyle {
     return {
         color: '#000',
         font: {

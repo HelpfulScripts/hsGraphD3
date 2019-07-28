@@ -73,3 +73,14 @@ export interface AxesDefaults {
     hor:        AxisDefaults;
     ver:        AxisDefaults;
 } 
+
+export interface GridDefaults {
+    hor: {
+        major: Line;
+        minor: Line;
+    };
+    ver: {
+        major: Line;
+        minor: Line;
+    };
+} 

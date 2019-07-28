@@ -45,7 +45,7 @@
  *      stroke.color = '#88f';
  * }
  * 
- * def.axes.hor.tickLabel.font.size = 10;
+ * //def.axes.hor.tickLabel.font.size = 10;
  * with (graph.defaults.scales.costs.range) {
  *      min = 10;
  *      max = 80;
