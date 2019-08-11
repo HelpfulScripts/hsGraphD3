@@ -1,0 +1,482 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for Graph2DCartesian.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="prettify.css" />
+    <link rel="stylesheet" href="base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="index.html">hsGraphD3: All files</a> Graph2DCartesian.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>15/30</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/6</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">25% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>1/4</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">48.28% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>14/29</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * ## Graph2DCartesian
+ * 
+ * creates a 2D cartesian graph.
+ * 
+ * ### Example:
+ * &lt;example height=200px libs={hsGraphD3:'hsGraphD3'}&gt;
+ * &lt;file name='script.js'&gt;
+ * // create data set:
+ * const data = [['date', 'time', 'volume', 'costs'], ['1/1/14', -1,  0.2, 0.3], 
+ *  ['1/1/16', 0.2, 0.7, 0.2], ['9/1/16', 0.4, 0.1, 0.3],
+ *  ['5/1/17', 0.6, 0,   0.1], ['7/1/18', 0.8, 0.3, 0.5], ['1/1/19', 1,   0.2, 0.4]];
+ * 
+ * // setup and plot the data:
+ * const graph = new hsGraphD3.Graph2DCartesian(root);
+ * graph.addSeries('bubble', 'time', 'volume', 'costs');
+ * 
+ * with (graph.defaults.canvas) {
+ *      fill.color = '#fcfcfc';
+ *      stroke.width = 10;  // in viewport coordinates (0 - 1000)
+ * }
+ * with (graph.defaults.axes) {
+ *      color = '#44c';
+ *      hor.tickLabel.font.size = 20;
+ * }
+ * with (graph.defaults.scales.dims.costs.range) {
+ *      min = 10;
+ *      max = 80;
+ * }
+ * graph.render(data);
+ * 
+ * update();
+ * 
+ * function update() {
+ *    data.map((row, i) =&gt; {
+ *      if (i&gt;0) {
+ *          row[2] = Math.random()*graph.viewport.height;
+ *          row[3] = Math.random()*50;
+ *      }
+ *    });
+ *    graph.render(data);
+ *    setTimeout(update, 2000);  // update values avery 2s:
+ * }
+ * 
+ * &lt;/file&gt;
+ * &lt;/example&gt;
+ * 
+ * ### Accessible format setting and defaults:
+ * &lt;example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}&gt;
+ * &lt;file name='script.js'&gt;
+ * const log = hsUtil.log('');
+ * let defaults;
+ * 
+ * function createGraph(svgRoot) {
+ *      const graph = new hsGraphD3.Graph2DCartesian(svgRoot[0]);
+ *      graph.addSeries('bubble', 'time', 'volume', 'costs');
+ *      return graph.defaults;
+ * }
+ * 
+ * m.mount(root, {
+ *   view:() =&gt; m('div', {style:'background-color:#eee; font-family:Monospace'}, [
+ *      m('div', {style:'font-family:monospace;'}, 'graph.defaults = '),
+ *      m('div', m.trust(defaults)),   // .map(r =&gt; m('div', m.trust(r)))
+ *      m('div.myGraph', '')
+ *   ]),
+ *   oncreate: () =&gt; {
+ *      const svgRoot = root.getElementsByClassName('myGraph');
+ *      if (svgRoot &amp;&amp; svgRoot.length &amp;&amp; !defaults) { 
+ *          const colors = ['#800', '#080', '#008'];
+ *          defaults = hsUtil.log.inspect(createGraph(svgRoot), null, '   ', colors)
+ *              .replace(/\n/g, '&lt;br&gt;')
+ *      }
+ *   } 
+ * });
+ * &lt;/file&gt;
+ * &lt;/example&gt;
+ */
+&nbsp;
+ /** */
+&nbsp;
+import { log as gLog }      from 'hsutil';   const log = gLog('Graph2DCartesian');
+import * as d3              from 'd3'; 
+&nbsp;
+import { Data }             from 'hsdatab';
+import { NumDomain }        from 'hsdatab';
+import { AbstractGraph }    from './AbstractGraph';
+import { GraphComponent }   from './GraphComponent';
+import * as d               from './Defaults';
+import { defaultDimScale}   from './Scale';
+import { ScaleDefaults}     from './Scale';
+import { Series, PlotDefaults }   from './Plot';
+&nbsp;
+export class Graph2DCartesian extends AbstractGraph {
+    private cumulativeDomains: {[colName:string]: [number, number]} = {};
+&nbsp;
+    constructor(root:any) { 
+        super(root);
+        this.config.scales.hor = { dataCol: &lt;string&gt;undefined, scale: undefined};
+        this.config.scales.ver = { dataCol: &lt;string&gt;undefined, scale: undefined};
+        const scales = &lt;ScaleDefaults&gt;this.config.defaults('scales');
+        const margins = scales.margin;
+        scales.dims['hor'] = defaultDimScale(margins.left, this.viewport.width-margins.right);
+        scales.dims['ver'] = defaultDimScale(margins.top, this.viewport.height-margins.bottom);
+        log.info('creating Graph');
+    }
+&nbsp;
+    /**
+     * adds a series to the plot.
+     * @param type type of plot to use, e.g. 'bubble' or 'scatter'
+     * @param params the column name of the parameters used to plot the series
+     */
+    public <span class="fstat-no" title="function not covered" >addSeries</span>(type:string, x:string, y:string, ...params:string[]) {
+<span class="cstat-no" title="statement not covered" >        super.addSeries(type, x, y, ...params);</span>
+    }
+&nbsp;
+    protected <span class="fstat-no" title="function not covered" >setScales</span>(data:Data) {
+        /** expands `domains[colName]` to include the range of the current `data` domain. */
+        function <span class="fstat-no" title="function not covered" >expandDomain(</span>domains:{[colName:string]:NumDomain}, colName:string) {
+<span class="cstat-no" title="statement not covered" >            domains[colName] = domains[colName] || [1e90, -1e90];</span>
+            const dataDom:NumDomain = &lt;NumDomain&gt;<span class="cstat-no" title="statement not covered" >data.findDomain(colName);</span>
+<span class="cstat-no" title="statement not covered" >            domains[colName][0] = Math.min(domains[colName][0], dataDom[0]);</span>
+<span class="cstat-no" title="statement not covered" >            domains[colName][1] = Math.max(domains[colName][1], dataDom[1]);</span>
+<span class="cstat-no" title="statement not covered" >            return domains[colName];</span>
+        }
+        const scales = (&lt;ScaleDefaults&gt;<span class="cstat-no" title="statement not covered" >this.config.defaults('scales')).dims;</span>
+        const horCol = <span class="cstat-no" title="statement not covered" >this.config.scales.hor.dataCol;</span>
+        const verCol = <span class="cstat-no" title="statement not covered" >this.config.scales.ver.dataCol;</span>
+        const hor = <span class="cstat-no" title="statement not covered" >this.config.scales.hor;</span>
+        const ver = <span class="cstat-no" title="statement not covered" >this.config.scales.ver;</span>
+<span class="cstat-no" title="statement not covered" >        if (scales[horCol].type === 'linear') {</span>
+<span class="cstat-no" title="statement not covered" >            hor.scale = d3.scaleLinear()</span>
+            .domain(expandDomain(this.cumulativeDomains, hor.dataCol))
+            .range([scales[horCol].range.min, scales[horCol].range.max]);
+        }
+<span class="cstat-no" title="statement not covered" >        if (scales[verCol].type === 'linear') {</span>
+<span class="cstat-no" title="statement not covered" >            ver.scale = d3.scaleLinear()</span>
+            .domain(expandDomain(this.cumulativeDomains, ver.dataCol))
+            .range([scales[verCol].range.min, scales[verCol].range.max]);
+        }
+    }
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+
+</div>
+<script src="prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="sorter.js"></script>
+</body>
+</html>

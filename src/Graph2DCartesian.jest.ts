@@ -1,5 +1,5 @@
 
-import { Graph } from './Graph';
+import { Graph2DCartesian as Graph } from './Graph2DCartesian';
 
 const root = window.document.createElement("div");
 

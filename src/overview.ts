@@ -11,6 +11,7 @@
  * 1. create a {@link Graph `Graph`} object with a root DOM element to attach to: `graph = new hsGraphD3.Graph(root);'
  * 2. add desired series configuartions, specifying the type of series, as well as the column names to use for the x- and y-axes, 
  * and other variables, depending on the series type.
+ * 3. apply any desired formatting changes to the default
  * 3. render the graph for a given data set: `graph.render(data);`
  * 
  * ## Data
@@ -24,7 +25,7 @@
  * ```
  * 
  * ## Example
- * <example height=200px libs={hsGraphD3:'hsGraphD3',d3:'d3'}>
+ * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
  * <file name='script.js'>
  * // create data set:
  * const data = {
@@ -34,19 +35,24 @@
  * };
  * 
  * // setup and plot the data:
- * const graph = new hsGraphD3.Graph(root);
- * graph.addSeries('bubble', 'time', 'volume', 'costs');
+ * const graph = new hsGraphD3.Graph2DCartesian(root);
  * graph.addSeries('bubble', 'time', 'volume', 'costs');
  * 
  * const def = graph.defaults;
- * with (def.graph.canvas) {
+ * with (def.canvas) {
  *      fill.color = '#fcfcfc';
  *      stroke.width = 10;
  *      stroke.color = '#88f';
  * }
  * 
- * //def.axes.hor.tickLabel.font.size = 10;
- * with (graph.defaults.scales.costs.range) {
+ * def.axes.color = '#00a';
+ * with (def.axes.hor.tickLabel) {
+ *      font.weight = 100;
+ * }
+ * with (def.axes.ver.tickLabel) {
+ *      font.weight = 100;
+ * }
+ * with (def.scales.dims.costs.range) {
  *      min = 10;
  *      max = 80;
  * }
@@ -58,8 +64,8 @@
  * 
  * function update() {
  *    data.rows.map(row => {
- *       //row[1] = Math.random()*graph.config.viewPort.width;
- *       row[2] = Math.random()*graph.config.viewPort.height;
+ *       //row[1] = Math.random()*graph.viewport.width;
+ *       row[2] = Math.random()*graph.viewport.height;
  *       row[3] = Math.random()*50;
  *    });
  *    graph.render(data);

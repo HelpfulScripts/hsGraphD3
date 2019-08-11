@@ -2,48 +2,62 @@
  * # Bubble Plot
  */
 
-import { log as gLog }      from 'hsutil';   const log = gLog('d3.bubble');
+import { log as gLog }      from 'hsutil';   const log = gLog('Bubble');
 import * as d3              from "d3";
 import { Data }             from 'hsdatab';
 import { NumDomain }        from 'hsdatab';
-import { PlotCfg }          from '../ConfigTypes';
-import { Plot, PlotClass }  from '../Plot';
-import { PlotFactory }      from '../Plot';
-import { d3Selection }      from '../Plot';
+import { SeriesPlot }       from '../SeriesPlot';
+import { SeriesDefaults }   from '../SeriesPlot';
+import { Series }           from '../Plot';
+import { d3Base }           from '../ConfigTypes';
+import { GraphCfg }         from '../GraphComponent'; 
+import * as def             from '../Defaults';
+import { defaultDimScale}   from '../Scale';
+import { ScaleDefaults}     from '../Scale';
 
 const DEF_RADIUS:number = 5;
 
-export class BubbleFatory extends PlotFactory {
-    newPlot(desc:PlotCfg, cx:string, cy:string, r?:string): PlotClass {
-        return new Bubble(desc, cx, cy, r);
-    }
-}
-
-class Bubble extends PlotClass {
+class Bubble extends SeriesPlot {
     /**
      * plot constructor
      * @param cx string column name for x-center coordinates
      * @param cy string column name for y-center coordinates
      * @param r  string column name for radius coordinates
      */
-    constructor(protected desc: PlotCfg, protected cx:string, protected cy:string, protected r?:string) {
-        super(desc, cx, cy);
-        desc.cfg.defaults.scales[r] = desc.cfg.defaults.scales[r] || desc.cfg.defaults.defaultScale();
+    constructor(cfg:GraphCfg, svgBase:d3Base, protected cx:string, protected cy:string, protected r?:string) {
+        super(cfg, svgBase, cx, cy);
+        const scales = (<ScaleDefaults>cfg.defaults('scales')).dims;
+        scales[r] = scales[r] || defaultDimScale();
     }
 
+    getDefaults(): SeriesDefaults {
+        return {
+            line:   def.defaultLine(1),
+            marker: {
+                size:   5,
+                shape:  'circle',
+                fill:   {
+                    color: '#F00',
+                    opacity: 1             
+                },
+                stroke: def.defaultLine(1)
+            }
+        };
+    }
+    
     /**
      * 
      * @param data a {@link hsDatab:Data `Data`} object containing the 
      */
-    render(data:Data, series:d3Selection) {  
+    renderComponent(data:Data) {  
         const ix = data.colNumber(this.cx);
         const iy = data.colNumber(this.cy);
         const ir = data.colNumber(this.r);
-        const scaleX = this.desc.cfg.scales.hor.scale;
-        const scaleY = this.desc.cfg.scales.ver.scale;
-        const defR = this.desc.cfg.defaults.scales[this.r];
+        const scaleX = this.cfg.scales.hor.scale;
+        const scaleY = this.cfg.scales.ver.scale;
+        const defR = (<ScaleDefaults>this.cfg.defaults('scales')).dims[this.r];
         const scaleR = d3.scaleLinear().domain(<NumDomain>data.findDomain(this.r)).range([defR.range.min, defR.range.max]);
-        const circles = series.selectAll("circle").data(data.getData());
+        const circles = this.svg.selectAll("circle").data(data.getData());
             
         circles.exit().remove();            // remove unneeded circles
         circles.enter().append('circle');   // add new circles
@@ -57,5 +71,5 @@ class Bubble extends PlotClass {
     }
 } 
 
-console.log('registering Bubble');
-Plot.register('bubble', new BubbleFatory());
+//Plot.register('bubble', new BubbleFatory());
+Series.register('bubble', (cfg:GraphCfg, svgBase:d3Base, cx:string, cy:string, r?:string) => new Bubble(cfg, svgBase, cx, cy, r));

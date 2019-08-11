@@ -1,81 +1,86 @@
 /**
  * # Defaults Configuration
  * 
+ * provides `type` and `interface` declarations for standard svg elements such as texts, lines, areas, etc.
+ * as well as 
+ * The table below shows a list of available formatting 
+ * 
  */
 
 /** */
 
-import * as d       from './DefaultTypes';
+import * as d       from './Defaults';
 import { UnitVp }   from './ConfigTypes';
-import { GraphCfg } from './ConfigTypes';
+import * as gc      from './GraphComponent';
+import { log as _log }  from 'hsutil'; const log = _log('Defaults');
+
+type DefaultsType = {[compName:string]: gc.ComponentDefaults};
+
+export type DefaultsAccess  = (compName:string) => gc.ComponentDefaults;
+export type Color           = string;           // CSS color descriptor, e.g. '#fff'
+export type ZeroToOne       = number;           // number from [0, 1]
+export type Index           = number;           // column index into data table
+
+export interface Area {
+    color: Color;
+    opacity: ZeroToOne;
+}
+
+export interface Line {
+    width: UnitVp;
+    color: Color;
+    opacity: ZeroToOne;
+}
+
+export interface RectStyle {
+    rx:     UnitVp;
+    ry:     UnitVp;
+    fill:   Area;
+    stroke: Line;
+}
+
+export interface TextStyle {
+    color: Color;
+    font: {
+        family: string;     // e.g. 'sans-serif';
+        size: UnitVp;       // e,g, 12
+        style: string;      // 'normal', 'italic'
+        weight: string;     // 'normal', 'bold'
+    };
+}
 
 
 /**
  * Create a `Config` object and populate it with default values.
  */
 export class Defaults {
-    // private axes = {};
-    // private config: GraphCfg;
-    // private theScales = {};
+    private static defaultsBase:DefaultsType = {};
+    private defaults:DefaultsType = {};
 
-    constructor(protected config: GraphCfg) { }
-
-    graph:d.GraphDefaults = {
-        canvas: defaultRect('#fff', 2, '#ccc')
-    };
-
-    plot:d.PlotDefaults = {
-        area: defaultRect('#fff'),
-        margin: { left:10, top:10, right:10, bottom:10}
-    };
-
-    series:d.SeriesDefaults[] = [];
-
-    axes:d.AxesDefaults = { 
-        hor: {
-            line:       defaultLine(2),
-            tickMarks:  defaultLine(2),
-            tickLabel:  defaultText()
-        },
-        ver: {
-            line:       defaultLine(2),
-            tickMarks:  defaultLine(2),
-            tickLabel:  defaultText()
-        }
-    };
-
-    grid:d.GridDefaults = {
-        hor: {
-            major: defaultLine(1,'#444'),
-            minor: defaultLine(2, '#eee')
-        },
-        ver: {
-            major: defaultLine(1,'#444'),
-            minor: defaultLine(2, '#eee')
-        }
-    };
-
-    scales:{[column:string]: d.ScaleDefaults} = {
-        hor: this.defaultScale(0, this.config.viewPort.width),
-        ver: this.defaultScale(0, this.config.viewPort.height)
-    };
-
-    defaultScale(minRange=0, maxRange=1):d.ScaleDefaults { 
-        return {
-            type:   'linear',
-            domain: {min: 'auto', max: 'auto'}, //  data domain
-            range:  { min: minRange, max: maxRange }          //  canvas range
-        };
+    public static addComponentDefaults(compName:string, compDefault:gc.ComponentDefaults) {
+        this.defaultsBase[compName] = compDefault;
     }
-}
 
-export function defaultLine(width:UnitVp, color:d.Color='#000'):d.Line {
+    public getDefaults(compName?:string) { 
+        if (compName) {
+            return this.defaults[compName] = this.defaults[compName] || Defaults.defaultsBase[compName];
+        } else {
+            for (let k in Defaults.defaultsBase) {
+                this.defaults[k] = this.defaults[k] || Defaults.defaultsBase[k];
+            }
+            return this.defaults;
+        }
+    }
+ }
+
+
+export const defaultLine = (width:UnitVp, color:d.Color='currentColor'):d.Line => {
     return {
         width: width,
         color: color,
         opacity: 1
     };
-}
+};
 
 /**
  * convenience function to create a default `RectStyle` object with configurable fill color and border. 
@@ -83,12 +88,12 @@ export function defaultLine(width:UnitVp, color:d.Color='#000'):d.Line {
  * @param borderWidth the border width in pixel
  * @param borderColor the border color
  */
-function defaultRect(area:d.Color, borderWidth:UnitVp=0, borderColor:d.Color='#fff'):d.RectStyle {
+export const defaultRect = (areaFill:d.Color, borderWidth:UnitVp=0, borderColor:d.Color='currentColor'):d.RectStyle => {
     return {
         rx: 0,
         ry: 0,
         fill: {
-            color: area,
+            color: areaFill,
             opacity: 1
         },
         stroke: {
@@ -97,16 +102,16 @@ function defaultRect(area:d.Color, borderWidth:UnitVp=0, borderColor:d.Color='#f
             opacity: 1
         }
     };
-}
+};
 
-function defaultText():d.TextStyle {
+export const defaultText = (size=16):d.TextStyle => {
     return {
-        color: '#000',
+        color: 'currentColor',
         font: {
             family: 'sans-serif',
-            size:   20,
+            size:   size,
             style: 'normal',    // 'normal', 'italic'
             weight: 'normal'    // 'normal', 'bold'
         }
     };
-}
+};

@@ -4,45 +4,93 @@
  */
 
  /** */
-import { Data }             from 'hsdatab';
-import { log as gLog }      from 'hsutil';   const log = gLog('d3.Grid');
+import { log as gLog }      from 'hsutil';   const log = gLog('Grid');
 import { GraphComponent }   from './GraphComponent'; 
-import { GraphCfg }         from './ConfigTypes';
+import { ComponentDefaults }from './GraphComponent'; 
+import { GraphCfg }         from './GraphComponent';
 import { d3Base }           from './ConfigTypes';
-import * as d3Axis          from "d3-axis";
-import { Direction }       from './Axis';
+import { Line }             from './Defaults';
+import { Defaults }         from './Defaults';
+import { defaultLine }      from './Defaults';
+import { Direction }        from './Axis';
+import { ScaleDefaults }    from './Scale';
  
 export enum MajorMinor {
     major   = 'major',
     minor   = 'minor'
 }
 
-export class Grid extends GraphComponent {
-    private svg: d3Base;
+export interface GridDefaults extends ComponentDefaults {
+    hor: {
+        major: Line;
+        minor: Line;
+    };
+    ver: {
+        major: Line;
+        minor: Line;
+    };
+} 
+
+export class Grids extends GraphComponent {
+    private grids = {
+        hor: { major: <Grid>undefined, minor: <Grid>undefined },
+        ver: { major: <Grid>undefined, minor: <Grid>undefined }
+    };
+    constructor(cfg:GraphCfg) {
+        super(cfg, cfg.baseSVG.select('.grids'));
+        this.grids['hor']['major'] = new Grid(cfg, Direction.horizontal, MajorMinor.major);
+        this.grids['hor']['minor'] = new Grid(cfg, Direction.horizontal, MajorMinor.minor);
+        this.grids['ver']['major'] = new Grid(cfg, Direction.vertical, MajorMinor.major);
+        this.grids['ver']['minor'] = new Grid(cfg, Direction.vertical, MajorMinor.minor);
+    }
+
+    get componentType() { return 'grids'; }
+
+    public createDefaults() {
+        Defaults.addComponentDefaults(this.componentType, <GridDefaults>{
+            hor: {
+                major: defaultLine(1,'#444'),
+                minor: defaultLine(1, '#eee')
+            },
+            ver: {
+                major: defaultLine(1,'#444'),
+                minor: defaultLine(1, '#eee')
+            }
+        });
+    }
+
+    renderComponent() {
+        this.grids['hor']['major'].renderComponent();
+        this.grids['hor']['minor'].renderComponent();
+        this.grids['ver']['major'].renderComponent();
+        this.grids['ver']['minor'].renderComponent();
+    }
+}
+
+export class Grid {
     private hor: boolean;
+    private svg: d3Base;
  
-    constructor(cfg:GraphCfg, protected dir:Direction, protected type=MajorMinor.major) {
-        super(cfg);
+    constructor(protected cfg:GraphCfg, protected dir:Direction, protected type=MajorMinor.major) {
         const baseClass = `${dir}-${type}-Grid`;
-        this.hor = this.dir===Direction.Horizontal;
-        this.svg = cfg.baseSVG.select('.grid').append('g').classed(baseClass, true);
+        this.hor = this.dir===Direction.horizontal;
+        this.svg = cfg.baseSVG.select('.grids').append('g').classed(baseClass, true);
     }
  
-    render() {
+    renderComponent() {
         const count = this.type===MajorMinor.major? 2 : 10;
-        const scales = this.config.defaults.scales;
-        const scaleX = this.config.scales.hor.scale;
-        const scaleY = this.config.scales.ver.scale;
-        const style = this.config.defaults.grid[this.dir][this.type];
+        const scales = (<ScaleDefaults>this.cfg.defaults('scales')).dims;
+        const scaleX = this.cfg.scales.hor.scale;
+        const scaleY = this.cfg.scales.ver.scale;
+        const style = this.cfg.defaults('grids')[this.dir][this.type];
         this.svg
             .attr('stroke', style.color)
             .attr('stroke-width', style.width)
             .attr('stroke-opacity', style.opacity);
         const c = {
-            range:  this.hor? scales.hor.range : scales.ver.range,
+            range:  this.hor? scales['hor'].range : scales['ver'].range,
             scale:  this.hor? scaleY : scaleX,  
             dim:    this.hor? { fix:'x', var:'y'} : { fix:'y', var:'x'},
-            // ticks:  (this.hor? scaleY : scaleX).ticks(count)
         };
         const gridlines = this.svg.selectAll("line").data(c.scale.ticks(count));
         gridlines.exit().remove();          // remove unneeded circles

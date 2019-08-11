@@ -32,7 +32,7 @@ module.exports = (grunt, dir, dependencies, type, lib) => {
 	grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-less');
-    grunt.loadNpmTasks('grunt-typedoc');
+    grunt.loadNpmTasks('@vamship/grunt-typedoc');
     grunt.loadNpmTasks('grunt-tslint');
     grunt.loadNpmTasks('grunt-ts');
     grunt.loadNpmTasks('grunt-webpack');
@@ -57,7 +57,8 @@ module.exports = (grunt, dir, dependencies, type, lib) => {
     grunt.registerTask('build-js',      ['tslint:src', 'ts:src']);
     // grunt.registerTask('build-spec',    ['tslint:spec', 'ts:test']);    
     grunt.registerTask('build-base',    ['clean:dist', 'build-html', 'build-css', 'copy:bin', 'copy:example']);
-    grunt.registerTask('buildMin',      ['build-base', 'build-js', 'webpack:appDev', 'webpack:appProd', 'doc', 'test', 'coveralls']);
+    grunt.registerTask('buildMin',      (type === 'node')?['build-base', 'build-js', 'doc', 'test', 'coveralls'] : 
+                                                          ['build-base', 'build-js', 'webpack:appDev', 'webpack:appProd', 'doc', 'test', 'coveralls']);
     grunt.registerTask('buildDev',      ['build-base', 'build-js', 'webpack:appDev']);
 
     //------ Entry-point MultiTasks

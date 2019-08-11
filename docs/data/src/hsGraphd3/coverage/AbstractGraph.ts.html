@@ -1,0 +1,509 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for AbstractGraph.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="prettify.css" />
+    <link rel="stylesheet" href="base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="index.html">hsGraphD3: All files</a> AbstractGraph.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">65.96% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>31/47</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/10</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">50% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>6/12</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">68.18% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>30/44</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line medium'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146
+147
+148
+149
+150</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * 
+ */
+&nbsp;
+/** */
+&nbsp;
+import { log as gLog }      from 'hsutil';   const log = gLog('AbstractGraph');
+import { Data, DataTable, DataSet }  from 'hsdatab';
+&nbsp;
+import * as d3              from 'd3';
+import * as d               from './Defaults';
+&nbsp;
+import { d3Base }           from './ConfigTypes';
+import { GraphComponent}    from './GraphComponent';
+import { ComponentDefaults} from './GraphComponent';
+import { GraphCfg}          from './GraphComponent';
+import { Series }             from './Plot';
+import { Scales }           from './Scale';
+import { Axes }             from './Axis';
+import { Grids }            from './Grid';
+import { Canvas }           from './Canvas';
+&nbsp;
+const vpWidth:number    = 1000;
+&nbsp;
+&nbsp;
+export abstract class AbstractGraph {
+    /** the HTML root element to attach the render tree to. */
+    protected root:any;
+&nbsp;
+    /** the `GraphCfg` object shared by all components in this graph */
+    protected config: GraphCfg;
+&nbsp;
+    /** the plot component, provides access to individual series components */
+    protected plot:Series;
+&nbsp;
+    /** the list of components to render */
+    private components: GraphComponent[] = [];
+&nbsp;
+&nbsp;
+    constructor(root:any) { 
+        this.root = root;
+        this.config = this.initializeCfg();
+        this.config.baseSVG = this.createBaseSVG(this.config); 
+        this.updateBaseSVG(this.config);
+        this.components = this.createComponents();
+        window.onresize = <span class="fstat-no" title="function not covered" >() </span>=&gt; <span class="cstat-no" title="statement not covered" >this.resize();</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    public get </span>defaults(): ComponentDefaults {
+<span class="cstat-no" title="statement not covered" >        return this.config.defaults();</span>
+    }
+&nbsp;
+    public get viewport() {
+        return this.config.viewPort;
+    }
+&nbsp;
+    /**
+     * render the tree with the supplied data.
+     * @param data 
+     */
+    public <span class="fstat-no" title="function not covered" >render</span>(data:Data|DataSet|DataTable): void {
+        let d:Data = <span class="cstat-no" title="statement not covered" >(data instanceof Data)? data : new Data(data);</span>
+<span class="cstat-no" title="statement not covered" >        this.setScales(d);</span>
+<span class="cstat-no" title="statement not covered" >        this.components.forEach(<span class="fstat-no" title="function not covered" >(c</span>omp:GraphComponent) =&gt; <span class="cstat-no" title="statement not covered" >comp.renderComponent(d))</span>;</span>
+    }
+&nbsp;
+    /**
+     * adds a series to the plot.
+     * @param type type of plot to use, e.g. 'bubble' or 'scatter'
+     * @param params the column name of the parameters used to plot the series
+     */
+    public <span class="fstat-no" title="function not covered" >addSeries</span>(type:string, x:string, y:string, ...params:string[]) {
+<span class="cstat-no" title="statement not covered" >        this.resize();</span>
+<span class="cstat-no" title="statement not covered" >        this.plot.addSeries(type, x, y, ...params);</span>
+    }
+&nbsp;
+&nbsp;
+    //************** Non-public part **************************/
+&nbsp;
+    /** set the scales for the graph prior to rendering components. */
+    protected abstract setScales(data:Data):void;
+&nbsp;
+    private initializeCfg():GraphCfg {
+        const defaults = new d.Defaults();
+        return {
+            baseSVG:  undefined,    
+            client:   { x:0, y:0, width: 0, height: 0 },
+            viewPort: {
+                width: vpWidth,
+                height: vpWidth * 0.7   // initial height: 70% of width
+            },
+            defaults: defaults.getDefaults.bind(defaults),
+            scales: {} 
+        };
+    }
+&nbsp;
+    private createComponents():GraphComponent[] {
+        return [
+            new Scales(),
+            new Canvas(this.config),
+            new Grids(this.config),
+            this.plot = new Series(this.config),
+            new Axes(this.config)
+        ];
+    }
+&nbsp;
+    /** callback on window resize event;  */
+    private <span class="fstat-no" title="function not covered" >resize</span>() {
+        const cfg = <span class="cstat-no" title="statement not covered" >this.config;</span>
+<span class="cstat-no" title="statement not covered" >        if (this.root &amp;&amp; this.root.clientWidth &gt; 0) {</span>
+<span class="cstat-no" title="statement not covered" >            if (this.root.clientWidth !== cfg.client.width || this.root.clientHeight !== cfg.client.height) {</span>
+<span class="cstat-no" title="statement not covered" >                log.info(`resizing svg: [${cfg.client.width} x ${cfg.client.height}] -&gt; [${this.root.clientWidth} x ${this.root.clientHeight}]`);</span>
+<span class="cstat-no" title="statement not covered" >                cfg.client.width = this.root.clientWidth;</span>
+<span class="cstat-no" title="statement not covered" >                cfg.client.height = this.root.clientHeight;</span>
+<span class="cstat-no" title="statement not covered" >                cfg.viewPort.height = cfg.viewPort.width * this.root.clientHeight / this.root.clientWidth;</span>
+<span class="cstat-no" title="statement not covered" >                this.updateBaseSVG(cfg);</span>
+            }
+        }
+    }
+&nbsp;
+    /**
+     * creates the base SVG element for the entire graph.
+     * This function is intended to be called only once at creation of the graph.
+     * @param cfg 
+     */
+    private createBaseSVG(cfg: GraphCfg):d3Base {
+        const svg = d3.select(this.root).append('svg')
+            .classed('baseSVG', true)
+            .attr('height', '100%')
+            .attr('width', '100%')
+            .attr('preserveAspectRatio', 'xMinYMin meet')
+            ;
+        // determine order of rendering:
+        svg.append('rect').classed('graphArea', true).attr('x', 0).attr('y', 0);
+        svg.append('g').classed('grids', true);
+        svg.append('g').classed('axes', true);
+        svg.append('g').classed('series', true);
+        svg.append('rect').classed('graphBorder', true).attr('x', 0).attr('y', 0);
+        return svg;
+    }
+&nbsp;
+    /**
+     * regualrly sets the graph's viewBox, typically after a window resize.
+     * @param cfg 
+     */
+    private updateBaseSVG(cfg: GraphCfg) {
+        cfg.baseSVG.attr('viewBox', `0 0 ${cfg.viewPort.width} ${cfg.viewPort.height}`);
+    }
+}
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+
+</div>
+<script src="prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="sorter.js"></script>
+</body>
+</html>
