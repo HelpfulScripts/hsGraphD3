@@ -9,7 +9,7 @@
  * // create data set:
  * const data = [['date', 'time', 'volume', 'costs'], ['1/1/14', -1,  0.2, 0.3], 
  *  ['1/1/16', 0.2, 0.7, 0.2], ['9/1/16', 0.4, 0.1, 0.3],
- *  ['5/1/17', 0.6, 0,   0.1], ['7/1/18', 0.8, 0.3, 0.5], ['1/1/19', 1,   0.2, 0.4]];
+ *  ['5/1/17', 0.6, -0.2,   0.1], ['7/1/18', 0.8, 0.3, 0.5], ['1/1/19', 1,   0.2, 0.4]];
  * 
  * // setup and plot the data:
  * const graph = new hsGraphD3.Graph2DCartesian(root);
@@ -54,13 +54,13 @@
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.Graph2DCartesian(svgRoot[0]);
  *      graph.addSeries('bubble', 'time', 'volume', 'costs');
+ *      graph.defaults.canvas.stroke.width = 7.8; // odd number, should appear on the left
  *      return graph.defaults;
  * }
  * 
  * m.mount(root, {
  *   view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [
- *      m('div', {style:'font-family:monospace;'}, 'graph.defaults = '),
- *      m('div', m.trust(defaults)),   // .map(r => m('div', m.trust(r)))
+ *      m('div', m.trust('graph.defaults = ' + defaults)), 
  *      m('div.myGraph', '')
  *   ]),
  *   oncreate: () => {
@@ -84,21 +84,18 @@ import * as d3              from 'd3';
 import { Data }             from 'hsdatab';
 import { NumDomain }        from 'hsdatab';
 import { AbstractGraph }    from './AbstractGraph';
-import { GraphComponent }   from './GraphComponent';
-import * as d               from './Defaults';
 import { defaultDimScale}   from './Scale';
 import { ScaleDefaults}     from './Scale';
-import { Series, PlotDefaults }   from './Plot';
 
 export class Graph2DCartesian extends AbstractGraph {
     private cumulativeDomains: {[colName:string]: [number, number]} = {};
 
     constructor(root:any) { 
         super(root);
-        this.config.scales.hor = { dataCol: <string>undefined, scale: undefined};
-        this.config.scales.ver = { dataCol: <string>undefined, scale: undefined};
         const scales = <ScaleDefaults>this.config.defaults('scales');
         const margins = scales.margin;
+        this.config.scales.hor = { dataCol: <string>undefined, scale: undefined};
+        this.config.scales.ver = { dataCol: <string>undefined, scale: undefined};
         scales.dims['hor'] = defaultDimScale(margins.left, this.viewport.width-margins.right);
         scales.dims['ver'] = defaultDimScale(margins.top, this.viewport.height-margins.bottom);
         log.info('creating Graph');

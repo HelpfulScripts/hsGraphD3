@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">59.52% </span>
+        <span class="strong">58.54% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>25/42</span>
+        <span class='fraction'>24/41</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">18.18% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>5/9</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">56.41% </span>
+        <span class="strong">55.26% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>22/39</span>
+        <span class='fraction'>21/38</span>
       </div>
     </div>
   </div>
@@ -158,7 +158,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -297,8 +297,8 @@ export class Grids extends GraphComponent {
 &nbsp;
     get componentType() { return 'grids'; }
 &nbsp;
-    public createDefaults() {
-        Defaults.addComponentDefaults(this.componentType, &lt;GridDefaults&gt;{
+    public createDefaults():GridDefaults {
+        return {
             hor: {
                 major: defaultLine(1,'#444'),
                 minor: defaultLine(1, '#eee')
@@ -307,7 +307,7 @@ export class Grids extends GraphComponent {
                 major: defaultLine(1,'#444'),
                 minor: defaultLine(1, '#eee')
             }
-        });
+        };
     }
 &nbsp;
 <span class="fstat-no" title="function not covered" >    renderComponent</span>() {

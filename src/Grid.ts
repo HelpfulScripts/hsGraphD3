@@ -46,8 +46,8 @@ export class Grids extends GraphComponent {
 
     get componentType() { return 'grids'; }
 
-    public createDefaults() {
-        Defaults.addComponentDefaults(this.componentType, <GridDefaults>{
+    public createDefaults():GridDefaults {
+        return {
             hor: {
                 major: defaultLine(1,'#444'),
                 minor: defaultLine(1, '#eee')
@@ -56,7 +56,7 @@ export class Grids extends GraphComponent {
                 major: defaultLine(1,'#444'),
                 minor: defaultLine(1, '#eee')
             }
-        });
+        };
     }
 
     renderComponent() {

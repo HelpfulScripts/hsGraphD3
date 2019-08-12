@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75% </span>
+        <span class="strong">72.73% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>9/12</span>
+        <span class='fraction'>8/11</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>3/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75% </span>
+        <span class="strong">72.73% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>9/12</span>
+        <span class='fraction'>8/11</span>
       </div>
     </div>
   </div>
@@ -100,11 +100,12 @@
 55
 56
 57
-58</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+58
+59</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -141,6 +142,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -175,8 +177,8 @@ export class Canvas extends gc.GraphComponent {
 &nbsp;
     public get componentType() { return 'canvas'; }
 &nbsp;
-    public createDefaults() {
-        def.Defaults.addComponentDefaults(this.componentType, &lt;CanvasDefaults&gt;{
+    public createDefaults():CanvasDefaults {
+        return {
             rx:     0,
             ry:     0,
             fill:   {
@@ -188,7 +190,7 @@ export class Canvas extends gc.GraphComponent {
                 color: '#00c',
                 opacity: 1       
             }
-        });
+        };
     }
 &nbsp;
     /**
@@ -202,6 +204,7 @@ export class Canvas extends gc.GraphComponent {
             .attr('height', this.cfg.viewPort.height)
             .attr('rx', canvas.rx)
             .attr('ry', canvas.ry)
+            .attr('stroke-width', 0)
             .attr('fill', canvas.fill.color)
             .attr('fill-opacity', canvas.fill.opacity);
 <span class="cstat-no" title="statement not covered" >        d3Select('.graphBorder')</span>

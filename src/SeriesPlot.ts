@@ -17,7 +17,7 @@ export interface MarkerStyle {
     stroke: Line;
 }
 
-export interface SeriesDefaults {
+export interface SeriesPlotDefaults {
     line:   Line;
     marker: MarkerStyle;
 }
@@ -40,7 +40,7 @@ export abstract class SeriesPlot {
     }
 
     /** set the defaults for the series. */
-    abstract getDefaults(): SeriesDefaults;
+    abstract getDefaults(): SeriesPlotDefaults;
 
     /** renders the component for the given data */
     abstract renderComponent(data:Data): void;

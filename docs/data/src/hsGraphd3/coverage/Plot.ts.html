@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">38.46% </span>
+        <span class="strong">37.5% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>10/26</span>
+        <span class='fraction'>9/24</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">28.57% </span>
+        <span class="strong">42.86% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/7</span>
+        <span class='fraction'>3/7</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">36% </span>
+        <span class="strong">34.78% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>9/25</span>
+        <span class='fraction'>8/23</span>
       </div>
     </div>
   </div>
@@ -115,18 +115,7 @@
 70
 71
 72
-73
-74
-75
-76
-77
-78
-79
-80
-81
-82
-83
-84</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+73</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -137,17 +126,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -175,7 +153,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -222,21 +200,10 @@ import { d3Base }           from './ConfigTypes';
 import { GraphComponent }   from './GraphComponent'; 
 import { ComponentDefaults }from './GraphComponent'; 
 import { GraphCfg }         from './GraphComponent'; 
-import * as def             from './Defaults';
 import { SeriesPlot }       from './SeriesPlot';
-import { SeriesDefaults }   from './SeriesPlot';
 &nbsp;
-&nbsp;
-const DEF_RADIUS:number = 5;
-&nbsp;
-export interface PlotDefaults extends ComponentDefaults {
-    // area: RectStyle;
-}
 &nbsp;
 type PlotFactory = (cfg:GraphCfg, svgBase:d3Base, ...params:string[]) =&gt; SeriesPlot;
-// export abstract class PlotFactory {
-//     abstract newSeries(cfg:GraphCfg, svgBase:d3Base, ...params:string[]): Series;
-// }
 &nbsp;
 export class Series extends GraphComponent {
     /*------------ Static implementation----- */
@@ -258,7 +225,7 @@ export class Series extends GraphComponent {
     }
 &nbsp;
     /** returns the component type as a string name */
-<span class="fstat-no" title="function not covered" >    get </span>componentType() { <span class="cstat-no" title="statement not covered" >return 'series'; </span>}
+    get componentType() { return 'series'; }
 &nbsp;
     /** renders the component for the given data */
 <span class="fstat-no" title="function not covered" >    renderComponent</span>(data:Data) {
@@ -268,8 +235,8 @@ export class Series extends GraphComponent {
     }
 &nbsp;
     /** creates a default entry for the component type in `Defaults` */
-    createDefaults() {
-        def.Defaults.addComponentDefaults('series', &lt;SeriesDefaults[]&gt;[]);
+    createDefaults():ComponentDefaults {
+        return [];
     }
     
     /**

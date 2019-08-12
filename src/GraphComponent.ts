@@ -56,7 +56,6 @@ export abstract class GraphComponent {
     constructor(cfg:GraphCfg, svgBase:ct.d3Base) { 
         this.cfg = cfg; 
         this.svg = svgBase; 
-        this.createDefaults();
     }
 
     /** returns the component type as a string name */
@@ -66,6 +65,6 @@ export abstract class GraphComponent {
     abstract renderComponent(data:Data): void;
 
     /** creates a default entry for the component type in `Defaults` */
-    abstract createDefaults(): void;
+    abstract createDefaults(): ComponentDefaults;
 }
 

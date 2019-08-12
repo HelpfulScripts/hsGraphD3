@@ -11,21 +11,10 @@ import { d3Base }           from './ConfigTypes';
 import { GraphComponent }   from './GraphComponent'; 
 import { ComponentDefaults }from './GraphComponent'; 
 import { GraphCfg }         from './GraphComponent'; 
-import * as def             from './Defaults';
 import { SeriesPlot }       from './SeriesPlot';
-import { SeriesDefaults }   from './SeriesPlot';
 
-
-const DEF_RADIUS:number = 5;
-
-export interface PlotDefaults extends ComponentDefaults {
-    // area: RectStyle;
-}
 
 type PlotFactory = (cfg:GraphCfg, svgBase:d3Base, ...params:string[]) => SeriesPlot;
-// export abstract class PlotFactory {
-//     abstract newSeries(cfg:GraphCfg, svgBase:d3Base, ...params:string[]): Series;
-// }
 
 export class Series extends GraphComponent {
     /*------------ Static implementation----- */
@@ -57,8 +46,8 @@ export class Series extends GraphComponent {
     }
 
     /** creates a default entry for the component type in `Defaults` */
-    createDefaults() {
-        def.Defaults.addComponentDefaults('series', <SeriesDefaults[]>[]);
+    createDefaults():ComponentDefaults {
+        return [];
     }
     
     /**

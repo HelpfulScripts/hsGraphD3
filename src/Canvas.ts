@@ -16,8 +16,8 @@ export class Canvas extends gc.GraphComponent {
 
     public get componentType() { return 'canvas'; }
 
-    public createDefaults() {
-        def.Defaults.addComponentDefaults(this.componentType, <CanvasDefaults>{
+    public createDefaults():CanvasDefaults {
+        return {
             rx:     0,
             ry:     0,
             fill:   {
@@ -29,7 +29,7 @@ export class Canvas extends gc.GraphComponent {
                 color: '#00c',
                 opacity: 1       
             }
-        });
+        };
     }
 
     /**
@@ -43,6 +43,7 @@ export class Canvas extends gc.GraphComponent {
             .attr('height', this.cfg.viewPort.height)
             .attr('rx', canvas.rx)
             .attr('ry', canvas.ry)
+            .attr('stroke-width', 0)
             .attr('fill', canvas.fill.color)
             .attr('fill-opacity', canvas.fill.opacity);
         d3Select('.graphBorder')

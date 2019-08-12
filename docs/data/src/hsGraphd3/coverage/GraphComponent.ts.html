@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>4/4</span>
+        <span class='fraction'>3/3</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>4/4</span>
+        <span class='fraction'>3/3</span>
       </div>
     </div>
   </div>
@@ -113,8 +113,7 @@
 68
 69
 70
-71
-72</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+71</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -170,9 +169,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
-<span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -243,7 +241,6 @@ export abstract class GraphComponent {
     constructor(cfg:GraphCfg, svgBase:ct.d3Base) { 
         this.cfg = cfg; 
         this.svg = svgBase; 
-        this.createDefaults();
     }
 &nbsp;
     /** returns the component type as a string name */
@@ -253,7 +250,7 @@ export abstract class GraphComponent {
     abstract renderComponent(data:Data): void;
 &nbsp;
     /** creates a default entry for the component type in `Defaults` */
-    abstract createDefaults(): void;
+    abstract createDefaults(): ComponentDefaults;
 }
 &nbsp;
 &nbsp;</pre></td></tr>

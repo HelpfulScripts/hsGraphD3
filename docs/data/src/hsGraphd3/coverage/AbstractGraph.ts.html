@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">65.96% </span>
+        <span class="strong">68% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>31/47</span>
+        <span class='fraction'>34/50</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/10</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">50% </span>
+        <span class="strong">53.85% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>6/12</span>
+        <span class='fraction'>7/13</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">68.18% </span>
+        <span class="strong">69.57% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>30/44</span>
+        <span class='fraction'>32/46</span>
       </div>
     </div>
   </div>
@@ -192,7 +192,9 @@
 147
 148
 149
-150</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+150
+151
+152</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -213,6 +215,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -237,6 +240,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">5x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -362,6 +366,7 @@ import { Scales }           from './Scale';
 import { Axes }             from './Axis';
 import { Grids }            from './Grid';
 import { Canvas }           from './Canvas';
+import { Defaults }         from './Defaults';
 &nbsp;
 const vpWidth:number    = 1000;
 &nbsp;
@@ -386,6 +391,7 @@ export abstract class AbstractGraph {
         this.config.baseSVG = this.createBaseSVG(this.config); 
         this.updateBaseSVG(this.config);
         this.components = this.createComponents();
+        this.components.map(c =&gt; Defaults.addComponentDefaults(c.componentType, c.createDefaults()));
         window.onresize = <span class="fstat-no" title="function not covered" >() </span>=&gt; <span class="cstat-no" title="statement not covered" >this.resize();</span>
     }
 &nbsp;
@@ -399,7 +405,7 @@ export abstract class AbstractGraph {
 &nbsp;
     /**
      * render the tree with the supplied data.
-     * @param data 
+     * @param data the data to render
      */
     public <span class="fstat-no" title="function not covered" >render</span>(data:Data|DataSet|DataTable): void {
         let d:Data = <span class="cstat-no" title="statement not covered" >(data instanceof Data)? data : new Data(data);</span>

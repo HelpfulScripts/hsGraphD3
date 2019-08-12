@@ -2,18 +2,18 @@
  * # Bubble Plot
  */
 
-import { log as gLog }      from 'hsutil';   const log = gLog('Bubble');
-import * as d3              from "d3";
-import { Data }             from 'hsdatab';
-import { NumDomain }        from 'hsdatab';
-import { SeriesPlot }       from '../SeriesPlot';
-import { SeriesDefaults }   from '../SeriesPlot';
-import { Series }           from '../Plot';
-import { d3Base }           from '../ConfigTypes';
-import { GraphCfg }         from '../GraphComponent'; 
-import * as def             from '../Defaults';
-import { defaultDimScale}   from '../Scale';
-import { ScaleDefaults}     from '../Scale';
+import { log as gLog }          from 'hsutil';   const log = gLog('Bubble');
+import * as d3                  from "d3";
+import { Data }                 from 'hsdatab';
+import { NumDomain }            from 'hsdatab';
+import { SeriesPlot }           from '../SeriesPlot';
+import { SeriesPlotDefaults }   from '../SeriesPlot';
+import { Series }               from '../Plot';
+import { d3Base }               from '../ConfigTypes';
+import { GraphCfg }             from '../GraphComponent'; 
+import * as def                 from '../Defaults';
+import { defaultDimScale}       from '../Scale';
+import { ScaleDefaults}         from '../Scale';
 
 const DEF_RADIUS:number = 5;
 
@@ -30,7 +30,7 @@ class Bubble extends SeriesPlot {
         scales[r] = scales[r] || defaultDimScale();
     }
 
-    getDefaults(): SeriesDefaults {
+    getDefaults(): SeriesPlotDefaults {
         return {
             line:   def.defaultLine(1),
             marker: {

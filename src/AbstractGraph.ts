@@ -19,6 +19,7 @@ import { Scales }           from './Scale';
 import { Axes }             from './Axis';
 import { Grids }            from './Grid';
 import { Canvas }           from './Canvas';
+import { Defaults }         from './Defaults';
 
 const vpWidth:number    = 1000;
 
@@ -43,6 +44,7 @@ export abstract class AbstractGraph {
         this.config.baseSVG = this.createBaseSVG(this.config); 
         this.updateBaseSVG(this.config);
         this.components = this.createComponents();
+        this.components.map(c => Defaults.addComponentDefaults(c.componentType, c.createDefaults()));
         window.onresize = () => this.resize();
     }
 
@@ -56,7 +58,7 @@ export abstract class AbstractGraph {
 
     /**
      * render the tree with the supplied data.
-     * @param data 
+     * @param data the data to render
      */
     public render(data:Data|DataSet|DataTable): void {
         let d:Data = (data instanceof Data)? data : new Data(data);

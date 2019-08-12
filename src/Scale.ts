@@ -15,10 +15,10 @@ export interface ScaleDimDefaults extends ComponentDefaults {
 }
 
 export interface ScaleDefaults extends ComponentDefaults {
-    margin: { left:number; top:number; right:number; bottom:number;},
+    margin: { left:number; top:number; right:number; bottom:number; };
     dims: {
         [dim:string]: ScaleDimDefaults
-    }
+    };
 }
 
 export const defaultDimScale = (minRange=0, maxRange=1):ScaleDimDefaults => { 
@@ -39,11 +39,11 @@ export class Scales extends GraphComponent {
     renderComponent() {}
 
     /** creates a default entry for the component type in `Defaults` */
-    public createDefaults() {
-        Defaults.addComponentDefaults(this.componentType, <ScaleDefaults>{
-            margin: { left:10, top:10, right:10, bottom:10},
+    public createDefaults():ScaleDefaults {
+        return {
+            margin: { left:20, top:50, right:20, bottom:10},
             dims: {}
-        });
+        };
     }
 }
 
