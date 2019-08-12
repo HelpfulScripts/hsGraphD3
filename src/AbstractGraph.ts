@@ -8,9 +8,7 @@ import { log as gLog }      from 'hsutil';   const log = gLog('AbstractGraph');
 import { Data, DataTable, DataSet }  from 'hsdatab';
 
 import * as d3              from 'd3';
-import * as d               from './Defaults';
 
-import { d3Base }           from './ConfigTypes';
 import { GraphComponent}    from './GraphComponent';
 import { ComponentDefaults} from './GraphComponent';
 import { GraphCfg}          from './GraphComponent';
@@ -19,7 +17,8 @@ import { Scales }           from './Scale';
 import { Axes }             from './Axis';
 import { Grids }            from './Grid';
 import { Canvas }           from './Canvas';
-import { Defaults }         from './Defaults';
+import { DefaultsType }     from './Defaults';
+import { d3Base }           from './Defaults';
 
 const vpWidth:number    = 1000;
 
@@ -37,19 +36,19 @@ export abstract class AbstractGraph {
     /** the list of components to render */
     private components: GraphComponent[] = [];
 
-
     constructor(root:any) { 
         this.root = root;
         this.config = this.initializeCfg();
         this.config.baseSVG = this.createBaseSVG(this.config); 
         this.updateBaseSVG(this.config);
         this.components = this.createComponents();
-        this.components.map(c => Defaults.addComponentDefaults(c.componentType, c.createDefaults()));
+        this.components.map(c => this.config.defaults[c.componentType] = c.createDefaults());
         window.onresize = () => this.resize();
     }
 
     public get defaults(): ComponentDefaults {
-        return this.config.defaults();
+        return this.config.defaults;
+        // return this.config.defaults();
     }
 
     public get viewport() {
@@ -83,7 +82,6 @@ export abstract class AbstractGraph {
     protected abstract setScales(data:Data):void;
 
     private initializeCfg():GraphCfg {
-        const defaults = new d.Defaults();
         return {
             baseSVG:  undefined,    
             client:   { x:0, y:0, width: 0, height: 0 },
@@ -91,7 +89,7 @@ export abstract class AbstractGraph {
                 width: vpWidth,
                 height: vpWidth * 0.7   // initial height: 70% of width
             },
-            defaults: defaults.getDefaults.bind(defaults),
+            defaults: <DefaultsType>{},
             scales: {} 
         };
     }

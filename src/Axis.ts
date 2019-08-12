@@ -11,7 +11,7 @@ import { GraphCfg }         from './GraphComponent';
 import { ComponentDefaults }from './GraphComponent';
 import * as def             from './Defaults';
 import { ScaleDefaults }    from './Scale';
-import { UnitVp, d3Base }   from './ConfigTypes';
+import { UnitVp, d3Base }   from './Defaults';
 
 
 export enum Direction {
@@ -84,11 +84,11 @@ export class Axis {
     
     public renderComponent() {
         const scales = this.cfg.scales;
-        const style = this.cfg.defaults('axes')[this.dir];
+        const style = this.cfg.defaults.axes[this.dir];
         let axis;
-        const margins = (<ScaleDefaults>this.cfg.defaults('scales')).margin;
+        const margins = (<ScaleDefaults>this.cfg.defaults.scales).margin;
         this.cfg.baseSVG.select('.axes')
-            .attr('color', (<AxesDefaults>this.cfg.defaults('axes')).color);
+            .attr('color', this.cfg.defaults.axes.color);
         this.svg
             .attr('stroke', style.line.color)
             .attr('stroke-width', style.line.width)

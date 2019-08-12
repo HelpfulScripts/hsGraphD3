@@ -7,7 +7,7 @@
 
 import { Data }             from 'hsdatab';
 import { log as gLog }      from 'hsutil';   const log = gLog('Plot');
-import { d3Base }           from './ConfigTypes';
+import { d3Base }           from './Defaults';
 import { GraphComponent }   from './GraphComponent'; 
 import { ComponentDefaults }from './GraphComponent'; 
 import { GraphCfg }         from './GraphComponent'; 
@@ -61,7 +61,7 @@ export class Series extends GraphComponent {
             const seriesKey = `${type} ${params.join(' ')}`;
             const svg = this.svg.append('g').classed(`series${this.series.length}`,true);
             const series = factory(this.cfg, svg, ...params);
-            const seriesDefault = this.cfg.defaults('series');
+            const seriesDefault = this.cfg.defaults.series;
             const index = this.series.length;
             seriesDefault[index] = seriesDefault[seriesKey] = series.getDefaults();
             this.series.push(series);

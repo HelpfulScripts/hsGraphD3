@@ -31,7 +31,7 @@
  * const data = {
  *    colNames:['date', 'time', 'volume', 'costs'], 
  *    rows:[['1/1/14', -1,  0.2, 0.3], ['1/1/16', 0.2, 0.7, 0.2], ['9/1/16', 0.4, 0.1, 0.3],
- *          ['5/1/17', 0.6, 0,   0.1], ['7/1/18', 0.8, 0.3, 0.5], ['1/1/19', 1,   0.2, 0.4]]
+ *          ['5/1/17', 0.6, -0.2,   0.1], ['7/1/18', 0.8, 0.3, 0.5], ['1/1/19', 1,   0.2, 0.4]]
  * };
  * 
  * // setup and plot the data:
@@ -65,7 +65,7 @@
  * function update() {
  *    data.rows.map(row => {
  *       //row[1] = Math.random()*graph.viewport.width;
- *       row[2] = Math.random()*graph.viewport.height;
+ *       row[2] = (Math.random()-0.1)*graph.viewport.height;
  *       row[3] = Math.random()*50;
  *    });
  *    graph.render(data);

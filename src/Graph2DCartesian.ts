@@ -92,7 +92,7 @@ export class Graph2DCartesian extends AbstractGraph {
 
     constructor(root:any) { 
         super(root);
-        const scales = <ScaleDefaults>this.config.defaults('scales');
+        const scales = <ScaleDefaults>this.config.defaults.scales;
         const margins = scales.margin;
         this.config.scales.hor = { dataCol: <string>undefined, scale: undefined};
         this.config.scales.ver = { dataCol: <string>undefined, scale: undefined};
@@ -119,7 +119,7 @@ export class Graph2DCartesian extends AbstractGraph {
             domains[colName][1] = Math.max(domains[colName][1], dataDom[1]);
             return domains[colName];
         }
-        const scales = (<ScaleDefaults>this.config.defaults('scales')).dims;
+        const scales = this.config.defaults.scales.dims;
         const horCol = this.config.scales.hor.dataCol;
         const verCol = this.config.scales.ver.dataCol;
         const hor = this.config.scales.hor;

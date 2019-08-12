@@ -9,7 +9,7 @@ import { NumDomain }            from 'hsdatab';
 import { SeriesPlot }           from '../SeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { Series }               from '../Plot';
-import { d3Base }               from '../ConfigTypes';
+import { d3Base }               from '../Defaults';
 import { GraphCfg }             from '../GraphComponent'; 
 import * as def                 from '../Defaults';
 import { defaultDimScale}       from '../Scale';
@@ -26,7 +26,7 @@ class Bubble extends SeriesPlot {
      */
     constructor(cfg:GraphCfg, svgBase:d3Base, protected cx:string, protected cy:string, protected r?:string) {
         super(cfg, svgBase, cx, cy);
-        const scales = (<ScaleDefaults>cfg.defaults('scales')).dims;
+        const scales = cfg.defaults.scales.dims;
         scales[r] = scales[r] || defaultDimScale();
     }
 
@@ -55,7 +55,7 @@ class Bubble extends SeriesPlot {
         const ir = data.colNumber(this.r);
         const scaleX = this.cfg.scales.hor.scale;
         const scaleY = this.cfg.scales.ver.scale;
-        const defR = (<ScaleDefaults>this.cfg.defaults('scales')).dims[this.r];
+        const defR = this.cfg.defaults.scales.dims[this.r];
         const scaleR = d3.scaleLinear().domain(<NumDomain>data.findDomain(this.r)).range([defR.range.min, defR.range.max]);
         const circles = this.svg.selectAll("circle").data(data.getData());
             
@@ -63,10 +63,10 @@ class Bubble extends SeriesPlot {
         circles.enter().append('circle');   // add new circles
         
         circles.transition().duration(1000)
-            .attr("cx", d => scaleX(<number>d[ix]))
-            .attr("cy", d => scaleY(<number>d[iy]))
-            .attr("r",  d => scaleR(ir===undefined? DEF_RADIUS : <number>d[ir]))
-            .attr('fill', (d,i) => ['#f00', '#0f0', '#00f', '#ff0', '#f0f', '#0ff'][i])
+            .attr("cx", (d:number[]) => scaleX(<number>d[ix]))
+            .attr("cy", (d:number[]) => scaleY(<number>d[iy]))
+            .attr("r",  (d:number[]) => scaleR(ir===undefined? DEF_RADIUS : <number>d[ir]))
+            .attr('fill', (d:number[],i:number) => ['#f00', '#0f0', '#00f', '#ff0', '#f0f', '#0ff'][i])
             ;        
     }
 } 

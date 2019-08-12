@@ -8,12 +8,10 @@ import { log as gLog }      from 'hsutil';   const log = gLog('Grid');
 import { GraphComponent }   from './GraphComponent'; 
 import { ComponentDefaults }from './GraphComponent'; 
 import { GraphCfg }         from './GraphComponent';
-import { d3Base }           from './ConfigTypes';
+import { d3Base }           from './Defaults';
 import { Line }             from './Defaults';
-import { Defaults }         from './Defaults';
 import { defaultLine }      from './Defaults';
 import { Direction }        from './Axis';
-import { ScaleDefaults }    from './Scale';
  
 export enum MajorMinor {
     major   = 'major',
@@ -79,10 +77,10 @@ export class Grid {
  
     renderComponent() {
         const count = this.type===MajorMinor.major? 2 : 10;
-        const scales = (<ScaleDefaults>this.cfg.defaults('scales')).dims;
+        const scales = this.cfg.defaults.scales.dims;
         const scaleX = this.cfg.scales.hor.scale;
         const scaleY = this.cfg.scales.ver.scale;
-        const style = this.cfg.defaults('grids')[this.dir][this.type];
+        const style = this.cfg.defaults.grids[this.dir][this.type];
         this.svg
             .attr('stroke', style.color)
             .attr('stroke-width', style.width)

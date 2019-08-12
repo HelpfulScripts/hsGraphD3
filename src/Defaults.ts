@@ -10,11 +10,26 @@
 /** */
 
 import * as d       from './Defaults';
-import { UnitVp }   from './ConfigTypes';
 import * as gc      from './GraphComponent';
 import { log as _log }  from 'hsutil'; const log = _log('Defaults');
 
-type DefaultsType = {[compName:string]: gc.ComponentDefaults};
+
+/** viewport units */
+export type UnitVp = number;        
+
+/** CSS px units */
+export type UnitPx = number;        
+
+/** CSS general units */
+export type Unit = string|UnitPx;   // general CSS unit type
+
+export interface RectDef { x:UnitVp; y:UnitVp; width:UnitVp; height:UnitVp; }
+
+export type scaleTypes = 'linear' | 'log';
+
+export type d3Base = d3.Selection<d3.BaseType, unknown, HTMLElement, any>; 
+
+export type DefaultsType = {[compName:string]: gc.ComponentDefaults};
 
 export type DefaultsAccess  = (compName:string) => gc.ComponentDefaults;
 export type Color           = string;           // CSS color descriptor, e.g. '#fff'
@@ -48,30 +63,6 @@ export interface TextStyle {
         weight: string;     // 'normal', 'bold'
     };
 }
-
-
-/**
- * Create a `Config` object and populate it with default values.
- */
-export class Defaults {
-    private static defaultsBase:DefaultsType = {};
-    private defaults:DefaultsType = {};
-
-    public static addComponentDefaults(compName:string, compDefault:gc.ComponentDefaults) {
-        this.defaultsBase[compName] = compDefault;
-    }
-
-    public getDefaults(compName?:string) { 
-        if (compName) {
-            return this.defaults[compName] = this.defaults[compName] || Defaults.defaultsBase[compName];
-        } else {
-            for (let k in Defaults.defaultsBase) {
-                this.defaults[k] = this.defaults[k] || Defaults.defaultsBase[k];
-            }
-            return this.defaults;
-        }
-    }
- }
 
 
 export const defaultLine = (width:UnitVp, color:d.Color='currentColor'):d.Line => {

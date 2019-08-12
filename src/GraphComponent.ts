@@ -4,28 +4,31 @@
 
 /** */
 
-import { Data }     from 'hsdatab';
-import * as ct      from './ConfigTypes';
-import { Defaults } from './Defaults';
+import { Data }         from 'hsdatab';
+import { DefaultsType } from './Defaults';
+import { d3Base }       from './Defaults';
+import { RectDef }       from './Defaults';
+import { UnitVp }       from './Defaults';
 
 /** 
  * Configuration parameters for the render tree, passed to each `GraphComponent` during construction. 
  */
 export interface GraphCfg {
     /** the base svg for the rendering tree */
-    baseSVG:    ct.d3Base;
+    baseSVG:    d3Base;
 
     /** dimensions of the HTML client rect containing this graph */
-    client:     ct.RectDef;
+    client:     RectDef;
 
     /** top level svg viewBox dimensions */
     viewPort: {
-        width:  ct.UnitVp;
-        height: ct.UnitVp;
+        width:  UnitVp;
+        height: UnitVp;
     };
 
     /** Default settings for GraphComp[onents in this graph] */
-    defaults:   (compName?:string) => ComponentDefaults;
+    defaults: DefaultsType;
+    // defaults:   (compName?:string) => ComponentDefaults;
 
     /** 
      * mapping of semantic scales to data columns and scaling functions. 
@@ -41,6 +44,7 @@ export interface GraphCfg {
  * Generic base interface for the default setting for all component types.
  */
 export interface ComponentDefaults {
+    [filed:string]:any;
 }
 
 /**
@@ -48,12 +52,12 @@ export interface ComponentDefaults {
  */
 export abstract class GraphComponent {
     /** the base svg element to render the component into */
-    protected svg: ct.d3Base;
+    protected svg: d3Base;
     
     /** the render tree configuration */
     protected cfg: GraphCfg;
 
-    constructor(cfg:GraphCfg, svgBase:ct.d3Base) { 
+    constructor(cfg:GraphCfg, svgBase:d3Base) { 
         this.cfg = cfg; 
         this.svg = svgBase; 
     }

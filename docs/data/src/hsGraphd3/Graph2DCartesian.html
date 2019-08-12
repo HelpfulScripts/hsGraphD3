@@ -115,7 +115,7 @@
 <p id=92 class="line"><span>&nbsp;&nbsp;92</span></p>
 <p id=93 class="line"><span>&nbsp;&nbsp;93</span>&nbsp;&nbsp;&nbsp;&nbsp;constructor(root:any)&nbsp;{&nbsp;</p>
 <p id=94 class="line"><span>&nbsp;&nbsp;94</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super(root);</p>
-<p id=95 class="line"><span>&nbsp;&nbsp;95</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;scales&nbsp;=&nbsp;<ScaleDefaults>this.config.defaults(<quote>'scales'</quote>);</p>
+<p id=95 class="line"><span>&nbsp;&nbsp;95</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;scales&nbsp;=&nbsp;<ScaleDefaults>this.config.defaults.scales;</p>
 <p id=96 class="line"><span>&nbsp;&nbsp;96</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;margins&nbsp;=&nbsp;scales.margin;</p>
 <p id=97 class="line"><span>&nbsp;&nbsp;97</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.config.scales.hor&nbsp;=&nbsp;{&nbsp;dataCol:&nbsp;<string>undefined,&nbsp;scale:&nbsp;undefined};</p>
 <p id=98 class="line"><span>&nbsp;&nbsp;98</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.config.scales.ver&nbsp;=&nbsp;{&nbsp;dataCol:&nbsp;<string>undefined,&nbsp;scale:&nbsp;undefined};</p>
@@ -142,7 +142,7 @@
 <p id=119 class="line"><span>&nbsp;119</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domains[colName][1]&nbsp;=&nbsp;Math.max(domains[colName][1],&nbsp;dataDom[1]);</p>
 <p id=120 class="line"><span>&nbsp;120</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;domains[colName];</p>
 <p id=121 class="line"><span>&nbsp;121</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-<p id=122 class="line"><span>&nbsp;122</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;scales&nbsp;=&nbsp;(<ScaleDefaults>this.config.defaults(<quote>'scales'</quote>)).dims;</p>
+<p id=122 class="line"><span>&nbsp;122</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;scales&nbsp;=&nbsp;this.config.defaults.scales.dims;</p>
 <p id=123 class="line"><span>&nbsp;123</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;horCol&nbsp;=&nbsp;this.config.scales.hor.dataCol;</p>
 <p id=124 class="line"><span>&nbsp;124</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;verCol&nbsp;=&nbsp;this.config.scales.ver.dataCol;</p>
 <p id=125 class="line"><span>&nbsp;125</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;hor&nbsp;=&nbsp;this.config.scales.hor;</p>

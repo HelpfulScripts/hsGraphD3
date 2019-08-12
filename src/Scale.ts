@@ -5,7 +5,7 @@
 
 import { ComponentDefaults }    from './GraphComponent'; 
 import { GraphComponent }       from './GraphComponent'; 
-import { scaleTypes, UnitVp }   from './ConfigTypes';
+import { scaleTypes, UnitVp }   from './Defaults';
 
 export interface ScaleDimDefaults extends ComponentDefaults {
     type:   scaleTypes;

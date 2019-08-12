@@ -34,7 +34,7 @@
 <p id=11 class="line"><span>&nbsp;&nbsp;11</span>import&nbsp;{&nbsp;ComponentDefaults&nbsp;}from&nbsp;<quote>'./GraphComponent'</quote>;</p>
 <p id=12 class="line"><span>&nbsp;&nbsp;12</span>import&nbsp;*&nbsp;as&nbsp;def&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Defaults'</quote>;</p>
 <p id=13 class="line"><span>&nbsp;&nbsp;13</span>import&nbsp;{&nbsp;ScaleDefaults&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Scale'</quote>;</p>
-<p id=14 class="line"><span>&nbsp;&nbsp;14</span>import&nbsp;{&nbsp;UnitVp,&nbsp;d3Base&nbsp;}&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./ConfigTypes'</quote>;</p>
+<p id=14 class="line"><span>&nbsp;&nbsp;14</span>import&nbsp;{&nbsp;UnitVp,&nbsp;d3Base&nbsp;}&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Defaults'</quote>;</p>
 <p id=15 class="line"><span>&nbsp;&nbsp;15</span></p>
 <p id=16 class="line"><span>&nbsp;&nbsp;16</span></p>
 <p id=17 class="line"><span>&nbsp;&nbsp;17</span>export&nbsp;enum&nbsp;Direction&nbsp;{</p>
@@ -107,11 +107,11 @@
 <p id=84 class="line"><span>&nbsp;&nbsp;84</span>&nbsp;&nbsp;&nbsp;&nbsp;</p>
 <p id=85 class="line"><span>&nbsp;&nbsp;85</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;renderComponent()&nbsp;{</p>
 <p id=86 class="line"><span>&nbsp;&nbsp;86</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;scales&nbsp;=&nbsp;this.cfg.scales;</p>
-<p id=87 class="line"><span>&nbsp;&nbsp;87</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;style&nbsp;=&nbsp;this.cfg.defaults(<quote>'axes'</quote>)[this.dir];</p>
+<p id=87 class="line"><span>&nbsp;&nbsp;87</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;style&nbsp;=&nbsp;this.cfg.defaults.axes[this.dir];</p>
 <p id=88 class="line"><span>&nbsp;&nbsp;88</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;axis;</p>
-<p id=89 class="line"><span>&nbsp;&nbsp;89</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;margins&nbsp;=&nbsp;(<ScaleDefaults>this.cfg.defaults(<quote>'scales'</quote>)).margin;</p>
+<p id=89 class="line"><span>&nbsp;&nbsp;89</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;margins&nbsp;=&nbsp;(<ScaleDefaults>this.cfg.defaults.scales).margin;</p>
 <p id=90 class="line"><span>&nbsp;&nbsp;90</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.cfg.baseSVG.select(<quote>'.axes'</quote>)</p>
-<p id=91 class="line"><span>&nbsp;&nbsp;91</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>'color'</quote>,&nbsp;(<AxesDefaults>this.cfg.defaults(<quote>'axes'</quote>)).color);</p>
+<p id=91 class="line"><span>&nbsp;&nbsp;91</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>'color'</quote>,&nbsp;this.cfg.defaults.axes.color);</p>
 <p id=92 class="line"><span>&nbsp;&nbsp;92</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.svg</p>
 <p id=93 class="line"><span>&nbsp;&nbsp;93</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>'stroke'</quote>,&nbsp;style.line.color)</p>
 <p id=94 class="line"><span>&nbsp;&nbsp;94</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>'stroke-width'</quote>,&nbsp;style.line.width)</p>

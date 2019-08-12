@@ -30,7 +30,7 @@
 <p id=7 class="line"><span>&nbsp;&nbsp;&nbsp;7</span></p>
 <p id=8 class="line"><span>&nbsp;&nbsp;&nbsp;8</span>import&nbsp;{&nbsp;Data&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'hsdatab'</quote>;</p>
 <p id=9 class="line"><span>&nbsp;&nbsp;&nbsp;9</span>import&nbsp;{&nbsp;log&nbsp;as&nbsp;gLog&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'hsutil'</quote>;&nbsp;&nbsp;&nbsp;const&nbsp;log&nbsp;=&nbsp;gLog(<quote>'Plot'</quote>);</p>
-<p id=10 class="line"><span>&nbsp;&nbsp;10</span>import&nbsp;{&nbsp;d3Base&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./ConfigTypes'</quote>;</p>
+<p id=10 class="line"><span>&nbsp;&nbsp;10</span>import&nbsp;{&nbsp;d3Base&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Defaults'</quote>;</p>
 <p id=11 class="line"><span>&nbsp;&nbsp;11</span>import&nbsp;{&nbsp;GraphComponent&nbsp;}&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./GraphComponent'</quote>;&nbsp;</p>
 <p id=12 class="line"><span>&nbsp;&nbsp;12</span>import&nbsp;{&nbsp;ComponentDefaults&nbsp;}from&nbsp;<quote>'./GraphComponent'</quote>;&nbsp;</p>
 <p id=13 class="line"><span>&nbsp;&nbsp;13</span>import&nbsp;{&nbsp;GraphCfg&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./GraphComponent'</quote>;&nbsp;</p>
@@ -84,7 +84,7 @@
 <p id=61 class="line"><span>&nbsp;&nbsp;61</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;seriesKey&nbsp;=&nbsp;`${type}&nbsp;${params.join(<quote>'&nbsp;'</quote>)}`;</p>
 <p id=62 class="line"><span>&nbsp;&nbsp;62</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;svg&nbsp;=&nbsp;this.svg.append(<quote>'g'</quote>).classed(`series${this.series.length}`,true);</p>
 <p id=63 class="line"><span>&nbsp;&nbsp;63</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;series&nbsp;=&nbsp;factory(this.cfg,&nbsp;svg,&nbsp;...params);</p>
-<p id=64 class="line"><span>&nbsp;&nbsp;64</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;seriesDefault&nbsp;=&nbsp;this.cfg.defaults(<quote>'series'</quote>);</p>
+<p id=64 class="line"><span>&nbsp;&nbsp;64</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;seriesDefault&nbsp;=&nbsp;this.cfg.defaults.series;</p>
 <p id=65 class="line"><span>&nbsp;&nbsp;65</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;index&nbsp;=&nbsp;this.series.length;</p>
 <p id=66 class="line"><span>&nbsp;&nbsp;66</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;seriesDefault[index]&nbsp;=&nbsp;seriesDefault[seriesKey]&nbsp;=&nbsp;series.getDefaults();</p>
 <p id=67 class="line"><span>&nbsp;&nbsp;67</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.series.push(series);</p>

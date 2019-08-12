@@ -37,7 +37,7 @@ export class Canvas extends gc.GraphComponent {
      * @param cfg 
      */
     public renderComponent() {
-        const canvas = <CanvasDefaults>this.cfg.defaults('canvas');
+        const canvas = this.cfg.defaults.canvas;
         d3Select('.graphArea')
             .attr('width', this.cfg.viewPort.width)
             .attr('height', this.cfg.viewPort.height)

@@ -5,8 +5,8 @@ import { Data }                 from 'hsdatab';
 import { defaultDimScale, ScaleDefaults}       from './Scale';
 import { GraphCfg }             from './GraphComponent';
 import { Line, Area }           from './Defaults';
-import { d3Base }               from './ConfigTypes';
-import { UnitVp }               from './ConfigTypes';
+import { d3Base }               from './Defaults';
+import { UnitVp }               from './Defaults';
 
 export type d3Selection = d3.Selection<BaseType, unknown, BaseType, unknown>; 
 
@@ -32,7 +32,7 @@ export abstract class SeriesPlot {
     constructor(cfg:GraphCfg, svgBase:d3Base, ...params:string[]) {
         this.cfg = cfg; 
         this.svg = svgBase; 
-        const scales = (<ScaleDefaults>this.cfg.defaults('scales')).dims;
+        const scales = this.cfg.defaults.scales.dims;
         this.cfg.scales.hor.dataCol = params[0]; // x
         this.cfg.scales.ver.dataCol = params[1]; // y
         scales[params[0]] = scales[params[0]] || scales['hor'] || defaultDimScale(0, 1);
