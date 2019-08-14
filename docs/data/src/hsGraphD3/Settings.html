@@ -1,0 +1,191 @@
+
+                <html><style>body { overflow:hidden;}
+            h1 { font-family: Arial, sans-serif; font-size: 24px; color: #44a; }
+            p { margin:0; padding:0; }
+            br  { margin:0; padding:0; }
+            .line { 
+                white-space: nowrap;
+                height:16px; 
+            }
+            .line>span { 
+                display:inline-block; background-color:#eef; height:100%; 
+                margin: 0 5px 0 0; padding-right: 5px; color:#999;   
+            }
+            comment {color: #080;} module {color: #804;} 
+            quote {color: #008;} comment>quote {color: #080;}
+            .listing { margin: 10px; border: 1px solid #ccc; 
+                    font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+                    font-size: 14px;  
+                    overflow:scroll;
+                    height:90%;
+            }
+            code { padding: 5px 0;}</style></html><body>
+                <h1>src/Settings.ts</h1>
+                <div class='listing'><code><p id=1 class="line"><span>&nbsp;&nbsp;&nbsp;1</span><comment>/**</comment></p>
+<p id=2 class="line"><span>&nbsp;&nbsp;&nbsp;2</span><comment>&nbsp;*&nbsp;#&nbsp;Defaults&nbsp;Configuration</comment></p>
+<p id=3 class="line"><span>&nbsp;&nbsp;&nbsp;3</span><comment>&nbsp;*&nbsp;</comment></p>
+<p id=4 class="line"><span>&nbsp;&nbsp;&nbsp;4</span><comment>&nbsp;*&nbsp;provides&nbsp;`type`&nbsp;aliases,&nbsp;`interfaces`,&nbsp;and&nbsp;support&nbsp;functions&nbsp;to&nbsp;generate&nbsp;default&nbsp;settings&nbsp;for&nbsp;{@link&nbsp;GraphComponent&nbsp;GraphComponents}.</comment></p>
+<p id=5 class="line"><span>&nbsp;&nbsp;&nbsp;5</span><comment>&nbsp;*&nbsp;</comment></p>
+<p id=6 class="line"><span>&nbsp;&nbsp;&nbsp;6</span><comment>&nbsp;*&nbsp;###&nbsp;Accessible&nbsp;format&nbsp;setting&nbsp;and&nbsp;defaults&nbsp;(for&nbsp;a&nbsp;cartesian&nbsp;graph):</comment></p>
+<p id=7 class="line"><span>&nbsp;&nbsp;&nbsp;7</span><comment>&nbsp;*&nbsp;<example&nbsp;height=600px&nbsp;libs={hsGraphD3:<quote>'hsGraphD3'</quote>,&nbsp;hsUtil:<quote>'hsUtil'</quote>}></comment></p>
+<p id=8 class="line"><span>&nbsp;&nbsp;&nbsp;8</span><comment>&nbsp;*&nbsp;<file&nbsp;name=<quote>'script.js'</quote>></comment></p>
+<p id=9 class="line"><span>&nbsp;&nbsp;&nbsp;9</span><comment>&nbsp;*&nbsp;const&nbsp;log&nbsp;=&nbsp;hsUtil.log(<quote>''</quote>);</comment></p>
+<p id=10 class="line"><span>&nbsp;&nbsp;10</span><comment>&nbsp;*&nbsp;let&nbsp;defaults;</comment></p>
+<p id=11 class="line"><span>&nbsp;&nbsp;11</span><comment>&nbsp;*&nbsp;</comment></p>
+<p id=12 class="line"><span>&nbsp;&nbsp;12</span><comment>&nbsp;*&nbsp;function&nbsp;createGraph(svgRoot)&nbsp;{</comment></p>
+<p id=13 class="line"><span>&nbsp;&nbsp;13</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.GraphCartesian(svgRoot);</comment></p>
+<p id=14 class="line"><span>&nbsp;&nbsp;14</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;graph.addSeries(<quote>'bubble'</quote>,&nbsp;<quote>'time'</quote>,&nbsp;<quote>'volume'</quote>,&nbsp;<quote>'costs'</quote>);</comment></p>
+<p id=15 class="line"><span>&nbsp;&nbsp;15</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;graph.defaults.canvas.stroke.width&nbsp;=&nbsp;7.8;&nbsp;<comment>//&nbsp;odd&nbsp;number,&nbsp;should&nbsp;appear&nbsp;on&nbsp;the&nbsp;left</comment></comment></p>
+<p id=16 class="line"><span>&nbsp;&nbsp;16</span><comment><comment></comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;graph.defaults;</comment></p>
+<p id=17 class="line"><span>&nbsp;&nbsp;17</span><comment>&nbsp;*&nbsp;}</comment></p>
+<p id=18 class="line"><span>&nbsp;&nbsp;18</span><comment>&nbsp;*&nbsp;</comment></p>
+<p id=19 class="line"><span>&nbsp;&nbsp;19</span><comment>&nbsp;*&nbsp;m.mount(root,&nbsp;{</comment></p>
+<p id=20 class="line"><span>&nbsp;&nbsp;20</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;view:()&nbsp;=>&nbsp;m(<quote>'div'</quote>,&nbsp;{style:<quote>'background-color:#eee;&nbsp;font-family:Monospace'</quote>},&nbsp;[</comment></p>
+<p id=21 class="line"><span>&nbsp;&nbsp;21</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m(<quote>'div'</quote>,&nbsp;m.trust(<quote>'graph.defaults&nbsp;=&nbsp;'</quote>&nbsp;+&nbsp;defaults)),&nbsp;</comment></p>
+<p id=22 class="line"><span>&nbsp;&nbsp;22</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m(<quote>'div.myGraph'</quote>,&nbsp;<quote>''</quote>)</comment></p>
+<p id=23 class="line"><span>&nbsp;&nbsp;23</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;]),</comment></p>
+<p id=24 class="line"><span>&nbsp;&nbsp;24</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;oncreate:&nbsp;()&nbsp;=>&nbsp;{</comment></p>
+<p id=25 class="line"><span>&nbsp;&nbsp;25</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;svgRoot&nbsp;=&nbsp;root.getElementsByClassName(<quote>'myGraph'</quote>);</comment></p>
+<p id=26 class="line"><span>&nbsp;&nbsp;26</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(svgRoot&nbsp;&&&nbsp;svgRoot.length&nbsp;&&&nbsp;!defaults)&nbsp;{&nbsp;</comment></p>
+<p id=27 class="line"><span>&nbsp;&nbsp;27</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;colors&nbsp;=&nbsp;[<quote>'#800'</quote>,&nbsp;<quote>'#080'</quote>,&nbsp;<quote>'#008'</quote>];</comment></p>
+<p id=28 class="line"><span>&nbsp;&nbsp;28</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;defaults&nbsp;=&nbsp;hsUtil.log.inspect(createGraph(svgRoot[0]),&nbsp;null,&nbsp;<quote>'&nbsp;&nbsp;&nbsp;'</quote>,&nbsp;colors)</comment></p>
+<p id=29 class="line"><span>&nbsp;&nbsp;29</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.replace(/\n/g,&nbsp;<quote>'<br>'</quote>)</comment></p>
+<p id=30 class="line"><span>&nbsp;&nbsp;30</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</comment></p>
+<p id=31 class="line"><span>&nbsp;&nbsp;31</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;}&nbsp;</comment></p>
+<p id=32 class="line"><span>&nbsp;&nbsp;32</span><comment>&nbsp;*&nbsp;});</comment></p>
+<p id=33 class="line"><span>&nbsp;&nbsp;33</span><comment>&nbsp;*&nbsp;</file></comment></p>
+<p id=34 class="line"><span>&nbsp;&nbsp;34</span><comment>&nbsp;*&nbsp;</example></comment></p>
+<p id=35 class="line"><span>&nbsp;&nbsp;35</span><comment>&nbsp;*/</comment></p>
+<p id=36 class="line"><span>&nbsp;&nbsp;36</span></p>
+<p id=37 class="line"><span>&nbsp;&nbsp;37</span><comment>/**&nbsp;*/</comment></p>
+<p id=38 class="line"><span>&nbsp;&nbsp;38</span></p>
+<p id=39 class="line"><span>&nbsp;&nbsp;39</span>import&nbsp;{&nbsp;transition&nbsp;}&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'d3'</quote>;</p>
+<p id=40 class="line"><span>&nbsp;&nbsp;40</span>import&nbsp;*&nbsp;as&nbsp;d&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Settings'</quote>;</p>
+<p id=41 class="line"><span>&nbsp;&nbsp;41</span>import&nbsp;*&nbsp;as&nbsp;gc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./GraphComponent'</quote>;</p>
+<p id=42 class="line"><span>&nbsp;&nbsp;42</span>import&nbsp;{&nbsp;log&nbsp;as&nbsp;_log&nbsp;}&nbsp;&nbsp;from&nbsp;<quote>'hsutil'</quote>;import&nbsp;{&nbsp;setMaxListeners&nbsp;}&nbsp;from&nbsp;<quote>'cluster'</quote>;</p>
+<p id=43 class="line"><span>&nbsp;&nbsp;43</span>const&nbsp;log&nbsp;=&nbsp;_log(<quote>'Defaults'</quote>);</p>
+<p id=44 class="line"><span>&nbsp;&nbsp;44</span></p>
+<p id=45 class="line"><span>&nbsp;&nbsp;45</span></p>
+<p id=46 class="line"><span>&nbsp;&nbsp;46</span>export&nbsp;const&nbsp;d3Transition&nbsp;=&nbsp;transition().duration(1000);</p>
+<p id=47 class="line"><span>&nbsp;&nbsp;47</span></p>
+<p id=48 class="line"><span>&nbsp;&nbsp;48</span><comment>/**&nbsp;viewport&nbsp;units&nbsp;*/</comment></p>
+<p id=49 class="line"><span>&nbsp;&nbsp;49</span>export&nbsp;type&nbsp;UnitVp&nbsp;=&nbsp;number;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p id=50 class="line"><span>&nbsp;&nbsp;50</span></p>
+<p id=51 class="line"><span>&nbsp;&nbsp;51</span><comment>/**&nbsp;CSS&nbsp;px&nbsp;units&nbsp;*/</comment></p>
+<p id=52 class="line"><span>&nbsp;&nbsp;52</span>export&nbsp;type&nbsp;UnitPx&nbsp;=&nbsp;number;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p id=53 class="line"><span>&nbsp;&nbsp;53</span></p>
+<p id=54 class="line"><span>&nbsp;&nbsp;54</span><comment>/**&nbsp;CSS&nbsp;general&nbsp;units&nbsp;*/</comment></p>
+<p id=55 class="line"><span>&nbsp;&nbsp;55</span>export&nbsp;type&nbsp;Unit&nbsp;=&nbsp;string|UnitPx;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;general&nbsp;CSS&nbsp;unit&nbsp;type</comment></p>
+<p id=56 class="line"><span>&nbsp;&nbsp;56</span><comment></comment></p>
+<p id=57 class="line"><span>&nbsp;&nbsp;57</span>export&nbsp;interface&nbsp;RectDef&nbsp;{&nbsp;x:UnitVp;&nbsp;y:UnitVp;&nbsp;width:UnitVp;&nbsp;height:UnitVp;&nbsp;}</p>
+<p id=58 class="line"><span>&nbsp;&nbsp;58</span></p>
+<p id=59 class="line"><span>&nbsp;&nbsp;59</span>export&nbsp;type&nbsp;d3Base&nbsp;=&nbsp;d3.Selection<d3.BaseType,&nbsp;unknown,&nbsp;d3.BaseType,&nbsp;any>;&nbsp;</p>
+<p id=60 class="line"><span>&nbsp;&nbsp;60</span></p>
+<p id=61 class="line"><span>&nbsp;&nbsp;61</span>export&nbsp;type&nbsp;DefaultsType&nbsp;=&nbsp;{[compName:string]:&nbsp;gc.ComponentDefaults};</p>
+<p id=62 class="line"><span>&nbsp;&nbsp;62</span></p>
+<p id=63 class="line"><span>&nbsp;&nbsp;63</span>export&nbsp;type&nbsp;DefaultsAccess&nbsp;&nbsp;=&nbsp;(compName:string)&nbsp;=>&nbsp;gc.ComponentDefaults;</p>
+<p id=64 class="line"><span>&nbsp;&nbsp;64</span>export&nbsp;type&nbsp;Color&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;string;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;CSS&nbsp;color&nbsp;descriptor,&nbsp;e.g.&nbsp;<quote>'#fff'</quote></comment></p>
+<p id=65 class="line"><span>&nbsp;&nbsp;65</span><comment></comment>export&nbsp;type&nbsp;ZeroToOne&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;number;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;number&nbsp;from&nbsp;[0,&nbsp;1]</comment></p>
+<p id=66 class="line"><span>&nbsp;&nbsp;66</span><comment></comment>export&nbsp;type&nbsp;Index&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;number;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;column&nbsp;index&nbsp;into&nbsp;data&nbsp;table</comment></p>
+<p id=67 class="line"><span>&nbsp;&nbsp;67</span><comment></comment></p>
+<p id=68 class="line"><span>&nbsp;&nbsp;68</span>export&nbsp;interface&nbsp;Area&nbsp;{</p>
+<p id=69 class="line"><span>&nbsp;&nbsp;69</span>&nbsp;&nbsp;&nbsp;&nbsp;color:&nbsp;Color;</p>
+<p id=70 class="line"><span>&nbsp;&nbsp;70</span>&nbsp;&nbsp;&nbsp;&nbsp;opacity:&nbsp;ZeroToOne;</p>
+<p id=71 class="line"><span>&nbsp;&nbsp;71</span>}</p>
+<p id=72 class="line"><span>&nbsp;&nbsp;72</span></p>
+<p id=73 class="line"><span>&nbsp;&nbsp;73</span>export&nbsp;interface&nbsp;Line&nbsp;{</p>
+<p id=74 class="line"><span>&nbsp;&nbsp;74</span>&nbsp;&nbsp;&nbsp;&nbsp;width:&nbsp;UnitVp;</p>
+<p id=75 class="line"><span>&nbsp;&nbsp;75</span>&nbsp;&nbsp;&nbsp;&nbsp;color:&nbsp;Color;</p>
+<p id=76 class="line"><span>&nbsp;&nbsp;76</span>&nbsp;&nbsp;&nbsp;&nbsp;opacity:&nbsp;ZeroToOne;</p>
+<p id=77 class="line"><span>&nbsp;&nbsp;77</span>}</p>
+<p id=78 class="line"><span>&nbsp;&nbsp;78</span></p>
+<p id=79 class="line"><span>&nbsp;&nbsp;79</span>export&nbsp;interface&nbsp;RectStyle&nbsp;{</p>
+<p id=80 class="line"><span>&nbsp;&nbsp;80</span>&nbsp;&nbsp;&nbsp;&nbsp;rx:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UnitVp;</p>
+<p id=81 class="line"><span>&nbsp;&nbsp;81</span>&nbsp;&nbsp;&nbsp;&nbsp;ry:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UnitVp;</p>
+<p id=82 class="line"><span>&nbsp;&nbsp;82</span>&nbsp;&nbsp;&nbsp;&nbsp;fill:&nbsp;&nbsp;&nbsp;Area;</p>
+<p id=83 class="line"><span>&nbsp;&nbsp;83</span>&nbsp;&nbsp;&nbsp;&nbsp;stroke:&nbsp;Line;</p>
+<p id=84 class="line"><span>&nbsp;&nbsp;84</span>}</p>
+<p id=85 class="line"><span>&nbsp;&nbsp;85</span></p>
+<p id=86 class="line"><span>&nbsp;&nbsp;86</span>export&nbsp;interface&nbsp;TextStyle&nbsp;{</p>
+<p id=87 class="line"><span>&nbsp;&nbsp;87</span>&nbsp;&nbsp;&nbsp;&nbsp;color:&nbsp;Color;</p>
+<p id=88 class="line"><span>&nbsp;&nbsp;88</span>&nbsp;&nbsp;&nbsp;&nbsp;font:&nbsp;{</p>
+<p id=89 class="line"><span>&nbsp;&nbsp;89</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;family:&nbsp;string;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;e.g.&nbsp;<quote>'sans-serif'</quote>;</comment></p>
+<p id=90 class="line"><span>&nbsp;&nbsp;90</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size:&nbsp;UnitVp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;e,g,&nbsp;12</comment></p>
+<p id=91 class="line"><span>&nbsp;&nbsp;91</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style:&nbsp;string;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;<quote>'normal'</quote>,&nbsp;<quote>'italic'</quote></comment></p>
+<p id=92 class="line"><span>&nbsp;&nbsp;92</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;weight:&nbsp;string;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;<quote>'normal'</quote>,&nbsp;<quote>'bold'</quote></comment></p>
+<p id=93 class="line"><span>&nbsp;&nbsp;93</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;};</p>
+<p id=94 class="line"><span>&nbsp;&nbsp;94</span>}</p>
+<p id=95 class="line"><span>&nbsp;&nbsp;95</span></p>
+<p id=96 class="line"><span>&nbsp;&nbsp;96</span>export&nbsp;const&nbsp;defaultLine&nbsp;=&nbsp;(width:UnitVp,&nbsp;color:d.Color=<quote>'currentColor'</quote>):d.Line&nbsp;=>&nbsp;{</p>
+<p id=97 class="line"><span>&nbsp;&nbsp;97</span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;{</p>
+<p id=98 class="line"><span>&nbsp;&nbsp;98</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;width:&nbsp;width,</p>
+<p id=99 class="line"><span>&nbsp;&nbsp;99</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color:&nbsp;color,</p>
+<p id=100 class="line"><span>&nbsp;100</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;opacity:&nbsp;1</p>
+<p id=101 class="line"><span>&nbsp;101</span>&nbsp;&nbsp;&nbsp;&nbsp;};</p>
+<p id=102 class="line"><span>&nbsp;102</span>};</p>
+<p id=103 class="line"><span>&nbsp;103</span></p>
+<p id=104 class="line"><span>&nbsp;104</span>export&nbsp;function&nbsp;setStroke(svg:d3Base,&nbsp;settings:d.Line)&nbsp;{</p>
+<p id=105 class="line"><span>&nbsp;105</span>&nbsp;&nbsp;&nbsp;&nbsp;svg&nbsp;</p>
+<p id=106 class="line"><span>&nbsp;106</span>&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>'stroke'</quote>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;settings.color)</p>
+<p id=107 class="line"><span>&nbsp;107</span>&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>'stroke-width'</quote>,&nbsp;&nbsp;&nbsp;settings.width)</p>
+<p id=108 class="line"><span>&nbsp;108</span>&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>'stroke-opacity'</quote>,&nbsp;settings.opacity);</p>
+<p id=109 class="line"><span>&nbsp;109</span>}</p>
+<p id=110 class="line"><span>&nbsp;110</span></p>
+<p id=111 class="line"><span>&nbsp;111</span>export&nbsp;const&nbsp;defaultFill&nbsp;=&nbsp;(areaFill:d.Color&nbsp;=&nbsp;<quote>'#fff'</quote>)&nbsp;=>&nbsp;{</p>
+<p id=112 class="line"><span>&nbsp;112</span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;{</p>
+<p id=113 class="line"><span>&nbsp;113</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color:&nbsp;areaFill,</p>
+<p id=114 class="line"><span>&nbsp;114</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;opacity:&nbsp;1</p>
+<p id=115 class="line"><span>&nbsp;115</span>&nbsp;&nbsp;&nbsp;&nbsp;};</p>
+<p id=116 class="line"><span>&nbsp;116</span>};</p>
+<p id=117 class="line"><span>&nbsp;117</span></p>
+<p id=118 class="line"><span>&nbsp;118</span>export&nbsp;function&nbsp;setFill(svg:d3Base,&nbsp;settings:d.Area)&nbsp;{</p>
+<p id=119 class="line"><span>&nbsp;119</span>&nbsp;&nbsp;&nbsp;&nbsp;svg&nbsp;</p>
+<p id=120 class="line"><span>&nbsp;120</span>&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>'fill'</quote>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;settings.color)</p>
+<p id=121 class="line"><span>&nbsp;121</span>&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>'fill-opacity'</quote>,&nbsp;settings.opacity);</p>
+<p id=122 class="line"><span>&nbsp;122</span>}</p>
+<p id=123 class="line"><span>&nbsp;123</span></p>
+<p id=124 class="line"><span>&nbsp;124</span><comment>/**</comment></p>
+<p id=125 class="line"><span>&nbsp;125</span><comment>&nbsp;*&nbsp;convenience&nbsp;function&nbsp;to&nbsp;create&nbsp;a&nbsp;default&nbsp;`RectStyle`&nbsp;object&nbsp;with&nbsp;configurable&nbsp;fill&nbsp;color&nbsp;and&nbsp;border.&nbsp;</comment></p>
+<p id=126 class="line"><span>&nbsp;126</span><comment>&nbsp;*&nbsp;@param&nbsp;area&nbsp;&nbsp;the&nbsp;fill&nbsp;color</comment></p>
+<p id=127 class="line"><span>&nbsp;127</span><comment>&nbsp;*&nbsp;@param&nbsp;borderWidth&nbsp;the&nbsp;border&nbsp;width&nbsp;in&nbsp;pixel</comment></p>
+<p id=128 class="line"><span>&nbsp;128</span><comment>&nbsp;*&nbsp;@param&nbsp;borderColor&nbsp;the&nbsp;border&nbsp;color</comment></p>
+<p id=129 class="line"><span>&nbsp;129</span><comment>&nbsp;*/</comment></p>
+<p id=130 class="line"><span>&nbsp;130</span>export&nbsp;const&nbsp;defaultRect&nbsp;=&nbsp;(areaFill:d.Color,&nbsp;borderWidth:UnitVp=0,&nbsp;borderColor:d.Color=<quote>'currentColor'</quote>):d.RectStyle&nbsp;=>&nbsp;{</p>
+<p id=131 class="line"><span>&nbsp;131</span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;{</p>
+<p id=132 class="line"><span>&nbsp;132</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rx:&nbsp;0,</p>
+<p id=133 class="line"><span>&nbsp;133</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ry:&nbsp;0,</p>
+<p id=134 class="line"><span>&nbsp;134</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fill:&nbsp;&nbsp;&nbsp;defaultFill(areaFill),</p>
+<p id=135 class="line"><span>&nbsp;135</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stroke:&nbsp;defaultLine(borderWidth,&nbsp;borderColor)</p>
+<p id=136 class="line"><span>&nbsp;136</span>&nbsp;&nbsp;&nbsp;&nbsp;};</p>
+<p id=137 class="line"><span>&nbsp;137</span>};</p>
+<p id=138 class="line"><span>&nbsp;138</span></p>
+<p id=139 class="line"><span>&nbsp;139</span>export&nbsp;function&nbsp;setRect(svg:d3Base,&nbsp;settings:d.RectStyle)&nbsp;{</p>
+<p id=140 class="line"><span>&nbsp;140</span>&nbsp;&nbsp;&nbsp;&nbsp;svg&nbsp;.attr(<quote>'rx'</quote>,&nbsp;settings.rx)</p>
+<p id=141 class="line"><span>&nbsp;141</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>'ry'</quote>,&nbsp;settings.ry);</p>
+<p id=142 class="line"><span>&nbsp;142</span>&nbsp;&nbsp;&nbsp;&nbsp;setStroke(svg,&nbsp;settings.stroke);</p>
+<p id=143 class="line"><span>&nbsp;143</span>&nbsp;&nbsp;&nbsp;&nbsp;setFill(svg,&nbsp;settings.fill);&nbsp;</p>
+<p id=144 class="line"><span>&nbsp;144</span>}</p>
+<p id=145 class="line"><span>&nbsp;145</span></p>
+<p id=146 class="line"><span>&nbsp;146</span>export&nbsp;const&nbsp;defaultText&nbsp;=&nbsp;(size=16):d.TextStyle&nbsp;=>&nbsp;{</p>
+<p id=147 class="line"><span>&nbsp;147</span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;{</p>
+<p id=148 class="line"><span>&nbsp;148</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color:&nbsp;<quote>'currentColor'</quote>,</p>
+<p id=149 class="line"><span>&nbsp;149</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font:&nbsp;{</p>
+<p id=150 class="line"><span>&nbsp;150</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;family:&nbsp;<quote>'sans-serif'</quote>,</p>
+<p id=151 class="line"><span>&nbsp;151</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size:&nbsp;&nbsp;&nbsp;size,</p>
+<p id=152 class="line"><span>&nbsp;152</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;style:&nbsp;<quote>'normal'</quote>,&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;<quote>'normal'</quote>,&nbsp;<quote>'italic'</quote></comment></p>
+<p id=153 class="line"><span>&nbsp;153</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;weight:&nbsp;<quote>'100'</quote>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;<quote>'normal'</quote>,&nbsp;<quote>'bold'</quote>,&nbsp;100&nbsp;-&nbsp;999</comment></p>
+<p id=154 class="line"><span>&nbsp;154</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=155 class="line"><span>&nbsp;155</span>&nbsp;&nbsp;&nbsp;&nbsp;};</p>
+<p id=156 class="line"><span>&nbsp;156</span>};</p>
+<p id=157 class="line"><span>&nbsp;157</span></p>
+<p id=158 class="line"><span>&nbsp;158</span>export&nbsp;function&nbsp;setText(svg:d3Base,&nbsp;settings:d.TextStyle)&nbsp;{</p>
+<p id=159 class="line"><span>&nbsp;159</span>&nbsp;&nbsp;&nbsp;&nbsp;svg.transition(d3Transition)</p>
+<p id=160 class="line"><span>&nbsp;160</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>'color'</quote>,&nbsp;settings.color)</p>
+<p id=161 class="line"><span>&nbsp;161</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>'font-family'</quote>,&nbsp;settings.font.family)</p>
+<p id=162 class="line"><span>&nbsp;162</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>'font-size'</quote>,&nbsp;&nbsp;&nbsp;settings.font.size+<quote>'px'</quote>)</p>
+<p id=163 class="line"><span>&nbsp;163</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>'font-style'</quote>,&nbsp;&nbsp;settings.font.style)</p>
+<p id=164 class="line"><span>&nbsp;164</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>'font-weight'</quote>,&nbsp;settings.font.weight);</p>
+<p id=165 class="line"><span>&nbsp;165</span>}</p>
+<p id=166 class="line"><span>&nbsp;166</span></p></code></div>
+                </body>
+            
