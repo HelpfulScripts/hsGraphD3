@@ -1,7 +1,7 @@
 /**
  * # Defaults Configuration
  * 
- * provides `type` aliases, `interfaces`, and support functions to generate default settings for {@link GraphComponents GraphComponents}.
+ * provides `type` aliases, `interfaces`, and support functions to generate default settings for {@link GraphComponent GraphComponents}.
  * 
  * ### Accessible format setting and defaults (for a cartesian graph):
  * <example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>

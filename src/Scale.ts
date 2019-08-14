@@ -53,6 +53,7 @@ export class Scales extends GraphComponent {
     /** creates a default entry for the component type in `Defaults` */
     public createDefaults():ScaleDefaults {
         return {
+            aggregateOverTime: true,    
             margin: { left:20, top:50, right:20, bottom:10},
             dims: {}
         };

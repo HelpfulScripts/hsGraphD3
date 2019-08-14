@@ -87,7 +87,7 @@ export class GraphCartesian extends AbstractGraph {
     }
 
     protected setScales(data:Data) {
-        const aggregateOverTime = false;
+        const aggregateOverTime = this.config.defaults.scales.aggregateOverTime;
         const scalesDefaults = this.config.defaults.scales.dims;
         const scales = this.config.scales;
         if (!aggregateOverTime) {
