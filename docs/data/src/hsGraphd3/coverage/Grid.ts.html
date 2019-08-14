@@ -257,7 +257,7 @@ import { GraphCfg }         from './GraphComponent';
 import { d3Base }           from './Settings';
 import { Line }             from './Settings';
 import { defaultLine }      from './Settings';
-import { setLine }          from './Settings';
+import { setStroke }          from './Settings';
 import { Direction }        from './Axis';
  
 export enum MajorMinor {
@@ -328,7 +328,7 @@ export class Grid {
         const scaleX = <span class="cstat-no" title="statement not covered" >this.cfg.scales.hor;</span>
         const scaleY = <span class="cstat-no" title="statement not covered" >this.cfg.scales.ver;</span>
         const style = <span class="cstat-no" title="statement not covered" >this.cfg.defaults.grids[this.dir][this.type];</span>
-<span class="cstat-no" title="statement not covered" >        setLine(this.svg, style);</span>
+<span class="cstat-no" title="statement not covered" >        setStroke(this.svg, style);</span>
         const c = <span class="cstat-no" title="statement not covered" >{</span>
             range:  this.hor? scales['hor'].range : scales['ver'].range,
             scale:  this.hor? scaleY : scaleX,  

@@ -37,7 +37,7 @@
 <p id=14 class="line"><span>&nbsp;&nbsp;14</span>import&nbsp;{&nbsp;ScaleDefaults&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Scale'</quote>;</p>
 <p id=15 class="line"><span>&nbsp;&nbsp;15</span>import&nbsp;{&nbsp;UnitVp,&nbsp;d3Base&nbsp;}&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Settings'</quote>;</p>
 <p id=16 class="line"><span>&nbsp;&nbsp;16</span>import&nbsp;{&nbsp;setText&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Settings'</quote>;</p>
-<p id=17 class="line"><span>&nbsp;&nbsp;17</span>import&nbsp;{&nbsp;setLine&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Settings'</quote>;</p>
+<p id=17 class="line"><span>&nbsp;&nbsp;17</span>import&nbsp;{&nbsp;setStroke&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Settings'</quote>;</p>
 <p id=18 class="line"><span>&nbsp;&nbsp;18</span>import&nbsp;{&nbsp;d3Transition&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Settings'</quote>;</p>
 <p id=19 class="line"><span>&nbsp;&nbsp;19</span></p>
 <p id=20 class="line"><span>&nbsp;&nbsp;20</span>export&nbsp;enum&nbsp;Direction&nbsp;{</p>
@@ -101,7 +101,7 @@
 <p id=78 class="line"><span>&nbsp;&nbsp;78</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;createDefaults()&nbsp;{</p>
 <p id=79 class="line"><span>&nbsp;&nbsp;79</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;{</p>
 <p id=80 class="line"><span>&nbsp;&nbsp;80</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<quote>'currentColor'</quote>,</p>
-<p id=81 class="line"><span>&nbsp;&nbsp;81</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;def.defaultLine(2),</p>
+<p id=81 class="line"><span>&nbsp;&nbsp;81</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;def.defaultLine(1),</p>
 <p id=82 class="line"><span>&nbsp;&nbsp;82</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tickWidth:&nbsp;&nbsp;10,</p>
 <p id=83 class="line"><span>&nbsp;&nbsp;83</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tickMarks:&nbsp;&nbsp;def.defaultLine(2),</p>
 <p id=84 class="line"><span>&nbsp;&nbsp;84</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tickLabel:&nbsp;&nbsp;def.defaultText()</p>
@@ -117,7 +117,7 @@
 <p id=94 class="line"><span>&nbsp;&nbsp;94</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.cfg.baseSVG.select(<quote>'.axes'</quote>)</p>
 <p id=95 class="line"><span>&nbsp;&nbsp;95</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>'color'</quote>,&nbsp;this.cfg.defaults.axes.color);</p>
 <p id=96 class="line"><span>&nbsp;&nbsp;96</span></p>
-<p id=97 class="line"><span>&nbsp;&nbsp;97</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setLine(this.svg,&nbsp;style.line);</p>
+<p id=97 class="line"><span>&nbsp;&nbsp;97</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setStroke(this.svg,&nbsp;style.line);</p>
 <p id=98 class="line"><span>&nbsp;&nbsp;98</span></p>
 <p id=99 class="line"><span>&nbsp;&nbsp;99</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(this.dir===Direction.horizontal)&nbsp;{</p>
 <p id=100 class="line"><span>&nbsp;100</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;axis&nbsp;=&nbsp;axisTop(horScales);</p>
@@ -132,7 +132,7 @@
 <p id=109 class="line"><span>&nbsp;109</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setText(this.svg,&nbsp;style.tickLabel);</p>
 <p id=110 class="line"><span>&nbsp;110</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.svg.attr(<quote>'color'</quote>,&nbsp;style.color);</p>
 <p id=111 class="line"><span>&nbsp;111</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.svg.transition(d3Transition).call(axis);</p>
-<p id=112 class="line"><span>&nbsp;112</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setLine(this.svg.selectAll(<quote>'text'</quote>),&nbsp;style.tickLabel);</p>
+<p id=112 class="line"><span>&nbsp;112</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setStroke(this.svg.selectAll(<quote>'text'</quote>),&nbsp;style.tickLabel);</p>
 <p id=113 class="line"><span>&nbsp;113</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
 <p id=114 class="line"><span>&nbsp;114</span>}</p></code></div>
                 </body>

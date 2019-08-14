@@ -34,7 +34,7 @@
 <p id=11 class="line"><span>&nbsp;&nbsp;11</span>import&nbsp;{&nbsp;d3Base&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Settings'</quote>;</p>
 <p id=12 class="line"><span>&nbsp;&nbsp;12</span>import&nbsp;{&nbsp;Line&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Settings'</quote>;</p>
 <p id=13 class="line"><span>&nbsp;&nbsp;13</span>import&nbsp;{&nbsp;defaultLine&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Settings'</quote>;</p>
-<p id=14 class="line"><span>&nbsp;&nbsp;14</span>import&nbsp;{&nbsp;setLine&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Settings'</quote>;</p>
+<p id=14 class="line"><span>&nbsp;&nbsp;14</span>import&nbsp;{&nbsp;setStroke&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Settings'</quote>;</p>
 <p id=15 class="line"><span>&nbsp;&nbsp;15</span>import&nbsp;{&nbsp;Direction&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Axis'</quote>;</p>
 <p id=16 class="line"><span>&nbsp;&nbsp;16</span>&nbsp;</p>
 <p id=17 class="line"><span>&nbsp;&nbsp;17</span>export&nbsp;enum&nbsp;MajorMinor&nbsp;{</p>
@@ -105,7 +105,7 @@
 <p id=82 class="line"><span>&nbsp;&nbsp;82</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;scaleX&nbsp;=&nbsp;this.cfg.scales.hor;</p>
 <p id=83 class="line"><span>&nbsp;&nbsp;83</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;scaleY&nbsp;=&nbsp;this.cfg.scales.ver;</p>
 <p id=84 class="line"><span>&nbsp;&nbsp;84</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;style&nbsp;=&nbsp;this.cfg.defaults.grids[this.dir][this.type];</p>
-<p id=85 class="line"><span>&nbsp;&nbsp;85</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setLine(this.svg,&nbsp;style);</p>
+<p id=85 class="line"><span>&nbsp;&nbsp;85</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setStroke(this.svg,&nbsp;style);</p>
 <p id=86 class="line"><span>&nbsp;&nbsp;86</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;c&nbsp;=&nbsp;{</p>
 <p id=87 class="line"><span>&nbsp;&nbsp;87</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;range:&nbsp;&nbsp;this.hor?&nbsp;scales[<quote>'hor'</quote>].range&nbsp;:&nbsp;scales[<quote>'ver'</quote>].range,</p>
 <p id=88 class="line"><span>&nbsp;&nbsp;88</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scale:&nbsp;&nbsp;this.hor?&nbsp;scaleY&nbsp;:&nbsp;scaleX,&nbsp;&nbsp;</p>

@@ -1398,7 +1398,7 @@
 														"name": "Line",
 														"id": 10
 													},
-													"defaultValue": "       def.defaultLine(2)"
+													"defaultValue": "       def.defaultLine(1)"
 												},
 												{
 													"id": 275,
@@ -8760,61 +8760,6 @@
 					]
 				},
 				{
-					"id": 48,
-					"name": "setLine",
-					"kind": 64,
-					"kindString": "Function",
-					"flags": {
-						"isExported": true
-					},
-					"signatures": [
-						{
-							"id": 49,
-							"name": "setLine",
-							"kind": 4096,
-							"kindString": "Call signature",
-							"flags": {},
-							"parameters": [
-								{
-									"id": 50,
-									"name": "svg",
-									"kind": 32768,
-									"kindString": "Parameter",
-									"flags": {},
-									"type": {
-										"type": "reference",
-										"name": "d3Base",
-										"id": 32
-									}
-								},
-								{
-									"id": 51,
-									"name": "settings",
-									"kind": 32768,
-									"kindString": "Parameter",
-									"flags": {},
-									"type": {
-										"type": "reference",
-										"name": "Line",
-										"id": 10
-									}
-								}
-							],
-							"type": {
-								"type": "intrinsic",
-								"name": "void"
-							}
-						}
-					],
-					"sources": [
-						{
-							"fileName": "Settings.ts",
-							"line": 104,
-							"character": 23
-						}
-					]
-				},
-				{
 					"id": 67,
 					"name": "setRect",
 					"kind": 64,
@@ -8866,6 +8811,61 @@
 							"fileName": "Settings.ts",
 							"line": 139,
 							"character": 23
+						}
+					]
+				},
+				{
+					"id": 48,
+					"name": "setStroke",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 49,
+							"name": "setStroke",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 50,
+									"name": "svg",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "d3Base",
+										"id": 32
+									}
+								},
+								{
+									"id": 51,
+									"name": "settings",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "Line",
+										"id": 10
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "Settings.ts",
+							"line": 104,
+							"character": 25
 						}
 					]
 				},
@@ -8969,8 +8969,8 @@
 						62,
 						71,
 						58,
-						48,
 						67,
+						48,
 						74
 					]
 				}

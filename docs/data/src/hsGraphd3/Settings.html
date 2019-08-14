@@ -124,7 +124,7 @@
 <p id=101 class="line"><span>&nbsp;101</span>&nbsp;&nbsp;&nbsp;&nbsp;};</p>
 <p id=102 class="line"><span>&nbsp;102</span>};</p>
 <p id=103 class="line"><span>&nbsp;103</span></p>
-<p id=104 class="line"><span>&nbsp;104</span>export&nbsp;function&nbsp;setLine(svg:d3Base,&nbsp;settings:d.Line)&nbsp;{</p>
+<p id=104 class="line"><span>&nbsp;104</span>export&nbsp;function&nbsp;setStroke(svg:d3Base,&nbsp;settings:d.Line)&nbsp;{</p>
 <p id=105 class="line"><span>&nbsp;105</span>&nbsp;&nbsp;&nbsp;&nbsp;svg&nbsp;</p>
 <p id=106 class="line"><span>&nbsp;106</span>&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>'stroke'</quote>,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;settings.color)</p>
 <p id=107 class="line"><span>&nbsp;107</span>&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>'stroke-width'</quote>,&nbsp;&nbsp;&nbsp;settings.width)</p>
@@ -162,7 +162,7 @@
 <p id=139 class="line"><span>&nbsp;139</span>export&nbsp;function&nbsp;setRect(svg:d3Base,&nbsp;settings:d.RectStyle)&nbsp;{</p>
 <p id=140 class="line"><span>&nbsp;140</span>&nbsp;&nbsp;&nbsp;&nbsp;svg&nbsp;.attr(<quote>'rx'</quote>,&nbsp;settings.rx)</p>
 <p id=141 class="line"><span>&nbsp;141</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>'ry'</quote>,&nbsp;settings.ry);</p>
-<p id=142 class="line"><span>&nbsp;142</span>&nbsp;&nbsp;&nbsp;&nbsp;setLine(svg,&nbsp;settings.stroke);</p>
+<p id=142 class="line"><span>&nbsp;142</span>&nbsp;&nbsp;&nbsp;&nbsp;setStroke(svg,&nbsp;settings.stroke);</p>
 <p id=143 class="line"><span>&nbsp;143</span>&nbsp;&nbsp;&nbsp;&nbsp;setFill(svg,&nbsp;settings.fill);&nbsp;</p>
 <p id=144 class="line"><span>&nbsp;144</span>}</p>
 <p id=145 class="line"><span>&nbsp;145</span></p>

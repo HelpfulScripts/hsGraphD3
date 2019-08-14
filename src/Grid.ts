@@ -11,7 +11,7 @@ import { GraphCfg }         from './GraphComponent';
 import { d3Base }           from './Settings';
 import { Line }             from './Settings';
 import { defaultLine }      from './Settings';
-import { setLine }          from './Settings';
+import { setStroke }          from './Settings';
 import { Direction }        from './Axis';
  
 export enum MajorMinor {
@@ -82,7 +82,7 @@ export class Grid {
         const scaleX = this.cfg.scales.hor;
         const scaleY = this.cfg.scales.ver;
         const style = this.cfg.defaults.grids[this.dir][this.type];
-        setLine(this.svg, style);
+        setStroke(this.svg, style);
         const c = {
             range:  this.hor? scales['hor'].range : scales['ver'].range,
             scale:  this.hor? scaleY : scaleX,  

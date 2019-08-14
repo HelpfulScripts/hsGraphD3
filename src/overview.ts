@@ -15,7 +15,16 @@
  * 3. render the graph for a given data set: `graph.render(data);`
  * 
  * ## Data
- * Data is provided either as a [`Data`](https://helpfulscripts.github.io/hsDatab/#!/api/hsDatab/0) object, or in the form 
+ * Data is provided either as a [`Data`](https://helpfulscripts.github.io/hsDatab/#!/api/hsDatab/0) object, 
+ * or in table form
+ * ```
+ * [
+ *      colNames[],
+ *      <number|string|Date>[],
+ *      ...
+ * ]
+ * ```
+ * or in object-literal form 
  * ```
  * {
  * name?:  string;

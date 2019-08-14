@@ -101,7 +101,7 @@ export const defaultLine = (width:UnitVp, color:d.Color='currentColor'):d.Line =
     };
 };
 
-export function setLine(svg:d3Base, settings:d.Line) {
+export function setStroke(svg:d3Base, settings:d.Line) {
     svg 
     .attr('stroke',         settings.color)
     .attr('stroke-width',   settings.width)
@@ -139,7 +139,7 @@ export const defaultRect = (areaFill:d.Color, borderWidth:UnitVp=0, borderColor:
 export function setRect(svg:d3Base, settings:d.RectStyle) {
     svg .attr('rx', settings.rx)
         .attr('ry', settings.ry);
-    setLine(svg, settings.stroke);
+    setStroke(svg, settings.stroke);
     setFill(svg, settings.fill); 
 }
 

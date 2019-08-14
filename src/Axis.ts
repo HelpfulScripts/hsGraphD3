@@ -14,7 +14,7 @@ import * as def             from './Settings';
 import { ScaleDefaults }    from './Scale';
 import { UnitVp, d3Base }   from './Settings';
 import { setText }          from './Settings';
-import { setLine }          from './Settings';
+import { setStroke }          from './Settings';
 import { d3Transition }     from './Settings';
 
 export enum Direction {
@@ -78,7 +78,7 @@ export class Axis {
     public createDefaults() {
         return {
             color:      'currentColor',
-            line:       def.defaultLine(2),
+            line:       def.defaultLine(1),
             tickWidth:  10,
             tickMarks:  def.defaultLine(2),
             tickLabel:  def.defaultText()
@@ -94,7 +94,7 @@ export class Axis {
         this.cfg.baseSVG.select('.axes')
             .attr('color', this.cfg.defaults.axes.color);
 
-        setLine(this.svg, style.line);
+        setStroke(this.svg, style.line);
 
         if (this.dir===Direction.horizontal) {
             axis = axisTop(horScales);
@@ -109,6 +109,6 @@ export class Axis {
         setText(this.svg, style.tickLabel);
         this.svg.attr('color', style.color);
         this.svg.transition(d3Transition).call(axis);
-        setLine(this.svg.selectAll('text'), style.tickLabel);
+        setStroke(this.svg.selectAll('text'), style.tickLabel);
     }
 }

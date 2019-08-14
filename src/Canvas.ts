@@ -51,6 +51,6 @@ export class Canvas extends gc.GraphComponent {
             .attr('rx', canvas.rx)
             .attr('ry', canvas.ry)
             .attr('fill-opacity', 0);
-        def.setLine(d3Select('.graphBorder'), canvas.stroke);
+        def.setStroke(d3Select('.graphBorder'), canvas.stroke);
     }
 }

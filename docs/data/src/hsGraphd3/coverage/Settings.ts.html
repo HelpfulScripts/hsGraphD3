@@ -479,7 +479,7 @@ export const defaultLine = (width:UnitVp, color:d.Color='currentColor'):d.Line =
     };
 };
 &nbsp;
-export function <span class="fstat-no" title="function not covered" >setLine(</span>svg:d3Base, settings:d.Line) {
+export function <span class="fstat-no" title="function not covered" >setStroke(</span>svg:d3Base, settings:d.Line) {
 <span class="cstat-no" title="statement not covered" >    svg </span>
     .attr('stroke',         settings.color)
     .attr('stroke-width',   settings.width)
@@ -517,7 +517,7 @@ export const defaultRect = <span class="fstat-no" title="function not covered" >
 export function <span class="fstat-no" title="function not covered" >setRect(</span>svg:d3Base, settings:d.RectStyle) {
 <span class="cstat-no" title="statement not covered" >    svg .attr('rx', settings.rx)</span>
         .attr('ry', settings.ry);
-<span class="cstat-no" title="statement not covered" >    setLine(svg, settings.stroke);</span>
+<span class="cstat-no" title="statement not covered" >    setStroke(svg, settings.stroke);</span>
 <span class="cstat-no" title="statement not covered" >    setFill(svg, settings.fill); </span>
 }
 &nbsp;

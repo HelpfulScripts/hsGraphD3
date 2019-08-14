@@ -288,7 +288,7 @@ import * as def             from './Settings';
 import { ScaleDefaults }    from './Scale';
 import { UnitVp, d3Base }   from './Settings';
 import { setText }          from './Settings';
-import { setLine }          from './Settings';
+import { setStroke }          from './Settings';
 import { d3Transition }     from './Settings';
 &nbsp;
 export enum Direction {
@@ -352,7 +352,7 @@ export class Axis {
     public createDefaults() {
         return {
             color:      'currentColor',
-            line:       def.defaultLine(2),
+            line:       def.defaultLine(1),
             tickWidth:  10,
             tickMarks:  def.defaultLine(2),
             tickLabel:  def.defaultText()
@@ -368,7 +368,7 @@ export class Axis {
 <span class="cstat-no" title="statement not covered" >        this.cfg.baseSVG.select('.axes')</span>
             .attr('color', this.cfg.defaults.axes.color);
 &nbsp;
-<span class="cstat-no" title="statement not covered" >        setLine(this.svg, style.line);</span>
+<span class="cstat-no" title="statement not covered" >        setStroke(this.svg, style.line);</span>
 &nbsp;
 <span class="cstat-no" title="statement not covered" >        if (this.dir===Direction.horizontal) {</span>
 <span class="cstat-no" title="statement not covered" >            axis = axisTop(horScales);</span>
@@ -383,7 +383,7 @@ export class Axis {
 <span class="cstat-no" title="statement not covered" >        setText(this.svg, style.tickLabel);</span>
 <span class="cstat-no" title="statement not covered" >        this.svg.attr('color', style.color);</span>
 <span class="cstat-no" title="statement not covered" >        this.svg.transition(d3Transition).call(axis);</span>
-<span class="cstat-no" title="statement not covered" >        setLine(this.svg.selectAll('text'), style.tickLabel);</span>
+<span class="cstat-no" title="statement not covered" >        setStroke(this.svg.selectAll('text'), style.tickLabel);</span>
     }
 }</pre></td></tr>
 </table></pre>
