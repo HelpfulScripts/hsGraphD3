@@ -43,7 +43,7 @@ Optionally, adjust some settings:
 ```
 graph.defaults.axes.color = '#00a';
 ```
-See [Defaults](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.Defaults) for a list of all available settings.
+See [Settings](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.Settings) for a list of all available settings.
 
 Render the graph:
 ```
