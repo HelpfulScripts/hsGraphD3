@@ -3,19 +3,17 @@
  */
 
 import { log as gLog }          from 'hsutil';   const log = gLog('Bubble');
-import * as d3                  from "d3";
+import { scaleLinear }          from "d3";
 import { Data }                 from 'hsdatab';
 import { NumDomain }            from 'hsdatab';
 import { SeriesPlot }           from '../SeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
-import { Series }               from '../Plot';
+import { Series }               from '../Series';
 import { d3Base }               from '../Defaults';
 import { GraphCfg }             from '../GraphComponent'; 
 import * as def                 from '../Defaults';
 import { defaultDimScale}       from '../Scale';
-import { ScaleDefaults}         from '../Scale';
 
-const DEF_RADIUS:number = 5;
 
 class Bubble extends SeriesPlot {
     /**
@@ -53,11 +51,12 @@ class Bubble extends SeriesPlot {
         const ix = data.colNumber(this.cx);
         const iy = data.colNumber(this.cy);
         const ir = data.colNumber(this.r);
-        const scaleX = this.cfg.scales.hor.scale;
-        const scaleY = this.cfg.scales.ver.scale;
+        const scaleX = this.cfg.scales.hor;
+        const scaleY = this.cfg.scales.ver;
         const defR = this.cfg.defaults.scales.dims[this.r];
-        const scaleR = d3.scaleLinear().domain(<NumDomain>data.findDomain(this.r)).range([defR.range.min, defR.range.max]);
+        const scaleR = scaleLinear().domain(<NumDomain>data.findDomain(this.r)).range([defR.range.min, defR.range.max]);
         const circles = this.svg.selectAll("circle").data(data.getData());
+        const defaults = this.cfg.defaults.series[this.key];
             
         circles.exit().remove();            // remove unneeded circles
         circles.enter().append('circle');   // add new circles
@@ -65,7 +64,7 @@ class Bubble extends SeriesPlot {
         circles.transition().duration(1000)
             .attr("cx", (d:number[]) => scaleX(<number>d[ix]))
             .attr("cy", (d:number[]) => scaleY(<number>d[iy]))
-            .attr("r",  (d:number[]) => scaleR(ir===undefined? DEF_RADIUS : <number>d[ir]))
+            .attr("r",  (d:number[]) => scaleR(ir===undefined? defaults.marker.size : <number>d[ir]))
             .attr('fill', (d:number[],i:number) => ['#f00', '#0f0', '#00f', '#ff0', '#f0f', '#0ff'][i])
             ;        
     }

@@ -29,15 +29,25 @@ export abstract class SeriesPlot {
     /** the render tree configuration */
     protected cfg: GraphCfg;
 
+    /** the unique series key assigned during cinstruction, used to index the series settings. */
+    protected seriesKey:string;
+
+    /** 
+     * a list of data column names used,
+     * reflecting the list of column names provided during construction.
+     */
+    protected dims: string[] = [];
+
     constructor(cfg:GraphCfg, svgBase:d3Base, ...params:string[]) {
         this.cfg = cfg; 
         this.svg = svgBase; 
-        const scales = this.cfg.defaults.scales.dims;
-        this.cfg.scales.hor.dataCol = params[0]; // x
-        this.cfg.scales.ver.dataCol = params[1]; // y
-        scales[params[0]] = scales[params[0]] || scales['hor'] || defaultDimScale(0, 1);
-        scales[params[1]] = scales[params[1]] || scales['ver'] || defaultDimScale(0, 1);
+        this.seriesKey = svgBase.attr('class');
+        this.dims = params;
     }
+
+    get key() { return this.seriesKey; }
+
+    get dimensions() { return this.dims; }
 
     /** set the defaults for the series. */
     abstract getDefaults(): SeriesPlotDefaults;

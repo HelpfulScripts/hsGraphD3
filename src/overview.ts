@@ -35,7 +35,7 @@
  * };
  * 
  * // setup and plot the data:
- * const graph = new hsGraphD3.Graph2DCartesian(root);
+ * const graph = new hsGraphD3.GraphCartesian(root);
  * graph.addSeries('bubble', 'time', 'volume', 'costs');
  * 
  * const def = graph.defaults;

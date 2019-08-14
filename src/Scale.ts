@@ -5,12 +5,22 @@
 
 import { ComponentDefaults }    from './GraphComponent'; 
 import { GraphComponent }       from './GraphComponent'; 
-import { scaleTypes, UnitVp }   from './Defaults';
+import { UnitVp }               from './Defaults';
+import { scaleLinear }          from 'd3'; 
+
+export type scaleTypes = 'linear' | 'log';
+
+export interface NumericDefaults {
+    min: number|'auto';
+    max: number|'auto';
+}
+
+export type CategoricalDefaults = string[];
 
 export interface ScaleDimDefaults extends ComponentDefaults {
     type:   scaleTypes;
-    domain: {min: number|'auto', max: number|'auto'} | string[];
-    range:  { min: UnitVp, max: UnitVp };    
+    domain: NumericDefaults | CategoricalDefaults;
+    range:  { min: UnitVp|'auto', max: UnitVp|'auto' };    
 }
 
 export interface ScaleDefaults extends ComponentDefaults {
@@ -20,11 +30,14 @@ export interface ScaleDefaults extends ComponentDefaults {
     };
 }
 
-export const defaultDimScale = (minRange=0, maxRange=1):ScaleDimDefaults => { 
+export const defaultDimScale = (minRange?:UnitVp, maxRange?:UnitVp):ScaleDimDefaults => { 
     return {
         type:   'linear',
-        domain: {min: 'auto', max: 'auto'},         //  data domain
-        range:  { min: minRange, max: maxRange }    //  canvas range
+        domain: {min: 'auto', max: 'auto'},     //  data domain
+        range:  {                               //  canvas range
+            min: minRange || 'auto', 
+            max: maxRange || 'auto' 
+        }    
     };
 };
 
@@ -44,5 +57,31 @@ export class Scales extends GraphComponent {
             dims: {}
         };
     }
+
+
+    /**
+     * creates a d3 scale object based on the provided settings.
+     * @param scaleDef scale defaults, possibly modified by the application
+     * @param domain the data domain to scale for
+     * @param range the viewport range to scale for 
+     */
+    public static createScale(scaleDef: ScaleDimDefaults, domain: [number, number], range: UnitVp[]):d3.ScaleContinuousNumeric<number, number> {
+        const domDef = <NumericDefaults>scaleDef.domain;
+        const rangeDef = scaleDef.range;
+        switch(scaleDef.type) {
+            case 'linear':
+            default:
+                return scaleLinear()
+                    .domain([
+                        domDef.min === 'auto'? domain[0] : domDef.min,
+                        domDef.max === 'auto'? domain[1] : domDef.max
+                    ])
+                    .range([
+                        rangeDef.min === 'auto'? range[0] : rangeDef.min, 
+                        rangeDef.max === 'auto'? range[1] : rangeDef.max
+                    ]);
+            }
+    }
+
 }
 

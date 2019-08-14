@@ -7,12 +7,12 @@
 import { log as gLog }      from 'hsutil';   const log = gLog('AbstractGraph');
 import { Data, DataTable, DataSet }  from 'hsdatab';
 
-import * as d3              from 'd3';
+import { select as d3Select}from 'd3';
 
 import { GraphComponent}    from './GraphComponent';
 import { ComponentDefaults} from './GraphComponent';
 import { GraphCfg}          from './GraphComponent';
-import { Series }             from './Plot';
+import { Series }           from './Series';
 import { Scales }           from './Scale';
 import { Axes }             from './Axis';
 import { Grids }            from './Grid';
@@ -31,7 +31,7 @@ export abstract class AbstractGraph {
     protected config: GraphCfg;
 
     /** the plot component, provides access to individual series components */
-    protected plot:Series;
+    protected series:Series;
 
     /** the list of components to render */
     private components: GraphComponent[] = [];
@@ -72,7 +72,7 @@ export abstract class AbstractGraph {
      */
     public addSeries(type:string, x:string, y:string, ...params:string[]) {
         this.resize();
-        this.plot.addSeries(type, x, y, ...params);
+        this.series.addSeries(type, x, y, ...params);
     }
 
 
@@ -99,7 +99,7 @@ export abstract class AbstractGraph {
             new Scales(),
             new Canvas(this.config),
             new Grids(this.config),
-            this.plot = new Series(this.config),
+            this.series = new Series(this.config),
             new Axes(this.config)
         ];
     }
@@ -124,7 +124,7 @@ export abstract class AbstractGraph {
      * @param cfg 
      */
     private createBaseSVG(cfg: GraphCfg):d3Base {
-        const svg = d3.select(this.root).append('svg')
+        const svg = d3Select(this.root).append('svg')
             .classed('baseSVG', true)
             .attr('height', '100%')
             .attr('width', '100%')

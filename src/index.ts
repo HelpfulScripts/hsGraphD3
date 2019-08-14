@@ -1,4 +1,4 @@
-export { Graph2DCartesian }    from './Graph2DCartesian';
+export { GraphCartesian }    from './GraphCartesian';
 
 /** register available plot classes */
 import './plots/Bubble'; 

@@ -7,8 +7,9 @@
 import { Data }         from 'hsdatab';
 import { DefaultsType } from './Defaults';
 import { d3Base }       from './Defaults';
-import { RectDef }       from './Defaults';
+import { RectDef }      from './Defaults';
 import { UnitVp }       from './Defaults';
+
 
 /** 
  * Configuration parameters for the render tree, passed to each `GraphComponent` during construction. 
@@ -37,7 +38,7 @@ export interface GraphCfg {
      * @param dataCol the name of the data column that will be plotted along this axis
      * @param scale a d3js scale used for scaling
      */    
-    scales: { [dim:string]:  { dataCol: string, scale: d3.ScaleContinuousNumeric<number, number>}};
+    scales: { [dim:string]:  d3.ScaleContinuousNumeric<number, number>};
 }
 
 /**

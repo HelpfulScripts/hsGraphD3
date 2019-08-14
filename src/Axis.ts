@@ -3,8 +3,9 @@
  * 
  */
 
- /** */
- import * as d3             from 'd3';
+/** */
+import { axisTop }          from 'd3';
+import { axisRight }        from 'd3';
 import { log as gLog }      from 'hsutil';   const log = gLog('Axis');
 import { GraphComponent }   from './GraphComponent'; 
 import { GraphCfg }         from './GraphComponent';
@@ -83,7 +84,8 @@ export class Axis {
     }
     
     public renderComponent() {
-        const scales = this.cfg.scales;
+        const horScales = this.cfg.scales.hor;
+        const verScales = this.cfg.scales.ver;
         const style = this.cfg.defaults.axes[this.dir];
         let axis;
         const margins = (<ScaleDefaults>this.cfg.defaults.scales).margin;
@@ -95,12 +97,12 @@ export class Axis {
             .attr('stroke-opacity', style.line.opacity);
 
         if (this.dir===Direction.horizontal) {
-            axis = d3.axisTop(scales.hor.scale);
-            const yCrossing = Math.max(margins.left, Math.min(scales.ver.scale(0), this.cfg.viewPort.height-margins.right));
+            axis = axisTop(horScales);
+            const yCrossing = Math.max(margins.left, Math.min(verScales(0), this.cfg.viewPort.height-margins.right));
             this.svg.attr("transform", `translate(0, ${yCrossing})`);
         } else {
-            axis = d3.axisRight(scales.ver.scale);
-            const xCrossing = Math.max(margins.top, Math.min(scales.hor.scale(0), this.cfg.viewPort.width-margins.bottom));
+            axis = axisRight(verScales);
+            const xCrossing = Math.max(margins.top, Math.min(horScales(0), this.cfg.viewPort.width-margins.bottom));
             this.svg.attr("transform", `translate(${xCrossing}, 0)`);
         }
         axis.tickSize(style.tickWidth);

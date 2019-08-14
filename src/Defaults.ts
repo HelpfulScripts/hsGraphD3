@@ -5,6 +5,35 @@
  * as well as 
  * The table below shows a list of available formatting 
  * 
+ * ### Accessible format setting and defaults (for a cartesian graph):
+ * <example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
+ * <file name='script.js'>
+ * const log = hsUtil.log('');
+ * let defaults;
+ * 
+ * function createGraph(svgRoot) {
+ *      const graph = new hsGraphD3.GraphCartesian(svgRoot[0]);
+ *      graph.addSeries('bubble', 'time', 'volume', 'costs');
+ *      graph.defaults.canvas.stroke.width = 7.8; // odd number, should appear on the left
+ *      return graph.defaults;
+ * }
+ * 
+ * m.mount(root, {
+ *   view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [
+ *      m('div', m.trust('graph.defaults = ' + defaults)), 
+ *      m('div.myGraph', '')
+ *   ]),
+ *   oncreate: () => {
+ *      const svgRoot = root.getElementsByClassName('myGraph');
+ *      if (svgRoot && svgRoot.length && !defaults) { 
+ *          const colors = ['#800', '#080', '#008'];
+ *          defaults = hsUtil.log.inspect(createGraph(svgRoot), null, '   ', colors)
+ *              .replace(/\n/g, '<br>')
+ *      }
+ *   } 
+ * });
+ * </file>
+ * </example>
  */
 
 /** */
@@ -24,8 +53,6 @@ export type UnitPx = number;
 export type Unit = string|UnitPx;   // general CSS unit type
 
 export interface RectDef { x:UnitVp; y:UnitVp; width:UnitVp; height:UnitVp; }
-
-export type scaleTypes = 'linear' | 'log';
 
 export type d3Base = d3.Selection<d3.BaseType, unknown, HTMLElement, any>; 
 
@@ -63,7 +90,6 @@ export interface TextStyle {
         weight: string;     // 'normal', 'bold'
     };
 }
-
 
 export const defaultLine = (width:UnitVp, color:d.Color='currentColor'):d.Line => {
     return {

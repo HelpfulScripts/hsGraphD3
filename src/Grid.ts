@@ -78,8 +78,8 @@ export class Grid {
     renderComponent() {
         const count = this.type===MajorMinor.major? 2 : 10;
         const scales = this.cfg.defaults.scales.dims;
-        const scaleX = this.cfg.scales.hor.scale;
-        const scaleY = this.cfg.scales.ver.scale;
+        const scaleX = this.cfg.scales.hor;
+        const scaleY = this.cfg.scales.ver;
         const style = this.cfg.defaults.grids[this.dir][this.type];
         this.svg
             .attr('stroke', style.color)
