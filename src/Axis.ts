@@ -10,10 +10,12 @@ import { log as gLog }      from 'hsutil';   const log = gLog('Axis');
 import { GraphComponent }   from './GraphComponent'; 
 import { GraphCfg }         from './GraphComponent';
 import { ComponentDefaults }from './GraphComponent';
-import * as def             from './Defaults';
+import * as def             from './Settings';
 import { ScaleDefaults }    from './Scale';
-import { UnitVp, d3Base }   from './Defaults';
-
+import { UnitVp, d3Base }   from './Settings';
+import { setText }          from './Settings';
+import { setLine }          from './Settings';
+import { d3Transition }     from './Settings';
 
 export enum Direction {
     horizontal  = 'hor',
@@ -87,35 +89,26 @@ export class Axis {
         const horScales = this.cfg.scales.hor;
         const verScales = this.cfg.scales.ver;
         const style = this.cfg.defaults.axes[this.dir];
-        let axis;
+        let axis:any;
         const margins = (<ScaleDefaults>this.cfg.defaults.scales).margin;
         this.cfg.baseSVG.select('.axes')
             .attr('color', this.cfg.defaults.axes.color);
-        this.svg
-            .attr('stroke', style.line.color)
-            .attr('stroke-width', style.line.width)
-            .attr('stroke-opacity', style.line.opacity);
+
+        setLine(this.svg, style.line);
 
         if (this.dir===Direction.horizontal) {
             axis = axisTop(horScales);
             const yCrossing = Math.max(margins.left, Math.min(verScales(0), this.cfg.viewPort.height-margins.right));
-            this.svg.attr("transform", `translate(0, ${yCrossing})`);
+            this.svg.transition(d3Transition).attr("transform", `translate(0, ${yCrossing})`);
         } else {
             axis = axisRight(verScales);
             const xCrossing = Math.max(margins.top, Math.min(horScales(0), this.cfg.viewPort.width-margins.bottom));
-            this.svg.attr("transform", `translate(${xCrossing}, 0)`);
+            this.svg.transition(d3Transition).attr("transform", `translate(${xCrossing}, 0)`);
         }
         axis.tickSize(style.tickWidth);
-        this.svg
-            .attr('color', style.color)
-            .style('font-family',  style.tickLabel.font.family)
-            .style('font-size',   `${style.tickLabel.font.size}px`)
-            .style('font-style',  style.tickLabel.font.style)
-            .style('font-weight', style.tickLabel.font.weight);
-        this.svg.call(axis);
-        this.svg.selectAll('text')
-            .transition().duration(1000)
-            .attr('stroke', style.tickLabel.color || 'currentColor')
-            .attr('stroke-width', 1);
-        }
+        setText(this.svg, style.tickLabel);
+        this.svg.attr('color', style.color);
+        this.svg.transition(d3Transition).call(axis);
+        setLine(this.svg.selectAll('text'), style.tickLabel);
+    }
 }

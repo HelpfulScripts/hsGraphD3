@@ -8,7 +8,7 @@
 import { Data }             from 'hsdatab';
 import { NumDomain }        from 'hsdatab';
 import { log as gLog }      from 'hsutil';   const log = gLog('Plot');
-import { d3Base }           from './Defaults';
+import { d3Base }           from './Settings';
 import { GraphComponent }   from './GraphComponent'; 
 import { ComponentDefaults }from './GraphComponent'; 
 import { GraphCfg }         from './GraphComponent'; 

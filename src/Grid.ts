@@ -8,9 +8,10 @@ import { log as gLog }      from 'hsutil';   const log = gLog('Grid');
 import { GraphComponent }   from './GraphComponent'; 
 import { ComponentDefaults }from './GraphComponent'; 
 import { GraphCfg }         from './GraphComponent';
-import { d3Base }           from './Defaults';
-import { Line }             from './Defaults';
-import { defaultLine }      from './Defaults';
+import { d3Base }           from './Settings';
+import { Line }             from './Settings';
+import { defaultLine }      from './Settings';
+import { setLine }          from './Settings';
 import { Direction }        from './Axis';
  
 export enum MajorMinor {
@@ -81,10 +82,7 @@ export class Grid {
         const scaleX = this.cfg.scales.hor;
         const scaleY = this.cfg.scales.ver;
         const style = this.cfg.defaults.grids[this.dir][this.type];
-        this.svg
-            .attr('stroke', style.color)
-            .attr('stroke-width', style.width)
-            .attr('stroke-opacity', style.opacity);
+        setLine(this.svg, style);
         const c = {
             range:  this.hor? scales['hor'].range : scales['ver'].range,
             scale:  this.hor? scaleY : scaleX,  

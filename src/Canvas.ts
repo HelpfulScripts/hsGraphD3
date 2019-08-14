@@ -2,7 +2,7 @@
 
 import { select as d3Select }   from 'd3'; 
 import * as gc                  from './GraphComponent'; 
-import * as def                 from './Defaults';
+import * as def                 from './Settings';
 
 export interface CanvasDefaults extends gc.ComponentDefaults, def.RectStyle { }
 
@@ -43,17 +43,14 @@ export class Canvas extends gc.GraphComponent {
             .attr('height', this.cfg.viewPort.height)
             .attr('rx', canvas.rx)
             .attr('ry', canvas.ry)
-            .attr('stroke-width', 0)
-            .attr('fill', canvas.fill.color)
-            .attr('fill-opacity', canvas.fill.opacity);
+            .attr('stroke-width', 0);
+        def.setFill(d3Select('.graphArea'), canvas.fill);
         d3Select('.graphBorder')
             .attr('width', this.cfg.viewPort.width)
             .attr('height', this.cfg.viewPort.height)
             .attr('rx', canvas.rx)
             .attr('ry', canvas.ry)
-            .attr('stroke', canvas.stroke.color)
-            .attr('stroke-width', canvas.stroke.width)
-            .attr('stroke-opacity', canvas.stroke.opacity)
             .attr('fill-opacity', 0);
+        def.setLine(d3Select('.graphBorder'), canvas.stroke);
     }
 }

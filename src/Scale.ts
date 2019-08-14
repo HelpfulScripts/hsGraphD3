@@ -5,7 +5,7 @@
 
 import { ComponentDefaults }    from './GraphComponent'; 
 import { GraphComponent }       from './GraphComponent'; 
-import { UnitVp }               from './Defaults';
+import { UnitVp }               from './Settings';
 import { scaleLinear }          from 'd3'; 
 
 export type scaleTypes = 'linear' | 'log';

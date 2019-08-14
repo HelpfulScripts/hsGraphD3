@@ -17,8 +17,8 @@ import { Scales }           from './Scale';
 import { Axes }             from './Axis';
 import { Grids }            from './Grid';
 import { Canvas }           from './Canvas';
-import { DefaultsType }     from './Defaults';
-import { d3Base }           from './Defaults';
+import { DefaultsType }     from './Settings';
+import { d3Base }           from './Settings';
 
 const vpWidth:number    = 1000;
 

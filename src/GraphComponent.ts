@@ -5,10 +5,10 @@
 /** */
 
 import { Data }         from 'hsdatab';
-import { DefaultsType } from './Defaults';
-import { d3Base }       from './Defaults';
-import { RectDef }      from './Defaults';
-import { UnitVp }       from './Defaults';
+import { DefaultsType } from './Settings';
+import { d3Base }       from './Settings';
+import { RectDef }      from './Settings';
+import { UnitVp }       from './Settings';
 
 
 /** 

@@ -9,9 +9,9 @@ import { NumDomain }            from 'hsdatab';
 import { SeriesPlot }           from '../SeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { Series }               from '../Series';
-import { d3Base }               from '../Defaults';
+import { d3Base }               from '../Settings';
 import { GraphCfg }             from '../GraphComponent'; 
-import * as def                 from '../Defaults';
+import * as def                 from '../Settings';
 import { defaultDimScale}       from '../Scale';
 
 

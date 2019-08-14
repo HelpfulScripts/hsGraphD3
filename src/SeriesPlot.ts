@@ -4,9 +4,9 @@ import { BaseType }             from 'd3';
 import { Data }                 from 'hsdatab';
 import { defaultDimScale, ScaleDefaults}       from './Scale';
 import { GraphCfg }             from './GraphComponent';
-import { Line, Area }           from './Defaults';
-import { d3Base }               from './Defaults';
-import { UnitVp }               from './Defaults';
+import { Line, Area }           from './Settings';
+import { d3Base }               from './Settings';
+import { UnitVp }               from './Settings';
 
 export type d3Selection = d3.Selection<BaseType, unknown, BaseType, unknown>; 
 
