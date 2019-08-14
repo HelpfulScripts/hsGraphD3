@@ -11,7 +11,8 @@ import { GraphCfg }         from './GraphComponent';
 import { d3Base }           from './Settings';
 import { Line }             from './Settings';
 import { defaultLine }      from './Settings';
-import { setStroke }          from './Settings';
+import { setStroke }        from './Settings';
+import { d3Transition }     from './Settings';
 import { Direction }        from './Axis';
  
 export enum MajorMinor {
@@ -93,7 +94,7 @@ export class Grid {
         gridlines.enter().append('line')    // add new circles
         .attr(`${c.dim.fix}1`, c.range.min)
         .attr(`${c.dim.fix}2`, c.range.max);
-        gridlines.transition().duration(1000)
+        gridlines.transition(d3Transition)
         .attr(`${c.dim.var}1`, d => c.scale(<number>d))
         .attr(`${c.dim.var}2`, d => c.scale(<number>d));
     }

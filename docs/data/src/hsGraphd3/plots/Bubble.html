@@ -84,7 +84,7 @@
 <p id=61 class="line"><span>&nbsp;&nbsp;61</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;circles.exit().remove();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;remove&nbsp;unneeded&nbsp;circles</comment></p>
 <p id=62 class="line"><span>&nbsp;&nbsp;62</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;circles.enter().append(<quote>'circle'</quote>);&nbsp;&nbsp;&nbsp;<comment>//&nbsp;add&nbsp;new&nbsp;circles</comment></p>
 <p id=63 class="line"><span>&nbsp;&nbsp;63</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-<p id=64 class="line"><span>&nbsp;&nbsp;64</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;circles.transition().duration(1000)</p>
+<p id=64 class="line"><span>&nbsp;&nbsp;64</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;circles.transition(def.d3Transition)</p>
 <p id=65 class="line"><span>&nbsp;&nbsp;65</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>"cx"</quote>,&nbsp;(d:number[])&nbsp;=>&nbsp;scaleX(<number>d[ix]))</p>
 <p id=66 class="line"><span>&nbsp;&nbsp;66</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>"cy"</quote>,&nbsp;(d:number[])&nbsp;=>&nbsp;scaleY(<number>d[iy]))</p>
 <p id=67 class="line"><span>&nbsp;&nbsp;67</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>"r"</quote>,&nbsp;&nbsp;(d:number[])&nbsp;=>&nbsp;scaleR(ir===undefined?&nbsp;defaults.marker.size&nbsp;:&nbsp;<number>d[ir]))</p>

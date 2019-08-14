@@ -61,7 +61,7 @@ class Bubble extends SeriesPlot {
         circles.exit().remove();            // remove unneeded circles
         circles.enter().append('circle');   // add new circles
         
-        circles.transition().duration(1000)
+        circles.transition(def.d3Transition)
             .attr("cx", (d:number[]) => scaleX(<number>d[ix]))
             .attr("cy", (d:number[]) => scaleY(<number>d[iy]))
             .attr("r",  (d:number[]) => scaleR(ir===undefined? defaults.marker.size : <number>d[ir]))
