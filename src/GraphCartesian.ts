@@ -96,7 +96,6 @@ export class GraphCartesian extends AbstractGraph {
         this.cumulativeDomains[0] = this.cumulativeDomains[0] || [1e99, -1e99];
         this.cumulativeDomains[1] = this.cumulativeDomains[1] || [1e99, -1e99];
         const domain = this.series.expandDomain(data, this.cumulativeDomains);
-// log.info(`setScales ${log.inspect(this.cumulativeDomains,null)}`);
         scales.hor = Scales.createScale(scalesDefaults.hor, this.cumulativeDomains[0], [0, this.viewport.width]);
         scales.ver = Scales.createScale(scalesDefaults.ver, this.cumulativeDomains[1], [0, this.viewport.height]);
     }

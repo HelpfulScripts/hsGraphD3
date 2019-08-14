@@ -2255,7 +2255,7 @@
 							"sources": [
 								{
 									"fileName": "Defaults.ts",
-									"line": 51,
+									"line": 78,
 									"character": 8
 								}
 							],
@@ -2281,7 +2281,7 @@
 							"sources": [
 								{
 									"fileName": "Defaults.ts",
-									"line": 49,
+									"line": 76,
 									"character": 6
 								}
 							],
@@ -2307,7 +2307,7 @@
 							"sources": [
 								{
 									"fileName": "Defaults.ts",
-									"line": 50,
+									"line": 77,
 									"character": 6
 								}
 							],
@@ -2333,7 +2333,7 @@
 							"sources": [
 								{
 									"fileName": "Defaults.ts",
-									"line": 52,
+									"line": 79,
 									"character": 10
 								}
 							],
@@ -2417,7 +2417,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Defaults.ts",
 			"comment": {
 				"shortText": "# Defaults Configuration",
-				"text": "provides `type` and `interface` declarations for standard svg elements such as texts, lines, areas, etc.\nas well as\nThe table below shows a list of available formatting\n\n"
+				"text": "provides `type` aliases, `interfaces`, and support functions to generate default settings for {@link GraphComponents GraphComponents}.\n\n### Accessible format setting and defaults (for a cartesian graph):\n<example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = hsUtil.log('');\nlet defaults;\n\nfunction createGraph(svgRoot) {\n     const graph = new hsGraphD3.GraphCartesian(svgRoot);\n     graph.addSeries('bubble', 'time', 'volume', 'costs');\n     graph.defaults.canvas.stroke.width = 7.8; // odd number, should appear on the left\n     return graph.defaults;\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.defaults = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = hsUtil.log.inspect(createGraph(svgRoot[0]), null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
 			},
 			"children": [
 				{
@@ -2440,7 +2440,7 @@
 							"sources": [
 								{
 									"fileName": "Defaults.ts",
-									"line": 38,
+									"line": 65,
 									"character": 9
 								}
 							],
@@ -2461,7 +2461,7 @@
 							"sources": [
 								{
 									"fileName": "Defaults.ts",
-									"line": 39,
+									"line": 66,
 									"character": 11
 								}
 							],
@@ -2485,7 +2485,7 @@
 					"sources": [
 						{
 							"fileName": "Defaults.ts",
-							"line": 37,
+							"line": 64,
 							"character": 21
 						}
 					]
@@ -2510,7 +2510,7 @@
 							"sources": [
 								{
 									"fileName": "Defaults.ts",
-									"line": 44,
+									"line": 71,
 									"character": 9
 								}
 							],
@@ -2531,7 +2531,7 @@
 							"sources": [
 								{
 									"fileName": "Defaults.ts",
-									"line": 45,
+									"line": 72,
 									"character": 11
 								}
 							],
@@ -2552,7 +2552,7 @@
 							"sources": [
 								{
 									"fileName": "Defaults.ts",
-									"line": 43,
+									"line": 70,
 									"character": 9
 								}
 							],
@@ -2577,7 +2577,7 @@
 					"sources": [
 						{
 							"fileName": "Defaults.ts",
-							"line": 42,
+							"line": 69,
 							"character": 21
 						}
 					]
@@ -2602,7 +2602,7 @@
 							"sources": [
 								{
 									"fileName": "Defaults.ts",
-									"line": 26,
+									"line": 53,
 									"character": 67
 								}
 							],
@@ -2623,7 +2623,7 @@
 							"sources": [
 								{
 									"fileName": "Defaults.ts",
-									"line": 26,
+									"line": 53,
 									"character": 52
 								}
 							],
@@ -2644,7 +2644,7 @@
 							"sources": [
 								{
 									"fileName": "Defaults.ts",
-									"line": 26,
+									"line": 53,
 									"character": 28
 								}
 							],
@@ -2665,7 +2665,7 @@
 							"sources": [
 								{
 									"fileName": "Defaults.ts",
-									"line": 26,
+									"line": 53,
 									"character": 38
 								}
 							],
@@ -2691,7 +2691,7 @@
 					"sources": [
 						{
 							"fileName": "Defaults.ts",
-							"line": 26,
+							"line": 53,
 							"character": 24
 						}
 					]
@@ -2716,7 +2716,7 @@
 							"sources": [
 								{
 									"fileName": "Defaults.ts",
-									"line": 51,
+									"line": 78,
 									"character": 8
 								}
 							],
@@ -2737,7 +2737,7 @@
 							"sources": [
 								{
 									"fileName": "Defaults.ts",
-									"line": 49,
+									"line": 76,
 									"character": 6
 								}
 							],
@@ -2758,7 +2758,7 @@
 							"sources": [
 								{
 									"fileName": "Defaults.ts",
-									"line": 50,
+									"line": 77,
 									"character": 6
 								}
 							],
@@ -2779,7 +2779,7 @@
 							"sources": [
 								{
 									"fileName": "Defaults.ts",
-									"line": 52,
+									"line": 79,
 									"character": 10
 								}
 							],
@@ -2805,7 +2805,7 @@
 					"sources": [
 						{
 							"fileName": "Defaults.ts",
-							"line": 48,
+							"line": 75,
 							"character": 26
 						}
 					],
@@ -2837,7 +2837,7 @@
 							"sources": [
 								{
 									"fileName": "Defaults.ts",
-									"line": 56,
+									"line": 83,
 									"character": 9
 								}
 							],
@@ -2858,7 +2858,7 @@
 							"sources": [
 								{
 									"fileName": "Defaults.ts",
-									"line": 57,
+									"line": 84,
 									"character": 8
 								}
 							],
@@ -2880,7 +2880,7 @@
 											"sources": [
 												{
 													"fileName": "Defaults.ts",
-													"line": 58,
+													"line": 85,
 													"character": 14
 												}
 											],
@@ -2898,7 +2898,7 @@
 											"sources": [
 												{
 													"fileName": "Defaults.ts",
-													"line": 59,
+													"line": 86,
 													"character": 12
 												}
 											],
@@ -2917,7 +2917,7 @@
 											"sources": [
 												{
 													"fileName": "Defaults.ts",
-													"line": 60,
+													"line": 87,
 													"character": 13
 												}
 											],
@@ -2935,7 +2935,7 @@
 											"sources": [
 												{
 													"fileName": "Defaults.ts",
-													"line": 61,
+													"line": 88,
 													"character": 14
 												}
 											],
@@ -2960,7 +2960,7 @@
 									"sources": [
 										{
 											"fileName": "Defaults.ts",
-											"line": 57,
+											"line": 84,
 											"character": 9
 										}
 									]
@@ -2981,7 +2981,7 @@
 					"sources": [
 						{
 							"fileName": "Defaults.ts",
-							"line": 55,
+							"line": 82,
 							"character": 26
 						}
 					]
@@ -2997,7 +2997,7 @@
 					"sources": [
 						{
 							"fileName": "Defaults.ts",
-							"line": 33,
+							"line": 60,
 							"character": 17
 						}
 					],
@@ -3017,7 +3017,7 @@
 					"sources": [
 						{
 							"fileName": "Defaults.ts",
-							"line": 32,
+							"line": 59,
 							"character": 26
 						}
 					],
@@ -3059,7 +3059,7 @@
 							"sources": [
 								{
 									"fileName": "Defaults.ts",
-									"line": 32,
+									"line": 59,
 									"character": 29
 								}
 							]
@@ -3077,7 +3077,7 @@
 					"sources": [
 						{
 							"fileName": "Defaults.ts",
-							"line": 30,
+							"line": 57,
 							"character": 24
 						}
 					],
@@ -3119,7 +3119,7 @@
 							"sources": [
 								{
 									"fileName": "Defaults.ts",
-									"line": 30,
+									"line": 57,
 									"character": 26
 								}
 							]
@@ -3137,7 +3137,7 @@
 					"sources": [
 						{
 							"fileName": "Defaults.ts",
-							"line": 35,
+							"line": 62,
 							"character": 17
 						}
 					],
@@ -3160,7 +3160,7 @@
 					"sources": [
 						{
 							"fileName": "Defaults.ts",
-							"line": 24,
+							"line": 51,
 							"character": 16
 						}
 					],
@@ -3193,7 +3193,7 @@
 					"sources": [
 						{
 							"fileName": "Defaults.ts",
-							"line": 21,
+							"line": 48,
 							"character": 18
 						}
 					],
@@ -3216,7 +3216,7 @@
 					"sources": [
 						{
 							"fileName": "Defaults.ts",
-							"line": 18,
+							"line": 45,
 							"character": 18
 						}
 					],
@@ -3236,7 +3236,7 @@
 					"sources": [
 						{
 							"fileName": "Defaults.ts",
-							"line": 34,
+							"line": 61,
 							"character": 21
 						}
 					],
@@ -3256,7 +3256,7 @@
 					"sources": [
 						{
 							"fileName": "Defaults.ts",
-							"line": 28,
+							"line": 55,
 							"character": 18
 						}
 					],
@@ -3294,7 +3294,7 @@
 					"sources": [
 						{
 							"fileName": "Defaults.ts",
-							"line": 14,
+							"line": 41,
 							"character": 48
 						}
 					],
@@ -3356,7 +3356,7 @@
 					"sources": [
 						{
 							"fileName": "Defaults.ts",
-							"line": 65,
+							"line": 92,
 							"character": 24
 						}
 					]
@@ -3437,7 +3437,7 @@
 					"sources": [
 						{
 							"fileName": "Defaults.ts",
-							"line": 79,
+							"line": 106,
 							"character": 24
 						}
 					]
@@ -3482,7 +3482,7 @@
 					"sources": [
 						{
 							"fileName": "Defaults.ts",
-							"line": 95,
+							"line": 122,
 							"character": 24
 						}
 					]
@@ -3551,7 +3551,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphCartesian.ts",
 			"comment": {
 				"shortText": "## GraphCartesian",
-				"text": "creates a 2D cartesian graph.\n\n### Example:\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n// create data set:\nconst data = [['date', 'time', 'volume', 'costs'], ['1/1/14', -1,  0.2, 0.3],\n ['1/1/16', 0.2, 0.7, 0.2], ['9/1/16', 0.4, 0.1, 0.3],\n ['5/1/17', 0.6, -0.2,   0.1], ['7/1/18', 0.8, 0.3, 0.5], ['1/1/19', 1,   0.2, 0.4]];\n\n// setup and plot the data:\nconst graph = new hsGraphD3.GraphCartesian(root);\ngraph.addSeries('bubble', 'time', 'volume');\ngraph.addSeries('bubble', 'time', 'costs');\n\nwith (graph.defaults.canvas) {\n     fill.color = '#fcfcfc';\n     stroke.width = 10;  // in viewport coordinates (0 - 1000)\n}\nwith (graph.defaults.axes) {\n     color = '#44c';\n     hor.tickLabel.font.size = 20;\n}\n\ngraph.defaults.series[0].marker.size = 100;\ngraph.defaults.series.series1.marker.size = 50;\n\nconsole.log(graph.defaults.series);\ngraph.render(data);\n\nupdate();\n\nfunction update() {\n   data.map((row, i) => {\n     if (i>0) {\n         row[2] = Math.random()*graph.viewport.height;\n         row[3] = Math.random()*graph.viewport.height;\n     }\n   });\n   graph.render(data);\n   setTimeout(update, 2000);  // update values avery 2s:\n}\n\n</file>\n</example>\n\n### Accessible format setting and defaults:\n<example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = hsUtil.log('');\nlet defaults;\n\nfunction createGraph(svgRoot) {\n     const graph = new hsGraphD3.GraphCartesian(svgRoot[0]);\n     graph.addSeries('bubble', 'time', 'volume', 'costs');\n     graph.defaults.canvas.stroke.width = 7.8; // odd number, should appear on the left\n     return graph.defaults;\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.defaults = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = hsUtil.log.inspect(createGraph(svgRoot), null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
+				"text": "creates a 2D cartesian graph.\n\n### Example:\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n// create data set:\nconst data = [['date', 'time', 'volume', 'costs'], ['1/1/14', -1,  0.2, 0.3],\n ['1/1/16', 0.2, 0.7, 0.2], ['9/1/16', 0.4, 0.1, 0.3],\n ['5/1/17', 0.6, -0.2,   0.1], ['7/1/18', 0.8, 0.3, 0.5], ['1/1/19', 1,   0.2, 0.4]];\n\n// setup and plot the data:\nconst graph = new hsGraphD3.GraphCartesian(root);\ngraph.addSeries('bubble', 'time', 'volume');\ngraph.addSeries('bubble', 'time', 'costs');\n\nwith (graph.defaults.canvas) {\n     fill.color = '#fcfcfc';\n     stroke.width = 10;  // in viewport coordinates (0 - 1000)\n}\nwith (graph.defaults.axes) {\n     color = '#44c';\n     hor.tickLabel.font.size = 20;\n}\n\ngraph.defaults.series[0].marker.size = 100;\ngraph.defaults.series.series1.marker.size = 50;\n\nconsole.log(graph.defaults.series);\ngraph.render(data);\n\nupdate();\n\nfunction update() {\n   data.map((row, i) => {\n     if (i>0) {\n         row[2] = Math.random()*graph.viewport.height;\n         row[3] = Math.random()*graph.viewport.height;\n     }\n   });\n   graph.render(data);\n   setTimeout(update, 2000);  // update values avery 2s:\n}\n\n</file>\n</example>\n\n"
 			},
 			"children": [
 				{
@@ -3606,7 +3606,7 @@
 							"sources": [
 								{
 									"fileName": "GraphCartesian.ts",
-									"line": 92,
+									"line": 63,
 									"character": 73
 								}
 							],
@@ -3658,7 +3658,7 @@
 							"sources": [
 								{
 									"fileName": "GraphCartesian.ts",
-									"line": 92,
+									"line": 63,
 									"character": 29
 								}
 							],
@@ -3708,7 +3708,7 @@
 									"sources": [
 										{
 											"fileName": "GraphCartesian.ts",
-											"line": 92,
+											"line": 63,
 											"character": 30
 										}
 									]
@@ -4001,7 +4001,7 @@
 							"sources": [
 								{
 									"fileName": "GraphCartesian.ts",
-									"line": 110,
+									"line": 81,
 									"character": 20
 								}
 							],
@@ -4126,7 +4126,7 @@
 							"sources": [
 								{
 									"fileName": "GraphCartesian.ts",
-									"line": 118,
+									"line": 89,
 									"character": 23
 								}
 							],
@@ -4176,7 +4176,7 @@
 					"sources": [
 						{
 							"fileName": "GraphCartesian.ts",
-							"line": 91,
+							"line": 62,
 							"character": 27
 						}
 					],
@@ -4199,7 +4199,7 @@
 					"sources": [
 						{
 							"fileName": "GraphCartesian.ts",
-							"line": 83,
+							"line": 54,
 							"character": 54
 						}
 					],

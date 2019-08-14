@@ -1,9 +1,7 @@
 /**
  * # Defaults Configuration
  * 
- * provides `type` and `interface` declarations for standard svg elements such as texts, lines, areas, etc.
- * as well as 
- * The table below shows a list of available formatting 
+ * provides `type` aliases, `interfaces`, and support functions to generate default settings for {@link GraphComponents GraphComponents}.
  * 
  * ### Accessible format setting and defaults (for a cartesian graph):
  * <example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
@@ -12,7 +10,7 @@
  * let defaults;
  * 
  * function createGraph(svgRoot) {
- *      const graph = new hsGraphD3.GraphCartesian(svgRoot[0]);
+ *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
  *      graph.addSeries('bubble', 'time', 'volume', 'costs');
  *      graph.defaults.canvas.stroke.width = 7.8; // odd number, should appear on the left
  *      return graph.defaults;
@@ -27,7 +25,7 @@
  *      const svgRoot = root.getElementsByClassName('myGraph');
  *      if (svgRoot && svgRoot.length && !defaults) { 
  *          const colors = ['#800', '#080', '#008'];
- *          defaults = hsUtil.log.inspect(createGraph(svgRoot), null, '   ', colors)
+ *          defaults = hsUtil.log.inspect(createGraph(svgRoot[0]), null, '   ', colors)
  *              .replace(/\n/g, '<br>')
  *      }
  *   } 

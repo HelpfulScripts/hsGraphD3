@@ -49,3 +49,5 @@ Render the graph:
 ```
 graph.render(data);
 ```
+
+See an [example](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/0).
