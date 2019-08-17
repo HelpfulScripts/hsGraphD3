@@ -1,4 +1,11 @@
 /**
+ * # AbstractGraph
+ * 
+ * The base class for Graph types.
+ * Takes care of the following tasks:
+ * - creating a central configuratin object used through out the library.
+ * - establishing lifecycle calls:
+ *      - initialize(): called during construction 
  * 
  */
 
@@ -22,8 +29,18 @@ import { d3Base }           from './Settings';
 
 const vpWidth:number    = 1000;
 
+export interface LifecycleCalls {
+    /** called once during creation of the `Graph`. */
+    initialize(svg:d3Base):void;
 
-export abstract class AbstractGraph {
+    /** Called immediately before each call to renderComponent. */
+    preRender(data:Data): void;
+
+    /** renders the component. */
+    renderComponent(data:Data): void;
+}
+
+export abstract class AbstractGraph implements LifecycleCalls {
     /** the HTML root element to attach the render tree to. */
     protected root:any;
 
@@ -41,8 +58,8 @@ export abstract class AbstractGraph {
         this.config = this.initializeCfg();
         this.config.baseSVG = this.createBaseSVG(this.config); 
         this.updateBaseSVG(this.config);
-        this.components = this.createComponents();
-        this.components.map(c => this.config.defaults[c.componentType] = c.createDefaults());
+        this.components = this.createComponents(this.config);
+        this.initialize(this.config.baseSVG);
         window.onresize = () => this.resize();
     }
 
@@ -61,8 +78,8 @@ export abstract class AbstractGraph {
      */
     public render(data:Data|DataSet|DataTable): void {
         let d:Data = (data instanceof Data)? data : new Data(data);
-        this.setScales(d);
-        this.components.forEach((comp:GraphComponent) => comp.renderComponent(d));
+        this.preRender(d);
+        this.renderComponent(d);
     }
 
     /**
@@ -74,6 +91,32 @@ export abstract class AbstractGraph {
         this.resize();
         this.series.addSeries(type, x, y, ...params);
     }
+
+
+    //************** Lifecycle calls **************************/
+
+    /** called once during creation of the `Graph`. */
+    initialize(svg:d3Base): void {
+        this.components.forEach(comp => {
+            comp.initialize(svg);
+            this.config.defaults[comp.componentType] = comp.createDefaults();
+        });
+    } 
+
+    /** called once after initialization to create the components defaults. */
+    createDefaults() {
+    }
+
+    /** Called immediately before each call to renderComponent. */
+    preRender(data:Data): void {
+        this.setScales(data);
+        this.components.forEach((comp:GraphComponent) => comp.preRender(data));
+    } 
+
+    /** renders the component. */
+    renderComponent(data:Data): void {
+        this.components.forEach((comp:GraphComponent) => comp.renderComponent(data));
+    } 
 
 
     //************** Non-public part **************************/
@@ -94,13 +137,13 @@ export abstract class AbstractGraph {
         };
     }
 
-    private createComponents():GraphComponent[] {
+    private createComponents(cfg:GraphCfg):GraphComponent[] {
         return [
-            new Scales(),
-            new Canvas(this.config),
-            new Grids(this.config),
-            this.series = new Series(this.config),
-            new Axes(this.config)
+            new Scales(cfg),
+            new Canvas(cfg),
+            new Grids(cfg),
+            this.series = new Series(cfg),
+            new Axes(cfg)
         ];
     }
 
@@ -124,19 +167,11 @@ export abstract class AbstractGraph {
      * @param cfg 
      */
     private createBaseSVG(cfg: GraphCfg):d3Base {
-        const svg = d3Select(this.root).append('svg')
+        return d3Select(this.root).append('svg')
             .classed('baseSVG', true)
             .attr('height', '100%')
             .attr('width', '100%')
-            .attr('preserveAspectRatio', 'xMinYMin meet')
-            ;
-        // determine order of rendering:
-        svg.append('rect').classed('graphArea', true).attr('x', 0).attr('y', 0);
-        svg.append('g').classed('grids', true);
-        svg.append('g').classed('axes', true);
-        svg.append('g').classed('series', true);
-        svg.append('rect').classed('graphBorder', true).attr('x', 0).attr('y', 0);
-        return svg;
+            .attr('preserveAspectRatio', 'xMinYMin meet');
     }
 
     /**

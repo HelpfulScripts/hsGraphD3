@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">28.13% </span>
+        <span class="strong">31.43% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>9/32</span>
+        <span class='fraction'>11/35</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/7</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">30% </span>
+        <span class="strong">28.57% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>3/10</span>
+        <span class='fraction'>4/14</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">26.67% </span>
+        <span class="strong">33.33% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>8/30</span>
+        <span class='fraction'>10/30</span>
       </div>
     </div>
     <p class="quiet">
@@ -143,7 +143,12 @@
 <a name='L95'></a><a href='#L95'>95</a>
 <a name='L96'></a><a href='#L96'>96</a>
 <a name='L97'></a><a href='#L97'>97</a>
-<a name='L98'></a><a href='#L98'>98</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L98'></a><a href='#L98'>98</a>
+<a name='L99'></a><a href='#L99'>99</a>
+<a name='L100'></a><a href='#L100'>100</a>
+<a name='L101'></a><a href='#L101'>101</a>
+<a name='L102'></a><a href='#L102'>102</a>
+<a name='L103'></a><a href='#L103'>103</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -163,6 +168,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
@@ -181,14 +188,19 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -215,7 +227,6 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -234,8 +245,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -257,9 +267,11 @@ import { GraphCfg }         from './GraphComponent';
 import { SeriesPlot }       from './SeriesPlot';
 &nbsp;
 &nbsp;
-type PlotFactory = (cfg:GraphCfg, svgBase:d3Base, ...params:string[]) =&gt; SeriesPlot;
+type PlotFactory = (cfg:GraphCfg, seriesName:string, ...params:string[]) =&gt; SeriesPlot;
 &nbsp;
 export class Series extends GraphComponent {
+    static type = 'series';
+&nbsp;
     /*------------ Static implementation----- */
     /** a map of plot types to corresponding plot functions. New plot types are added via a call to `register`. */
     protected static seriesCreatorMap: {[plotKey:string]: PlotFactory} = {};
@@ -274,18 +286,23 @@ export class Series extends GraphComponent {
     private series:SeriesPlot[] = [];
 &nbsp;
     constructor(cfg:GraphCfg) {
-        super(cfg, cfg.baseSVG.select('.series'));
-        // this.svg.append('rect').classed('plot', true);
+        super(cfg, Series.type);
     }
 &nbsp;
     /** returns the component type as a string name */
-    get componentType() { return 'series'; }
+    get componentType() { return Series.type; }
+&nbsp;
+    initialize(svg:d3Base): void {
+        this.series.forEach(<span class="fstat-no" title="function not covered" >(s</span>:SeriesPlot) =&gt; <span class="cstat-no" title="statement not covered" >s.initialize(svg))</span>;
+    } 
+&nbsp;
+<span class="fstat-no" title="function not covered" >    preRender(</span>data:Data): void {
+<span class="cstat-no" title="statement not covered" >        this.series.forEach(<span class="fstat-no" title="function not covered" >(s</span>:SeriesPlot) =&gt; <span class="cstat-no" title="statement not covered" >s.preRender(data))</span>;</span>
+    } 
 &nbsp;
     /** renders the component for the given data */
 <span class="fstat-no" title="function not covered" >    renderComponent(</span>data:Data) {
-<span class="cstat-no" title="statement not covered" >        this.series.forEach(<span class="fstat-no" title="function not covered" >(s</span>:SeriesPlot, i:number) =&gt; {</span>
-<span class="cstat-no" title="statement not covered" >            s.renderComponent(data);</span>
-        });
+<span class="cstat-no" title="statement not covered" >        this.series.forEach(<span class="fstat-no" title="function not covered" >(s</span>:SeriesPlot) =&gt; <span class="cstat-no" title="statement not covered" >s.renderComponent(data))</span>;</span>
     }
 &nbsp;
     /** creates a default entry for the component type in `Defaults` */
@@ -310,7 +327,6 @@ export class Series extends GraphComponent {
 <span class="cstat-no" title="statement not covered" >                if (!domains[dim]) { <span class="cstat-no" title="statement not covered" >domains[dim] = domains[i] || [1e90, -1e90]; </span>}</span>
 <span class="cstat-no" title="statement not covered" >                domains[dim][0] = Math.min(domains[dim][0], dataDom[0]);</span>
 <span class="cstat-no" title="statement not covered" >                domains[dim][1] = Math.max(domains[dim][1], dataDom[1]);</span>
-// log.info(`   dim: ${dataDom[0]}-${dataDom[1]}  -&gt;  ${domains[dim][0]}-${domains[dim][1]}`)                
             });
         });
 <span class="cstat-no" title="statement not covered" >        return domains;</span>
@@ -325,14 +341,13 @@ export class Series extends GraphComponent {
 <span class="fstat-no" title="function not covered" >    addSeries(</span>type:string, ...params:string[]) {
         const seriesCreator = <span class="cstat-no" title="statement not covered" >Series.seriesCreatorMap[type];</span>
 <span class="cstat-no" title="statement not covered" >        if (seriesCreator) {</span>
-            const seriesKey = <span class="cstat-no" title="statement not covered" >`${type} ${params.join(' ')}`;</span>
-            const svg = <span class="cstat-no" title="statement not covered" >this.svg.append('g').classed(`series${this.series.length}`,true);</span>
-            const series = <span class="cstat-no" title="statement not covered" >seriesCreator(this.cfg, svg, ...params);</span>
+            const series = <span class="cstat-no" title="statement not covered" >seriesCreator(this.cfg, `${Series.type}${this.series.length}`, ...params);</span>
+<span class="cstat-no" title="statement not covered" >            series.initialize(this.svg);</span>
             const seriesDefault = <span class="cstat-no" title="statement not covered" >this.cfg.defaults.series;</span>
             const index = <span class="cstat-no" title="statement not covered" >this.series.length;</span>
 <span class="cstat-no" title="statement not covered" >            seriesDefault[index] = seriesDefault[series.key] = series.getDefaults();</span>
 <span class="cstat-no" title="statement not covered" >            this.series.push(series);</span>
-<span class="cstat-no" title="statement not covered" >            log.info(`added series ${index} as '${seriesKey}'`);</span>
+            // log.info(`added series ${index} as '${seriesKey}'`);
         } else {
 <span class="cstat-no" title="statement not covered" >            log.error(`unknown plot type ${type}; available types are:\n   '${Object.keys(Series.seriesCreatorMap).join("'\n   '")}'`);</span>
         }

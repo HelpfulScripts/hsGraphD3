@@ -5,6 +5,7 @@
 
 import { ComponentDefaults }    from './GraphComponent'; 
 import { GraphComponent }       from './GraphComponent'; 
+import { GraphCfg }             from './GraphComponent';
 import { UnitVp }               from './Settings';
 import { scaleLinear }          from 'd3'; 
 
@@ -33,6 +34,7 @@ export interface ScaleDefaults extends ComponentDefaults {
 export const defaultDimScale = (minRange?:UnitVp, maxRange?:UnitVp):ScaleDimDefaults => { 
     return {
         type:   'linear',
+        aggregateOverTime: true,                // 
         domain: {min: 'auto', max: 'auto'},     //  data domain
         range:  {                               //  canvas range
             min: minRange || 'auto', 
@@ -43,17 +45,21 @@ export const defaultDimScale = (minRange?:UnitVp, maxRange?:UnitVp):ScaleDimDefa
 
 
 export class Scales extends GraphComponent {
-    constructor() { super(null, null); }
+    static type = 'scales';
 
-    get componentType() { return 'scales'; }
+    constructor(cfg:GraphCfg) { super(cfg, null); }
 
-    /** renders the component for the given data */
+    get componentType() { return Scales.type; }
+
+    initialize(): void {} 
+
+    preRender(): void {} 
+
     renderComponent() {}
 
     /** creates a default entry for the component type in `Defaults` */
     public createDefaults():ScaleDefaults {
         return {
-            aggregateOverTime: true,    
             margin: { left:20, top:50, right:20, bottom:10},
             dims: {}
         };
@@ -83,6 +89,5 @@ export class Scales extends GraphComponent {
                     ]);
             }
     }
-
 }
 

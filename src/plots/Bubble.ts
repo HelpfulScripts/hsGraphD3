@@ -22,8 +22,8 @@ class Bubble extends SeriesPlot {
      * @param cy string column name for y-center coordinates
      * @param r  string column name for radius coordinates
      */
-    constructor(cfg:GraphCfg, svgBase:d3Base, protected cx:string, protected cy:string, protected r?:string) {
-        super(cfg, svgBase, cx, cy);
+    constructor(cfg:GraphCfg, seriesName:string, protected cx:string, protected cy:string, protected r?:string) {
+        super(cfg, seriesName, cx, cy);
         const scales = cfg.defaults.scales.dims;
         scales[r] = scales[r] || defaultDimScale();
     }
@@ -43,6 +43,13 @@ class Bubble extends SeriesPlot {
         };
     }
     
+    initialize(svg:d3Base): void {
+        super.initialize(svg);
+    } 
+
+    preRender(): void {
+    } 
+
     /**
      * 
      * @param data a {@link hsDatab:Data `Data`} object containing the 
@@ -71,4 +78,4 @@ class Bubble extends SeriesPlot {
 } 
 
 //Plot.register('bubble', new BubbleFatory());
-Series.register('bubble', (cfg:GraphCfg, svgBase:d3Base, cx:string, cy:string, r?:string) => new Bubble(cfg, svgBase, cx, cy, r));
+Series.register('bubble', (cfg:GraphCfg, sName:string, cx:string, cy:string, r?:string) => new Bubble(cfg, sName, cx, cy, r));

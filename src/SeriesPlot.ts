@@ -2,7 +2,6 @@
 
 import { BaseType }             from 'd3';
 import { Data }                 from 'hsdatab';
-import { defaultDimScale, ScaleDefaults}       from './Scale';
 import { GraphCfg }             from './GraphComponent';
 import { Line, Area }           from './Settings';
 import { d3Base }               from './Settings';
@@ -38,10 +37,14 @@ export abstract class SeriesPlot {
      */
     protected dims: string[] = [];
 
-    constructor(cfg:GraphCfg, svgBase:d3Base, ...params:string[]) {
+    /** 
+     * a list of data column indices, corresponding to `dims`.
+     */
+    protected cols: number[] = [];
+
+    constructor(cfg:GraphCfg, seriesName:string, ...params:string[]) {
         this.cfg = cfg; 
-        this.svg = svgBase; 
-        this.seriesKey = svgBase.attr('class');
+        this.seriesKey = seriesName;
         this.dims = params;
     }
 
@@ -51,6 +54,14 @@ export abstract class SeriesPlot {
 
     /** set the defaults for the series. */
     abstract getDefaults(): SeriesPlotDefaults;
+
+    initialize(svg:d3Base): void {
+        this.svg = svg.append('g').classed(this.seriesKey, true);
+    }
+
+    preRender(data:Data): void {
+        this.cols = this.dims.map(d => data.colNumber(d));
+    }
 
     /** renders the component for the given data */
     abstract renderComponent(data:Data): void;

@@ -15,9 +15,11 @@ import { GraphCfg }         from './GraphComponent';
 import { SeriesPlot }       from './SeriesPlot';
 
 
-type PlotFactory = (cfg:GraphCfg, svgBase:d3Base, ...params:string[]) => SeriesPlot;
+type PlotFactory = (cfg:GraphCfg, seriesName:string, ...params:string[]) => SeriesPlot;
 
 export class Series extends GraphComponent {
+    static type = 'series';
+
     /*------------ Static implementation----- */
     /** a map of plot types to corresponding plot functions. New plot types are added via a call to `register`. */
     protected static seriesCreatorMap: {[plotKey:string]: PlotFactory} = {};
@@ -32,18 +34,23 @@ export class Series extends GraphComponent {
     private series:SeriesPlot[] = [];
 
     constructor(cfg:GraphCfg) {
-        super(cfg, cfg.baseSVG.select('.series'));
-        // this.svg.append('rect').classed('plot', true);
+        super(cfg, Series.type);
     }
 
     /** returns the component type as a string name */
-    get componentType() { return 'series'; }
+    get componentType() { return Series.type; }
+
+    initialize(svg:d3Base): void {
+        this.series.forEach((s:SeriesPlot) => s.initialize(svg));
+    } 
+
+    preRender(data:Data): void {
+        this.series.forEach((s:SeriesPlot) => s.preRender(data));
+    } 
 
     /** renders the component for the given data */
     renderComponent(data:Data) {
-        this.series.forEach((s:SeriesPlot, i:number) => {
-            s.renderComponent(data);
-        });
+        this.series.forEach((s:SeriesPlot) => s.renderComponent(data));
     }
 
     /** creates a default entry for the component type in `Defaults` */
@@ -68,7 +75,6 @@ export class Series extends GraphComponent {
                 if (!domains[dim]) { domains[dim] = domains[i] || [1e90, -1e90]; }
                 domains[dim][0] = Math.min(domains[dim][0], dataDom[0]);
                 domains[dim][1] = Math.max(domains[dim][1], dataDom[1]);
-// log.info(`   dim: ${dataDom[0]}-${dataDom[1]}  ->  ${domains[dim][0]}-${domains[dim][1]}`)                
             });
         });
         return domains;
@@ -83,14 +89,13 @@ export class Series extends GraphComponent {
     addSeries(type:string, ...params:string[]) {
         const seriesCreator = Series.seriesCreatorMap[type];
         if (seriesCreator) {
-            const seriesKey = `${type} ${params.join(' ')}`;
-            const svg = this.svg.append('g').classed(`series${this.series.length}`,true);
-            const series = seriesCreator(this.cfg, svg, ...params);
+            const series = seriesCreator(this.cfg, `${Series.type}${this.series.length}`, ...params);
+            series.initialize(this.svg);
             const seriesDefault = this.cfg.defaults.series;
             const index = this.series.length;
             seriesDefault[index] = seriesDefault[series.key] = series.getDefaults();
             this.series.push(series);
-            log.info(`added series ${index} as '${seriesKey}'`);
+            // log.info(`added series ${index} as '${seriesKey}'`);
         } else {
             log.error(`unknown plot type ${type}; available types are:\n   '${Object.keys(Series.seriesCreatorMap).join("'\n   '")}'`);
         }

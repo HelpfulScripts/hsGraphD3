@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">55.56% </span>
+        <span class="strong">56.52% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>25/45</span>
+        <span class='fraction'>26/46</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">50% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>2/4</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">63.64% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>6/9</span>
+        <span class='fraction'>7/11</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">55.81% </span>
+        <span class="strong">56.82% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>24/43</span>
+        <span class='fraction'>25/44</span>
       </div>
     </div>
     <p class="quiet">
@@ -159,7 +159,14 @@
 <a name='L111'></a><a href='#L111'>111</a>
 <a name='L112'></a><a href='#L112'>112</a>
 <a name='L113'></a><a href='#L113'>113</a>
-<a name='L114'></a><a href='#L114'>114</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L114'></a><a href='#L114'>114</a>
+<a name='L115'></a><a href='#L115'>115</a>
+<a name='L116'></a><a href='#L116'>116</a>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -201,10 +208,6 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -213,6 +216,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -312,16 +326,15 @@ export interface AxesDefaults extends ComponentDefaults {
 &nbsp;
 &nbsp;
 export class Axes extends GraphComponent {
+    static type = 'axes';
+&nbsp;
     private axes: Axis[] = [];
 &nbsp;
     constructor(cfg:GraphCfg) {
-        super(cfg, cfg.baseSVG.select('.axes'));
-        let axis;
-        this.axes.push(new Axis(cfg, Direction.horizontal));
-        this.axes.push(new Axis(cfg, Direction.vertical));
+        super(cfg, Axes.type);
     }
 &nbsp;
-    public get componentType() { return 'axes'; }
+    public get componentType() { return Axes.type; }
 &nbsp;
     public createDefaults():AxesDefaults {
         return {
@@ -330,8 +343,16 @@ export class Axes extends GraphComponent {
             ver:    this.axes[1].createDefaults()
         };
     }
-    
-    public <span class="fstat-no" title="function not covered" >renderComponent(</span>) {
+&nbsp;
+    initialize(svg:def.d3Base): void {
+        this.axes.push(new Axis(this.cfg, Direction.horizontal));
+        this.axes.push(new Axis(this.cfg, Direction.vertical));
+    } 
+&nbsp;
+<span class="fstat-no" title="function not covered" >    preRender(</span>): void {
+    } 
+&nbsp;
+<span class="fstat-no" title="function not covered" >    renderComponent(</span>) {
 <span class="cstat-no" title="statement not covered" >        this.axes.forEach(<span class="fstat-no" title="function not covered" >axis </span>=&gt; <span class="cstat-no" title="statement not covered" >axis.renderComponent())</span>;</span>
     }
 }

@@ -38,16 +38,15 @@ export interface AxesDefaults extends ComponentDefaults {
 
 
 export class Axes extends GraphComponent {
+    static type = 'axes';
+
     private axes: Axis[] = [];
 
     constructor(cfg:GraphCfg) {
-        super(cfg, cfg.baseSVG.select('.axes'));
-        let axis;
-        this.axes.push(new Axis(cfg, Direction.horizontal));
-        this.axes.push(new Axis(cfg, Direction.vertical));
+        super(cfg, Axes.type);
     }
 
-    public get componentType() { return 'axes'; }
+    public get componentType() { return Axes.type; }
 
     public createDefaults():AxesDefaults {
         return {
@@ -56,8 +55,16 @@ export class Axes extends GraphComponent {
             ver:    this.axes[1].createDefaults()
         };
     }
-    
-    public renderComponent() {
+
+    initialize(svg:def.d3Base): void {
+        this.axes.push(new Axis(this.cfg, Direction.horizontal));
+        this.axes.push(new Axis(this.cfg, Direction.vertical));
+    } 
+
+    preRender(): void {
+    } 
+
+    renderComponent() {
         this.axes.forEach(axis => axis.renderComponent());
     }
 }

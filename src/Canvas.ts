@@ -8,13 +8,13 @@ export interface CanvasDefaults extends gc.ComponentDefaults, def.RectStyle { }
 
 
 export class Canvas extends gc.GraphComponent {
+    static type = 'canvas';
+
     constructor(cfg:gc.GraphCfg) {
-        super(cfg, cfg.baseSVG.select('.canvas'));
-        this.svg.append('rect').classed('.graphArea', true);
-        this.svg.append('rect').classed('.graphBorder', true);
+        super(cfg, Canvas.type);
     }
 
-    public get componentType() { return 'canvas'; }
+    public get componentType() { return Canvas.type; }
 
     public createDefaults():CanvasDefaults {
         return {
@@ -32,25 +32,35 @@ export class Canvas extends gc.GraphComponent {
         };
     }
 
+    initialize(svg:def.d3Base): void {
+        this.svg.append('rect').classed('graphArea', true);
+        this.svg.append('rect').classed('graphBorder', true);
+    } 
+
+    preRender(): void {
+    } 
+
     /**
      * renders the Graph's background canvas
      * @param cfg 
      */
     public renderComponent() {
         const canvas = this.cfg.defaults.canvas;
-        d3Select('.graphArea')
+        const area = this.svg.select('.graphArea');
+        area
             .attr('width', this.cfg.viewPort.width)
             .attr('height', this.cfg.viewPort.height)
             .attr('rx', canvas.rx)
             .attr('ry', canvas.ry)
             .attr('stroke-width', 0);
-        def.setFill(d3Select('.graphArea'), canvas.fill);
-        d3Select('.graphBorder')
+        def.setFill(area, canvas.fill);
+        const border = this.svg.select('.graphBorder');
+        border
             .attr('width', this.cfg.viewPort.width)
             .attr('height', this.cfg.viewPort.height)
             .attr('rx', canvas.rx)
             .attr('ry', canvas.ry)
             .attr('fill-opacity', 0);
-        def.setStroke(d3Select('.graphBorder'), canvas.stroke);
+        def.setStroke(border, canvas.stroke);
     }
 }

@@ -32,19 +32,17 @@ export interface GridDefaults extends ComponentDefaults {
 } 
 
 export class Grids extends GraphComponent {
+    static type = 'grids';
+
     private grids = {
         hor: { major: <Grid>undefined, minor: <Grid>undefined },
         ver: { major: <Grid>undefined, minor: <Grid>undefined }
     };
     constructor(cfg:GraphCfg) {
-        super(cfg, cfg.baseSVG.select('.grids'));
-        this.grids['hor']['major'] = new Grid(cfg, Direction.horizontal, MajorMinor.major);
-        this.grids['hor']['minor'] = new Grid(cfg, Direction.horizontal, MajorMinor.minor);
-        this.grids['ver']['major'] = new Grid(cfg, Direction.vertical, MajorMinor.major);
-        this.grids['ver']['minor'] = new Grid(cfg, Direction.vertical, MajorMinor.minor);
+        super(cfg, Grids.type);
     }
 
-    get componentType() { return 'grids'; }
+    get componentType() { return Grids.type; }
 
     public createDefaults():GridDefaults {
         return {
@@ -58,6 +56,16 @@ export class Grids extends GraphComponent {
             }
         };
     }
+
+    initialize(svg:d3Base): void {
+        this.grids['hor']['major'] = new Grid(this.cfg, Direction.horizontal, MajorMinor.major);
+        this.grids['hor']['minor'] = new Grid(this.cfg, Direction.horizontal, MajorMinor.minor);
+        this.grids['ver']['major'] = new Grid(this.cfg, Direction.vertical, MajorMinor.major);
+        this.grids['ver']['minor'] = new Grid(this.cfg, Direction.vertical, MajorMinor.minor);
+    } 
+
+    preRender(): void {
+    } 
 
     renderComponent() {
         this.grids['hor']['major'].renderComponent();
