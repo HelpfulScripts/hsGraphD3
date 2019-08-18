@@ -1,18 +1,34 @@
 /**
  * # Bubble Plot
+ * 
+ * ## Example
+ * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
+ * <file name='script.js'>
+ * // create data set:
+ * const data = {
+ *    colNames:['date', 'time', 'volume', 'costs'], 
+ *    rows:[['1/1/14', -1,  0.2, 0.3], ['1/1/16', 0.2, 0.7, 0.2], ['9/1/16', 0.4, 0.1, 0.3],
+ *          ['5/1/17', 0.6, -0.2,   0.1], ['7/1/18', 0.8, 0.3, 0.5], ['1/1/19', 1,   0.2, 0.4]]
+ * };
+ * 
+ * // setup and plot the data:
+ * const graph = new hsGraphD3.GraphCartesian(root);
+ * graph.addSeries('bubble', 'time', 'volume', 'costs');
+ * graph.render(data);
+ * 
+ * </file>
+ * </example>
  */
 
+ /** */
+
 import { log as gLog }          from 'hsutil';   const log = gLog('Bubble');
-import { scaleLinear }          from "d3";
 import { Data }                 from 'hsdatab';
-import { NumDomain }            from 'hsdatab';
 import { SeriesPlot }           from '../SeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { Series }               from '../Series';
 import { d3Base }               from '../Settings';
 import { GraphCfg }             from '../GraphComponent'; 
-import * as def                 from '../Settings';
-import { defaultDimScale}       from '../Scale';
 
 
 class Bubble extends SeriesPlot {
@@ -23,57 +39,20 @@ class Bubble extends SeriesPlot {
      * @param r  string column name for radius coordinates
      */
     constructor(cfg:GraphCfg, seriesName:string, protected cx:string, protected cy:string, protected r?:string) {
-        super(cfg, seriesName, cx, cy);
-        const scales = cfg.defaults.scales.dims;
-        scales[r] = scales[r] || defaultDimScale();
+        super(cfg, seriesName, cx, cy, r);
     }
 
     getDefaults(): SeriesPlotDefaults {
-        return {
-            line:   def.defaultLine(1),
-            marker: {
-                size:   5,
-                shape:  'circle',
-                fill:   {
-                    color: '#F00',
-                    opacity: 1             
-                },
-                stroke: def.defaultLine(1)
-            }
-        };
+        const def = super.getDefaults();
+        return def;
     }
     
-    initialize(svg:d3Base): void {
-        super.initialize(svg);
-    } 
-
-    preRender(): void {
-    } 
-
     /**
      * 
      * @param data a {@link hsDatab:Data `Data`} object containing the 
      */
     renderComponent(data:Data) {  
-        const ix = data.colNumber(this.cx);
-        const iy = data.colNumber(this.cy);
-        const ir = data.colNumber(this.r);
-        const scaleX = this.cfg.scales.hor;
-        const scaleY = this.cfg.scales.ver;
-        const defR = this.cfg.defaults.scales.dims[this.r];
-        const scaleR = scaleLinear().domain(<NumDomain>data.findDomain(this.r)).range([defR.range.min, defR.range.max]);
-        const circles = this.svg.selectAll("circle").data(data.getData());
-        const defaults = this.cfg.defaults.series[this.key];
-            
-        circles.exit().remove();            // remove unneeded circles
-        circles.enter().append('circle');   // add new circles
-        
-        circles.transition(def.d3Transition)
-            .attr("cx", (d:number[]) => scaleX(<number>d[ix]))
-            .attr("cy", (d:number[]) => scaleY(<number>d[iy]))
-            .attr("r",  (d:number[]) => scaleR(ir===undefined? defaults.marker.size : <number>d[ir]))
-            .attr('fill', (d:number[],i:number) => ['#f00', '#0f0', '#00f', '#ff0', '#f0f', '#0ff'][i])
-            ;        
+        this.renderMarkers(data);
     }
 } 
 

@@ -11,11 +11,10 @@ import { GraphComponent }   from './GraphComponent';
 import { GraphCfg }         from './GraphComponent';
 import { ComponentDefaults }from './GraphComponent';
 import * as def             from './Settings';
-import { ScaleDefaults }    from './Scale';
+import { ScalesDefaults }    from './Scale';
 import { UnitVp, d3Base }   from './Settings';
 import { setText }          from './Settings';
-import { setStroke }          from './Settings';
-import { d3Transition }     from './Settings';
+import { setStroke }        from './Settings';
 
 export enum Direction {
     horizontal  = 'hor',
@@ -24,9 +23,9 @@ export enum Direction {
 
 export interface AxisDefaults extends ComponentDefaults {
     color:      string;
-    line:       def.Line;
+    line:       def.Stroke;
     tickWidth:  UnitVp;
-    tickMarks:  def.Line;
+    tickMarks:  def.Stroke;
     tickLabel:  def.TextStyle;
 }
 
@@ -44,6 +43,8 @@ export class Axes extends GraphComponent {
 
     constructor(cfg:GraphCfg) {
         super(cfg, Axes.type);
+        this.axes.push(new Axis(this.cfg, Direction.horizontal));
+        this.axes.push(new Axis(this.cfg, Direction.vertical));
     }
 
     public get componentType() { return Axes.type; }
@@ -57,8 +58,6 @@ export class Axes extends GraphComponent {
     }
 
     initialize(svg:def.d3Base): void {
-        this.axes.push(new Axis(this.cfg, Direction.horizontal));
-        this.axes.push(new Axis(this.cfg, Direction.vertical));
     } 
 
     preRender(): void {
@@ -85,19 +84,20 @@ export class Axis {
     public createDefaults() {
         return {
             color:      'currentColor',
-            line:       def.defaultLine(1),
-            tickWidth:  10,
-            tickMarks:  def.defaultLine(2),
+            line:       def.defaultStroke(1),
+            tickWidth:  5,
+            tickMarks:  def.defaultStroke(2),
             tickLabel:  def.defaultText()
         };
     }
     
     public renderComponent() {
+        const trans = this.cfg.transition;
         const horScales = this.cfg.scales.hor;
         const verScales = this.cfg.scales.ver;
         const style = this.cfg.defaults.axes[this.dir];
         let axis:any;
-        const margins = (<ScaleDefaults>this.cfg.defaults.scales).margin;
+        const margins = (<ScalesDefaults>this.cfg.defaults.scales).margin;
         this.cfg.baseSVG.select('.axes')
             .attr('color', this.cfg.defaults.axes.color);
 
@@ -106,16 +106,16 @@ export class Axis {
         if (this.dir===Direction.horizontal) {
             axis = axisTop(horScales);
             const yCrossing = Math.max(margins.left, Math.min(verScales(0), this.cfg.viewPort.height-margins.right));
-            this.svg.transition(d3Transition).attr("transform", `translate(0, ${yCrossing})`);
+            this.svg.transition(trans).attr("transform", `translate(0, ${yCrossing})`);
         } else {
             axis = axisRight(verScales);
             const xCrossing = Math.max(margins.top, Math.min(horScales(0), this.cfg.viewPort.width-margins.bottom));
-            this.svg.transition(d3Transition).attr("transform", `translate(${xCrossing}, 0)`);
+            this.svg.transition(trans).attr("transform", `translate(${xCrossing}, 0)`);
         }
         axis.tickSize(style.tickWidth);
-        setText(this.svg, style.tickLabel);
+        setText(this.svg, style.tickLabel, trans);
         this.svg.attr('color', style.color);
-        this.svg.transition(d3Transition).call(axis);
+        this.svg.transition(trans).call(axis);
         setStroke(this.svg.selectAll('text'), style.tickLabel);
     }
 }

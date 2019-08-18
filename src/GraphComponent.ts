@@ -9,8 +9,13 @@ import { DefaultsType } from './Settings';
 import { d3Base }       from './Settings';
 import { RectDef }      from './Settings';
 import { UnitVp }       from './Settings';
-import { LifecycleCalls } from './AbstractGraph';
+import { LifecycleCalls } from './Graph';
+import { Selection }    from 'd3';
+import { BaseType }     from 'd3';
 
+
+export type SVGLineSelection = Selection<SVGLineElement, number, BaseType, unknown>;
+export type SVGCircleSelection = Selection<SVGCircleElement, number, BaseType, unknown>;
 
 /** 
  * Configuration parameters for the render tree, passed to each `GraphComponent` during construction. 
@@ -40,6 +45,9 @@ export interface GraphCfg {
      * @param scale a d3js scale used for scaling
      */    
     scales: { [dim:string]:  d3.ScaleContinuousNumeric<number, number>};
+
+    /** the currently used transition. A new transition will be set each time `Graph.render()` is called. */
+    transition: any;
 }
 
 /**

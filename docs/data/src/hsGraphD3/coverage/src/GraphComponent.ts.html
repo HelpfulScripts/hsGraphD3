@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for GraphComponent.ts</title>
+    <title>Code coverage report for src/GraphComponent.ts</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="prettify.css" />
-    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(sort-arrow-sprite.png);
+            background-image: url(../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -16,7 +16,7 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="index.html">hsGraphD3: All files</a> GraphComponent.ts
+      <a href="../index.html">hsGraphD3: All files</a> / <a href="index.html">src</a> GraphComponent.ts
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
@@ -133,7 +133,15 @@
 <a name='L85'></a><a href='#L85'>85</a>
 <a name='L86'></a><a href='#L86'>86</a>
 <a name='L87'></a><a href='#L87'>87</a>
-<a name='L88'></a><a href='#L88'>88</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L88'></a><a href='#L88'>88</a>
+<a name='L89'></a><a href='#L89'>89</a>
+<a name='L90'></a><a href='#L90'>90</a>
+<a name='L91'></a><a href='#L91'>91</a>
+<a name='L92'></a><a href='#L92'>92</a>
+<a name='L93'></a><a href='#L93'>93</a>
+<a name='L94'></a><a href='#L94'>94</a>
+<a name='L95'></a><a href='#L95'>95</a>
+<a name='L96'></a><a href='#L96'>96</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -187,7 +195,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -195,11 +202,20 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-yes">20x</span>
+<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">20x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -231,8 +247,13 @@ import { DefaultsType } from './Settings';
 import { d3Base }       from './Settings';
 import { RectDef }      from './Settings';
 import { UnitVp }       from './Settings';
-import { LifecycleCalls } from './AbstractGraph';
+import { LifecycleCalls } from './Graph';
+import { Selection }    from 'd3';
+import { BaseType }     from 'd3';
 &nbsp;
+&nbsp;
+export type SVGLineSelection = Selection&lt;SVGLineElement, number, BaseType, unknown&gt;;
+export type SVGCircleSelection = Selection&lt;SVGCircleElement, number, BaseType, unknown&gt;;
 &nbsp;
 /** 
  * Configuration parameters for the render tree, passed to each `GraphComponent` during construction. 
@@ -262,6 +283,9 @@ export interface GraphCfg {
      * @param scale a d3js scale used for scaling
      */    
     scales: { [dim:string]:  d3.ScaleContinuousNumeric&lt;number, number&gt;};
+&nbsp;
+    /** the currently used transition. A new transition will be set each time `Graph.render()` is called. */
+    transition: any;
 }
 &nbsp;
 /**
@@ -313,7 +337,7 @@ export abstract class GraphComponent implements LifecycleCalls {
 </div><!-- /wrapper -->
 
 </div>
-<script src="prettify.js"></script>
+<script src="../prettify.js"></script>
 <script>
 window.onload = function () {
         if (typeof prettyPrint === 'function') {
@@ -321,7 +345,7 @@ window.onload = function () {
         }
 };
 </script>
-<script src="sorter.js"></script>
-<script src="block-navigation.js"></script>
+<script src="../sorter.js"></script>
+<script src="../block-navigation.js"></script>
 </body>
 </html>

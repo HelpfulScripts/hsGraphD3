@@ -1,13 +1,39 @@
 /**
- * # Plot class for rendering data series
+ * # Series 
+ * A `GraphComponent` responsible for plotting all added series.  
  * 
+ * ## Available plot types:
+ * <example libs={hsGraphD3:'hsGraphD3'}>
+ * <file name='script.js'>
+ * const log = hsUtil.log('');
+ * let types;
+ * 
+ * function getTypes(svgRoot) {
+ *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
+ *      return graph.seriesTypes.map(t => m('li', t));
+ * }
+ * 
+ * m.mount(root, {
+ *   view:() => m('div', {style:'background-color:#fff;'}, [
+ *      m('ul', types), 
+ *      m('div.myGraph', '')
+ *   ]),
+ *   oncreate: () => {
+ *      const svgRoot = root.getElementsByClassName('myGraph');
+ *      if (svgRoot && svgRoot.length && !types) { 
+ *          types = getTypes(svgRoot[0]);
+ *      }
+ *   } 
+ * });
+ * </file>
+ * </example>
  */
 
 /** */
 
 import { Data }             from 'hsdatab';
 import { NumDomain }        from 'hsdatab';
-import { log as gLog }      from 'hsutil';   const log = gLog('Plot');
+import { log as gLog }      from 'hsutil';   const log = gLog('Series');
 import { d3Base }           from './Settings';
 import { GraphComponent }   from './GraphComponent'; 
 import { ComponentDefaults }from './GraphComponent'; 
@@ -26,12 +52,20 @@ export class Series extends GraphComponent {
 
     /** registers a new plot type with corresponding function. */
     public static register(key:string, seriesCreator:PlotFactory) {
-        this.seriesCreatorMap[key] = seriesCreator;
-        log.info(`registered plot type '${key}'`);
+        if (this.seriesCreatorMap[key]) {
+            this.seriesCreatorMap[key] = seriesCreator;
+            log.debug(`re-registered plot type '${key}'`);    
+        } else {
+            this.seriesCreatorMap[key] = seriesCreator;
+            log.debug(`registered plot type '${key}'`);
+        }
     }
+
+    public static get types():string[] { return Object.keys(this.seriesCreatorMap); }
 
     /*------------ Instance implementation----- */
     private series:SeriesPlot[] = [];
+    private domains: {[dim:string]: NumDomain};
 
     constructor(cfg:GraphCfg) {
         super(cfg, Series.type);
@@ -45,7 +79,7 @@ export class Series extends GraphComponent {
     } 
 
     preRender(data:Data): void {
-        this.series.forEach((s:SeriesPlot) => s.preRender(data));
+        this.series.forEach((s:SeriesPlot) => s.preRender(data, this.domains));
     } 
 
     /** renders the component for the given data */
@@ -72,12 +106,13 @@ export class Series extends GraphComponent {
         this.series.forEach(s => {
             s.dimensions.map((dim, i) => {
                 const dataDom:NumDomain = <NumDomain>data.findDomain(dim);
+                if (!domains[i]) { domains[i] = [1e90, -1e90]; }
                 if (!domains[dim]) { domains[dim] = domains[i] || [1e90, -1e90]; }
                 domains[dim][0] = Math.min(domains[dim][0], dataDom[0]);
                 domains[dim][1] = Math.max(domains[dim][1], dataDom[1]);
             });
         });
-        return domains;
+        return this.domains = domains;
     }
 
     
@@ -90,12 +125,11 @@ export class Series extends GraphComponent {
         const seriesCreator = Series.seriesCreatorMap[type];
         if (seriesCreator) {
             const series = seriesCreator(this.cfg, `${Series.type}${this.series.length}`, ...params);
-            series.initialize(this.svg);
             const seriesDefault = this.cfg.defaults.series;
             const index = this.series.length;
             seriesDefault[index] = seriesDefault[series.key] = series.getDefaults();
             this.series.push(series);
-            // log.info(`added series ${index} as '${seriesKey}'`);
+            log.debug(`added series ${index} on '${params}'`);
         } else {
             log.error(`unknown plot type ${type}; available types are:\n   '${Object.keys(Series.seriesCreatorMap).join("'\n   '")}'`);
         }

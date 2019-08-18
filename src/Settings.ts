@@ -17,7 +17,7 @@
  * }
  * 
  * m.mount(root, {
- *   view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [
+ *   view:() => m('div', {style:'background-color:#eee; font-family:Monospace; font-size:12px'}, [
  *      m('div', m.trust('graph.defaults = ' + defaults)), 
  *      m('div.myGraph', '')
  *   ]),
@@ -36,14 +36,10 @@
 
 /** */
 
-import { transition }   from 'd3';
-import * as d       from './Settings';
 import * as gc      from './GraphComponent';
-import { log as _log }  from 'hsutil';import { setMaxListeners } from 'cluster';
+import { log as _log }  from 'hsutil';
 const log = _log('Defaults');
 
-
-export const d3Transition = transition().duration(1000);
 
 /** viewport units */
 export type UnitVp = number;        
@@ -65,22 +61,26 @@ export type Color           = string;           // CSS color descriptor, e.g. '#
 export type ZeroToOne       = number;           // number from [0, 1]
 export type Index           = number;           // column index into data table
 
-export interface Area {
+
+//---------- interfaces --------------
+
+export interface Fill {
     color: Color;
     opacity: ZeroToOne;
 }
 
-export interface Line {
+export interface Stroke {
     width: UnitVp;
     color: Color;
     opacity: ZeroToOne;
+    dashed: number[];
 }
 
 export interface RectStyle {
     rx:     UnitVp;
     ry:     UnitVp;
-    fill:   Area;
-    stroke: Line;
+    fill:   Fill;
+    stroke: Stroke;
 }
 
 export interface TextStyle {
@@ -93,33 +93,36 @@ export interface TextStyle {
     };
 }
 
-export const defaultLine = (width:UnitVp, color:d.Color='currentColor'):d.Line => {
+export enum MarkerShape {
+    square, diamond, tri_up, tri_down, circle
+}
+
+export interface MarkerStyle {
+    size:   UnitVp;
+    shape:  MarkerShape;
+    fill:   Fill;
+    stroke: Stroke;
+}
+
+
+
+//---------- defaults --------------
+
+export const defaultStroke = (width:UnitVp, color:Color='currentColor'):Stroke => {
     return {
         width: width,
         color: color,
-        opacity: 1
+        opacity: 1,
+        dashed: undefined   // or '5,10,5', alternating filled and blank
     };
 };
 
-export function setStroke(svg:d3Base, settings:d.Line) {
-    svg 
-    .attr('stroke',         settings.color)
-    .attr('stroke-width',   settings.width)
-    .attr('stroke-opacity', settings.opacity);
-}
-
-export const defaultFill = (areaFill:d.Color = '#fff') => {
+export const defaultFill = (areaFill:Color = '#fff') => {
     return {
         color: areaFill,
         opacity: 1
     };
 };
-
-export function setFill(svg:d3Base, settings:d.Area) {
-    svg 
-    .attr('fill',         settings.color)
-    .attr('fill-opacity', settings.opacity);
-}
 
 /**
  * convenience function to create a default `RectStyle` object with configurable fill color and border. 
@@ -127,23 +130,16 @@ export function setFill(svg:d3Base, settings:d.Area) {
  * @param borderWidth the border width in pixel
  * @param borderColor the border color
  */
-export const defaultRect = (areaFill:d.Color, borderWidth:UnitVp=0, borderColor:d.Color='currentColor'):d.RectStyle => {
+export const defaultRect = (areaFill:Color, borderWidth:UnitVp=0, borderColor:Color='currentColor'):RectStyle => {
     return {
         rx: 0,
         ry: 0,
         fill:   defaultFill(areaFill),
-        stroke: defaultLine(borderWidth, borderColor)
+        stroke: defaultStroke(borderWidth, borderColor)
     };
 };
 
-export function setRect(svg:d3Base, settings:d.RectStyle) {
-    svg .attr('rx', settings.rx)
-        .attr('ry', settings.ry);
-    setStroke(svg, settings.stroke);
-    setFill(svg, settings.fill); 
-}
-
-export const defaultText = (size=16):d.TextStyle => {
+export const defaultText = (size=16):TextStyle => {
     return {
         color: 'currentColor',
         font: {
@@ -155,11 +151,48 @@ export const defaultText = (size=16):d.TextStyle => {
     };
 };
 
-export function setText(svg:d3Base, settings:d.TextStyle) {
-    svg.transition(d3Transition)
+export const defaultMarker = (shape=MarkerShape.circle, size=10):MarkerStyle => {
+    return {
+        size:   size,
+        shape:  shape,
+        fill:   {
+            color: '#F00',
+            opacity: 1             
+        },
+        stroke: defaultStroke(4)
+    };
+};
+
+//---------- drawing --------------
+
+export function setStroke(svg:d3Base, settings:Stroke):d3Base {
+    return svg 
+    .attr('stroke',         settings.color)
+    .attr('stroke-width',   settings.width)
+    .attr('stroke-opacity', settings.opacity)
+    .attr('fill-opacity',   0);
+}
+
+export function setFill(svg:d3Base, settings:Fill):d3Base {
+    return svg 
+    .attr('fill',         settings.color)
+    .attr('fill-opacity', settings.opacity);
+}
+
+export function setRect(svg:d3Base, settings:RectStyle):d3Base {
+    svg .attr('rx', settings.rx)
+        .attr('ry', settings.ry);
+    setStroke(svg, settings.stroke);
+    setFill(svg, settings.fill); 
+    return svg;
+}
+
+export function setText(svg:d3Base, settings:TextStyle, transition:any) {
+    svg.transition(transition)
         .attr('color', settings.color)
         .attr('font-family', settings.font.family)
         .attr('font-size',   settings.font.size+'px')
         .attr('font-style',  settings.font.style)
         .attr('font-weight', settings.font.weight);
 }
+

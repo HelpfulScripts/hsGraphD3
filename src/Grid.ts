@@ -8,13 +8,14 @@ import { log as gLog }      from 'hsutil';   const log = gLog('Grid');
 import { GraphComponent }   from './GraphComponent'; 
 import { ComponentDefaults }from './GraphComponent'; 
 import { GraphCfg }         from './GraphComponent';
+import { SVGLineSelection } from './GraphComponent';
 import { d3Base }           from './Settings';
-import { Line }             from './Settings';
-import { defaultLine }      from './Settings';
+import { Stroke }             from './Settings';
+import { defaultStroke }      from './Settings';
 import { setStroke }        from './Settings';
-import { d3Transition }     from './Settings';
 import { Direction }        from './Axis';
  
+
 export enum MajorMinor {
     major   = 'major',
     minor   = 'minor'
@@ -22,12 +23,12 @@ export enum MajorMinor {
 
 export interface GridDefaults extends ComponentDefaults {
     hor: {
-        major: Line;
-        minor: Line;
+        major: Stroke;
+        minor: Stroke;
     };
     ver: {
-        major: Line;
-        minor: Line;
+        major: Stroke;
+        minor: Stroke;
     };
 } 
 
@@ -47,12 +48,12 @@ export class Grids extends GraphComponent {
     public createDefaults():GridDefaults {
         return {
             hor: {
-                major: defaultLine(1,'#444'),
-                minor: defaultLine(1, '#eee')
+                major: defaultStroke(1,'#444'),
+                minor: defaultStroke(1, '#eee')
             },
             ver: {
-                major: defaultLine(1,'#444'),
-                minor: defaultLine(1, '#eee')
+                major: defaultStroke(1,'#444'),
+                minor: defaultStroke(1, '#eee')
             }
         };
     }
@@ -86,6 +87,7 @@ export class Grid {
     }
  
     renderComponent() {
+        const trans = this.cfg.transition;
         const count = this.type===MajorMinor.major? 2 : 10;
         const scales = this.cfg.defaults.scales.dims;
         const scaleX = this.cfg.scales.hor;
@@ -93,17 +95,19 @@ export class Grid {
         const style = this.cfg.defaults.grids[this.dir][this.type];
         setStroke(this.svg, style);
         const c = {
-            range:  this.hor? scales['hor'].range : scales['ver'].range,
+            range:  this.hor? scaleX.range() : scaleY.range(),
             scale:  this.hor? scaleY : scaleX,  
-            dim:    this.hor? { fix:'x', var:'y'} : { fix:'y', var:'x'},
+                    // 'fix' variable: the span of the gridline, doesn't change
+                    // 'var' variable: the grid line's axis intercept, chenges with scale
+            dim:    this.hor? { fix:'x', var:'y'} : { fix:'y', var:'x'}
         };
-        const gridlines = this.svg.selectAll("line").data(c.scale.ticks(count));
+        const gridlines:SVGLineSelection = <SVGLineSelection>this.svg.selectAll("line").data(c.scale.ticks(count));
         gridlines.exit().remove();          // remove unneeded circles
         gridlines.enter().append('line')    // add new circles
-        .attr(`${c.dim.fix}1`, c.range.min)
-        .attr(`${c.dim.fix}2`, c.range.max);
-        gridlines.transition(d3Transition)
-        .attr(`${c.dim.var}1`, d => c.scale(<number>d))
-        .attr(`${c.dim.var}2`, d => c.scale(<number>d));
+            .attr(`${c.dim.fix}1`, c.range[0])
+            .attr(`${c.dim.fix}2`, c.range[1])
+        .merge(gridlines).transition(trans)
+            .attr(`${c.dim.var}1`, d => c.scale(<number>d))
+            .attr(`${c.dim.var}2`, d => c.scale(<number>d));
     }
 }

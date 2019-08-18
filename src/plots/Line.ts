@@ -1,23 +1,75 @@
 /**
- * # Bubble Plot
+ * # Line Plot
+ * 
+ * plots a 2D line with markers.
+ * 
+ * ## Usage
+ * `graph.addSeries('line', <x-col>, <y-col>, [<size-col>]);`
+ * Invoke a `line` series by adding a new series to the graph
+ * 
+ * ## Example
+ * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
+ * <file name='script.js'>
+ * // create data set:
+ * const data = {
+ *    colNames:['date', 'time', 'volume', 'costs'], 
+ *    rows:[['1/1/14', -1,  0.2, 0.3], ['1/1/16', 0.2, 0.7, 0.2], ['9/1/16', 0.4, 0.1, 0.3],
+ *          ['5/1/17', 0.6, -0.2,   0.1], ['7/1/18', 0.8, 0.3, 0.5], ['1/1/19', 1,   0.2, 0.4]]
+ * };
+ * 
+ * const graph = new hsGraphD3.GraphCartesian(root);
+ * graph.addSeries('line', 'time', 'volume');
+ * graph.render(data);
+ * 
+ * </file>
+ * </example>
+ * 
+ * ### Accessible format setting and defaults (for a cartesian graph):
+ * <example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
+ * <file name='script.js'>
+ * const log = hsUtil.log('');
+ * let defaults;
+ * 
+ * function createGraph(svgRoot) {
+ *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
+ *      graph.addSeries('bubble', 'time', 'volume', 'costs');
+ *      graph.defaults.canvas.stroke.width = 7.8; // odd number, should appear on the left
+ *      return graph.defaults;
+ * }
+ * 
+ * m.mount(root, {
+ *   view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [
+ *      m('div', m.trust('graph.defaults = ' + defaults)), 
+ *      m('div.myGraph', '')
+ *   ]),
+ *   oncreate: () => {
+ *      const svgRoot = root.getElementsByClassName('myGraph');
+ *      if (svgRoot && svgRoot.length && !defaults) { 
+ *          const colors = ['#800', '#080', '#008'];
+ *          defaults = hsUtil.log.inspect(createGraph(svgRoot[0]), null, '   ', colors)
+ *              .replace(/\n/g, '<br>')
+ *      }
+ *   } 
+ * });
+ * </file>
+ * </example>
  */
+
+ /** */
 
 import { log as gLog }          from 'hsutil';   const log = gLog('Bubble');
 import { line as d3line}        from "d3";
-import { Line as d3Line }       from "d3";
-import { interpolate }          from "d3";
 import { Data }                 from 'hsdatab';
 import { SeriesPlot }           from '../SeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { Series }               from '../Series';
 import { d3Base }               from '../Settings';
 import { GraphCfg }             from '../GraphComponent'; 
-import * as def                 from '../Settings';
+import { defaultStroke }          from '../Settings';
+import { defaultMarker }        from '../Settings';
 
 
 class Line extends SeriesPlot {
-    line: d3Line<number[]>;
-
     /**
      * plot constructor
      * @param cx string column name for x-center coordinates
@@ -28,22 +80,13 @@ class Line extends SeriesPlot {
     }
 
     getDefaults(): SeriesPlotDefaults {
-        return {
-            line:   def.defaultLine(1),
-            marker: {
-                size:   20,
-                shape:  'circle',
-                fill:   {
-                    color: '#F00',
-                    opacity: 1             
-                },
-                stroke: def.defaultLine(1)
-            }
-        };
+        const def = super.getDefaults();
+        return def;
     }
     
     initialize(svg:d3Base): void {
         super.initialize(svg);
+        this.svg.append('path');
     } 
 
     /**
@@ -51,47 +94,10 @@ class Line extends SeriesPlot {
      * @param data a {@link hsDatab:Data `Data`} object containing the data to plot
      */
     renderComponent(data:Data) {  
-        const defaults = this.cfg.defaults.series[this.key];
-
-        this.renderPath(data, defaults);
-        this.renderMarkers(data, defaults);
+        this.renderPath(data);
+        this.renderMarkers(data);
     }
 
-    renderPath(data:Data, defaults:SeriesPlotDefaults) {
-        const ix = this.cols[0];
-        const iy = this.cols[1];
-        const scaleX = this.cfg.scales.hor;
-        const scaleY = this.cfg.scales.ver;
-        this.line = d3line()
-            .x(d => scaleX(d[ix]))
-            .y(d => scaleY(d[iy]))
-            // .curve("linear")
-            ;
-        const path = this.svg.selectAll('path').data([1]);
-        path.enter().append('path')
-            .attr('stroke', defaults.line.color)
-            .attr('stroke-width', defaults.line.width)
-            .attr('fill-opacity', 0);
-        path.exit().remove();            // remove unneeded circles
-        path.transition(def.d3Transition)
-            .attr('d', this.line(<number[][]>data.getData()));
-    }
-
-    renderMarkers(data:Data, defaults:SeriesPlotDefaults) {
-        const ix = this.cols[0];
-        const iy = this.cols[1];
-        const scaleX = this.cfg.scales.hor;
-        const scaleY = this.cfg.scales.ver;
-        const samples = this.svg.selectAll("circle").data(data.getData());
-        samples.exit().remove();            // remove unneeded circles
-        samples.enter().append('circle');   // add new circles
-        // draw markers
-        samples.transition(def.d3Transition)
-            .attr("cx", (d:number[]) => scaleX(<number>d[ix]))
-            .attr("cy", (d:number[]) => scaleY(<number>d[iy]))
-            .attr("r",  defaults.marker.size)
-            .attr('fill', defaults.marker.fill.color);        
-    }
 } 
 
 Series.register('line', (cfg:GraphCfg, sName:string, cx:string, cy:string) => new Line(cfg, sName, cx, cy));
