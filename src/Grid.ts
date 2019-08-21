@@ -101,11 +101,13 @@ export class Grid {
                     // 'var' variable: the grid line's axis intercept, chenges with scale
             dim:    this.hor? { fix:'x', var:'y'} : { fix:'y', var:'x'}
         };
-        const gridlines:SVGLineSelection = <SVGLineSelection>this.svg.selectAll("line").data(c.scale.ticks(count));
+        const gridlines:SVGLineSelection = <SVGLineSelection>this.svg.selectAll("line").data(<any>c.scale.ticks(count), d => <any>d);
         gridlines.exit().remove();          // remove unneeded circles
         gridlines.enter().append('line')    // add new circles
             .attr(`${c.dim.fix}1`, c.range[0])
             .attr(`${c.dim.fix}2`, c.range[1])
+            .attr(`${c.dim.var}1`, d => c.scale(<number>d))
+            .attr(`${c.dim.var}2`, d => c.scale(<number>d))
         .merge(gridlines).transition(trans)
             .attr(`${c.dim.var}1`, d => c.scale(<number>d))
             .attr(`${c.dim.var}2`, d => c.scale(<number>d));

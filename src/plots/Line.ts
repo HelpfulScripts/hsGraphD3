@@ -33,7 +33,6 @@
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
  *      graph.addSeries('bubble', 'time', 'volume', 'costs');
- *      graph.defaults.canvas.stroke.width = 7.8; // odd number, should appear on the left
  *      return graph.defaults;
  * }
  * 
@@ -58,15 +57,12 @@
  /** */
 
 import { log as gLog }          from 'hsutil';   const log = gLog('Bubble');
-import { line as d3line}        from "d3";
-import { Data }                 from 'hsdatab';
+import { DataSet }              from '../Graph';
 import { SeriesPlot }           from '../SeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { Series }               from '../Series';
 import { d3Base }               from '../Settings';
 import { GraphCfg }             from '../GraphComponent'; 
-import { defaultStroke }          from '../Settings';
-import { defaultMarker }        from '../Settings';
 
 
 class Line extends SeriesPlot {
@@ -78,26 +74,6 @@ class Line extends SeriesPlot {
     constructor(cfg:GraphCfg, seriesName:string, protected cx:string, protected cy:string) {
         super(cfg, seriesName, cx, cy);
     }
-
-    getDefaults(): SeriesPlotDefaults {
-        const def = super.getDefaults();
-        return def;
-    }
-    
-    initialize(svg:d3Base): void {
-        super.initialize(svg);
-        this.svg.append('path');
-    } 
-
-    /**
-     * render the `Line` plot
-     * @param data a {@link hsDatab:Data `Data`} object containing the data to plot
-     */
-    renderComponent(data:Data) {  
-        this.renderPath(data);
-        this.renderMarkers(data);
-    }
-
 } 
 
 Series.register('line', (cfg:GraphCfg, sName:string, cx:string, cy:string) => new Line(cfg, sName, cx, cy));

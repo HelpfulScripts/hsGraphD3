@@ -33,7 +33,7 @@
  * }
  * ```
  * 
- * ## Example 1
+ * ## Example 1: `bubble` chart
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
  * <file name='script.js'>
  * // create data set:
@@ -77,7 +77,7 @@
  * </file>
  * </example>
  * 
- * ## Example 2
+ * ## Example 2: `line` vs. `timeseries`
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
  * <file name='script.js'>
  * // create data set:
@@ -89,7 +89,7 @@
  * // create the graph and define the series to plot:
  * const graph = new hsGraphD3.GraphCartesian(root);
  * graph.addSeries('line', 'date', 'time');
- * graph.addSeries('line', 'date', 'volume');
+ * graph.addSeries('timeseries', 'date', 'volume');
  * 
  * // adjust some settings:
  * graph.defaults.scales.hor.aggregateOverTime = false;  // forget early indexes
@@ -104,13 +104,13 @@
  *      index++;
  *      // modify the data in this round:
  *      data.rows.push([index, Math.random(), Math.random()-1]);
- *      if (data.rows.length > 10) { data.rows.shift(); }
  * 
  *      // render the graph: 
  *      graph.render(data);
+ *      if (data.rows.length > 10) { data.rows.shift(); }
  * 
  *      // trigger next update in 1s:
- *      setTimeout(update, 1000);
+ *      setTimeout(update, 1100);
  * }
  * </file>
  * </example>

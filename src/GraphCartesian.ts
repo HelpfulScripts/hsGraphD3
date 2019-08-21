@@ -7,15 +7,17 @@
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
  * <file name='script.js'>
  * // create data set:
- * const data = [   
- *  ['date', 'time', 'volume', 'costs'], 
- *  ['1/1/14', -1,   0.2, 0.3], 
- *  ['1/1/16', -0.2, 0.7, 0.2], 
- *  ['9/1/16', 0.4,  0.1, 0.3],
- *  ['5/1/17', 0.6, -0.2, 0.1], 
- *  ['7/1/18', 0.8,  0.3, 0.5], 
- *  ['1/1/19', 1,    0.2, 0.4]
- * ];
+ * const data = {
+ *      colNames: ['date', 'time', 'volume', 'costs'], 
+ *      rows: [
+ *          ['1/1/14', -1,   0.2, 0.3], 
+ *          ['1/1/16', -0.2, 0.7, 0.2], 
+ *          ['9/1/16', 0.4,  0.1, 0.3],
+ *          ['5/1/17', 0.6, -0.2, 0.1], 
+ *          ['7/1/18', 0.8,  0.3, 0.5], 
+ *          ['1/1/19', 1,    0.2, 0.4]
+ *      ]
+ * }  
  * 
  * // setup and plot the data:
  * const graph = new hsGraphD3.GraphCartesian(root);
@@ -45,7 +47,7 @@
  * update();
  * 
  * function update() {
- *    data.map((row, i) => {
+ *    data.rows.map((row, i) => {
  *      if (i>0) {
  *          row[2] = Math.random()*graph.viewport.height;
  *          row[3] = Math.random()*graph.viewport.height;
@@ -64,9 +66,8 @@
 
 import { log as gLog }      from 'hsutil';   const log = gLog('GraphCartesian');
 
-import { Data }             from 'hsdatab';
+import { DataSet }          from './Graph';
 import { Graph }            from './Graph';
-import { GraphDefaults }    from './Graph';
 import { scaleDefault }     from './Scale';
 import { ScalesDefaults }   from './Scale';
 import { Scales }           from './Scale';
@@ -103,7 +104,7 @@ export class GraphCartesian extends Graph {
         scales['ver'] = scaleDefault();
     }
 
-    protected setScales(data:Data) {
+    protected setScales(data:DataSet) {
         const scalesDefaults = <ScalesDefaults>this.config.defaults.scales;
         const margins = this.config.defaults.scales.margin;
         const scales = this.config.scales;

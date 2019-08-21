@@ -112,7 +112,7 @@
 <p id=89 class="line"><span>&nbsp;&nbsp;89</span><comment>&nbsp;*&nbsp;<comment>//&nbsp;create&nbsp;the&nbsp;graph&nbsp;and&nbsp;define&nbsp;the&nbsp;series&nbsp;to&nbsp;plot:</comment></comment></p>
 <p id=90 class="line"><span>&nbsp;&nbsp;90</span><comment><comment></comment>&nbsp;*&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.GraphCartesian(root);</comment></p>
 <p id=91 class="line"><span>&nbsp;&nbsp;91</span><comment>&nbsp;*&nbsp;graph.addSeries('</quote>line<quote>',&nbsp;'</quote>date<quote>',&nbsp;'</quote>time<quote>');</comment></p>
-<p id=92 class="line"><span>&nbsp;&nbsp;92</span><comment>&nbsp;*&nbsp;graph.addSeries('</quote>line<quote>',&nbsp;'</quote>date<quote>',&nbsp;'</quote>volume<quote>');</comment></p>
+<p id=92 class="line"><span>&nbsp;&nbsp;92</span><comment>&nbsp;*&nbsp;graph.addSeries('</quote>timeseries<quote>',&nbsp;'</quote>date<quote>',&nbsp;'</quote>volume<quote>');</comment></p>
 <p id=93 class="line"><span>&nbsp;&nbsp;93</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=94 class="line"><span>&nbsp;&nbsp;94</span><comment>&nbsp;*&nbsp;<comment>//&nbsp;adjust&nbsp;some&nbsp;settings:</comment></comment></p>
 <p id=95 class="line"><span>&nbsp;&nbsp;95</span><comment><comment></comment>&nbsp;*&nbsp;graph.defaults.scales.hor.aggregateOverTime&nbsp;=&nbsp;false;&nbsp;&nbsp;<comment>//&nbsp;forget&nbsp;early&nbsp;indexes</comment></comment></p>
@@ -127,13 +127,13 @@
 <p id=104 class="line"><span>&nbsp;104</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;index++;</comment></p>
 <p id=105 class="line"><span>&nbsp;105</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;modify&nbsp;the&nbsp;data&nbsp;in&nbsp;this&nbsp;round:</comment></comment></p>
 <p id=106 class="line"><span>&nbsp;106</span><comment><comment></comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data.rows.push([index,&nbsp;Math.random(),&nbsp;Math.random()-1]);</comment></p>
-<p id=107 class="line"><span>&nbsp;107</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(data.rows.length&nbsp;>&nbsp;10)&nbsp;{&nbsp;data.rows.shift();&nbsp;}</comment></p>
-<p id=108 class="line"><span>&nbsp;108</span><comment>&nbsp;*&nbsp;</comment></p>
-<p id=109 class="line"><span>&nbsp;109</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;render&nbsp;the&nbsp;graph:&nbsp;</comment></comment></p>
-<p id=110 class="line"><span>&nbsp;110</span><comment><comment></comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;graph.render(data);</comment></p>
+<p id=107 class="line"><span>&nbsp;107</span><comment>&nbsp;*&nbsp;</comment></p>
+<p id=108 class="line"><span>&nbsp;108</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;render&nbsp;the&nbsp;graph:&nbsp;</comment></comment></p>
+<p id=109 class="line"><span>&nbsp;109</span><comment><comment></comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;graph.render(data);</comment></p>
+<p id=110 class="line"><span>&nbsp;110</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(data.rows.length&nbsp;>&nbsp;10)&nbsp;{&nbsp;data.rows.shift();&nbsp;}</comment></p>
 <p id=111 class="line"><span>&nbsp;111</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=112 class="line"><span>&nbsp;112</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;trigger&nbsp;next&nbsp;update&nbsp;in&nbsp;1s:</comment></comment></p>
-<p id=113 class="line"><span>&nbsp;113</span><comment><comment></comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setTimeout(update,&nbsp;1000);</comment></p>
+<p id=113 class="line"><span>&nbsp;113</span><comment><comment></comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setTimeout(update,&nbsp;1100);</comment></p>
 <p id=114 class="line"><span>&nbsp;114</span><comment>&nbsp;*&nbsp;}</comment></p>
 <p id=115 class="line"><span>&nbsp;115</span><comment>&nbsp;*&nbsp;</file></comment></p>
 <p id=116 class="line"><span>&nbsp;116</span><comment>&nbsp;*&nbsp;</example></comment></p>

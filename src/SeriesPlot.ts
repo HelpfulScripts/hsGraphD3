@@ -7,8 +7,9 @@
  * graph.addSeries(<type>, ...<data-columns>);
  * ``` 
  * - <type> is one of the registered types: 
- *     - {@Line `line`} a 2D line plot
- *     - {@Bubble `bubble`} a 2D scatter plot with marker sizes driven by the data
+ *     - &nbsp;{@Line `line`} a 2D line plot
+ *     - &nbsp;{@Bubble `bubble`} a 2D scatter plot with marker sizes driven by the data
+ *     - &nbsp;{@TimeSeries `timeseries`} a 2D scatter plot with marker sizes driven by the data
  * 
  */
 
@@ -17,8 +18,8 @@ import { BaseType }         from 'd3';
 import { line as d3line}    from "d3";
 import { Line as d3Line }   from "d3";
 import { curveCardinal }    from 'd3';
-import { Data }             from 'hsdatab';
-import { NumDomain }        from 'hsdatab';
+import { DataSet }          from './Graph';
+import { Domains }          from './Series';
 import { GraphCfg }         from './GraphComponent';
 import { Stroke }           from './Settings';
 import { d3Base }           from './Settings';
@@ -28,6 +29,7 @@ import { defaultMarker }    from './Settings';
 import { setStroke }        from './Settings';
 import { setFill }          from './Settings';
 import { Scales }           from './Scale';
+import { scaleDefault }     from './Scale';
 
 export type d3Selection = d3.Selection<BaseType, unknown, BaseType, unknown>; 
 
@@ -57,10 +59,17 @@ export abstract class SeriesPlot {
      */
     protected cols: number[] = [];
 
+    protected lines:d3Line<number[]>;
+
     constructor(cfg:GraphCfg, seriesName:string, ...params:string[]) {
         this.cfg = cfg; 
         this.seriesKey = seriesName;
         this.dims = params;
+        const rCol = params[2];
+        if (rCol) {
+            const scale = this.cfg.defaults.scales;
+            scale.dims[rCol] = scale.dims[rCol] || scaleDefault(10, 50);    // default range 
+        }
     }
 
     get key() { return this.seriesKey; }
@@ -81,57 +90,72 @@ export abstract class SeriesPlot {
         this.svg = svg.append('g').classed(this.seriesKey, true);
         this.svg.append('g').classed('lines', true).append('path');
         this.svg.append('g').classed('markers', true);
+
+        const defaults = <SeriesPlotDefaults>this.cfg.defaults.series[this.key];
+        const lines = this.svg.select('.lines');
+        setStroke(lines, defaults.line);
+
+        const markers = this.svg.select('.markers');
+        setStroke(markers, defaults.marker.stroke);
+        setFill(markers, defaults.marker.fill);
     }
 
-    preRender(data:Data, domains:{[dim:string]: NumDomain}): void {
-        const defaults = <SeriesPlotDefaults>this.cfg.defaults.series[this.key];
-        this.cols = this.dims.map(d => data.colNumber(d));
+    preRender(data:DataSet, domains:Domains): void {
+        // const defaults = <SeriesPlotDefaults>this.cfg.defaults.series[this.key];
+        this.cols = this.dims.map(d => data.colNames.indexOf(d));
         if (this.dims.length > 2) {
             // param 2: size of marker
             this.setMarkerSizeScale(this.dims[2], domains[this.dims[2]]);
         }
         
-        const markers = this.svg.select('.markers');
-        setStroke(markers, defaults.marker.stroke);
-        setFill(markers, defaults.marker.fill);
+        // const markers = this.svg.select('.markers');
+        // setStroke(markers, defaults.marker.stroke);
+        // setFill(markers, defaults.marker.fill);
 
-        const lines = this.svg.select('.lines');
-        setStroke(lines, defaults.line);
+        // const lines = this.svg.select('.lines');
+        // setStroke(lines, defaults.line);
+        this.lines = d3line()
+            .x(d => this.cfg.scales.hor(d[this.cols[0]]))
+            .y(d => this.cfg.scales.ver(d[this.cols[1]]))
+            .curve(curveCardinal.tension(0));
     }
 
     /** renders the component for the given data */
-    abstract renderComponent(data:Data): void;
+    renderComponent(data:DataSet): void {
+        this.svg
+            .call(this.d3RenderMarkers.bind(this), data)
+            .call(this.d3RenderPath.bind(this), data);
+    }
 
     //------- render elements
-    setMarkerSizeScale(dataCol:string, domain:NumDomain) {
+    setMarkerSizeScale(dataCol:string, domain:[number, number]) {
         const def = this.cfg.defaults.scales.dims[dataCol];
         this.cfg.scales[dataCol] = Scales.createScale(def, domain);
     }
 
-    renderMarkers(data:Data) {
+    protected d3DrawMarker(markers:d3Base, plot:SeriesPlot) {
+        markers
+            .attr("cx", (d:number[]) => plot.cfg.scales.hor(<number>d[plot.cols[0]]))
+            .attr("cy", (d:number[]) => plot.cfg.scales.ver(<number>d[plot.cols[1]]))
+            .attr("r",  (d:number[]) => plot.cols[2]? plot.cfg.scales[plot.dims[2]](<number>d[plot.cols[2]]) 
+                                                    : plot.cfg.defaults.series[plot.key].marker.size);
+    }
+
+    d3RenderMarkers(svg:d3Base, data:DataSet) {
         const defaults = this.cfg.defaults.series[this.key].marker;
         const rScale = this.cfg.scales[this.dims[2]];
 
-        const samples:any = this.svg.select('.markers').selectAll("circle").data(data.getData());
+        const samples:any = svg.select('.markers').selectAll("circle").data(data.rows, d => d[0]);
         samples.exit().remove();            // remove unneeded circles
         samples.enter().append('circle')    // add new circles
-            .attr("cx", (d:number[]) => this.cfg.scales.hor(<number>d[this.cols[0]]))
-            .attr("cy", (d:number[]) => this.cfg.scales.ver(<number>d[this.cols[1]]))
-            .attr("r",  (d:number[]) => this.cols[2]? rScale(<number>d[this.cols[2]]) : defaults.size)
+            .call(this.d3DrawMarker, this)
         .merge(samples).transition(this.cfg.transition)   // draw markers
-            .attr("cx", (d:number[]) => this.cfg.scales.hor(<number>d[this.cols[0]]))
-            .attr("cy", (d:number[]) => this.cfg.scales.ver(<number>d[this.cols[1]]))
-            .attr("r",  (d:number[]) => this.cols[2]? rScale(<number>d[this.cols[2]]) : defaults.size);
+            .call(this.d3DrawMarker, this);
     }
 
-    renderPath(data:Data) {
-        const line:d3Line<number[]> = d3line()
-            .x(d => this.cfg.scales.hor(d[this.cols[0]]))
-            .y(d => this.cfg.scales.ver(d[this.cols[1]]))
-            .curve(curveCardinal.tension(0))
-        ;
-        const path = this.svg.select('.lines').selectAll('path').data([<number[][]>data.getData()]);
+    d3RenderPath(svg:d3Base, data:DataSet) {
+        const path = svg.selectAll('path'); // .data([<any>data.rows], d => { console.log(d); return ''+(d&&d[0])?d[0][0]:''; });
         path.transition(this.cfg.transition)
-            .attr('d', d => line(d));
+            .attr('d', d => this.lines(<number[][]>data.rows));
     }
 }

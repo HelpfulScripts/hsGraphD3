@@ -4,7 +4,7 @@
 
 /** */
 
-import { Data }         from 'hsdatab';
+import { DataSet }      from './Graph';
 import { DefaultsType } from './Settings';
 import { d3Base }       from './Settings';
 import { RectDef }      from './Settings';
@@ -87,9 +87,9 @@ export abstract class GraphComponent implements LifecycleCalls {
     abstract initialize(svg:d3Base): void;
 
     /** Called immediately before each call to renderComponent. */
-    abstract preRender(data:Data): void; 
+    abstract preRender(data:DataSet): void; 
 
     /** renders the component. */
-    abstract renderComponent(data:Data): void;
+    abstract renderComponent(data:DataSet): void;
 }
 

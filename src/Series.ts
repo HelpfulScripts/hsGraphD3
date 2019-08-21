@@ -31,8 +31,9 @@
 
 /** */
 
-import { Data }             from 'hsdatab';
-import { NumDomain }        from 'hsdatab';
+import { DataSet }          from './Graph';
+// import { NumDomain }        from 'hsdatab';
+import { extent }           from 'd3';
 import { log as gLog }      from 'hsutil';   const log = gLog('Series');
 import { d3Base }           from './Settings';
 import { GraphComponent }   from './GraphComponent'; 
@@ -42,6 +43,8 @@ import { SeriesPlot }       from './SeriesPlot';
 
 
 type PlotFactory = (cfg:GraphCfg, seriesName:string, ...params:string[]) => SeriesPlot;
+
+export type Domains = {[dim:string]: [number, number]};
 
 export class Series extends GraphComponent {
     static type = 'series';
@@ -65,7 +68,7 @@ export class Series extends GraphComponent {
 
     /*------------ Instance implementation----- */
     private series:SeriesPlot[] = [];
-    private domains: {[dim:string]: NumDomain};
+    private domains: Domains;
 
     constructor(cfg:GraphCfg) {
         super(cfg, Series.type);
@@ -78,12 +81,12 @@ export class Series extends GraphComponent {
         this.series.forEach((s:SeriesPlot) => s.initialize(svg));
     } 
 
-    preRender(data:Data): void {
+    preRender(data:DataSet): void {
         this.series.forEach((s:SeriesPlot) => s.preRender(data, this.domains));
     } 
 
     /** renders the component for the given data */
-    renderComponent(data:Data) {
+    renderComponent(data:DataSet) {
         this.series.forEach((s:SeriesPlot) => s.renderComponent(data));
     }
 
@@ -102,10 +105,11 @@ export class Series extends GraphComponent {
      * data columns to be plotted on the same axis, they all share the same domain accumulation.
      * @return an array of [min, max] domains ranges, indexed by data column
      */
-    expandDomain(data:Data, domains:{[dim:string]: NumDomain} = {}):{[dim:string]: NumDomain} {
+    expandDomain(data:DataSet, domains:Domains = {}):Domains {
         this.series.forEach(s => {
             s.dimensions.map((dim, i) => {
-                const dataDom:NumDomain = <NumDomain>data.findDomain(dim);
+                const col = data.colNames.indexOf(dim);
+                const dataDom = extent(data.rows, (r => <number>r[col]));
                 if (!domains[i]) { domains[i] = [1e90, -1e90]; }
                 if (!domains[dim]) { domains[dim] = domains[i] || [1e90, -1e90]; }
                 domains[dim][0] = Math.min(domains[dim][0], dataDom[0]);

@@ -755,7 +755,6 @@ exports[`Line should plot line 1`] = `
           r="10"
         />
       </g>
-      <path />
     </g>
   </svg>
 </div>

@@ -11,10 +11,11 @@
 /** */
 
 import { log as gLog }      from 'hsutil';   const log = gLog('AbstractGraph');
-import { Data, DataTable, DataSet }  from 'hsdatab';
+// import { Data, DataTable, DataSet }  from 'hsdatab';
 
 import { select as d3Select}from 'd3';
 import { transition }       from 'd3';
+import * as d3              from 'd3';
 
 import { GraphComponent}    from './GraphComponent';
 import { ComponentDefaults} from './GraphComponent';
@@ -45,10 +46,10 @@ export interface LifecycleCalls {
     initialize(svg:d3Base):void;
 
     /** Called immediately before each call to renderComponent. */
-    preRender(data:Data): void;
+    preRender(data:DataSet): void;
 
     /** renders the component. */
-    renderComponent(data:Data): void;
+    renderComponent(data:DataSet): void;
 }
 
 
@@ -56,8 +57,15 @@ export interface LifecycleCalls {
 export interface GraphDefaults extends ComponentDefaults {
     /** the duration of the `Graph`-wide transition, restarted whith each `render` call.  */
     transitionTime: number; // in ms
+    easing: string;         // e.g. 'easeCubic'
 }
 
+export declare type DataVal = number | string | Date;
+export declare type DataRow = DataVal[];
+export interface DataSet {
+    colNames: string[];
+    rows: DataRow[];
+}
 
 /**
  * ## Graph
@@ -107,15 +115,17 @@ export abstract class Graph implements LifecycleCalls {
      * render the tree with the supplied data.
      * @param data the data to render
      */
-    public render(data:Data|DataSet|DataTable): void {
+    public render(data:DataSet): void {
+        const graph = <GraphDefaults>this.config.defaults.graph;
+        const easing = d3[graph.easing];
+        this.config.transition = transition().duration(graph.transitionTime);
+        this.config.transition.ease(easing);
         if (!this.initialized) {
             this.initialize(this.config.baseSVG);
             this.initialized = true;
         }
-        let d:Data = (data instanceof Data)? data : new Data(data);
-        this.config.transition = transition().duration((<GraphDefaults>this.config.defaults.graph).transitionTime);
-        this.preRender(d);
-        this.renderComponent(d);
+        this.preRender(data);
+        this.renderComponent(data);
     }
 
     /**
@@ -140,13 +150,13 @@ export abstract class Graph implements LifecycleCalls {
     } 
 
     /** Called immediately before each call to renderComponent. */
-    preRender(data:Data): void {
+    preRender(data:DataSet): void {
         this.setScales(data);
         this.components.forEach((comp:GraphComponent) => comp.preRender(data));
     } 
 
     /** renders the component. */
-    renderComponent(data:Data): void {
+    renderComponent(data:DataSet): void {
         this.components.forEach((comp:GraphComponent) => comp.renderComponent(data));
     } 
 
@@ -154,12 +164,13 @@ export abstract class Graph implements LifecycleCalls {
     //************** Non-public part **************************/
 
     /** set the scales for the graph prior to rendering components. */
-    protected abstract setScales(data:Data):void;
+    protected abstract setScales(data:DataSet):void;
 
     /** called once during construction to create the components defaults. */
     protected createDefaults():GraphDefaults {
         return {
-            transitionTime: 1000
+            transitionTime: 1000,
+            easing: 'easeCubic'
         };    
     }
 
