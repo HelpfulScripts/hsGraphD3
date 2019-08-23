@@ -42,19 +42,14 @@
  * graph.defaults.series.series1.line.width = 5;
  * graph.defaults.series[1].line.color = '#0c0';
  * 
- * graph.render(data);
- * 
- * update();
+ * graph.render(data, 2000, update);
  * 
  * function update() {
- *    data.rows.map((row, i) => {
- *      if (i>0) {
- *          row[2] = Math.random()*graph.viewport.height;
- *          row[3] = Math.random()*graph.viewport.height;
- *      }
+ *    data.rows.map(row => {
+ *      row[2] = 2*(Math.random()-0.5); // -1...1
+ *      row[3] = Math.random();         //  0...1
  *    });
- *    graph.render(data);
- *    setTimeout(update, 2000);  // update values avery 2s:
+ *    return true;
  * }
  * 
  * </file>
@@ -68,16 +63,14 @@ import { log as gLog }      from 'hsutil';   const log = gLog('GraphCartesian');
 
 import { DataSet }          from './Graph';
 import { Graph }            from './Graph';
+import { Domains }          from './Graph';
 import { scaleDefault }     from './Scale';
 import { ScalesDefaults }   from './Scale';
 import { Scales }           from './Scale';
 import { d3Base }           from './Settings';
 
-type CumulateDomains = {[colName:string]: [number, number]};
 
 export class GraphCartesian extends Graph {
-    private cumulativeDomains: CumulateDomains = {};
-
     constructor(root:any) { 
         super(root);
         log.debug('created GraphCartesian');
@@ -85,6 +78,14 @@ export class GraphCartesian extends Graph {
 
     /**
      * adds a series to the plot.
+     * At a minimum, an x- and y coordinate column name needs to be specified to use on the data.
+     * Additional column names will interpreted as follows:
+     * - index 0: x coordinate
+     * - index 1: y coordinate
+     * - index 2: size of marker (replaces default setting)
+     * 
+     * Accordingly, scales will be defined for each of the coordinate indexes.
+     * 
      * @param type type of plot to use, e.g. 'bubble' or 'scatter'
      * @param params the column name of the parameters used to plot the series
      */
@@ -92,37 +93,39 @@ export class GraphCartesian extends Graph {
         super.addSeries(type, x, y, ...params);
         const scales = this.config.defaults.scales;
         // the first two dimensions are shared with the standard 2D dimensions 'hor' and 'ver'.
-        scales.dims[x] = scales.dims[x] || scales['hor'] || scaleDefault();    // auto viewport range
-        scales.dims[y] = scales.dims[y] || scales['ver'] || scaleDefault();    // auto viewport range
-        params.forEach(p => scales.dims[p] = scales.dims[p] || scaleDefault());
+        scales.dims[0] = scales.dims[0] || scales.dims['hor'] || scaleDefault();       // auto viewport range
+        scales.dims[1] = scales.dims[1] || scales.dims['ver'] || scaleDefault();       // auto viewport range
+        if (params.length > 0) { 
+            scales.dims[2] = scales.dims[2] || scales.dims['size'] || scaleDefault();  // auto viewport range
+        }
     }
 
     protected makeDefaults() {
         super.makeDefaults();
-        const scales = <ScalesDefaults>this.config.defaults.scales;
-        scales['hor'] = scaleDefault();
-        scales['ver'] = scaleDefault();
+        const scales = <ScalesDefaults>this.config.defaults.scales.dims;
+        scales.hor  = scaleDefault();
+        scales.ver  = scaleDefault();
+        scales.size = scaleDefault(5, 15); // marker sizes in vpUnits
     }
 
     protected setScales(data:DataSet) {
         const scalesDefaults = <ScalesDefaults>this.config.defaults.scales;
         const margins = this.config.defaults.scales.margin;
         const scales = this.config.scales;
-        this.series.expandDomain(data, this.cumulateDomains(scalesDefaults));
-        scales.hor = Scales.createScale(scalesDefaults.hor, this.cumulativeDomains[0], [margins.left,  this.viewport.width-margins.right]);
-        scales.ver = Scales.createScale(scalesDefaults.ver, this.cumulativeDomains[1], [this.viewport.height-margins.bottom, margins.top]);
+        scales.hor  = Scales.createScale(scalesDefaults.dims.hor, this.cumulativeDomains[0], [margins.left,  this.viewport.width-margins.right]);
+        scales.ver  = Scales.createScale(scalesDefaults.dims.ver, this.cumulativeDomains[1], [this.viewport.height-margins.bottom, margins.top]);
+        scales.size = Scales.createScale(scalesDefaults.dims.size, this.cumulativeDomains[2]);
     }
 
-    private cumulateDomains(scalesDefaults:ScalesDefaults):CumulateDomains {
-        this.cumulativeDomains[0] = this.cumulativeDomains[0] || [1e99, -1e99];
-        this.cumulativeDomains[1] = this.cumulativeDomains[1] || [1e99, -1e99];
-        if (!scalesDefaults.hor.aggregateOverTime) {
-            this.cumulativeDomains[0][0] = 1e99;
-            this.cumulativeDomains[0][1] = -1e99;
+    protected prepareDomains(scalesDefaults:ScalesDefaults):Domains {
+        if (!this.cumulativeDomains[0] || !scalesDefaults.dims.hor.aggregateOverTime)  { 
+            this.cumulativeDomains[0] = this.cumulativeDomains.hor = [1e99, -1e99]; 
         }
-        if (!scalesDefaults.ver.aggregateOverTime) {
-            this.cumulativeDomains[1][0] = 1e99;
-            this.cumulativeDomains[1][1] = -1e99;
+        if (!this.cumulativeDomains[1] || !scalesDefaults.dims.ver.aggregateOverTime)  { 
+            this.cumulativeDomains[1] = this.cumulativeDomains.ver = [1e99, -1e99]; 
+        }
+        if (!this.cumulativeDomains[2] || !scalesDefaults.dims.size.aggregateOverTime) { 
+            this.cumulativeDomains[2] = this.cumulativeDomains.size = [1e99, -1e99]; 
         }
         return this.cumulativeDomains;
     }

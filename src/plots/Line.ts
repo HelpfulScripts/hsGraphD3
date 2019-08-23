@@ -57,11 +57,8 @@
  /** */
 
 import { log as gLog }          from 'hsutil';   const log = gLog('Bubble');
-import { DataSet }              from '../Graph';
 import { SeriesPlot }           from '../SeriesPlot';
-import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { Series }               from '../Series';
-import { d3Base }               from '../Settings';
 import { GraphCfg }             from '../GraphComponent'; 
 
 

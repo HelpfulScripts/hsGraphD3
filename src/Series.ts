@@ -10,7 +10,7 @@
  * 
  * function getTypes(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      return graph.seriesTypes.map(t => m('li', t));
+ *      return graph.series.types.map(t => m('li', t));
  * }
  * 
  * m.mount(root, {
@@ -32,7 +32,7 @@
 /** */
 
 import { DataSet }          from './Graph';
-// import { NumDomain }        from 'hsdatab';
+import { Domains }          from './Graph';
 import { extent }           from 'd3';
 import { log as gLog }      from 'hsutil';   const log = gLog('Series');
 import { d3Base }           from './Settings';
@@ -43,8 +43,6 @@ import { SeriesPlot }       from './SeriesPlot';
 
 
 type PlotFactory = (cfg:GraphCfg, seriesName:string, ...params:string[]) => SeriesPlot;
-
-export type Domains = {[dim:string]: [number, number]};
 
 export class Series extends GraphComponent {
     static type = 'series';
@@ -68,7 +66,6 @@ export class Series extends GraphComponent {
 
     /*------------ Instance implementation----- */
     private series:SeriesPlot[] = [];
-    private domains: Domains;
 
     constructor(cfg:GraphCfg) {
         super(cfg, Series.type);
@@ -81,8 +78,8 @@ export class Series extends GraphComponent {
         this.series.forEach((s:SeriesPlot) => s.initialize(svg));
     } 
 
-    preRender(data:DataSet): void {
-        this.series.forEach((s:SeriesPlot) => s.preRender(data, this.domains));
+    preRender(data:DataSet, domains:Domains): void {
+        this.series.forEach((s:SeriesPlot) => s.preRender(data, domains));
     } 
 
     /** renders the component for the given data */
@@ -98,25 +95,30 @@ export class Series extends GraphComponent {
     /** 
      * returns the data domains by data columns across all added series. 
      * @param data the data to calculate domains on
-     * @param domains optional; if present, the current data domains will be accumulateds to the 
+     * @param domains the current data domains will be accumulated to the 
      * provided one under the same data column index. In addition, if domains for the 
      * numeric indices `0`, `1`, ... exist, they will be used to merge and initialize 
      * all series' data columns in the corresponding index. This way, if series use different 
      * data columns to be plotted on the same axis, they all share the same domain accumulation.
      * @return an array of [min, max] domains ranges, indexed by data column
      */
-    expandDomain(data:DataSet, domains:Domains = {}):Domains {
+    expandDomain(data:DataSet, domains:Domains):Domains {
+        function spread(dom:[number, number]) { dom[0] = 0.9*dom[0]; dom[1] = 1.1*dom[1]; }
+// console.log(domains);
         this.series.forEach(s => {
             s.dimensions.map((dim, i) => {
                 const col = data.colNames.indexOf(dim);
-                const dataDom = extent(data.rows, (r => <number>r[col]));
-                if (!domains[i]) { domains[i] = [1e90, -1e90]; }
-                if (!domains[dim]) { domains[dim] = domains[i] || [1e90, -1e90]; }
-                domains[dim][0] = Math.min(domains[dim][0], dataDom[0]);
-                domains[dim][1] = Math.max(domains[dim][1], dataDom[1]);
+                domains[i] = domains[i] || [1e90, -1e90];
+                if (dim) {
+                    const dataDom = extent(data.rows, (r => <number>r[col]));
+                    domains[i][0] = Math.min(domains[i][0], dataDom[0]);
+                    domains[i][1] = Math.max(domains[i][1], dataDom[1]);
+// console.log(`   ${i} ${dim} ${domains[i][0]}-${domains[i][1]}`);
+                }
+                if (domains[i][1] === domains[i][0]) { spread(domains[i]); }
             });
         });
-        return this.domains = domains;
+        return domains;
     }
 
     

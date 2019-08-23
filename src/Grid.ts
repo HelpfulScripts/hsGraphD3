@@ -89,7 +89,6 @@ export class Grid {
     renderComponent() {
         const trans = this.cfg.transition;
         const count = this.type===MajorMinor.major? 2 : 10;
-        const scales = this.cfg.defaults.scales.dims;
         const scaleX = this.cfg.scales.hor;
         const scaleY = this.cfg.scales.ver;
         const style = this.cfg.defaults.grids[this.dir][this.type];

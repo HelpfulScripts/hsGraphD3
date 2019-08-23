@@ -1,5 +1,4 @@
 import * as hsGraphD3   from '../';
-import { log }          from 'hsnode';
 import * as d3 from 'd3';
 import { DataSet }      from '../Graph';
 
@@ -14,7 +13,7 @@ d3.selection.prototype.ease         = function(){ return this; };
 
 const data:DataSet = {
     colNames: 
-        ['xval', 'yval', 'rval'],
+        ['xval', 'yval'],
     rows : [
         [-1,      15,     15],
         [0.2,      2,     23],
@@ -23,33 +22,21 @@ const data:DataSet = {
     ]
 };
 
-describe('Line', () => {
+describe('TimeSeries', () => {
     let graph:hsGraphD3.GraphCartesian;
     beforeAll(() => {
         graph = new hsGraphD3.GraphCartesian(root);
-        graph.addSeries('line', 'xval', 'yval', 'rval');
+        graph.addSeries('timeseries', 'xval', 'yval');
         graph.render(data);
     });
-    it('should plot line', () =>
+    it('should plot timeSeries', () =>
         expect(root).toMatchSnapshot()
     );
     it('should support settings changes', () => {
         graph.defaults.axes.color = '#666';
         expect(graph.defaults.axes.color).toBe('#666');
     });
-    it(`should have 'line' registered`, () =>
-        expect(graph.series.types).toContain('line')
+    it(`should have 'timeseries' registered`, () =>
+        expect(graph.series.types).toContain('timeseries')
     );
-    // it(`should respond to window resize`, (done) => {
-    //     root.style.width = `200px`;
-    //     const event = new UIEvent('resize');
-    //     // document.createEvent('UIEvents');
-    //     // event.initUIEvent('resize', true, false, window, 10);
-    //     window.dispatchEvent(event);
-    //     setTimeout(() => {
-    //         expect(root).toMatchSnapshot();
-    //         done();
-    //     }, 500);
-    //     // expect(root).toMatchSnapshot();
-    // });
 });

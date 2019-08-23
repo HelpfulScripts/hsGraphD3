@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Bubble should plot line 1`] = `
+exports[`TimeSeries should plot timeSeries 1`] = `
 <div
   style="width: 300px; height: 300px;"
 >
@@ -150,14 +150,8 @@ exports[`Bubble should plot line 1`] = `
         stroke-width="1"
       >
         <line
-          x1="132.94117647058823"
-          x2="132.94117647058823"
-          y1="690"
-          y2="50"
-        />
-        <line
-          x1="697.6470588235295"
-          x2="697.6470588235295"
+          x1="651.2328767123288"
+          x2="651.2328767123288"
           y1="690"
           y2="50"
         />
@@ -170,56 +164,44 @@ exports[`Bubble should plot line 1`] = `
         stroke-width="1"
       >
         <line
-          x1="20"
-          x2="20"
+          x1="125.2054794520548"
+          x2="125.2054794520548"
           y1="690"
           y2="50"
         />
         <line
-          x1="132.94117647058823"
-          x2="132.94117647058823"
+          x1="256.71232876712327"
+          x2="256.71232876712327"
           y1="690"
           y2="50"
         />
         <line
-          x1="245.88235294117646"
-          x2="245.88235294117646"
+          x1="388.2191780821918"
+          x2="388.2191780821918"
           y1="690"
           y2="50"
         />
         <line
-          x1="358.82352941176475"
-          x2="358.82352941176475"
+          x1="519.7260273972602"
+          x2="519.7260273972602"
           y1="690"
           y2="50"
         />
         <line
-          x1="471.7647058823529"
-          x2="471.7647058823529"
+          x1="651.2328767123288"
+          x2="651.2328767123288"
           y1="690"
           y2="50"
         />
         <line
-          x1="584.7058823529412"
-          x2="584.7058823529412"
+          x1="782.7397260273972"
+          x2="782.7397260273972"
           y1="690"
           y2="50"
         />
         <line
-          x1="697.6470588235295"
-          x2="697.6470588235295"
-          y1="690"
-          y2="50"
-        />
-        <line
-          x1="810.5882352941176"
-          x2="810.5882352941176"
-          y1="690"
-          y2="50"
-        />
-        <line
-          x1="923.5294117647059"
-          x2="923.5294117647059"
+          x1="914.2465753424657"
+          x2="914.2465753424657"
           y1="690"
           y2="50"
         />
@@ -252,45 +234,7 @@ exports[`Bubble should plot line 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(20.5,0)"
-        >
-          <line
-            stroke="currentColor"
-            y2="-5"
-          />
-          <text
-            dy="0em"
-            fill="currentColor"
-            fill-opacity="0"
-            stroke="currentColor"
-            y="-8"
-          >
-            -1
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(133.44117647058823,0)"
-        >
-          <line
-            stroke="currentColor"
-            y2="-5"
-          />
-          <text
-            dy="0em"
-            fill="currentColor"
-            fill-opacity="0"
-            stroke="currentColor"
-            y="-8"
-          >
-            0
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(246.38235294117646,0)"
+          transform="translate(125.7054794520548,0)"
         >
           <line
             stroke="currentColor"
@@ -309,7 +253,7 @@ exports[`Bubble should plot line 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(359.32352941176475,0)"
+          transform="translate(257.21232876712327,0)"
         >
           <line
             stroke="currentColor"
@@ -328,7 +272,7 @@ exports[`Bubble should plot line 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(472.2647058823529,0)"
+          transform="translate(388.7191780821918,0)"
         >
           <line
             stroke="currentColor"
@@ -347,7 +291,7 @@ exports[`Bubble should plot line 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(585.2058823529412,0)"
+          transform="translate(520.2260273972602,0)"
         >
           <line
             stroke="currentColor"
@@ -366,7 +310,7 @@ exports[`Bubble should plot line 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(698.1470588235295,0)"
+          transform="translate(651.7328767123288,0)"
         >
           <line
             stroke="currentColor"
@@ -385,7 +329,7 @@ exports[`Bubble should plot line 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(811.0882352941176,0)"
+          transform="translate(783.2397260273972,0)"
         >
           <line
             stroke="currentColor"
@@ -404,7 +348,7 @@ exports[`Bubble should plot line 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(924.0294117647059,0)"
+          transform="translate(914.7465753424657,0)"
         >
           <line
             stroke="currentColor"
@@ -434,7 +378,7 @@ exports[`Bubble should plot line 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         text-anchor="start"
-        transform="translate(132.94117647058823, 0)"
+        transform="translate(50, 0)"
       >
         <path
           class="domain"
@@ -722,7 +666,10 @@ exports[`Bubble should plot line 1`] = `
         stroke-opacity="1"
         stroke-width="5"
       >
-        <path />
+        <path
+          d="M-137.8082191780822,370C-137.8082191780822,370,-67.67123287671234,743.3333333333334,20.000000000000007,690C107.67123287671234,636.6666666666666,228.21917808219177,95.12820512820512,388.2191780821918,50C548.2191780821918,4.871794871794876,980,419.2307692307692,980,419.2307692307692"
+          transform="translate(0)"
+        />
       </g>
       <g
         class="markers"
@@ -733,24 +680,28 @@ exports[`Bubble should plot line 1`] = `
         stroke-width="4"
       >
         <circle
-          cx="20"
+          cx="-137.8082191780822"
           cy="370"
-          r="8.181818181818182"
+          r="10"
+          transform="translate(0)"
         />
         <circle
-          cx="155.52941176470588"
+          cx="20.000000000000007"
           cy="690"
-          r="11.818181818181817"
+          r="10"
+          transform="translate(0)"
         />
         <circle
-          cx="471.7647058823529"
+          cx="388.2191780821918"
           cy="50"
-          r="15"
+          r="10"
+          transform="translate(0)"
         />
         <circle
           cx="980"
           cy="419.2307692307692"
-          r="5"
+          r="10"
+          transform="translate(0)"
         />
       </g>
     </g>

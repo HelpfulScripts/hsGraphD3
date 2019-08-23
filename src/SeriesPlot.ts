@@ -19,7 +19,7 @@ import { line as d3line}    from "d3";
 import { Line as d3Line }   from "d3";
 import { curveCardinal }    from 'd3';
 import { DataSet }          from './Graph';
-import { Domains }          from './Series';
+import { Domains }          from './Graph';
 import { GraphCfg }         from './GraphComponent';
 import { Stroke }           from './Settings';
 import { d3Base }           from './Settings';
@@ -38,6 +38,9 @@ export interface SeriesPlotDefaults {
     marker: MarkerStyle;
 }
 
+/**
+ * 
+ */
 export abstract class SeriesPlot { 
     /** the base svg element to render the component into */
     protected svg: d3Base;
@@ -68,7 +71,7 @@ export abstract class SeriesPlot {
         const rCol = params[2];
         if (rCol) {
             const scale = this.cfg.defaults.scales;
-            scale.dims[rCol] = scale.dims[rCol] || scaleDefault(10, 50);    // default range 
+            scale.size = scale.size || scaleDefault(10, 50);    // default range 
         }
     }
 
@@ -102,18 +105,10 @@ export abstract class SeriesPlot {
 
     preRender(data:DataSet, domains:Domains): void {
         // const defaults = <SeriesPlotDefaults>this.cfg.defaults.series[this.key];
-        this.cols = this.dims.map(d => data.colNames.indexOf(d));
-        if (this.dims.length > 2) {
-            // param 2: size of marker
-            this.setMarkerSizeScale(this.dims[2], domains[this.dims[2]]);
-        }
-        
-        // const markers = this.svg.select('.markers');
-        // setStroke(markers, defaults.marker.stroke);
-        // setFill(markers, defaults.marker.fill);
-
-        // const lines = this.svg.select('.lines');
-        // setStroke(lines, defaults.line);
+        this.cols = this.dims.map(d => {
+            const c = data.colNames.indexOf(d);
+            return c<0? undefined : c;
+        });
         this.lines = d3line()
             .x(d => this.cfg.scales.hor(d[this.cols[0]]))
             .y(d => this.cfg.scales.ver(d[this.cols[1]]))
@@ -127,18 +122,14 @@ export abstract class SeriesPlot {
             .call(this.d3RenderPath.bind(this), data);
     }
 
-    //------- render elements
-    setMarkerSizeScale(dataCol:string, domain:[number, number]) {
-        const def = this.cfg.defaults.scales.dims[dataCol];
-        this.cfg.scales[dataCol] = Scales.createScale(def, domain);
-    }
-
     protected d3DrawMarker(markers:d3Base, plot:SeriesPlot) {
+        const size = plot.cfg.defaults.series[plot.key].marker.size;
+        const r = plot.cfg.scales.size(size);
+// console.log(`marker size:${size} -> r=${r}; plot.cols[2]=${plot.cols[2]}  ---> ${plot.cfg.scales.size(size)}`);        
         markers
             .attr("cx", (d:number[]) => plot.cfg.scales.hor(<number>d[plot.cols[0]]))
             .attr("cy", (d:number[]) => plot.cfg.scales.ver(<number>d[plot.cols[1]]))
-            .attr("r",  (d:number[]) => plot.cols[2]? plot.cfg.scales[plot.dims[2]](<number>d[plot.cols[2]]) 
-                                                    : plot.cfg.defaults.series[plot.key].marker.size);
+            .attr("r",  (d:number[]) => plot.cfg.scales.size(plot.cols[2]? <number>d[plot.cols[2]] : size));
     }
 
     d3RenderMarkers(svg:d3Base, data:DataSet) {

@@ -10,7 +10,7 @@
 
 /** */
 
-import { log as gLog }      from 'hsutil';   const log = gLog('AbstractGraph');
+import { log as gLog }      from 'hsutil';   const log = gLog('Graph');
 // import { Data, DataTable, DataSet }  from 'hsdatab';
 
 import { select as d3Select}from 'd3';
@@ -22,6 +22,7 @@ import { ComponentDefaults} from './GraphComponent';
 import { GraphCfg}          from './GraphComponent';
 import { Series }           from './Series';
 import { Scales }           from './Scale';
+import { ScalesDefaults }   from './Scale';
 import { Axes }             from './Axis';
 import { Grids }            from './Grid';
 import { Canvas }           from './Canvas';
@@ -29,6 +30,8 @@ import { DefaultsType }     from './Settings';
 import { d3Base }           from './Settings';
 
 const vpWidth:number    = 1000;
+
+export type Domains = { [dim:string]: [number, number]};
 
 /**
  * ## Lifecycle calls
@@ -42,13 +45,22 @@ const vpWidth:number    = 1000;
  * Implementations can assume that `preRender` has been called on all `GraphComponents`.
  */
 export interface LifecycleCalls {
-    /** called the first time the `Graph` is rendered, before any of the other lifecycle methods. */
+    /** 
+     * called the first time the `Graph` is rendered, before any of the other lifecycle methods. 
+     * At this point, all components have been created and the tree-wide transition has been set.
+     */
     initialize(svg:d3Base):void;
 
-    /** Called immediately before each call to renderComponent. */
-    preRender(data:DataSet): void;
+    /** 
+     * Called immediately before each call to renderComponent. 
+     * At this point, the axis scales have been set and all components are initialized.
+     */
+    preRender(data:DataSet, domains:Domains): void;
 
-    /** renders the component. */
+    /** 
+     * renders the component. 
+     * At this point all components have completed preRendering
+     */
     renderComponent(data:DataSet): void;
 }
 
@@ -79,13 +91,15 @@ export abstract class Graph implements LifecycleCalls {
     protected config: GraphCfg;
 
     /** the plot component, provides access to individual series components */
-    protected series:Series;
+    protected seriesComponent:Series;
 
     /** the list of components to render */
     private components: GraphComponent[] = [];
 
     /** tracks whether components have been initialized. */
     private initialized = false;
+
+    protected cumulativeDomains: Domains = {};
 
     constructor(root:any) { 
         this.root = root;
@@ -107,25 +121,62 @@ export abstract class Graph implements LifecycleCalls {
     }
 
     /** returns the types of all registered `Series` */
-    public get seriesTypes():string[] {
-        return Series.types;
+    public get series():{types: string[]} {
+        return {
+            types: Series.types
+        };
+    }
+
+    /**
+     * Sets the `Graphs` transition duration as an alternative to `defaults.graph.transitionTime`.
+     * If `done` is provided, it will be used as a callback for when the transition ends.
+     * @param duration 
+     * @param done 
+     */
+    public transition(duration:number, done?:(data:DataSet) =>void) {
     }
 
     /**
      * render the tree with the supplied data.
      * @param data the data to render
+     * @param duration optional period in ms to call `sample` function. the `Graph's` tree-wide transition
+     * will be timed to end at the specified duration, upon which the `sample` callback will be called.
+     * @param update optional callback function that allow periodic manipulation of the `data` set. 
+     * New callbacks will be scheduled at `duration` intervals as long as the callback returns `true`. 
+     * Otherwise the callbacks will be stopped. Independent of the return value, 
+     * a render cycle will automatically be triggered after `update` returns.
+     * See {@link TimeSeries TimeSeries for an example.
      */
-    public render(data:DataSet): void {
-        const graph = <GraphDefaults>this.config.defaults.graph;
-        const easing = d3[graph.easing];
-        this.config.transition = transition().duration(graph.transitionTime);
-        this.config.transition.ease(easing);
-        if (!this.initialized) {
-            this.initialize(this.config.baseSVG);
-            this.initialized = true;
+    public render(data:DataSet, duration?:number, update?:(data:DataSet) => boolean): void {
+        const graph = this;
+        const graphDef = <GraphDefaults>graph.config.defaults.graph;
+
+        function listener() {
+            if (update(data)) { 
+                graph.config.transition = graph.config.transition.transition();
+                graph.config.transition.on('end', listener); 
+            }
+            setTimeout(renderGraph,0);  // render on the next event loop pass, outside the transition listener.
         }
-        this.preRender(data);
-        this.renderComponent(data);
+        function renderGraph() {
+            if (!graph.initialized) {
+                graph.initialize(graph.config.baseSVG);
+                graph.initialized = true;
+            }
+            const scalesDefaults = <ScalesDefaults>graph.config.defaults.scales;
+            graph.preRender.bind(graph)(data, graph.prepareDomains(scalesDefaults));
+            graph.renderComponent.bind(graph)(data);
+        }
+        
+        graphDef.transitionTime = duration || graphDef.transitionTime;
+        const easing = d3[graphDef.easing];
+        // if (!graph.config.transition) {          
+            graph.config.transition = graph.config.baseSVG.transition().duration(graphDef.transitionTime).ease(easing);
+            if (update) {
+                graph.config.transition.on('end', update? listener : null); 
+            }
+        // }
+        renderGraph();
     }
 
     /**
@@ -135,7 +186,7 @@ export abstract class Graph implements LifecycleCalls {
      */
     public addSeries(type:string, x:string, y:string, ...params:string[]) {
         //this.resize();
-        this.series.addSeries(type, x, y, ...params);
+        this.seriesComponent.addSeries(type, x, y, ...params);
     }
 
 
@@ -150,9 +201,10 @@ export abstract class Graph implements LifecycleCalls {
     } 
 
     /** Called immediately before each call to renderComponent. */
-    preRender(data:DataSet): void {
+    preRender(data:DataSet, domains:Domains): void {
+        this.seriesComponent.expandDomain(data, domains);
         this.setScales(data);
-        this.components.forEach((comp:GraphComponent) => comp.preRender(data));
+        this.components.forEach((comp:GraphComponent) => comp.preRender(data, domains));
     } 
 
     /** renders the component. */
@@ -180,6 +232,8 @@ export abstract class Graph implements LifecycleCalls {
         this.components.forEach(comp => defaults[comp.componentType] = comp.createDefaults());
     }
 
+    protected abstract prepareDomains(scalesDefaults:ScalesDefaults):Domains;
+
     /** creates and initializes the `Graph`-wide configuration object. */
     private initializeCfg():GraphCfg {
         return {
@@ -202,7 +256,7 @@ export abstract class Graph implements LifecycleCalls {
             new Canvas(cfg),
             new Grids(cfg),
             new Axes(cfg),
-            this.series = new Series(cfg)
+            this.seriesComponent = new Series(cfg)
         ];
     }
 
@@ -212,7 +266,7 @@ export abstract class Graph implements LifecycleCalls {
         // if (this.root && this.root.clientWidth > 0) {
         if (this.root) {
             if (this.root.clientWidth !== cfg.client.width || this.root.clientHeight !== cfg.client.height) {
-                log.info(`resizing svg: [${cfg.client.width} x ${cfg.client.height}] -> [${this.root.clientWidth} x ${this.root.clientHeight}]`);
+                log.debug(`resizing svg: [${cfg.client.width} x ${cfg.client.height}] -> [${this.root.clientWidth} x ${this.root.clientHeight}]`);
                 cfg.client.width = this.root.clientWidth;
                 cfg.client.height = this.root.clientHeight;
                 cfg.viewPort.height = cfg.viewPort.width * this.root.clientHeight / this.root.clientWidth;

@@ -53,27 +53,20 @@
  * 
  * // adjust some settings:
  * graph.defaults.axes.color = '#88f';  // both axes appear blue
- * with (graph.defaults.scales.dims.costs.range) {
+ * with (graph.defaults.scales.size.range) {
  *      min = 10;                       // min marker size
  *      max = 80;                       // max marker size
  * }
  * 
  * // trigger the update loop to plot the data
- * update();
- * 
- * function update() {
+ * graph.render(data, 2000, data => {
  *      // modify the data in this round:
- *      data.rows.map(row => { // change y-value and radius
- *          row[2] = (Math.random()-0.1)*graph.viewport.height;
- *          row[3] = Math.random()*50;
+ *      data.rows.map(row => { 
+ *          row[2] = (Math.random()-0.1)*200;   // y-value
+ *          row[3] = Math.random();             // radius
  *      });
- * 
- *      // render the graph: 
- *      graph.render(data);
- * 
- *      // trigger next update in 2s:
- *      setTimeout(update, 2000);  // update every 2 seconds
- * }
+ *      return true;
+ * });
  * </file>
  * </example>
  * 
@@ -82,35 +75,38 @@
  * <file name='script.js'>
  * // create data set:
  * const data = {
- *    colNames:['date', 'time', 'volume'], 
+ *    colNames:['date', 'line', 'series'], 
  *    rows:[   [0,       0.2,     -0.2]], 
  * };
+ * let index = 0;
+ * while (index<11) { 
+ *    val = Math.random();
+ *    data.rows.push([index++, val, val-1]); 
+ * }
  * 
  * // create the graph and define the series to plot:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.addSeries('line', 'date', 'time');
- * graph.addSeries('timeseries', 'date', 'volume');
+ * graph.addSeries('line', 'date', 'line');
+ * graph.addSeries('timeseries', 'date', 'series');
  * 
- * // adjust some settings:
- * graph.defaults.scales.hor.aggregateOverTime = false;  // forget early indexes
- * graph.defaults.series.series0.line.color = '#00a';  // first line blue
- * graph.defaults.series.series1.line.color = '#0a0';  // first line blue
+ * //----- adjust some settings:
+ * // forget early indexes:
+ * graph.defaults.scales.dims.hor.aggregateOverTime = false;  
+ * // first line blue:
+ * graph.defaults.series.series0.line.color = '#00a';  
+ * // second line green
+ * graph.defaults.series.series1.line.color = '#0a0';  
  * 
  * // trigger the update loop to plot the data
- * let index = 0;
- * update();
+ * graph.render(data, 1000, update);
  * 
- * function update() {
- *      index++;
- *      // modify the data in this round:
- *      data.rows.push([index, Math.random(), Math.random()-1]);
- * 
- *      // render the graph: 
- *      graph.render(data);
+ * function update(data) {
+ *      // add a row of data
+ *      val = Math.random();
+ *      data.rows.push([index++, val, val-1]);
+ *      // remove old row of data
  *      if (data.rows.length > 10) { data.rows.shift(); }
- * 
- *      // trigger next update in 1s:
- *      setTimeout(update, 1100);
+ *      return true; // continue update calls
  * }
  * </file>
  * </example>

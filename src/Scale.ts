@@ -75,6 +75,7 @@ export class Scales extends GraphComponent {
      * @param range the viewport range to scale for 
      */
     public static createScale(scaleDef: ScaleDefaults, domain: [number, number], range?:[UnitVp, UnitVp]):d3.ScaleContinuousNumeric<number, number> {
+        if (!scaleDef) { return; }
         const domDef = <NumericDefaults>scaleDef.domain;
         const rangeDef = scaleDef.range;
         let scale:d3.ScaleContinuousNumeric<number, number>;

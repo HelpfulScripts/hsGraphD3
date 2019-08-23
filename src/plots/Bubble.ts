@@ -59,27 +59,11 @@
 import { log as gLog }          from 'hsutil';   const log = gLog('Bubble');
 import { DataSet }              from '../Graph';
 import { SeriesPlot }           from '../SeriesPlot';
-import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { Series }               from '../Series';
 import { GraphCfg }             from '../GraphComponent'; 
 
 
 class Bubble extends SeriesPlot {
-    /**
-     * plot constructor
-     * @param cx string column name for x-center coordinates
-     * @param cy string column name for y-center coordinates
-     * @param r  string column name for radius coordinates
-     */
-    // constructor(cfg:GraphCfg, seriesName:string, protected cx:string, protected cy:string, protected r?:string) {
-    //     super(cfg, seriesName, cx, cy, r);
-    // }
-
-    // getDefaults(): SeriesPlotDefaults {
-    //     const def = super.getDefaults();
-    //     return def;
-    // }
-    
     /**
      * 
      * @param data a {@link hsDatab:Data `Data`} object containing the 
