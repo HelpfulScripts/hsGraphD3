@@ -10,6 +10,8 @@ import { log as gLog }      from 'hsutil';   const log = gLog('Axis');
 import { GraphComponent }   from './GraphComponent'; 
 import { GraphCfg }         from './GraphComponent';
 import { ComponentDefaults }from './GraphComponent';
+import { Line }             from './GraphComponent';
+import { Text }             from './GraphComponent';
 import * as def             from './Settings';
 import { ScalesDefaults }    from './Scale';
 import { UnitVp, d3Base }   from './Settings';
@@ -23,14 +25,16 @@ export enum Direction {
 
 export interface AxisDefaults extends ComponentDefaults {
     color:      string;
-    line:       def.Stroke;
+    rendered:   boolean;
+    line:       Line;
     tickWidth:  UnitVp;
-    tickMarks:  def.Stroke;
-    tickLabel:  def.TextStyle;
+    tickMarks:  Line;
+    tickLabel:  Text;
 }
 
 export interface AxesDefaults extends ComponentDefaults {
     color:      string;
+    rendered:   boolean;
     hor:        AxisDefaults;
     ver:        AxisDefaults;
 } 
@@ -52,6 +56,7 @@ export class Axes extends GraphComponent {
     public createDefaults():AxesDefaults {
         return {
             color:  '#000',
+            rendered: true,
             hor:    this.axes[0].createDefaults(),
             ver:    this.axes[1].createDefaults()
         };
@@ -64,7 +69,10 @@ export class Axes extends GraphComponent {
     } 
 
     renderComponent() {
-        this.axes.forEach(axis => axis.renderComponent());
+        const def = <AxesDefaults>this.cfg.defaults.axes;
+        if (def.rendered) {
+            this.axes.forEach(axis => axis.defaults.rendered? axis.renderComponent() : '');
+        }
     }
 }
 
@@ -81,21 +89,26 @@ export class Axis {
         this.svg.classed(`${dir}Axis`, true);
     }
 
-    public createDefaults() {
+    public createDefaults():AxisDefaults {
         return {
             color:      'currentColor',
-            line:       def.defaultStroke(1),
+            rendered:   true,
+            line:       def.defaultLine(1),
             tickWidth:  5,
-            tickMarks:  def.defaultStroke(2),
+            tickMarks:  def.defaultLine(2),
             tickLabel:  def.defaultText()
         };
+    }
+
+    public get defaults():AxisDefaults {
+        return (<AxisDefaults>this.cfg.defaults.axes)[this.dir];
     }
     
     public renderComponent() {
         const trans = this.cfg.transition;
         const horScales = this.cfg.scales.hor;
         const verScales = this.cfg.scales.ver;
-        const style = this.cfg.defaults.axes[this.dir];
+        const style = <AxisDefaults>this.cfg.defaults.axes[this.dir];
         let axis:any;
         const margins = (<ScalesDefaults>this.cfg.defaults.scales).margin;
         this.cfg.baseSVG.select('.axes')
@@ -113,9 +126,21 @@ export class Axis {
             this.svg.transition(trans).attr("transform", `translate(${xCrossing}, 0)`);
         }
         axis.tickSize(style.tickWidth);
-        setText(this.svg, style.tickLabel, trans);
         this.svg.attr('color', style.color);
         this.svg.transition(trans).call(axis);
-        setStroke(this.svg.selectAll('text'), style.tickLabel);
+        if (style.line.rendered) {
+        } else {
+            this.svg.selectAll('path').attr('style', 'visibility: hidden');
+        }
+        if (style.tickLabel.rendered) {
+            setText(this.svg, style.tickLabel, trans);
+        } else {
+            this.svg.selectAll('text').attr('style', 'visibility: hidden');
+        }
+        if (style.tickMarks.rendered) {
+            setStroke(this.svg.selectAll('.tick line'), style.tickMarks);
+        } else {
+            this.svg.selectAll('.tick line').attr('style', 'visibility: hidden');
+        }
     }
 }

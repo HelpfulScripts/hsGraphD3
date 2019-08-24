@@ -56,21 +56,11 @@
 
  /** */
 
-import { log as gLog }          from 'hsutil';   const log = gLog('Bubble');
-import { SeriesPlot }           from '../SeriesPlot';
-import { Series }               from '../Series';
-import { GraphCfg }             from '../GraphComponent'; 
+import { log as gLog }  from 'hsutil';   const log = gLog('Bubble');
+import { SeriesPlot }   from '../SeriesPlot';
+import { GraphCfg }     from '../GraphComponent'; 
 
 
-class Line extends SeriesPlot {
-    /**
-     * plot constructor
-     * @param cx string column name for x-center coordinates
-     * @param cy string column name for y-center coordinates
-     */
-    constructor(cfg:GraphCfg, seriesName:string, protected cx:string, protected cy:string) {
-        super(cfg, seriesName, cx, cy);
-    }
+export class Line extends SeriesPlot {
 } 
 
-Series.register('line', (cfg:GraphCfg, sName:string, cx:string, cy:string) => new Line(cfg, sName, cx, cy));

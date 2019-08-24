@@ -56,7 +56,7 @@ import { d3Base }               from '../Settings';
 import { GraphCfg }             from '../GraphComponent'; 
  
 
-class TimeSeries extends SeriesPlot {
+export class TimeSeries extends SeriesPlot {
     /**
      * plot constructor
      * @param cx string column name for x-center coordinates
@@ -88,28 +88,31 @@ class TimeSeries extends SeriesPlot {
 
     d3RenderMarkers(svg:d3Base, data:DataSet) {
         if (data.rows.length<2) { return super.d3RenderMarkers(svg, data); }
-        const xUnit = <number>data.rows[1][this.cols[0]] - <number>data.rows[0][this.cols[0]];
-        const samples:any = svg.select('.markers').selectAll("circle").data(data.rows, d => d[0]);
-        samples.exit().remove();            // remove unneeded circles
-        samples.enter().append('circle')    // add new circles
-            .call(this.d3DrawMarker, this)
-            .attr("transform", `translate(${this.cfg.scales.hor(xUnit) - this.cfg.scales.hor(0)})`)
-        .merge(samples).transition(this.cfg.transition)   // draw markers
-            .call(this.d3DrawMarker, this)
-            .attr("transform", `translate(0)`);
+        const defaults = (<SeriesPlotDefaults>this.cfg.defaults.series[this.key]).marker;
+        if (defaults.rendered) {
+            const xUnit = <number>data.rows[1][this.cols[0]] - <number>data.rows[0][this.cols[0]];
+            const samples:any = svg.select('.markers').selectAll("circle").data(data.rows, d => d[0]);
+            samples.exit().remove();            // remove unneeded circles
+            samples.enter().append('circle')    // add new circles
+                .call(this.d3DrawMarker, this)
+                .attr("transform", `translate(${this.cfg.scales.hor(xUnit) - this.cfg.scales.hor(0)})`)
+            .merge(samples).transition(this.cfg.transition)   // draw markers
+                .call(this.d3DrawMarker, this)
+                .attr("transform", `translate(0)`);
+        }
     }
 
     d3RenderPath(svg:d3Base, data:DataSet) {
         if (data.rows.length<2) { return super.d3RenderPath(svg, data); }
-
-        const path = this.svg.select('.lines').selectAll('path'); //.data([<number[][]>data.rows]);
-        path.attr('d', d => this.lines(<number[][]>data.rows))
-            .attr("transform", `translate(${this.cfg.scales.hor(1) - this.cfg.scales.hor(0)})`)
-         .transition(this.cfg.transition)
-            .attr("transform", `translate(0)`)
-        ;
+        const defaults = (<SeriesPlotDefaults>this.cfg.defaults.series[this.key]).line;
+        if (defaults.rendered) {
+            const path = this.svg.select('.lines').selectAll('path'); //.data([<number[][]>data.rows]);
+            path.attr('d', d => this.lines(<number[][]>data.rows))
+                .attr("transform", `translate(${this.cfg.scales.hor(1) - this.cfg.scales.hor(0)})`)
+            .transition(this.cfg.transition)
+                .attr("transform", `translate(0)`);
+        }
     }
 } 
  
-Series.register('timeseries', (cfg:GraphCfg, sName:string, cx:string, cy:string, r:string) => new TimeSeries(cfg, sName, cx, cy, r));
  

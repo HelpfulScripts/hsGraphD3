@@ -75,7 +75,8 @@ export class Series extends GraphComponent {
     get componentType() { return Series.type; }
 
     initialize(svg:d3Base): void {
-        this.series.forEach((s:SeriesPlot) => s.initialize(svg));
+        const seriesSVG = svg.selectAll(`.${this.componentType}`);
+        this.series.forEach((s:SeriesPlot) => s.initialize(seriesSVG));
     } 
 
     preRender(data:DataSet, domains:Domains): void {
@@ -104,7 +105,6 @@ export class Series extends GraphComponent {
      */
     expandDomain(data:DataSet, domains:Domains):Domains {
         function spread(dom:[number, number]) { dom[0] = 0.9*dom[0]; dom[1] = 1.1*dom[1]; }
-// console.log(domains);
         this.series.forEach(s => {
             s.dimensions.map((dim, i) => {
                 const col = data.colNames.indexOf(dim);
@@ -113,7 +113,6 @@ export class Series extends GraphComponent {
                     const dataDom = extent(data.rows, (r => <number>r[col]));
                     domains[i][0] = Math.min(domains[i][0], dataDom[0]);
                     domains[i][1] = Math.max(domains[i][1], dataDom[1]);
-// console.log(`   ${i} ${dim} ${domains[i][0]}-${domains[i][1]}`);
                 }
                 if (domains[i][1] === domains[i][0]) { spread(domains[i]); }
             });

@@ -59,11 +59,9 @@
 import { log as gLog }          from 'hsutil';   const log = gLog('Bubble');
 import { DataSet }              from '../Graph';
 import { SeriesPlot }           from '../SeriesPlot';
-import { Series }               from '../Series';
-import { GraphCfg }             from '../GraphComponent'; 
 
 
-class Bubble extends SeriesPlot {
+export class Bubble extends SeriesPlot {
     /**
      * 
      * @param data a {@link hsDatab:Data `Data`} object containing the 
@@ -73,6 +71,3 @@ class Bubble extends SeriesPlot {
             .call(this.d3RenderMarkers.bind(this), data);
     }
 } 
-
-//Plot.register('bubble', new BubbleFatory());
-Series.register('bubble', (cfg:GraphCfg, sName:string, cx:string, cy:string, r?:string) => new Bubble(cfg, sName, cx, cy, r));

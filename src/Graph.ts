@@ -3,18 +3,19 @@
  * 
  * The base class for Graph types.
  * Takes care of the following tasks:
- * - creating a central configuratin object used through out the library.
- * - establishing {@Lifecycle lifecycle calls}:
+ * - setting up the SVG environment for the `Graph`
+ * - creating the {@link GraphComponent components} to render in ths `Graph`
+ * - initializing default {@link Settings settings}
+ * - creating a central {@link GraphComponent.GraphCfg configuration object} that is used throughout the library.
+ * - establishing {@link Graph.LifecycleCalls lifecycle calls}:
  * 
  */
 
 /** */
 
 import { log as gLog }      from 'hsutil';   const log = gLog('Graph');
-// import { Data, DataTable, DataSet }  from 'hsdatab';
 
 import { select as d3Select}from 'd3';
-import { transition }       from 'd3';
 import * as d3              from 'd3';
 
 import { GraphComponent}    from './GraphComponent';

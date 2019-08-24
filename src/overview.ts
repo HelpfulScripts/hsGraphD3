@@ -53,9 +53,9 @@
  * 
  * // adjust some settings:
  * graph.defaults.axes.color = '#88f';  // both axes appear blue
- * with (graph.defaults.scales.size.range) {
+ * with (graph.defaults.scales.dims.size.range) {
  *      min = 10;                       // min marker size
- *      max = 80;                       // max marker size
+ *      max = 50;                       // max marker size
  * }
  * 
  * // trigger the update loop to plot the data
@@ -90,23 +90,27 @@
  * graph.addSeries('timeseries', 'date', 'series');
  * 
  * //----- adjust some settings:
- * // forget early indexes:
- * graph.defaults.scales.dims.hor.aggregateOverTime = false;  
- * // first line blue:
- * graph.defaults.series.series0.line.color = '#00a';  
- * // second line green
- * graph.defaults.series.series1.line.color = '#0a0';  
+ * with (graph.defaults) {
+ *    scales.dims.hor.aggregateOverTime = false; // forget the past
+ *    series.series0.line.color = '#00a';  // first line blue
+ *    series.series1.line.color = '#0a0';  // second line green
+ *    axes.ver.tickLabel.rendered = false; // hide vertical axis labels
+ * }
  * 
  * // trigger the update loop to plot the data
  * graph.render(data, 1000, update);
  * 
- * function update(data) {
+ * function update(data) { 
+ * 
  *      // add a row of data
  *      val = Math.random();
  *      data.rows.push([index++, val, val-1]);
- *      // remove old row of data
+ * 
+ *      // remove old row of data:
  *      if (data.rows.length > 10) { data.rows.shift(); }
- *      return true; // continue update calls
+ * 
+ *      // continue update calls:
+ *      return true; 
  * }
  * </file>
  * </example>

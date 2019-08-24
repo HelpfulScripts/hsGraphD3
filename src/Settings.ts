@@ -36,9 +36,9 @@
 
 /** */
 
-import * as gc      from './GraphComponent';
-import { log as _log }  from 'hsutil';
-const log = _log('Defaults');
+import { log as _log }          from 'hsutil'; const log = _log('Defaults');
+import { ComponentDefaults }    from './GraphComponent';
+import { Line }                 from './GraphComponent';
 
 
 /** viewport units */
@@ -54,9 +54,9 @@ export interface RectDef { x:UnitVp; y:UnitVp; width:UnitVp; height:UnitVp; }
 
 export type d3Base = d3.Selection<d3.BaseType, unknown, d3.BaseType, any>; 
 
-export type DefaultsType = {[compName:string]: gc.ComponentDefaults};
+export type DefaultsType = {[compName:string]: ComponentDefaults};
 
-export type DefaultsAccess  = (compName:string) => gc.ComponentDefaults;
+export type DefaultsAccess  = (compName:string) => ComponentDefaults;
 export type Color           = string;           // CSS color descriptor, e.g. '#fff'
 export type ZeroToOne       = number;           // number from [0, 1]
 export type Index           = number;           // column index into data table
@@ -84,7 +84,8 @@ export interface RectStyle {
 }
 
 export interface TextStyle {
-    color: Color;
+    rendered: boolean;
+    stroke: Stroke;
     font: {
         family: string;     // e.g. 'sans-serif';
         size: UnitVp;       // e,g, 12
@@ -117,6 +118,12 @@ export const defaultStroke = (width:UnitVp, color:Color='currentColor'):Stroke =
     };
 };
 
+export const defaultLine = (width:UnitVp, color:Color='currentColor'):Line => {
+    const def:any = defaultStroke(width, color);
+    def.rendered = true;
+    return def;
+};
+
 export const defaultFill = (areaFill:Color = '#fff') => {
     return {
         color: areaFill,
@@ -141,7 +148,8 @@ export const defaultRect = (areaFill:Color, borderWidth:UnitVp=0, borderColor:Co
 
 export const defaultText = (size=16):TextStyle => {
     return {
-        color: 'currentColor',
+        rendered: true,
+        stroke: defaultStroke(1),
         font: {
             family: 'sans-serif',
             size:   size,
@@ -189,7 +197,7 @@ export function setRect(svg:d3Base, settings:RectStyle):d3Base {
 
 export function setText(svg:d3Base, settings:TextStyle, transition:any) {
     svg.transition(transition)
-        .attr('color', settings.color)
+        .attr('color', settings.stroke.color)
         .attr('font-family', settings.font.family)
         .attr('font-size',   settings.font.size+'px')
         .attr('font-style',  settings.font.style)

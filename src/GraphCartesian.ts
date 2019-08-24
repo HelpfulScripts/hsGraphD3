@@ -68,12 +68,23 @@ import { scaleDefault }     from './Scale';
 import { ScalesDefaults }   from './Scale';
 import { Scales }           from './Scale';
 import { d3Base }           from './Settings';
+import { Series }           from './Series';
+import { GraphCfg}          from './GraphComponent';
+import { Bubble }           from "./plots/Bubble";
+import { Line }             from "./plots/Line";
+import { TimeSeries }       from "./plots/TimeSeries";
+import { Voronoi }          from "./plots/Voronoi";
 
 
 export class GraphCartesian extends Graph {
     constructor(root:any) { 
         super(root);
         log.debug('created GraphCartesian');
+        Series.register('bubble', (cfg:GraphCfg, sName:string, cx:string, cy:string, r?:string) => new Bubble(cfg, sName, cx, cy, r));
+        Series.register('line', (cfg:GraphCfg, sName:string, cx:string, cy:string) => new Line(cfg, sName, cx, cy));
+        Series.register('timeseries', (cfg:GraphCfg, sName:string, cx:string, cy:string, r:string) => new TimeSeries(cfg, sName, cx, cy, r));
+        Series.register('voronoi', (cfg:GraphCfg, sName:string, cx:string, cy:string, r:string) => new Voronoi(cfg, sName, cx, cy, r));
+
     }
 
     /**

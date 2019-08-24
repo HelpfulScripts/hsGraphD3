@@ -10,6 +10,9 @@ import { DefaultsType } from './Settings';
 import { d3Base }       from './Settings';
 import { RectDef }      from './Settings';
 import { UnitVp }       from './Settings';
+import { Stroke }       from './Settings';
+import { MarkerStyle }  from './Settings';
+import { TextStyle }    from './Settings';
 import { LifecycleCalls } from './Graph';
 import { Selection }    from 'd3';
 import { BaseType }     from 'd3';
@@ -17,6 +20,14 @@ import { BaseType }     from 'd3';
 
 export type SVGLineSelection = Selection<SVGLineElement, number, BaseType, unknown>;
 export type SVGCircleSelection = Selection<SVGCircleElement, number, BaseType, unknown>;
+
+export interface Rendered {
+    rendered: boolean;
+}
+export interface Line extends Stroke, Rendered {}
+export interface Marker extends MarkerStyle, Rendered {}
+export interface Text extends TextStyle, Rendered {}
+
 
 /** 
  * Configuration parameters for the render tree, passed to each `GraphComponent` during construction. 
