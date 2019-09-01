@@ -14,6 +14,8 @@
  * 3. apply any desired formatting changes to the default
  * 3. render the graph for a given data set: `graph.render(data);`
  * 
+ * To dynamically update the graph to new data, call the `update`
+ * 
  * ## Data
  * Data is provided either as a [`Data`](https://helpfulscripts.github.io/hsDatab/#!/api/hsDatab/0) object, 
  * or in table form
@@ -59,7 +61,7 @@
  * }
  * 
  * // trigger the update loop to plot the data
- * graph.render(data, 2000, data => {
+ * graph.render(data).update(2000, data => {
  *      // modify the data in this round:
  *      data.rows.map(row => { 
  *          row[2] = (Math.random()-0.1)*200;   // y-value
@@ -98,10 +100,7 @@
  * }
  * 
  * // trigger the update loop to plot the data
- * graph.render(data, 1000, update);
- * 
- * function update(data) { 
- * 
+ * graph.render(data).update(1000, data => { 
  *      // add a row of data
  *      val = Math.random();
  *      data.rows.push([index++, val, val-1]);
@@ -111,7 +110,7 @@
  * 
  *      // continue update calls:
  *      return true; 
- * }
+ * });
  * </file>
  * </example>
  */

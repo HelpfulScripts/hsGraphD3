@@ -1,5 +1,5 @@
 /**
- * # AbstractGraph
+ * # Graph
  * 
  * The base class for Graph types.
  * Takes care of the following tasks:
@@ -29,10 +29,54 @@ import { Grids }            from './Grid';
 import { Canvas }           from './Canvas';
 import { DefaultsType }     from './Settings';
 import { d3Base }           from './Settings';
+import { SeriesPlot }       from './SeriesPlot';
 
 const vpWidth:number    = 1000;
 
 export type Domains = { [dim:string]: [number, number]};
+
+/**
+ * Function interface, describing the signature of the call back function 
+ * in {@link RenderChain `RenderChain`}.
+ * If the function returns `false`, no further callbacks will be initiated
+ */
+export interface RenderCallback {
+    (data:DataSet | DataSet[]): boolean;
+}
+
+/**
+ * Function interface, describing the signature of the `update` function
+ * @param duration optional period in ms to call `sample` function. the `Graph's` tree-wide transition
+ * will be timed to end at the specified duration, upon which the `sample` callback will be called.
+ * @param callback callback function that allow periodic manipulation of the `data` set. 
+ * New callbacks will be scheduled at `duration` intervals as long as the callback returns `true`. 
+ * Otherwise the callbacks will be stopped. Independent of the return value, 
+ * a render cycle will automatically be triggered after `update` returns.
+ * See {@link TimeSeries TimeSeries} for an example.
+ */
+export interface Update {
+    (duration:number, callback:RenderCallback): void;
+}
+
+/**
+ * This object is returned by a call to {@link Graph.render `Graph.render`}, providing an `update` function
+ * to call in order to render dynamic data updates.
+ */
+export interface RenderChain {
+    /** 
+     * Update function, can be called to dynamically update the data and trigger a redraw in regular intervals.
+     * Once called, the `callback` function will be invoked in roughly regular intervals every `duration` milliseconds.
+     * Returning `false` in the `callback` will stop the callbacks.
+     * @param duration optional period in ms to call `sample` function. the `Graph's` tree-wide transition
+     * will be timed to end at the specified duration, upon which the `sample` callback will be called.
+     * @param callback callback function that allow periodic manipulation of the `data` set. 
+     * New callbacks will be scheduled at `duration` intervals as long as the callback returns `true`. 
+     * Otherwise the callbacks will be stopped. Independent of the return value, 
+     * a render cycle will automatically be triggered after `update` returns.
+     * See {@link TimeSeries TimeSeries} for an example.
+     */
+    update: (duration:number, callback:RenderCallback) => void;
+}
 
 /**
  * ## Lifecycle calls
@@ -56,13 +100,13 @@ export interface LifecycleCalls {
      * Called immediately before each call to renderComponent. 
      * At this point, the axis scales have been set and all components are initialized.
      */
-    preRender(data:DataSet, domains:Domains): void;
+    preRender(data:DataSet | DataSet[], domains:Domains): void;
 
     /** 
      * renders the component. 
      * At this point all components have completed preRendering
      */
-    renderComponent(data:DataSet): void;
+    renderComponent(data:DataSet | DataSet[]): void;
 }
 
 
@@ -139,45 +183,46 @@ export abstract class Graph implements LifecycleCalls {
 
     /**
      * render the tree with the supplied data.
-     * @param data the data to render
-     * @param duration optional period in ms to call `sample` function. the `Graph's` tree-wide transition
-     * will be timed to end at the specified duration, upon which the `sample` callback will be called.
-     * @param update optional callback function that allow periodic manipulation of the `data` set. 
-     * New callbacks will be scheduled at `duration` intervals as long as the callback returns `true`. 
-     * Otherwise the callbacks will be stopped. Independent of the return value, 
-     * a render cycle will automatically be triggered after `update` returns.
-     * See {@link TimeSeries TimeSeries for an example.
+     * @param data the data to render. If `data` is a {@link DataSet DataSet}, it will be used 
+     * to render all added series. Otherwise `data` can be specified as `DataSet[]` to provide a
+     * different data source to each of the series. The series' index, starting with 0 in the order of adding it to the graph,
+     * is used to index the list. If there are more series than data sets ion the list, indexing will restart at index 0.
      */
-    public render(data:DataSet, duration?:number, update?:(data:DataSet) => boolean): void {
-        const graph = this;
-        const graphDef = <GraphDefaults>graph.config.defaults.graph;
+    public render(data:DataSet | DataSet[]):RenderChain {
+        const graphDef = <GraphDefaults>this.config.defaults.graph;
 
-        function listener() {
-            if (update(data)) { 
-                graph.config.transition = graph.config.transition.transition();
-                graph.config.transition.on('end', listener); 
-            }
-            setTimeout(renderGraph,0);  // render on the next event loop pass, outside the transition listener.
-        }
         function renderGraph() {
-            if (!graph.initialized) {
-                graph.initialize(graph.config.baseSVG);
-                graph.initialized = true;
+            if (!this.initialized) {
+                this.initialize(this.config.baseSVG);
+                this.initialized = true;
             }
-            const scalesDefaults = <ScalesDefaults>graph.config.defaults.scales;
-            graph.preRender.bind(graph)(data, graph.prepareDomains(scalesDefaults));
-            graph.renderComponent.bind(graph)(data);
+            const scalesDefaults = <ScalesDefaults>this.config.defaults.scales;
+            this.preRender(data, this.prepareDomains(scalesDefaults));
+            this.renderComponent(data);
         }
-        
-        graphDef.transitionTime = duration || graphDef.transitionTime;
+
         const easing = d3[graphDef.easing];
-        // if (!graph.config.transition) {          
-            graph.config.transition = graph.config.baseSVG.transition().duration(graphDef.transitionTime).ease(easing);
-            if (update) {
-                graph.config.transition.on('end', update? listener : null); 
+        this.config.transition = this.config.baseSVG.transition().duration(graphDef.transitionTime).ease(easing);
+
+        renderGraph.bind(this)();
+        
+        const graph = this;
+        return {
+            update: (duration:number, callback:RenderCallback):void => {
+                function listener() {
+                    try {
+                        graphDef.transitionTime = duration || graphDef.transitionTime;
+                        graph.config.transition = graph.config.transition.transition().duration(graphDef.transitionTime);
+                        if (callback(data) !== false) {
+                            graph.config.transition.on('end', listener); 
+                        }
+                    }
+                    catch(e) { log.warn(`error in callback: ${e}`); }
+                    setTimeout(renderGraph.bind(graph),0);  // render on the next event loop pass, outside the transition listener.
+                }
+            graph.config.transition.on('end', listener); 
             }
-        // }
-        renderGraph();
+        };
     }
 
     /**
@@ -185,9 +230,9 @@ export abstract class Graph implements LifecycleCalls {
      * @param type type of plot to use, e.g. 'bubble' or 'scatter'
      * @param params the column name of the parameters used to plot the series
      */
-    public addSeries(type:string, x:string, y:string, ...params:string[]) {
+    public addSeries(type:string, x:string, y:string, ...params:string[]):SeriesPlot {
         //this.resize();
-        this.seriesComponent.addSeries(type, x, y, ...params);
+        return this.seriesComponent.addSeries(type, x, y, ...params);
     }
 
 
@@ -202,14 +247,14 @@ export abstract class Graph implements LifecycleCalls {
     } 
 
     /** Called immediately before each call to renderComponent. */
-    preRender(data:DataSet, domains:Domains): void {
+    preRender(data:DataSet | DataSet[], domains:Domains): void {
         this.seriesComponent.expandDomain(data, domains);
         this.setScales(data);
         this.components.forEach((comp:GraphComponent) => comp.preRender(data, domains));
     } 
 
     /** renders the component. */
-    renderComponent(data:DataSet): void {
+    renderComponent(data:DataSet | DataSet[]): void {
         this.components.forEach((comp:GraphComponent) => comp.renderComponent(data));
     } 
 
@@ -217,7 +262,7 @@ export abstract class Graph implements LifecycleCalls {
     //************** Non-public part **************************/
 
     /** set the scales for the graph prior to rendering components. */
-    protected abstract setScales(data:DataSet):void;
+    protected abstract setScales(data:DataSet | DataSet[]):void;
 
     /** called once during construction to create the components defaults. */
     protected createDefaults():GraphDefaults {

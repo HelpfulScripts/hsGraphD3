@@ -52,9 +52,8 @@ export interface GraphCfg {
     /** 
      * mapping of semantic scales to data columns and scaling functions. 
      * The scaling function will be set at rendering time for each new rendering frame.
-     * @param dim the semantic name of the axis to plot and scale. E.g. for 2D cartesian plots, `dim` is `hor` or `ver`.
-     * @param dataCol the name of the data column that will be plotted along this axis
-     * @param scale a d3js scale used for scaling
+     * @param dim *string* the semantic name of the axis to plot and scale. E.g. for 2D cartesian plots, 
+     * `dim` is `hor`, `ver`, or `size`. 
      */    
     scales: { [dim:string]:  d3.ScaleContinuousNumeric<number, number>};
 
@@ -99,9 +98,9 @@ export abstract class GraphComponent implements LifecycleCalls {
     abstract initialize(svg:d3Base): void;
 
     /** Called immediately before each call to renderComponent. */
-    abstract preRender(data:DataSet, domains:Domains): void; 
+    abstract preRender(data:DataSet | DataSet[], domains:Domains): void; 
 
     /** renders the component. */
-    abstract renderComponent(data:DataSet): void;
+    abstract renderComponent(data:DataSet | DataSet[]): void;
 }
 

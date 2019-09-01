@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>48/48</span>
+        <span class='fraction'>49/49</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">60.87% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>43/43</span>
+        <span class='fraction'>44/44</span>
       </div>
     </div>
     <p class="quiet">
@@ -255,8 +255,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -267,6 +265,7 @@
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-yes">7x</span>
@@ -307,6 +306,7 @@
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -390,15 +390,13 @@
  * graph.defaults.series.series1.line.width = 5;
  * graph.defaults.series[1].line.color = '#0c0';
  * 
- * graph.render(data, 2000, update);
- * 
- * function update() {
+ * graph.render(data).update(2000, data =&gt; {
  *    data.rows.map(row =&gt; {
  *      row[2] = 2*(Math.random()-0.5); // -1...1
  *      row[3] = Math.random();         //  0...1
  *    });
  *    return true;
- * }
+ * });
  * 
  * &lt;/file&gt;
  * &lt;/example&gt;
@@ -417,6 +415,7 @@ import { ScalesDefaults }   from './Scale';
 import { Scales }           from './Scale';
 import { d3Base }           from './Settings';
 import { Series }           from './Series';
+import { SeriesPlot }       from './SeriesPlot';
 import { GraphCfg}          from './GraphComponent';
 import { Bubble }           from "./plots/Bubble";
 import { Line }             from "./plots/Line";
@@ -448,8 +447,8 @@ export class GraphCartesian extends Graph {
      * @param type type of plot to use, e.g. 'bubble' or 'scatter'
      * @param params the column name of the parameters used to plot the series
      */
-    public addSeries(type:string, x:string, y:string, ...params:string[]) {
-        super.addSeries(type, x, y, ...params);
+    public addSeries(type:string, x:string, y:string, ...params:string[]):SeriesPlot {
+        const series = super.addSeries(type, x, y, ...params);
         const scales = this.config.defaults.scales;
         // the first two dimensions are shared with the standard 2D dimensions 'hor' and 'ver'.
         scales.dims[0] = scales.dims[0] || scales.dims['hor'] || <span class="branch-2 cbranch-no" title="branch not covered" >scaleDefault();</span>       // auto viewport range
@@ -457,6 +456,7 @@ export class GraphCartesian extends Graph {
         if (params.length &gt; 0) { 
             scales.dims[2] = scales.dims[2] || scales.dims['size'] || <span class="branch-2 cbranch-no" title="branch not covered" >scaleDefault();</span>  // auto viewport range
         }
+        return series;
     }
 &nbsp;
     protected makeDefaults() {
@@ -467,7 +467,7 @@ export class GraphCartesian extends Graph {
         scales.size = scaleDefault(5, 15); // marker sizes in vpUnits
     }
 &nbsp;
-    protected setScales(data:DataSet) {
+    protected setScales(data:DataSet | DataSet[]) {
         const scalesDefaults = &lt;ScalesDefaults&gt;this.config.defaults.scales;
         const margins = this.config.defaults.scales.margin;
         const scales = this.config.scales;

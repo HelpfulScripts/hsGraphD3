@@ -31,7 +31,7 @@
  * graph.defaults.series.series0.marker.size = 1.5;
  * 
  * // trigger the update loop to plot the data
- * graph.render(data, 1000, (data) => {
+ * graph.render(data).update(1000, data => {
  *      // add new sample
  *      data.rows.push([index++, Math.random()+1, Math.random()]);
  *      // remove old sample

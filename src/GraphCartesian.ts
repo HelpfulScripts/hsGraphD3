@@ -42,15 +42,13 @@
  * graph.defaults.series.series1.line.width = 5;
  * graph.defaults.series[1].line.color = '#0c0';
  * 
- * graph.render(data, 2000, update);
- * 
- * function update() {
+ * graph.render(data).update(2000, data => {
  *    data.rows.map(row => {
  *      row[2] = 2*(Math.random()-0.5); // -1...1
  *      row[3] = Math.random();         //  0...1
  *    });
  *    return true;
- * }
+ * });
  * 
  * </file>
  * </example>
@@ -69,6 +67,7 @@ import { ScalesDefaults }   from './Scale';
 import { Scales }           from './Scale';
 import { d3Base }           from './Settings';
 import { Series }           from './Series';
+import { SeriesPlot }       from './SeriesPlot';
 import { GraphCfg}          from './GraphComponent';
 import { Bubble }           from "./plots/Bubble";
 import { Line }             from "./plots/Line";
@@ -100,8 +99,8 @@ export class GraphCartesian extends Graph {
      * @param type type of plot to use, e.g. 'bubble' or 'scatter'
      * @param params the column name of the parameters used to plot the series
      */
-    public addSeries(type:string, x:string, y:string, ...params:string[]) {
-        super.addSeries(type, x, y, ...params);
+    public addSeries(type:string, x:string, y:string, ...params:string[]):SeriesPlot {
+        const series = super.addSeries(type, x, y, ...params);
         const scales = this.config.defaults.scales;
         // the first two dimensions are shared with the standard 2D dimensions 'hor' and 'ver'.
         scales.dims[0] = scales.dims[0] || scales.dims['hor'] || scaleDefault();       // auto viewport range
@@ -109,6 +108,7 @@ export class GraphCartesian extends Graph {
         if (params.length > 0) { 
             scales.dims[2] = scales.dims[2] || scales.dims['size'] || scaleDefault();  // auto viewport range
         }
+        return series;
     }
 
     protected makeDefaults() {
@@ -119,7 +119,7 @@ export class GraphCartesian extends Graph {
         scales.size = scaleDefault(5, 15); // marker sizes in vpUnits
     }
 
-    protected setScales(data:DataSet) {
+    protected setScales(data:DataSet | DataSet[]) {
         const scalesDefaults = <ScalesDefaults>this.config.defaults.scales;
         const margins = this.config.defaults.scales.margin;
         const scales = this.config.scales;

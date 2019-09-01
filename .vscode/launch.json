@@ -1,0 +1,23 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [  
+        {
+            "cwd": "${workspaceFolder}",
+
+            "type": "node",
+            "request": "launch",
+            "name": "Jest Tests",
+            "program": "/usr/local/bin/npx",
+            "args": [
+                "jest"
+            ],
+            "internalConsoleOptions": "openOnSessionStart",
+            "outFiles": [
+                "${workspaceRoot}/_test/**/*"
+            ]
+        }
+    ]
+}

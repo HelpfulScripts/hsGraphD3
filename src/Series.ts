@@ -31,10 +31,10 @@
 
 /** */
 
-import { DataSet }          from './Graph';
-import { Domains }          from './Graph';
 import { extent }           from 'd3';
 import { log as gLog }      from 'hsutil';   const log = gLog('Series');
+import { DataSet }          from './Graph';
+import { Domains }          from './Graph';
 import { d3Base }           from './Settings';
 import { GraphComponent }   from './GraphComponent'; 
 import { ComponentDefaults }from './GraphComponent'; 
@@ -79,13 +79,19 @@ export class Series extends GraphComponent {
         this.series.forEach((s:SeriesPlot) => s.initialize(seriesSVG));
     } 
 
-    preRender(data:DataSet, domains:Domains): void {
-        this.series.forEach((s:SeriesPlot) => s.preRender(data, domains));
+    preRender(data:DataSet | DataSet[], domains:Domains): void {
+        this.series.forEach((s:SeriesPlot, i:number) => {
+            if ((<DataSet>data).colNames) { s.preRender(<DataSet>data, domains); } 
+            else { s.preRender(data[i % this.series.length], domains); }
+        });
     } 
 
     /** renders the component for the given data */
-    renderComponent(data:DataSet) {
-        this.series.forEach((s:SeriesPlot) => s.renderComponent(data));
+    renderComponent(data:DataSet | DataSet[]) {
+        this.series.forEach((s:SeriesPlot, i:number) => {
+            if ((<DataSet>data).colNames) { s.renderComponent(<DataSet>data); } 
+            else { s.renderComponent(data[i % this.series.length]); }
+        });
     }
 
     /** creates a default entry for the component type in `Defaults` */
@@ -103,20 +109,28 @@ export class Series extends GraphComponent {
      * data columns to be plotted on the same axis, they all share the same domain accumulation.
      * @return an array of [min, max] domains ranges, indexed by data column
      */
-    expandDomain(data:DataSet, domains:Domains):Domains {
+    expandDomain(data:DataSet | DataSet[], domains:Domains):Domains {
         function spread(dom:[number, number]) { dom[0] = 0.9*dom[0]; dom[1] = 1.1*dom[1]; }
-        this.series.forEach(s => {
-            s.dimensions.map((dim, i) => {
-                const col = data.colNames.indexOf(dim);
-                domains[i] = domains[i] || [1e90, -1e90];
-                if (dim) {
-                    const dataDom = extent(data.rows, (r => <number>r[col]));
-                    domains[i][0] = Math.min(domains[i][0], dataDom[0]);
-                    domains[i][1] = Math.max(domains[i][1], dataDom[1]);
-                }
-                if (domains[i][1] === domains[i][0]) { spread(domains[i]); }
+        function stretchDomains(dataSet:DataSet) {
+            this.series.forEach((s:SeriesPlot) => {
+                s.dimensions.map((dim, i) => {
+                    const col = dataSet.colNames.indexOf(dim);
+                    domains[i] = domains[i] || [1e90, -1e90];
+                    if (dim) {
+                        const dataDom = extent(dataSet.rows, (r => <number>r[col]));
+                        domains[i][0] = Math.min(domains[i][0], dataDom[0]);
+                        domains[i][1] = Math.max(domains[i][1], dataDom[1]);
+                    }
+                    if (domains[i][1] === domains[i][0]) { spread(domains[i]); }
+                });
             });
-        });
+        }
+
+        if ((<DataSet>data).colNames) {  
+            stretchDomains.bind(this)(<DataSet>data);
+        } else {
+            (<DataSet[]>data).forEach((dataset:DataSet) => stretchDomains.bind(this)(dataset));
+        }
         return domains;
     }
 
@@ -126,7 +140,7 @@ export class Series extends GraphComponent {
      * @param type type of plot to use, e.g. 'bubble' or 'scatter'
      * @param params the column name of the parameters used to plot the series
      */
-    addSeries(type:string, ...params:string[]) {
+    addSeries(type:string, ...params:string[]):SeriesPlot {
         const seriesCreator = Series.seriesCreatorMap[type];
         if (seriesCreator) {
             const series = seriesCreator(this.cfg, `${Series.type}${this.series.length}`, ...params);
@@ -135,6 +149,7 @@ export class Series extends GraphComponent {
             seriesDefault[index] = seriesDefault[series.key] = series.getDefaults();
             this.series.push(series);
             log.debug(`added series ${index} on '${params}'`);
+            return series;
         } else {
             log.error(`unknown plot type ${type}; available types are:\n   '${Object.keys(Series.seriesCreatorMap).join("'\n   '")}'`);
         }
