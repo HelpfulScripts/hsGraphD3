@@ -6,8 +6,8 @@ hsGraphD3
 [![Build Status](https://travis-ci.org/HelpfulScripts/hsGraphD3.svg?branch=master)](https://travis-ci.org/HelpfulScripts/hsGraphD3)
 [![Dependencies Status](https://david-dm.org/helpfulscripts/hsgraphd3.svg)](https://david-dm.org/helpfulscripts/hsgraphd3)
 [![Coverage Status](https://coveralls.io/repos/github/HelpfulScripts/hsGraphD3/badge.svg?branch=master)](https://coveralls.io/github/HelpfulScripts/hsGraphD3?branch=master)
-[![NPM License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://www.npmjs.com/package/hsgraphd3)
 [![Known Vulnerabilities](https://snyk.io/test/github/HelpfulScripts/hsGraphD3/badge.svg?targetFile=package.json)](https://snyk.io/test/github/HelpfulScripts/hsGraphD3?targetFile=package.json)
+[![NPM License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://www.npmjs.com/package/hsgraphd3)
 
 Helpful Scripts D3 convenience wrappers for for very simple plotting stuff.
 
