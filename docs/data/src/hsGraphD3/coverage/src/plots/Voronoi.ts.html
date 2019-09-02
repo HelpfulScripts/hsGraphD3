@@ -482,13 +482,13 @@
  /** */
 &nbsp;
 import { log as gLog }          from 'hsutil';   const log = gLog('Bubble');
-import { Delaunay}              from "d3-delaunay/";
-import { Voronoi as d3Voronoi} from "d3-delaunay/";
+import { Delaunay}              from "d3-delaunay";
+import { Voronoi as d3Voronoi}  from "d3-delaunay";
 import { SeriesPlot }           from '../SeriesPlot';
 import { DataSet }              from '../Graph';
 import { d3Base }               from '../Settings';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
-import { ScalesDefaults } from '../Scale';
+import { ScalesDefaults }       from '../Scale';
 &nbsp;
 export class Voronoi extends SeriesPlot {
     private voronoi: d3Voronoi&lt;number&gt;;

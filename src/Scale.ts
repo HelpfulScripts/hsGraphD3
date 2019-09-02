@@ -8,6 +8,7 @@ import { GraphComponent }       from './GraphComponent';
 import { GraphCfg }             from './GraphComponent';
 import { UnitVp }               from './Settings';
 import { scaleLinear }          from 'd3'; 
+import { interpolateRound }     from 'd3'; 
 
 export type scaleTypes = 'linear' | 'log';
 
@@ -45,7 +46,6 @@ export const scaleDefault = (minRange?:UnitVp, maxRange?:UnitVp):ScaleDefaults =
     return def;
 };
 
-
 export class Scales extends GraphComponent {
     static type = 'scales';
 
@@ -67,7 +67,6 @@ export class Scales extends GraphComponent {
         };
     }
 
-
     /**
      * creates a d3 scale object based on the provided settings.
      * @param scaleDef scale defaults, possibly modified by the application
@@ -78,7 +77,7 @@ export class Scales extends GraphComponent {
         if (!scaleDef) { return; }
         const domDef = <NumericDefaults>scaleDef.domain;
         const rangeDef = scaleDef.range;
-        let scale:d3.ScaleContinuousNumeric<number, number>;
+        let scale:d3.ScaleLinear<number, number>;
         switch(scaleDef.type) {
             case 'linear':
             default:
@@ -92,7 +91,8 @@ export class Scales extends GraphComponent {
         .range([
             (range && rangeDef.min === 'auto')? range[0] : <number>rangeDef.min, 
             (range && rangeDef.max === 'auto')? range[1] : <number>rangeDef.max
-        ]);
+        ])
+        .interpolate(interpolateRound);
         return scale;
     }
 }

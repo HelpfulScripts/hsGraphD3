@@ -315,7 +315,7 @@ export interface GraphCfg {
      * @param dim *string* the semantic name of the axis to plot and scale. E.g. for 2D cartesian plots, 
      * `dim` is `hor`, `ver`, or `size`. 
      */    
-    scales: { [dim:string]:  d3.ScaleContinuousNumeric&lt;number, number&gt;};
+    scales: { [dim:string]: d3.ScaleContinuousNumeric&lt;number, number&gt;};
 &nbsp;
     /** the currently used transition. A new transition will be set each time `Graph.render()` is called. */
     transition: any;

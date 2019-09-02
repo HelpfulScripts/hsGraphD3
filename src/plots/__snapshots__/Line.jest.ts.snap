@@ -40,14 +40,14 @@ exports[`Line should plot line 1`] = `
         <line
           x1="20"
           x2="980"
-          y1="493.0769230769231"
-          y2="493.0769230769231"
+          y1="493"
+          y2="493"
         />
         <line
           x1="20"
           x2="980"
-          y1="246.9230769230769"
-          y2="246.9230769230769"
+          y1="247"
+          y2="247"
         />
       </g>
       <g
@@ -66,74 +66,74 @@ exports[`Line should plot line 1`] = `
         <line
           x1="20"
           x2="980"
-          y1="640.7692307692307"
-          y2="640.7692307692307"
+          y1="641"
+          y2="641"
         />
         <line
           x1="20"
           x2="980"
-          y1="591.5384615384615"
-          y2="591.5384615384615"
+          y1="592"
+          y2="592"
         />
         <line
           x1="20"
           x2="980"
-          y1="542.3076923076923"
-          y2="542.3076923076923"
+          y1="542"
+          y2="542"
         />
         <line
           x1="20"
           x2="980"
-          y1="493.0769230769231"
-          y2="493.0769230769231"
+          y1="493"
+          y2="493"
         />
         <line
           x1="20"
           x2="980"
-          y1="443.8461538461538"
-          y2="443.8461538461538"
+          y1="444"
+          y2="444"
         />
         <line
           x1="20"
           x2="980"
-          y1="394.6153846153846"
-          y2="394.6153846153846"
+          y1="395"
+          y2="395"
         />
         <line
           x1="20"
           x2="980"
-          y1="345.3846153846154"
-          y2="345.3846153846154"
+          y1="345"
+          y2="345"
         />
         <line
           x1="20"
           x2="980"
-          y1="296.15384615384613"
-          y2="296.15384615384613"
+          y1="296"
+          y2="296"
         />
         <line
           x1="20"
           x2="980"
-          y1="246.9230769230769"
-          y2="246.9230769230769"
+          y1="247"
+          y2="247"
         />
         <line
           x1="20"
           x2="980"
-          y1="197.69230769230768"
-          y2="197.69230769230768"
+          y1="198"
+          y2="198"
         />
         <line
           x1="20"
           x2="980"
-          y1="148.46153846153845"
-          y2="148.46153846153845"
+          y1="148"
+          y2="148"
         />
         <line
           x1="20"
           x2="980"
-          y1="99.23076923076917"
-          y2="99.23076923076917"
+          y1="99"
+          y2="99"
         />
         <line
           x1="20"
@@ -150,14 +150,14 @@ exports[`Line should plot line 1`] = `
         stroke-width="1"
       >
         <line
-          x1="132.94117647058823"
-          x2="132.94117647058823"
+          x1="133"
+          x2="133"
           y1="690"
           y2="50"
         />
         <line
-          x1="697.6470588235295"
-          x2="697.6470588235295"
+          x1="698"
+          x2="698"
           y1="690"
           y2="50"
         />
@@ -176,50 +176,50 @@ exports[`Line should plot line 1`] = `
           y2="50"
         />
         <line
-          x1="132.94117647058823"
-          x2="132.94117647058823"
+          x1="133"
+          x2="133"
           y1="690"
           y2="50"
         />
         <line
-          x1="245.88235294117646"
-          x2="245.88235294117646"
+          x1="246"
+          x2="246"
           y1="690"
           y2="50"
         />
         <line
-          x1="358.82352941176475"
-          x2="358.82352941176475"
+          x1="359"
+          x2="359"
           y1="690"
           y2="50"
         />
         <line
-          x1="471.7647058823529"
-          x2="471.7647058823529"
+          x1="472"
+          x2="472"
           y1="690"
           y2="50"
         />
         <line
-          x1="584.7058823529412"
-          x2="584.7058823529412"
+          x1="585"
+          x2="585"
           y1="690"
           y2="50"
         />
         <line
-          x1="697.6470588235295"
-          x2="697.6470588235295"
+          x1="698"
+          x2="698"
           y1="690"
           y2="50"
         />
         <line
-          x1="810.5882352941176"
-          x2="810.5882352941176"
+          x1="811"
+          x2="811"
           y1="690"
           y2="50"
         />
         <line
-          x1="923.5294117647059"
-          x2="923.5294117647059"
+          x1="924"
+          x2="924"
           y1="690"
           y2="50"
         />
@@ -272,7 +272,7 @@ exports[`Line should plot line 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(133.44117647058823,0)"
+          transform="translate(133.5,0)"
         >
           <line
             fill-opacity="0"
@@ -292,7 +292,7 @@ exports[`Line should plot line 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(246.38235294117646,0)"
+          transform="translate(246.5,0)"
         >
           <line
             fill-opacity="0"
@@ -312,7 +312,7 @@ exports[`Line should plot line 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(359.32352941176475,0)"
+          transform="translate(359.5,0)"
         >
           <line
             fill-opacity="0"
@@ -332,7 +332,7 @@ exports[`Line should plot line 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(472.2647058823529,0)"
+          transform="translate(472.5,0)"
         >
           <line
             fill-opacity="0"
@@ -352,7 +352,7 @@ exports[`Line should plot line 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(585.2058823529412,0)"
+          transform="translate(585.5,0)"
         >
           <line
             fill-opacity="0"
@@ -372,7 +372,7 @@ exports[`Line should plot line 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(698.1470588235295,0)"
+          transform="translate(698.5,0)"
         >
           <line
             fill-opacity="0"
@@ -392,7 +392,7 @@ exports[`Line should plot line 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(811.0882352941176,0)"
+          transform="translate(811.5,0)"
         >
           <line
             fill-opacity="0"
@@ -412,7 +412,7 @@ exports[`Line should plot line 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(924.0294117647059,0)"
+          transform="translate(924.5,0)"
         >
           <line
             fill-opacity="0"
@@ -443,7 +443,7 @@ exports[`Line should plot line 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         text-anchor="start"
-        transform="translate(132.94117647058823, 0)"
+        transform="translate(133, 0)"
       >
         <path
           class="domain"
@@ -473,7 +473,7 @@ exports[`Line should plot line 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,641.2692307692307)"
+          transform="translate(0,641.5)"
         >
           <line
             fill-opacity="0"
@@ -493,7 +493,7 @@ exports[`Line should plot line 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,592.0384615384615)"
+          transform="translate(0,592.5)"
         >
           <line
             fill-opacity="0"
@@ -513,7 +513,7 @@ exports[`Line should plot line 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,542.8076923076923)"
+          transform="translate(0,542.5)"
         >
           <line
             fill-opacity="0"
@@ -533,7 +533,7 @@ exports[`Line should plot line 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,493.5769230769231)"
+          transform="translate(0,493.5)"
         >
           <line
             fill-opacity="0"
@@ -553,7 +553,7 @@ exports[`Line should plot line 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,444.3461538461538)"
+          transform="translate(0,444.5)"
         >
           <line
             fill-opacity="0"
@@ -573,7 +573,7 @@ exports[`Line should plot line 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,395.1153846153846)"
+          transform="translate(0,395.5)"
         >
           <line
             fill-opacity="0"
@@ -593,7 +593,7 @@ exports[`Line should plot line 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,345.8846153846154)"
+          transform="translate(0,345.5)"
         >
           <line
             fill-opacity="0"
@@ -613,7 +613,7 @@ exports[`Line should plot line 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,296.65384615384613)"
+          transform="translate(0,296.5)"
         >
           <line
             fill-opacity="0"
@@ -633,7 +633,7 @@ exports[`Line should plot line 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,247.4230769230769)"
+          transform="translate(0,247.5)"
         >
           <line
             fill-opacity="0"
@@ -653,7 +653,7 @@ exports[`Line should plot line 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,198.19230769230768)"
+          transform="translate(0,198.5)"
         >
           <line
             fill-opacity="0"
@@ -673,7 +673,7 @@ exports[`Line should plot line 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,148.96153846153845)"
+          transform="translate(0,148.5)"
         >
           <line
             fill-opacity="0"
@@ -693,7 +693,7 @@ exports[`Line should plot line 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,99.73076923076917)"
+          transform="translate(0,99.5)"
         >
           <line
             fill-opacity="0"
@@ -746,7 +746,7 @@ exports[`Line should plot line 1`] = `
           stroke-width="5"
         >
           <path
-            d="M20,370C20,370,80.23529411764707,743.3333333333334,155.52941176470588,690C230.8235294117647,636.6666666666666,334.3529411764706,95.12820512820512,471.7647058823529,50C609.1764705882352,4.871794871794876,980,419.2307692307692,980,419.2307692307692"
+            d="M20,370C20,370,80.66666666666667,743.3333333333334,156,690C231.33333333333331,636.6666666666666,334.6666666666667,95.16666666666666,472,50C609.3333333333333,4.833333333333336,980,419,980,419"
           />
         </g>
         <g
@@ -763,18 +763,18 @@ exports[`Line should plot line 1`] = `
             r="10"
           />
           <circle
-            cx="155.52941176470588"
+            cx="156"
             cy="690"
             r="10"
           />
           <circle
-            cx="471.7647058823529"
+            cx="472"
             cy="50"
             r="10"
           />
           <circle
             cx="980"
-            cy="419.2307692307692"
+            cy="419"
             r="10"
           />
         </g>
