@@ -3181,7 +3181,7 @@
 						{
 							"type": "reference",
 							"name": "GraphCartesian",
-							"id": 741
+							"id": 738
 						}
 					],
 					"implementedTypes": [
@@ -3603,7 +3603,7 @@
 						{
 							"type": "reference",
 							"name": "GraphCartesian",
-							"id": 741
+							"id": 738
 						},
 						{
 							"type": "reference",
@@ -4086,7 +4086,7 @@
 			]
 		},
 		{
-			"id": 740,
+			"id": 737,
 			"name": "\"GraphCartesian\"",
 			"kind": 1,
 			"kindString": "External module",
@@ -4100,7 +4100,7 @@
 			},
 			"children": [
 				{
-					"id": 741,
+					"id": 738,
 					"name": "GraphCartesian",
 					"kind": 128,
 					"kindString": "Class",
@@ -4109,7 +4109,7 @@
 					},
 					"children": [
 						{
-							"id": 742,
+							"id": 739,
 							"name": "constructor",
 							"kind": 512,
 							"kindString": "Constructor",
@@ -4118,14 +4118,14 @@
 							},
 							"signatures": [
 								{
-									"id": 743,
+									"id": 740,
 									"name": "new GraphCartesian",
 									"kind": 16384,
 									"kindString": "Constructor signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 744,
+											"id": 741,
 											"name": "root",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4139,7 +4139,7 @@
 									"type": {
 										"type": "reference",
 										"name": "GraphCartesian",
-										"id": 741
+										"id": 738
 									},
 									"overwrites": {
 										"type": "reference",
@@ -4162,7 +4162,7 @@
 							}
 						},
 						{
-							"id": 763,
+							"id": 760,
 							"name": "config",
 							"kind": 1024,
 							"kindString": "Property",
@@ -4192,7 +4192,7 @@
 							}
 						},
 						{
-							"id": 765,
+							"id": 762,
 							"name": "cumulativeDomains",
 							"kind": 1024,
 							"kindString": "Property",
@@ -4219,7 +4219,7 @@
 							}
 						},
 						{
-							"id": 762,
+							"id": 759,
 							"name": "root",
 							"kind": 1024,
 							"kindString": "Property",
@@ -4248,7 +4248,7 @@
 							}
 						},
 						{
-							"id": 764,
+							"id": 761,
 							"name": "seriesComponent",
 							"kind": 1024,
 							"kindString": "Property",
@@ -4278,7 +4278,7 @@
 							}
 						},
 						{
-							"id": 766,
+							"id": 763,
 							"name": "defaults",
 							"kind": 262144,
 							"kindString": "Accessor",
@@ -4288,7 +4288,7 @@
 							},
 							"getSignature": [
 								{
-									"id": 767,
+									"id": 764,
 									"name": "__get",
 									"kind": 524288,
 									"kindString": "Get signature",
@@ -4319,7 +4319,7 @@
 							}
 						},
 						{
-							"id": 773,
+							"id": 770,
 							"name": "series",
 							"kind": 262144,
 							"kindString": "Accessor",
@@ -4332,7 +4332,7 @@
 							},
 							"getSignature": [
 								{
-									"id": 774,
+									"id": 771,
 									"name": "__get",
 									"kind": 524288,
 									"kindString": "Get signature",
@@ -4343,14 +4343,14 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 775,
+											"id": 772,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 776,
+													"id": 773,
 													"name": "types",
 													"kind": 32,
 													"kindString": "Variable",
@@ -4376,7 +4376,7 @@
 													"title": "Variables",
 													"kind": 32,
 													"children": [
-														776
+														773
 													]
 												}
 											],
@@ -4410,7 +4410,7 @@
 							}
 						},
 						{
-							"id": 768,
+							"id": 765,
 							"name": "viewport",
 							"kind": 262144,
 							"kindString": "Accessor",
@@ -4420,7 +4420,7 @@
 							},
 							"getSignature": [
 								{
-									"id": 769,
+									"id": 766,
 									"name": "__get",
 									"kind": 524288,
 									"kindString": "Get signature",
@@ -4428,14 +4428,14 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 770,
+											"id": 767,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"children": [
 												{
-													"id": 772,
+													"id": 769,
 													"name": "height",
 													"kind": 32,
 													"kindString": "Variable",
@@ -4454,7 +4454,7 @@
 													}
 												},
 												{
-													"id": 771,
+													"id": 768,
 													"name": "width",
 													"kind": 32,
 													"kindString": "Variable",
@@ -4478,8 +4478,8 @@
 													"title": "Variables",
 													"kind": 32,
 													"children": [
-														772,
-														771
+														769,
+														768
 													]
 												}
 											]
@@ -4506,7 +4506,7 @@
 							}
 						},
 						{
-							"id": 745,
+							"id": 742,
 							"name": "addSeries",
 							"kind": 2048,
 							"kindString": "Method",
@@ -4516,7 +4516,7 @@
 							},
 							"signatures": [
 								{
-									"id": 746,
+									"id": 743,
 									"name": "addSeries",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -4527,7 +4527,7 @@
 									},
 									"parameters": [
 										{
-											"id": 747,
+											"id": 744,
 											"name": "type",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4541,7 +4541,7 @@
 											}
 										},
 										{
-											"id": 748,
+											"id": 745,
 											"name": "x",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4552,7 +4552,7 @@
 											}
 										},
 										{
-											"id": 749,
+											"id": 746,
 											"name": "y",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4563,7 +4563,7 @@
 											}
 										},
 										{
-											"id": 750,
+											"id": 747,
 											"name": "params",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4608,7 +4608,7 @@
 							}
 						},
 						{
-							"id": 794,
+							"id": 791,
 							"name": "createDefaults",
 							"kind": 2048,
 							"kindString": "Method",
@@ -4618,7 +4618,7 @@
 							},
 							"signatures": [
 								{
-									"id": 795,
+									"id": 792,
 									"name": "createDefaults",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -4652,7 +4652,7 @@
 							}
 						},
 						{
-							"id": 759,
+							"id": 756,
 							"name": "initialize",
 							"kind": 2048,
 							"kindString": "Method",
@@ -4661,14 +4661,14 @@
 							},
 							"signatures": [
 								{
-									"id": 760,
+									"id": 757,
 									"name": "initialize",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 761,
+											"id": 758,
 											"name": "svg",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4715,7 +4715,7 @@
 							}
 						},
 						{
-							"id": 751,
+							"id": 748,
 							"name": "makeDefaults",
 							"kind": 2048,
 							"kindString": "Method",
@@ -4725,7 +4725,7 @@
 							},
 							"signatures": [
 								{
-									"id": 752,
+									"id": 749,
 									"name": "makeDefaults",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -4755,7 +4755,7 @@
 							}
 						},
 						{
-							"id": 787,
+							"id": 784,
 							"name": "preRender",
 							"kind": 2048,
 							"kindString": "Method",
@@ -4764,7 +4764,7 @@
 							},
 							"signatures": [
 								{
-									"id": 788,
+									"id": 785,
 									"name": "preRender",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -4774,7 +4774,7 @@
 									},
 									"parameters": [
 										{
-											"id": 789,
+											"id": 786,
 											"name": "data",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4799,7 +4799,7 @@
 											}
 										},
 										{
-											"id": 790,
+											"id": 787,
 											"name": "domains",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4846,7 +4846,7 @@
 							}
 						},
 						{
-							"id": 756,
+							"id": 753,
 							"name": "prepareDomains",
 							"kind": 2048,
 							"kindString": "Method",
@@ -4856,14 +4856,14 @@
 							},
 							"signatures": [
 								{
-									"id": 757,
+									"id": 754,
 									"name": "prepareDomains",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 758,
+											"id": 755,
 											"name": "scalesDefaults",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4901,7 +4901,7 @@
 							}
 						},
 						{
-							"id": 784,
+							"id": 781,
 							"name": "render",
 							"kind": 2048,
 							"kindString": "Method",
@@ -4911,7 +4911,7 @@
 							},
 							"signatures": [
 								{
-									"id": 785,
+									"id": 782,
 									"name": "render",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -4921,7 +4921,7 @@
 									},
 									"parameters": [
 										{
-											"id": 786,
+											"id": 783,
 											"name": "data",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -4975,7 +4975,7 @@
 							}
 						},
 						{
-							"id": 791,
+							"id": 788,
 							"name": "renderComponent",
 							"kind": 2048,
 							"kindString": "Method",
@@ -4984,7 +4984,7 @@
 							},
 							"signatures": [
 								{
-									"id": 792,
+									"id": 789,
 									"name": "renderComponent",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -4994,7 +4994,7 @@
 									},
 									"parameters": [
 										{
-											"id": 793,
+											"id": 790,
 											"name": "data",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -5054,7 +5054,7 @@
 							}
 						},
 						{
-							"id": 753,
+							"id": 750,
 							"name": "setScales",
 							"kind": 2048,
 							"kindString": "Method",
@@ -5064,14 +5064,14 @@
 							},
 							"signatures": [
 								{
-									"id": 754,
+									"id": 751,
 									"name": "setScales",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 755,
+											"id": 752,
 											"name": "data",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -5121,7 +5121,7 @@
 							}
 						},
 						{
-							"id": 777,
+							"id": 774,
 							"name": "transition",
 							"kind": 2048,
 							"kindString": "Method",
@@ -5131,7 +5131,7 @@
 							},
 							"signatures": [
 								{
-									"id": 778,
+									"id": 775,
 									"name": "transition",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -5141,7 +5141,7 @@
 									},
 									"parameters": [
 										{
-											"id": 779,
+											"id": 776,
 											"name": "duration",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -5153,7 +5153,7 @@
 											}
 										},
 										{
-											"id": 780,
+											"id": 777,
 											"name": "done",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -5166,21 +5166,21 @@
 											"type": {
 												"type": "reflection",
 												"declaration": {
-													"id": 781,
+													"id": 778,
 													"name": "__type",
 													"kind": 65536,
 													"kindString": "Type literal",
 													"flags": {},
 													"signatures": [
 														{
-															"id": 782,
+															"id": 779,
 															"name": "__call",
 															"kind": 4096,
 															"kindString": "Call signature",
 															"flags": {},
 															"parameters": [
 																{
-																	"id": 783,
+																	"id": 780,
 																	"name": "data",
 																	"kind": 32768,
 																	"kindString": "Parameter",
@@ -5239,42 +5239,42 @@
 							"title": "Constructors",
 							"kind": 512,
 							"children": [
-								742
+								739
 							]
 						},
 						{
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
-								763,
-								765,
+								760,
 								762,
-								764
+								759,
+								761
 							]
 						},
 						{
 							"title": "Accessors",
 							"kind": 262144,
 							"children": [
-								766,
-								773,
-								768
+								763,
+								770,
+								765
 							]
 						},
 						{
 							"title": "Methods",
 							"kind": 2048,
 							"children": [
-								745,
-								794,
-								759,
-								751,
-								787,
-								756,
-								784,
+								742,
 								791,
+								756,
+								748,
+								784,
 								753,
-								777
+								781,
+								788,
+								750,
+								774
 							]
 						}
 					],
@@ -5301,7 +5301,7 @@
 					]
 				},
 				{
-					"id": 796,
+					"id": 793,
 					"name": "log",
 					"kind": 32,
 					"kindString": "Variable",
@@ -5327,14 +5327,14 @@
 					"title": "Classes",
 					"kind": 128,
 					"children": [
-						741
+						738
 					]
 				},
 				{
 					"title": "Variables",
 					"kind": 32,
 					"children": [
-						796
+						793
 					]
 				}
 			],
@@ -13257,7 +13257,7 @@
 			]
 		},
 		{
-			"id": 797,
+			"id": 794,
 			"name": "\"index\"",
 			"kind": 1,
 			"kindString": "External module",
@@ -13274,7 +13274,7 @@
 			]
 		},
 		{
-			"id": 798,
+			"id": 795,
 			"name": "\"overview\"",
 			"kind": 1,
 			"kindString": "External module",
@@ -16083,7 +16083,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/Voronoi.ts",
 			"comment": {
 				"shortText": "# Voronoi Plot",
-				"text": "plots a 2D Voronoi Partition.\n\n## Usage\n`graph.addSeries('voronoi', <x-col>, <y-col>, [<size-col>]);`\nInvoke a `line` series by adding a new series to the graph\n\n## Example\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n\nconst centroids = {\n   colNames: ['x', 'y'],\n   rows: Array.from({length: 20}, v => [Math.random(), Math.random()])\n}\nconst samples = {\n   colNames: ['x', 'y', 'nearest'],\n   rows: [[0.5, 0.5, 0]]\n}\nlet w = 20;\nconst numSamples = 1000;\n\nconst graph = new hsGraphD3.GraphCartesian(root);\nconst voronoi = graph.addSeries('voronoi', 'x', 'y');\ngraph.addSeries('bubble', 'x', 'y');\nwith (graph.defaults) {\n     axes.rendered = false;\n     series.series0.line.width = 1;\n     series.series0.line.color = '#0c0';\n     series.series0.marker.size = 3;\n     series.series0.marker.stroke.color = '#f00';\n     series.series1.marker.size = 1;\n     series.series1.marker.stroke.width = 0;\n     grids.rendered = false;\n     scales.margin.top = 0;\n     scales.margin.bottom = 0;\n     scales.margin.left = 0;\n     scales.margin.rigth = 0;\n}\ngraph.render([centroids, samples]).update(200, data => {\n     const norm = 1/(w+1);\n     data[1].rows = Array.from({length: numSamples}, v => [Math.random(), Math.random(), 0]);\n     data[1].rows.map(r => r[2] = voronoi.nearest(r, data[0].rows));\n     data[0].rows.map((row, i) => {\n         const c = voronoi.centroid(data[1].rows.filter(r => r[2]===i));\n         row[0] = (w*row[0] + c.avg[0])*norm;\n         row[1] = (w*row[1] + c.avg[1])*norm;\n     });\n     w += numSamples/50;\n});\n\n</file>\n</example>\n\n### Accessible format setting and defaults (for a cartesian graph):\n<example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = hsUtil.log('');\nlet defaults;\n\nfunction createGraph(svgRoot) {\n     const graph = new hsGraphD3.GraphCartesian(root);\n     graph.addSeries('voronoi', 'x', 'y');\n     with (graph.defaults) {\n         axes.rendered = false;\n         series.series0.line.width = 1;\n         series.series0.line.color = '#0c0';\n         series.series0.marker.size = 3;\n         grids.rendered = false;\n     }\n     return graph.defaults;\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.defaults = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = hsUtil.log.inspect(createGraph(svgRoot[0]), null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
+				"text": "plots a 2D Voronoi Partition.\n\n## Usage\n`graph.addSeries('voronoi', <x-col>, <y-col>, [<size-col>]);`\nInvoke a `line` series by adding a new series to the graph\n\n## Example\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n\nconst centroids = {\n   colNames: ['x', 'y'],\n   rows: Array.from({length: 20}, v => [Math.random(), Math.random()])\n}\nconst samples = {\n   colNames: ['x', 'y', 'nearest'],\n   rows: [[0.5, 0.5, 0]]\n}\nlet w = 20;\nconst numSamples = 1000;\n\nconst graph = new hsGraphD3.GraphCartesian(root);\nconst voronoi = graph.addSeries('voronoi', 'x', 'y');\ngraph.addSeries('bubble', 'x', 'y');\nwith (graph.defaults) {\n     axes.rendered = false;\n     series.series0.line.width = 1;\n     series.series0.line.color = '#0c0';\n     series.series0.marker.size = 3;\n     series.series0.marker.stroke.color = '#f00';\n     series.series1.marker.size = 1;\n     series.series1.marker.stroke.width = 0;\n     grids.rendered = false;\n     scales.margin.top = 0;\n     scales.margin.bottom = 0;\n     scales.margin.left = 0;\n     scales.margin.rigth = 0;\n}\ngraph.render([centroids, samples]).update(200, data => {\n     const norm = 1/(w+1);\n     data[1].rows = Array.from({length: numSamples}, v => [Math.random(), Math.random(), 0]);\n     data[1].rows.map(r => r[2] = voronoi.nearest(r, data[0].rows));\n     data[0].rows.map((row, i) => {\n         const c = voronoi.centroid(data[1].rows.filter(r => r[2]===i));\n         row[0] = (w*row[0] + c[0])*norm;\n         row[1] = (w*row[1] + c[1])*norm;\n     });\n     w += numSamples/50;\n});\n\n</file>\n</example>\n\n### Accessible format setting and defaults (for a cartesian graph):\n<example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = hsUtil.log('');\nlet defaults;\n\nfunction createGraph(svgRoot) {\n     const graph = new hsGraphD3.GraphCartesian(root);\n     graph.addSeries('voronoi', 'x', 'y');\n     with (graph.defaults) {\n         axes.rendered = false;\n         series.series0.line.width = 1;\n         series.series0.line.color = '#0c0';\n         series.series0.marker.size = 3;\n         grids.rendered = false;\n     }\n     return graph.defaults;\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.defaults = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = hsUtil.log.inspect(createGraph(svgRoot[0]), null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
 			},
 			"children": [
 				{
@@ -16096,7 +16096,7 @@
 					},
 					"children": [
 						{
-							"id": 713,
+							"id": 710,
 							"name": "constructor",
 							"kind": 512,
 							"kindString": "Constructor",
@@ -16105,14 +16105,14 @@
 							},
 							"signatures": [
 								{
-									"id": 714,
+									"id": 711,
 									"name": "new Voronoi",
 									"kind": 16384,
 									"kindString": "Constructor signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 715,
+											"id": 712,
 											"name": "cfg",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -16124,7 +16124,7 @@
 											}
 										},
 										{
-											"id": 716,
+											"id": 713,
 											"name": "seriesName",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -16135,7 +16135,7 @@
 											}
 										},
 										{
-											"id": 717,
+											"id": 714,
 											"name": "params",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -16177,7 +16177,7 @@
 							}
 						},
 						{
-							"id": 708,
+							"id": 705,
 							"name": "cfg",
 							"kind": 1024,
 							"kindString": "Property",
@@ -16207,7 +16207,7 @@
 							}
 						},
 						{
-							"id": 711,
+							"id": 708,
 							"name": "cols",
 							"kind": 1024,
 							"kindString": "Property",
@@ -16240,7 +16240,7 @@
 							}
 						},
 						{
-							"id": 710,
+							"id": 707,
 							"name": "dims",
 							"kind": 1024,
 							"kindString": "Property",
@@ -16273,7 +16273,7 @@
 							}
 						},
 						{
-							"id": 712,
+							"id": 709,
 							"name": "lines",
 							"kind": 1024,
 							"kindString": "Property",
@@ -16308,7 +16308,7 @@
 							}
 						},
 						{
-							"id": 709,
+							"id": 706,
 							"name": "seriesKey",
 							"kind": 1024,
 							"kindString": "Property",
@@ -16337,7 +16337,7 @@
 							}
 						},
 						{
-							"id": 707,
+							"id": 704,
 							"name": "svg",
 							"kind": 1024,
 							"kindString": "Property",
@@ -16394,7 +16394,7 @@
 							}
 						},
 						{
-							"id": 720,
+							"id": 717,
 							"name": "dimensions",
 							"kind": 262144,
 							"kindString": "Accessor",
@@ -16403,7 +16403,7 @@
 							},
 							"getSignature": [
 								{
-									"id": 721,
+									"id": 718,
 									"name": "__get",
 									"kind": 524288,
 									"kindString": "Get signature",
@@ -16436,7 +16436,7 @@
 							}
 						},
 						{
-							"id": 718,
+							"id": 715,
 							"name": "key",
 							"kind": 262144,
 							"kindString": "Accessor",
@@ -16445,7 +16445,7 @@
 							},
 							"getSignature": [
 								{
-									"id": 719,
+									"id": 716,
 									"name": "__get",
 									"kind": 524288,
 									"kindString": "Get signature",
@@ -16490,8 +16490,8 @@
 									"kindString": "Call signature",
 									"flags": {},
 									"comment": {
-										"shortText": "Calculates the centroid (average) vector over the array od sample vectors.",
-										"returns": "the centroid vector\n"
+										"shortText": "Calculates the centroid (average) vector over the array of sample vectors.",
+										"returns": "the centroid vector as an array\n"
 									},
 									"parameters": [
 										{
@@ -16514,66 +16514,10 @@
 										}
 									],
 									"type": {
-										"type": "reflection",
-										"declaration": {
-											"id": 704,
-											"name": "__type",
-											"kind": 65536,
-											"kindString": "Type literal",
-											"flags": {},
-											"children": [
-												{
-													"id": 705,
-													"name": "avg",
-													"kind": 32,
-													"kindString": "Variable",
-													"flags": {},
-													"sources": [
-														{
-															"fileName": "plots/Voronoi.ts",
-															"line": 165,
-															"character": 15
-														}
-													],
-													"type": {
-														"type": "array",
-														"elementType": {
-															"type": "intrinsic",
-															"name": "number"
-														}
-													},
-													"defaultValue": " sum"
-												},
-												{
-													"id": 706,
-													"name": "count",
-													"kind": 32,
-													"kindString": "Variable",
-													"flags": {},
-													"sources": [
-														{
-															"fileName": "plots/Voronoi.ts",
-															"line": 166,
-															"character": 17
-														}
-													],
-													"type": {
-														"type": "intrinsic",
-														"name": "number"
-													},
-													"defaultValue": " count"
-												}
-											],
-											"groups": [
-												{
-													"title": "Variables",
-													"kind": 32,
-													"children": [
-														705,
-														706
-													]
-												}
-											]
+										"type": "array",
+										"elementType": {
+											"type": "intrinsic",
+											"name": "number"
 										}
 									}
 								}
@@ -16587,7 +16531,7 @@
 							]
 						},
 						{
-							"id": 731,
+							"id": 728,
 							"name": "d3DrawMarker",
 							"kind": 2048,
 							"kindString": "Method",
@@ -16597,14 +16541,14 @@
 							},
 							"signatures": [
 								{
-									"id": 732,
+									"id": 729,
 									"name": "d3DrawMarker",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 733,
+											"id": 730,
 											"name": "markers",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -16616,7 +16560,7 @@
 											}
 										},
 										{
-											"id": 734,
+											"id": 731,
 											"name": "plot",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -16653,7 +16597,7 @@
 							}
 						},
 						{
-							"id": 735,
+							"id": 732,
 							"name": "d3RenderMarkers",
 							"kind": 2048,
 							"kindString": "Method",
@@ -16662,14 +16606,14 @@
 							},
 							"signatures": [
 								{
-									"id": 736,
+									"id": 733,
 									"name": "d3RenderMarkers",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 737,
+											"id": 734,
 											"name": "svg",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -16681,7 +16625,7 @@
 											}
 										},
 										{
-											"id": 738,
+											"id": 735,
 											"name": "data",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -16783,7 +16727,7 @@
 							}
 						},
 						{
-							"id": 722,
+							"id": 719,
 							"name": "getDefaults",
 							"kind": 2048,
 							"kindString": "Method",
@@ -16792,7 +16736,7 @@
 							},
 							"signatures": [
 								{
-									"id": 723,
+									"id": 720,
 									"name": "getDefaults",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -16826,7 +16770,7 @@
 							}
 						},
 						{
-							"id": 724,
+							"id": 721,
 							"name": "initialize",
 							"kind": 2048,
 							"kindString": "Method",
@@ -16835,14 +16779,14 @@
 							},
 							"signatures": [
 								{
-									"id": 725,
+									"id": 722,
 									"name": "initialize",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 726,
+											"id": 723,
 											"name": "svg",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -16948,7 +16892,7 @@
 							]
 						},
 						{
-							"id": 727,
+							"id": 724,
 							"name": "preRender",
 							"kind": 2048,
 							"kindString": "Method",
@@ -16957,14 +16901,14 @@
 							},
 							"signatures": [
 								{
-									"id": 728,
+									"id": 725,
 									"name": "preRender",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 729,
+											"id": 726,
 											"name": "data",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -16976,7 +16920,7 @@
 											}
 										},
 										{
-											"id": 730,
+											"id": 727,
 											"name": "domains",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -17071,19 +17015,19 @@
 							"title": "Constructors",
 							"kind": 512,
 							"children": [
-								713
+								710
 							]
 						},
 						{
 							"title": "Properties",
 							"kind": 1024,
 							"children": [
+								705,
 								708,
-								711,
-								710,
-								712,
-								709,
 								707,
+								709,
+								706,
+								704,
 								689
 							]
 						},
@@ -17091,8 +17035,8 @@
 							"title": "Accessors",
 							"kind": 262144,
 							"children": [
-								720,
-								718
+								717,
+								715
 							]
 						},
 						{
@@ -17100,13 +17044,13 @@
 							"kind": 2048,
 							"children": [
 								701,
-								731,
-								735,
+								728,
+								732,
 								693,
-								722,
-								724,
+								719,
+								721,
 								697,
-								727,
+								724,
 								690
 							]
 						}
@@ -17127,7 +17071,7 @@
 					]
 				},
 				{
-					"id": 739,
+					"id": 736,
 					"name": "log",
 					"kind": 32,
 					"kindString": "Variable",
@@ -17160,7 +17104,7 @@
 					"title": "Variables",
 					"kind": 32,
 					"children": [
-						739
+						736
 					]
 				}
 			],
@@ -17181,15 +17125,15 @@
 				502,
 				302,
 				328,
-				740,
+				737,
 				439,
 				247,
 				99,
 				199,
 				154,
 				1,
-				797,
-				798,
+				794,
+				795,
 				556,
 				598,
 				640,

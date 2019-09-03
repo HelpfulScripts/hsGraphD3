@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">48.48% </span>
+        <span class="strong">55.17% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>16/33</span>
+        <span class='fraction'>16/29</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">12.5% </span>
+        <span class="strong">16.67% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>1/8</span>
+        <span class='fraction'>1/6</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">50% </span>
@@ -35,16 +35,16 @@
         <span class='fraction'>4/8</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">46.88% </span>
+        <span class="strong">53.57% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>15/32</span>
+        <span class='fraction'>15/28</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line low'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -209,14 +209,7 @@
 <a name='L161'></a><a href='#L161'>161</a>
 <a name='L162'></a><a href='#L162'>162</a>
 <a name='L163'></a><a href='#L163'>163</a>
-<a name='L164'></a><a href='#L164'>164</a>
-<a name='L165'></a><a href='#L165'>165</a>
-<a name='L166'></a><a href='#L166'>166</a>
-<a name='L167'></a><a href='#L167'>167</a>
-<a name='L168'></a><a href='#L168'>168</a>
-<a name='L169'></a><a href='#L169'>169</a>
-<a name='L170'></a><a href='#L170'>170</a>
-<a name='L171'></a><a href='#L171'>171</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L164'></a><a href='#L164'>164</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -371,18 +364,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -433,8 +419,8 @@
  *      data[1].rows.map(r =&gt; r[2] = voronoi.nearest(r, data[0].rows));
  *      data[0].rows.map((row, i) =&gt; {
  *          const c = voronoi.centroid(data[1].rows.filter(r =&gt; r[2]===i));
- *          row[0] = (w*row[0] + c.avg[0])*norm;
- *          row[1] = (w*row[1] + c.avg[1])*norm;
+ *          row[0] = (w*row[0] + c[0])*norm;
+ *          row[1] = (w*row[1] + c[1])*norm;
  *      });
  *      w += numSamples/50;
  * });
@@ -533,26 +519,19 @@ export class Voronoi extends SeriesPlot {
     }
     
     /**
-     * Calculates the centroid (average) vector over the array od sample vectors.
+     * Calculates the centroid (average) vector over the array of sample vectors.
      * @param samples 
      * @param weight 
-     * @return the centroid vector
+     * @return the centroid vector as an array
      */
 <span class="fstat-no" title="function not covered" >    centroid(</span>samples:number[][]) {
-        const sum = <span class="cstat-no" title="statement not covered" >[0, 0];</span>
-        let count = <span class="cstat-no" title="statement not covered" >0;</span>
-        
-<span class="cstat-no" title="statement not covered" >        samples.forEach(<span class="fstat-no" title="function not covered" >row </span>=&gt; {</span>
-<span class="cstat-no" title="statement not covered" >            sum[0] = sum[0] + row[0];</span>
-<span class="cstat-no" title="statement not covered" >            sum[1] = sum[1] + row[1];</span>
-<span class="cstat-no" title="statement not covered" >            count++;</span>
-        });
-<span class="cstat-no" title="statement not covered" >        sum[0] = count? sum[0]/count : 0;</span>
-<span class="cstat-no" title="statement not covered" >        sum[1] = count? sum[1]/count : 0;</span>
-<span class="cstat-no" title="statement not covered" >        return {</span>
-            avg: sum,
-            count: count
-        };
+        const sum = <span class="cstat-no" title="statement not covered" >samples.reduce(<span class="fstat-no" title="function not covered" >(a</span>cc, s) =&gt; { </span>
+<span class="cstat-no" title="statement not covered" >            acc[0] += s[0]; </span>
+<span class="cstat-no" title="statement not covered" >            acc[1] += s[1]; </span>
+<span class="cstat-no" title="statement not covered" >            return acc; </span>
+        }, [0, 0]);
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        return samples.length? [sum[0]/samples.length, sum[1]/samples.length] : [0,0];</span>
     }
 } 
  

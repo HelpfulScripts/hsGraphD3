@@ -9,7 +9,7 @@ hsGraphD3
 [![Known Vulnerabilities](https://snyk.io/test/github/HelpfulScripts/hsGraphD3/badge.svg?targetFile=package.json)](https://snyk.io/test/github/HelpfulScripts/hsGraphD3?targetFile=package.json)
 [![NPM License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](https://www.npmjs.com/package/hsgraphd3)
 
-Helpful Scripts D3 convenience wrappers for for very simple plotting stuff.
+Helpful Scripts D3 convenience wrappers for simple plotting.
 
 **hsGraphD3** Provides JavaScript directives to facilitate really simple plotting of data. The API is designed to utilize the vast power of the [D3 framework](d3js.org) while hiding the complexity and steep learning curve.
 

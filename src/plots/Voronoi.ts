@@ -45,8 +45,8 @@
  *      data[1].rows.map(r => r[2] = voronoi.nearest(r, data[0].rows));
  *      data[0].rows.map((row, i) => {
  *          const c = voronoi.centroid(data[1].rows.filter(r => r[2]===i));
- *          row[0] = (w*row[0] + c.avg[0])*norm;
- *          row[1] = (w*row[1] + c.avg[1])*norm;
+ *          row[0] = (w*row[0] + c[0])*norm;
+ *          row[1] = (w*row[1] + c[1])*norm;
  *      });
  *      w += numSamples/50;
  * });
@@ -145,26 +145,19 @@ export class Voronoi extends SeriesPlot {
     }
     
     /**
-     * Calculates the centroid (average) vector over the array od sample vectors.
+     * Calculates the centroid (average) vector over the array of sample vectors.
      * @param samples 
      * @param weight 
-     * @return the centroid vector
+     * @return the centroid vector as an array
      */
     centroid(samples:number[][]) {
-        const sum = [0, 0];
-        let count = 0;
-        
-        samples.forEach(row => {
-            sum[0] = sum[0] + row[0];
-            sum[1] = sum[1] + row[1];
-            count++;
-        });
-        sum[0] = count? sum[0]/count : 0;
-        sum[1] = count? sum[1]/count : 0;
-        return {
-            avg: sum,
-            count: count
-        };
+        const sum = samples.reduce((acc, s) => { 
+            acc[0] += s[0]; 
+            acc[1] += s[1]; 
+            return acc; 
+        }, [0, 0]);
+
+        return samples.length? [sum[0]/samples.length, sum[1]/samples.length] : [0,0];
     }
 } 
  
