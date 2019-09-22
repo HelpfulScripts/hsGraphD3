@@ -739,7 +739,16 @@ exports[`Voronoi should plot voronoi diagram 1`] = `
         class="series0"
       >
         <g
-          class="lines"
+          class="area"
+          fill="currentColor"
+          fill-opacity="0.5"
+        >
+          <path
+            d="M383.6054421768707,404.3676870748299L544.7996848710959,483.95734440510364M383.6054421768707,404.3676870748299L20,558.9M544.7996848710959,483.95734440510364L612.563713592233,690M544.7996848710959,483.95734440510364L860.0167322834645,50M383.6054421768707,404.3676870748299L132.72566371681415,50"
+          />
+        </g>
+        <g
+          class="line"
           fill-opacity="0"
           stroke="currentColor"
           stroke-opacity="1"

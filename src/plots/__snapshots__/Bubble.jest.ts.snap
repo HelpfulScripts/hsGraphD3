@@ -739,7 +739,14 @@ exports[`Bubble should plot line 1`] = `
         class="series0"
       >
         <g
-          class="lines"
+          class="area"
+          fill="currentColor"
+          fill-opacity="0.5"
+        >
+          <path />
+        </g>
+        <g
+          class="line"
           fill-opacity="0"
           stroke="currentColor"
           stroke-opacity="1"

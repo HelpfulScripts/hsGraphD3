@@ -103,13 +103,19 @@ Helpful Scripts Graph convenience wrapper for D3js.
  * //----- adjust some settings:
  * with (graph.defaults) {
  *    scales.dims.hor.aggregateOverTime = false; // forget the past
- *    series.series0.line.color = '#00a';  // first line blue
- *    series.series1.line.color = '#0a0';  // second line green
- *    axes.ver.tickLabel.rendered = false; // hide vertical axis labels
+ *    series.series0.line.color = '#00a';   // first line blue
+ *    series.series1.line.color = '#0a0';   // second line green
+ *    series.series0.area.color = '#aaf';   // first area blue
+ *    series.series1.area.color = '#afa';   // second area green
+ *    series.series0.area.rendered = true;  
+ *    series.series1.area.rendered = true;  
+ *    axes.ver.tickLabel.rendered = false;  // hide vertical axis labels
  * }
  * 
  * // trigger the update loop to plot the data
- * graph.render(data).update(1000, data => { 
+ * graph.render(data).update(1000, cycle);
+ * 
+ * function cycle(data) { 
  *      // add a row of data
  *      val = Math.random();
  *      data.rows.push([index++, val, val-1]);
@@ -119,7 +125,7 @@ Helpful Scripts Graph convenience wrapper for D3js.
  * 
  *      // continue update calls:
  *      return true; 
- * });
+ * };
  * </file>
  * </example>
  */

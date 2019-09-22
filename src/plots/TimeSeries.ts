@@ -69,6 +69,7 @@ export class TimeSeries extends SeriesPlot {
  
     getDefaults(): SeriesPlotDefaults {
         const def = super.getDefaults();
+        def.area.rendered = true;
         return def;
     }
      
@@ -102,16 +103,23 @@ export class TimeSeries extends SeriesPlot {
         }
     }
 
+    getPathElement(svg:d3Base, cls:string):any {
+        return svg.select(cls).selectAll('path');
+    }
+
     d3RenderPath(svg:d3Base, data:DataSet) {
-        if (data.rows.length<2) { return super.d3RenderPath(svg, data); }
-        const defaults = (<SeriesPlotDefaults>this.cfg.defaults.series[this.key]).line;
-        if (defaults.rendered) {
-            const path = this.svg.select('.lines').selectAll('path'); //.data([<number[][]>data.rows]);
-            path.attr('d', d => this.lines(<number[][]>data.rows))
-                .attr("transform", `translate(${this.cfg.scales.hor(1) - this.cfg.scales.hor(0)})`)
+        return super.d3RenderPath(svg, data)
+            .attr('transform', `translate(${this.cfg.scales.hor(1) - this.cfg.scales.hor(0)})`)
             .transition(this.cfg.transition)
-                .attr("transform", `translate(0)`);
-        }
+            .attr('transform', `translate(0)`);
+    }
+
+    d3RenderFill(svg:d3Base, data:DataSet) {
+        log.info('timeseries fill');
+        return super.d3RenderFill(svg, data)
+            .attr('transform', `translate(${this.cfg.scales.hor(1) - this.cfg.scales.hor(0)})`)
+            .transition(this.cfg.transition)
+            .attr('transform', `translate(0)`);
     }
 } 
  

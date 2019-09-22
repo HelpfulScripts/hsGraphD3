@@ -11,6 +11,7 @@ import { d3Base }       from './Settings';
 import { RectDef }      from './Settings';
 import { UnitVp }       from './Settings';
 import { Stroke }       from './Settings';
+import { Fill }         from './Settings';
 import { MarkerStyle }  from './Settings';
 import { TextStyle }    from './Settings';
 import { LifecycleCalls } from './Graph';
@@ -25,6 +26,7 @@ export interface Rendered {
     rendered: boolean;
 }
 export interface Line extends Stroke, Rendered {}
+export interface Area extends Fill, Rendered {}
 export interface Marker extends MarkerStyle, Rendered {}
 export interface Text extends TextStyle, Rendered {}
 

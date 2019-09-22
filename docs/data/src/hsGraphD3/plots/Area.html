@@ -20,15 +20,15 @@
                     height:90%;
             }
             code { padding: 5px 0;}</style></html><body>
-                <h1>src/plots/Line.ts</h1>
+                <h1>src/plots/Area.ts</h1>
                 <div class='listing'><code><p id=1 class="line"><span>&nbsp;&nbsp;&nbsp;1</span><comment>/**</comment></p>
-<p id=2 class="line"><span>&nbsp;&nbsp;&nbsp;2</span><comment>&nbsp;*&nbsp;#&nbsp;Line&nbsp;Plot</comment></p>
+<p id=2 class="line"><span>&nbsp;&nbsp;&nbsp;2</span><comment>&nbsp;*&nbsp;#&nbsp;Area&nbsp;Plot</comment></p>
 <p id=3 class="line"><span>&nbsp;&nbsp;&nbsp;3</span><comment>&nbsp;*&nbsp;</comment></p>
-<p id=4 class="line"><span>&nbsp;&nbsp;&nbsp;4</span><comment>&nbsp;*&nbsp;plots&nbsp;a&nbsp;2D&nbsp;line&nbsp;with&nbsp;markers.</comment></p>
+<p id=4 class="line"><span>&nbsp;&nbsp;&nbsp;4</span><comment>&nbsp;*&nbsp;plots&nbsp;a&nbsp;2D&nbsp;area&nbsp;with&nbsp;markers.</comment></p>
 <p id=5 class="line"><span>&nbsp;&nbsp;&nbsp;5</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=6 class="line"><span>&nbsp;&nbsp;&nbsp;6</span><comment>&nbsp;*&nbsp;##&nbsp;Usage</comment></p>
-<p id=7 class="line"><span>&nbsp;&nbsp;&nbsp;7</span><comment>&nbsp;*&nbsp;`graph.addSeries(<quote>'line'</quote>,&nbsp;<x-col>,&nbsp;<y-col>,&nbsp;[<size-col>]);`</comment></p>
-<p id=8 class="line"><span>&nbsp;&nbsp;&nbsp;8</span><comment>&nbsp;*&nbsp;Invoke&nbsp;a&nbsp;`line`&nbsp;series&nbsp;by&nbsp;adding&nbsp;a&nbsp;new&nbsp;series&nbsp;to&nbsp;the&nbsp;graph</comment></p>
+<p id=7 class="line"><span>&nbsp;&nbsp;&nbsp;7</span><comment>&nbsp;*&nbsp;`graph.addSeries(<quote>'area'</quote>,&nbsp;<x-col>,&nbsp;<y-col>,&nbsp;[<size-col>]);`</comment></p>
+<p id=8 class="line"><span>&nbsp;&nbsp;&nbsp;8</span><comment>&nbsp;*&nbsp;Invoke&nbsp;an&nbsp;`area`&nbsp;series&nbsp;by&nbsp;adding&nbsp;a&nbsp;new&nbsp;series&nbsp;to&nbsp;the&nbsp;graph</comment></p>
 <p id=9 class="line"><span>&nbsp;&nbsp;&nbsp;9</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=10 class="line"><span>&nbsp;&nbsp;10</span><comment>&nbsp;*&nbsp;##&nbsp;Example</comment></p>
 <p id=11 class="line"><span>&nbsp;&nbsp;11</span><comment>&nbsp;*&nbsp;<example&nbsp;height=200px&nbsp;libs={hsGraphD3:<quote>'hsGraphD3'</quote>}></comment></p>
@@ -41,7 +41,7 @@
 <p id=18 class="line"><span>&nbsp;&nbsp;18</span><comment>&nbsp;*&nbsp;};</comment></p>
 <p id=19 class="line"><span>&nbsp;&nbsp;19</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=20 class="line"><span>&nbsp;&nbsp;20</span><comment>&nbsp;*&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.GraphCartesian(root);</comment></p>
-<p id=21 class="line"><span>&nbsp;&nbsp;21</span><comment>&nbsp;*&nbsp;graph.addSeries(<quote>'line'</quote>,&nbsp;<quote>'time'</quote>,&nbsp;<quote>'volume'</quote>,&nbsp;<quote>'costs'</quote>);</comment></p>
+<p id=21 class="line"><span>&nbsp;&nbsp;21</span><comment>&nbsp;*&nbsp;graph.addSeries(<quote>'area'</quote>,&nbsp;<quote>'time'</quote>,&nbsp;<quote>'volume'</quote>,&nbsp;<quote>'costs'</quote>);</comment></p>
 <p id=22 class="line"><span>&nbsp;&nbsp;22</span><comment>&nbsp;*&nbsp;graph.render(data);</comment></p>
 <p id=23 class="line"><span>&nbsp;&nbsp;23</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=24 class="line"><span>&nbsp;&nbsp;24</span><comment>&nbsp;*&nbsp;</file></comment></p>
@@ -55,7 +55,7 @@
 <p id=32 class="line"><span>&nbsp;&nbsp;32</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=33 class="line"><span>&nbsp;&nbsp;33</span><comment>&nbsp;*&nbsp;function&nbsp;createGraph(svgRoot)&nbsp;{</comment></p>
 <p id=34 class="line"><span>&nbsp;&nbsp;34</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.GraphCartesian(svgRoot);</comment></p>
-<p id=35 class="line"><span>&nbsp;&nbsp;35</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;graph.addSeries(<quote>'line'</quote>,&nbsp;<quote>'time'</quote>,&nbsp;<quote>'volume'</quote>,&nbsp;<quote>'costs'</quote>);</comment></p>
+<p id=35 class="line"><span>&nbsp;&nbsp;35</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;graph.addSeries(<quote>'area'</quote>,&nbsp;<quote>'time'</quote>,&nbsp;<quote>'volume'</quote>,&nbsp;<quote>'costs'</quote>);</comment></p>
 <p id=36 class="line"><span>&nbsp;&nbsp;36</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;graph.defaults;</comment></p>
 <p id=37 class="line"><span>&nbsp;&nbsp;37</span><comment>&nbsp;*&nbsp;}</comment></p>
 <p id=38 class="line"><span>&nbsp;&nbsp;38</span><comment>&nbsp;*&nbsp;</comment></p>
@@ -79,18 +79,20 @@
 <p id=56 class="line"><span>&nbsp;&nbsp;56</span></p>
 <p id=57 class="line"><span>&nbsp;&nbsp;57</span>&nbsp;<comment>/**&nbsp;*/</comment></p>
 <p id=58 class="line"><span>&nbsp;&nbsp;58</span></p>
-<p id=59 class="line"><span>&nbsp;&nbsp;59</span>import&nbsp;{&nbsp;log&nbsp;as&nbsp;gLog&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'hsutil'</quote>;&nbsp;&nbsp;&nbsp;const&nbsp;log&nbsp;=&nbsp;gLog(<quote>'Line'</quote>);</p>
-<p id=60 class="line"><span>&nbsp;&nbsp;60</span>import&nbsp;{&nbsp;SeriesPlot&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../SeriesPlot'</quote>;</p>
-<p id=61 class="line"><span>&nbsp;&nbsp;61</span>import&nbsp;{&nbsp;SeriesPlotDefaults&nbsp;}&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../SeriesPlot'</quote>;</p>
-<p id=62 class="line"><span>&nbsp;&nbsp;62</span></p>
-<p id=63 class="line"><span>&nbsp;&nbsp;63</span>export&nbsp;class&nbsp;Line&nbsp;extends&nbsp;SeriesPlot&nbsp;{</p>
-<p id=64 class="line"><span>&nbsp;&nbsp;64</span>&nbsp;&nbsp;&nbsp;&nbsp;getDefaults():&nbsp;SeriesPlotDefaults&nbsp;{</p>
-<p id=65 class="line"><span>&nbsp;&nbsp;65</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;def&nbsp;=&nbsp;super.getDefaults();</p>
-<p id=66 class="line"><span>&nbsp;&nbsp;66</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;def.line.color&nbsp;=&nbsp;<quote>'#000'</quote>;</p>
-<p id=67 class="line"><span>&nbsp;&nbsp;67</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;def;</p>
-<p id=68 class="line"><span>&nbsp;&nbsp;68</span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;</p>
-<p id=69 class="line"><span>&nbsp;&nbsp;69</span>}</p>
-<p id=70 class="line"><span>&nbsp;&nbsp;70</span></p>
-<p id=71 class="line"><span>&nbsp;&nbsp;71</span></p></code></div>
+<p id=59 class="line"><span>&nbsp;&nbsp;59</span>&nbsp;import&nbsp;{&nbsp;log&nbsp;as&nbsp;gLog&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'hsutil'</quote>;&nbsp;&nbsp;&nbsp;const&nbsp;log&nbsp;=&nbsp;gLog(<quote>'Line'</quote>);</p>
+<p id=60 class="line"><span>&nbsp;&nbsp;60</span>&nbsp;import&nbsp;{&nbsp;SeriesPlot&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../SeriesPlot'</quote>;</p>
+<p id=61 class="line"><span>&nbsp;&nbsp;61</span>&nbsp;import&nbsp;{&nbsp;SeriesPlotDefaults&nbsp;}&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../SeriesPlot'</quote>;</p>
+<p id=62 class="line"><span>&nbsp;&nbsp;62</span>&nbsp;</p>
+<p id=63 class="line"><span>&nbsp;&nbsp;63</span>&nbsp;export&nbsp;class&nbsp;Area&nbsp;extends&nbsp;SeriesPlot&nbsp;{</p>
+<p id=64 class="line"><span>&nbsp;&nbsp;64</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;getDefaults():&nbsp;SeriesPlotDefaults&nbsp;{</p>
+<p id=65 class="line"><span>&nbsp;&nbsp;65</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;def&nbsp;=&nbsp;super.getDefaults();</p>
+<p id=66 class="line"><span>&nbsp;&nbsp;66</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;def.area.color&nbsp;=&nbsp;<quote>'#88f'</quote>;</p>
+<p id=67 class="line"><span>&nbsp;&nbsp;67</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;def.area.opacity&nbsp;=&nbsp;0.5;</p>
+<p id=68 class="line"><span>&nbsp;&nbsp;68</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;def.area.rendered&nbsp;=&nbsp;true;</p>
+<p id=69 class="line"><span>&nbsp;&nbsp;69</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;def;</p>
+<p id=70 class="line"><span>&nbsp;&nbsp;70</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;</p>
+<p id=71 class="line"><span>&nbsp;&nbsp;71</span>&nbsp;}</p>
+<p id=72 class="line"><span>&nbsp;&nbsp;72</span>&nbsp;</p>
+<p id=73 class="line"><span>&nbsp;&nbsp;73</span>&nbsp;</p></code></div>
                 </body>
             

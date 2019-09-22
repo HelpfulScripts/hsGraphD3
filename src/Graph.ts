@@ -41,7 +41,7 @@ export type Domains = { [dim:string]: [number, number]};
  * If the function returns `false`, no further callbacks will be initiated
  */
 export interface RenderCallback {
-    (data:DataSet | DataSet[]): boolean;
+    (data:DataSet | DataSet[]): boolean|void;
 }
 
 /**
@@ -80,8 +80,10 @@ export interface RenderChain {
 
 /**
  * ## Lifecycle calls
- * All `GraphComponents` implement these lifecycle methods that are called by the `Graph`:
+ * All `GraphComponents` implement these lifecycle methods that are called by the `Graph` instance
+ * in response to a `render` call:
  * - **initialize**: called the first time the `Graph` is rendered, ahead of any other lifecycle method.
+ * During initialization, the component's style settings are applied 
  * - **preRender**: called each time the `Graph` is rendered, ahead of any other recurring lifecycle method.
  * Implementations can assume that 
  *     - `initialize` has been called on all `GraphComponents`.

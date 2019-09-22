@@ -209,7 +209,39 @@
 <a name='L161'></a><a href='#L161'>161</a>
 <a name='L162'></a><a href='#L162'>162</a>
 <a name='L163'></a><a href='#L163'>163</a>
-<a name='L164'></a><a href='#L164'>164</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L164'></a><a href='#L164'>164</a>
+<a name='L165'></a><a href='#L165'>165</a>
+<a name='L166'></a><a href='#L166'>166</a>
+<a name='L167'></a><a href='#L167'>167</a>
+<a name='L168'></a><a href='#L168'>168</a>
+<a name='L169'></a><a href='#L169'>169</a>
+<a name='L170'></a><a href='#L170'>170</a>
+<a name='L171'></a><a href='#L171'>171</a>
+<a name='L172'></a><a href='#L172'>172</a>
+<a name='L173'></a><a href='#L173'>173</a>
+<a name='L174'></a><a href='#L174'>174</a>
+<a name='L175'></a><a href='#L175'>175</a>
+<a name='L176'></a><a href='#L176'>176</a>
+<a name='L177'></a><a href='#L177'>177</a>
+<a name='L178'></a><a href='#L178'>178</a>
+<a name='L179'></a><a href='#L179'>179</a>
+<a name='L180'></a><a href='#L180'>180</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -308,6 +340,7 @@
 <span class="cline-any cline-yes">7x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">7x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -369,7 +402,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
@@ -386,43 +418,59 @@
  * &lt;file name='script.js'&gt;
  * 
  * const centroids = {
- *    colNames: ['x', 'y'],
- *    rows: Array.from({length: 20}, v =&gt; [Math.random(), Math.random()])
+ *     colNames: ['x', 'y', 'count'],
+ *     rows: [[0.5, 0.5, 0]]
  * }
  * const samples = {
- *    colNames: ['x', 'y', 'nearest'],
- *    rows: [[0.5, 0.5, 0]]
+ *     colNames: ['x', 'y', 'nearest'],
+ *     rows: [[0.5, 0.5, 0]]
  * }
  * let w = 20;
  * const numSamples = 1000;
  * 
  * const graph = new hsGraphD3.GraphCartesian(root);
- * const voronoi = graph.addSeries('voronoi', 'x', 'y');
+ * 
+ * graph.addSeries('voronoi', 'x', 'y');
  * graph.addSeries('bubble', 'x', 'y');
+ * 
  * with (graph.defaults) {
- *      axes.rendered = false;
- *      series.series0.line.width = 1;
- *      series.series0.line.color = '#0c0';
- *      series.series0.marker.size = 3;
- *      series.series0.marker.stroke.color = '#f00';
- *      series.series1.marker.size = 1;
- *      series.series1.marker.stroke.width = 0;
- *      grids.rendered = false;
- *      scales.margin.top = 0;
- *      scales.margin.bottom = 0;
- *      scales.margin.left = 0;
- *      scales.margin.rigth = 0;
+ *     axes.rendered = false;
+ *     series.series0.line.width = 1;
+ *     series.series0.line.color = '#0c0';
+ *     series.series0.marker.size = 3;
+ *     series.series0.marker.stroke.color = '#f00';
+ *     series.series1.marker.size = 1;
+ *     series.series1.marker.stroke.width = 0;
+ *     grids.rendered = false;
+ *     scales.margin.bottom = 0;
+ *     scales.margin.left = 0;
+ *     scales.margin.rigth = 0;
  * }
+ * 
+ * const getRnd = () =&gt; (Math.random() + Math.random() + Math.random()) / 3;
+ * 
  * graph.render([centroids, samples]).update(200, data =&gt; {
- *      const norm = 1/(w+1);
- *      data[1].rows = Array.from({length: numSamples}, v =&gt; [Math.random(), Math.random(), 0]);
- *      data[1].rows.map(r =&gt; r[2] = voronoi.nearest(r, data[0].rows));
- *      data[0].rows.map((row, i) =&gt; {
- *          const c = voronoi.centroid(data[1].rows.filter(r =&gt; r[2]===i));
- *          row[0] = (w*row[0] + c[0])*norm;
- *          row[1] = (w*row[1] + c[1])*norm;
- *      });
- *      w += numSamples/50;
+ *     data[1].rows = Array.from({length: numSamples}, v =&gt; [getRnd(), getRnd(), 0]);
+ *     data[1].rows.map(r =&gt; r[2] = hsGraphD3.Voronoi.nearest(r, data[0].rows));
+ *     data[0].rows.map((row, i) =&gt; {
+ *         const smp = data[1].rows.filter(r =&gt; r[2]===i);
+ *         const cnt = smp.length;
+ *         const w = row[2];
+ *         const norm = 1 / (cnt+w);
+ *         const c = hsGraphD3.Voronoi.centroid(smp);
+ *         row[0] = (w*row[0] + cnt*c[0])*norm;
+ *         row[1] = (w*row[1] + cnt*c[1])*norm;
+ *         row[2] += cnt/2;
+ *     });
+ *     // split if enough count
+ *     data[0].rows.filter(row =&gt; row[2] &gt; 10000)
+ *         .map((row, i) =&gt; {
+ *             const dx = Math.random()/10000;
+ *             const dy = Math.random()/10000;
+ *             row[0] += dx;   row[1] += dy;
+ *             row[2] = 500;
+ *             data[0].rows.push([row[0]-dx, row[1]-dy, row[2]]);
+ *          })
  * });
  * 
  * &lt;/file&gt;
@@ -475,6 +523,7 @@ import { DataSet }              from '../Graph';
 import { d3Base }               from '../Settings';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { ScalesDefaults }       from '../Scale';
+import * as hsGraphD3           from '../';
 &nbsp;
 export class Voronoi extends SeriesPlot {
     private voronoi: d3Voronoi&lt;number&gt;;
@@ -501,11 +550,11 @@ export class Voronoi extends SeriesPlot {
     } 
 &nbsp;
     /**
-     * Calculates the nearest `anchor` to the `sample` vector ands returns the index in the `anchors` array.
+     * Calculates the nearest `anchor` to the `sample` vector ands returns its index in the `anchors` array.
      * @param sample 
      * @param anchors 
      */
-<span class="fstat-no" title="function not covered" >    nearest(</span>sample:number[], anchors:number[][]) {
+<span class="fstat-no" title="function not covered" >    static </span>nearest(sample:number[], anchors:number[][]) {
         let best = <span class="cstat-no" title="statement not covered" >0;</span>
         let dist = <span class="cstat-no" title="statement not covered" >1e99;</span>
 <span class="cstat-no" title="statement not covered" >        anchors.forEach(<span class="fstat-no" title="function not covered" >(r</span>, i) =&gt; {</span>
@@ -524,7 +573,7 @@ export class Voronoi extends SeriesPlot {
      * @param weight 
      * @return the centroid vector as an array
      */
-<span class="fstat-no" title="function not covered" >    centroid(</span>samples:number[][]) {
+<span class="fstat-no" title="function not covered" >    static </span>centroid(samples:number[][]) {
         const sum = <span class="cstat-no" title="statement not covered" >samples.reduce(<span class="fstat-no" title="function not covered" >(a</span>cc, s) =&gt; { </span>
 <span class="cstat-no" title="statement not covered" >            acc[0] += s[0]; </span>
 <span class="cstat-no" title="statement not covered" >            acc[1] += s[1]; </span>
@@ -534,7 +583,6 @@ export class Voronoi extends SeriesPlot {
 <span class="cstat-no" title="statement not covered" >        return samples.length? [sum[0]/samples.length, sum[1]/samples.length] : [0,0];</span>
     }
 } 
- 
 &nbsp;</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->

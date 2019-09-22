@@ -14,14 +14,16 @@
  */
 
 /** */
+import { log as gLog }      from 'hsutil';   const log = gLog('SeriesPlot');
 import { BaseType }         from 'd3';
 import { line as d3line}    from "d3";
 import { Line as d3Line }   from "d3";
-import { curveCardinal }    from 'd3';
+import { curveCatmullRom }  from 'd3';
 import { DataSet }          from './Graph';
 import { Domains }          from './Graph';
 import { GraphCfg }         from './GraphComponent';
 import { Line }             from './GraphComponent';
+import { Area }             from './GraphComponent';
 import { Marker }           from './GraphComponent';
 import { d3Base }           from './Settings';
 import { defaultStroke }    from './Settings';
@@ -34,6 +36,7 @@ export type d3Selection = d3.Selection<BaseType, unknown, BaseType, unknown>;
 
 
 export interface SeriesPlotDefaults {
+    area:   Area;
     line:   Line;
     marker: Marker;
 }
@@ -60,9 +63,9 @@ export abstract class SeriesPlot {
     /** 
      * a list of data column indices, corresponding to `dims`.
      */
-    protected cols: number[] = [];
+    protected cols: number[];
 
-    protected lines:d3Line<number[]>;
+    protected line:d3Line<number[]>;
 
     constructor(cfg:GraphCfg, seriesName:string, ...params:string[]) {
         this.cfg = cfg; 
@@ -79,14 +82,21 @@ export abstract class SeriesPlot {
 
     get dimensions() { return this.dims; }
 
-    /** set the defaults for the series. */
+    /** 
+     * Set the defaults for the series. Called during construction of `Graph`.
+     * */
     getDefaults(): SeriesPlotDefaults {
         const def:any = {
             line:   defaultStroke(5),
-            marker: defaultMarker()
+            marker: defaultMarker(),
+            area:   {
+                color: 'currentColor',
+                opacity: 0.5
+            }
         };
         def.line.rendered = true;
         def.marker.rendered = true;
+        def.area.rendered = false;
         return def;
     }
 
@@ -94,35 +104,49 @@ export abstract class SeriesPlot {
 
     initialize(svg:d3Base): void {
         this.svg = svg.append('g').classed(this.seriesKey, true);
-        this.svg.append('g').classed('lines', true).append('path');
+        this.svg.append('g').classed('area', true).append('path');
+        this.svg.append('g').classed('line', true).append('path');
         this.svg.append('g').classed('markers', true);
 
         const defaults = <SeriesPlotDefaults>this.cfg.defaults.series[this.key];
-        const lines = this.svg.select('.lines');
-        setStroke(lines, defaults.line);
+        const line = this.svg.select('.line');
+        setStroke(line, defaults.line);
+
+        const area = this.svg.select('.area');
+        setFill(area, defaults.area);
 
         const markers = this.svg.select('.markers');
         setStroke(markers, defaults.marker.stroke);
         setFill(markers, defaults.marker.fill);
     }
 
-    preRender(data:DataSet, domains:Domains): void {
-        // const defaults = <SeriesPlotDefaults>this.cfg.defaults.series[this.key];
-        this.cols = this.dims.map(d => {
+    protected getCols(data:DataSet) {
+        this.cols = this.cols || this.dims.map(d => {
             const c = data.colNames.indexOf(d);
             return c<0? undefined : c;
         });
-        this.lines = d3line()
+    }
+
+    preRender(data:DataSet, domains:Domains): void {
+        this.getCols(data);
+        this.line = d3line()
             .x(d => this.cfg.scales.hor(d[this.cols[0]]))
             .y(d => this.cfg.scales.ver(d[this.cols[1]]))
-            .curve(curveCardinal.tension(0));
+            .curve(curveCatmullRom.alpha(0.2));
     }
 
     /** renders the component for the given data */
     renderComponent(data:DataSet): void {
-        this.svg
-            .call(this.d3RenderMarkers.bind(this), data)
-            .call(this.d3RenderPath.bind(this), data);
+        const defaults = (<SeriesPlotDefaults>this.cfg.defaults.series[this.key]);
+        if (defaults.marker.rendered) {
+            this.svg.call(this.d3RenderMarkers.bind(this), data);
+        }
+        if (defaults.line.rendered) {
+            this.svg.call(this.d3RenderPath.bind(this), data);
+        }
+        if (defaults.area.rendered) {
+            this.svg.call(this.d3RenderFill.bind(this), data);
+        }
     }
 
     protected d3DrawMarker(markers:d3Base, plot:SeriesPlot) {
@@ -147,12 +171,23 @@ export abstract class SeriesPlot {
         }
     }
 
+    getPathElement(svg:d3Base, cls:string):any {
+        return svg.select(cls).selectAll('path').transition(this.cfg.transition);
+    }
+
     d3RenderPath(svg:d3Base, data:DataSet) {
-        const defaults = (<SeriesPlotDefaults>this.cfg.defaults.series[this.key]).line;
-        if (defaults.rendered) {
-            const path = svg.selectAll('path'); // .data([<any>data.rows], d => { console.log(d); return ''+(d&&d[0])?d[0][0]:''; });
-            path.transition(this.cfg.transition)
-                .attr('d', d => this.lines(<number[][]>data.rows));
-        }
+        let main = this.line(<number[][]>data.rows);
+        return this.getPathElement(svg, '.line').attr('d', (d:any) => main);
+    }
+
+    d3RenderFill(svg:d3Base, data:DataSet) {
+        log.info('seriesplot fill');
+        this.getCols(data);
+        const _data = <number[][]>data.rows;
+        const max = _data.length-1;
+        const prefix = `M${this.cfg.scales.hor(_data[0][this.cols[0]])},${this.cfg.scales.ver(0)}L`;
+        const main = this.line(_data).slice(1);
+        const postfix = `L${this.cfg.scales.hor(_data[max][this.cols[0]])},${this.cfg.scales.ver(0)}`;
+        return this.getPathElement(svg, '.area').attr('d', (d:any) => prefix + main + postfix);
     }
 }

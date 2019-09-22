@@ -1,11 +1,11 @@
 /**
- * # Line Plot
+ * # Area Plot
  * 
- * plots a 2D line with markers.
+ * plots a 2D area with markers.
  * 
  * ## Usage
- * `graph.addSeries('line', <x-col>, <y-col>, [<size-col>]);`
- * Invoke a `line` series by adding a new series to the graph
+ * `graph.addSeries('area', <x-col>, <y-col>, [<size-col>]);`
+ * Invoke an `area` series by adding a new series to the graph
  * 
  * ## Example
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
@@ -18,7 +18,7 @@
  * };
  * 
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.addSeries('line', 'time', 'volume', 'costs');
+ * graph.addSeries('area', 'time', 'volume', 'costs');
  * graph.render(data);
  * 
  * </file>
@@ -32,7 +32,7 @@
  * 
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      graph.addSeries('line', 'time', 'volume', 'costs');
+ *      graph.addSeries('area', 'time', 'volume', 'costs');
  *      return graph.defaults;
  * }
  * 
@@ -56,15 +56,18 @@
 
  /** */
 
-import { log as gLog }          from 'hsutil';   const log = gLog('Line');
-import { SeriesPlot }           from '../SeriesPlot';
-import { SeriesPlotDefaults }   from '../SeriesPlot';
-
-export class Line extends SeriesPlot {
-    getDefaults(): SeriesPlotDefaults {
-        const def = super.getDefaults();
-        def.line.color = '#000';
-        return def;
-    } 
-}
-
+ import { log as gLog }          from 'hsutil';   const log = gLog('Line');
+ import { SeriesPlot }           from '../SeriesPlot';
+ import { SeriesPlotDefaults }   from '../SeriesPlot';
+ 
+ export class Area extends SeriesPlot {
+     getDefaults(): SeriesPlotDefaults {
+         const def = super.getDefaults();
+         def.area.color = '#88f';
+         def.area.opacity = 0.5;
+         def.area.rendered = true;
+         return def;
+     } 
+ }
+ 
+ 
