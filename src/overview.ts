@@ -2,7 +2,7 @@
 # hsGraphD3
  
 Helpful Scripts Graph convenience wrapper for D3js. 
-[`[Coverage Info]`](./data/src/hsGraphD3/coverage/)
+ * <a href="./data/src/hsGraphD3/coverage/" target="_blank">[Coverage Info]</a>
 
 [![npm version](https://badge.fury.io/js/hsgraphd3.svg)](https://badge.fury.io/js/hsgraphd3)
 [![GitHub](https://img.shields.io/badge/GitHub-hsGraphD3-blue.svg)](https://github.com/helpfulscripts/hsgraphd3)
