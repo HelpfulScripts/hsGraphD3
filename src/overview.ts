@@ -17,13 +17,13 @@ Helpful Scripts Graph convenience wrapper for D3js.
  * `hsGraphD3` provides convienent programmatic shortcuts to plotting data with [`D3js`](https://d3js.org/).
  * 
  * ## Usage
- * 1. create a {@link Graph `Graph`} object with a root DOM element to attach to: `graph = new hsGraphD3.Graph(root);`
+ * 1. create a {@link Graph `Graph`} object with a root DOM element to attach to: `graph = new hsGraphD3.GraphCartesian(root);`
  * 2. add desired series configuartions, specifying the type of series, as well as the column names to use for the x- and y-axes, 
  * and other variables, depending on the series type.
  * 3. apply any desired formatting changes to the default
  * 4. render the graph for a given data set: `graph.render(data);`
  * 
- * To dynamically update the graph to new data, call the `update`
+ * To dynamically update the graph to new data, call the {@link Graph.RenderChain `update`} method
  * 
  * ## Data
  * Data is provided either in table form
