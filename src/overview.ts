@@ -17,17 +17,16 @@ Helpful Scripts Graph convenience wrapper for D3js.
  * `hsGraphD3` provides convienent programmatic shortcuts to plotting data with [`D3js`](https://d3js.org/).
  * 
  * ## Usage
- * 1. create a {@link Graph `Graph`} object with a root DOM element to attach to: `graph = new hsGraphD3.Graph(root);'
+ * 1. create a {@link Graph `Graph`} object with a root DOM element to attach to: `graph = new hsGraphD3.Graph(root);`
  * 2. add desired series configuartions, specifying the type of series, as well as the column names to use for the x- and y-axes, 
  * and other variables, depending on the series type.
  * 3. apply any desired formatting changes to the default
- * 3. render the graph for a given data set: `graph.render(data);`
+ * 4. render the graph for a given data set: `graph.render(data);`
  * 
  * To dynamically update the graph to new data, call the `update`
  * 
  * ## Data
- * Data is provided either as a [`Data`](https://helpfulscripts.github.io/hsDatab/#!/api/hsDatab/0) object, 
- * or in table form
+ * Data is provided either in table form
  * ```
  * [
  *    colNames[],
@@ -60,7 +59,7 @@ Helpful Scripts Graph convenience wrapper for D3js.
  * 
  * // create the graph and define the series to plot:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.addSeries('bubble', 'time', 'volume', 'costs');
+ * graph.addSeries('bubble', {x:'time', y:'volume', r:'costs'});
  * 
  * // adjust some settings:
  * graph.defaults.axes.color = '#88f';  // both axes appear blue
@@ -97,16 +96,12 @@ Helpful Scripts Graph convenience wrapper for D3js.
  * 
  * // create the graph and define the series to plot:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.addSeries('line', 'date', 'line');
- * graph.addSeries('timeseries', 'date', 'series');
+ * graph.addSeries('line', {x:'date', y:'line'});
+ * graph.addSeries('timeseries', {x:'date', y:'series'});
  * 
  * //----- adjust some settings:
  * with (graph.defaults) {
  *    scales.dims.hor.aggregateOverTime = false; // forget the past
- *    series.series0.line.color = '#00a';   // first line blue
- *    series.series1.line.color = '#0a0';   // second line green
- *    series.series0.area.color = '#aaf';   // first area blue
- *    series.series1.area.color = '#afa';   // second area green
  *    series.series0.area.rendered = true;  
  *    series.series1.area.rendered = true;  
  *    axes.ver.tickLabel.rendered = false;  // hide vertical axis labels

@@ -22,7 +22,7 @@
             code { padding: 5px 0;}</style></html><body>
                 <h1>src/Settings.ts</h1>
                 <div class='listing'><code><p id=1 class="line"><span>&nbsp;&nbsp;&nbsp;1</span><comment>/**</comment></p>
-<p id=2 class="line"><span>&nbsp;&nbsp;&nbsp;2</span><comment>&nbsp;*&nbsp;#&nbsp;Defaults&nbsp;Configuration</comment></p>
+<p id=2 class="line"><span>&nbsp;&nbsp;&nbsp;2</span><comment>&nbsp;*&nbsp;#&nbsp;Configuration&nbsp;Defaults&nbsp;</comment></p>
 <p id=3 class="line"><span>&nbsp;&nbsp;&nbsp;3</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=4 class="line"><span>&nbsp;&nbsp;&nbsp;4</span><comment>&nbsp;*&nbsp;provides&nbsp;`type`&nbsp;aliases,&nbsp;`interfaces`,&nbsp;and&nbsp;support&nbsp;functions&nbsp;to&nbsp;generate&nbsp;default&nbsp;settings&nbsp;for&nbsp;{@link&nbsp;GraphComponent&nbsp;GraphComponents}.</comment></p>
 <p id=5 class="line"><span>&nbsp;&nbsp;&nbsp;5</span><comment>&nbsp;*&nbsp;</comment></p>
@@ -147,10 +147,10 @@
 <p id=124 class="line"><span>&nbsp;124</span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;def;</p>
 <p id=125 class="line"><span>&nbsp;125</span>};</p>
 <p id=126 class="line"><span>&nbsp;126</span></p>
-<p id=127 class="line"><span>&nbsp;127</span>export&nbsp;const&nbsp;defaultFill&nbsp;=&nbsp;(areaFill:Color&nbsp;=&nbsp;<quote>'#fff'</quote>)&nbsp;=>&nbsp;{</p>
+<p id=127 class="line"><span>&nbsp;127</span>export&nbsp;const&nbsp;defaultFill&nbsp;=&nbsp;(areaFill:Color&nbsp;=&nbsp;<quote>'currentColor'</quote>,&nbsp;opacity=0.5)&nbsp;=>&nbsp;{</p>
 <p id=128 class="line"><span>&nbsp;128</span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;{</p>
 <p id=129 class="line"><span>&nbsp;129</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color:&nbsp;areaFill,</p>
-<p id=130 class="line"><span>&nbsp;130</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;opacity:&nbsp;1</p>
+<p id=130 class="line"><span>&nbsp;130</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;opacity:&nbsp;opacity</p>
 <p id=131 class="line"><span>&nbsp;131</span>&nbsp;&nbsp;&nbsp;&nbsp;};</p>
 <p id=132 class="line"><span>&nbsp;132</span>};</p>
 <p id=133 class="line"><span>&nbsp;133</span></p>
@@ -164,7 +164,7 @@
 <p id=141 class="line"><span>&nbsp;141</span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;{</p>
 <p id=142 class="line"><span>&nbsp;142</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rx:&nbsp;0,</p>
 <p id=143 class="line"><span>&nbsp;143</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ry:&nbsp;0,</p>
-<p id=144 class="line"><span>&nbsp;144</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fill:&nbsp;&nbsp;&nbsp;defaultFill(areaFill),</p>
+<p id=144 class="line"><span>&nbsp;144</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fill:&nbsp;&nbsp;&nbsp;defaultFill(areaFill,&nbsp;1),</p>
 <p id=145 class="line"><span>&nbsp;145</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stroke:&nbsp;defaultStroke(borderWidth,&nbsp;borderColor)</p>
 <p id=146 class="line"><span>&nbsp;146</span>&nbsp;&nbsp;&nbsp;&nbsp;};</p>
 <p id=147 class="line"><span>&nbsp;147</span>};</p>
@@ -182,13 +182,13 @@
 <p id=159 class="line"><span>&nbsp;159</span>&nbsp;&nbsp;&nbsp;&nbsp;};</p>
 <p id=160 class="line"><span>&nbsp;160</span>};</p>
 <p id=161 class="line"><span>&nbsp;161</span></p>
-<p id=162 class="line"><span>&nbsp;162</span>export&nbsp;const&nbsp;defaultMarker&nbsp;=&nbsp;(shape=MarkerShape.circle,&nbsp;size=10):MarkerStyle&nbsp;=>&nbsp;{</p>
+<p id=162 class="line"><span>&nbsp;162</span>export&nbsp;const&nbsp;defaultMarker&nbsp;=&nbsp;(color=<quote>'currentColor'</quote>,&nbsp;shape=MarkerShape.circle,&nbsp;size=10):MarkerStyle&nbsp;=>&nbsp;{</p>
 <p id=163 class="line"><span>&nbsp;163</span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;{</p>
 <p id=164 class="line"><span>&nbsp;164</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;size:&nbsp;&nbsp;&nbsp;size,</p>
 <p id=165 class="line"><span>&nbsp;165</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;shape:&nbsp;&nbsp;shape,</p>
 <p id=166 class="line"><span>&nbsp;166</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;fill:&nbsp;&nbsp;&nbsp;{</p>
-<p id=167 class="line"><span>&nbsp;167</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color:&nbsp;<quote>'#F00'</quote>,</p>
-<p id=168 class="line"><span>&nbsp;168</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;opacity:&nbsp;1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p id=167 class="line"><span>&nbsp;167</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color:&nbsp;color,</p>
+<p id=168 class="line"><span>&nbsp;168</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;opacity:&nbsp;0.75&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
 <p id=169 class="line"><span>&nbsp;169</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</p>
 <p id=170 class="line"><span>&nbsp;170</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stroke:&nbsp;defaultStroke(4)</p>
 <p id=171 class="line"><span>&nbsp;171</span>&nbsp;&nbsp;&nbsp;&nbsp;};</p>

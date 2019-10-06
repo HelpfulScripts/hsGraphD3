@@ -21,8 +21,8 @@
  * 
  * // setup and plot the data:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.addSeries('line', 'time', 'volume',);
- * graph.addSeries('line', 'time', 'costs');
+ * graph.addSeries('line', {x:'time', y:'volume'},);
+ * graph.addSeries('line', {x:'time', y:'costs'});
  * 
  * with (graph.defaults.canvas) {
  *      fill.color = '#fcfcfc';
@@ -60,87 +60,63 @@
 import { log as gLog }      from 'hsutil';   const log = gLog('GraphCartesian');
 
 import { DataSet }          from './Graph';
+import { GraphDimensions }  from './Graph';
 import { Graph }            from './Graph';
 import { Domains }          from './Graph';
 import { scaleDefault }     from './Scale';
 import { ScalesDefaults }   from './Scale';
 import { Scales }           from './Scale';
 import { d3Base }           from './Settings';
-import { Series }           from './Series';
-import { SeriesPlot }       from './SeriesPlot';
-import { GraphCfg}          from './GraphComponent';
-import { Bubble }           from "./plots/Bubble";
-import { Line }             from "./plots/Line";
-import { Area }             from "./plots/Area";
-import { TimeSeries }       from "./plots/TimeSeries";
-import { Voronoi }          from "./plots/Voronoi";
+import { SeriesPlot, CartSeriesDimensions }       from './SeriesPlot';
+import { SeriesDimensions } from './Series';
+import "./plots/Bubble";
+import "./plots/Line";
+import "./plots/Area";
+import "./plots/Band";
+import "./plots/TimeSeries";
+import "./plots/Voronoi";
 
+
+export interface CartDimensions extends GraphDimensions { hor:string[]; ver:string[]; size:string[]; }
 
 export class GraphCartesian extends Graph {
-    constructor(root:any) { 
-        super(root);
-        log.debug('created GraphCartesian');
-        Series.register('bubble', (cfg:GraphCfg, sName:string, cx:string, cy:string, r?:string) => new Bubble(cfg, sName, cx, cy, r));
-        Series.register('line', (cfg:GraphCfg, sName:string, cx:string, cy:string) => new Line(cfg, sName, cx, cy));
-        Series.register('area', (cfg:GraphCfg, sName:string, cx:string, cy:string) => new Area(cfg, sName, cx, cy));
-        Series.register('timeseries', (cfg:GraphCfg, sName:string, cx:string, cy:string, r:string) => new TimeSeries(cfg, sName, cx, cy, r));
-        Series.register('voronoi', (cfg:GraphCfg, sName:string, cx:string, cy:string, r:string) => new Voronoi(cfg, sName, cx, cy, r));
-
-    }
-
     /**
      * adds a series to the plot.
      * At a minimum, an x- and y coordinate column name needs to be specified to use on the data.
-     * Additional column names will interpreted as follows:
-     * - index 0: x coordinate
-     * - index 1: y coordinate
-     * - index 2: size of marker (replaces default setting)
-     * 
      * Accordingly, scales will be defined for each of the coordinate indexes.
      * 
      * @param type type of plot to use, e.g. 'bubble' or 'scatter'
-     * @param params the column name of the parameters used to plot the series
+     * @param dims mapping of data column names to the series dimensions used to plot the series
      */
-    public addSeries(type:string, x:string, y:string, ...params:string[]):SeriesPlot {
-        const series = super.addSeries(type, x, y, ...params);
+    public addSeries(type:string, dims:CartSeriesDimensions):SeriesPlot {
+        const series = super.addSeries(type, dims);
         const scales = this.config.defaults.scales;
-        // the first two dimensions are shared with the standard 2D dimensions 'hor' and 'ver'.
-        scales.dims[0] = scales.dims[0] || scales.dims['hor'] || scaleDefault();       // auto viewport range
-        scales.dims[1] = scales.dims[1] || scales.dims['ver'] || scaleDefault();       // auto viewport range
-        if (params.length > 0) { 
-            scales.dims[2] = scales.dims[2] || scales.dims['size'] || scaleDefault();  // auto viewport range
-        }
+        scales.dims['hor']  = scales.dims['hor']  || scaleDefault();    // auto viewport range
+        scales.dims['ver']  = scales.dims['ver']  || scaleDefault();    // auto viewport range
+        scales.dims['size'] = scales.dims['size'] || scaleDefault(5, 20);  
         return series;
     }
 
-    protected makeDefaults() {
-        super.makeDefaults();
-        const scales = <ScalesDefaults>this.config.defaults.scales.dims;
-        scales.hor  = scaleDefault();
-        scales.ver  = scaleDefault();
-        scales.size = scaleDefault(5, 15); // marker sizes in vpUnits
-    }
-
+    /**
+     * set scales, called during `prerender`
+     * @param data 
+     */
     protected setScales(data:DataSet | DataSet[]) {
         const scalesDefaults = <ScalesDefaults>this.config.defaults.scales;
         const margins = this.config.defaults.scales.margin;
         const scales = this.config.scales;
-        scales.hor  = Scales.createScale(scalesDefaults.dims.hor, this.cumulativeDomains[0], [margins.left,  this.viewport.width-margins.right]);
-        scales.ver  = Scales.createScale(scalesDefaults.dims.ver, this.cumulativeDomains[1], [this.viewport.height-margins.bottom, margins.top]);
-        scales.size = Scales.createScale(scalesDefaults.dims.size, this.cumulativeDomains[2]);
+        scales.hor  = Scales.createScale(scalesDefaults.dims.hor, this.cumulativeDomains.hor, [margins.left,  this.viewport.width-margins.right]);
+        scales.ver  = Scales.createScale(scalesDefaults.dims.ver, this.cumulativeDomains.ver, [this.viewport.height-margins.bottom, margins.top]);
+        scales.size = Scales.createScale(scalesDefaults.dims.size, this.cumulativeDomains.size);
     }
 
     protected prepareDomains(scalesDefaults:ScalesDefaults):Domains {
-        if (!this.cumulativeDomains[0] || !scalesDefaults.dims.hor.aggregateOverTime)  { 
-            this.cumulativeDomains[0] = this.cumulativeDomains.hor = [1e99, -1e99]; 
-        }
-        if (!this.cumulativeDomains[1] || !scalesDefaults.dims.ver.aggregateOverTime)  { 
-            this.cumulativeDomains[1] = this.cumulativeDomains.ver = [1e99, -1e99]; 
-        }
-        if (!this.cumulativeDomains[2] || !scalesDefaults.dims.size.aggregateOverTime) { 
-            this.cumulativeDomains[2] = this.cumulativeDomains.size = [1e99, -1e99]; 
-        }
-        return this.cumulativeDomains;
+        const dom = this.cumulativeDomains;
+        const dims = scalesDefaults.dims;
+        dom.hor  = (dom.hor  && dims.hor.aggregateOverTime)?  dom.hor  : [1e99, -1e99];
+        dom.ver  = (dom.ver  && dims.ver.aggregateOverTime)?  dom.ver  : [1e99, -1e99];
+        dom.size = (dom.size && dims.size.aggregateOverTime)? dom.size : [1e99, -1e99];
+        return dom;
     }
 
 

@@ -4,8 +4,7 @@
  * plots a 2D line with markers.
  * 
  * ## Usage
- * `graph.addSeries('line', <x-col>, <y-col>, [<size-col>]);`
- * Invoke a `line` series by adding a new series to the graph
+ * `graph.addSeries('line', {x:<x-col>, y:<y-col>, r?:<size-col>});`
  * 
  * ## Example
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
@@ -18,7 +17,7 @@
  * };
  * 
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.addSeries('line', 'time', 'volume', 'costs');
+ * graph.addSeries('line', {x:'time', y:'volume', r:'costs'});
  * graph.render(data);
  * 
  * </file>
@@ -32,7 +31,7 @@
  * 
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      graph.addSeries('line', 'time', 'volume', 'costs');
+ *      graph.addSeries('line', {x:'time', y:'volume', r:'costs'});
  *      return graph.defaults;
  * }
  * 
@@ -58,12 +57,16 @@
 
 import { log as gLog }          from 'hsutil';   const log = gLog('Line');
 import { SeriesPlot }           from '../SeriesPlot';
+import { CartSeriesDimensions } from '../SeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
+import { GraphCfg}              from '../GraphComponent';
+import { Series }               from '../Series';
+
+Series.register('line', (cfg:GraphCfg, sName:string, dims: CartSeriesDimensions) => new Line(cfg, sName, dims));
 
 export class Line extends SeriesPlot {
     getDefaults(): SeriesPlotDefaults {
         const def = super.getDefaults();
-        def.line.color = '#000';
         return def;
     } 
 }

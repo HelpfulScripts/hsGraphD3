@@ -1,25 +1,27 @@
 /**
  * # Area Plot
  * 
- * plots a 2D area with markers.
+ * plots a 2D area.
  * 
  * ## Usage
- * `graph.addSeries('area', <x-col>, <y-col>, [<size-col>]);`
- * Invoke an `area` series by adding a new series to the graph
+ * `graph.addSeries('area', {x:<x-col>, y:<y-col>, r?:<size-col>});`
  * 
  * ## Example
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
  * <file name='script.js'>
- * // create data set:
- * const data = {
- *    colNames:['date', 'time', 'volume', 'costs'], 
- *    rows:[['1/1/14', -1,  0.2, 0.3], ['1/1/16', 0.2, 0.7, 0.2], ['9/1/16', 0.4, 0.1, 0.3],
- *          ['5/1/17', 0.6, -0.2,   0.1], ['7/1/18', 0.8, 0.3, 0.5], ['1/1/19', 1,   0.2, 0.4]]
- * };
- * 
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.addSeries('area', 'time', 'volume', 'costs');
- * graph.render(data);
+ * graph.addSeries('area', {x:'time', y:'volume', r:'costs'});
+ * graph.addSeries('area', {x:'time', y:'costs'});
+ * graph.defaults.series.series0.marker.rendered = true;
+ * graph.render({
+ *    colNames:['time', 'volume', 'costs'], 
+ *    rows:[    [-1,    0.2,      0.3], 
+ *              [0.2,   0.7,      0.2], 
+ *              [0.4,   0.1,      0.3],
+ *              [0.6,  -0.2,      0.1], 
+ *              [0.8,   0.3,      0.5], 
+ *              [1,     0.2,      0.4]]
+ * });
  * 
  * </file>
  * </example>
@@ -32,7 +34,7 @@
  * 
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      graph.addSeries('area', 'time', 'volume', 'costs');
+ *      graph.addSeries('area', {x:'time', y:'volume', r:'costs'});
  *      return graph.defaults;
  * }
  * 
@@ -56,18 +58,23 @@
 
  /** */
 
- import { log as gLog }          from 'hsutil';   const log = gLog('Line');
- import { SeriesPlot }           from '../SeriesPlot';
- import { SeriesPlotDefaults }   from '../SeriesPlot';
+import { log as gLog }          from 'hsutil';   const log = gLog('Area');
+import { SeriesPlot }           from '../SeriesPlot';
+import { CartSeriesDimensions } from '../SeriesPlot';
+import { SeriesPlotDefaults }   from '../SeriesPlot';
+import { GraphCfg}              from '../GraphComponent';
+import { Series }               from '../Series';
+
+Series.register('area', (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions) => new Area(cfg, sName, dims));
  
- export class Area extends SeriesPlot {
-     getDefaults(): SeriesPlotDefaults {
-         const def = super.getDefaults();
-         def.area.color = '#88f';
-         def.area.opacity = 0.5;
-         def.area.rendered = true;
-         return def;
-     } 
- }
+export class Area extends SeriesPlot {
+    getDefaults(): SeriesPlotDefaults {
+        const def = super.getDefaults();
+        def.area.rendered = true;
+        def.marker.rendered = false;
+        def.line.rendered = false;
+        return def;
+    } 
+}
  
  

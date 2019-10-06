@@ -1,5 +1,5 @@
 /**
- * # Defaults Configuration
+ * # Configuration Defaults 
  * 
  * provides `type` aliases, `interfaces`, and support functions to generate default settings for {@link GraphComponent GraphComponents}.
  * 
@@ -124,10 +124,10 @@ export const defaultLine = (width:UnitVp, color:Color='currentColor'):Line => {
     return def;
 };
 
-export const defaultFill = (areaFill:Color = '#fff') => {
+export const defaultFill = (areaFill:Color = 'currentColor', opacity=0.5) => {
     return {
         color: areaFill,
-        opacity: 1
+        opacity: opacity
     };
 };
 
@@ -141,7 +141,7 @@ export const defaultRect = (areaFill:Color, borderWidth:UnitVp=0, borderColor:Co
     return {
         rx: 0,
         ry: 0,
-        fill:   defaultFill(areaFill),
+        fill:   defaultFill(areaFill, 1),
         stroke: defaultStroke(borderWidth, borderColor)
     };
 };
@@ -159,13 +159,13 @@ export const defaultText = (size=16):TextStyle => {
     };
 };
 
-export const defaultMarker = (shape=MarkerShape.circle, size=10):MarkerStyle => {
+export const defaultMarker = (color='currentColor', shape=MarkerShape.circle, size=10):MarkerStyle => {
     return {
         size:   size,
         shape:  shape,
         fill:   {
-            color: '#F00',
-            opacity: 1             
+            color: color,
+            opacity: 0.75            
         },
         stroke: defaultStroke(4)
     };

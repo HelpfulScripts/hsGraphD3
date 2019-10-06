@@ -4,10 +4,15 @@
  * plots a 2D Voronoi Partition.
  * 
  * ## Usage
- * `graph.addSeries('voronoi', <x-col>, <y-col>, [<size-col>]);`
+ * `graph.addSeries('voronoi', {x:<x-col>, y:<y-col>, r?:<size-col>});`
  * Invoke a `line` series by adding a new series to the graph
  * 
  * ## Example
+ * - Generate 1000 samples per frame.
+ * - for each frame: 
+ *     - calculate the centroids 
+ *     - plot centroids and voronoi diagram
+ *     - split any centroid that has observed more than 10k samples
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
  * <file name='script.js'>
  * 
@@ -24,17 +29,17 @@
  * 
  * const graph = new hsGraphD3.GraphCartesian(root);
  * 
- * graph.addSeries('voronoi', 'x', 'y');
- * graph.addSeries('bubble', 'x', 'y');
+ * graph.addSeries('voronoi', {x:'x', y:'y', r:'count'});
+ * graph.addSeries('bubble', {x:'x', y:'y'});
  * 
  * with (graph.defaults) {
  *     axes.rendered = false;
  *     series.series0.line.width = 1;
- *     series.series0.line.color = '#0c0';
  *     series.series0.marker.size = 3;
- *     series.series0.marker.stroke.color = '#f00';
+ *     series.series0.marker.stroke.width = 0;
  *     series.series1.marker.size = 1;
  *     series.series1.marker.stroke.width = 0;
+ *     series.series1.marker.fill.color = '#000';
  *     grids.rendered = false;
  *     scales.margin.bottom = 0;
  *     scales.margin.left = 0;
@@ -78,7 +83,7 @@
  * 
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(root);
- *      graph.addSeries('voronoi', 'x', 'y');
+ *      graph.addSeries('voronoi', {x:'x', y:'y'});
  *      with (graph.defaults) {
  *          axes.rendered = false;
  *          series.series0.line.width = 1;
@@ -109,28 +114,33 @@
 
  /** */
 
-import { log as gLog }          from 'hsutil';   const log = gLog('Bubble');
+import { log as gLog }          from 'hsutil';   const log = gLog('Voronoi');
 import { Delaunay}              from "d3-delaunay";
 import { Voronoi as d3Voronoi}  from "d3-delaunay";
 import { SeriesPlot }           from '../SeriesPlot';
+import { CartSeriesDimensions } from '../SeriesPlot';
 import { DataSet }              from '../Graph';
 import { d3Base }               from '../Settings';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { ScalesDefaults }       from '../Scale';
-import * as hsGraphD3           from '../';
+import { GraphCfg}              from '../GraphComponent';
+import { Series }               from '../Series';
+
+Series.register('voronoi', (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions) => new Voronoi(cfg, sName, dims));
 
 export class Voronoi extends SeriesPlot {
     private voronoi: d3Voronoi<number>;
 
     renderComponent(data:DataSet): void {
         const scales = this.cfg.scales;
-        const x = this.cols[0];
-        const y = this.cols[1];
+        const x = data.colNames.indexOf(this.dims.x);
+        const y = data.colNames.indexOf(this.dims.y);
         const m = <ScalesDefaults>this.cfg.defaults.scales.margin;
         this.voronoi = Delaunay.from(data.rows, 
             r => scales.hor(<number>r[x]),
             r => scales.ver(<number>r[y])
-        ).voronoi([m.left, m.top, this.cfg.viewPort.width-m.right, this.cfg.viewPort.height-m.bottom]);
+        )
+        .voronoi([0, 0, this.cfg.viewPort.width, this.cfg.viewPort.height]);
         super.renderComponent(data);
     }
 

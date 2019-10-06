@@ -1,6 +1,9 @@
 /**
  * # Bubble Plot
  * 
+ * ## Usage
+ * `graph.addSeries('bubble', {x:<x-col>, y:<y-col>, r:<size-col>});`
+ * 
  * ## Example
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
  * <file name='script.js'>
@@ -17,7 +20,7 @@
  * 
  * // setup and plot the data:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.addSeries('bubble', 'time', 'volume', 'costs');
+ * graph.addSeries('bubble', {x:'time', y:'volume', r:'costs'});
  * graph.render(data);
  * 
  * </file>
@@ -32,7 +35,7 @@
  * 
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      graph.addSeries('bubble', 'time', 'volume', 'costs');
+ *      graph.addSeries('bubble', {x:'time', y:'volume', r:'costs'});
  *      return graph.defaults;
  * }
  * 
@@ -59,15 +62,27 @@
 import { log as gLog }          from 'hsutil';   const log = gLog('Bubble');
 import { DataSet }              from '../Graph';
 import { SeriesPlot }           from '../SeriesPlot';
+import { SeriesPlotDefaults }   from '../SeriesPlot';
+import { CartSeriesDimensions } from '../SeriesPlot';
+import { GraphCfg}              from '../GraphComponent';
+import { Series }               from '../Series';
 
+Series.register('bubble', (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions) => new Bubble(cfg, sName, dims));
 
 export class Bubble extends SeriesPlot {
+    getDefaults(): SeriesPlotDefaults {
+        const def = super.getDefaults();
+        def.area.rendered = false;
+        def.marker.rendered = true;
+        def.line.rendered = false;
+        return def;
+    } 
+
     /**
      * 
      * @param data a {@link hsDatab:Data `Data`} object containing the 
      */
-    renderComponent(data:DataSet) {  
-        this.svg
-            .call(this.d3RenderMarkers.bind(this), data);
-    }
+    // renderComponent(data:DataSet) {  
+    //     this.svg.call(this.d3RenderMarkers.bind(this), data);
+    // }
 } 

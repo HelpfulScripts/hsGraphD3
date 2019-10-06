@@ -40,9 +40,13 @@ import { GraphComponent }   from './GraphComponent';
 import { ComponentDefaults }from './GraphComponent'; 
 import { GraphCfg }         from './GraphComponent'; 
 import { SeriesPlot }       from './SeriesPlot';
+import { CartDimensions }   from './GraphCartesian';
+import { schemeDark2 as colors } from 'd3';
 
 
-type PlotFactory = (cfg:GraphCfg, seriesName:string, ...params:string[]) => SeriesPlot;
+export interface SeriesDimensions { [dim:string]: string; }
+
+type PlotFactory = (cfg:GraphCfg, seriesName:string, dims:SeriesDimensions) => SeriesPlot;
 
 export class Series extends GraphComponent {
     static type = 'series';
@@ -75,8 +79,10 @@ export class Series extends GraphComponent {
     get componentType() { return Series.type; }
 
     initialize(svg:d3Base): void {
+        // swap 0 <-> 1, 2 <-> 3, etc.
+        // const colorSwap = (i:number) => ((i+1)%2)+ (Math.floor(i/2+0.001))*2;
         const seriesSVG = svg.selectAll(`.${this.componentType}`);
-        this.series.forEach((s:SeriesPlot) => s.initialize(seriesSVG));
+        this.series.forEach((s:SeriesPlot, i:number) => s.initialize(seriesSVG, colors[i % colors.length]));
     } 
 
     preRender(data:DataSet | DataSet[], domains:Domains): void {
@@ -111,25 +117,35 @@ export class Series extends GraphComponent {
      */
     expandDomain(data:DataSet | DataSet[], domains:Domains):Domains {
         function spread(dom:[number, number]) { dom[0] = 0.9*dom[0]; dom[1] = 1.1*dom[1]; }
-        function stretchDomains(dataSet:DataSet) {
+        function stretchDomains(dataSet:DataSet, s:SeriesPlot) {
             this.series.forEach((s:SeriesPlot) => {
-                s.dimensions.map((dim, i) => {
-                    const col = dataSet.colNames.indexOf(dim);
-                    domains[i] = domains[i] || [1e90, -1e90];
-                    if (dim) {
-                        const dataDom = extent(dataSet.rows, (r => <number>r[col]));
-                        domains[i][0] = Math.min(domains[i][0], dataDom[0]);
-                        domains[i][1] = Math.max(domains[i][1], dataDom[1]);
-                    }
-                    if (domains[i][1] === domains[i][0]) { spread(domains[i]); }
+                const dims:CartDimensions = s.dimensions;
+                Object.keys(dims).map(dim => {
+                    if (!domains[dim]) { log.warn(`domain not initialized for dimension '${dim}'`); }
+                    dims[dim].map(colName => { if (colName) {
+                        const col = dataSet.colNames.indexOf(colName);
+                        if (col < 0) { log.warn(`did not find column '${colName}' in data set ${dataSet.colNames.join(', ')}`); }
+                        else {
+                            // domains[dim] = domains[dim] || [1e90, -1e90];
+                            const dataDom = extent(dataSet.rows, (r => <number>r[col]));
+                            domains[dim][0] = Math.min(domains[dim][0], dataDom[0]);
+                            domains[dim][1] = Math.max(domains[dim][1], dataDom[1]);
+                            if (domains[dim][1] === domains[dim][0]) { spread(domains[dim]); }
+                        }
+                    }});
                 });
             });
         }
 
         if ((<DataSet>data).colNames) {  
-            stretchDomains.bind(this)(<DataSet>data);
+            // use same dataset for each series
+            this.series.forEach((s:SeriesPlot) => stretchDomains.bind(this)(<DataSet>data, s));
         } else {
-            (<DataSet[]>data).forEach((dataset:DataSet) => stretchDomains.bind(this)(dataset));
+            // assign dataset to series based on index
+            this.series.forEach((s:SeriesPlot, i:number) => {
+                const dataSet = data[i % (<DataSet[]>data).length];
+                stretchDomains.bind(this)(dataSet, s);
+            });
         }
         return domains;
     }
@@ -140,15 +156,15 @@ export class Series extends GraphComponent {
      * @param type type of plot to use, e.g. 'bubble' or 'scatter'
      * @param params the column name of the parameters used to plot the series
      */
-    addSeries(type:string, ...params:string[]):SeriesPlot {
+    addSeries(type:string, dims:SeriesDimensions):SeriesPlot {
         const seriesCreator = Series.seriesCreatorMap[type];
         if (seriesCreator) {
-            const series = seriesCreator(this.cfg, `${Series.type}${this.series.length}`, ...params);
+            const series = seriesCreator(this.cfg, `${Series.type}${this.series.length}`, dims);
             const seriesDefault = this.cfg.defaults.series;
             const index = this.series.length;
             seriesDefault[index] = seriesDefault[series.key] = series.getDefaults();
             this.series.push(series);
-            log.debug(`added series ${index} on '${params}'`);
+            log.debug(`added series ${index} on '${log.inspect(dims, null)}'`);
             return series;
         } else {
             log.error(`unknown plot type ${type}; available types are:\n   '${Object.keys(Series.seriesCreatorMap).join("'\n   '")}'`);
