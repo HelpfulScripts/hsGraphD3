@@ -16,6 +16,8 @@ Helpful Scripts Graph convenience wrapper for D3js.
  * ___
  * `hsGraphD3` provides convienent programmatic shortcuts to plotting data with [`D3js`](https://d3js.org/).
  * 
+ * See {@link API API}.
+ * 
  * ## Usage
  * 1. create a {@link Graph `Graph`} object with a root DOM element to attach to: 
  * `graph = new hsGraphD3.GraphCartesian(root);`

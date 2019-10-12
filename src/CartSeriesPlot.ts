@@ -46,12 +46,20 @@ export abstract class CartSeriesPlot extends SeriesPlot {
         };
     }
 
+    /** 
+     * Set the defaults for the series. Called during `addSeries`.
+     * */
+    public getDefaults(): SeriesPlotDefaults {
+        const def = super.getDefaults();
+        if (this.dims.r)  { def.marker.rendered = true; }
+        if (this.dims.y0) { def.area.rendered = true; }
+        return def;
+    }
 
     //---------- lifecylce methods --------------------
 
-    initialize(svg:d3Base, color?:string): void {
-        this.svg = svg.append('g').classed(this.seriesKey, true);
-        if (color) { this.svg.style('color', color); }
+    public initialize(svg:d3Base, color?:string): void {
+        super.initialize(svg, color);
         this.svg.append('g').classed('area', true).append('path');
         this.svg.append('g').classed('line', true).append('path');
         this.svg.append('g').classed('markers', true);
@@ -71,10 +79,13 @@ export abstract class CartSeriesPlot extends SeriesPlot {
     }
 
     preRender(data:DataSet, domains:Domains): void {
+        const defaults = (<SeriesPlotDefaults>this.cfg.defaults.series[this.key]);
+        if (defaults.area.rendered && this.dims.y0===undefined) { this.dims.y0 = 0; } 
     }
 
+
     /** renders the component for the given data */
-    renderComponent(data:DataSet): void {
+    public renderComponent(data:DataSet): void {
         const defaults = (<SeriesPlotDefaults>this.cfg.defaults.series[this.key]);
         if (defaults.marker.rendered) { this.svg.call(this.d3RenderMarkers.bind(this), data); }
         if (defaults.line.rendered)   { this.svg.call(this.d3RenderPath.bind(this), data); }

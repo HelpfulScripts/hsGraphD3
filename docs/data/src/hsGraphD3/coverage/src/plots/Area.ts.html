@@ -125,7 +125,21 @@
 <a name='L77'></a><a href='#L77'>77</a>
 <a name='L78'></a><a href='#L78'>78</a>
 <a name='L79'></a><a href='#L79'>79</a>
-<a name='L80'></a><a href='#L80'>80</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a>
+<a name='L86'></a><a href='#L86'>86</a>
+<a name='L87'></a><a href='#L87'>87</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -207,22 +221,29 @@
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
  * # Area Plot
  * 
- * plots a 2D area.
+ * plots a 2D area. Defers to {@link NumericSeriesPlot NumericSeriesPlot} to render plot elements and uses the 
+ * default configuration to
+ * - hide the plot line
+ * - hide the plot markers
+ * - show the plot area
+ * Each of these can be modified via changing the {@link Settings default settings}.
+&nbsp;
  * 
  * ## Usage
- * `graph.addSeries('area', {x:&lt;x-col&gt;, y:&lt;y-col&gt;, y0?:&lt;lower-area-bound&gt;, r?:&lt;size-col&gt;});`
+ * `graph.addSeries('area', {x:&lt;x-col&gt;, y:&lt;y-col&gt;, y0:&lt;y-lower-fill&gt;=0, r?:&lt;size-col&gt;});`
  * 
  * ## Example
+ * - first series: a green area between 'volume' and the x-axis (y0=0), using markers sized by 'costs'
+ * - second series: an orange area-band between 'costs' and 'volume', not using markers
  * &lt;example height=200px libs={hsGraphD3:'hsGraphD3'}&gt;
  * &lt;file name='script.js'&gt;
  * const graph = new hsGraphD3.GraphCartesian(root);
  * graph.addSeries('area', {x:'time', y:'volume', r:'costs'});
- * graph.addSeries('area', {x:'time', y:'costs'});
- * graph.defaults.series.series0.marker.rendered = true;
+ * graph.addSeries('area', {x:'time', y:'costs', y0:'volume'});
  * graph.render({
  *    colNames:['time', 'volume', 'costs'], 
  *    rows:[    [-1,    0.2,      0.3], 
- *              [0.2,   0.7,      0.2], 
+ *              [0.2,   0.4,      0.7], 
  *              [0.4,   0.1,      0.3],
  *              [0.6,  -0.2,      0.1], 
  *              [0.8,   0.3,      0.5], 

@@ -10,7 +10,6 @@
  *     - &nbsp; {@link plots.Line `line`} a 2D line plot
  *     - &nbsp; {@link plots.Bubble `bubble`} a 2D scatter plot with marker sizes driven by the data
  *     - &nbsp; {@link plots.Area `area`} a 2D area plot filling to the x-axis
- *     - &nbsp; {@link plots.Band `band`} a 2D area plot filling between 2 series 
  *     - &nbsp; {@link plots.TimeSeries `timeseries`} a 2D scatter plot with marker sizes driven by the data
  *     - &nbsp; {@link plots.Voronoi `voronoi`} a voronoi diagrom with centroids and partition
  * - `<dim>` is one of the semantic dimensions defined for the plot. `NumericSeriesPlots` define the 
@@ -39,9 +38,28 @@ import { d3Base }               from './Settings';
 import { CartSeriesPlot }       from './CartSeriesPlot';
 import { SeriesPlotDefaults }   from './SeriesPlot';
 
-/** */
-function accessor(v:NumberSet, colNames:string[], scale:NumberScale) {
-    return (d:number[]) => scale(typeof(v)==='number'? v : d[colNames.indexOf(v)]);
+/**
+ * Returns a function to access the numeric value in a data row.
+ * The numeric value is specified by the `NumberSet` `v`. 
+ * - If `v` is a number, applies the `scale` to `v`, and returns the result.
+ * - If `v` is contained in `colNames`, uses the position of `v` in `colNames` to index the 
+ * supplied `row`, applies the `scale`, and returns the result.
+ * - Otherwise, if `v` ends with 'u', interprets `v` to be Viewport Units and 
+ * returns `v` without aplying `scale`. This allows for absolute positioning inside the 
+ * viewport window.
+ * @param v the `NumberSet` specifying the value
+ * @param colNames a list of names for the coluymns in the `DataSet`
+ * @param scale a numeric scale to apply 
+ * @param def defaults to `0`; the default to return if `v` is `undefined`.
+ */
+function accessor(v:NumberSet, colNames:string[], scale:NumberScale, def=0):(row:number[]) => number {
+    const index = colNames.indexOf(''+v);
+    const numeric = typeof(v)==='number';
+    const unit = (''+v).slice(-1);
+    if (index < 0 && unit === 'u') {}
+    return v===undefined? 
+        _ => def :      // always return default
+        (row:number[]) => scale(numeric? <number>v : row[index]);
 }
 
 
@@ -60,11 +78,8 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
 
     preRender(data:NumericDataSet, domains:Domains): void {
         super.preRender(data, domains);
-        const defaults = (<SeriesPlotDefaults>this.cfg.defaults.series[this.key]);
-        if (defaults.area.rendered && this.dims.y0===undefined) { this.dims.y0 = 0; } 
         this.line = undefined;
     }
-
 
     //---------- support methods during lifecylce --------------------
 
@@ -102,12 +117,14 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
     }
 
     protected d3DrawMarker(markers:d3Base, plot:NumericSeriesPlot, colNames:string[]) {
+        const xAccess = accessor(plot.dims.x, colNames, plot.cfg.scales.hor);
+        const yAccess = accessor(plot.dims.y, colNames, plot.cfg.scales.ver);
+        const rDefault = plot.cfg.defaults.series[plot.key].marker.size;
+        const rAccess = accessor(plot.dims.r, colNames, plot.cfg.scales.size, rDefault);
         markers
-            .attr("cx", (d:number[]) => accessor(plot.dims.x, colNames, plot.cfg.scales.hor)(d))
-            .attr("cy", (d:number[]) => accessor(plot.dims.y, colNames, plot.cfg.scales.ver)(d))
-            .attr("r",  (d:number[]) => (plot.dims.r!==undefined)? 
-                                        accessor(plot.dims.r, colNames, plot.cfg.scales.size)(d)
-                                      : plot.cfg.defaults.series[plot.key].marker.size);
+            .attr("cx", (d:number[]) => xAccess(d))
+            .attr("cy", (d:number[]) => yAccess(d))
+            .attr("r",  (d:number[]) => rAccess(d));
     }
     
     /**

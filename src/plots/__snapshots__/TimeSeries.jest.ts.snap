@@ -686,10 +686,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
           fill="currentColor"
           fill-opacity="0.5"
         >
-          <path
-            d="M-138,370C-138,370,-57.43049786578484,718.3382691206134,20,690C109.54656796609294,657.2274515624448,226.6574591381678,93.50875614632758,388,50C547.524271878068,6.981570963933844,980,419,980,419L980,739L-138,739"
-            transform="translate(0)"
-          />
+          <path />
         </g>
         <g
           class="line"
@@ -710,32 +707,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
           stroke="currentColor"
           stroke-opacity="1"
           stroke-width="4"
-        >
-          <circle
-            cx="-138"
-            cy="370"
-            r="10"
-            transform="translate(0)"
-          />
-          <circle
-            cx="20"
-            cy="690"
-            r="10"
-            transform="translate(0)"
-          />
-          <circle
-            cx="388"
-            cy="50"
-            r="10"
-            transform="translate(0)"
-          />
-          <circle
-            cx="980"
-            cy="419"
-            r="10"
-            transform="translate(0)"
-          />
-        </g>
+        />
       </g>
     </g>
   </svg>

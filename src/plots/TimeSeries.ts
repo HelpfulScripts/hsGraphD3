@@ -1,13 +1,15 @@
 /**
  * # Time Series Plot
  * 
- * plots a 2D line with markers and smooth x-axis tranisitions .
+ * plots a 2D line with markers and smooth x-axis tranisitions.
  * 
  * ## Usage
- * `graph.addSeries('timeseries', {x:<x-col>, y:<y-col>, r?:<size-col>});`
+ * `graph.addSeries('timeseries', {x:<x-col>, y:<y-col>, y0?:<y-lower-fill>, r?:<size-col>});`
  * 
  * 
  * ## Example
+ * - top row: plot and update a random time series with area fill against '1'
+ * - bottom row: plot and update a random time series as a line with markers of random size
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
  * <file name='script.js'>
  * // create data set:
@@ -26,6 +28,7 @@
  * // adjust some settings:
  * graph.defaults.scales.dims.hor.aggregateOverTime = false;  // forget early indexes
  * graph.defaults.series.series0.marker.size = 15;
+ * // graph.defaults.series.series0.area.rendered = true;
  * 
  * // trigger the update loop to plot the data
  * graph.render(data).update(1000, data => {
@@ -68,7 +71,7 @@ export class TimeSeries extends NumericSeriesPlot {
  
     getDefaults(): SeriesPlotDefaults {
         const def = super.getDefaults();
-        def.area.rendered = true;
+        // def.area.rendered = true;
         return def;
     }
      

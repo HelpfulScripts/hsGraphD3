@@ -49,7 +49,7 @@ export type NumberSet = string|number;
 export interface GraphDimensions { [dim:string]: NumberSet[]; }
 
 /**
- * aggregates the [min, max] ranges for each semantic dimension (e.g. 'hor', 'ver', 'size')
+ * aggregates the [min, max] ranges for each semantic {@link Graph.GraphDimensions graph dimension} (e.g. 'hor', 'ver', 'size')
  */
 export interface Domains { [dim:string]: [number, number]; }
 

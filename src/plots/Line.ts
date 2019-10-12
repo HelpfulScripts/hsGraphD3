@@ -1,10 +1,15 @@
 /**
  * # Line Plot
  * 
- * plots a 2D line with markers.
+ * plots a 2D line. Defers to {@link NumericSeriesPlot NumericSeriesPlot} to render plot elements and uses the 
+ * default configuration to
+ * - show the plot line
+ * - hide the plot markers
+ * - hide the plot area
+ * Each of these can be modified via changing the {@link Settings default settings}.
  * 
  * ## Usage
- * `graph.addSeries('line', {x:<x-col>, y:<y-col>, r?:<size-col>});`
+ * `graph.addSeries('line', {x:<x-col>, y:<y-col>, y0?:<y-lower-fill>, r?:<size-col>});`
  * 
  * ## Example
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
@@ -18,6 +23,7 @@
  * 
  * const graph = new hsGraphD3.GraphCartesian(root);
  * graph.addSeries('line', {x:'time', y:'volume', r:'costs'});
+ * graph.addSeries('line', {x:'time', y:0.5});
  * graph.render(data);
  * 
  * </file>
@@ -32,6 +38,7 @@
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
  *      graph.addSeries('line', {x:'time', y:'volume', r:'costs'});
+ *      graph.addSeries('line', {x:'time', y:0.5});
  *      return graph.defaults;
  * }
  * 
@@ -65,9 +72,5 @@ import { Series }               from '../Series';
 Series.register('line', (cfg:GraphCfg, sName:string, dims: CartSeriesDimensions) => new Line(cfg, sName, dims));
 
 export class Line extends NumericSeriesPlot {
-    getDefaults(): SeriesPlotDefaults {
-        const def = super.getDefaults();
-        return def;
-    } 
 }
 

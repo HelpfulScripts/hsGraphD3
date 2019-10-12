@@ -119,7 +119,7 @@ import { log as gLog }          from 'hsutil';   const log = gLog('Voronoi');
 import { Delaunay}              from "d3-delaunay";
 import { Voronoi as d3Voronoi}  from "d3-delaunay";
 import { NumericSeriesPlot }    from '../NumericSeriesPlot';
-import { CartSeriesDimensions } from '../CartSeriesPlot';
+import { CartSeriesDimensions, CartSeriesPlot } from '../CartSeriesPlot';
 import { NumericDataSet }       from '../Graph';
 import { d3Base }               from '../Settings';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
@@ -132,7 +132,13 @@ Series.register('voronoi', (cfg:GraphCfg, sName:string, dims:CartSeriesDimension
 export class Voronoi extends NumericSeriesPlot {
     private voronoi: d3Voronoi<number>;
 
-    renderComponent(data:NumericDataSet): void {
+    getDefaults(): SeriesPlotDefaults {
+        const def = super.getDefaults();
+        def.marker.rendered = true;
+        return def;
+    } 
+
+    public renderComponent(data:NumericDataSet): void {
         const scales = this.cfg.scales;
         if (typeof(this.dims.x)==='number') { log.warn(`renderComponent: unsupported const x=${this.dims.x} in voronoi`); }
         if (typeof(this.dims.y)==='number') { log.warn(`renderComponent: unsupported const y=${this.dims.y} in voronoi`); }
@@ -147,7 +153,7 @@ export class Voronoi extends NumericSeriesPlot {
         super.renderComponent(data);
     }
 
-    d3RenderPath(svg:d3Base, data:NumericDataSet) {
+    protected d3RenderPath(svg:d3Base, data:NumericDataSet) {
         const defaults = (<SeriesPlotDefaults>this.cfg.defaults.series[this.key]).line;
         if (defaults.rendered) {
             const path = svg.selectAll('path')
@@ -155,6 +161,8 @@ export class Voronoi extends NumericSeriesPlot {
                 .attr('d', this.voronoi.render());
         }
     } 
+
+    //----------- static support methods for Voronoi Diagrams
 
     /**
      * Calculates the nearest `anchor` to the `sample` vector ands returns its index in the `anchors` array.
@@ -186,7 +194,6 @@ export class Voronoi extends NumericSeriesPlot {
             acc[1] += s[1]; 
             return acc; 
         }, [0, 0]);
-
         return samples.length? [sum[0]/samples.length, sum[1]/samples.length] : [0,0];
     }
 } 

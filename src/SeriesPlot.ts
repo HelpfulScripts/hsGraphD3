@@ -46,30 +46,33 @@ export abstract class SeriesPlot {
         this.seriesKey = seriesName;
     }
 
-    get key() { return this.seriesKey; }
+    public get key() { return this.seriesKey; }
 
-    abstract get dimensions():GraphDimensions;
+    public abstract get dimensions():GraphDimensions;
 
     /** 
-     * Set the defaults for the series. Called during construction of `Graph`.
+     * Set the defaults for the series. Called during `addSeries`.
      * */
-    getDefaults(): SeriesPlotDefaults {
+    public getDefaults(): SeriesPlotDefaults {
         const def:any = {
             line:   defaultStroke(5),
             marker: defaultMarker(),
             area:   defaultFill()
         };
         def.line.rendered = true;
-        def.marker.rendered = true;
+        def.marker.rendered = false;
         def.area.rendered = false;
         return def;
     }
     //---------- lifecylce methods --------------------
 
-    abstract initialize(svg:d3Base, color?:string): void;
+    public initialize(svg:d3Base, color?:string): void {
+        this.svg = svg.append('g').classed(this.seriesKey, true);
+        if (color) { this.svg.style('color', color); }
+    }
 
-    abstract preRender(data:DataSet, domains:Domains): void;
+    public abstract preRender(data:DataSet, domains:Domains): void;
 
-    abstract renderComponent(data:DataSet): void;
+    public abstract renderComponent(data:DataSet): void;
 }
 

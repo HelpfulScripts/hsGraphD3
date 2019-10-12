@@ -1,22 +1,29 @@
 /**
  * # Area Plot
  * 
- * plots a 2D area.
+ * plots a 2D area. Defers to {@link NumericSeriesPlot NumericSeriesPlot} to render plot elements and uses the 
+ * default configuration to
+ * - hide the plot line
+ * - hide the plot markers
+ * - show the plot area
+ * Each of these can be modified via changing the {@link Settings default settings}.
+
  * 
  * ## Usage
- * `graph.addSeries('area', {x:<x-col>, y:<y-col>, y0?:<lower-area-bound>, r?:<size-col>});`
+ * `graph.addSeries('area', {x:<x-col>, y:<y-col>, y0:<y-lower-fill>=0, r?:<size-col>});`
  * 
  * ## Example
+ * - first series (top): an orange area-band between 'costs' and 'volume', not using markers
+ * - second series (bottom): a green area between 'volume' and the x-axis (y0=0), using markers sized by 'costs'
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
  * <file name='script.js'>
  * const graph = new hsGraphD3.GraphCartesian(root);
+ * graph.addSeries('area', {x:'time', y:'costs', y0:'volume'});
  * graph.addSeries('area', {x:'time', y:'volume', r:'costs'});
- * graph.addSeries('area', {x:'time', y:'costs'});
- * graph.defaults.series.series0.marker.rendered = true;
  * graph.render({
  *    colNames:['time', 'volume', 'costs'], 
  *    rows:[    [-1,    0.2,      0.3], 
- *              [0.2,   0.7,      0.2], 
+ *              [0.2,   0.4,      0.7], 
  *              [0.4,   0.1,      0.3],
  *              [0.6,  -0.2,      0.1], 
  *              [0.8,   0.3,      0.5], 

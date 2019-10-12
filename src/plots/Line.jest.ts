@@ -25,31 +25,33 @@ const data:DataSet = {
 
 describe('Line', () => {
     let graph:hsGraphD3.GraphCartesian;
-    beforeAll(() => {
-        graph = new hsGraphD3.GraphCartesian(root);
-        graph.addSeries('line', {x:'xval', y:'yval', r:'rval'});
-        graph.render(data);
+
+    describe('plot data', () => {
+        beforeAll(() => {
+            graph = new hsGraphD3.GraphCartesian(root);
+            graph.addSeries('line', {x:'xval', y:'yval', r:'rval'});
+            graph.defaults.axes.color = '#666';
+            graph.render(data);
+        });
+        it(`should have 'line' registered`, () =>
+            expect(graph.series.types).toContain('line')
+        );
+        it('should support settings changes', () => {
+            expect(graph.defaults.axes.color).toBe('#666');
+        });
+        it('should plot line', () =>
+            expect(root).toMatchSnapshot()
+        );
     });
-    it('should plot line', () =>
-        expect(root).toMatchSnapshot()
-    );
-    it('should support settings changes', () => {
-        graph.defaults.axes.color = '#666';
-        expect(graph.defaults.axes.color).toBe('#666');
+
+    describe('plot constants', () => {
+        beforeEach(() => {
+            graph = new hsGraphD3.GraphCartesian(root);
+            graph.addSeries('line', {x:'xval', y:10});
+            graph.render(data);
+        });
+        it('should plot horizontal line', () => {
+            expect(root).toMatchSnapshot();
+        });
     });
-    it(`should have 'line' registered`, () =>
-        expect(graph.series.types).toContain('line')
-    );
-    // it(`should respond to window resize`, (done) => {
-    //     root.style.width = `200px`;
-    //     const event = new UIEvent('resize');
-    //     // document.createEvent('UIEvents');
-    //     // event.initUIEvent('resize', true, false, window, 10);
-    //     window.dispatchEvent(event);
-    //     setTimeout(() => {
-    //         expect(root).toMatchSnapshot();
-    //         done();
-    //     }, 500);
-    //     // expect(root).toMatchSnapshot();
-    // });
 });

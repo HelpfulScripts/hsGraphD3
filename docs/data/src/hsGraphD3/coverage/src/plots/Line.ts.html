@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>9/9</span>
+        <span class='fraction'>7/7</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>1/1</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>7/7</span>
+        <span class='fraction'>5/5</span>
       </div>
     </div>
     <p class="quiet">
@@ -119,7 +119,17 @@
 <a name='L71'></a><a href='#L71'>71</a>
 <a name='L72'></a><a href='#L72'>72</a>
 <a name='L73'></a><a href='#L73'>73</a>
-<a name='L74'></a><a href='#L74'>74</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -186,19 +196,20 @@
 <span class="cline-any cline-yes">9x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
  * # Line Plot
  * 
- * plots a 2D line with markers.
+ * plots a 2D line. Defers to {@link NumericSeriesPlot NumericSeriesPlot} to render plot elements and uses the 
+ * default configuration to
+ * - show the plot line
+ * - hide the plot markers
+ * - hide the plot area
+ * Each of these can be modified via changing the {@link Settings default settings}.
  * 
  * ## Usage
- * `graph.addSeries('line', {x:&lt;x-col&gt;, y:&lt;y-col&gt;, r?:&lt;size-col&gt;});`
+ * `graph.addSeries('line', {x:&lt;x-col&gt;, y:&lt;y-col&gt;, y0?:&lt;y-lower-fill&gt;, r?:&lt;size-col&gt;});`
  * 
  * ## Example
  * &lt;example height=200px libs={hsGraphD3:'hsGraphD3'}&gt;
@@ -212,6 +223,7 @@
  * 
  * const graph = new hsGraphD3.GraphCartesian(root);
  * graph.addSeries('line', {x:'time', y:'volume', r:'costs'});
+ * graph.addSeries('line', {x:'time', y:0.5});
  * graph.render(data);
  * 
  * &lt;/file&gt;
@@ -226,6 +238,7 @@
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
  *      graph.addSeries('line', {x:'time', y:'volume', r:'costs'});
+ *      graph.addSeries('line', {x:'time', y:0.5});
  *      return graph.defaults;
  * }
  * 
@@ -259,10 +272,6 @@ import { Series }               from '../Series';
 Series.register('line', (cfg:GraphCfg, sName:string, dims: CartSeriesDimensions) =&gt; new Line(cfg, sName, dims));
 &nbsp;
 export class Line extends NumericSeriesPlot {
-    getDefaults(): SeriesPlotDefaults {
-        const def = super.getDefaults();
-        return def;
-    } 
 }
 &nbsp;
 &nbsp;</pre></td></tr>
