@@ -199,16 +199,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -233,13 +233,13 @@
  * `graph.addSeries('area', {x:&lt;x-col&gt;, y:&lt;y-col&gt;, y0:&lt;y-lower-fill&gt;=0, r?:&lt;size-col&gt;});`
  * 
  * ## Example
- * - first series: a green area between 'volume' and the x-axis (y0=0), using markers sized by 'costs'
- * - second series: an orange area-band between 'costs' and 'volume', not using markers
+ * - first series (top): an orange area-band between 'costs' and 'volume', not using markers
+ * - second series (bottom): a green area between 'volume' and the x-axis (y0=0), using markers sized by 'costs'
  * &lt;example height=200px libs={hsGraphD3:'hsGraphD3'}&gt;
  * &lt;file name='script.js'&gt;
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.addSeries('area', {x:'time', y:'volume', r:'costs'});
  * graph.addSeries('area', {x:'time', y:'costs', y0:'volume'});
+ * graph.addSeries('area', {x:'time', y:'volume', r:'costs'});
  * graph.render({
  *    colNames:['time', 'volume', 'costs'], 
  *    rows:[    [-1,    0.2,      0.3], 
