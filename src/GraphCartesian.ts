@@ -73,7 +73,6 @@ import { CartSeriesDimensions } from './CartSeriesPlot';
 import "./plots/Bubble";
 import "./plots/Line";
 import "./plots/Area";
-import "./plots/Band";
 import "./plots/TimeSeries";
 import "./plots/Voronoi";
 
