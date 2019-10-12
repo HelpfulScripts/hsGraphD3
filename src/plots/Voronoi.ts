@@ -75,7 +75,7 @@
  * </file>
  * </example>
  * 
- * ### Accessible format setting and defaults (for a cartesian graph):
+ * ### Accessible format setting and defaults:
  * <example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
  * <file name='script.js'>
  * const log = hsUtil.log('');
@@ -83,7 +83,8 @@
  * 
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(root);
- *      graph.addSeries('voronoi', {x:'x', y:'y'});
+ *      graph.addSeries('voronoi', {x:'x', y:'y', r:'count'});
+ *      graph.addSeries('bubble', {x:'x', y:'y'});
  *      with (graph.defaults) {
  *          axes.rendered = false;
  *          series.series0.line.width = 1;
@@ -117,9 +118,9 @@
 import { log as gLog }          from 'hsutil';   const log = gLog('Voronoi');
 import { Delaunay}              from "d3-delaunay";
 import { Voronoi as d3Voronoi}  from "d3-delaunay";
-import { SeriesPlot }           from '../SeriesPlot';
-import { CartSeriesDimensions } from '../SeriesPlot';
-import { DataSet }              from '../Graph';
+import { NumericSeriesPlot }    from '../NumericSeriesPlot';
+import { CartSeriesDimensions } from '../CartSeriesPlot';
+import { NumericDataSet }       from '../Graph';
 import { d3Base }               from '../Settings';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { ScalesDefaults }       from '../Scale';
@@ -128,13 +129,15 @@ import { Series }               from '../Series';
 
 Series.register('voronoi', (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions) => new Voronoi(cfg, sName, dims));
 
-export class Voronoi extends SeriesPlot {
+export class Voronoi extends NumericSeriesPlot {
     private voronoi: d3Voronoi<number>;
 
-    renderComponent(data:DataSet): void {
+    renderComponent(data:NumericDataSet): void {
         const scales = this.cfg.scales;
-        const x = data.colNames.indexOf(this.dims.x);
-        const y = data.colNames.indexOf(this.dims.y);
+        if (typeof(this.dims.x)==='number') { log.warn(`renderComponent: unsupported const x=${this.dims.x} in voronoi`); }
+        if (typeof(this.dims.y)==='number') { log.warn(`renderComponent: unsupported const y=${this.dims.y} in voronoi`); }
+        const x = data.colNames.indexOf(<string>this.dims.x);
+        const y = data.colNames.indexOf(<string>this.dims.y);
         const m = <ScalesDefaults>this.cfg.defaults.scales.margin;
         this.voronoi = Delaunay.from(data.rows, 
             r => scales.hor(<number>r[x]),
@@ -144,7 +147,7 @@ export class Voronoi extends SeriesPlot {
         super.renderComponent(data);
     }
 
-    d3RenderPath(svg:d3Base, data:DataSet) {
+    d3RenderPath(svg:d3Base, data:NumericDataSet) {
         const defaults = (<SeriesPlotDefaults>this.cfg.defaults.series[this.key]).line;
         if (defaults.rendered) {
             const path = svg.selectAll('path')

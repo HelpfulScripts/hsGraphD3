@@ -17,11 +17,15 @@ Helpful Scripts Graph convenience wrapper for D3js.
  * `hsGraphD3` provides convienent programmatic shortcuts to plotting data with [`D3js`](https://d3js.org/).
  * 
  * ## Usage
- * 1. create a {@link Graph `Graph`} object with a root DOM element to attach to: `graph = new hsGraphD3.GraphCartesian(root);`
- * 2. add desired series configuartions, specifying the type of series, as well as the column names to use for the x- and y-axes, 
- * and other variables, depending on the series type.
- * 3. apply any desired formatting changes to the default
- * 4. render the graph for a given data set: `graph.render(data);`
+ * 1. create a {@link Graph `Graph`} object with a root DOM element to attach to: 
+ * `graph = new hsGraphD3.GraphCartesian(root);`
+ * 2. add desired series configurations, specifying the type of series, as well as the data to use for the x- and y-axes, 
+ * and other variables, depending on the series type:
+ * `graph.addSeries('area', {x:'time', y:'volume', r:5});`
+ * 3. apply any desired formatting changes to the default:
+ * `graph.defaults.axes.color = '#88f';`
+ * 4. render the graph for a given data set: 
+ * `graph.render(data);`
  * 
  * To dynamically update the graph to new data, call the {@link Graph.RenderChain `update`} method
  * 
@@ -43,7 +47,7 @@ Helpful Scripts Graph convenience wrapper for D3js.
  * }
  * ```
  * 
- * ## Example 1: `bubble` chart
+ * ## Example 1: {@link plots.Bubble `bubble`} chart
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
  * <file name='script.js'>
  * // create data set:
@@ -80,7 +84,7 @@ Helpful Scripts Graph convenience wrapper for D3js.
  * </file>
  * </example>
  * 
- * ## Example 2: `line` vs. `timeseries`
+ * ## Example 2: {@link plots.Line `line`} vs. {@link plots.TimeSeries `timeseries`}
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
  * <file name='script.js'>
  * // create data set:
@@ -96,8 +100,8 @@ Helpful Scripts Graph convenience wrapper for D3js.
  * 
  * // create the graph and define the series to plot:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.addSeries('line', {x:'date', y:'line'});
- * graph.addSeries('timeseries', {x:'date', y:'series'});
+ * graph.addSeries('line', {x:'date', y:'line', y0:0});
+ * graph.addSeries('timeseries', {x:'date', y:'series', y0:-1});
  * 
  * //----- adjust some settings:
  * with (graph.defaults) {

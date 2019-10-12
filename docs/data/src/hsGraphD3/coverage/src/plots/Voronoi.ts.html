@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">59.38% </span>
+        <span class="strong">58.33% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>19/32</span>
+        <span class='fraction'>21/36</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">16.67% </span>
+        <span class="strong">30% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>1/6</span>
+        <span class='fraction'>3/10</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">55.56% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>5/9</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">56.67% </span>
+        <span class="strong">59.38% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>17/30</span>
+        <span class='fraction'>19/32</span>
       </div>
     </div>
     <p class="quiet">
@@ -235,7 +235,11 @@
 <a name='L187'></a><a href='#L187'>187</a>
 <a name='L188'></a><a href='#L188'>188</a>
 <a name='L189'></a><a href='#L189'>189</a>
-<a name='L190'></a><a href='#L190'>190</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L190'></a><a href='#L190'>190</a>
+<a name='L191'></a><a href='#L191'>191</a>
+<a name='L192'></a><a href='#L192'>192</a>
+<a name='L193'></a><a href='#L193'>193</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -369,6 +373,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -501,7 +507,7 @@
  * &lt;/file&gt;
  * &lt;/example&gt;
  * 
- * ### Accessible format setting and defaults (for a cartesian graph):
+ * ### Accessible format setting and defaults:
  * &lt;example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}&gt;
  * &lt;file name='script.js'&gt;
  * const log = hsUtil.log('');
@@ -509,7 +515,8 @@
  * 
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(root);
- *      graph.addSeries('voronoi', {x:'x', y:'y'});
+ *      graph.addSeries('voronoi', {x:'x', y:'y', r:'count'});
+ *      graph.addSeries('bubble', {x:'x', y:'y'});
  *      with (graph.defaults) {
  *          axes.rendered = false;
  *          series.series0.line.width = 1;
@@ -543,9 +550,9 @@
 import { log as gLog }          from 'hsutil';   const log = gLog('Voronoi');
 import { Delaunay}              from "d3-delaunay";
 import { Voronoi as d3Voronoi}  from "d3-delaunay";
-import { SeriesPlot }           from '../SeriesPlot';
-import { CartSeriesDimensions } from '../SeriesPlot';
-import { DataSet }              from '../Graph';
+import { NumericSeriesPlot }    from '../NumericSeriesPlot';
+import { CartSeriesDimensions } from '../CartSeriesPlot';
+import { NumericDataSet }       from '../Graph';
 import { d3Base }               from '../Settings';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { ScalesDefaults }       from '../Scale';
@@ -554,13 +561,15 @@ import { Series }               from '../Series';
 &nbsp;
 Series.register('voronoi', (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions) =&gt; new Voronoi(cfg, sName, dims));
 &nbsp;
-export class Voronoi extends SeriesPlot {
+export class Voronoi extends NumericSeriesPlot {
     private voronoi: d3Voronoi&lt;number&gt;;
 &nbsp;
-    renderComponent(data:DataSet): void {
+    renderComponent(data:NumericDataSet): void {
         const scales = this.cfg.scales;
-        const x = data.colNames.indexOf(this.dims.x);
-        const y = data.colNames.indexOf(this.dims.y);
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof(this.dims.x)==='number') { <span class="cstat-no" title="statement not covered" >log.warn(`renderComponent: unsupported const x=${this.dims.x} in voronoi`); </span>}
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof(this.dims.y)==='number') { <span class="cstat-no" title="statement not covered" >log.warn(`renderComponent: unsupported const y=${this.dims.y} in voronoi`); </span>}
+        const x = data.colNames.indexOf(&lt;string&gt;this.dims.x);
+        const y = data.colNames.indexOf(&lt;string&gt;this.dims.y);
         const m = &lt;ScalesDefaults&gt;this.cfg.defaults.scales.margin;
         this.voronoi = Delaunay.from(data.rows, 
             r =&gt; scales.hor(&lt;number&gt;r[x]),
@@ -570,7 +579,7 @@ export class Voronoi extends SeriesPlot {
         super.renderComponent(data);
     }
 &nbsp;
-    d3RenderPath(svg:d3Base, data:DataSet) {
+    d3RenderPath(svg:d3Base, data:NumericDataSet) {
         const defaults = (&lt;SeriesPlotDefaults&gt;this.cfg.defaults.series[this.key]).line;
         <span class="missing-if-branch" title="else path not taken" >E</span>if (defaults.rendered) {
             const path = svg.selectAll('path')

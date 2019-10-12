@@ -26,7 +26,7 @@ describe('TimeSeries', () => {
     let graph:hsGraphD3.GraphCartesian;
     beforeAll(() => {
         graph = new hsGraphD3.GraphCartesian(root);
-        graph.addSeries('timeseries', 'xval', 'yval');
+        graph.addSeries('timeseries', {x:'xval', y:'yval'});
         graph.render(data);
     });
     it('should plot timeSeries', () =>

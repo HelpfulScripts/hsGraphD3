@@ -4,11 +4,13 @@
  * The base class for Graph types.
  * Takes care of the following tasks:
  * - setting up the SVG environment for the `Graph`
- * - creating the {@link GraphComponent components} to render in ths `Graph`
- * - initializing default {@link Settings settings}
  * - creating a central {@link GraphComponent.GraphCfg configuration object} that is used throughout the library.
- * - establishing {@link Graph.LifecycleCalls lifecycle calls}:
- * 
+ * - creating and managing the {@link GraphComponent components} to render in ths `Graph`
+ * - initializing default {@link Settings settings}
+ * - establishing {@link Graph.LifecycleCalls lifecycle calls}
+ * - adding {@link SeriesPlot `series`} to render by calling {@link Graph.Graph.addSeries `addSeries`}
+ * - rendering the graph by calling {@link Graph.Graph.render `render`}
+ * - managing a central {@link Graph.Graph.transition `transition`} that applies to all components.   
  */
 
 /** */
@@ -34,10 +36,17 @@ import { SeriesPlot }       from './SeriesPlot';
 const vpWidth:number    = 1000;
 
 /** 
+ * Basic `NumberSet` definition:
+ * - `string`: the name of comun in the data set
+ * - `number`: a real number defining a constant
+ */
+export type NumberSet = string|number;
+
+/** 
  * translates semantic graph dimensions (e.g. 'hor', 'ver', 'size')
  * to the column names of the data used while adding a series.
  */
-export interface GraphDimensions { [dim:string]: string[]; }
+export interface GraphDimensions { [dim:string]: NumberSet[]; }
 
 /**
  * aggregates the [min, max] ranges for each semantic dimension (e.g. 'hor', 'ver', 'size')
@@ -128,11 +137,16 @@ export interface GraphDefaults extends ComponentDefaults {
     easing: string;         // e.g. 'easeCubic'
 }
 
-export declare type DataVal = number | string | Date;
-export declare type DataRow = DataVal[];
+export type DataVal = number | string | Date;
+export type DataRow = DataVal[];
+export type NumericDataRow = number[];
 export interface DataSet {
     colNames: string[];
     rows: DataRow[];
+}
+export interface NumericDataSet extends DataSet {
+    colNames: string[];
+    rows: NumericDataRow[];
 }
 
 /**
@@ -193,11 +207,14 @@ export abstract class Graph implements LifecycleCalls {
     }
 
     /**
-     * render the tree with the supplied data.
-     * @param data the data to render. If `data` is a {@link DataSet DataSet}, it will be used 
+     * renders the tree with the supplied data. The call returns a {@link Graph.RenderChain `RenderChain`}
+     * function that allows rendering to be repeated at fixed intervals with updated data. 
+     * @param data the data to render. If `data` is a {@link Graph.DataSet DataSet}, it will be used 
      * to render all added series. Otherwise `data` can be specified as `DataSet[]` to provide a
-     * different data source to each of the series. The series' index, starting with 0 in the order of adding it to the graph,
-     * is used to index the list. If there are more series than data sets ion the list, indexing will restart at index 0.
+     * different data source to each of the series. The series' index is used to index the list,
+     * starting with 0 in the order of adding it to the graph. 
+     * If there are more series than data sets ion the list, indexing will restart at index 0.
+     * @return a `RenderChain`.
      */
     public render(data:DataSet | DataSet[]):RenderChain {
         const graphDef = <GraphDefaults>this.config.defaults.graph;
@@ -237,9 +254,15 @@ export abstract class Graph implements LifecycleCalls {
     }
 
     /**
-     * adds a series to the plot.
-     * @param type type of plot to use, e.g. 'bubble' or 'scatter'
-     * @param params the column name of the parameters used to plot the series
+     * adds a series to the plot, for example
+     * ```
+     * graph.addSeries('area', {x:'time', y:'costs', r:5})
+     * ```
+     * The object literal `dims` specifies the data to use for each 
+     * semantic dimension the plot uses. For details on the dimensions 
+     * see {@link Series.SeriesDimensions `SeriesDimensions`}
+     * @param type type of plot to use, e.g. 'bubble' or 'scatter', See {@link Series `Series`} for available plots to use.
+     * @param dims an object literal specifying the {@link Series.SeriesDimensions `SeriesDimensions`} to use. 
      */
     public addSeries(type:string, dims:SeriesDimensions):SeriesPlot {
         //this.resize();
@@ -260,7 +283,7 @@ export abstract class Graph implements LifecycleCalls {
     /** Called immediately before each call to renderComponent. */
     preRender(data:DataSet | DataSet[], domains:Domains): void {
         this.Series.expandDomain(data, domains);
-        this.setScales(data);
+        this.setScales();
         this.components.forEach((comp:GraphComponent) => comp.preRender(data, domains));
     } 
 
@@ -273,7 +296,7 @@ export abstract class Graph implements LifecycleCalls {
     //************** Non-public part **************************/
 
     /** set the scales for the graph prior to rendering components. */
-    protected abstract setScales(data:DataSet | DataSet[]):void;
+    protected abstract setScales():void;
 
     /** called once during construction to create the components defaults. */
     protected createDefaults():GraphDefaults {

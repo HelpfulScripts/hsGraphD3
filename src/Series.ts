@@ -33,7 +33,7 @@
 
 import { extent }           from 'd3';
 import { log as gLog }      from 'hsutil';   const log = gLog('Series');
-import { DataSet }          from './Graph';
+import { DataSet, GraphDimensions }          from './Graph';
 import { Domains }          from './Graph';
 import { d3Base }           from './Settings';
 import { GraphComponent }   from './GraphComponent'; 
@@ -43,8 +43,15 @@ import { SeriesPlot }       from './SeriesPlot';
 import { CartDimensions }   from './GraphCartesian';
 import { schemeDark2 as colors } from 'd3';
 
-
-export interface SeriesDimensions { [dim:string]: string; }
+/**
+ * The `SeriesDimensions` that specify the values to use for different 
+ * semantic dimension (e.g. 'x' for the x-axis) of 
+ * each {@link SeriesPlot `SeriesPlot`}.
+ * For each dimension, the value can be either 
+ * - a string that identifies the column name in the data set to use
+ * - or a number constant 
+ */
+export interface SeriesDimensions { [dim:string]: string|number; }
 
 type PlotFactory = (cfg:GraphCfg, seriesName:string, dims:SeriesDimensions) => SeriesPlot;
 
@@ -116,35 +123,42 @@ export class Series extends GraphComponent {
      * @return an array of [min, max] domains ranges, indexed by data column
      */
     expandDomain(data:DataSet | DataSet[], domains:Domains):Domains {
-        function spread(dom:[number, number]) { dom[0] = 0.9*dom[0]; dom[1] = 1.1*dom[1]; }
         function stretchDomains(dataSet:DataSet, s:SeriesPlot) {
-            this.series.forEach((s:SeriesPlot) => {
-                const dims:CartDimensions = s.dimensions;
-                Object.keys(dims).map(dim => {
-                    if (!domains[dim]) { log.warn(`domain not initialized for dimension '${dim}'`); }
-                    dims[dim].map(colName => { if (colName) {
-                        const col = dataSet.colNames.indexOf(colName);
-                        if (col < 0) { log.warn(`did not find column '${colName}' in data set ${dataSet.colNames.join(', ')}`); }
+            const dims:GraphDimensions = s.dimensions;
+            Object.keys(dims).map(dim => {
+                if (!domains[dim]) { 
+                    log.warn(`domain not initialized for dimension '${dim}'`); 
+                    domains[dim] = [1e99, -1e99];
+                }
+                dims[dim].map(col => { if (col!==undefined) {
+                    if (typeof(col)==='number') {
+                        domains[dim][0] = Math.min(domains[dim][0], col);
+                        domains[dim][1] = Math.max(domains[dim][1], col);
+                    } else {
+                        const colNum = dataSet.colNames.indexOf(col);
+                        if (colNum < 0) { log.warn(`did not find column '${col}' in data set ${dataSet.colNames.join(', ')}`); }
                         else {
-                            // domains[dim] = domains[dim] || [1e90, -1e90];
-                            const dataDom = extent(dataSet.rows, (r => <number>r[col]));
+                            const dataDom = extent(dataSet.rows, (r => <number>r[colNum]));
                             domains[dim][0] = Math.min(domains[dim][0], dataDom[0]);
                             domains[dim][1] = Math.max(domains[dim][1], dataDom[1]);
-                            if (domains[dim][1] === domains[dim][0]) { spread(domains[dim]); }
+                            if (domains[dim][1] === domains[dim][0]) { 
+                                domains[dim][0] = 0.9*domains[dim][0]; 
+                                domains[dim][1] = 1.1*domains[dim][1];
+                            }
                         }
-                    }});
-                });
+                    }
+                }});
             });
         }
 
         if ((<DataSet>data).colNames) {  
             // use same dataset for each series
-            this.series.forEach((s:SeriesPlot) => stretchDomains.bind(this)(<DataSet>data, s));
+            this.series.forEach((s:SeriesPlot) => stretchDomains(<DataSet>data, s));
         } else {
             // assign dataset to series based on index
             this.series.forEach((s:SeriesPlot, i:number) => {
                 const dataSet = data[i % (<DataSet[]>data).length];
-                stretchDomains.bind(this)(dataSet, s);
+                stretchDomains(dataSet, s);
             });
         }
         return domains;

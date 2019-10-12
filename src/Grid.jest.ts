@@ -28,7 +28,7 @@ describe('Grid', () => {
                 let graph:hsGraphD3.GraphCartesian;
         beforeEach(() => {
             graph = new hsGraphD3.GraphCartesian(root);
-            graph.addSeries('line', 'xval', 'yval', 'rval');
+            graph.addSeries('line', {x:'xval', y:'yval', r:'rval'});
             return graph;
         });
         it('should plot grid', () => {
@@ -43,7 +43,7 @@ describe('Grid', () => {
                 let graph:hsGraphD3.GraphCartesian;
         beforeEach(() => {
             graph = new hsGraphD3.GraphCartesian(root);
-            graph.addSeries('line', 'xval', 'yval', 'rval');
+            graph.addSeries('line', {x:'xval', y:'yval', r:'rval'});
             return graph;
         });
         it('should not plot vertical grid', () => {

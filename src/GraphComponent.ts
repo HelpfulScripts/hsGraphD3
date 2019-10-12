@@ -21,6 +21,7 @@ import { BaseType }     from 'd3';
 
 export type SVGLineSelection = Selection<SVGLineElement, number, BaseType, unknown>;
 export type SVGCircleSelection = Selection<SVGCircleElement, number, BaseType, unknown>;
+export type NumberScale = d3.ScaleContinuousNumeric<number, number>;
 
 export interface Rendered {
     rendered: boolean;
@@ -57,7 +58,7 @@ export interface GraphCfg {
      * @param dim *string* the semantic name of the axis to plot and scale. E.g. for 2D cartesian plots, 
      * `dim` is `hor`, `ver`, or `size`. 
      */    
-    scales: { [dim:string]: d3.ScaleContinuousNumeric<number, number>};
+    scales: { [dim:string]: NumberScale};
 
     /** the currently used transition. A new transition will be set each time `Graph.render()` is called. */
     transition: any;

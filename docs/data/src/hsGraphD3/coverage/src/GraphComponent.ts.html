@@ -154,7 +154,9 @@
 <a name='L106'></a><a href='#L106'>106</a>
 <a name='L107'></a><a href='#L107'>107</a>
 <a name='L108'></a><a href='#L108'>108</a>
-<a name='L109'></a><a href='#L109'>109</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -285,6 +287,7 @@ import { BaseType }     from 'd3';
 &nbsp;
 export type SVGLineSelection = Selection&lt;SVGLineElement, number, BaseType, unknown&gt;;
 export type SVGCircleSelection = Selection&lt;SVGCircleElement, number, BaseType, unknown&gt;;
+export type NumberScale = d3.ScaleContinuousNumeric&lt;number, number&gt;;
 &nbsp;
 export interface Rendered {
     rendered: boolean;
@@ -321,7 +324,7 @@ export interface GraphCfg {
      * @param dim *string* the semantic name of the axis to plot and scale. E.g. for 2D cartesian plots, 
      * `dim` is `hor`, `ver`, or `size`. 
      */    
-    scales: { [dim:string]: d3.ScaleContinuousNumeric&lt;number, number&gt;};
+    scales: { [dim:string]: NumberScale};
 &nbsp;
     /** the currently used transition. A new transition will be set each time `Graph.render()` is called. */
     transition: any;

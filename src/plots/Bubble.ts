@@ -61,15 +61,15 @@
 
 import { log as gLog }          from 'hsutil';   const log = gLog('Bubble');
 import { DataSet }              from '../Graph';
-import { SeriesPlot }           from '../SeriesPlot';
+import { NumericSeriesPlot }    from '../NumericSeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
-import { CartSeriesDimensions } from '../SeriesPlot';
+import { CartSeriesDimensions } from '../CartSeriesPlot';
 import { GraphCfg}              from '../GraphComponent';
 import { Series }               from '../Series';
 
 Series.register('bubble', (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions) => new Bubble(cfg, sName, dims));
 
-export class Bubble extends SeriesPlot {
+export class Bubble extends NumericSeriesPlot {
     getDefaults(): SeriesPlotDefaults {
         const def = super.getDefaults();
         def.area.rendered = false;
@@ -77,12 +77,4 @@ export class Bubble extends SeriesPlot {
         def.line.rendered = false;
         return def;
     } 
-
-    /**
-     * 
-     * @param data a {@link hsDatab:Data `Data`} object containing the 
-     */
-    // renderComponent(data:DataSet) {  
-    //     this.svg.call(this.d3RenderMarkers.bind(this), data);
-    // }
 } 

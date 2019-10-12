@@ -40,8 +40,14 @@ exports[`Area should plot area 1`] = `
         <line
           x1="20"
           x2="980"
-          y1="370"
-          y2="370"
+          y1="548"
+          y2="548"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="192"
+          y2="192"
         />
       </g>
       <g
@@ -54,56 +60,62 @@ exports[`Area should plot area 1`] = `
         <line
           x1="20"
           x2="980"
-          y1="626"
-          y2="626"
+          y1="690"
+          y2="690"
         />
         <line
           x1="20"
           x2="980"
-          y1="562"
-          y2="562"
+          y1="619"
+          y2="619"
         />
         <line
           x1="20"
           x2="980"
-          y1="498"
-          y2="498"
+          y1="548"
+          y2="548"
         />
         <line
           x1="20"
           x2="980"
-          y1="434"
-          y2="434"
+          y1="477"
+          y2="477"
         />
         <line
           x1="20"
           x2="980"
-          y1="370"
-          y2="370"
+          y1="406"
+          y2="406"
         />
         <line
           x1="20"
           x2="980"
-          y1="306"
-          y2="306"
+          y1="334"
+          y2="334"
         />
         <line
           x1="20"
           x2="980"
-          y1="242"
-          y2="242"
+          y1="263"
+          y2="263"
         />
         <line
           x1="20"
           x2="980"
-          y1="178"
-          y2="178"
+          y1="192"
+          y2="192"
         />
         <line
           x1="20"
           x2="980"
-          y1="114"
-          y2="114"
+          y1="121"
+          y2="121"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="50"
+          y2="50"
         />
       </g>
       <g
@@ -114,8 +126,20 @@ exports[`Area should plot area 1`] = `
         stroke-width="1"
       >
         <line
+          x1="20"
+          x2="20"
+          y1="690"
+          y2="50"
+        />
+        <line
           x1="500"
           x2="500"
+          y1="690"
+          y2="50"
+        />
+        <line
+          x1="980"
+          x2="980"
           y1="690"
           y2="50"
         />
@@ -127,6 +151,12 @@ exports[`Area should plot area 1`] = `
         stroke-opacity="1"
         stroke-width="1"
       >
+        <line
+          x1="20"
+          x2="20"
+          y1="690"
+          y2="50"
+        />
         <line
           x1="116"
           x2="116"
@@ -181,6 +211,12 @@ exports[`Area should plot area 1`] = `
           y1="690"
           y2="50"
         />
+        <line
+          x1="980"
+          x2="980"
+          y1="690"
+          y2="50"
+        />
       </g>
     </g>
     <g
@@ -200,13 +236,33 @@ exports[`Area should plot area 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         text-anchor="middle"
-        transform="translate(0, 370)"
+        transform="translate(0, 548)"
       >
         <path
           class="domain"
           d="M20.5,-5V0.5H980.5V-5"
           stroke="currentColor"
         />
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(20.5,0)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-opacity="1"
+            stroke-width="2"
+            y2="-5"
+          />
+          <text
+            dy="0em"
+            fill="currentColor"
+            y="-8"
+          >
+            -1.0
+          </text>
+        </g>
         <g
           class="tick"
           opacity="1"
@@ -224,7 +280,7 @@ exports[`Area should plot area 1`] = `
             fill="currentColor"
             y="-8"
           >
-            8.000000000000002e+98
+            -0.8
           </text>
         </g>
         <g
@@ -244,7 +300,7 @@ exports[`Area should plot area 1`] = `
             fill="currentColor"
             y="-8"
           >
-            6.000000000000002e+98
+            -0.6
           </text>
         </g>
         <g
@@ -264,7 +320,7 @@ exports[`Area should plot area 1`] = `
             fill="currentColor"
             y="-8"
           >
-            4.000000000000001e+98
+            -0.4
           </text>
         </g>
         <g
@@ -284,7 +340,7 @@ exports[`Area should plot area 1`] = `
             fill="currentColor"
             y="-8"
           >
-            2.0000000000000006e+98
+            -0.2
           </text>
         </g>
         <g
@@ -304,7 +360,7 @@ exports[`Area should plot area 1`] = `
             fill="currentColor"
             y="-8"
           >
-            0
+            0.0
           </text>
         </g>
         <g
@@ -324,7 +380,7 @@ exports[`Area should plot area 1`] = `
             fill="currentColor"
             y="-8"
           >
-            -2.0000000000000006e+98
+            0.2
           </text>
         </g>
         <g
@@ -344,7 +400,7 @@ exports[`Area should plot area 1`] = `
             fill="currentColor"
             y="-8"
           >
-            -4.000000000000001e+98
+            0.4
           </text>
         </g>
         <g
@@ -364,7 +420,7 @@ exports[`Area should plot area 1`] = `
             fill="currentColor"
             y="-8"
           >
-            -6.000000000000002e+98
+            0.6
           </text>
         </g>
         <g
@@ -384,7 +440,27 @@ exports[`Area should plot area 1`] = `
             fill="currentColor"
             y="-8"
           >
-            -8.000000000000002e+98
+            0.8
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(980.5,0)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-opacity="1"
+            stroke-width="2"
+            y2="-5"
+          />
+          <text
+            dy="0em"
+            fill="currentColor"
+            y="-8"
+          >
+            1.0
           </text>
         </g>
       </g>
@@ -411,7 +487,7 @@ exports[`Area should plot area 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,626.5)"
+          transform="translate(0,690.5)"
         >
           <line
             fill-opacity="0"
@@ -425,13 +501,13 @@ exports[`Area should plot area 1`] = `
             fill="currentColor"
             x="8"
           >
-            8.000000000000002e+98
+            -0.2
           </text>
         </g>
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,562.5)"
+          transform="translate(0,619.5)"
         >
           <line
             fill-opacity="0"
@@ -445,13 +521,13 @@ exports[`Area should plot area 1`] = `
             fill="currentColor"
             x="8"
           >
-            6.000000000000002e+98
+            -0.1
           </text>
         </g>
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,498.5)"
+          transform="translate(0,548.5)"
         >
           <line
             fill-opacity="0"
@@ -465,13 +541,13 @@ exports[`Area should plot area 1`] = `
             fill="currentColor"
             x="8"
           >
-            4.000000000000001e+98
+            0.0
           </text>
         </g>
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,434.5)"
+          transform="translate(0,477.5)"
         >
           <line
             fill-opacity="0"
@@ -485,13 +561,13 @@ exports[`Area should plot area 1`] = `
             fill="currentColor"
             x="8"
           >
-            2.0000000000000006e+98
+            0.1
           </text>
         </g>
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,370.5)"
+          transform="translate(0,406.5)"
         >
           <line
             fill-opacity="0"
@@ -505,13 +581,13 @@ exports[`Area should plot area 1`] = `
             fill="currentColor"
             x="8"
           >
-            0
+            0.2
           </text>
         </g>
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,306.5)"
+          transform="translate(0,334.5)"
         >
           <line
             fill-opacity="0"
@@ -525,13 +601,13 @@ exports[`Area should plot area 1`] = `
             fill="currentColor"
             x="8"
           >
-            -2.0000000000000006e+98
+            0.3
           </text>
         </g>
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,242.5)"
+          transform="translate(0,263.5)"
         >
           <line
             fill-opacity="0"
@@ -545,13 +621,13 @@ exports[`Area should plot area 1`] = `
             fill="currentColor"
             x="8"
           >
-            -4.000000000000001e+98
+            0.4
           </text>
         </g>
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,178.5)"
+          transform="translate(0,192.5)"
         >
           <line
             fill-opacity="0"
@@ -565,13 +641,13 @@ exports[`Area should plot area 1`] = `
             fill="currentColor"
             x="8"
           >
-            -6.000000000000002e+98
+            0.5
           </text>
         </g>
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,114.5)"
+          transform="translate(0,121.5)"
         >
           <line
             fill-opacity="0"
@@ -585,7 +661,27 @@ exports[`Area should plot area 1`] = `
             fill="currentColor"
             x="8"
           >
-            -8.000000000000002e+98
+            0.6
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,50.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="8"
+          >
+            0.7
           </text>
         </g>
       </g>
@@ -603,7 +699,7 @@ exports[`Area should plot area 1`] = `
           fill-opacity="0.5"
         >
           <path
-            d="MNaN,NaNCNaN,NaN,NaN,NaN,NaN,NaNCNaN,NaN,NaN,NaN,NaN,NaNCNaN,NaN,NaN,NaN,NaN,NaNCNaN,NaN,NaN,NaN,NaN,NaNCNaN,NaN,NaN,NaN,NaN,NaNLundefined,370Lundefined,370"
+            d="M20,406C20,406,485.9662436290235,25.700684715603142,596,50C696.8365435591185,72.26824789904329,657.7257434481252,367.5231229889425,692,477C722.2307062087672,573.5611989443315,757.3318053303678,704.5705818186483,788,690C821.5984652746479,674.0372349093627,847.5225157167174,370.00125559058836,884,334C913.1422156846966,305.23824803286556,980,406,980,406L980,548L20,548"
           />
         </g>
         <g

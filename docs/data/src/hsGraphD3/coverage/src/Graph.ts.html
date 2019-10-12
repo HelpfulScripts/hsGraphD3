@@ -401,7 +401,32 @@
 <a name='L353'></a><a href='#L353'>353</a>
 <a name='L354'></a><a href='#L354'>354</a>
 <a name='L355'></a><a href='#L355'>355</a>
-<a name='L356'></a><a href='#L356'>356</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L356'></a><a href='#L356'>356</a>
+<a name='L357'></a><a href='#L357'>357</a>
+<a name='L358'></a><a href='#L358'>358</a>
+<a name='L359'></a><a href='#L359'>359</a>
+<a name='L360'></a><a href='#L360'>360</a>
+<a name='L361'></a><a href='#L361'>361</a>
+<a name='L362'></a><a href='#L362'>362</a>
+<a name='L363'></a><a href='#L363'>363</a>
+<a name='L364'></a><a href='#L364'>364</a>
+<a name='L365'></a><a href='#L365'>365</a>
+<a name='L366'></a><a href='#L366'>366</a>
+<a name='L367'></a><a href='#L367'>367</a>
+<a name='L368'></a><a href='#L368'>368</a>
+<a name='L369'></a><a href='#L369'>369</a>
+<a name='L370'></a><a href='#L370'>370</a>
+<a name='L371'></a><a href='#L371'>371</a>
+<a name='L372'></a><a href='#L372'>372</a>
+<a name='L373'></a><a href='#L373'>373</a>
+<a name='L374'></a><a href='#L374'>374</a>
+<a name='L375'></a><a href='#L375'>375</a>
+<a name='L376'></a><a href='#L376'>376</a>
+<a name='L377'></a><a href='#L377'>377</a>
+<a name='L378'></a><a href='#L378'>378</a>
+<a name='L379'></a><a href='#L379'>379</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -435,6 +460,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -603,6 +640,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -635,6 +675,12 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -762,11 +808,13 @@
  * The base class for Graph types.
  * Takes care of the following tasks:
  * - setting up the SVG environment for the `Graph`
- * - creating the {@link GraphComponent components} to render in ths `Graph`
- * - initializing default {@link Settings settings}
  * - creating a central {@link GraphComponent.GraphCfg configuration object} that is used throughout the library.
- * - establishing {@link Graph.LifecycleCalls lifecycle calls}:
- * 
+ * - creating and managing the {@link GraphComponent components} to render in ths `Graph`
+ * - initializing default {@link Settings settings}
+ * - establishing {@link Graph.LifecycleCalls lifecycle calls}
+ * - adding {@link SeriesPlot `series`} to render by calling {@link Graph.Graph.addSeries `addSeries`}
+ * - rendering the graph by calling {@link Graph.Graph.render `render`}
+ * - managing a central {@link Graph.Graph.transition `transition`} that applies to all components.   
  */
 &nbsp;
 /** */
@@ -792,10 +840,17 @@ import { SeriesPlot }       from './SeriesPlot';
 const vpWidth:number    = 1000;
 &nbsp;
 /** 
+ * Basic `NumberSet` definition:
+ * - `string`: the name of comun in the data set
+ * - `number`: a real number defining a constant
+ */
+export type NumberSet = string|number;
+&nbsp;
+/** 
  * translates semantic graph dimensions (e.g. 'hor', 'ver', 'size')
  * to the column names of the data used while adding a series.
  */
-export interface GraphDimensions { [dim:string]: string[]; }
+export interface GraphDimensions { [dim:string]: NumberSet[]; }
 &nbsp;
 /**
  * aggregates the [min, max] ranges for each semantic dimension (e.g. 'hor', 'ver', 'size')
@@ -886,11 +941,16 @@ export interface GraphDefaults extends ComponentDefaults {
     easing: string;         // e.g. 'easeCubic'
 }
 &nbsp;
-export declare type DataVal = number | string | Date;
-export declare type DataRow = DataVal[];
+export type DataVal = number | string | Date;
+export type DataRow = DataVal[];
+export type NumericDataRow = number[];
 export interface DataSet {
     colNames: string[];
     rows: DataRow[];
+}
+export interface NumericDataSet extends DataSet {
+    colNames: string[];
+    rows: NumericDataRow[];
 }
 &nbsp;
 /**
@@ -951,11 +1011,14 @@ export abstract class Graph implements LifecycleCalls {
     }
 &nbsp;
     /**
-     * render the tree with the supplied data.
-     * @param data the data to render. If `data` is a {@link DataSet DataSet}, it will be used 
+     * renders the tree with the supplied data. The call returns a {@link Graph.RenderChain `RenderChain`}
+     * function that allows rendering to be repeated at fixed intervals with updated data. 
+     * @param data the data to render. If `data` is a {@link Graph.DataSet DataSet}, it will be used 
      * to render all added series. Otherwise `data` can be specified as `DataSet[]` to provide a
-     * different data source to each of the series. The series' index, starting with 0 in the order of adding it to the graph,
-     * is used to index the list. If there are more series than data sets ion the list, indexing will restart at index 0.
+     * different data source to each of the series. The series' index is used to index the list,
+     * starting with 0 in the order of adding it to the graph. 
+     * If there are more series than data sets ion the list, indexing will restart at index 0.
+     * @return a `RenderChain`.
      */
     public render(data:DataSet | DataSet[]):RenderChain {
         const graphDef = &lt;GraphDefaults&gt;this.config.defaults.graph;
@@ -995,9 +1058,15 @@ export abstract class Graph implements LifecycleCalls {
     }
 &nbsp;
     /**
-     * adds a series to the plot.
-     * @param type type of plot to use, e.g. 'bubble' or 'scatter'
-     * @param params the column name of the parameters used to plot the series
+     * adds a series to the plot, for example
+     * ```
+     * graph.addSeries('area', {x:'time', y:'costs', r:5})
+     * ```
+     * The object literal `dims` specifies the data to use for each 
+     * semantic dimension the plot uses. For details on the dimensions 
+     * see {@link Series.SeriesDimensions `SeriesDimensions`}
+     * @param type type of plot to use, e.g. 'bubble' or 'scatter', See {@link Series `Series`} for available plots to use.
+     * @param dims an object literal specifying the {@link Series.SeriesDimensions `SeriesDimensions`} to use. 
      */
     public addSeries(type:string, dims:SeriesDimensions):SeriesPlot {
         //this.resize();
@@ -1018,7 +1087,7 @@ export abstract class Graph implements LifecycleCalls {
     /** Called immediately before each call to renderComponent. */
     preRender(data:DataSet | DataSet[], domains:Domains): void {
         this.Series.expandDomain(data, domains);
-        this.setScales(data);
+        this.setScales();
         this.components.forEach((comp:GraphComponent) =&gt; comp.preRender(data, domains));
     } 
 &nbsp;
@@ -1031,7 +1100,7 @@ export abstract class Graph implements LifecycleCalls {
     //************** Non-public part **************************/
 &nbsp;
     /** set the scales for the graph prior to rendering components. */
-    protected abstract setScales(data:DataSet | DataSet[]):void;
+    protected abstract setScales():void;
 &nbsp;
     /** called once during construction to create the components defaults. */
     protected createDefaults():GraphDefaults {

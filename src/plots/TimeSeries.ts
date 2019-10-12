@@ -20,7 +20,7 @@
  * 
  * // create the graph and define the series to plot:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.addSeries('timeseries', {x:'date', y:'time'});
+ * graph.addSeries('timeseries', {x:'date', y:'time', y0:1});
  * graph.addSeries('timeseries', {x:'date', y:'volume', r:'time'});
  * 
  * // adjust some settings:
@@ -43,19 +43,19 @@
  /** */
 
 import { log as gLog }          from 'hsutil';   const log = gLog('TimeSeries');
-import { DataSet }              from '../Graph';
+import { NumericDataSet }       from '../Graph';
 import { GraphDefaults }        from '../Graph';
 import { Domains }              from '../Graph';
 import { Series }               from '../Series';
-import { SeriesPlot }           from '../SeriesPlot';
-import { CartSeriesDimensions } from '../SeriesPlot';
+import { NumericSeriesPlot }    from '../NumericSeriesPlot';
+import { CartSeriesDimensions } from '../CartSeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { d3Base }               from '../Settings';
 import { GraphCfg }             from '../GraphComponent'; 
  
 Series.register('timeseries',   (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions) => new TimeSeries(cfg, sName, dims));
 
-export class TimeSeries extends SeriesPlot {
+export class TimeSeries extends NumericSeriesPlot {
     /**
      * plot constructor
      * @param cx string column name for x-center coordinates
@@ -76,9 +76,10 @@ export class TimeSeries extends SeriesPlot {
         super.initialize(svg, color);
     } 
 
-    preRender(data:DataSet, domains:Domains): void {
+    preRender(data:NumericDataSet, domains:Domains): void {
         super.preRender(data, domains);
-        const x = data.colNames.indexOf(this.dims.x);
+        if (typeof(this.dims.x)==='number') { log.warn(`preRender: unsupported const x=${this.dims.x} in timeseries`); }
+        const x = data.colNames.indexOf(<string>this.dims.x);
         if (data.rows.length>1) { // artificially shorten the x-axis by 1 unit
             const xUnit = <number>data.rows[1][x] - <number>data.rows[0][x];
             const domain = this.cfg.scales.hor.domain();
@@ -87,19 +88,20 @@ export class TimeSeries extends SeriesPlot {
         }   
     }
 
-    d3RenderMarkers(svg:d3Base, data:DataSet) {
+    d3RenderMarkers(svg:d3Base, data:NumericDataSet) {
         if (data.rows.length<2) { return super.d3RenderMarkers(svg, data); }
         const defaults = (<SeriesPlotDefaults>this.cfg.defaults.series[this.key]).marker;
-        const x = data.colNames.indexOf(this.dims.x);
+        if (typeof(this.dims.x)==='number') { log.warn(`d3RenderMarkers: unsupported const x=${this.dims.x} in timeseries`); }
+        const x = data.colNames.indexOf(<string>this.dims.x);
         if (defaults.rendered) {
-            const xUnit = <number>data.rows[1][x] - <number>data.rows[0][x];
+            const xUnit = data.rows[1][x] - data.rows[0][x];
             const samples:any = svg.select('.markers').selectAll("circle").data(data.rows, d => d[0]);
             samples.exit().remove();            // remove unneeded circles
             samples.enter().append('circle')    // add new circles
-                .call(this.d3DrawMarker, this, data)
+                .call(this.d3DrawMarker, this, data.colNames)
                 .attr("transform", `translate(${this.cfg.scales.hor(xUnit) - this.cfg.scales.hor(0)})`)
             .merge(samples).transition(this.cfg.transition)   // draw markers
-                .call(this.d3DrawMarker, this, data)
+                .call(this.d3DrawMarker, this, data.colNames)
                 .attr("transform", `translate(0)`);
         }
     }
@@ -108,14 +110,14 @@ export class TimeSeries extends SeriesPlot {
         return svg.select(cls).selectAll('path');
     }
 
-    d3RenderPath(svg:d3Base, data:DataSet) {
+    d3RenderPath(svg:d3Base, data:NumericDataSet) {
         return super.d3RenderPath(svg, data)
             .attr('transform', `translate(${this.cfg.scales.hor(1) - this.cfg.scales.hor(0)})`)
             .transition(this.cfg.transition)
             .attr('transform', `translate(0)`);
     }
 
-    d3RenderFill(svg:d3Base, data:DataSet) {
+    d3RenderFill(svg:d3Base, data:NumericDataSet) {
         return super.d3RenderFill(svg, data)
             .attr('transform', `translate(${this.cfg.scales.hor(1) - this.cfg.scales.hor(0)})`)
             .transition(this.cfg.transition)

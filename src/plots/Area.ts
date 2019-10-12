@@ -4,7 +4,7 @@
  * plots a 2D area.
  * 
  * ## Usage
- * `graph.addSeries('area', {x:<x-col>, y:<y-col>, r?:<size-col>});`
+ * `graph.addSeries('area', {x:<x-col>, y:<y-col>, y0?:<lower-area-bound>, r?:<size-col>});`
  * 
  * ## Example
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
@@ -59,15 +59,15 @@
  /** */
 
 import { log as gLog }          from 'hsutil';   const log = gLog('Area');
-import { SeriesPlot }           from '../SeriesPlot';
-import { CartSeriesDimensions } from '../SeriesPlot';
+import { NumericSeriesPlot }    from '../NumericSeriesPlot';
+import { CartSeriesDimensions } from '../CartSeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { GraphCfg}              from '../GraphComponent';
 import { Series }               from '../Series';
 
 Series.register('area', (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions) => new Area(cfg, sName, dims));
  
-export class Area extends SeriesPlot {
+export class Area extends NumericSeriesPlot {
     getDefaults(): SeriesPlotDefaults {
         const def = super.getDefaults();
         def.area.rendered = true;

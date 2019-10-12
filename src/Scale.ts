@@ -3,7 +3,7 @@
  * 
  */
 
-import { ComponentDefaults }    from './GraphComponent'; 
+import { ComponentDefaults, NumberScale }    from './GraphComponent'; 
 import { GraphComponent }       from './GraphComponent'; 
 import { GraphCfg }             from './GraphComponent';
 import { UnitVp }               from './Settings';
@@ -73,7 +73,7 @@ export class Scales extends GraphComponent {
      * @param domain the data domain to scale for
      * @param range the viewport range to scale for 
      */
-    public static createScale(scaleDef: ScaleDefaults, domain: [number, number], range?:[UnitVp, UnitVp]):d3.ScaleContinuousNumeric<number, number> {
+    public static createScale(scaleDef: ScaleDefaults, domain: [number, number], range?:[UnitVp, UnitVp]):NumberScale {
         if (!scaleDef) { return; }
         const domDef = <NumericDefaults>scaleDef.domain;
         const rangeDef = scaleDef.range;

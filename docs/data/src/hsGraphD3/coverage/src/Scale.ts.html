@@ -249,7 +249,7 @@
  * 
  */
 &nbsp;
-import { ComponentDefaults }    from './GraphComponent'; 
+import { ComponentDefaults, NumberScale }    from './GraphComponent'; 
 import { GraphComponent }       from './GraphComponent'; 
 import { GraphCfg }             from './GraphComponent';
 import { UnitVp }               from './Settings';
@@ -319,7 +319,7 @@ export class Scales extends GraphComponent {
      * @param domain the data domain to scale for
      * @param range the viewport range to scale for 
      */
-    public static createScale(scaleDef: ScaleDefaults, domain: [number, number], range?:[UnitVp, UnitVp]):d3.ScaleContinuousNumeric&lt;number, number&gt; {
+    public static createScale(scaleDef: ScaleDefaults, domain: [number, number], range?:[UnitVp, UnitVp]):NumberScale {
         <span class="missing-if-branch" title="if path not taken" >I</span>if (!scaleDef) { <span class="cstat-no" title="statement not covered" >return; </span>}
         const domDef = &lt;NumericDefaults&gt;scaleDef.domain;
         const rangeDef = scaleDef.range;

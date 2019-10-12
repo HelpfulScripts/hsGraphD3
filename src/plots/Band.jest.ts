@@ -32,7 +32,7 @@ describe('Band', () => {
     );
     describe('plot', () => {
         beforeAll(() => {
-            graph.addSeries('band', 'time', 'volume', 'costs');
+            graph.addSeries('band', {x:'time', y:'volume', y0:'costs'});
             graph.render(data);
         });
         it('should plot area', () =>

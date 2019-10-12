@@ -27,7 +27,7 @@ describe('Bubble', () => {
     let graph:hsGraphD3.GraphCartesian;
     beforeAll(() => {
         graph = new hsGraphD3.GraphCartesian(root);
-        graph.addSeries('bubble', 'xval', 'yval', 'rval');
+        graph.addSeries('bubble', {x:'xval', y:'yval', r:'rval'});
         graph.render(data);
     });
     it('should plot line', () =>

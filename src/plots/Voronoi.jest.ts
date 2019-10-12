@@ -26,7 +26,7 @@ describe('Voronoi', () => {
     let graph:hsGraphD3.GraphCartesian;
     beforeAll(() => {
         graph = new hsGraphD3.GraphCartesian(root);
-        graph.addSeries('voronoi', 'xval', 'yval');
+        graph.addSeries('voronoi', {x:'xval', y:'yval'});
         graph.render(data);
     });
     it('should plot voronoi diagram', () =>

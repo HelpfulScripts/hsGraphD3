@@ -40,15 +40,23 @@ const graph = new GraphCartesian(root);
 graph.addSeries('bubble', {x:'time', y:'volume', r:'costs'});
 ```
 
-Optionally, adjust some settings:
+Optionally, adjust some settings. See [Configuration Defaults](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.Settings) for a list of all available settings.
 ```
 graph.defaults.axes.color = '#00a';
 ```
-See [Configuration Defaults](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.Settings) for a list of all available settings.
 
 Render the graph:
 ```
 graph.render(data);
 ```
+
+To create a periodically updated graph, call the update method returned by `render`:
+```
+const ms = 1000;  // millisecond period
+graph.render(data).update(ms, data => {
+    data[2][2] = Math.random();
+    return true;    // continue updating
+});
+``` 
 
 See an [example](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/0).

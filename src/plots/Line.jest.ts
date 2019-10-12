@@ -27,7 +27,7 @@ describe('Line', () => {
     let graph:hsGraphD3.GraphCartesian;
     beforeAll(() => {
         graph = new hsGraphD3.GraphCartesian(root);
-        graph.addSeries('line', 'xval', 'yval', 'rval');
+        graph.addSeries('line', {x:'xval', y:'yval', r:'rval'});
         graph.render(data);
     });
     it('should plot line', () =>

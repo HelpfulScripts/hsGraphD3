@@ -26,7 +26,7 @@ describe('Area', () => {
     let graph:hsGraphD3.GraphCartesian;
     beforeAll(() => {
         graph = new hsGraphD3.GraphCartesian(root);
-        graph.addSeries('area', 'time', 'volume');
+        graph.addSeries('area', {x:'time', y:'volume'});
         graph.render(data);
     });
     it(`should have 'area' registered`, () =>

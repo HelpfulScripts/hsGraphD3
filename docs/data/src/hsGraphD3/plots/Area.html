@@ -27,7 +27,7 @@
 <p id=4 class="line"><span>&nbsp;&nbsp;&nbsp;4</span><comment>&nbsp;*&nbsp;plots&nbsp;a&nbsp;2D&nbsp;area.</comment></p>
 <p id=5 class="line"><span>&nbsp;&nbsp;&nbsp;5</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=6 class="line"><span>&nbsp;&nbsp;&nbsp;6</span><comment>&nbsp;*&nbsp;##&nbsp;Usage</comment></p>
-<p id=7 class="line"><span>&nbsp;&nbsp;&nbsp;7</span><comment>&nbsp;*&nbsp;`graph.addSeries(<quote>'area'</quote>,&nbsp;{x:<x-col>,&nbsp;y:<y-col>,&nbsp;r?:<size-col>});`</comment></p>
+<p id=7 class="line"><span>&nbsp;&nbsp;&nbsp;7</span><comment>&nbsp;*&nbsp;`graph.addSeries(<quote>'area'</quote>,&nbsp;{x:<x-col>,&nbsp;y:<y-col>,&nbsp;y0?:<lower-area-bound>,&nbsp;r?:<size-col>});`</comment></p>
 <p id=8 class="line"><span>&nbsp;&nbsp;&nbsp;8</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=9 class="line"><span>&nbsp;&nbsp;&nbsp;9</span><comment>&nbsp;*&nbsp;##&nbsp;Example</comment></p>
 <p id=10 class="line"><span>&nbsp;&nbsp;10</span><comment>&nbsp;*&nbsp;<example&nbsp;height=200px&nbsp;libs={hsGraphD3:<quote>'hsGraphD3'</quote>}></comment></p>
@@ -82,15 +82,15 @@
 <p id=59 class="line"><span>&nbsp;&nbsp;59</span>&nbsp;<comment>/**&nbsp;*/</comment></p>
 <p id=60 class="line"><span>&nbsp;&nbsp;60</span></p>
 <p id=61 class="line"><span>&nbsp;&nbsp;61</span>import&nbsp;{&nbsp;log&nbsp;as&nbsp;gLog&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'hsutil'</quote>;&nbsp;&nbsp;&nbsp;const&nbsp;log&nbsp;=&nbsp;gLog(<quote>'Area'</quote>);</p>
-<p id=62 class="line"><span>&nbsp;&nbsp;62</span>import&nbsp;{&nbsp;SeriesPlot&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../SeriesPlot'</quote>;</p>
-<p id=63 class="line"><span>&nbsp;&nbsp;63</span>import&nbsp;{&nbsp;CartSeriesDimensions&nbsp;}&nbsp;from&nbsp;<quote>'../SeriesPlot'</quote>;</p>
+<p id=62 class="line"><span>&nbsp;&nbsp;62</span>import&nbsp;{&nbsp;NumericSeriesPlot&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../NumericSeriesPlot'</quote>;</p>
+<p id=63 class="line"><span>&nbsp;&nbsp;63</span>import&nbsp;{&nbsp;CartSeriesDimensions&nbsp;}&nbsp;from&nbsp;<quote>'../CartSeriesPlot'</quote>;</p>
 <p id=64 class="line"><span>&nbsp;&nbsp;64</span>import&nbsp;{&nbsp;SeriesPlotDefaults&nbsp;}&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../SeriesPlot'</quote>;</p>
 <p id=65 class="line"><span>&nbsp;&nbsp;65</span>import&nbsp;{&nbsp;GraphCfg}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../GraphComponent'</quote>;</p>
 <p id=66 class="line"><span>&nbsp;&nbsp;66</span>import&nbsp;{&nbsp;Series&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../Series'</quote>;</p>
 <p id=67 class="line"><span>&nbsp;&nbsp;67</span></p>
 <p id=68 class="line"><span>&nbsp;&nbsp;68</span>Series.register(<quote>'area'</quote>,&nbsp;(cfg:GraphCfg,&nbsp;sName:string,&nbsp;dims:CartSeriesDimensions)&nbsp;=>&nbsp;new&nbsp;Area(cfg,&nbsp;sName,&nbsp;dims));</p>
 <p id=69 class="line"><span>&nbsp;&nbsp;69</span>&nbsp;</p>
-<p id=70 class="line"><span>&nbsp;&nbsp;70</span>export&nbsp;class&nbsp;Area&nbsp;extends&nbsp;SeriesPlot&nbsp;{</p>
+<p id=70 class="line"><span>&nbsp;&nbsp;70</span>export&nbsp;class&nbsp;Area&nbsp;extends&nbsp;NumericSeriesPlot&nbsp;{</p>
 <p id=71 class="line"><span>&nbsp;&nbsp;71</span>&nbsp;&nbsp;&nbsp;&nbsp;getDefaults():&nbsp;SeriesPlotDefaults&nbsp;{</p>
 <p id=72 class="line"><span>&nbsp;&nbsp;72</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;def&nbsp;=&nbsp;super.getDefaults();</p>
 <p id=73 class="line"><span>&nbsp;&nbsp;73</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;def.area.rendered&nbsp;=&nbsp;true;</p>

@@ -57,18 +57,19 @@
 
  /** */
 
-import { log as gLog }      from 'hsutil';   const log = gLog('GraphCartesian');
+import { log as gLog } from 'hsutil';   const log = gLog('GraphCartesian');
 
-import { DataSet }          from './Graph';
-import { GraphDimensions }  from './Graph';
-import { Graph }            from './Graph';
-import { Domains }          from './Graph';
-import { scaleDefault }     from './Scale';
-import { ScalesDefaults }   from './Scale';
-import { Scales }           from './Scale';
-import { d3Base }           from './Settings';
-import { SeriesPlot, CartSeriesDimensions }       from './SeriesPlot';
-import { SeriesDimensions } from './Series';
+import { DataSet }              from './Graph';
+import { NumberSet }            from './Graph';
+import { GraphDimensions }      from './Graph';
+import { Graph }                from './Graph';
+import { Domains }              from './Graph';
+import { scaleDefault }         from './Scale';
+import { ScalesDefaults }       from './Scale';
+import { Scales }               from './Scale';
+import { d3Base }               from './Settings';
+import { SeriesPlot }           from './SeriesPlot';
+import { CartSeriesDimensions } from './CartSeriesPlot';
 import "./plots/Bubble";
 import "./plots/Line";
 import "./plots/Area";
@@ -77,7 +78,7 @@ import "./plots/TimeSeries";
 import "./plots/Voronoi";
 
 
-export interface CartDimensions extends GraphDimensions { hor:string[]; ver:string[]; size:string[]; }
+export interface CartDimensions extends GraphDimensions { hor:NumberSet[]; ver:NumberSet[]; size:NumberSet[]; }
 
 export class GraphCartesian extends Graph {
     /**
@@ -90,10 +91,10 @@ export class GraphCartesian extends Graph {
      */
     public addSeries(type:string, dims:CartSeriesDimensions):SeriesPlot {
         const series = super.addSeries(type, dims);
-        const scales = this.config.defaults.scales;
-        scales.dims['hor']  = scales.dims['hor']  || scaleDefault();    // auto viewport range
-        scales.dims['ver']  = scales.dims['ver']  || scaleDefault();    // auto viewport range
-        scales.dims['size'] = scales.dims['size'] || scaleDefault(5, 20);  
+        const scalesDefaults = <ScalesDefaults>this.config.defaults.scales;
+        scalesDefaults.dims['hor']  = scalesDefaults.dims['hor']  || scaleDefault();    // auto viewport range
+        scalesDefaults.dims['ver']  = scalesDefaults.dims['ver']  || scaleDefault();    // auto viewport range
+        scalesDefaults.dims['size'] = scalesDefaults.dims['size'] || scaleDefault(5, 20);  
         return series;
     }
 
@@ -101,7 +102,7 @@ export class GraphCartesian extends Graph {
      * set scales, called during `prerender`
      * @param data 
      */
-    protected setScales(data:DataSet | DataSet[]) {
+    protected setScales() {
         const scalesDefaults = <ScalesDefaults>this.config.defaults.scales;
         const margins = this.config.defaults.scales.margin;
         const scales = this.config.scales;

@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">68.75% </span>
+        <span class="strong">77.27% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>44/64</span>
+        <span class='fraction'>51/66</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">38.89% </span>
+        <span class="strong">55% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>7/18</span>
+        <span class='fraction'>11/20</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">85.71% </span>
+        <span class="strong">94.74% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>18/21</span>
+        <span class='fraction'>18/19</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">71.7% </span>
+        <span class="strong">75.86% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>38/53</span>
+        <span class='fraction'>44/58</span>
       </div>
     </div>
     <p class="quiet">
@@ -218,7 +218,21 @@
 <a name='L170'></a><a href='#L170'>170</a>
 <a name='L171'></a><a href='#L171'>171</a>
 <a name='L172'></a><a href='#L172'>172</a>
-<a name='L173'></a><a href='#L173'>173</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L173'></a><a href='#L173'>173</a>
+<a name='L174'></a><a href='#L174'>174</a>
+<a name='L175'></a><a href='#L175'>175</a>
+<a name='L176'></a><a href='#L176'>176</a>
+<a name='L177'></a><a href='#L177'>177</a>
+<a name='L178'></a><a href='#L178'>178</a>
+<a name='L179'></a><a href='#L179'>179</a>
+<a name='L180'></a><a href='#L180'>180</a>
+<a name='L181'></a><a href='#L181'>181</a>
+<a name='L182'></a><a href='#L182'>182</a>
+<a name='L183'></a><a href='#L183'>183</a>
+<a name='L184'></a><a href='#L184'>184</a>
+<a name='L185'></a><a href='#L185'>185</a>
+<a name='L186'></a><a href='#L186'>186</a>
+<a name='L187'></a><a href='#L187'>187</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -262,6 +276,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">9x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -336,21 +357,28 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">94x</span>
+<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-yes">21x</span>
+<span class="cline-any cline-yes">21x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -425,7 +453,7 @@
 &nbsp;
 import { extent }           from 'd3';
 import { log as gLog }      from 'hsutil';   const log = gLog('Series');
-import { DataSet }          from './Graph';
+import { DataSet, GraphDimensions }          from './Graph';
 import { Domains }          from './Graph';
 import { d3Base }           from './Settings';
 import { GraphComponent }   from './GraphComponent'; 
@@ -435,8 +463,15 @@ import { SeriesPlot }       from './SeriesPlot';
 import { CartDimensions }   from './GraphCartesian';
 import { schemeDark2 as colors } from 'd3';
 &nbsp;
-&nbsp;
-export interface SeriesDimensions { [dim:string]: string; }
+/**
+ * The `SeriesDimensions` that specify the values to use for different 
+ * semantic dimension (e.g. 'x' for the x-axis) of 
+ * each {@link SeriesPlot `SeriesPlot`}.
+ * For each dimension, the value can be either 
+ * - a string that identifies the column name in the data set to use
+ * - or a number constant 
+ */
+export interface SeriesDimensions { [dim:string]: string|number; }
 &nbsp;
 type PlotFactory = (cfg:GraphCfg, seriesName:string, dims:SeriesDimensions) =&gt; SeriesPlot;
 &nbsp;
@@ -508,35 +543,42 @@ export class Series extends GraphComponent {
      * @return an array of [min, max] domains ranges, indexed by data column
      */
     expandDomain(data:DataSet | DataSet[], domains:Domains):Domains {
-        function <span class="fstat-no" title="function not covered" >spread(</span>dom:[number, number]) { <span class="cstat-no" title="statement not covered" >dom[0] = 0.9*dom[0]; <span class="cstat-no" title="statement not covered" ></span>dom[1] = 1.1*dom[1]; </span>}
         function stretchDomains(dataSet:DataSet, s:SeriesPlot) {
-            this.series.forEach((s:SeriesPlot) =&gt; {
-                const dims:CartDimensions = s.dimensions;
-                Object.keys(dims).map(dim =&gt; {
-                    <span class="missing-if-branch" title="if path not taken" >I</span>if (!domains[dim]) { <span class="cstat-no" title="statement not covered" >log.warn(`domain not initialized for dimension '${dim}'`); </span>}
-                    dims[dim].map(colName =&gt; { <span class="missing-if-branch" title="if path not taken" >I</span>if (colName) {
-                        const col = <span class="cstat-no" title="statement not covered" >dataSet.colNames.indexOf(colName);</span>
-<span class="cstat-no" title="statement not covered" >                        if (col &lt; 0) { <span class="cstat-no" title="statement not covered" >log.warn(`did not find column '${colName}' in data set ${dataSet.colNames.join(', ')}`); </span>}</span>
+            const dims:GraphDimensions = s.dimensions;
+            Object.keys(dims).map(dim =&gt; {
+                <span class="missing-if-branch" title="if path not taken" >I</span>if (!domains[dim]) { 
+<span class="cstat-no" title="statement not covered" >                    log.warn(`domain not initialized for dimension '${dim}'`); </span>
+<span class="cstat-no" title="statement not covered" >                    domains[dim] = [1e99, -1e99];</span>
+                }
+                dims[dim].map(col =&gt; { if (col!==undefined) {
+                    <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof(col)==='number') {
+<span class="cstat-no" title="statement not covered" >                        domains[dim][0] = Math.min(domains[dim][0], col);</span>
+<span class="cstat-no" title="statement not covered" >                        domains[dim][1] = Math.max(domains[dim][1], col);</span>
+                    } else {
+                        const colNum = dataSet.colNames.indexOf(col);
+                        <span class="missing-if-branch" title="if path not taken" >I</span>if (colNum &lt; 0) { <span class="cstat-no" title="statement not covered" >log.warn(`did not find column '${col}' in data set ${dataSet.colNames.join(', ')}`); </span>}
                         else {
-                            // domains[dim] = domains[dim] || [1e90, -1e90];
-                            const dataDom = <span class="cstat-no" title="statement not covered" >extent(dataSet.rows, (<span class="fstat-no" title="function not covered" >r </span>=&gt; &lt;number&gt;<span class="cstat-no" title="statement not covered" >r[col])</span>);</span>
-<span class="cstat-no" title="statement not covered" >                            domains[dim][0] = Math.min(domains[dim][0], dataDom[0]);</span>
-<span class="cstat-no" title="statement not covered" >                            domains[dim][1] = Math.max(domains[dim][1], dataDom[1]);</span>
-<span class="cstat-no" title="statement not covered" >                            if (domains[dim][1] === domains[dim][0]) { <span class="cstat-no" title="statement not covered" >spread(domains[dim]); </span>}</span>
+                            const dataDom = extent(dataSet.rows, (r =&gt; &lt;number&gt;r[colNum]));
+                            domains[dim][0] = Math.min(domains[dim][0], dataDom[0]);
+                            domains[dim][1] = Math.max(domains[dim][1], dataDom[1]);
+                            <span class="missing-if-branch" title="if path not taken" >I</span>if (domains[dim][1] === domains[dim][0]) { 
+<span class="cstat-no" title="statement not covered" >                                domains[dim][0] = 0.9*domains[dim][0]; </span>
+<span class="cstat-no" title="statement not covered" >                                domains[dim][1] = 1.1*domains[dim][1];</span>
+                            }
                         }
-                    }});
-                });
+                    }
+                }});
             });
         }
 &nbsp;
         <span class="missing-if-branch" title="else path not taken" >E</span>if ((&lt;DataSet&gt;data).colNames) {  
             // use same dataset for each series
-            this.series.forEach((s:SeriesPlot) =&gt; stretchDomains.bind(this)(&lt;DataSet&gt;data, s));
+            this.series.forEach((s:SeriesPlot) =&gt; stretchDomains(&lt;DataSet&gt;data, s));
         } else {
             // assign dataset to series based on index
 <span class="cstat-no" title="statement not covered" >            this.series.forEach(<span class="fstat-no" title="function not covered" >(s</span>:SeriesPlot, i:number) =&gt; {</span>
                 const dataSet = <span class="cstat-no" title="statement not covered" >data[i % (&lt;DataSet[]&gt;data).length];</span>
-<span class="cstat-no" title="statement not covered" >                stretchDomains.bind(this)(dataSet, s);</span>
+<span class="cstat-no" title="statement not covered" >                stretchDomains(dataSet, s);</span>
             });
         }
         return domains;
