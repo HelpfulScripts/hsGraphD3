@@ -260,7 +260,7 @@ exports[`Area should plot area 1`] = `
             fill="currentColor"
             y="-8"
           >
-            -1.0
+            -1
           </text>
         </g>
         <g
@@ -360,7 +360,7 @@ exports[`Area should plot area 1`] = `
             fill="currentColor"
             y="-8"
           >
-            0.0
+            0
           </text>
         </g>
         <g
@@ -460,7 +460,7 @@ exports[`Area should plot area 1`] = `
             fill="currentColor"
             y="-8"
           >
-            1.0
+            1
           </text>
         </g>
       </g>
@@ -541,7 +541,7 @@ exports[`Area should plot area 1`] = `
             fill="currentColor"
             x="8"
           >
-            0.0
+            0
           </text>
         </g>
         <g

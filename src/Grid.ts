@@ -89,7 +89,7 @@ export class Grid {
         this.hor = this.dir===Direction.horizontal;
         this.svg = cfg.baseSVG.select('.grids').append('g').classed(baseClass, true);
     }
- 
+
     renderComponent() {
         const style = (<GridDefaults>this.cfg.defaults.grids)[this.dir][this.type];
         if (style.rendered) {
@@ -104,8 +104,8 @@ export class Grid {
             // dim.fix: the span of the gridline, doesn't change
             // dim.var: the grid line's axis intercept, changes with scale
             const gridlines:SVGLineSelection = <SVGLineSelection>this.svg.selectAll("line").data(<any>c.scale.ticks(count), d => <any>d);
-            gridlines.exit().remove();          // remove unneeded circles
-            gridlines.enter().append('line')    // add new circles
+            gridlines.exit().remove();          // remove unneeded lines
+            gridlines.enter().append('line')    // add new lines
                 .attr(`${c.dim.fix}1`, c.range[0])
                 .attr(`${c.dim.fix}2`, c.range[1])
                 .attr(`${c.dim.var}1`, d => c.scale(<number>d))

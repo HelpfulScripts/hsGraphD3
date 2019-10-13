@@ -6,6 +6,7 @@
 /** */
 import { axisTop }          from 'd3';
 import { axisRight }        from 'd3';
+import { format }           from 'd3';
 import { log as gLog }      from 'hsutil';   const log = gLog('Axis');
 import { GraphComponent }   from './GraphComponent'; 
 import { GraphCfg }         from './GraphComponent';
@@ -126,6 +127,7 @@ export class Axis {
             this.svg.transition(trans).attr("transform", `translate(${xCrossing}, 0)`);
         }
         axis.tickSize(style.tickWidth);
+        axis.tickFormat(format('~g'));
         this.svg.attr('color', style.color);
         this.svg.transition(trans).call(axis);
         if (style.line.rendered) {

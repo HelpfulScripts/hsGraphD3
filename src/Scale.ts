@@ -1,13 +1,36 @@
 /**
  * # Scale
  * 
+ * ## Example
+ * Use of a logarithmic scale:
+ * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
+ * <file name='script.js'>
+ * const data = {
+ *    colNames:['time', 'costs'], 
+ *    rows:[[0,   0.2], [0.2, 0.7], [0.4, 0.1],
+ *          [0.6, 0.5], [0.8, 0.3], [1,   0.2]]
+ * };
+ * 
+ * const graph = new hsGraphD3.GraphCartesian(root);
+ * graph.addSeries('line', {x:'time', y:'costs'});
+ * graph.addSeries('line', {x:'time', y:0.5});
+ * graph.defaults.scales.dims.ver.type = 'log';
+ * graph.render(data);
+ * 
+ * </file>
+ * </example>
+ * 
  */
 
-import { ComponentDefaults, NumberScale }    from './GraphComponent'; 
+ /** */
+import { log as _log }          from 'hsutil'; const log = _log('Scale');
+import { ComponentDefaults }    from './GraphComponent'; 
+import { NumberScale }          from './GraphComponent'; 
 import { GraphComponent }       from './GraphComponent'; 
 import { GraphCfg }             from './GraphComponent';
 import { UnitVp }               from './Settings';
 import { scaleLinear }          from 'd3'; 
+import { scaleLog }             from 'd3'; 
 import { interpolateRound }     from 'd3'; 
 
 export type scaleTypes = 'linear' | 'log';
@@ -77,12 +100,13 @@ export class Scales extends GraphComponent {
         if (!scaleDef) { return; }
         const domDef = <NumericDefaults>scaleDef.domain;
         const rangeDef = scaleDef.range;
-        let scale:d3.ScaleLinear<number, number>;
+        let scale:NumberScale;  //d3.ScaleLinear<number, number>;
+log.info(`create scale ${scaleDef.type}`);
         switch(scaleDef.type) {
+            case 'log':     scale = scaleLog().interpolate(interpolateRound);
+                            break;
             case 'linear':
-            default:
-                scale = scaleLinear();
-                    
+            default:        scale = scaleLinear().interpolate(interpolateRound);  
             }
         scale.domain([
             domDef.min === 'auto'? domain[0] : domDef.min,
@@ -92,7 +116,7 @@ export class Scales extends GraphComponent {
             (range && rangeDef.min === 'auto')? range[0] : <number>rangeDef.min, 
             (range && rangeDef.max === 'auto')? range[1] : <number>rangeDef.max
         ])
-        .interpolate(interpolateRound);
+        ;
         return scale;
     }
 }
