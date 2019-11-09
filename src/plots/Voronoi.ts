@@ -75,7 +75,7 @@
  * </file>
  * </example>
  * 
- * ### Accessible format setting and defaults:
+ * ### Voronoi plot Default Settings:
  * <example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
  * <file name='script.js'>
  * const log = hsUtil.log('');
@@ -84,20 +84,12 @@
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(root);
  *      graph.addSeries('voronoi', {x:'x', y:'y', r:'count'});
- *      graph.addSeries('bubble', {x:'x', y:'y'});
- *      with (graph.defaults) {
- *          axes.rendered = false;
- *          series.series0.line.width = 1;
- *          series.series0.line.color = '#0c0';
- *          series.series0.marker.size = 3;
- *          grids.rendered = false;
- *      }
- *      return graph.defaults;
+ *      return graph.defaults.series[0];
  * }
  * 
  * m.mount(root, {
  *   view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [
- *      m('div', m.trust('graph.defaults = ' + defaults)), 
+ *      m('div', m.trust('graph.defaults.series[0] = ' + defaults)), 
  *      m('div.myGraph', '')
  *   ]),
  *   oncreate: () => {

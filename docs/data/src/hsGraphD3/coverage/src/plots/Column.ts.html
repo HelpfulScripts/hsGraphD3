@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">30.43% </span>
+        <span class="strong">26.92% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>7/23</span>
+        <span class='fraction'>7/26</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">0% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>0/8</span>
+        <span class='fraction'>0/9</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">30% </span>
+        <span class="strong">26.09% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>6/20</span>
+        <span class='fraction'>6/23</span>
       </div>
     </div>
     <p class="quiet">
@@ -150,11 +150,9 @@
 <a name='L102'></a><a href='#L102'>102</a>
 <a name='L103'></a><a href='#L103'>103</a>
 <a name='L104'></a><a href='#L104'>104</a>
-<a name='L105'></a><a href='#L105'>105</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L105'></a><a href='#L105'>105</a>
+<a name='L106'></a><a href='#L106'>106</a>
+<a name='L107'></a><a href='#L107'>107</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -234,6 +232,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -277,10 +281,9 @@
  * // setup and plot the data:
  * const graph = new hsGraphD3.GraphCartesian(root);
  * graph.addSeries('column', {x:'State', y:'costs'});
- * graph.defaults.scales.dims.hor.type = 'ordinal';
  * graph.defaults.series[0].gap = 0.5;
  * graph.defaults.grids.ver.major.rendered = false;
- * graph.render(data).update(1000, data =&gt; {
+ * graph.render(data).update(2000, data =&gt; {
  *      data.rows.forEach(row =&gt; row[2] = 1.2*Math.random()-0.2);
  *      return true;
  * });
@@ -289,7 +292,7 @@
  * &lt;/example&gt;
  * 
  * 
- * ### Accessible format setting and defaults (for a cartesian graph):
+ * ### Column plot Default Settings:
  * &lt;example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}&gt;
  * &lt;file name='script.js'&gt;
  * const log = hsUtil.log('');
@@ -298,15 +301,12 @@
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
  *      graph.addSeries('column', {x:'state', y:'volume'});
- *      graph.defaults.scales.dims.hor.type = 'ordinal';
- *      graph.defaults.series[0].gap = 0.5;
- *      graph.defaults.grids.ver.major.rendered = false;
- *      return graph.defaults;
+ *      return graph.defaults.series[0];
  * }
  * 
  * m.mount(root, {
  *   view:() =&gt; m('div', {style:'background-color:#eee; font-family:Monospace'}, [
- *      m('div', m.trust('graph.defaults = ' + defaults)), 
+ *      m('div', m.trust('graph.defaults.series[0] = ' + defaults)), 
  *      m('div.myGraph', '')
  *   ]),
  *   oncreate: () =&gt; {
@@ -338,6 +338,12 @@ Series.register('column', <span class="fstat-no" title="function not covered" >(
 &nbsp;
 &nbsp;
 export class Column extends OrdinalSeriesPlot {
+<span class="fstat-no" title="function not covered" >    getDefaults(</span>): OrdinalPlotDefaults {
+        const defs = <span class="cstat-no" title="statement not covered" >super.getDefaults();</span>
+<span class="cstat-no" title="statement not covered" >        this.cfg.defaults.scales.dims.hor.type = 'ordinal';</span>
+<span class="cstat-no" title="statement not covered" >        return defs;</span>
+    }
+    
 <span class="fstat-no" title="function not covered" >    preRender(</span>data:DataSet, domains:Domains): void {
 <span class="cstat-no" title="statement not covered" >        super.preRender(data, domains);</span>
         const def = (&lt;OrdinalPlotDefaults&gt;<span class="cstat-no" title="statement not covered" >this.cfg.defaults.series[this.key]);</span>

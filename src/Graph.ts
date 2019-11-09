@@ -2,7 +2,7 @@
  * # Graph
  * 
  * The base class for Graph types.
- * Takes care of the following tasks:
+ * Takes care of the overall orchestration of the Graph, including the following tasks:
  * - setting up the SVG environment for the `Graph`
  * - creating a central {@link GraphComponent.GraphCfg configuration object} that is used throughout the library.
  * - creating and managing the {@link GraphComponent components} to render in ths `Graph`
@@ -11,10 +11,51 @@
  * - adding {@link SeriesPlot `series`} to render by calling {@link Graph.Graph.addSeries `addSeries`}
  * - rendering the graph by calling {@link Graph.Graph.render `render`}
  * - managing a central {@link Graph.Graph.transition `transition`} that applies to all components.   
+ * 
+ * ### Graph Management Phases
+ * Graph Management is dividied into the following phases:
+ * 1. **Graph creation**: `const graph = new xxxGraph(root);`
+ *     - creates the graph's {@link GraphComponent components} and their 
+ *       {@link Graph.Graph.createComponents sequence of rendering} in the DOM
+ *     - sets the factory {@link Settings default settings} for all components
+ * 2. **Graph configuration**:
+ *     - adding series: `graph.addSeries(<type>, {y:'State', x:'costs'});`
+ *     - configuring defaults: e.g., `graph.defaults.grids.hor.major.rendered = false;`
+ * 3. **Graph rendering**: `graph.render(<data>)`
+ *     - sets the graph-wide transition timing and easing
+ *     - starts a {@link Graph.LifecycleCalls render lifecycle} by calling each of the lifecycle methods on all components:
+ *         - Once, following graph creation, {@Link Graph.LifecycleCalls.initialize initializes} the components
+ *         - Calls {@link Graph.LifecycleCalls.preRender preRender} for any regular preparation
+ *         - Calls {@link Graph.LifecycleCalls.renderComponent renderComponent} to render each component
+ *     - returns a {@link Graph.RenderChain RenderChain} that can be used to dynamically {@link Graph.RenderChain.update update}
+ *       the data or settings, which triggers a new render lifecycle.
+ * 
+ * ### Graph Default Settings:
+ * <example height=300px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
+ * <file name='script.js'>
+ * const log = hsUtil.log('');
+ * let defaults;
+ * 
+ * m.mount(root, {
+ *   view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [
+ *      m('div', m.trust('graph.defaults.graph = ' + defaults)), 
+ *      m('div.myGraph', '')
+ *   ]),
+ *   oncreate: () => {
+ *      const svgRoot = root.getElementsByClassName('myGraph');
+ *      if (svgRoot && svgRoot.length && !defaults) { 
+ *          const colors = ['#800', '#080', '#008'];
+ *          defaults = hsUtil.log
+ *              .inspect(new hsGraphD3.GraphCartesian(svgRoot[0]).defaults.graph, null, '   ', colors)
+ *              .replace(/\n/g, '<br>')
+ *      }
+ *   } 
+ * });
+ * </file>
+ * </example>
  */
 
-/** */
-
+/** the modules logging setup. */
 import { log as gLog }      from 'hsutil';   const log = gLog('Graph');
 
 import { select as d3Select}from 'd3';
@@ -23,7 +64,8 @@ import * as d3              from 'd3';
 import { GraphComponent}    from './GraphComponent';
 import { ComponentDefaults} from './GraphComponent';
 import { GraphCfg}          from './GraphComponent';
-import { Series, SeriesDimensions }           from './Series';
+import { Series }           from './Series';
+import { SeriesDimensions } from './Series';
 import { Scales }           from './Scale';
 import { ScalesDefaults }   from './Scale';
 import { Axes }             from './Axis';
@@ -33,7 +75,12 @@ import { DefaultsType }     from './Settings';
 import { d3Base }           from './Settings';
 import { SeriesPlot }       from './SeriesPlot';
 
-const vpWidth:number    = 1000;
+/** 
+ * The standard width of the viewport, in viewport coordinates. 
+ * Viewport coordinates are established via the SVG `viewBox` node, 
+ * independant of the actual viewport size in pixels.
+ */
+const vpWidth:number = 1000;
 
 /** 
  * Basic `ValueDef` definition: 
@@ -134,7 +181,8 @@ export interface RenderChain {
 export interface LifecycleCalls {
     /** 
      * called the first time the `Graph` is rendered, before any of the other lifecycle methods. 
-     * At this point, all components have been created and the tree-wide transition has been set.
+     * At this point, all components have been created, defaults have been defined, 
+     * and the tree-wide transition has been set.
      */
     initialize(svg:d3Base):void;
 
@@ -357,7 +405,14 @@ export abstract class Graph implements LifecycleCalls {
         };
     }
 
-    /** creates the list of `GraphComponents` and determines the rendering order. */
+    /** 
+     * creates the list of `GraphComponents` and determines the rendering order: 
+     * - Scales: not rendered explicitly, but used in other components
+     * - Canvas: the background area for the plot
+     * - Grids
+     * - Axes
+     * - Series
+     */
     private createComponents(cfg:GraphCfg):GraphComponent[] {
         return [
             new Scales(cfg),

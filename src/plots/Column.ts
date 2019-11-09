@@ -21,10 +21,9 @@
  * // setup and plot the data:
  * const graph = new hsGraphD3.GraphCartesian(root);
  * graph.addSeries('column', {x:'State', y:'costs'});
- * graph.defaults.scales.dims.hor.type = 'ordinal';
  * graph.defaults.series[0].gap = 0.5;
  * graph.defaults.grids.ver.major.rendered = false;
- * graph.render(data).update(1000, data => {
+ * graph.render(data).update(2000, data => {
  *      data.rows.forEach(row => row[2] = 1.2*Math.random()-0.2);
  *      return true;
  * });
@@ -33,7 +32,7 @@
  * </example>
  * 
  * 
- * ### Accessible format setting and defaults (for a cartesian graph):
+ * ### Column plot Default Settings:
  * <example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
  * <file name='script.js'>
  * const log = hsUtil.log('');
@@ -42,15 +41,12 @@
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
  *      graph.addSeries('column', {x:'state', y:'volume'});
- *      graph.defaults.scales.dims.hor.type = 'ordinal';
- *      graph.defaults.series[0].gap = 0.5;
- *      graph.defaults.grids.ver.major.rendered = false;
- *      return graph.defaults;
+ *      return graph.defaults.series[0];
  * }
  * 
  * m.mount(root, {
  *   view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [
- *      m('div', m.trust('graph.defaults = ' + defaults)), 
+ *      m('div', m.trust('graph.defaults.series[0] = ' + defaults)), 
  *      m('div.myGraph', '')
  *   ]),
  *   oncreate: () => {
@@ -82,6 +78,12 @@ Series.register('column', (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions
 
 
 export class Column extends OrdinalSeriesPlot {
+    getDefaults(): OrdinalPlotDefaults {
+        const defs = super.getDefaults();
+        this.cfg.defaults.scales.dims.hor.type = 'ordinal';
+        return defs;
+    }
+    
     preRender(data:DataSet, domains:Domains): void {
         super.preRender(data, domains);
         const def = (<OrdinalPlotDefaults>this.cfg.defaults.series[this.key]);

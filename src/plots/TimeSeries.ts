@@ -38,7 +38,35 @@
  *      if (data.rows.length > 10) { data.rows.shift(); }
  *      return true;
  * });
-
+ * </file>
+ * </example>
+ * 
+ * ### TimeSeries plot Default Settings:
+ * <example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
+ * <file name='script.js'>
+ * const log = hsUtil.log('');
+ * let defaults;
+ * 
+ * function createGraph(svgRoot) {
+ *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
+ *      graph.addSeries('timeseries', {x:'date', y:'volume', r:'time'});
+ *      return graph.defaults.series[0];
+ * }
+ * 
+ * m.mount(root, {
+ *   view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [
+ *      m('div', m.trust('graph.defaults.series[0] = ' + defaults)), 
+ *      m('div.myGraph', '')
+ *   ]),
+ *   oncreate: () => {
+ *      const svgRoot = root.getElementsByClassName('myGraph');
+ *      if (svgRoot && svgRoot.length && !defaults) { 
+ *          const colors = ['#800', '#080', '#008'];
+ *          defaults = hsUtil.log.inspect(createGraph(svgRoot[0]), null, '   ', colors)
+ *              .replace(/\n/g, '<br>')
+ *      }
+ *   } 
+ * });
  * </file>
  * </example>
  */

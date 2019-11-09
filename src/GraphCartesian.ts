@@ -53,6 +53,29 @@
  * </file>
  * </example>
  * 
+ * ### GraphCartesian Default Settings:
+ * <example height=300px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
+ * <file name='script.js'>
+ * const log = hsUtil.log('');
+ * let defaults;
+ * 
+ * m.mount(root, {
+ *   view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [
+ *      m('div', m.trust('graph.defaults = ' + defaults)), 
+ *      m('div.myGraph', '')
+ *   ]),
+ *   oncreate: () => {
+ *      const svgRoot = root.getElementsByClassName('myGraph');
+ *      if (svgRoot && svgRoot.length && !defaults) { 
+ *          const colors = ['#800', '#080', '#008'];
+ *          defaults = hsUtil.log
+ *              .inspect(new hsGraphD3.GraphCartesian(svgRoot[0]).defaults, null, '   ', colors)
+ *              .replace(/\n/g, '<br>')
+ *      }
+ *   } 
+ * });
+ * </file>
+ * </example>
  */
 
  /** */
@@ -82,21 +105,25 @@ import "./plots/Bar";
 export interface CartDimensions extends GraphDimensions { hor:ValueDef[]; ver:ValueDef[]; size:ValueDef[]; }
 
 export class GraphCartesian extends Graph {
-    /**
-     * adds a series to the plot.
-     * At a minimum, an x- and y coordinate column name needs to be specified to use on the data.
-     * Accordingly, scales will be defined for each of the coordinate indexes.
-     * 
-     * @param type type of plot to use, e.g. 'bubble' or 'scatter'
-     * @param dims mapping of data column names to the series dimensions used to plot the series
-     */
-    public addSeries(type:string, dims:CartSeriesDimensions):SeriesPlot {
-        const series = super.addSeries(type, dims);
+
+    protected makeDefaults() {
+        super.makeDefaults();
         const scalesDefaults = <ScalesDefaults>this.config.defaults.scales;
         scalesDefaults.dims['hor']  = scalesDefaults.dims['hor']  || scaleDefault();    // auto viewport range
         scalesDefaults.dims['ver']  = scalesDefaults.dims['ver']  || scaleDefault();    // auto viewport range
         scalesDefaults.dims['size'] = scalesDefaults.dims['size'] || scaleDefault(5, 20);  
-        return series;
+    }
+
+    /**
+     * adds a series to the plot. The series can assume the following scale defaults to have been set:
+     * - hor: scale defaults for the horizontal axis
+     * - ver: scale defaults for the vertical axis
+     * - size: scale defaults for the marker size
+     * @param type type of plot to use, e.g. 'bubble' or 'scatter'
+     * @param dims mapping of data column names to the series dimensions used to plot the series
+     */
+    public addSeries(type:string, dims:CartSeriesDimensions):SeriesPlot {
+        return super.addSeries(type, dims);
     }
 
     /**

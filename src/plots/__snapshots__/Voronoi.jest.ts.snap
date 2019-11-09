@@ -40,14 +40,14 @@ exports[`Voronoi should plot voronoi diagram 1`] = `
         <line
           x1="20"
           x2="980"
-          y1="493"
-          y2="493"
+          y1="470"
+          y2="470"
         />
         <line
           x1="20"
           x2="980"
-          y1="247"
-          y2="247"
+          y1="220"
+          y2="220"
         />
       </g>
       <g
@@ -60,86 +60,86 @@ exports[`Voronoi should plot voronoi diagram 1`] = `
         <line
           x1="20"
           x2="980"
-          y1="690"
-          y2="690"
+          y1="670"
+          y2="670"
         />
         <line
           x1="20"
           x2="980"
-          y1="641"
-          y2="641"
+          y1="620"
+          y2="620"
         />
         <line
           x1="20"
           x2="980"
-          y1="592"
-          y2="592"
+          y1="570"
+          y2="570"
         />
         <line
           x1="20"
           x2="980"
-          y1="542"
-          y2="542"
+          y1="520"
+          y2="520"
         />
         <line
           x1="20"
           x2="980"
-          y1="493"
-          y2="493"
+          y1="470"
+          y2="470"
         />
         <line
           x1="20"
           x2="980"
-          y1="444"
-          y2="444"
+          y1="420"
+          y2="420"
         />
         <line
           x1="20"
           x2="980"
-          y1="395"
-          y2="395"
+          y1="370"
+          y2="370"
         />
         <line
           x1="20"
           x2="980"
-          y1="345"
-          y2="345"
+          y1="320"
+          y2="320"
         />
         <line
           x1="20"
           x2="980"
-          y1="296"
-          y2="296"
+          y1="270"
+          y2="270"
         />
         <line
           x1="20"
           x2="980"
-          y1="247"
-          y2="247"
+          y1="220"
+          y2="220"
         />
         <line
           x1="20"
           x2="980"
-          y1="198"
-          y2="198"
+          y1="170"
+          y2="170"
         />
         <line
           x1="20"
           x2="980"
-          y1="148"
-          y2="148"
+          y1="120"
+          y2="120"
         />
         <line
           x1="20"
           x2="980"
-          y1="99"
-          y2="99"
+          y1="70"
+          y2="70"
         />
         <line
           x1="20"
           x2="980"
-          y1="50"
-          y2="50"
+          y1="20"
+          y2="20"
         />
       </g>
       <g
@@ -152,14 +152,14 @@ exports[`Voronoi should plot voronoi diagram 1`] = `
         <line
           x1="133"
           x2="133"
-          y1="690"
-          y2="50"
+          y1="670"
+          y2="20"
         />
         <line
           x1="698"
           x2="698"
-          y1="690"
-          y2="50"
+          y1="670"
+          y2="20"
         />
       </g>
       <g
@@ -172,56 +172,56 @@ exports[`Voronoi should plot voronoi diagram 1`] = `
         <line
           x1="20"
           x2="20"
-          y1="690"
-          y2="50"
+          y1="670"
+          y2="20"
         />
         <line
           x1="133"
           x2="133"
-          y1="690"
-          y2="50"
+          y1="670"
+          y2="20"
         />
         <line
           x1="246"
           x2="246"
-          y1="690"
-          y2="50"
+          y1="670"
+          y2="20"
         />
         <line
           x1="359"
           x2="359"
-          y1="690"
-          y2="50"
+          y1="670"
+          y2="20"
         />
         <line
           x1="472"
           x2="472"
-          y1="690"
-          y2="50"
+          y1="670"
+          y2="20"
         />
         <line
           x1="585"
           x2="585"
-          y1="690"
-          y2="50"
+          y1="670"
+          y2="20"
         />
         <line
           x1="698"
           x2="698"
-          y1="690"
-          y2="50"
+          y1="670"
+          y2="20"
         />
         <line
           x1="811"
           x2="811"
-          y1="690"
-          y2="50"
+          y1="670"
+          y2="20"
         />
         <line
           x1="924"
           x2="924"
-          y1="690"
-          y2="50"
+          y1="670"
+          y2="20"
         />
       </g>
     </g>
@@ -242,7 +242,7 @@ exports[`Voronoi should plot voronoi diagram 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         text-anchor="middle"
-        transform="translate(0, 690)"
+        transform="translate(0, 670)"
       >
         <path
           class="domain"
@@ -447,13 +447,13 @@ exports[`Voronoi should plot voronoi diagram 1`] = `
       >
         <path
           class="domain"
-          d="M-5,690.5H0.5V50.5H-5"
+          d="M-5,670.5H0.5V20.5H-5"
           stroke="currentColor"
         />
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,690.5)"
+          transform="translate(0,670.5)"
         >
           <line
             fill-opacity="0"
@@ -473,7 +473,7 @@ exports[`Voronoi should plot voronoi diagram 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,641.5)"
+          transform="translate(0,620.5)"
         >
           <line
             fill-opacity="0"
@@ -493,7 +493,7 @@ exports[`Voronoi should plot voronoi diagram 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,592.5)"
+          transform="translate(0,570.5)"
         >
           <line
             fill-opacity="0"
@@ -513,7 +513,7 @@ exports[`Voronoi should plot voronoi diagram 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,542.5)"
+          transform="translate(0,520.5)"
         >
           <line
             fill-opacity="0"
@@ -533,7 +533,7 @@ exports[`Voronoi should plot voronoi diagram 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,493.5)"
+          transform="translate(0,470.5)"
         >
           <line
             fill-opacity="0"
@@ -553,7 +553,7 @@ exports[`Voronoi should plot voronoi diagram 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,444.5)"
+          transform="translate(0,420.5)"
         >
           <line
             fill-opacity="0"
@@ -573,7 +573,7 @@ exports[`Voronoi should plot voronoi diagram 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,395.5)"
+          transform="translate(0,370.5)"
         >
           <line
             fill-opacity="0"
@@ -593,7 +593,7 @@ exports[`Voronoi should plot voronoi diagram 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,345.5)"
+          transform="translate(0,320.5)"
         >
           <line
             fill-opacity="0"
@@ -613,7 +613,7 @@ exports[`Voronoi should plot voronoi diagram 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,296.5)"
+          transform="translate(0,270.5)"
         >
           <line
             fill-opacity="0"
@@ -633,7 +633,7 @@ exports[`Voronoi should plot voronoi diagram 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,247.5)"
+          transform="translate(0,220.5)"
         >
           <line
             fill-opacity="0"
@@ -653,7 +653,7 @@ exports[`Voronoi should plot voronoi diagram 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,198.5)"
+          transform="translate(0,170.5)"
         >
           <line
             fill-opacity="0"
@@ -673,7 +673,7 @@ exports[`Voronoi should plot voronoi diagram 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,148.5)"
+          transform="translate(0,120.5)"
         >
           <line
             fill-opacity="0"
@@ -693,7 +693,7 @@ exports[`Voronoi should plot voronoi diagram 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,99.5)"
+          transform="translate(0,70.5)"
         >
           <line
             fill-opacity="0"
@@ -713,7 +713,7 @@ exports[`Voronoi should plot voronoi diagram 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,50.5)"
+          transform="translate(0,20.5)"
         >
           <line
             fill-opacity="0"
@@ -745,7 +745,7 @@ exports[`Voronoi should plot voronoi diagram 1`] = `
           fill-opacity="0.5"
         >
           <path
-            d="M383.6054421768707,404.3676870748299L544.7996848710959,483.95734440510364M383.6054421768707,404.3676870748299L0,567.4M544.7996848710959,483.95734440510364L615.8525485436892,700M544.7996848710959,483.95734440510364L896.3356299212597,0M383.6054421768707,404.3676870748299L97.32743362831854,0"
+            d="M389.09013605442175,381.50535845107277L542.4973813238244,456.08488076665924M389.09013605442175,381.50535845107277L0,544.3246153846154M542.4973813238244,456.08488076665924L623.9010922330096,700M542.4973813238244,456.08488076665924L879.1742125984251,0M389.09013605442175,381.50535845107277L114.77765486725656,0"
           />
         </g>
         <g
@@ -756,7 +756,7 @@ exports[`Voronoi should plot voronoi diagram 1`] = `
           stroke-width="5"
         >
           <path
-            d="M383.6054421768707,404.3676870748299L544.7996848710959,483.95734440510364M383.6054421768707,404.3676870748299L0,567.4M544.7996848710959,483.95734440510364L615.8525485436892,700M544.7996848710959,483.95734440510364L896.3356299212597,0M383.6054421768707,404.3676870748299L97.32743362831854,0"
+            d="M389.09013605442175,381.50535845107277L542.4973813238244,456.08488076665924M389.09013605442175,381.50535845107277L0,544.3246153846154M542.4973813238244,456.08488076665924L623.9010922330096,700M542.4973813238244,456.08488076665924L879.1742125984251,0M389.09013605442175,381.50535845107277L114.77765486725656,0"
           />
         </g>
         <g
@@ -769,22 +769,22 @@ exports[`Voronoi should plot voronoi diagram 1`] = `
         >
           <circle
             cx="20"
-            cy="370"
+            cy="345"
             r="10"
           />
           <circle
             cx="156"
-            cy="690"
+            cy="670"
             r="10"
           />
           <circle
             cx="472"
-            cy="50"
+            cy="20"
             r="10"
           />
           <circle
             cx="980"
-            cy="419"
+            cy="395"
             r="10"
           />
         </g>
