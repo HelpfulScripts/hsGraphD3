@@ -33,15 +33,17 @@
 
 import { extent }           from 'd3';
 import { log as gLog }      from 'hsutil';   const log = gLog('Series');
-import { DataSet, GraphDimensions }          from './Graph';
+import { DataSet, ValueFn, NumDomain, OrdDomain } from './Graph';
+import { GraphDimensions }  from './Graph';
+import { ValueDef }         from './Graph';
 import { Domains }          from './Graph';
 import { d3Base }           from './Settings';
 import { GraphComponent }   from './GraphComponent'; 
 import { ComponentDefaults }from './GraphComponent'; 
 import { GraphCfg }         from './GraphComponent'; 
 import { SeriesPlot }       from './SeriesPlot';
-import { CartDimensions }   from './GraphCartesian';
 import { schemeDark2 as colors } from 'd3';
+import { ScalesDefaults }   from './Scale';
 
 /**
  * The `SeriesDimensions` that specify the values to use for different 
@@ -51,9 +53,75 @@ import { schemeDark2 as colors } from 'd3';
  * - a string that identifies the column name in the data set to use
  * - or a number constant 
  */
-export interface SeriesDimensions { [dim:string]: string|number; }
+export interface SeriesDimensions { [dim:string]: ValueDef; }
 
 type PlotFactory = (cfg:GraphCfg, seriesName:string, dims:SeriesDimensions) => SeriesPlot;
+
+
+function expandNumDomain(dataSet:DataSet, domain:NumDomain, col:ValueDef, dim:string):NumDomain {
+    if (!domain) { 
+        log.debug(`num domain not initialized for dimension '${dim}'`); 
+        domain = [1e99, -1e99]; 
+    }
+
+    if (typeof(col)==='function') {
+        const dataDom = extent(dataSet.rows, ((r, i:number) => <number>(<ValueFn>col)(i)));
+        domain[0] = Math.min(domain[0], dataDom[0]);
+        domain[1] = Math.max(domain[1], dataDom[1]);
+    } else {
+        const colNum = dataSet.colNames.indexOf(col);
+        if (colNum < 0) { log.warn(`did not find column '${col}' in data set ${dataSet.colNames.join(', ')}`); }
+        else {
+            const dataDom = extent(dataSet.rows, (r => <number>r[colNum]));
+            domain[0] = Math.min(domain[0], dataDom[0]);
+            domain[1] = Math.max(domain[1], dataDom[1]);
+            if (domain[1] === domain[0]) { 
+                domain[0] = 0.9*domain[0]; 
+                domain[1] = 1.1*domain[1];
+            }
+        }
+    }
+    return domain;
+}
+
+function expandOrdinalDomain(dataSet:DataSet, domain:OrdDomain, col:ValueDef, dim:string):OrdDomain {
+    if (!domain) { 
+        log.debug(`ord domain not initialized for dimension '${dim}'`); 
+        domain = []; 
+    }
+    if (typeof(col)==='function') {
+        dataSet.rows.forEach((d,i) => {
+            const dataDom = <string>col(i);
+            if (domain.indexOf(dataDom) < 0) { domain.push(dataDom); }
+        });
+    } else {
+        const colNum = dataSet.colNames.indexOf(col);
+        if (colNum < 0) { log.warn(`did not find column '${col}' in data set ${dataSet.colNames.join(', ')}`); }
+        else {
+            dataSet.rows.forEach((d,i) => {
+                const dataDom = <string>d[colNum];
+                if (domain.indexOf(dataDom) < 0) { domain.push(dataDom); }
+            });
+       }
+    }
+    return domain;
+}
+
+function stretchDomains(dataSet:DataSet, s:SeriesPlot, domains:Domains, defs:ScalesDefaults) {
+    const dims:GraphDimensions = s.dimensions;
+    Object.keys(dims).map(dim => {
+        const type = defs.dims[dim].type;
+        log.debug(`stretchDomain ${dim}: ${type}`);
+        dims[dim].map(col => { if (col!==undefined) { 
+            switch(type) {
+                case 'ordinal':     domains[dim] = expandOrdinalDomain(dataSet, <OrdDomain>domains[dim], col, dim); break;
+                default:            domains[dim] = expandNumDomain(dataSet, <NumDomain>domains[dim], col, dim);
+            }
+        }});
+    });
+    // log.info(log.inspect(domains, null));
+}
+
 
 export class Series extends GraphComponent {
     static type = 'series';
@@ -93,18 +161,22 @@ export class Series extends GraphComponent {
     } 
 
     preRender(data:DataSet | DataSet[], domains:Domains): void {
-        this.series.forEach((s:SeriesPlot, i:number) => {
-            if ((<DataSet>data).colNames) { s.preRender(<DataSet>data, domains); } 
-            else { s.preRender(data[i % this.series.length], domains); }
-        });
+        this.series.forEach((s:SeriesPlot, i:number) => s.preRender((<DataSet>data).colNames? 
+                data : data[i % this.series.length], 
+                domains
+            ) 
+        );
     } 
 
-    /** renders the component for the given data */
+    /** 
+     * renders the component for the given data.
+     * If `data` is an array of `DataSets`, each data set will be used to plot a different registered series, 
+     * in the order they were regeistered.
+     */
     renderComponent(data:DataSet | DataSet[]) {
-        this.series.forEach((s:SeriesPlot, i:number) => {
-            if ((<DataSet>data).colNames) { s.renderComponent(<DataSet>data); } 
-            else { s.renderComponent(data[i % this.series.length]); }
-        });
+        this.series.forEach((s:SeriesPlot, i:number) => s.renderComponent((<DataSet>data).colNames? 
+            data : data[i % this.series.length]
+        ));
     }
 
     /** creates a default entry for the component type in `Defaults` */
@@ -123,47 +195,18 @@ export class Series extends GraphComponent {
      * @return an array of [min, max] domains ranges, indexed by data column
      */
     expandDomain(data:DataSet | DataSet[], domains:Domains):Domains {
-        function stretchDomains(dataSet:DataSet, s:SeriesPlot) {
-            const dims:GraphDimensions = s.dimensions;
-            Object.keys(dims).map(dim => {
-                if (!domains[dim]) { 
-                    log.warn(`domain not initialized for dimension '${dim}'`); 
-                    domains[dim] = [1e99, -1e99];
-                }
-                dims[dim].map(col => { if (col!==undefined) {
-                    if (typeof(col)==='number') {
-                        domains[dim][0] = Math.min(domains[dim][0], col);
-                        domains[dim][1] = Math.max(domains[dim][1], col);
-                    } else {
-                        const colNum = dataSet.colNames.indexOf(col);
-                        if (colNum < 0) { log.warn(`did not find column '${col}' in data set ${dataSet.colNames.join(', ')}`); }
-                        else {
-                            const dataDom = extent(dataSet.rows, (r => <number>r[colNum]));
-                            domains[dim][0] = Math.min(domains[dim][0], dataDom[0]);
-                            domains[dim][1] = Math.max(domains[dim][1], dataDom[1]);
-                            if (domains[dim][1] === domains[dim][0]) { 
-                                domains[dim][0] = 0.9*domains[dim][0]; 
-                                domains[dim][1] = 1.1*domains[dim][1];
-                            }
-                        }
-                    }
-                }});
-            });
-        }
-
         if ((<DataSet>data).colNames) {  
             // use same dataset for each series
-            this.series.forEach((s:SeriesPlot) => stretchDomains(<DataSet>data, s));
+            this.series.forEach((s:SeriesPlot) => stretchDomains(<DataSet>data, s, domains, <ScalesDefaults>this.cfg.defaults.scales));
         } else {
             // assign dataset to series based on index
             this.series.forEach((s:SeriesPlot, i:number) => {
                 const dataSet = data[i % (<DataSet[]>data).length];
-                stretchDomains(dataSet, s);
+                stretchDomains(dataSet, s, domains, <ScalesDefaults>this.cfg.defaults.scales);
             });
         }
         return domains;
     }
-
     
     /**
      * adds a series to the plot.

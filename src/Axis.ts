@@ -4,8 +4,6 @@
  */
 
 /** */
-import { axisTop }          from 'd3';
-import { axisRight }        from 'd3';
 import { format }           from 'd3';
 import { log as gLog }      from 'hsutil';   const log = gLog('Axis');
 import { GraphComponent }   from './GraphComponent'; 
@@ -14,6 +12,8 @@ import { ComponentDefaults }from './GraphComponent';
 import { Line }             from './GraphComponent';
 import { Text }             from './GraphComponent';
 import * as def             from './Settings';
+import { ScaleDims }        from './Scale';
+import { ScaleTypes }       from './Scale';
 import { ScalesDefaults }   from './Scale';
 import { UnitVp, d3Base }   from './Settings';
 import { setText }          from './Settings';
@@ -31,6 +31,8 @@ export interface AxisDefaults extends ComponentDefaults {
     tickWidth:  UnitVp;
     tickMarks:  Line;
     tickLabel:  Text;
+    crossing:   string|number|Date|'auto';
+
 }
 
 export interface AxesDefaults extends ComponentDefaults {
@@ -80,6 +82,7 @@ export class Axes extends GraphComponent {
 
 export class Axis {
     private dir: Direction;
+    private pos: string;    // left/right or top/bottom
     private cfg: GraphCfg;
     private svg: d3Base;
 
@@ -97,7 +100,8 @@ export class Axis {
             line:       def.defaultLine(1),
             tickWidth:  5,
             tickMarks:  def.defaultLine(2),
-            tickLabel:  def.defaultText()
+            tickLabel:  def.defaultText(),
+            crossing:   'auto'
         };
     }
 
@@ -107,42 +111,75 @@ export class Axis {
     
     public renderComponent() {
         const trans = this.cfg.transition;
-        const horScales = this.cfg.scales.hor;
-        const verScales = this.cfg.scales.ver;
-        const style = <AxisDefaults>this.cfg.defaults.axes[this.dir];
-        let axis:any;
-        const margins = (<ScalesDefaults>this.cfg.defaults.scales).margin;
+        const axisDef = <AxisDefaults>this.cfg.defaults.axes[this.dir];
         this.cfg.baseSVG.select('.axes')
             .attr('color', this.cfg.defaults.axes.color);
 
-        setStroke(this.svg, style.line);
-
-        if (this.dir===Direction.horizontal) {
-            axis = axisTop(horScales);
-            const yCrossing = Math.max(margins.left, Math.min(verScales(0), this.cfg.viewPort.height-margins.right));
-            this.svg.transition(trans).attr("transform", `translate(0, ${yCrossing})`);
-        } else {
-            axis = axisRight(verScales);
-            const xCrossing = Math.max(margins.top, Math.min(horScales(0), this.cfg.viewPort.width-margins.bottom));
-            this.svg.transition(trans).attr("transform", `translate(${xCrossing}, 0)`);
-        }
-        axis.tickSize(style.tickWidth);
-        axis.tickFormat(format('~g'));
-        this.svg.attr('color', style.color);
+        setStroke(this.svg, axisDef.line);
+        this.setTransform(this.cfg.scales);
+        const axis:any = this.getD3Axis(this.cfg.scales, axisDef);
         this.svg.transition(trans).call(axis);
-        if (style.line.rendered) {
-        } else {
+
+        this.svg.attr('color', axisDef.color);
+        if (!axisDef.line.rendered) {
             this.svg.selectAll('path').attr('style', 'visibility: hidden');
         }
-        if (style.tickLabel.rendered) {
-            setText(this.svg, style.tickLabel, trans);
+        if (axisDef.tickLabel.rendered) {
+            setText(this.svg, axisDef.tickLabel, trans);
         } else {
             this.svg.selectAll('text').attr('style', 'visibility: hidden');
         }
-        if (style.tickMarks.rendered) {
-            setStroke(this.svg.selectAll('.tick line'), style.tickMarks);
+        if (axisDef.tickMarks.rendered) {
+            setStroke(this.svg.selectAll('.tick line'), axisDef.tickMarks);
         } else {
             this.svg.selectAll('.tick line').attr('style', 'visibility: hidden');
         }
+    }
+
+    setTransform(scales:ScaleDims) {
+        const margins = (<ScalesDefaults>this.cfg.defaults.scales).margin;
+        const trans = this.cfg.transition;
+        if (this.dir===Direction.horizontal) {
+            const axisDef = <AxisDefaults>this.cfg.defaults.axes.ver;
+            const dom = scales.ver.domain();
+            const cross:ScaleTypes = axisDef.crossing==='auto'? ((dom[0] < 0 && dom[1] > 0)? 0 : dom[0]) : axisDef.crossing;
+            let yCrossing = scales.ver(cross) + ((scales.ver.type()==='ordinal')? scales.ver.step() : 0);
+            this.pos = 'bottom';
+            if (yCrossing < margins.top) {
+                yCrossing = margins.top;
+            } else if (yCrossing > this.cfg.viewPort.height-margins.bottom) {
+                yCrossing = this.cfg.viewPort.height-margins.bottom;
+                this.pos = 'top';
+            }
+            const dx = scales.hor.type()==='ordinal'? scales.hor.paddingOuter()*scales.hor.step()/2 : 0;
+            this.svg.transition(trans).attr("transform", `translate(${dx}, ${yCrossing})`);
+        } else {
+            const axisDef = <AxisDefaults>this.cfg.defaults.axes.hor;
+            const dom = scales.hor.domain();
+            const cross:ScaleTypes = axisDef.crossing==='auto'? ((dom[0] < 0 && dom[1] > 0)? 0 : dom[0]) : axisDef.crossing;
+            let xCrossing = scales.hor(cross);
+            this.pos = 'left';
+            if (xCrossing < margins.left) {
+                xCrossing = margins.left;
+                this.pos = 'right';
+            } else if (xCrossing > this.cfg.viewPort.width-margins.right) {
+                xCrossing = this.cfg.viewPort.width-margins.right;
+            }
+            const dy = scales.ver.type()==='ordinal'? scales.ver.paddingOuter()*scales.ver.step()/2 : 0;
+            this.svg.transition(trans).attr("transform", `translate(${xCrossing}, ${dy})`);
+        }
+    }
+
+    getD3Axis(scales:ScaleDims, axisDef:AxisDefaults) {
+        let axis:d3.Axis<d3.AxisDomain>;
+        if (this.dir===Direction.horizontal) {
+            axis = scales.hor.axis(this.pos);
+            if (scales.hor.type() === 'number') { axis.tickFormat(format('~g')); }
+        } else {
+            axis = scales.ver.axis(this.pos);
+            if (scales.ver.type() === 'number') { axis.tickFormat(format('~g')); }
+        }
+        axis.tickSize(axisDef.tickWidth);
+        return axis;
     }
 }

@@ -25,67 +25,118 @@
  /** */
 import { log as _log }          from 'hsutil'; const log = _log('Scale');
 import { ComponentDefaults }    from './GraphComponent'; 
-import { NumberScale }          from './GraphComponent'; 
 import { GraphComponent }       from './GraphComponent'; 
 import { GraphCfg }             from './GraphComponent';
 import { UnitVp }               from './Settings';
-import { scaleLinear }          from 'd3'; 
-import { scaleLog }             from 'd3'; 
-import { interpolateRound }     from 'd3'; 
+import * as d3                  from 'd3'; 
+import { Domain, OrdDomain, TimeDomain, NumDomain }               from './Graph';
 
-export type scaleTypes = 'linear' | 'log';
+export type ScaleTypes = string|number|Date;
 
-export interface NumericDefaults {
-    min: number|'auto';
-    max: number|'auto';
+interface ScaleFn {
+    (x: ScaleTypes): number | undefined;
+}
+
+export type Range  = [UnitVp, UnitVp];
+
+export interface Scale extends ScaleFn {
+    copy(): this;
+    range(): Range;
+    range(range: Range): this;
+    rangeBand?():number;
+    interpolate?(args:any): this;
+    axis(loc:string):d3.Axis<d3.AxisDomain>;
+    domain(): Domain;
+    domain(domain: Domain): this;
+    ticks(count:number): number[];
+
+    bandwidth?(): number;
+    paddingInner?(padding?:number): number;
+    padding?(padding?:number): number;
+    paddingOuter?(padding?:number): number;
+    step?(): number;
+    type(): string;
+}
+
+/**
+ * 
+ */
+export interface ScaleDims {
+    [dim:string]: Scale;
+}
+
+
+
+/**
+ * Type of scale. For now, only 'number', 'date', and 'category' exist.
+ */
+export type ScaleType = 'linear' | 'log' | 'time' | 'ordinal';
+
+export type TimeString = string;    // 5/6/1990 2:57
+
+export interface RangeDefaults {
+    min: number|TimeString|'auto';
+    max: number|TimeString|'auto';
 }
 
 export type CategoricalDefaults = string[];
 
-export interface ScaleDefaults extends ComponentDefaults {
-    type:   scaleTypes;
+/**
+ * Specisifes the defaults of a specific scale.
+ */
+export interface ScaleDefaults {    //  extends ComponentDefaults {
+    type:   ScaleType;
     aggregateOverTime: boolean;   // 
-    domain: NumericDefaults | CategoricalDefaults;
-    range:  { min: UnitVp|'auto', max: UnitVp|'auto' };    
+    domain: RangeDefaults | CategoricalDefaults;
+    range:  { min: UnitVp|'auto', max: UnitVp|'auto' };  
 }
 
+/**
+ * 
+ */
+export interface ScaleDefaultsDims {
+    [dim:string]: ScaleDefaults;
+}
+
+/**
+ * Specifies the defaults of the Scales Component
+ */
 export interface ScalesDefaults extends ComponentDefaults {
     margin: { left:number; top:number; right:number; bottom:number; };
-    dims: {
-        [dim:string]: ScaleDefaults
-    };
+    dims: ScaleDefaultsDims;
 }
 
 export const scaleDefault = (minRange?:UnitVp, maxRange?:UnitVp):ScaleDefaults => { 
     const def:ScaleDefaults = {
-        type:   'linear',
+        type:    'linear',
         aggregateOverTime: true,                // 
         domain: {min: 'auto', max: 'auto'},     //  data domain
         range:  {                               //  viewport range
             min: minRange || 'auto', 
             max: maxRange || 'auto' 
-        }    
+        }
     };
     return def;
 };
 
+/**
+ * Manages the embedding of scales into the graph (margins, etc.) and provides
+ * a configuration for each scales used in the graph.
+ */
 export class Scales extends GraphComponent {
     static type = 'scales';
 
     constructor(cfg:GraphCfg) { super(cfg, null); }
 
     get componentType() { return Scales.type; }
-
     initialize(): void {} 
-
     preRender(): void {} 
-
     renderComponent() {}
 
     /** creates a default entry for the component type in `Defaults` */
     public createDefaults():ScalesDefaults {
         return {
-            margin: { left:20, top:50, right:20, bottom:10},
+            margin: { left:20, top:20, right:20, bottom:30},
             dims: {}
         };
     }
@@ -96,28 +147,145 @@ export class Scales extends GraphComponent {
      * @param domain the data domain to scale for
      * @param range the viewport range to scale for 
      */
-    public static createScale(scaleDef: ScaleDefaults, domain: [number, number], range?:[UnitVp, UnitVp]):NumberScale {
+    public static createScale(scaleDef: ScaleDefaults, domain: Domain, range?:Range):Scale {
         if (!scaleDef) { return; }
-        const domDef = <NumericDefaults>scaleDef.domain;
-        const rangeDef = scaleDef.range;
-        let scale:NumberScale;  //d3.ScaleLinear<number, number>;
-log.info(`create scale ${scaleDef.type}`);
-        switch(scaleDef.type) {
-            case 'log':     scale = scaleLog().interpolate(interpolateRound);
-                            break;
-            case 'linear':
-            default:        scale = scaleLinear().interpolate(interpolateRound);  
-            }
-        scale.domain([
-            domDef.min === 'auto'? domain[0] : domDef.min,
-            domDef.max === 'auto'? domain[1] : domDef.max
-        ])
-        .range([
-            (range && rangeDef.min === 'auto')? range[0] : <number>rangeDef.min, 
-            (range && rangeDef.max === 'auto')? range[1] : <number>rangeDef.max
-        ])
-        ;
-        return scale;
+        let scales = {
+            ordinal:    BandScale,
+            time:       TimeScale,
+            log:        LogScale,
+            linear:     LinearScale,
+        };
+        return new scales[scaleDef.type](scaleDef, domain, range).getScale();
     }
 }
 
+const axes = {
+    top:    d3.axisTop,
+    bottom: d3.axisBottom,
+    left:   d3.axisLeft,
+    right:  d3.axisRight
+};
+
+
+abstract class BaseScale {
+    constructor(protected d3Scale:any, protected scaleDef: ScaleDefaults, protected domain:Domain, protected range?:Range) {}
+
+    getScale():Scale {
+        function _range():Range;
+        function _range(r: Range): Scale;
+        function _range(r?:Range): any { 
+            if (r) { 
+                d3Scale.range(r); 
+                return scale;
+            } else {
+                return d3Scale.range(); 
+            }
+        }
+
+        function _domain(): Domain;
+        function _domain(d: Domain): Scale;
+        function _domain(d?:any):any { 
+            if (d) {
+                d3Scale.domain(d);
+                return scale;
+            } else {
+                return d3Scale.domain(); 
+            }
+        }
+        
+        const d3Scale = this.d3Scale;
+        const scale:Scale = (x:ScaleTypes) => d3Scale(x);
+    
+        scale.range = _range;
+        scale.domain = _domain;
+        scale.copy = ():Scale => d3Scale.copy();
+        scale.axis = (loc:string):d3.Axis<d3.AxisDomain> => axes[loc](d3Scale);
+        scale.ticks = this.getTicks();
+
+        scale.domain(this.getDomain());
+        scale.range(this.getRange());
+        scale.type = this.getType;
+        return scale;
+    }
+
+    protected abstract getType():string; 
+
+    protected getTicks() { return (count:number) => this.d3Scale.ticks(count); }
+
+    protected getDomain():Domain { return this.d3Scale.domain(); }
+    
+    getRange():Range {
+        const rangeDef = this.scaleDef.range;
+        return [
+            (this.range && rangeDef.min === 'auto')? this.range[0] : <number>rangeDef.min, 
+            (this.range && rangeDef.max === 'auto')? this.range[1] : <number>rangeDef.max
+        ];
+    }
+}
+
+class BandScale extends BaseScale {
+    constructor(protected scaleDef: ScaleDefaults, protected domain:Domain, protected range?:Range) { 
+        super(d3.scaleBand(), scaleDef, domain, range); 
+    }
+
+    getType() { return 'ordinal'; }
+
+    getScale():Scale {
+        const scale = super.getScale();
+        scale.bandwidth     = this.d3Scale.bandwidth;
+        scale.padding       = this.d3Scale.padding;
+        scale.paddingInner  = this.d3Scale.paddingInner;
+        scale.paddingOuter  = this.d3Scale.paddingOuter;
+        scale.step = this.d3Scale.step;
+        return scale;
+    }
+
+    protected getTicks() { 
+        return () => this.d3Scale.domain(); 
+    }
+
+    protected getDomain():Domain { 
+        return this.domain || []; 
+    }
+}
+
+
+class TimeScale extends BaseScale {
+    constructor(scaleDef: ScaleDefaults, protected domain:Domain, range?:Range) { 
+        super(d3.scaleTime().interpolate(d3.interpolateRound), scaleDef, domain, range); 
+    }
+
+    protected getType() { return 'time'; }
+
+    protected getDomain():TimeDomain {
+        const domDef = <RangeDefaults>this.scaleDef.domain;
+        return [
+            new Date(this.domain && domDef.min === 'auto'? this.domain[0] : domDef.min),
+            new Date(this.domain && domDef.max === 'auto'? this.domain[1] : domDef.max)
+        ];
+    }
+}
+
+class NumberScale extends BaseScale {
+    constructor(protected d3Scale:any, protected scaleDef: ScaleDefaults, protected domain:Domain, range?:Range) { 
+        super(d3Scale.interpolate(d3.interpolateRound), scaleDef, domain, range); 
+    }
+
+    protected getType() { return 'number'; }
+
+    protected getDomain():NumDomain {
+        const domDef = <RangeDefaults>this.scaleDef.domain;
+        return <NumDomain>[
+            (this.domain && domDef.min === 'auto'? this.domain[0] : domDef.min),
+            (this.domain && domDef.max === 'auto'? this.domain[1] : domDef.max)
+        ];
+    }
+}
+
+class LinearScale extends NumberScale {
+    constructor(scaleDef: ScaleDefaults, domain:Domain, range?:Range) { super(d3.scaleLinear(), scaleDef, domain, range); }
+}
+
+class LogScale extends NumberScale {
+    constructor(scaleDef: ScaleDefaults, domain:Domain, range?:Range) { super(d3.scaleLog(), scaleDef, domain, range); }
+}

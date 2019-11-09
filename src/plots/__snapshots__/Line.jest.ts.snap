@@ -242,11 +242,11 @@ exports[`Line plot constants should plot horizontal line 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         text-anchor="middle"
-        transform="translate(0, 680)"
+        transform="translate(0, 690)"
       >
         <path
           class="domain"
-          d="M20.5,-5V0.5H980.5V-5"
+          d="M20.5,5V0.5H980.5V5"
           stroke="currentColor"
         />
         <g
@@ -259,12 +259,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             -1
           </text>
@@ -279,12 +279,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             0
           </text>
@@ -299,12 +299,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             1
           </text>
@@ -319,12 +319,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             2
           </text>
@@ -339,12 +339,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             3
           </text>
@@ -359,12 +359,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             4
           </text>
@@ -379,12 +379,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             5
           </text>
@@ -399,12 +399,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             6
           </text>
@@ -419,12 +419,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             7
           </text>
@@ -442,12 +442,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
         stroke="currentColor"
         stroke-opacity="1"
         stroke-width="1"
-        text-anchor="start"
+        text-anchor="end"
         transform="translate(133, 0)"
       >
         <path
           class="domain"
-          d="M5,690.5H0.5V50.5H5"
+          d="M-5,690.5H0.5V50.5H-5"
           stroke="currentColor"
         />
         <g
@@ -460,12 +460,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             2
           </text>
@@ -480,12 +480,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             4
           </text>
@@ -500,12 +500,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             6
           </text>
@@ -520,12 +520,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             8
           </text>
@@ -540,12 +540,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             10
           </text>
@@ -560,12 +560,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             12
           </text>
@@ -580,12 +580,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             14
           </text>
@@ -600,12 +600,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             16
           </text>
@@ -620,12 +620,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             18
           </text>
@@ -640,12 +640,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             20
           </text>
@@ -660,12 +660,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             22
           </text>
@@ -680,12 +680,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             24
           </text>
@@ -700,12 +700,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             26
           </text>
@@ -720,12 +720,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             28
           </text>
@@ -947,7 +947,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
       >
         <path
           class="domain"
-          d="M20.5,-5V0.5H980.5V-5"
+          d="M20.5,5V0.5H980.5V5"
           stroke="currentColor"
         />
         <g
@@ -960,12 +960,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             -1
           </text>
@@ -980,12 +980,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             0
           </text>
@@ -1000,12 +1000,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             1
           </text>
@@ -1020,12 +1020,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             2
           </text>
@@ -1040,12 +1040,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             3
           </text>
@@ -1060,12 +1060,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             4
           </text>
@@ -1080,12 +1080,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             5
           </text>
@@ -1100,12 +1100,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             6
           </text>
@@ -1120,12 +1120,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             7
           </text>
@@ -1143,12 +1143,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
         stroke="currentColor"
         stroke-opacity="1"
         stroke-width="1"
-        text-anchor="start"
+        text-anchor="end"
         transform="translate(133, 0)"
       >
         <path
           class="domain"
-          d="M5,690.5H0.5V50.5H5"
+          d="M-5,690.5H0.5V50.5H-5"
           stroke="currentColor"
         />
         <g
@@ -1161,12 +1161,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             10
           </text>
@@ -1454,11 +1454,11 @@ exports[`Line plot data should plot line 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         text-anchor="middle"
-        transform="translate(0, 680)"
+        transform="translate(0, 690)"
       >
         <path
           class="domain"
-          d="M20.5,-5V0.5H980.5V-5"
+          d="M20.5,5V0.5H980.5V5"
           stroke="currentColor"
         />
         <g
@@ -1471,12 +1471,12 @@ exports[`Line plot data should plot line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             -1
           </text>
@@ -1491,12 +1491,12 @@ exports[`Line plot data should plot line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             0
           </text>
@@ -1511,12 +1511,12 @@ exports[`Line plot data should plot line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             1
           </text>
@@ -1531,12 +1531,12 @@ exports[`Line plot data should plot line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             2
           </text>
@@ -1551,12 +1551,12 @@ exports[`Line plot data should plot line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             3
           </text>
@@ -1571,12 +1571,12 @@ exports[`Line plot data should plot line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             4
           </text>
@@ -1591,12 +1591,12 @@ exports[`Line plot data should plot line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             5
           </text>
@@ -1611,12 +1611,12 @@ exports[`Line plot data should plot line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             6
           </text>
@@ -1631,12 +1631,12 @@ exports[`Line plot data should plot line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             7
           </text>
@@ -1654,12 +1654,12 @@ exports[`Line plot data should plot line 1`] = `
         stroke="currentColor"
         stroke-opacity="1"
         stroke-width="1"
-        text-anchor="start"
+        text-anchor="end"
         transform="translate(133, 0)"
       >
         <path
           class="domain"
-          d="M5,690.5H0.5V50.5H5"
+          d="M-5,690.5H0.5V50.5H-5"
           stroke="currentColor"
         />
         <g
@@ -1672,12 +1672,12 @@ exports[`Line plot data should plot line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             2
           </text>
@@ -1692,12 +1692,12 @@ exports[`Line plot data should plot line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             4
           </text>
@@ -1712,12 +1712,12 @@ exports[`Line plot data should plot line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             6
           </text>
@@ -1732,12 +1732,12 @@ exports[`Line plot data should plot line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             8
           </text>
@@ -1752,12 +1752,12 @@ exports[`Line plot data should plot line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             10
           </text>
@@ -1772,12 +1772,12 @@ exports[`Line plot data should plot line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             12
           </text>
@@ -1792,12 +1792,12 @@ exports[`Line plot data should plot line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             14
           </text>
@@ -1812,12 +1812,12 @@ exports[`Line plot data should plot line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             16
           </text>
@@ -1832,12 +1832,12 @@ exports[`Line plot data should plot line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             18
           </text>
@@ -1852,12 +1852,12 @@ exports[`Line plot data should plot line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             20
           </text>
@@ -1872,12 +1872,12 @@ exports[`Line plot data should plot line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             22
           </text>
@@ -1892,12 +1892,12 @@ exports[`Line plot data should plot line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             24
           </text>
@@ -1912,12 +1912,12 @@ exports[`Line plot data should plot line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             26
           </text>
@@ -1932,12 +1932,12 @@ exports[`Line plot data should plot line 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             28
           </text>

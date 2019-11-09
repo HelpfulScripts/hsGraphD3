@@ -4,8 +4,14 @@
  * Abstract base class for all series plot types.
  * To create a series plot, add the desired plot type to the graph:
  * ```
- * graph.addSeries(<type>, {x:<data-column>, ...});
+ * graph.addSeries(<type>, {x:<dataRef>, ...});
  * ``` 
+ * where `dataRef` is a data reference, either
+ * - the name of a column in the data set to use
+ * - or a function, returning the data to use. The function will be called at runtime once for each row
+ * in the data set supplied when calling `render`, and will receive as parameters the `dataRow`, 
+ * the `index` of the row, and the entire `rows` array.
+ * To specify a constant of value 5, simply supply `()=>5`.
  */
 
 /**  */

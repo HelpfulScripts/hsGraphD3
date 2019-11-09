@@ -26,40 +26,40 @@
  */
 
 /** */
-import { log as gLog }          from 'hsutil';   const log = gLog('SeriesPlot');
+import { log as gLog }          from 'hsutil';   const log = gLog('NumericSeriesPlot');
 import { line as d3line}        from "d3";
 import { curveCatmullRom }      from 'd3';
-import { NumericDataSet }       from './Graph';
-import { NumericDataRow }       from './Graph';
-import { NumberSet }            from './Graph';
-import { Domains }              from './Graph';
-import { NumberScale }          from './GraphComponent';
-import { d3Base }               from './Settings';
-import { CartSeriesPlot }       from './CartSeriesPlot';
-import { SeriesPlotDefaults }   from './SeriesPlot';
+import { NumericDataSet, ValueFn }       from '../Graph';
+import { NumericDataRow }       from '../Graph';
+import { ValueDef }            from '../Graph';
+import { Domains }              from '../Graph';
+import { Scale }                from '../Scale';
+import { d3Base }               from '../Settings';
+import { CartSeriesPlot }       from '../CartSeriesPlot';
+import { SeriesPlotDefaults }   from '../SeriesPlot';
 
 /**
  * Returns a function to access the numeric value in a data row.
- * The numeric value is specified by the `NumberSet` `v`. 
+ * The numeric value is specified by the `ValueDef` `v`. 
  * - If `v` is a number, applies the `scale` to `v`, and returns the result.
  * - If `v` is contained in `colNames`, uses the position of `v` in `colNames` to index the 
  * supplied `row`, applies the `scale`, and returns the result.
  * - Otherwise, if `v` ends with 'u', interprets `v` to be Viewport Units and 
  * returns `v` without aplying `scale`. This allows for absolute positioning inside the 
  * viewport window.
- * @param v the `NumberSet` specifying the value
+ * @param v the `ValueDef` specifying the value
  * @param colNames a list of names for the coluymns in the `DataSet`
  * @param scale a numeric scale to apply 
  * @param def defaults to `0`; the default to return if `v` is `undefined`.
  */
-function accessor(v:NumberSet, colNames:string[], scale:NumberScale, def=0):(row:number[]) => number {
+export function accessor(v:ValueDef, colNames:string[], scale:Scale, def=0):(row?:number[], i?:number) => number {
     const index = colNames.indexOf(''+v);
-    const numeric = typeof(v)==='number';
-    const unit = (''+v).slice(-1);
-    if (index < 0 && unit === 'u') {}
+    const fn = typeof(v)==='function';
+    // const unit = (''+v).slice(-1);
+    // if (index < 0 && unit === 'u') {}
     return v===undefined? 
-        _ => def :      // always return default
-        (row:number[]) => scale(numeric? <number>v : row[index]);
+        () => def :      // always return default
+        (row?:number[], i?:number) => scale(fn? (<ValueFn>v)(i) : row[index]);
 }
 
 
@@ -78,6 +78,8 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
 
     preRender(data:NumericDataSet, domains:Domains): void {
         super.preRender(data, domains);
+        const defaults = (<SeriesPlotDefaults>this.cfg.defaults.series[this.key]);
+        if (defaults.area.rendered && this.dims.y0===undefined) { this.dims.y0 = ()=>0; } 
         this.line = undefined;
     }
 
@@ -110,7 +112,7 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
             const x0   = accessor(this.dims.x, data.colNames, this.cfg.scales.hor)(data.rows[0]);
             const y    = accessor(this.dims.y0, data.colNames, this.cfg.scales.ver)(data.rows[max]);
             line0 = `L${xmax},${y}`;
-            line0 += (typeof(this.dims.y0)==='number')? `L${x0},${y}` :
+            line0 += (typeof(this.dims.y0)==='function')? `L${x0},${y}` :
                 this.getLine(data.rows.reverse(), data.colNames, this.dims.y0).slice(8);  // remove first 'M' command
         }
         return this.getPathElement(svg, '.area').attr('d', (d:any) => this.line + line0);
@@ -130,12 +132,12 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
     /**
      * returns the path rendering for the main data line 
      * @param data the data set to render from
-     * @param yCol a constant (defaults to 0), or the data column to render from
+     * @param yDef a constant (defaults to 0), or the data column to render from
      */
-    protected getLine(rows:NumericDataRow[], colNames:string[], yCol: NumberSet = 0):string {
+    protected getLine(rows:NumericDataRow[], colNames:string[], yDef: ValueDef = () => 0):string {
         const line = d3line()
             .x(accessor(this.dims.x, colNames, this.cfg.scales.hor))
-            .y(accessor(yCol, colNames, this.cfg.scales.ver))
+            .y(accessor(yDef, colNames, this.cfg.scales.ver))
             .curve(curveCatmullRom.alpha(0.2));
         return line(<[number, number][]>rows);
     }

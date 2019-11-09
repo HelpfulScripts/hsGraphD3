@@ -23,7 +23,7 @@ Helpful Scripts Graph convenience wrapper for D3js.
  * `graph = new hsGraphD3.GraphCartesian(root);`
  * 2. add desired series configurations, specifying the type of series, as well as the data to use for the x- and y-axes, 
  * and other variables, depending on the series type:
- * `graph.addSeries('area', {x:'time', y:'volume', r:5});`
+ * `graph.addSeries('area', {x:'time', y:'volume', r:()=>5});`
  * 3. apply any desired formatting changes to the default:
  * `graph.defaults.axes.color = '#88f';`
  * 4. render the graph for a given data set: 
@@ -102,8 +102,8 @@ Helpful Scripts Graph convenience wrapper for D3js.
  * 
  * // create the graph and define the series to plot:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.addSeries('line', {x:'date', y:'line', y0:0});
- * graph.addSeries('timeseries', {x:'date', y:'series', y0:-1});
+ * graph.addSeries('line', {x:'date', y:'line', y0:()=>0});
+ * graph.addSeries('timeseries', {x:'date', y:'series', y0:()=>-1});
  * 
  * //----- adjust some settings:
  * with (graph.defaults) {

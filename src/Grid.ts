@@ -99,10 +99,8 @@ export class Grid {
             const scaleY = this.cfg.scales.ver;
             setStroke(this.svg, style);
             const c = this.hor? 
-                { range:  scaleX.range(), scale:  scaleY,   dim: { fix:'x', var:'y'}}
-              : { range:  scaleY.range(), scale:  scaleX,   dim: { fix:'y', var:'x'}};
-            // dim.fix: the span of the gridline, doesn't change
-            // dim.var: the grid line's axis intercept, changes with scale
+                { range:  scaleX.range(), scale:  scaleY,   dim: { fix:'x', var:'y'}}   // hor grid
+              : { range:  scaleY.range(), scale:  scaleX,   dim: { fix:'y', var:'x'}};  // ver grid
             const gridlines:SVGLineSelection = <SVGLineSelection>this.svg.selectAll("line").data(<any>c.scale.ticks(count), d => <any>d);
             gridlines.exit().remove();          // remove unneeded lines
             gridlines.enter().append('line')    // add new lines

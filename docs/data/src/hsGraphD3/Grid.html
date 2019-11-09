@@ -122,22 +122,20 @@
 <p id=99 class="line"><span>&nbsp;&nbsp;99</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;scaleY&nbsp;=&nbsp;this.cfg.scales.ver;</p>
 <p id=100 class="line"><span>&nbsp;100</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setStroke(this.svg,&nbsp;style);</p>
 <p id=101 class="line"><span>&nbsp;101</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;c&nbsp;=&nbsp;this.hor?&nbsp;</p>
-<p id=102 class="line"><span>&nbsp;102</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;range:&nbsp;&nbsp;scaleX.range(),&nbsp;scale:&nbsp;&nbsp;scaleY,&nbsp;&nbsp;&nbsp;dim:&nbsp;{&nbsp;fix:<quote>'x'</quote>,&nbsp;var:<quote>'y'</quote>}}</p>
-<p id=103 class="line"><span>&nbsp;103</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;{&nbsp;range:&nbsp;&nbsp;scaleY.range(),&nbsp;scale:&nbsp;&nbsp;scaleX,&nbsp;&nbsp;&nbsp;dim:&nbsp;{&nbsp;fix:<quote>'y'</quote>,&nbsp;var:<quote>'x'</quote>}};</p>
-<p id=104 class="line"><span>&nbsp;104</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;dim.fix:&nbsp;the&nbsp;span&nbsp;of&nbsp;the&nbsp;gridline,&nbsp;doesn<quote>'t&nbsp;change</comment></p>
-<p id=105 class="line"><span>&nbsp;105</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;dim.var:&nbsp;the&nbsp;grid&nbsp;line'</quote>s&nbsp;axis&nbsp;intercept,&nbsp;changes&nbsp;with&nbsp;scale</comment></p>
-<p id=106 class="line"><span>&nbsp;106</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;gridlines:SVGLineSelection&nbsp;=&nbsp;<SVGLineSelection>this.svg.selectAll(<quote>"line"</quote>).data(<any>c.scale.ticks(count),&nbsp;d&nbsp;=>&nbsp;<any>d);</p>
-<p id=107 class="line"><span>&nbsp;107</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gridlines.exit().remove();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;remove&nbsp;unneeded&nbsp;lines</comment></p>
-<p id=108 class="line"><span>&nbsp;108</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gridlines.enter().append(<quote>'line'</quote>)&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;add&nbsp;new&nbsp;lines</comment></p>
-<p id=109 class="line"><span>&nbsp;109</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(`${c.dim.fix}1`,&nbsp;c.range[0])</p>
-<p id=110 class="line"><span>&nbsp;110</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(`${c.dim.fix}2`,&nbsp;c.range[1])</p>
-<p id=111 class="line"><span>&nbsp;111</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(`${c.dim.var}1`,&nbsp;d&nbsp;=>&nbsp;c.scale(<number>d))</p>
-<p id=112 class="line"><span>&nbsp;112</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(`${c.dim.var}2`,&nbsp;d&nbsp;=>&nbsp;c.scale(<number>d))</p>
-<p id=113 class="line"><span>&nbsp;113</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.merge(gridlines).transition(trans)</p>
-<p id=114 class="line"><span>&nbsp;114</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(`${c.dim.var}1`,&nbsp;d&nbsp;=>&nbsp;c.scale(<number>d))</p>
-<p id=115 class="line"><span>&nbsp;115</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(`${c.dim.var}2`,&nbsp;d&nbsp;=>&nbsp;c.scale(<number>d));</p>
-<p id=116 class="line"><span>&nbsp;116</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-<p id=117 class="line"><span>&nbsp;117</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-<p id=118 class="line"><span>&nbsp;118</span>}</p></code></div>
+<p id=102 class="line"><span>&nbsp;102</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{&nbsp;range:&nbsp;&nbsp;scaleX.range(),&nbsp;scale:&nbsp;&nbsp;scaleY,&nbsp;&nbsp;&nbsp;dim:&nbsp;{&nbsp;fix:<quote>'x'</quote>,&nbsp;var:<quote>'y'</quote>}}&nbsp;&nbsp;&nbsp;<comment>//&nbsp;hor&nbsp;grid</comment></p>
+<p id=103 class="line"><span>&nbsp;103</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;:&nbsp;{&nbsp;range:&nbsp;&nbsp;scaleY.range(),&nbsp;scale:&nbsp;&nbsp;scaleX,&nbsp;&nbsp;&nbsp;dim:&nbsp;{&nbsp;fix:<quote>'y'</quote>,&nbsp;var:<quote>'x'</quote>}};&nbsp;&nbsp;<comment>//&nbsp;ver&nbsp;grid</comment></p>
+<p id=104 class="line"><span>&nbsp;104</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;gridlines:SVGLineSelection&nbsp;=&nbsp;<SVGLineSelection>this.svg.selectAll(<quote>"line"</quote>).data(<any>c.scale.ticks(count),&nbsp;d&nbsp;=>&nbsp;<any>d);</p>
+<p id=105 class="line"><span>&nbsp;105</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gridlines.exit().remove();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;remove&nbsp;unneeded&nbsp;lines</comment></p>
+<p id=106 class="line"><span>&nbsp;106</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gridlines.enter().append(<quote>'line'</quote>)&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;add&nbsp;new&nbsp;lines</comment></p>
+<p id=107 class="line"><span>&nbsp;107</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(`${c.dim.fix}1`,&nbsp;c.range[0])</p>
+<p id=108 class="line"><span>&nbsp;108</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(`${c.dim.fix}2`,&nbsp;c.range[1])</p>
+<p id=109 class="line"><span>&nbsp;109</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(`${c.dim.var}1`,&nbsp;d&nbsp;=>&nbsp;c.scale(<number>d))</p>
+<p id=110 class="line"><span>&nbsp;110</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(`${c.dim.var}2`,&nbsp;d&nbsp;=>&nbsp;c.scale(<number>d))</p>
+<p id=111 class="line"><span>&nbsp;111</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.merge(gridlines).transition(trans)</p>
+<p id=112 class="line"><span>&nbsp;112</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(`${c.dim.var}1`,&nbsp;d&nbsp;=>&nbsp;c.scale(<number>d))</p>
+<p id=113 class="line"><span>&nbsp;113</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(`${c.dim.var}2`,&nbsp;d&nbsp;=>&nbsp;c.scale(<number>d));</p>
+<p id=114 class="line"><span>&nbsp;114</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=115 class="line"><span>&nbsp;115</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=116 class="line"><span>&nbsp;116</span>}</p></code></div>
                 </body>
             

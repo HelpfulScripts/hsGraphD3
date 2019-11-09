@@ -36,22 +36,44 @@ import { SeriesPlot }       from './SeriesPlot';
 const vpWidth:number    = 1000;
 
 /** 
- * Basic `NumberSet` definition:
- * - `string`: the name of comun in the data set
- * - `number`: a real number defining a constant
+ * Basic `ValueDef` definition: 
+ * - `string`: the name of column in the data set
+ * - `ValueFn`: a function, returning the value. 
  */
-export type NumberSet = string|number;
+export type ValueDef = string|ValueFn;
+
+export interface ValueFn { (i?:number): string|number|Date; }
 
 /** 
  * translates semantic graph dimensions (e.g. 'hor', 'ver', 'size')
  * to the column names of the data used while adding a series.
+ * A `ValueDef` array is used to , each element will be used in turn when `render` is called with multiple data sets.
  */
-export interface GraphDimensions { [dim:string]: NumberSet[]; }
+export interface GraphDimensions { [dim:string]: ValueDef[]; }
 
 /**
  * aggregates the [min, max] ranges for each semantic {@link Graph.GraphDimensions graph dimension} (e.g. 'hor', 'ver', 'size')
  */
-export interface Domains { [dim:string]: [number, number]; }
+export interface NumDomains extends Domains { [dim:string]: NumDomain; }
+export type      NumDomain = [number, number];
+
+/**
+ * aggregates the [min, max] ranges for each semantic {@link Graph.GraphDimensions graph dimension} (e.g. 'hor', 'ver', 'size')
+ */
+export interface TimeDomains extends Domains { [dim:string]: TimeDomain; }
+export type      TimeDomain = [Date, Date];
+
+/**
+ * aggregates ordinal values for each semantic {@link Graph.GraphDimensions graph dimension} (e.g. 'hor', 'ver', 'size')
+ */
+export interface OrdDomains extends Domains { [dim:string]: OrdDomain; }
+export type      OrdDomain = string[];
+
+/**
+ * aggregates the [min, max] ranges for each semantic {@link Graph.GraphDimensions graph dimension} (e.g. 'hor', 'ver', 'size')
+ */
+export interface Domains { [dim:string]:Domain; }
+export type      Domain = NumDomain | OrdDomain | TimeDomain;
 
 /**
  * Function interface, describing the signature of the call back function 
@@ -97,7 +119,7 @@ export interface RenderChain {
 }
 
 /**
- * ## Lifecycle calls
+ * ### Lifecycle calls
  * All `GraphComponents` implement these lifecycle methods that are called by the `Graph` instance
  * in response to a `render` call:
  * - **initialize**: called the first time the `Graph` is rendered, ahead of any other lifecycle method.
@@ -218,35 +240,37 @@ export abstract class Graph implements LifecycleCalls {
      */
     public render(data:DataSet | DataSet[]):RenderChain {
         const graphDef = <GraphDefaults>this.config.defaults.graph;
+        const graph = this;
 
-        function renderGraph() {
-            if (!this.initialized) {
-                this.initialize(this.config.baseSVG);
-                this.initialized = true;
+        function renderLifecycle() {
+            log.debug('starting lifecycle --------------');
+            if (!graph.initialized) {
+                graph.initialize(graph.config.baseSVG);
+                graph.initialized = true;
             }
-            const scalesDefaults = <ScalesDefaults>this.config.defaults.scales;
-            this.preRender(data, this.prepareDomains(scalesDefaults));
-            this.renderComponent(data);
+            const scalesDefaults = <ScalesDefaults>graph.config.defaults.scales;
+            graph.preRender(data, graph.prepareDomains(scalesDefaults));
+            graph.renderComponent(data);
         }
 
         const easing = d3[graphDef.easing];
         this.config.transition = this.config.baseSVG.transition().duration(graphDef.transitionTime).ease(easing);
 
-        renderGraph.bind(this)();
+        renderLifecycle.bind(this)();
         
-        const graph = this;
         return {
             update: (duration:number, callback:RenderCallback):void => {
                 function listener() {
                     try {
                         graphDef.transitionTime = duration || graphDef.transitionTime;
                         graph.config.transition = graph.config.transition.transition().duration(graphDef.transitionTime);
-                        if (callback(data) !== false) {
+                        const isRendered:boolean = (<any>d3.select('.baseSVG'))._groups[0][0]? true : false;
+                        if (isRendered && callback(data) !== false) {
                             graph.config.transition.on('end', listener); 
                         }
                     }
                     catch(e) { log.warn(`error in callback: ${e}`); }
-                    setTimeout(renderGraph.bind(graph),0);  // render on the next event loop pass, outside the transition listener.
+                    setTimeout(renderLifecycle.bind(graph),0);  // render on the next event loop pass, outside the transition listener.
                 }
             graph.config.transition.on('end', listener); 
             }
@@ -284,7 +308,11 @@ export abstract class Graph implements LifecycleCalls {
     preRender(data:DataSet | DataSet[], domains:Domains): void {
         this.Series.expandDomain(data, domains);
         this.setScales();
-        this.components.forEach((comp:GraphComponent) => comp.preRender(data, domains));
+        // this.components.forEach((comp:GraphComponent) => comp.preRender(data, domains));
+        this.components.forEach((comp:GraphComponent) => {
+            log.debug(`preRender ${comp.componentType}`);
+            comp.preRender(data, domains);
+        });
     } 
 
     /** renders the component. */

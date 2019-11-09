@@ -46,7 +46,7 @@
 <p id=23 class="line"><span>&nbsp;&nbsp;23</span><comment>&nbsp;*&nbsp;`graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.GraphCartesian(root);`</comment></p>
 <p id=24 class="line"><span>&nbsp;&nbsp;24</span><comment>&nbsp;*&nbsp;2.&nbsp;add&nbsp;desired&nbsp;series&nbsp;configurations,&nbsp;specifying&nbsp;the&nbsp;type&nbsp;of&nbsp;series,&nbsp;as&nbsp;well&nbsp;as&nbsp;the&nbsp;data&nbsp;to&nbsp;use&nbsp;for&nbsp;the&nbsp;x-&nbsp;and&nbsp;y-axes,&nbsp;</comment></p>
 <p id=25 class="line"><span>&nbsp;&nbsp;25</span><comment>&nbsp;*&nbsp;and&nbsp;other&nbsp;variables,&nbsp;depending&nbsp;on&nbsp;the&nbsp;series&nbsp;type:</comment></p>
-<p id=26 class="line"><span>&nbsp;&nbsp;26</span><comment>&nbsp;*&nbsp;`graph.addSeries(<quote>'area'</quote>,&nbsp;{x:<quote>'time'</quote>,&nbsp;y:<quote>'volume'</quote>,&nbsp;r:5});`</comment></p>
+<p id=26 class="line"><span>&nbsp;&nbsp;26</span><comment>&nbsp;*&nbsp;`graph.addSeries(<quote>'area'</quote>,&nbsp;{x:<quote>'time'</quote>,&nbsp;y:<quote>'volume'</quote>,&nbsp;r:()=>5});`</comment></p>
 <p id=27 class="line"><span>&nbsp;&nbsp;27</span><comment>&nbsp;*&nbsp;3.&nbsp;apply&nbsp;any&nbsp;desired&nbsp;formatting&nbsp;changes&nbsp;to&nbsp;the&nbsp;default:</comment></p>
 <p id=28 class="line"><span>&nbsp;&nbsp;28</span><comment>&nbsp;*&nbsp;`graph.defaults.axes.color&nbsp;=&nbsp;<quote>'#88f'</quote>;`</comment></p>
 <p id=29 class="line"><span>&nbsp;&nbsp;29</span><comment>&nbsp;*&nbsp;4.&nbsp;render&nbsp;the&nbsp;graph&nbsp;for&nbsp;a&nbsp;given&nbsp;data&nbsp;set:&nbsp;</comment></p>
@@ -125,8 +125,8 @@
 <p id=102 class="line"><span>&nbsp;102</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=103 class="line"><span>&nbsp;103</span><comment>&nbsp;*&nbsp;<comment>//&nbsp;create&nbsp;the&nbsp;graph&nbsp;and&nbsp;define&nbsp;the&nbsp;series&nbsp;to&nbsp;plot:</comment></comment></p>
 <p id=104 class="line"><span>&nbsp;104</span><comment><comment></comment>&nbsp;*&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.GraphCartesian(root);</comment></p>
-<p id=105 class="line"><span>&nbsp;105</span><comment>&nbsp;*&nbsp;graph.addSeries(<quote>'line'</quote>,&nbsp;{x:<quote>'date'</quote>,&nbsp;y:<quote>'line'</quote>,&nbsp;y0:0});</comment></p>
-<p id=106 class="line"><span>&nbsp;106</span><comment>&nbsp;*&nbsp;graph.addSeries(<quote>'timeseries'</quote>,&nbsp;{x:<quote>'date'</quote>,&nbsp;y:<quote>'series'</quote>,&nbsp;y0:-1});</comment></p>
+<p id=105 class="line"><span>&nbsp;105</span><comment>&nbsp;*&nbsp;graph.addSeries(<quote>'line'</quote>,&nbsp;{x:<quote>'date'</quote>,&nbsp;y:<quote>'line'</quote>,&nbsp;y0:()=>0});</comment></p>
+<p id=106 class="line"><span>&nbsp;106</span><comment>&nbsp;*&nbsp;graph.addSeries(<quote>'timeseries'</quote>,&nbsp;{x:<quote>'date'</quote>,&nbsp;y:<quote>'series'</quote>,&nbsp;y0:()=>-1});</comment></p>
 <p id=107 class="line"><span>&nbsp;107</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=108 class="line"><span>&nbsp;108</span><comment>&nbsp;*&nbsp;<comment>//-----&nbsp;adjust&nbsp;some&nbsp;settings:</comment></comment></p>
 <p id=109 class="line"><span>&nbsp;109</span><comment><comment></comment>&nbsp;*&nbsp;with&nbsp;(graph.defaults)&nbsp;{</comment></p>

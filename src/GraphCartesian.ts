@@ -60,7 +60,7 @@
 import { log as gLog } from 'hsutil';   const log = gLog('GraphCartesian');
 
 import { DataSet }              from './Graph';
-import { NumberSet }            from './Graph';
+import { ValueDef }            from './Graph';
 import { GraphDimensions }      from './Graph';
 import { Graph }                from './Graph';
 import { Domains }              from './Graph';
@@ -75,9 +75,11 @@ import "./plots/Line";
 import "./plots/Area";
 import "./plots/TimeSeries";
 import "./plots/Voronoi";
+import "./plots/Column";
+import "./plots/Bar";
 
 
-export interface CartDimensions extends GraphDimensions { hor:NumberSet[]; ver:NumberSet[]; size:NumberSet[]; }
+export interface CartDimensions extends GraphDimensions { hor:ValueDef[]; ver:ValueDef[]; size:ValueDef[]; }
 
 export class GraphCartesian extends Graph {
     /**
@@ -110,12 +112,16 @@ export class GraphCartesian extends Graph {
         scales.size = Scales.createScale(scalesDefaults.dims.size, this.cumulativeDomains.size);
     }
 
+    /**
+     * returns a `Domains` object 
+     * @param scalesDefaults 
+     */
     protected prepareDomains(scalesDefaults:ScalesDefaults):Domains {
         const dom = this.cumulativeDomains;
         const dims = scalesDefaults.dims;
-        dom.hor  = (dom.hor  && dims.hor.aggregateOverTime)?  dom.hor  : [1e99, -1e99];
-        dom.ver  = (dom.ver  && dims.ver.aggregateOverTime)?  dom.ver  : [1e99, -1e99];
-        dom.size = (dom.size && dims.size.aggregateOverTime)? dom.size : [1e99, -1e99];
+        dom.hor  = (dom.hor  && dims.hor.aggregateOverTime)?  dom.hor  : undefined;
+        dom.ver  = (dom.ver  && dims.ver.aggregateOverTime)?  dom.ver  : undefined;
+        dom.size = (dom.size && dims.size.aggregateOverTime)? dom.size : undefined;
         return dom;
     }
 

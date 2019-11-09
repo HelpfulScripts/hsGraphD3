@@ -1,14 +1,14 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for src/NumericSeriesPlot.ts</title>
+    <title>Code coverage report for src/plots/NumericSeriesPlot.ts</title>
     <meta charset="utf-8" />
-    <link rel="stylesheet" href="../prettify.css" />
-    <link rel="stylesheet" href="../base.css" />
+    <link rel="stylesheet" href="../../prettify.css" />
+    <link rel="stylesheet" href="../../base.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <style type='text/css'>
         .coverage-summary .sorter {
-            background-image: url(../sort-arrow-sprite.png);
+            background-image: url(../../sort-arrow-sprite.png);
         }
     </style>
 </head>
@@ -16,28 +16,28 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../index.html">hsGraphD3: All files</a> / <a href="index.html">src</a> NumericSeriesPlot.ts
+      <a href="../../index.html">hsGraphD3: All files</a> / <a href="index.html">src/plots</a> NumericSeriesPlot.ts
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">98.04% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>47/47</span>
+        <span class='fraction'>50/51</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75% </span>
+        <span class="strong">80% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>15/20</span>
+        <span class='fraction'>16/20</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">94.74% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>17/17</span>
+        <span class='fraction'>18/19</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">97.83% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>44/44</span>
+        <span class='fraction'>45/46</span>
       </div>
     </div>
     <p class="quiet">
@@ -193,7 +193,9 @@
 <a name='L145'></a><a href='#L145'>145</a>
 <a name='L146'></a><a href='#L146'>146</a>
 <a name='L147'></a><a href='#L147'>147</a>
-<a name='L148'></a><a href='#L148'>148</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L148'></a><a href='#L148'>148</a>
+<a name='L149'></a><a href='#L149'>149</a>
+<a name='L150'></a><a href='#L150'>150</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -247,11 +249,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">45x</span>
+<span class="cline-any cline-yes">45x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">45x</span>
-<span class="cline-any cline-yes">45x</span>
-<span class="cline-any cline-yes">45x</span>
-<span class="cline-any cline-yes">45x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">45x</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">167x</span>
@@ -272,6 +274,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -327,7 +331,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -368,40 +372,40 @@
  */
 &nbsp;
 /** */
-import { log as gLog }          from 'hsutil';   const log = gLog('SeriesPlot');
+import { log as gLog }          from 'hsutil';   const log = gLog('NumericSeriesPlot');
 import { line as d3line}        from "d3";
 import { curveCatmullRom }      from 'd3';
-import { NumericDataSet }       from './Graph';
-import { NumericDataRow }       from './Graph';
-import { NumberSet }            from './Graph';
-import { Domains }              from './Graph';
-import { NumberScale }          from './GraphComponent';
-import { d3Base }               from './Settings';
-import { CartSeriesPlot }       from './CartSeriesPlot';
-import { SeriesPlotDefaults }   from './SeriesPlot';
+import { NumericDataSet, ValueFn }       from '../Graph';
+import { NumericDataRow }       from '../Graph';
+import { ValueDef }            from '../Graph';
+import { Domains }              from '../Graph';
+import { Scale }                from '../Scale';
+import { d3Base }               from '../Settings';
+import { CartSeriesPlot }       from '../CartSeriesPlot';
+import { SeriesPlotDefaults }   from '../SeriesPlot';
 &nbsp;
 /**
  * Returns a function to access the numeric value in a data row.
- * The numeric value is specified by the `NumberSet` `v`. 
+ * The numeric value is specified by the `ValueDef` `v`. 
  * - If `v` is a number, applies the `scale` to `v`, and returns the result.
  * - If `v` is contained in `colNames`, uses the position of `v` in `colNames` to index the 
  * supplied `row`, applies the `scale`, and returns the result.
  * - Otherwise, if `v` ends with 'u', interprets `v` to be Viewport Units and 
  * returns `v` without aplying `scale`. This allows for absolute positioning inside the 
  * viewport window.
- * @param v the `NumberSet` specifying the value
+ * @param v the `ValueDef` specifying the value
  * @param colNames a list of names for the coluymns in the `DataSet`
  * @param scale a numeric scale to apply 
  * @param def defaults to `0`; the default to return if `v` is `undefined`.
  */
-function accessor(v:NumberSet, colNames:string[], scale:NumberScale, def=0):(row:number[]) =&gt; number {
+export function accessor(v:ValueDef, colNames:string[], scale:Scale, def=0):(row?:number[], i?:number) =&gt; number {
     const index = colNames.indexOf(''+v);
-    const numeric = typeof(v)==='number';
-    const unit = (''+v).slice(-1);
-    <span class="missing-if-branch" title="if path not taken" >I</span>if (index &lt; 0 &amp;&amp; unit === 'u') {}
+    const fn = typeof(v)==='function';
+    // const unit = (''+v).slice(-1);
+    // if (index &lt; 0 &amp;&amp; unit === 'u') {}
     return v===undefined? 
-        _ =&gt; def :      // always return default
-        (row:number[]) =&gt; scale(numeric? &lt;number&gt;v : row[index]);
+        () =&gt; def :      // always return default
+        (row?:number[], i?:number) =&gt; scale(fn? (&lt;ValueFn&gt;v)(i) : row[index]);
 }
 &nbsp;
 &nbsp;
@@ -420,6 +424,8 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
 &nbsp;
     preRender(data:NumericDataSet, domains:Domains): void {
         super.preRender(data, domains);
+        const defaults = (&lt;SeriesPlotDefaults&gt;this.cfg.defaults.series[this.key]);
+        if (defaults.area.rendered &amp;&amp; this.dims.y0===undefined) { this.dims.y0 = ()=&gt;0; } 
         this.line = undefined;
     }
 &nbsp;
@@ -452,7 +458,7 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
             const x0   = accessor(this.dims.x, data.colNames, this.cfg.scales.hor)(data.rows[0]);
             const y    = accessor(this.dims.y0, data.colNames, this.cfg.scales.ver)(data.rows[max]);
             line0 = `L${xmax},${y}`;
-            line0 += (typeof(this.dims.y0)==='number')? `L${x0},${y}` :
+            line0 += (typeof(this.dims.y0)==='function')? `L${x0},${y}` :
 <span class="branch-1 cbranch-no" title="branch not covered" >                this.getLine(data.rows.reverse(), data.colNames, this.dims.y0).slice(8);</span>  // remove first 'M' command
         }
         return this.getPathElement(svg, '.area').attr('d', (d:any) =&gt; this.line + line0);
@@ -472,12 +478,12 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
     /**
      * returns the path rendering for the main data line 
      * @param data the data set to render from
-     * @param yCol a constant (defaults to 0), or the data column to render from
+     * @param yDef a constant (defaults to 0), or the data column to render from
      */
-    protected getLine(rows:NumericDataRow[], colNames:string[], yCol: NumberSet = <span class="branch-0 cbranch-no" title="branch not covered" >0)</span>:string {
+    protected getLine(rows:NumericDataRow[], colNames:string[], yDef: ValueDef = <span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >0)</span></span>:string {
         const line = d3line()
             .x(accessor(this.dims.x, colNames, this.cfg.scales.hor))
-            .y(accessor(yCol, colNames, this.cfg.scales.ver))
+            .y(accessor(yDef, colNames, this.cfg.scales.ver))
             .curve(curveCatmullRom.alpha(0.2));
         return line(&lt;[number, number][]&gt;rows);
     }
@@ -493,7 +499,7 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
 </div><!-- /wrapper -->
 
 </div>
-<script src="../prettify.js"></script>
+<script src="../../prettify.js"></script>
 <script>
 window.onload = function () {
         if (typeof prettyPrint === 'function') {
@@ -501,7 +507,7 @@ window.onload = function () {
         }
 };
 </script>
-<script src="../sorter.js"></script>
-<script src="../block-navigation.js"></script>
+<script src="../../sorter.js"></script>
+<script src="../../block-navigation.js"></script>
 </body>
 </html>

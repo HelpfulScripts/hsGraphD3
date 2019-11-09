@@ -161,9 +161,7 @@
 <a name='L113'></a><a href='#L113'>113</a>
 <a name='L114'></a><a href='#L114'>114</a>
 <a name='L115'></a><a href='#L115'>115</a>
-<a name='L116'></a><a href='#L116'>116</a>
-<a name='L117'></a><a href='#L117'>117</a>
-<a name='L118'></a><a href='#L118'>118</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L116'></a><a href='#L116'>116</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -209,7 +207,7 @@
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
@@ -264,8 +262,6 @@
 <span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-yes">30x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">187x</span>
@@ -381,10 +377,8 @@ export class Grid {
             const scaleY = this.cfg.scales.ver;
             setStroke(this.svg, style);
             const c = this.hor? 
-                { range:  scaleX.range(), scale:  scaleY,   dim: { fix:'x', var:'y'}}
-              : { range:  scaleY.range(), scale:  scaleX,   dim: { fix:'y', var:'x'}};
-            // dim.fix: the span of the gridline, doesn't change
-            // dim.var: the grid line's axis intercept, changes with scale
+                { range:  scaleX.range(), scale:  scaleY,   dim: { fix:'x', var:'y'}}   // hor grid
+              : { range:  scaleY.range(), scale:  scaleX,   dim: { fix:'y', var:'x'}};  // ver grid
             const gridlines:SVGLineSelection = &lt;SVGLineSelection&gt;this.svg.selectAll("line").data(&lt;any&gt;c.scale.ticks(count), d =&gt; &lt;any&gt;d);
             gridlines.exit().remove();          // remove unneeded lines
             gridlines.enter().append('line')    // add new lines

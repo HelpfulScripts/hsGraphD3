@@ -11,19 +11,24 @@
 
 /** */
 
-import { SeriesPlot, SeriesPlotDefaults }           from "./SeriesPlot";
+import { SeriesPlot }           from "./SeriesPlot";
+import { SeriesPlotDefaults }   from "./SeriesPlot";
 import { SeriesDimensions }     from "./Series";
-import { NumberSet, DataSet, Domains }            from "./Graph";
+import { ValueDef }             from "./Graph";
+import { DataSet }              from "./Graph";
+import { Domains }              from "./Graph";
 import { CartDimensions }       from "./GraphCartesian";
 import { GraphCfg }             from "./GraphComponent";
-import { d3Base, setStroke, setFill } from "./Settings";
+import { d3Base }               from "./Settings";
+import { setStroke }            from "./Settings";
+import { setFill }              from "./Settings";
 
 
 export interface CartSeriesDimensions extends SeriesDimensions {
-    x:   NumberSet;     // name of x-axis data column, or a constant number
-    y:   NumberSet;     // name of y-axis data column, or a constant number
-    y0?: NumberSet;     // optional, name of y-axis data column for lower fill border, or a constant number
-    r?:  NumberSet;     // optional, name of marker size data column, or a constant number
+    x:   ValueDef;     // name of x-axis data column, or a function returning a value
+    y:   ValueDef;     // name of y-axis data column, or a function returning a value
+    y0?: ValueDef;     // optional, name of y-axis data column for lower fill border, or a function returning a value
+    r?:  ValueDef;     // optional, name of marker size data column, or a function returning a value
 }
 
 export abstract class CartSeriesPlot extends SeriesPlot {
@@ -79,8 +84,6 @@ export abstract class CartSeriesPlot extends SeriesPlot {
     }
 
     preRender(data:DataSet, domains:Domains): void {
-        const defaults = (<SeriesPlotDefaults>this.cfg.defaults.series[this.key]);
-        if (defaults.area.rendered && this.dims.y0===undefined) { this.dims.y0 = 0; } 
     }
 
 

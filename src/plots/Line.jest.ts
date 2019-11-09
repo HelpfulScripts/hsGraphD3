@@ -47,7 +47,7 @@ describe('Line', () => {
     describe('plot constants', () => {
         beforeEach(() => {
             graph = new hsGraphD3.GraphCartesian(root);
-            graph.addSeries('line', {x:'xval', y:10});
+            graph.addSeries('line', {x:'xval', y:()=>10});
             graph.render(data);
         });
         it('should plot horizontal line', () => {

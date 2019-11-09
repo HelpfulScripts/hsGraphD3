@@ -240,7 +240,7 @@ exports[`Area should plot area 1`] = `
       >
         <path
           class="domain"
-          d="M20.5,-5V0.5H980.5V-5"
+          d="M20.5,5V0.5H980.5V5"
           stroke="currentColor"
         />
         <g
@@ -253,12 +253,12 @@ exports[`Area should plot area 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             -1
           </text>
@@ -273,12 +273,12 @@ exports[`Area should plot area 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             -0.8
           </text>
@@ -293,12 +293,12 @@ exports[`Area should plot area 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             -0.6
           </text>
@@ -313,12 +313,12 @@ exports[`Area should plot area 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             -0.4
           </text>
@@ -333,12 +333,12 @@ exports[`Area should plot area 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             -0.2
           </text>
@@ -353,12 +353,12 @@ exports[`Area should plot area 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             0
           </text>
@@ -373,12 +373,12 @@ exports[`Area should plot area 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             0.2
           </text>
@@ -393,12 +393,12 @@ exports[`Area should plot area 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             0.4
           </text>
@@ -413,12 +413,12 @@ exports[`Area should plot area 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             0.6
           </text>
@@ -433,12 +433,12 @@ exports[`Area should plot area 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             0.8
           </text>
@@ -453,12 +453,12 @@ exports[`Area should plot area 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            y2="-5"
+            y2="5"
           />
           <text
-            dy="0em"
+            dy="0.71em"
             fill="currentColor"
-            y="-8"
+            y="8"
           >
             1
           </text>
@@ -476,12 +476,12 @@ exports[`Area should plot area 1`] = `
         stroke="currentColor"
         stroke-opacity="1"
         stroke-width="1"
-        text-anchor="start"
+        text-anchor="end"
         transform="translate(500, 0)"
       >
         <path
           class="domain"
-          d="M5,690.5H0.5V50.5H5"
+          d="M-5,690.5H0.5V50.5H-5"
           stroke="currentColor"
         />
         <g
@@ -494,12 +494,12 @@ exports[`Area should plot area 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             -0.2
           </text>
@@ -514,12 +514,12 @@ exports[`Area should plot area 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             -0.1
           </text>
@@ -534,12 +534,12 @@ exports[`Area should plot area 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             0
           </text>
@@ -554,12 +554,12 @@ exports[`Area should plot area 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             0.1
           </text>
@@ -574,12 +574,12 @@ exports[`Area should plot area 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             0.2
           </text>
@@ -594,12 +594,12 @@ exports[`Area should plot area 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             0.3
           </text>
@@ -614,12 +614,12 @@ exports[`Area should plot area 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             0.4
           </text>
@@ -634,12 +634,12 @@ exports[`Area should plot area 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             0.5
           </text>
@@ -654,12 +654,12 @@ exports[`Area should plot area 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             0.6
           </text>
@@ -674,12 +674,12 @@ exports[`Area should plot area 1`] = `
             stroke="currentColor"
             stroke-opacity="1"
             stroke-width="2"
-            x2="5"
+            x2="-5"
           />
           <text
             dy="0.32em"
             fill="currentColor"
-            x="8"
+            x="-8"
           >
             0.7
           </text>

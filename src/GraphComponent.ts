@@ -4,24 +4,24 @@
 
 /** */
 
-import { DataSet }      from './Graph';
-import { Domains }      from './Graph';
-import { DefaultsType } from './Settings';
-import { d3Base }       from './Settings';
-import { RectDef }      from './Settings';
-import { UnitVp }       from './Settings';
-import { Stroke }       from './Settings';
-import { Fill }         from './Settings';
-import { MarkerStyle }  from './Settings';
-import { TextStyle }    from './Settings';
-import { LifecycleCalls } from './Graph';
-import { Selection }    from 'd3';
-import { BaseType }     from 'd3';
+import { DataSet }          from './Graph';
+import { Domains }          from './Graph';
+import { LifecycleCalls }   from './Graph';
+import { DefaultsType }     from './Settings';
+import { d3Base }           from './Settings';
+import { RectDef }          from './Settings';
+import { UnitVp }           from './Settings';
+import { Stroke }           from './Settings';
+import { Fill }             from './Settings';
+import { MarkerStyle }      from './Settings';
+import { TextStyle }        from './Settings';
+import { Scale }            from './Scale'; 
+import { Selection }        from 'd3';
+import { BaseType }         from 'd3';
 
 
-export type SVGLineSelection = Selection<SVGLineElement, number, BaseType, unknown>;
-export type SVGCircleSelection = Selection<SVGCircleElement, number, BaseType, unknown>;
-export type NumberScale = d3.ScaleContinuousNumeric<number, number>;
+export interface SVGLineSelection extends Selection<SVGLineElement, number, BaseType, unknown> {}
+export interface SVGCircleSelection extends Selection<SVGCircleElement, number, BaseType, unknown> {}
 
 export interface Rendered {
     rendered: boolean;
@@ -58,7 +58,7 @@ export interface GraphCfg {
      * @param dim *string* the semantic name of the axis to plot and scale. E.g. for 2D cartesian plots, 
      * `dim` is `hor`, `ver`, or `size`. 
      */    
-    scales: { [dim:string]: NumberScale};
+    scales: { [dim:string]: Scale};
 
     /** the currently used transition. A new transition will be set each time `Graph.render()` is called. */
     transition: any;

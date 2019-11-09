@@ -22,7 +22,7 @@
  * 
  * // create the graph and define the series to plot:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.addSeries('timeseries', {x:'date', y:'time', y0:1});
+ * graph.addSeries('timeseries', {x:'date', y:'time', y0:()=>1});
  * graph.addSeries('timeseries', {x:'date', y:'volume', r:'time'});
  * 
  * // adjust some settings:
@@ -46,11 +46,11 @@
  /** */
 
 import { log as gLog }          from 'hsutil';   const log = gLog('TimeSeries');
-import { NumericDataSet }       from '../Graph';
+import { NumericDataSet, NumDomain }       from '../Graph';
 import { GraphDefaults }        from '../Graph';
 import { Domains }              from '../Graph';
 import { Series }               from '../Series';
-import { NumericSeriesPlot }    from '../NumericSeriesPlot';
+import { NumericSeriesPlot }    from './NumericSeriesPlot';
 import { CartSeriesDimensions } from '../CartSeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { d3Base }               from '../Settings';
@@ -85,7 +85,7 @@ export class TimeSeries extends NumericSeriesPlot {
         const x = data.colNames.indexOf(<string>this.dims.x);
         if (data.rows.length>1) { // artificially shorten the x-axis by 1 unit
             const xUnit = <number>data.rows[1][x] - <number>data.rows[0][x];
-            const domain = this.cfg.scales.hor.domain();
+            const domain = <NumDomain>this.cfg.scales.hor.domain();
             if (domain[1] - domain[0] > xUnit) { domain[0] += xUnit; }
             this.cfg.scales.hor.domain(domain);         
         }   

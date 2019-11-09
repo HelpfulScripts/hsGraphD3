@@ -46,7 +46,7 @@
 <p id=23 class="line"><span>&nbsp;&nbsp;23</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=24 class="line"><span>&nbsp;&nbsp;24</span><comment>&nbsp;*&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.GraphCartesian(root);</comment></p>
 <p id=25 class="line"><span>&nbsp;&nbsp;25</span><comment>&nbsp;*&nbsp;graph.addSeries(<quote>'line'</quote>,&nbsp;{x:<quote>'time'</quote>,&nbsp;y:<quote>'volume'</quote>,&nbsp;r:<quote>'costs'</quote>});</comment></p>
-<p id=26 class="line"><span>&nbsp;&nbsp;26</span><comment>&nbsp;*&nbsp;graph.addSeries(<quote>'line'</quote>,&nbsp;{x:<quote>'time'</quote>,&nbsp;y:0.5});</comment></p>
+<p id=26 class="line"><span>&nbsp;&nbsp;26</span><comment>&nbsp;*&nbsp;graph.addSeries(<quote>'line'</quote>,&nbsp;{x:<quote>'time'</quote>,&nbsp;y:()=>0.5});</comment></p>
 <p id=27 class="line"><span>&nbsp;&nbsp;27</span><comment>&nbsp;*&nbsp;graph.render(data);</comment></p>
 <p id=28 class="line"><span>&nbsp;&nbsp;28</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=29 class="line"><span>&nbsp;&nbsp;29</span><comment>&nbsp;*&nbsp;</file></comment></p>
@@ -61,7 +61,7 @@
 <p id=38 class="line"><span>&nbsp;&nbsp;38</span><comment>&nbsp;*&nbsp;function&nbsp;createGraph(svgRoot)&nbsp;{</comment></p>
 <p id=39 class="line"><span>&nbsp;&nbsp;39</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.GraphCartesian(svgRoot);</comment></p>
 <p id=40 class="line"><span>&nbsp;&nbsp;40</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;graph.addSeries(<quote>'line'</quote>,&nbsp;{x:<quote>'time'</quote>,&nbsp;y:<quote>'volume'</quote>,&nbsp;r:<quote>'costs'</quote>});</comment></p>
-<p id=41 class="line"><span>&nbsp;&nbsp;41</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;graph.addSeries(<quote>'line'</quote>,&nbsp;{x:<quote>'time'</quote>,&nbsp;y:0.5});</comment></p>
+<p id=41 class="line"><span>&nbsp;&nbsp;41</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;graph.addSeries(<quote>'line'</quote>,&nbsp;{x:<quote>'time'</quote>,&nbsp;y:()=>0.5});</comment></p>
 <p id=42 class="line"><span>&nbsp;&nbsp;42</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;graph.defaults;</comment></p>
 <p id=43 class="line"><span>&nbsp;&nbsp;43</span><comment>&nbsp;*&nbsp;}</comment></p>
 <p id=44 class="line"><span>&nbsp;&nbsp;44</span><comment>&nbsp;*&nbsp;</comment></p>
@@ -86,7 +86,7 @@
 <p id=63 class="line"><span>&nbsp;&nbsp;63</span>&nbsp;<comment>/**&nbsp;*/</comment></p>
 <p id=64 class="line"><span>&nbsp;&nbsp;64</span></p>
 <p id=65 class="line"><span>&nbsp;&nbsp;65</span>import&nbsp;{&nbsp;log&nbsp;as&nbsp;gLog&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'hsutil'</quote>;&nbsp;&nbsp;&nbsp;const&nbsp;log&nbsp;=&nbsp;gLog(<quote>'Line'</quote>);</p>
-<p id=66 class="line"><span>&nbsp;&nbsp;66</span>import&nbsp;{&nbsp;NumericSeriesPlot&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../NumericSeriesPlot'</quote>;</p>
+<p id=66 class="line"><span>&nbsp;&nbsp;66</span>import&nbsp;{&nbsp;NumericSeriesPlot&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./NumericSeriesPlot'</quote>;</p>
 <p id=67 class="line"><span>&nbsp;&nbsp;67</span>import&nbsp;{&nbsp;CartSeriesDimensions&nbsp;}&nbsp;from&nbsp;<quote>'../CartSeriesPlot'</quote>;</p>
 <p id=68 class="line"><span>&nbsp;&nbsp;68</span>import&nbsp;{&nbsp;SeriesPlotDefaults&nbsp;}&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../SeriesPlot'</quote>;</p>
 <p id=69 class="line"><span>&nbsp;&nbsp;69</span>import&nbsp;{&nbsp;GraphCfg}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../GraphComponent'</quote>;</p>

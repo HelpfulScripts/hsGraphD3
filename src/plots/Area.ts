@@ -66,7 +66,7 @@
  /** */
 
 import { log as gLog }          from 'hsutil';   const log = gLog('Area');
-import { NumericSeriesPlot }    from '../NumericSeriesPlot';
+import { NumericSeriesPlot }    from './NumericSeriesPlot';
 import { CartSeriesDimensions } from '../CartSeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { GraphCfg}              from '../GraphComponent';

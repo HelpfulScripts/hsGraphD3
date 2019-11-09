@@ -23,7 +23,7 @@
  * 
  * const graph = new hsGraphD3.GraphCartesian(root);
  * graph.addSeries('line', {x:'time', y:'volume', r:'costs'});
- * graph.addSeries('line', {x:'time', y:0.5});
+ * graph.addSeries('line', {x:'time', y:()=>0.5});
  * graph.render(data);
  * 
  * </file>
@@ -38,7 +38,7 @@
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
  *      graph.addSeries('line', {x:'time', y:'volume', r:'costs'});
- *      graph.addSeries('line', {x:'time', y:0.5});
+ *      graph.addSeries('line', {x:'time', y:()=>0.5});
  *      return graph.defaults;
  * }
  * 
@@ -63,7 +63,7 @@
  /** */
 
 import { log as gLog }          from 'hsutil';   const log = gLog('Line');
-import { NumericSeriesPlot }    from '../NumericSeriesPlot';
+import { NumericSeriesPlot }    from './NumericSeriesPlot';
 import { CartSeriesDimensions } from '../CartSeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { GraphCfg}              from '../GraphComponent';

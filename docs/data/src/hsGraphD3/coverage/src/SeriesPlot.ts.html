@@ -124,7 +124,19 @@
 <a name='L76'></a><a href='#L76'>76</a>
 <a name='L77'></a><a href='#L77'>77</a>
 <a name='L78'></a><a href='#L78'>78</a>
-<a name='L79'></a><a href='#L79'>79</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L79'></a><a href='#L79'>79</a>
+<a name='L80'></a><a href='#L80'>80</a>
+<a name='L81'></a><a href='#L81'>81</a>
+<a name='L82'></a><a href='#L82'>82</a>
+<a name='L83'></a><a href='#L83'>83</a>
+<a name='L84'></a><a href='#L84'>84</a>
+<a name='L85'></a><a href='#L85'>85</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -208,8 +220,14 @@
  * Abstract base class for all series plot types.
  * To create a series plot, add the desired plot type to the graph:
  * ```
- * graph.addSeries(&lt;type&gt;, {x:&lt;data-column&gt;, ...});
+ * graph.addSeries(&lt;type&gt;, {x:&lt;dataRef&gt;, ...});
  * ``` 
+ * where `dataRef` is a data reference, either
+ * - the name of a column in the data set to use
+ * - or a function, returning the data to use. The function will be called at runtime once for each row
+ * in the data set supplied when calling `render`, and will receive as parameters the `dataRow`, 
+ * the `index` of the row, and the entire `rows` array.
+ * To specify a constant of value 5, simply supply `()=&gt;5`.
  */
 &nbsp;
 /**  */
