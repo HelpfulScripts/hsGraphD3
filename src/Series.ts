@@ -48,9 +48,12 @@ import { schemeDark2 as colors }from 'd3';
  * each {@link SeriesPlot `SeriesPlot`}.
  * For each dimension, the value can be either 
  * - a string that identifies the column name in the data set to use
- * - or a number constant 
+ * - or a {@link Graph.ValueFn `ValueFn`} function that returns the data to use.
  */
-export interface SeriesDimensions { [dim:string]: ValueDef; }
+export interface SeriesDimensions { 
+    [dim:string]: ValueDef; 
+    stacked?:     string;    // optional stack group. Series with the same group will be stacked on each other
+}
 
 type PlotFactory = (cfg:GraphCfg, seriesName:string, dims:SeriesDimensions) => SeriesPlot;
 
@@ -72,6 +75,11 @@ export interface SeriesDefaults extends ComponentDefaults {
 }
 
 
+/**
+ * A class, instantiated as a primary `Graph` component and proxy for all added series.
+ * `Seires` manages available series types, as well as the specific series added to a `Graph`,
+ * including their render lifecycle and auto-domaining.
+ */
 export class Series extends GraphComponent {
     static type = 'series';
 

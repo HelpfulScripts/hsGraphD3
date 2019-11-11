@@ -293,9 +293,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
@@ -498,11 +498,11 @@ import { Line }             from './GraphComponent';
 import { Text }             from './GraphComponent';
 import * as def             from './Settings';
 import { ScaleDims }        from './Scale';
-import { ScaleTypes }       from './Scale';
 import { ScalesDefaults }   from './Scale';
 import { UnitVp, d3Base }   from './Settings';
 import { setText }          from './Settings';
 import { setStroke }        from './Settings';
+import { DataVal }          from './Graph';
 &nbsp;
 export enum Direction {
     horizontal  = 'hor',
@@ -627,7 +627,7 @@ export class Axis {
         if (this.dir===Direction.horizontal) {
             const axisDef = &lt;AxisDefaults&gt;this.cfg.defaults.axes.ver;
             const dom = scales.ver.domain();
-            const cross:ScaleTypes = axisDef.crossing==='auto'? ((dom[0] &lt; 0 &amp;&amp; dom[1] &gt; 0)? 0 : dom[0]) : <span class="branch-1 cbranch-no" title="branch not covered" >axisDef.crossing;</span>
+            const cross:DataVal = axisDef.crossing==='auto'? ((dom[0] &lt; 0 &amp;&amp; dom[1] &gt; 0)? 0 : dom[0]) : <span class="branch-1 cbranch-no" title="branch not covered" >axisDef.crossing;</span>
             let yCrossing = scales.ver(cross) + ((scales.ver.type()==='ordinal')? scales.ver.step() : 0);
             this.pos = 'bottom';
             <span class="missing-if-branch" title="if path not taken" >I</span>if (yCrossing &lt; margins.top) {
@@ -641,7 +641,7 @@ export class Axis {
         } else {
             const axisDef = &lt;AxisDefaults&gt;this.cfg.defaults.axes.hor;
             const dom = scales.hor.domain();
-            const cross:ScaleTypes = axisDef.crossing==='auto'? ((dom[0] &lt; 0 &amp;&amp; dom[1] &gt; 0)? 0 : dom[0]) : <span class="branch-1 cbranch-no" title="branch not covered" >axisDef.crossing;</span>
+            const cross:DataVal = axisDef.crossing==='auto'? ((dom[0] &lt; 0 &amp;&amp; dom[1] &gt; 0)? 0 : dom[0]) : <span class="branch-1 cbranch-no" title="branch not covered" >axisDef.crossing;</span>
             let xCrossing = scales.hor(cross);
             this.pos = 'left';
             <span class="missing-if-branch" title="if path not taken" >I</span>if (xCrossing &lt; margins.left) {

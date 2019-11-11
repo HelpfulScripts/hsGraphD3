@@ -361,7 +361,10 @@
 <a name='L313'></a><a href='#L313'>313</a>
 <a name='L314'></a><a href='#L314'>314</a>
 <a name='L315'></a><a href='#L315'>315</a>
-<a name='L316'></a><a href='#L316'>316</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L316'></a><a href='#L316'>316</a>
+<a name='L317'></a><a href='#L317'>317</a>
+<a name='L318'></a><a href='#L318'>318</a>
+<a name='L319'></a><a href='#L319'>319</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -415,6 +418,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -581,7 +587,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">30x</span>
-<span class="cline-any cline-yes">1265x</span>
+<span class="cline-any cline-yes">1428x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-yes">30x</span>
@@ -691,7 +697,7 @@
  * 
  * const graph = new hsGraphD3.GraphCartesian(root);
  * graph.addSeries('line', {x:'time', y:'costs'});
- * graph.addSeries('line', {x:'time', y:0.5});
+ * graph.addSeries('line', {x:'time', y:()=&gt;0.5});
  * graph.defaults.scales.dims.ver.type = 'log';
  * graph.render(data);
  * 
@@ -730,14 +736,17 @@ import { GraphComponent }       from './GraphComponent';
 import { GraphCfg }             from './GraphComponent';
 import { UnitVp }               from './Settings';
 import * as d3                  from 'd3'; 
-import { Domain, OrdDomain, TimeDomain, NumDomain }               from './Graph';
+import { Domain }               from './Graph';
+import { TimeDomain }           from './Graph';
+import { NumDomain }            from './Graph';
+import { DataVal }              from './Graph';
 &nbsp;
-export type ScaleTypes = string|number|Date;
 &nbsp;
 interface ScaleFn {
-    (x: ScaleTypes): number | undefined;
+    (x: DataVal): number | undefined;
 }
 &nbsp;
+/**  */
 export type Range  = [UnitVp, UnitVp];
 &nbsp;
 export interface Scale extends ScaleFn {
@@ -896,7 +905,7 @@ abstract class BaseScale {
         }
         
         const d3Scale = this.d3Scale;
-        const scale:Scale = (x:ScaleTypes) =&gt; d3Scale(x);
+        const scale:Scale = (x:DataVal) =&gt; d3Scale(x);
     
         scale.range = _range;
         scale.domain = _domain;

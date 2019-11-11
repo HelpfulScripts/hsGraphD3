@@ -1,6 +1,7 @@
 import * as hsGraphD3   from '../';
 import * as d3 from 'd3';
 import { DataSet }      from '../Graph';
+import { SeriesPlotDefaults } from '../SeriesPlot';
 
 let clientWidth = 300;
 const root = window.document.createElement("div");
@@ -27,6 +28,8 @@ describe('TimeSeries', () => {
     beforeAll(() => {
         graph = new hsGraphD3.GraphCartesian(root);
         graph.addSeries('timeseries', {x:'xval', y:'yval'});
+        (<SeriesPlotDefaults>graph.defaults.series.series0).marker.rendered = true;
+        (<SeriesPlotDefaults>graph.defaults.series.series0).area.rendered = true;
         graph.render(data);
     });
     it('should plot timeSeries', () =>

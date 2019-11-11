@@ -1,6 +1,7 @@
 import * as hsGraphD3   from '../';
 import * as d3          from 'd3';
 import { DataSet }      from '../Graph';
+import { SeriesPlotDefaults } from '../SeriesPlot';
 
 let clientWidth = 300;
 const root = window.document.createElement("div");
@@ -25,7 +26,9 @@ describe('Column', () => {
     let graph:hsGraphD3.GraphCartesian;
     beforeAll(() => {
         graph = new hsGraphD3.GraphCartesian(root);
-        graph.addSeries('column', {x:'State', y:'volume'});
+        graph.addSeries('column', {x:'State', y:'volume', stacked:'grp'});
+        graph.addSeries('column', {x:'State', y:'volume', stacked:'grp'});
+        (<SeriesPlotDefaults>graph.defaults.series.series0).line.rendered = true;
         graph.render(data);
     });
     it(`should have 'column' registered`, () =>

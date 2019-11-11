@@ -15,7 +15,7 @@ import { log as gLog }          from 'hsutil';   const log = gLog('CartSeriesPlo
 import { SeriesPlot }           from "./SeriesPlot";
 import { SeriesPlotDefaults }   from "./SeriesPlot";
 import { SeriesDimensions }     from "./Series";
-import { ValueDef, ValueFn, DataVal }    from "./Graph";
+import { ValueDef }             from "./Graph";
 import { DataSet }              from "./Graph";
 import { Domains }              from "./Graph";
 import { CartDimensions }       from "./GraphCartesian";
@@ -25,22 +25,32 @@ import { setStroke }            from "./Settings";
 import { setFill }              from "./Settings";
 import { ScalesDefaults } from './Scale';
 
-
+/**
+ * valid standard dimensions on cartesian plots:
+ * - x: a {@ Graph.ValueDef Value Definiton} for the x-axis.
+ * - y: a {@ Graph.ValueDef Value Definiton} for the y-axis.
+ * - y0: optional {@ Graph.ValueDef Value Definiton} for lower fill border on the y-axis
+ * - r: optional {@ Graph.ValueDef Value Definiton} for the size of markers
+ */
 export interface CartSeriesDimensions extends SeriesDimensions {
     x:   ValueDef;      // name of x-axis data column, or a function returning a value
     y:   ValueDef;      // name of y-axis data column, or a function returning a value
     y0?: ValueDef;      // optional, name of y-axis data column for lower fill border, or a function returning a value
     r?:  ValueDef;      // optional, name of marker size data column, or a function returning a value
-    stacked?:string;    // optional stack group. Series with the same group will be stacked on each other
 }
 
+/**
+ * Abstract base class for all cartesian plots.
+ */
 export abstract class CartSeriesPlot extends SeriesPlot {
     constructor(cfg:GraphCfg, seriesName:string, dims:CartSeriesDimensions) {
         super(cfg, seriesName, dims);
     }
 
+    /** return the GraphDimension of the independent axis */
     protected get independentAxis():'hor'|'ver' { return 'hor'; }
 
+    /** return the list of Series dimesions for each Graph Dimension */
     get dimensions():CartDimensions { 
         return {
             hor: [this.dims.x],

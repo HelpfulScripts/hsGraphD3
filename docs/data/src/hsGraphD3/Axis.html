@@ -59,11 +59,11 @@
 <p id=36 class="line"><span>&nbsp;&nbsp;36</span>import&nbsp;{&nbsp;Text&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./GraphComponent'</quote>;</p>
 <p id=37 class="line"><span>&nbsp;&nbsp;37</span>import&nbsp;*&nbsp;as&nbsp;def&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Settings'</quote>;</p>
 <p id=38 class="line"><span>&nbsp;&nbsp;38</span>import&nbsp;{&nbsp;ScaleDims&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Scale'</quote>;</p>
-<p id=39 class="line"><span>&nbsp;&nbsp;39</span>import&nbsp;{&nbsp;ScaleTypes&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Scale'</quote>;</p>
-<p id=40 class="line"><span>&nbsp;&nbsp;40</span>import&nbsp;{&nbsp;ScalesDefaults&nbsp;}&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Scale'</quote>;</p>
-<p id=41 class="line"><span>&nbsp;&nbsp;41</span>import&nbsp;{&nbsp;UnitVp,&nbsp;d3Base&nbsp;}&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Settings'</quote>;</p>
-<p id=42 class="line"><span>&nbsp;&nbsp;42</span>import&nbsp;{&nbsp;setText&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Settings'</quote>;</p>
-<p id=43 class="line"><span>&nbsp;&nbsp;43</span>import&nbsp;{&nbsp;setStroke&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Settings'</quote>;</p>
+<p id=39 class="line"><span>&nbsp;&nbsp;39</span>import&nbsp;{&nbsp;ScalesDefaults&nbsp;}&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Scale'</quote>;</p>
+<p id=40 class="line"><span>&nbsp;&nbsp;40</span>import&nbsp;{&nbsp;UnitVp,&nbsp;d3Base&nbsp;}&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Settings'</quote>;</p>
+<p id=41 class="line"><span>&nbsp;&nbsp;41</span>import&nbsp;{&nbsp;setText&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Settings'</quote>;</p>
+<p id=42 class="line"><span>&nbsp;&nbsp;42</span>import&nbsp;{&nbsp;setStroke&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Settings'</quote>;</p>
+<p id=43 class="line"><span>&nbsp;&nbsp;43</span>import&nbsp;{&nbsp;DataVal&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Graph'</quote>;</p>
 <p id=44 class="line"><span>&nbsp;&nbsp;44</span></p>
 <p id=45 class="line"><span>&nbsp;&nbsp;45</span>export&nbsp;enum&nbsp;Direction&nbsp;{</p>
 <p id=46 class="line"><span>&nbsp;&nbsp;46</span>&nbsp;&nbsp;&nbsp;&nbsp;horizontal&nbsp;&nbsp;=&nbsp;<quote>'hor'</quote>,</p>
@@ -188,7 +188,7 @@
 <p id=165 class="line"><span>&nbsp;165</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(this.dir===Direction.horizontal)&nbsp;{</p>
 <p id=166 class="line"><span>&nbsp;166</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;axisDef&nbsp;=&nbsp;<AxisDefaults>this.cfg.defaults.axes.ver;</p>
 <p id=167 class="line"><span>&nbsp;167</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;dom&nbsp;=&nbsp;scales.ver.domain();</p>
-<p id=168 class="line"><span>&nbsp;168</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;cross:ScaleTypes&nbsp;=&nbsp;axisDef.crossing===<quote>'auto'</quote>?&nbsp;((dom[0]&nbsp;<&nbsp;0&nbsp;&&&nbsp;dom[1]&nbsp;>&nbsp;0)?&nbsp;0&nbsp;:&nbsp;dom[0])&nbsp;:&nbsp;axisDef.crossing;</p>
+<p id=168 class="line"><span>&nbsp;168</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;cross:DataVal&nbsp;=&nbsp;axisDef.crossing===<quote>'auto'</quote>?&nbsp;((dom[0]&nbsp;<&nbsp;0&nbsp;&&&nbsp;dom[1]&nbsp;>&nbsp;0)?&nbsp;0&nbsp;:&nbsp;dom[0])&nbsp;:&nbsp;axisDef.crossing;</p>
 <p id=169 class="line"><span>&nbsp;169</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;yCrossing&nbsp;=&nbsp;scales.ver(cross)&nbsp;+&nbsp;((scales.ver.type()===<quote>'ordinal'</quote>)?&nbsp;scales.ver.step()&nbsp;:&nbsp;0);</p>
 <p id=170 class="line"><span>&nbsp;170</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.pos&nbsp;=&nbsp;<quote>'bottom'</quote>;</p>
 <p id=171 class="line"><span>&nbsp;171</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(yCrossing&nbsp;<&nbsp;margins.top)&nbsp;{</p>
@@ -202,7 +202,7 @@
 <p id=179 class="line"><span>&nbsp;179</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{</p>
 <p id=180 class="line"><span>&nbsp;180</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;axisDef&nbsp;=&nbsp;<AxisDefaults>this.cfg.defaults.axes.hor;</p>
 <p id=181 class="line"><span>&nbsp;181</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;dom&nbsp;=&nbsp;scales.hor.domain();</p>
-<p id=182 class="line"><span>&nbsp;182</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;cross:ScaleTypes&nbsp;=&nbsp;axisDef.crossing===<quote>'auto'</quote>?&nbsp;((dom[0]&nbsp;<&nbsp;0&nbsp;&&&nbsp;dom[1]&nbsp;>&nbsp;0)?&nbsp;0&nbsp;:&nbsp;dom[0])&nbsp;:&nbsp;axisDef.crossing;</p>
+<p id=182 class="line"><span>&nbsp;182</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;cross:DataVal&nbsp;=&nbsp;axisDef.crossing===<quote>'auto'</quote>?&nbsp;((dom[0]&nbsp;<&nbsp;0&nbsp;&&&nbsp;dom[1]&nbsp;>&nbsp;0)?&nbsp;0&nbsp;:&nbsp;dom[0])&nbsp;:&nbsp;axisDef.crossing;</p>
 <p id=183 class="line"><span>&nbsp;183</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;xCrossing&nbsp;=&nbsp;scales.hor(cross);</p>
 <p id=184 class="line"><span>&nbsp;184</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.pos&nbsp;=&nbsp;<quote>'left'</quote>;</p>
 <p id=185 class="line"><span>&nbsp;185</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(xCrossing&nbsp;<&nbsp;margins.left)&nbsp;{</p>

@@ -20,31 +20,31 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">62.16% </span>
+        <span class="strong">91.89% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>23/37</span>
+        <span class='fraction'>34/37</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">25% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>3/12</span>
+        <span class='fraction'>6/12</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">70% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>7/10</span>
+        <span class='fraction'>10/10</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>20/30</span>
+        <span class='fraction'>30/30</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line medium'></div>
+  <div class='status-line high'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -326,28 +326,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -355,7 +341,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -483,16 +483,16 @@ export class TimeSeries extends NumericSeriesPlot {
         }   
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    d3RenderMarkers(</span>svg:d3Base, data:NumericDataSet) {
-<span class="cstat-no" title="statement not covered" >        if (data.rows.length&lt;2) { <span class="cstat-no" title="statement not covered" >return super.d3RenderMarkers(svg, data); </span>}</span>
-        const defaults = (&lt;SeriesPlotDefaults&gt;<span class="cstat-no" title="statement not covered" >this.cfg.defaults.series[this.key]).marker;</span>
-<span class="cstat-no" title="statement not covered" >        if (typeof(this.dims.x)==='number') { <span class="cstat-no" title="statement not covered" >log.warn(`d3RenderMarkers: unsupported const x=${this.dims.x} in timeseries`); </span>}</span>
-        const x = <span class="cstat-no" title="statement not covered" >data.colNames.indexOf(&lt;string&gt;this.dims.x);</span>
-<span class="cstat-no" title="statement not covered" >        if (defaults.rendered) {</span>
-            const xUnit = <span class="cstat-no" title="statement not covered" >data.rows[1][x] - data.rows[0][x];</span>
-            const samples:any = <span class="cstat-no" title="statement not covered" >svg.select('.markers').selectAll("circle").data(data.rows, <span class="fstat-no" title="function not covered" >d </span>=&gt; <span class="cstat-no" title="statement not covered" >d[0])</span>;</span>
-<span class="cstat-no" title="statement not covered" >            samples.exit().remove(); </span>           // remove unneeded circles
-<span class="cstat-no" title="statement not covered" >            samples.enter().append('circle')    // add new circles</span>
+    d3RenderMarkers(svg:d3Base, data:NumericDataSet) {
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (data.rows.length&lt;2) { <span class="cstat-no" title="statement not covered" >return super.d3RenderMarkers(svg, data); </span>}
+        const defaults = (&lt;SeriesPlotDefaults&gt;this.cfg.defaults.series[this.key]).marker;
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof(this.dims.x)==='number') { <span class="cstat-no" title="statement not covered" >log.warn(`d3RenderMarkers: unsupported const x=${this.dims.x} in timeseries`); </span>}
+        const x = data.colNames.indexOf(&lt;string&gt;this.dims.x);
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (defaults.rendered) {
+            const xUnit = data.rows[1][x] - data.rows[0][x];
+            const samples:any = svg.select('.markers').selectAll("circle").data(data.rows, d =&gt; d[0]);
+            samples.exit().remove();            // remove unneeded circles
+            samples.enter().append('circle')    // add new circles
                 .call(this.d3DrawMarker, this, data.colNames)
                 .attr("transform", `translate(${this.cfg.scales.hor(xUnit) - this.cfg.scales.hor(0)})`)
             .merge(samples).transition(this.cfg.transition)   // draw markers
@@ -512,8 +512,8 @@ export class TimeSeries extends NumericSeriesPlot {
             .attr('transform', `translate(0)`);
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    d3RenderFill(</span>svg:d3Base, data:NumericDataSet) {
-<span class="cstat-no" title="statement not covered" >        return super.d3RenderFill(svg, data)</span>
+    d3RenderFill(svg:d3Base, data:NumericDataSet) {
+        return super.d3RenderFill(svg, data)
             .attr('transform', `translate(${this.cfg.scales.hor(1) - this.cfg.scales.hor(0)})`)
             .transition(this.cfg.transition)
             .attr('transform', `translate(0)`);

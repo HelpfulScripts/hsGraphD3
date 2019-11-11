@@ -66,7 +66,7 @@ import { ComponentDefaults} from './GraphComponent';
 import { GraphCfg}          from './GraphComponent';
 import { Series }           from './Series';
 import { SeriesDimensions } from './Series';
-import { Scales, ScaleTypes }           from './Scale';
+import { Scales }           from './Scale';
 import { ScalesDefaults }   from './Scale';
 import { Axes }             from './Axis';
 import { Grids }            from './Grid';
@@ -89,7 +89,35 @@ const vpWidth:number = 1000;
  */
 export type ValueDef = string|ValueFn;
 
-export interface ValueFn { (i?:number): ScaleTypes; }
+/** 
+ * a function returning the value of a data point 
+ * @param i an optional number, typically indicating the sequence index of a row in a data set
+ */
+export interface ValueFn { (i?:number): DataVal; }
+
+/** default settings for the `Graph` component */
+export interface GraphDefaults extends ComponentDefaults {
+    /** the duration of the `Graph`-wide transition, restarted whith each `render` call.  */
+    transitionTime: number; // in ms
+    easing: string;         // e.g. 'easeCubic'
+}
+
+/** Basic generic data type */
+export type DataVal = number | string | Date;
+
+export type DataRow = DataVal[];
+
+export type NumericDataRow = number[];
+
+export interface DataSet {
+    colNames: string[];
+    rows: DataRow[];
+}
+
+export interface NumericDataSet extends DataSet {
+    colNames: string[];
+    rows: NumericDataRow[];
+}
 
 /** 
  * translates semantic graph dimensions (e.g. 'hor', 'ver', 'size')
@@ -203,26 +231,6 @@ export interface LifecycleCalls {
      * Can be used for cleanup operations.
      */
     postRender(data:DataSet | DataSet[], domains:Domains): void;
-}
-
-
-/** default settings for the `Graph` component */
-export interface GraphDefaults extends ComponentDefaults {
-    /** the duration of the `Graph`-wide transition, restarted whith each `render` call.  */
-    transitionTime: number; // in ms
-    easing: string;         // e.g. 'easeCubic'
-}
-
-export type DataVal = number | string | Date;
-export type DataRow = DataVal[];
-export type NumericDataRow = number[];
-export interface DataSet {
-    colNames: string[];
-    rows: DataRow[];
-}
-export interface NumericDataSet extends DataSet {
-    colNames: string[];
-    rows: NumericDataRow[];
 }
 
 /**

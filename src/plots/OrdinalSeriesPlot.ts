@@ -28,7 +28,6 @@ import { ValueFn }              from '../Graph';
 import { DataSet }              from '../Graph';
 import { ValueDef }             from '../Graph';
 import { Domains }              from '../Graph';
-import { Scale, ScaleTypes }    from '../Scale';
 import { d3Base }               from '../Settings';
 import { CartSeriesPlot }       from '../CartSeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
@@ -59,7 +58,7 @@ export interface OrdinalPlotDefaults extends SeriesPlotDefaults {
  * @param scale a numeric scale to apply 
  * @param def defaults to `0`; the default to return if `v` is `undefined`.
  */
-export function accessor(v:ValueDef, colNames:string[], def=0):(row?:number[], i?:number) => ScaleTypes {
+export function accessor(v:ValueDef, colNames:string[], def=0):(row?:number[], i?:number) => DataVal {
     const index = colNames.indexOf(''+v);
     const fn = typeof(v)==='function';
     return v===undefined? 
@@ -82,7 +81,7 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
         return def;
     } 
 
-    value(dim:string, v:ValueDef, colNames:string[]):(row?:DataRow, i?:number) => ScaleTypes {
+    value(dim:string, v:ValueDef, colNames:string[]):(row?:DataRow, i?:number) => DataVal {
         const stackDim = this.independentAxis==='hor'? 'ver' : 'hor';
         if (this.dims.stacked && dim===stackDim) {
             const fn = typeof(v)==='function';
@@ -95,7 +94,7 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
     }
 
     /** ensures that 0 is in the domain, since the columns extend down to 0. */
-    protected expandNumDomain(dataSet:DataSet, domain:NumDomain, fn:(row?:DataRow, i?:number) => ScaleTypes):NumDomain {
+    protected expandNumDomain(dataSet:DataSet, domain:NumDomain, fn:(row?:DataRow, i?:number) => DataVal):NumDomain {
         domain = super.expandNumDomain(dataSet, domain, fn);
         domain[0] = Math.min(0, domain[0]);
         domain[1] = Math.max(0, domain[1]);

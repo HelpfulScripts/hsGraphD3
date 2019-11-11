@@ -126,14 +126,14 @@ exports[`Bar should plot bar 1`] = `
         stroke-width="1"
       >
         <line
-          x1="233"
-          x2="233"
+          x1="404"
+          x2="404"
           y1="670"
           y2="20"
         />
         <line
-          x1="767"
-          x2="767"
+          x1="884"
+          x2="884"
           y1="670"
           y2="20"
         />
@@ -152,50 +152,56 @@ exports[`Bar should plot bar 1`] = `
           y2="20"
         />
         <line
-          x1="127"
-          x2="127"
+          x1="116"
+          x2="116"
           y1="670"
           y2="20"
         />
         <line
-          x1="233"
-          x2="233"
+          x1="212"
+          x2="212"
           y1="670"
           y2="20"
         />
         <line
-          x1="340"
-          x2="340"
+          x1="308"
+          x2="308"
           y1="670"
           y2="20"
         />
         <line
-          x1="447"
-          x2="447"
+          x1="404"
+          x2="404"
           y1="670"
           y2="20"
         />
         <line
-          x1="553"
-          x2="553"
+          x1="500"
+          x2="500"
           y1="670"
           y2="20"
         />
         <line
-          x1="660"
-          x2="660"
+          x1="596"
+          x2="596"
           y1="670"
           y2="20"
         />
         <line
-          x1="767"
-          x2="767"
+          x1="692"
+          x2="692"
           y1="670"
           y2="20"
         />
         <line
-          x1="873"
-          x2="873"
+          x1="788"
+          x2="788"
+          y1="670"
+          y2="20"
+        />
+        <line
+          x1="884"
+          x2="884"
           y1="670"
           y2="20"
         />
@@ -248,13 +254,13 @@ exports[`Bar should plot bar 1`] = `
             fill="currentColor"
             y="8"
           >
-            -0.2
+            -0.8
           </text>
         </g>
         <g
           class="tick"
           opacity="1"
-          transform="translate(127.5,0)"
+          transform="translate(116.5,0)"
         >
           <line
             fill-opacity="0"
@@ -268,13 +274,53 @@ exports[`Bar should plot bar 1`] = `
             fill="currentColor"
             y="8"
           >
-            -0.1
+            -0.6
           </text>
         </g>
         <g
           class="tick"
           opacity="1"
-          transform="translate(233.5,0)"
+          transform="translate(212.5,0)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-opacity="1"
+            stroke-width="2"
+            y2="5"
+          />
+          <text
+            dy="0.71em"
+            fill="currentColor"
+            y="8"
+          >
+            -0.4
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(308.5,0)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-opacity="1"
+            stroke-width="2"
+            y2="5"
+          />
+          <text
+            dy="0.71em"
+            fill="currentColor"
+            y="8"
+          >
+            -0.2
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(404.5,0)"
         >
           <line
             fill-opacity="0"
@@ -294,27 +340,7 @@ exports[`Bar should plot bar 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(340.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.1
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(447.5,0)"
+          transform="translate(500.5,0)"
         >
           <line
             fill-opacity="0"
@@ -334,27 +360,7 @@ exports[`Bar should plot bar 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(553.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.3
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(660.5,0)"
+          transform="translate(596.5,0)"
         >
           <line
             fill-opacity="0"
@@ -374,27 +380,7 @@ exports[`Bar should plot bar 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(767.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(873.5,0)"
+          transform="translate(692.5,0)"
         >
           <line
             fill-opacity="0"
@@ -414,6 +400,46 @@ exports[`Bar should plot bar 1`] = `
         <g
           class="tick"
           opacity="1"
+          transform="translate(788.5,0)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-opacity="1"
+            stroke-width="2"
+            y2="5"
+          />
+          <text
+            dy="0.71em"
+            fill="currentColor"
+            y="8"
+          >
+            0.8
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(884.5,0)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-opacity="1"
+            stroke-width="2"
+            y2="5"
+          />
+          <text
+            dy="0.71em"
+            fill="currentColor"
+            y="8"
+          >
+            1
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
           transform="translate(980.5,0)"
         >
           <line
@@ -428,7 +454,7 @@ exports[`Bar should plot bar 1`] = `
             fill="currentColor"
             y="8"
           >
-            0.7
+            1.2
           </text>
         </g>
       </g>
@@ -445,7 +471,7 @@ exports[`Bar should plot bar 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         text-anchor="end"
-        transform="translate(233, 5.327868852459016)"
+        transform="translate(404, 5.327868852459016)"
       >
         <path
           class="domain"
@@ -589,38 +615,105 @@ exports[`Bar should plot bar 1`] = `
           <path />
           <rect
             height="95.90163934426229"
-            width="214"
-            x="233"
+            width="96"
+            x="404"
             y="568.7704918032787"
           />
           <rect
             height="95.90163934426229"
-            width="747"
-            x="233"
+            width="336"
+            x="404"
             y="462.21311475409834"
           />
           <rect
             height="95.90163934426229"
-            width="107"
-            x="233"
+            width="48"
+            x="404"
             y="355.655737704918"
           />
           <rect
             height="95.90163934426229"
-            width="213"
-            x="20"
+            width="96"
+            x="308"
             y="249.0983606557377"
           />
           <rect
             height="95.90163934426229"
-            width="320"
-            x="233"
+            width="144"
+            x="404"
             y="142.5409836065574"
           />
           <rect
             height="95.90163934426229"
-            width="214"
-            x="233"
+            width="96"
+            x="404"
+            y="35.98360655737709"
+          />
+        </g>
+        <g
+          class="line"
+          fill-opacity="0"
+          stroke="currentColor"
+          stroke-opacity="1"
+          stroke-width="1"
+        >
+          <path
+            d="M500 663L500 568L740 557L740 462L452 450L452 355L308 344L308 249L548 237L548 142L500 130L500 35"
+          />
+        </g>
+        <g
+          class="markers"
+          fill="currentColor"
+          fill-opacity="0.75"
+          stroke="currentColor"
+          stroke-opacity="1"
+          stroke-width="4"
+        />
+      </g>
+      <g
+        class="series1"
+        style="color: rgb(217, 95, 2);"
+      >
+        <g
+          class="area"
+          fill="currentColor"
+          fill-opacity="0.5"
+        >
+          <path />
+          <rect
+            height="95.90163934426229"
+            width="480"
+            x="20"
+            y="568.7704918032787"
+          />
+          <rect
+            height="95.90163934426229"
+            width="96"
+            x="740"
+            y="462.21311475409834"
+          />
+          <rect
+            height="95.90163934426229"
+            width="192"
+            x="452"
+            y="355.655737704918"
+          />
+          <rect
+            height="95.90163934426229"
+            width="288"
+            x="308"
+            y="249.0983606557377"
+          />
+          <rect
+            height="95.90163934426229"
+            width="384"
+            x="548"
+            y="142.5409836065574"
+          />
+          <rect
+            height="95.90163934426229"
+            width="480"
+            x="500"
             y="35.98360655737709"
           />
         </g>

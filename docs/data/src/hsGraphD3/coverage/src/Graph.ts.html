@@ -513,7 +513,15 @@
 <a name='L465'></a><a href='#L465'>465</a>
 <a name='L466'></a><a href='#L466'>466</a>
 <a name='L467'></a><a href='#L467'>467</a>
-<a name='L468'></a><a href='#L468'>468</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L468'></a><a href='#L468'>468</a>
+<a name='L469'></a><a href='#L469'>469</a>
+<a name='L470'></a><a href='#L470'>470</a>
+<a name='L471'></a><a href='#L471'>471</a>
+<a name='L472'></a><a href='#L472'>472</a>
+<a name='L473'></a><a href='#L473'>473</a>
+<a name='L474'></a><a href='#L474'>474</a>
+<a name='L475'></a><a href='#L475'>475</a>
+<a name='L476'></a><a href='#L476'>476</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -744,6 +752,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -774,7 +790,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">16x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -856,7 +872,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1048,7 +1064,7 @@ import { ComponentDefaults} from './GraphComponent';
 import { GraphCfg}          from './GraphComponent';
 import { Series }           from './Series';
 import { SeriesDimensions } from './Series';
-import { Scales, ScaleTypes }           from './Scale';
+import { Scales }           from './Scale';
 import { ScalesDefaults }   from './Scale';
 import { Axes }             from './Axis';
 import { Grids }            from './Grid';
@@ -1071,7 +1087,35 @@ const vpWidth:number = 1000;
  */
 export type ValueDef = string|ValueFn;
 &nbsp;
-export interface ValueFn { (i?:number): ScaleTypes; }
+/** 
+ * a function returning the value of a data point 
+ * @param i an optional number, typically indicating the sequence index of a row in a data set
+ */
+export interface ValueFn { (i?:number): DataVal; }
+&nbsp;
+/** default settings for the `Graph` component */
+export interface GraphDefaults extends ComponentDefaults {
+    /** the duration of the `Graph`-wide transition, restarted whith each `render` call.  */
+    transitionTime: number; // in ms
+    easing: string;         // e.g. 'easeCubic'
+}
+&nbsp;
+/** Basic generic data type */
+export type DataVal = number | string | Date;
+&nbsp;
+export type DataRow = DataVal[];
+&nbsp;
+export type NumericDataRow = number[];
+&nbsp;
+export interface DataSet {
+    colNames: string[];
+    rows: DataRow[];
+}
+&nbsp;
+export interface NumericDataSet extends DataSet {
+    colNames: string[];
+    rows: NumericDataRow[];
+}
 &nbsp;
 /** 
  * translates semantic graph dimensions (e.g. 'hor', 'ver', 'size')
@@ -1185,26 +1229,6 @@ export interface LifecycleCalls {
      * Can be used for cleanup operations.
      */
     postRender(data:DataSet | DataSet[], domains:Domains): void;
-}
-&nbsp;
-&nbsp;
-/** default settings for the `Graph` component */
-export interface GraphDefaults extends ComponentDefaults {
-    /** the duration of the `Graph`-wide transition, restarted whith each `render` call.  */
-    transitionTime: number; // in ms
-    easing: string;         // e.g. 'easeCubic'
-}
-&nbsp;
-export type DataVal = number | string | Date;
-export type DataRow = DataVal[];
-export type NumericDataRow = number[];
-export interface DataSet {
-    colNames: string[];
-    rows: DataRow[];
-}
-export interface NumericDataSet extends DataSet {
-    colNames: string[];
-    rows: NumericDataRow[];
 }
 &nbsp;
 /**

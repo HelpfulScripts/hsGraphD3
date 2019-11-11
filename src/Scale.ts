@@ -13,7 +13,7 @@
  * 
  * const graph = new hsGraphD3.GraphCartesian(root);
  * graph.addSeries('line', {x:'time', y:'costs'});
- * graph.addSeries('line', {x:'time', y:0.5});
+ * graph.addSeries('line', {x:'time', y:()=>0.5});
  * graph.defaults.scales.dims.ver.type = 'log';
  * graph.render(data);
  * 
@@ -52,14 +52,17 @@ import { GraphComponent }       from './GraphComponent';
 import { GraphCfg }             from './GraphComponent';
 import { UnitVp }               from './Settings';
 import * as d3                  from 'd3'; 
-import { Domain, OrdDomain, TimeDomain, NumDomain }               from './Graph';
+import { Domain }               from './Graph';
+import { TimeDomain }           from './Graph';
+import { NumDomain }            from './Graph';
+import { DataVal }              from './Graph';
 
-export type ScaleTypes = string|number|Date;
 
 interface ScaleFn {
-    (x: ScaleTypes): number | undefined;
+    (x: DataVal): number | undefined;
 }
 
+/**  */
 export type Range  = [UnitVp, UnitVp];
 
 export interface Scale extends ScaleFn {
@@ -218,7 +221,7 @@ abstract class BaseScale {
         }
         
         const d3Scale = this.d3Scale;
-        const scale:Scale = (x:ScaleTypes) => d3Scale(x);
+        const scale:Scale = (x:DataVal) => d3Scale(x);
     
         scale.range = _range;
         scale.domain = _domain;

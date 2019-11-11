@@ -1,6 +1,7 @@
-import * as hsGraphD3   from '../';
-import * as d3          from 'd3';
-import { DataSet }      from '../Graph';
+import * as hsGraphD3           from '../';
+import * as d3                  from 'd3';
+import { DataSet }              from '../Graph';
+import { SeriesPlotDefaults }   from '../SeriesPlot';
 
 let clientWidth = 300;
 const root = window.document.createElement("div");
@@ -25,7 +26,9 @@ describe('Bar', () => {
     let graph:hsGraphD3.GraphCartesian;
     beforeAll(() => {
         graph = new hsGraphD3.GraphCartesian(root);
-        graph.addSeries('bar', {x:'costs', y:'State'});
+        graph.addSeries('bar', {x:'costs', y:'State', stacked:'grp'});
+        graph.addSeries('bar', {x:'volume', y:'State', stacked:'grp'});
+        (<SeriesPlotDefaults>graph.defaults.series.series0).line.rendered = true;
         graph.render(data);
     });
     it(`should have 'bar' registered`, () =>

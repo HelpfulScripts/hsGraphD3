@@ -36,11 +36,11 @@ import { Line }             from './GraphComponent';
 import { Text }             from './GraphComponent';
 import * as def             from './Settings';
 import { ScaleDims }        from './Scale';
-import { ScaleTypes }       from './Scale';
 import { ScalesDefaults }   from './Scale';
 import { UnitVp, d3Base }   from './Settings';
 import { setText }          from './Settings';
 import { setStroke }        from './Settings';
+import { DataVal }          from './Graph';
 
 export enum Direction {
     horizontal  = 'hor',
@@ -165,7 +165,7 @@ export class Axis {
         if (this.dir===Direction.horizontal) {
             const axisDef = <AxisDefaults>this.cfg.defaults.axes.ver;
             const dom = scales.ver.domain();
-            const cross:ScaleTypes = axisDef.crossing==='auto'? ((dom[0] < 0 && dom[1] > 0)? 0 : dom[0]) : axisDef.crossing;
+            const cross:DataVal = axisDef.crossing==='auto'? ((dom[0] < 0 && dom[1] > 0)? 0 : dom[0]) : axisDef.crossing;
             let yCrossing = scales.ver(cross) + ((scales.ver.type()==='ordinal')? scales.ver.step() : 0);
             this.pos = 'bottom';
             if (yCrossing < margins.top) {
@@ -179,7 +179,7 @@ export class Axis {
         } else {
             const axisDef = <AxisDefaults>this.cfg.defaults.axes.hor;
             const dom = scales.hor.domain();
-            const cross:ScaleTypes = axisDef.crossing==='auto'? ((dom[0] < 0 && dom[1] > 0)? 0 : dom[0]) : axisDef.crossing;
+            const cross:DataVal = axisDef.crossing==='auto'? ((dom[0] < 0 && dom[1] > 0)? 0 : dom[0]) : axisDef.crossing;
             let xCrossing = scales.hor(cross);
             this.pos = 'left';
             if (xCrossing < margins.left) {

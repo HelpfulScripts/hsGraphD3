@@ -17,7 +17,6 @@
 /**  */
 import { log as gLog }      from 'hsutil';   const log = gLog('SeriesPlot');
 import { BaseType }         from 'd3';
-import { extent }           from 'd3';
 import { d3Base, }          from "./Settings";
 import { defaultStroke }    from "./Settings";
 import { defaultMarker }    from "./Settings";
@@ -26,13 +25,14 @@ import { GraphCfg }         from "./GraphComponent";
 import { Area }             from "./GraphComponent";
 import { Line }             from "./GraphComponent";
 import { Marker }           from "./GraphComponent";
-import { DataSet, ValueFn, DataVal, DataRow } from "./Graph";
+import { DataSet, DataVal } from "./Graph";
+import { ValueFn }          from "./Graph";
+import { DataRow }          from "./Graph";
 import { NumDomain }        from "./Graph";
 import { OrdDomain }        from "./Graph";
 import { ValueDef }         from "./Graph";
 import { Domains }          from "./Graph";
 import { GraphDimensions }  from "./Graph";
-import { ScalesDefaults, ScaleTypes }   from './Scale';
 import { SeriesDimensions } from './Series';
 
 export type d3Selection = d3.Selection<BaseType, unknown, BaseType, unknown>; 
@@ -51,16 +51,22 @@ export interface SeriesPlotDefaults {
  * - If `v` is a function it will be valuated for the provided index `i` to return the result.
  * @param v the `ValueDef` specifying the value
  * @param colNames a list of names for the coluymns in the `DataSet`
- * @return an accessor function `(row?:DataRow, i?:number) => ScaleTypes` 
- * that returns a `ScaleTypes` value. The function
+ * @return an accessor function `(row?:DataRow, i?:number) => DataVal` 
+ * that returns a `DataVal` value. The function
  * receives a `DataRow` and the index of the row in the `DataSet` as a parameter. 
  */
-function value(v:ValueDef, colNames:string[]):(row?:DataRow, i?:number) => ScaleTypes {
+function value(v:ValueDef, colNames:string[]):(row?:DataRow, i?:number) => DataVal {
     const index = colNames.indexOf(''+v);
     return (row, i) => typeof(v)==='function'? (<ValueFn>v)(i) : row[index];
 }
 
-
+/**
+ * The base class for all series plots. It manages
+ * - setting the series' defaults
+ * - expanding domains to values of this series
+ * - the rendering lifecycle for the series
+ * - maintaining a stack mechanism that allows series to be stacked on one another
+ */
 export abstract class SeriesPlot { 
     /** 
      * a list of data column names used,
@@ -120,7 +126,7 @@ export abstract class SeriesPlot {
         });
     }
     
-    protected expandNumDomain(dataSet:DataSet, domain:NumDomain, fn:(row?:DataRow, i?:number) => ScaleTypes):NumDomain {
+    protected expandNumDomain(dataSet:DataSet, domain:NumDomain, fn:(row?:DataRow, i?:number) => DataVal):NumDomain {
         return <NumDomain>dataSet.rows.reduce((dom:NumDomain, row:DataRow, i:number):NumDomain => {
             const val = <number>fn(row, i);
             dom[0] = Math.min(val, dom[0]);
@@ -129,7 +135,7 @@ export abstract class SeriesPlot {
         }, domain);
     }
     
-    protected expandOrdinalDomain(dataSet:DataSet, domain:OrdDomain, fn:(row?:DataRow, i?:number) => ScaleTypes):OrdDomain {
+    protected expandOrdinalDomain(dataSet:DataSet, domain:OrdDomain, fn:(row?:DataRow, i?:number) => DataVal):OrdDomain {
         return <OrdDomain>dataSet.rows.reduce((dom:OrdDomain, row:DataRow, i:number):OrdDomain => {
             const val = <string>fn(row, i);
             if (dom.indexOf(val) < 0) { dom.push(val); }
@@ -146,11 +152,11 @@ export abstract class SeriesPlot {
      * @param dim the Graph Dimension, used for stacking; e.g. 'hor', or 'ver' 
      * @param v the `ValueDef` specifying the value
      * @param colNames a list of names for the coluymns in the `DataSet`
-     * @return an accessor function `(row?:DataRow, i?:number) => ScaleTypes` 
-     * that returns a `ScaleTypes` value. The function
+     * @return an accessor function `(row?:DataRow, i?:number) => DataVal` 
+     * that returns a `DataVal` value. The function
      * receives a `DataRow` and the index of the row in the `DataSet` as a parameter. 
      */
-    value(dim:string, v:ValueDef, colNames:string[]):(row?:DataRow, i?:number) => ScaleTypes {
+    value(dim:string, v:ValueDef, colNames:string[]):(row?:DataRow, i?:number) => DataVal {
         return value(v, colNames);
     }
 

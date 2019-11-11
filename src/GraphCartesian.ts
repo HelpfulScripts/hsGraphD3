@@ -106,6 +106,10 @@ export interface CartDimensions extends GraphDimensions { hor:ValueDef[]; ver:Va
 
 export class GraphCartesian extends Graph {
 
+    /**
+     * Called during `Graph` construction to create component defaults and 
+     * scale defaults for the `GraphDimensions` used in cartedian plots.
+     */
     protected makeDefaults() {
         super.makeDefaults();
         const scalesDefaults = <ScalesDefaults>this.config.defaults.scales;
