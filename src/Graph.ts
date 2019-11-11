@@ -66,7 +66,7 @@ import { ComponentDefaults} from './GraphComponent';
 import { GraphCfg}          from './GraphComponent';
 import { Series }           from './Series';
 import { SeriesDimensions } from './Series';
-import { Scales }           from './Scale';
+import { Scales, ScaleTypes }           from './Scale';
 import { ScalesDefaults }   from './Scale';
 import { Axes }             from './Axis';
 import { Grids }            from './Grid';
@@ -89,7 +89,7 @@ const vpWidth:number = 1000;
  */
 export type ValueDef = string|ValueFn;
 
-export interface ValueFn { (i?:number): string|number|Date; }
+export interface ValueFn { (i?:number): ScaleTypes; }
 
 /** 
  * translates semantic graph dimensions (e.g. 'hor', 'ver', 'size')
@@ -197,6 +197,12 @@ export interface LifecycleCalls {
      * At this point all components have completed preRendering
      */
     renderComponent(data:DataSet | DataSet[]): void;
+
+    /** 
+     * Called immediately after the call to renderComponent. 
+     * Can be used for cleanup operations.
+     */
+    postRender(data:DataSet | DataSet[], domains:Domains): void;
 }
 
 
@@ -261,10 +267,8 @@ export abstract class Graph implements LifecycleCalls {
     }
 
     /** returns the types of all registered `Series` */
-    public get series():{types: string[]} {
-        return {
-            types: Series.types
-        };
+    public get seriesTypes():string[] {
+        return Series.types;
     }
 
     /**
@@ -337,7 +341,6 @@ export abstract class Graph implements LifecycleCalls {
      * @param dims an object literal specifying the {@link Series.SeriesDimensions `SeriesDimensions`} to use. 
      */
     public addSeries(type:string, dims:SeriesDimensions):SeriesPlot {
-        //this.resize();
         return this.Series.addSeries(type, dims);
     }
 
@@ -354,18 +357,20 @@ export abstract class Graph implements LifecycleCalls {
 
     /** Called immediately before each call to renderComponent. */
     preRender(data:DataSet | DataSet[], domains:Domains): void {
-        this.Series.expandDomain(data, domains);
+        this.Series.expandDomains(data, domains);
         this.setScales();
         // this.components.forEach((comp:GraphComponent) => comp.preRender(data, domains));
-        this.components.forEach((comp:GraphComponent) => {
-            log.debug(`preRender ${comp.componentType}`);
-            comp.preRender(data, domains);
-        });
+        this.components.forEach((comp:GraphComponent) => comp.preRender(data, domains));
     } 
 
     /** renders the component. */
     renderComponent(data:DataSet | DataSet[]): void {
         this.components.forEach((comp:GraphComponent) => comp.renderComponent(data));
+    } 
+
+    /** renders the component. */
+    postRender(data:DataSet | DataSet[]): void {
+        this.components.forEach((comp:GraphComponent) => comp.postRender(data));
     } 
 
 
@@ -401,7 +406,8 @@ export abstract class Graph implements LifecycleCalls {
             },
             defaults: <DefaultsType>{},
             scales: {},
-            transition: null
+            transition: null,
+            stack: { }
         };
     }
 

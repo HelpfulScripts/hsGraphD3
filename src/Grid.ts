@@ -90,8 +90,7 @@ export class Grids extends GraphComponent {
         this.grids['ver']['minor'] = new Grid(this.cfg, Direction.vertical, MajorMinor.minor);
     } 
 
-    preRender(): void {
-    } 
+    preRender(): void {} 
 
     renderComponent() {
         if ((<GridDefaults>this.cfg.defaults.grids).rendered) {
@@ -101,6 +100,8 @@ export class Grids extends GraphComponent {
             this.grids['ver']['minor'].renderComponent();    
         }
     }
+
+    postRender(): void {} 
 }
 
 export class Grid {

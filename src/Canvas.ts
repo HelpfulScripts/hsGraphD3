@@ -52,8 +52,7 @@ export class Canvas extends gc.GraphComponent {
         this.svg.append('rect').classed('graphArea', true);
     } 
 
-    preRender(): void {
-    } 
+    preRender(): void {} 
 
     /**
      * renders the Graph's background canvas
@@ -66,4 +65,6 @@ export class Canvas extends gc.GraphComponent {
             .attr('width', this.cfg.viewPort.width)
             .attr('height', this.cfg.viewPort.height);
     }
+
+    postRender(): void {} 
 }

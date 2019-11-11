@@ -91,8 +91,7 @@ export class Axes extends GraphComponent {
     initialize(svg:def.d3Base): void {
     } 
 
-    preRender(): void {
-    } 
+    preRender(): void {} 
 
     renderComponent() {
         const def = <AxesDefaults>this.cfg.defaults.axes;
@@ -100,6 +99,7 @@ export class Axes extends GraphComponent {
             this.axes.forEach(axis => axis.defaults.rendered? axis.renderComponent() : '');
         }
     }
+    postRender(): void {} 
 }
 
 

@@ -30,7 +30,7 @@ describe('Area', () => {
         graph.render(data);
     });
     it(`should have 'area' registered`, () =>
-        expect(graph.series.types).toContain('area')
+        expect(graph.seriesTypes).toContain('area')
     );
     it('should plot area', () =>
         expect(root).toMatchSnapshot()

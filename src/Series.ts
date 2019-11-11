@@ -10,7 +10,7 @@
  * 
  * function getTypes(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      return graph.series.types.map(t => m('li', t));
+ *      return graph.seriesTypes.map(t => m('li', t));
  * }
  * 
  * m.mount(root, {
@@ -31,19 +31,16 @@
 
 /** */
 
-import { extent }           from 'd3';
-import { log as gLog }      from 'hsutil';   const log = gLog('Series');
-import { DataSet, ValueFn, NumDomain, OrdDomain } from './Graph';
-import { GraphDimensions }  from './Graph';
-import { ValueDef }         from './Graph';
-import { Domains }          from './Graph';
-import { d3Base }           from './Settings';
-import { GraphComponent }   from './GraphComponent'; 
-import { ComponentDefaults }from './GraphComponent'; 
-import { GraphCfg }         from './GraphComponent'; 
-import { SeriesPlot }       from './SeriesPlot';
-import { schemeDark2 as colors } from 'd3';
-import { ScalesDefaults }   from './Scale';
+import { log as gLog }          from 'hsutil';   const log = gLog('Series');
+import { DataSet }              from './Graph';
+import { ValueDef }             from './Graph';
+import { Domains }              from './Graph';
+import { d3Base }               from './Settings';
+import { GraphComponent }       from './GraphComponent'; 
+import { ComponentDefaults }    from './GraphComponent'; 
+import { GraphCfg }             from './GraphComponent'; 
+import { SeriesPlot }           from './SeriesPlot';
+import { schemeDark2 as colors }from 'd3';
 
 /**
  * The `SeriesDimensions` that specify the values to use for different 
@@ -57,69 +54,21 @@ export interface SeriesDimensions { [dim:string]: ValueDef; }
 
 type PlotFactory = (cfg:GraphCfg, seriesName:string, dims:SeriesDimensions) => SeriesPlot;
 
+export interface SeriesDefaults extends ComponentDefaults {
+    /** used with `OrdinalSeriesPlot`, defines ordinal-specific defaults */
+    ordinal?: {
+        /** 
+         * gap width between mutliple series
+         * as a ration between 0 (no gap) and 1 (all gap). 
+         * */
+        gap:   number;  
 
-function expandNumDomain(dataSet:DataSet, domain:NumDomain, col:ValueDef, dim:string):NumDomain {
-    if (!domain) { 
-        log.debug(`num domain not initialized for dimension '${dim}'`); 
-        domain = [1e99, -1e99]; 
-    }
-
-    if (typeof(col)==='function') {
-        const dataDom = extent(dataSet.rows, ((r, i:number) => <number>(<ValueFn>col)(i)));
-        domain[0] = Math.min(domain[0], dataDom[0]);
-        domain[1] = Math.max(domain[1], dataDom[1]);
-    } else {
-        const colNum = dataSet.colNames.indexOf(col);
-        if (colNum < 0) { log.warn(`did not find column '${col}' in data set ${dataSet.colNames.join(', ')}`); }
-        else {
-            const dataDom = extent(dataSet.rows, (r => <number>r[colNum]));
-            domain[0] = Math.min(domain[0], dataDom[0]);
-            domain[1] = Math.max(domain[1], dataDom[1]);
-            if (domain[1] === domain[0]) { 
-                domain[0] = 0.9*domain[0]; 
-                domain[1] = 1.1*domain[1];
-            }
-        }
-    }
-    return domain;
-}
-
-function expandOrdinalDomain(dataSet:DataSet, domain:OrdDomain, col:ValueDef, dim:string):OrdDomain {
-    if (!domain) { 
-        log.debug(`ord domain not initialized for dimension '${dim}'`); 
-        domain = []; 
-    }
-    if (typeof(col)==='function') {
-        dataSet.rows.forEach((d,i) => {
-            const dataDom = <string>col(i);
-            if (domain.indexOf(dataDom) < 0) { domain.push(dataDom); }
-        });
-    } else {
-        const colNum = dataSet.colNames.indexOf(col);
-        if (colNum < 0) { log.warn(`did not find column '${col}' in data set ${dataSet.colNames.join(', ')}`); }
-        else {
-            dataSet.rows.forEach((d,i) => {
-                const dataDom = <string>d[colNum];
-                if (domain.indexOf(dataDom) < 0) { domain.push(dataDom); }
-            });
-       }
-    }
-    return domain;
-}
-
-function stretchDomains(dataSet:DataSet, s:SeriesPlot, domains:Domains, defs:ScalesDefaults) {
-    const dims:GraphDimensions = s.dimensions;
-    Object.keys(dims).map(dim => {
-        const type = defs.dims[dim].type;
-        log.debug(`stretchDomain ${dim}: ${type}`);
-        dims[dim].map(col => { if (col!==undefined) { 
-            switch(type) {
-                case 'ordinal':     domains[dim] = expandOrdinalDomain(dataSet, <OrdDomain>domains[dim], col, dim); break;
-                default:            domains[dim] = expandNumDomain(dataSet, <NumDomain>domains[dim], col, dim);
-            }
-        }});
-    });
-    // log.info(log.inspect(domains, null));
+        /** 
+         * overlap between multiple series, 
+         * between 0 (no overlap) and 1 (complete overlap) 
+         */
+        overlap: number;
+    };
 }
 
 
@@ -161,10 +110,8 @@ export class Series extends GraphComponent {
     } 
 
     preRender(data:DataSet | DataSet[], domains:Domains): void {
-        this.series.forEach((s:SeriesPlot, i:number) => s.preRender((<DataSet>data).colNames? 
-                data : data[i % this.series.length], 
-                domains
-            ) 
+        this.series.forEach((s:SeriesPlot, i:number) => 
+            s.preRender((<DataSet>data).colNames? data : data[i % this.series.length], domains) 
         );
     } 
 
@@ -179,13 +126,25 @@ export class Series extends GraphComponent {
         ));
     }
 
+    postRender(data:DataSet | DataSet[]) {
+        this.series.forEach((s:SeriesPlot, i:number) => s.postRender((<DataSet>data).colNames? 
+            data : data[i % this.series.length]
+        ));
+    }
+
     /** creates a default entry for the component type in `Defaults` */
     createDefaults():ComponentDefaults {
-        return {};
+        return {
+            ordinal: {
+                gap: 0.1,      // [0,1]
+                overlap: 0,    // [0,1]
+            }
+        };
     }
 
     /** 
-     * returns the data domains by data columns across all added series. 
+     * Called during preRendering, prior to all component preRender calls.
+     * Returns the data domains by data columns across all added series. 
      * @param data the data to calculate domains on
      * @param domains the current data domains will be accumulated to the 
      * provided one under the same data column index. In addition, if domains for the 
@@ -194,17 +153,20 @@ export class Series extends GraphComponent {
      * data columns to be plotted on the same axis, they all share the same domain accumulation.
      * @return an array of [min, max] domains ranges, indexed by data column
      */
-    expandDomain(data:DataSet | DataSet[], domains:Domains):Domains {
+    expandDomains(data:DataSet | DataSet[], domains:Domains):Domains {
+        this.series.forEach((s:SeriesPlot) => s.clearStack());
         if ((<DataSet>data).colNames) {  
             // use same dataset for each series
-            this.series.forEach((s:SeriesPlot) => stretchDomains(<DataSet>data, s, domains, <ScalesDefaults>this.cfg.defaults.scales));
+            this.series.forEach((s:SeriesPlot) => s.expandDomains(<DataSet>data, domains));
         } else {
             // assign dataset to series based on index
             this.series.forEach((s:SeriesPlot, i:number) => {
                 const dataSet = data[i % (<DataSet[]>data).length];
-                stretchDomains(dataSet, s, domains, <ScalesDefaults>this.cfg.defaults.scales);
+                s.expandDomains(dataSet, domains);
             });
         }
+        // reset the stack.
+        this.series.forEach((s:SeriesPlot) => s.clearStack());
         return domains;
     }
     
@@ -217,7 +179,7 @@ export class Series extends GraphComponent {
         const seriesCreator = Series.seriesCreatorMap[type];
         if (seriesCreator) {
             const series = seriesCreator(this.cfg, `${Series.type}${this.series.length}`, dims);
-            const seriesDefault = this.cfg.defaults.series;
+            const seriesDefault = <SeriesDefaults>this.cfg.defaults.series;
             const index = this.series.length;
             seriesDefault[index] = seriesDefault[series.key] = series.getDefaults();
             this.series.push(series);

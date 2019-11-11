@@ -34,7 +34,7 @@ describe('Line', () => {
             graph.render(data);
         });
         it(`should have 'line' registered`, () =>
-            expect(graph.series.types).toContain('line')
+            expect(graph.seriesTypes).toContain('line')
         );
         it('should support settings changes', () => {
             expect(graph.defaults.axes.color).toBe('#666');

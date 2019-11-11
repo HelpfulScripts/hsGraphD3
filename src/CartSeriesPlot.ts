@@ -11,10 +11,11 @@
 
 /** */
 
+import { log as gLog }          from 'hsutil';   const log = gLog('CartSeriesPlot');
 import { SeriesPlot }           from "./SeriesPlot";
 import { SeriesPlotDefaults }   from "./SeriesPlot";
 import { SeriesDimensions }     from "./Series";
-import { ValueDef }             from "./Graph";
+import { ValueDef, ValueFn, DataVal }    from "./Graph";
 import { DataSet }              from "./Graph";
 import { Domains }              from "./Graph";
 import { CartDimensions }       from "./GraphCartesian";
@@ -22,26 +23,23 @@ import { GraphCfg }             from "./GraphComponent";
 import { d3Base }               from "./Settings";
 import { setStroke }            from "./Settings";
 import { setFill }              from "./Settings";
+import { ScalesDefaults } from './Scale';
 
 
 export interface CartSeriesDimensions extends SeriesDimensions {
-    x:   ValueDef;     // name of x-axis data column, or a function returning a value
-    y:   ValueDef;     // name of y-axis data column, or a function returning a value
-    y0?: ValueDef;     // optional, name of y-axis data column for lower fill border, or a function returning a value
-    r?:  ValueDef;     // optional, name of marker size data column, or a function returning a value
+    x:   ValueDef;      // name of x-axis data column, or a function returning a value
+    y:   ValueDef;      // name of y-axis data column, or a function returning a value
+    y0?: ValueDef;      // optional, name of y-axis data column for lower fill border, or a function returning a value
+    r?:  ValueDef;      // optional, name of marker size data column, or a function returning a value
+    stacked?:string;    // optional stack group. Series with the same group will be stacked on each other
 }
 
 export abstract class CartSeriesPlot extends SeriesPlot {
-    /** 
-     * a list of data column names used,
-     * reflecting the list of column names provided during construction.
-     */
-    protected dims: CartSeriesDimensions;
-
     constructor(cfg:GraphCfg, seriesName:string, dims:CartSeriesDimensions) {
-        super(cfg, seriesName);
-        this.dims = dims;
+        super(cfg, seriesName, dims);
     }
+
+    protected get independentAxis():'hor'|'ver' { return 'hor'; }
 
     get dimensions():CartDimensions { 
         return {
@@ -60,6 +58,7 @@ export abstract class CartSeriesPlot extends SeriesPlot {
         if (this.dims.y0) { def.area.rendered = true; }
         return def;
     }
+
 
     //---------- lifecylce methods --------------------
 
@@ -81,26 +80,49 @@ export abstract class CartSeriesPlot extends SeriesPlot {
         const markers = this.svg.select('.markers');
         setStroke(markers, defaults.marker.stroke);
         setFill(markers, defaults.marker.fill);
+        this.clearStack();
     }
 
-    preRender(data:DataSet, domains:Domains): void {
+    public preRender(data:DataSet, domains:Domains): void {
+        super.preRender(data, domains);
+        this.clearStack();
     }
-
 
     /** renders the component for the given data */
     public renderComponent(data:DataSet): void {
+        this.intializeStackGroup(data);
+        super.renderComponent(data);
+        this.renderElements(data);
+        this.updateStack(data);
+    }
+
+    public postRender(data:DataSet): void {
+        super.postRender(data);
+    }
+        
+    //---------- support methods during lifecylce --------------------
+
+    /**
+     * returns the `ValueDef`, i.e. column name or `ValueFn`, for which to stack series.
+     */
+    protected getStackValueDef():ValueDef {
+        return this.independentAxis==='hor'? this.dims.y : this.dims.x;
+    }
+
+    protected renderElements(data:DataSet) {
         const defaults = (<SeriesPlotDefaults>this.cfg.defaults.series[this.key]);
         if (defaults.marker.rendered) { this.svg.call(this.d3RenderMarkers.bind(this), data); }
         if (defaults.line.rendered)   { this.svg.call(this.d3RenderPath.bind(this), data); }
         if (defaults.area.rendered)   { this.svg.call(this.d3RenderFill.bind(this), data); }
     }
 
-        
-    //---------- support methods during lifecylce --------------------
-
     protected abstract d3RenderMarkers(svg:d3Base, data:DataSet):void;
 
     protected abstract d3RenderPath(svg:d3Base, data:DataSet):void;
 
     protected abstract d3RenderFill(svg:d3Base, data:DataSet):void;
+
+    protected getPathElement(svg:d3Base, cls:string):any {
+        return svg.select(cls).selectAll('path').transition(this.cfg.transition);
+    }
 }

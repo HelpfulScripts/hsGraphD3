@@ -155,6 +155,7 @@ export class Scales extends GraphComponent {
     initialize(): void {} 
     preRender(): void {} 
     renderComponent() {}
+    postRender(): void {} 
 
     /** creates a default entry for the component type in `Defaults` */
     public createDefaults():ScalesDefaults {

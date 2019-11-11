@@ -60,6 +60,11 @@ export interface GraphCfg {
      */    
     scales: { [dim:string]: Scale};
 
+    /**
+     * used to aggregate series into grouped stacks. 
+     */
+    stack: { [group:string]: number[]; };
+
     /** the currently used transition. A new transition will be set each time `Graph.render()` is called. */
     transition: any;
 }
@@ -105,5 +110,8 @@ export abstract class GraphComponent implements LifecycleCalls {
 
     /** renders the component. */
     abstract renderComponent(data:DataSet | DataSet[]): void;
+
+    /** Called immediately after each call to renderComponent. */
+    abstract postRender(data:DataSet | DataSet[]): void; 
 }
 

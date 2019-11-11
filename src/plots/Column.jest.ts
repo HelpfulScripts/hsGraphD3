@@ -1,5 +1,5 @@
 import * as hsGraphD3   from '../';
-import * as d3 from 'd3';
+import * as d3          from 'd3';
 import { DataSet }      from '../Graph';
 
 let clientWidth = 300;
@@ -12,31 +12,30 @@ d3.selection.prototype.duration     = function(){ return this; };
 d3.selection.prototype.ease         = function(){ return this; };
 
 const data:DataSet = {
-    colNames: 
-        ['xval', 'yval'],
-    rows : [
-        [-1,      15,     15],
-        [0.2,      2,     23],
-        [3,       28,     30],
-        [7.5,     13,      8]
-    ]
-};
+    colNames: ['State', 'volume', 'costs'], 
+    rows:[    ['CA',     -1,       0.2], 
+              ['MA',      0.2,     0.7], 
+              ['FL',      0.4,     0.1],
+              ['SC',      0.6,    -0.2], 
+              ['NV',      0.8,     0.3], 
+              ['NC',      1,       0.2]]
+   };
 
-describe('TimeSeries', () => {
+describe('Column', () => {
     let graph:hsGraphD3.GraphCartesian;
     beforeAll(() => {
         graph = new hsGraphD3.GraphCartesian(root);
-        graph.addSeries('timeseries', {x:'xval', y:'yval'});
+        graph.addSeries('column', {x:'State', y:'volume'});
         graph.render(data);
     });
-    it('should plot timeSeries', () =>
+    it(`should have 'column' registered`, () =>
+        expect(graph.seriesTypes).toContain('bar')
+    );
+    it('should plot column', () =>
         expect(root).toMatchSnapshot()
     );
     it('should support settings changes', () => {
         graph.defaults.axes.color = '#666';
         expect(graph.defaults.axes.color).toBe('#666');
     });
-    it(`should have 'timeseries' registered`, () =>
-        expect(graph.seriesTypes).toContain('timeseries')
-    );
 });

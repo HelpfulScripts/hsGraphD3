@@ -29,9 +29,10 @@
 import { log as gLog }          from 'hsutil';   const log = gLog('NumericSeriesPlot');
 import { line as d3line}        from "d3";
 import { curveCatmullRom }      from 'd3';
-import { NumericDataSet, ValueFn }       from '../Graph';
+import { NumericDataSet }       from '../Graph';
+import { ValueFn }              from '../Graph';
 import { NumericDataRow }       from '../Graph';
-import { ValueDef }            from '../Graph';
+import { ValueDef }             from '../Graph';
 import { Domains }              from '../Graph';
 import { Scale }                from '../Scale';
 import { d3Base }               from '../Settings';
@@ -140,10 +141,6 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
             .y(accessor(yDef, colNames, this.cfg.scales.ver))
             .curve(curveCatmullRom.alpha(0.2));
         return line(<[number, number][]>rows);
-    }
-
-    protected getPathElement(svg:d3Base, cls:string):any {
-        return svg.select(cls).selectAll('path').transition(this.cfg.transition);
     }
 }
 
