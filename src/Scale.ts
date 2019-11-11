@@ -26,6 +26,12 @@
  * const log = hsUtil.log('');
  * let defaults;
  * 
+ * function createGraph(svgRoot) {
+ *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
+ *      graph.defaults.scales.dims.ver.type = 'log';
+ *      return graph.defaults.scales;
+ * }
+ * 
  * m.mount(root, {
  *   view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [
  *      m('div', m.trust('graph.defaults.scales = ' + defaults)), 
@@ -35,8 +41,7 @@
  *      const svgRoot = root.getElementsByClassName('myGraph');
  *      if (svgRoot && svgRoot.length && !defaults) { 
  *          const colors = ['#800', '#080', '#008'];
- *          defaults = hsUtil.log
- *              .inspect(new hsGraphD3.GraphCartesian(svgRoot[0]).defaults.scales, null, '   ', colors)
+ *          defaults = hsUtil.log.inspect(createGraph(svgRoot[0]), null, '   ', colors)
  *              .replace(/\n/g, '<br>')
  *      }
  *   } 

@@ -364,7 +364,17 @@
 <a name='L316'></a><a href='#L316'>316</a>
 <a name='L317'></a><a href='#L317'>317</a>
 <a name='L318'></a><a href='#L318'>318</a>
-<a name='L319'></a><a href='#L319'>319</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L319'></a><a href='#L319'>319</a>
+<a name='L320'></a><a href='#L320'>320</a>
+<a name='L321'></a><a href='#L321'>321</a>
+<a name='L322'></a><a href='#L322'>322</a>
+<a name='L323'></a><a href='#L323'>323</a>
+<a name='L324'></a><a href='#L324'>324</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -710,6 +720,12 @@
  * const log = hsUtil.log('');
  * let defaults;
  * 
+ * function createGraph(svgRoot) {
+ *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
+ *      graph.defaults.scales.dims.ver.type = 'log';
+ *      return graph.defaults.scales;
+ * }
+ * 
  * m.mount(root, {
  *   view:() =&gt; m('div', {style:'background-color:#eee; font-family:Monospace'}, [
  *      m('div', m.trust('graph.defaults.scales = ' + defaults)), 
@@ -719,8 +735,7 @@
  *      const svgRoot = root.getElementsByClassName('myGraph');
  *      if (svgRoot &amp;&amp; svgRoot.length &amp;&amp; !defaults) { 
  *          const colors = ['#800', '#080', '#008'];
- *          defaults = hsUtil.log
- *              .inspect(new hsGraphD3.GraphCartesian(svgRoot[0]).defaults.scales, null, '   ', colors)
+ *          defaults = hsUtil.log.inspect(createGraph(svgRoot[0]), null, '   ', colors)
  *              .replace(/\n/g, '&lt;br&gt;')
  *      }
  *   } 

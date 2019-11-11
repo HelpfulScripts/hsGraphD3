@@ -23633,7 +23633,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scale.ts",
 			"comment": {
 				"shortText": "# Scale",
-				"text": "### Example\nUse of a logarithmic scale:\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\nconst data = {\n   colNames:['time', 'costs'],\n   rows:[[0,   0.2], [0.2, 0.7], [0.4, 0.1],\n         [0.6, 0.5], [0.8, 0.3], [1,   0.2]]\n};\n\nconst graph = new hsGraphD3.GraphCartesian(root);\ngraph.addSeries('line', {x:'time', y:'costs'});\ngraph.addSeries('line', {x:'time', y:()=>0.5});\ngraph.defaults.scales.dims.ver.type = 'log';\ngraph.render(data);\n\n</file>\n</example>\n\n### Scales Default Settings:\n<example height=300px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = hsUtil.log('');\nlet defaults;\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.defaults.scales = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = hsUtil.log\n             .inspect(new hsGraphD3.GraphCartesian(svgRoot[0]).defaults.scales, null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
+				"text": "### Example\nUse of a logarithmic scale:\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\nconst data = {\n   colNames:['time', 'costs'],\n   rows:[[0,   0.2], [0.2, 0.7], [0.4, 0.1],\n         [0.6, 0.5], [0.8, 0.3], [1,   0.2]]\n};\n\nconst graph = new hsGraphD3.GraphCartesian(root);\ngraph.addSeries('line', {x:'time', y:'costs'});\ngraph.addSeries('line', {x:'time', y:()=>0.5});\ngraph.defaults.scales.dims.ver.type = 'log';\ngraph.render(data);\n\n</file>\n</example>\n\n### Scales Default Settings:\n<example height=300px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = hsUtil.log('');\nlet defaults;\n\nfunction createGraph(svgRoot) {\n     const graph = new hsGraphD3.GraphCartesian(svgRoot);\n     graph.defaults.scales.dims.ver.type = 'log';\n     return graph.defaults.scales;\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.defaults.scales = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = hsUtil.log.inspect(createGraph(svgRoot[0]), null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
 			},
 			"children": [
 				{
@@ -23711,7 +23711,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 253,
+									"line": 258,
 									"character": 35
 								}
 							],
@@ -23733,7 +23733,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 198,
+									"line": 203,
 									"character": 33
 								}
 							],
@@ -23759,7 +23759,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 254,
+									"line": 259,
 									"character": 67
 								}
 							],
@@ -23787,7 +23787,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 254,
+									"line": 259,
 									"character": 91
 								}
 							],
@@ -23814,7 +23814,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 254,
+									"line": 259,
 									"character": 34
 								}
 							],
@@ -23859,7 +23859,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 274,
+									"line": 279,
 									"character": 23
 								}
 							],
@@ -23897,7 +23897,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 244,
+									"line": 249,
 									"character": 12
 								}
 							],
@@ -23935,7 +23935,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 260,
+									"line": 265,
 									"character": 12
 								}
 							],
@@ -23974,7 +23974,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 270,
+									"line": 275,
 									"character": 22
 								}
 							],
@@ -24011,7 +24011,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 258,
+									"line": 263,
 									"character": 11
 								}
 							],
@@ -24055,7 +24055,7 @@
 					"sources": [
 						{
 							"fileName": "Scale.ts",
-							"line": 253,
+							"line": 258,
 							"character": 15
 						}
 					],
@@ -24150,7 +24150,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 197,
+									"line": 202,
 									"character": 26
 								}
 							]
@@ -24167,7 +24167,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 198,
+									"line": 203,
 									"character": 33
 								}
 							],
@@ -24188,7 +24188,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 198,
+									"line": 203,
 									"character": 90
 								}
 							],
@@ -24211,7 +24211,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 198,
+									"line": 203,
 									"character": 114
 								}
 							],
@@ -24233,7 +24233,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 198,
+									"line": 203,
 									"character": 57
 								}
 							],
@@ -24268,7 +24268,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 242,
+									"line": 247,
 									"character": 23
 								}
 							]
@@ -24296,7 +24296,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 244,
+									"line": 249,
 									"character": 12
 								}
 							]
@@ -24324,7 +24324,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 200,
+									"line": 205,
 									"character": 12
 								}
 							]
@@ -24353,7 +24353,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 240,
+									"line": 245,
 									"character": 22
 								}
 							]
@@ -24383,7 +24383,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 238,
+									"line": 243,
 									"character": 30
 								}
 							]
@@ -24422,7 +24422,7 @@
 					"sources": [
 						{
 							"fileName": "Scale.ts",
-							"line": 197,
+							"line": 202,
 							"character": 24
 						}
 					],
@@ -24519,7 +24519,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 312,
+									"line": 317,
 									"character": 39
 								}
 							],
@@ -24541,7 +24541,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 297,
+									"line": 302,
 									"character": 33
 								}
 							],
@@ -24572,7 +24572,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 297,
+									"line": 302,
 									"character": 90
 								}
 							],
@@ -24605,7 +24605,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 198,
+									"line": 203,
 									"character": 114
 								}
 							],
@@ -24632,7 +24632,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 297,
+									"line": 302,
 									"character": 57
 								}
 							],
@@ -24687,7 +24687,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 303,
+									"line": 308,
 									"character": 23
 								}
 							],
@@ -24730,7 +24730,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 244,
+									"line": 249,
 									"character": 12
 								}
 							],
@@ -24768,7 +24768,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 200,
+									"line": 205,
 									"character": 12
 								}
 							],
@@ -24807,7 +24807,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 240,
+									"line": 245,
 									"character": 22
 								}
 							],
@@ -24851,7 +24851,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 301,
+									"line": 306,
 									"character": 21
 								}
 							],
@@ -24900,7 +24900,7 @@
 					"sources": [
 						{
 							"fileName": "Scale.ts",
-							"line": 312,
+							"line": 317,
 							"character": 17
 						}
 					],
@@ -24987,7 +24987,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 316,
+									"line": 321,
 									"character": 36
 								}
 							],
@@ -25009,7 +25009,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 297,
+									"line": 302,
 									"character": 33
 								}
 							],
@@ -25040,7 +25040,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 297,
+									"line": 302,
 									"character": 90
 								}
 							],
@@ -25073,7 +25073,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 198,
+									"line": 203,
 									"character": 114
 								}
 							],
@@ -25100,7 +25100,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 297,
+									"line": 302,
 									"character": 57
 								}
 							],
@@ -25155,7 +25155,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 303,
+									"line": 308,
 									"character": 23
 								}
 							],
@@ -25198,7 +25198,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 244,
+									"line": 249,
 									"character": 12
 								}
 							],
@@ -25236,7 +25236,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 200,
+									"line": 205,
 									"character": 12
 								}
 							],
@@ -25275,7 +25275,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 240,
+									"line": 245,
 									"character": 22
 								}
 							],
@@ -25319,7 +25319,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 301,
+									"line": 306,
 									"character": 21
 								}
 							],
@@ -25368,7 +25368,7 @@
 					"sources": [
 						{
 							"fileName": "Scale.ts",
-							"line": 316,
+							"line": 321,
 							"character": 14
 						}
 					],
@@ -25466,7 +25466,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 296,
+									"line": 301,
 									"character": 37
 								}
 							],
@@ -25488,7 +25488,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 297,
+									"line": 302,
 									"character": 33
 								}
 							],
@@ -25514,7 +25514,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 297,
+									"line": 302,
 									"character": 90
 								}
 							],
@@ -25542,7 +25542,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 198,
+									"line": 203,
 									"character": 114
 								}
 							],
@@ -25569,7 +25569,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 297,
+									"line": 302,
 									"character": 57
 								}
 							],
@@ -25614,7 +25614,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 303,
+									"line": 308,
 									"character": 23
 								}
 							],
@@ -25652,7 +25652,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 244,
+									"line": 249,
 									"character": 12
 								}
 							],
@@ -25690,7 +25690,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 200,
+									"line": 205,
 									"character": 12
 								}
 							],
@@ -25729,7 +25729,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 240,
+									"line": 245,
 									"character": 22
 								}
 							],
@@ -25768,7 +25768,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 301,
+									"line": 306,
 									"character": 21
 								}
 							],
@@ -25812,7 +25812,7 @@
 					"sources": [
 						{
 							"fileName": "Scale.ts",
-							"line": 296,
+							"line": 301,
 							"character": 17
 						}
 					],
@@ -25892,7 +25892,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 153,
+									"line": 158,
 									"character": 27
 								}
 							],
@@ -25974,7 +25974,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 153,
+									"line": 158,
 									"character": 15
 								}
 							],
@@ -26013,7 +26013,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 157,
+									"line": 162,
 									"character": 21
 								}
 							],
@@ -26057,7 +26057,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 164,
+									"line": 169,
 									"character": 25
 								}
 							],
@@ -26096,7 +26096,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 158,
+									"line": 163,
 									"character": 14
 								}
 							],
@@ -26140,7 +26140,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 161,
+									"line": 166,
 									"character": 14
 								}
 							],
@@ -26184,7 +26184,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 159,
+									"line": 164,
 									"character": 13
 								}
 							],
@@ -26228,7 +26228,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 160,
+									"line": 165,
 									"character": 19
 								}
 							],
@@ -26322,7 +26322,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 177,
+									"line": 182,
 									"character": 29
 								}
 							]
@@ -26368,7 +26368,7 @@
 					"sources": [
 						{
 							"fileName": "Scale.ts",
-							"line": 152,
+							"line": 157,
 							"character": 19
 						}
 					],
@@ -26462,7 +26462,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 280,
+									"line": 285,
 									"character": 35
 								}
 							],
@@ -26484,7 +26484,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 198,
+									"line": 203,
 									"character": 33
 								}
 							],
@@ -26510,7 +26510,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 281,
+									"line": 286,
 									"character": 57
 								}
 							],
@@ -26538,7 +26538,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 198,
+									"line": 203,
 									"character": 114
 								}
 							],
@@ -26565,7 +26565,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 198,
+									"line": 203,
 									"character": 57
 								}
 							],
@@ -26610,7 +26610,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 287,
+									"line": 292,
 									"character": 23
 								}
 							],
@@ -26648,7 +26648,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 244,
+									"line": 249,
 									"character": 12
 								}
 							],
@@ -26686,7 +26686,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 200,
+									"line": 205,
 									"character": 12
 								}
 							],
@@ -26725,7 +26725,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 240,
+									"line": 245,
 									"character": 22
 								}
 							],
@@ -26764,7 +26764,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 285,
+									"line": 290,
 									"character": 21
 								}
 							],
@@ -26808,7 +26808,7 @@
 					"sources": [
 						{
 							"fileName": "Scale.ts",
-							"line": 280,
+							"line": 285,
 							"character": 15
 						}
 					],
@@ -26840,7 +26840,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 105,
+									"line": 110,
 									"character": 7
 								}
 							],
@@ -26874,7 +26874,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 104,
+									"line": 109,
 									"character": 7
 								}
 							],
@@ -26911,7 +26911,7 @@
 					"sources": [
 						{
 							"fileName": "Scale.ts",
-							"line": 103,
+							"line": 108,
 							"character": 30
 						}
 					]
@@ -27004,7 +27004,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 74,
+									"line": 79,
 									"character": 8
 								}
 							]
@@ -27034,7 +27034,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 79,
+									"line": 84,
 									"character": 13
 								}
 							]
@@ -27063,7 +27063,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 69,
+									"line": 74,
 									"character": 8
 								}
 							]
@@ -27118,12 +27118,12 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 75,
+									"line": 80,
 									"character": 10
 								},
 								{
 									"fileName": "Scale.ts",
-									"line": 76,
+									"line": 81,
 									"character": 10
 								}
 							]
@@ -27166,7 +27166,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 73,
+									"line": 78,
 									"character": 15
 								}
 							]
@@ -27211,7 +27211,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 81,
+									"line": 86,
 									"character": 11
 								}
 							]
@@ -27256,7 +27256,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 80,
+									"line": 85,
 									"character": 16
 								}
 							]
@@ -27301,7 +27301,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 82,
+									"line": 87,
 									"character": 16
 								}
 							]
@@ -27356,12 +27356,12 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 70,
+									"line": 75,
 									"character": 9
 								},
 								{
 									"fileName": "Scale.ts",
-									"line": 71,
+									"line": 76,
 									"character": 9
 								}
 							]
@@ -27391,7 +27391,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 72,
+									"line": 77,
 									"character": 13
 								}
 							]
@@ -27421,7 +27421,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 83,
+									"line": 88,
 									"character": 8
 								}
 							]
@@ -27466,7 +27466,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 77,
+									"line": 82,
 									"character": 9
 								}
 							]
@@ -27495,7 +27495,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 84,
+									"line": 89,
 									"character": 8
 								}
 							]
@@ -27525,7 +27525,7 @@
 					"sources": [
 						{
 							"fileName": "Scale.ts",
-							"line": 68,
+							"line": 73,
 							"character": 22
 						}
 					],
@@ -27560,7 +27560,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 115,
+									"line": 120,
 									"character": 21
 								}
 							],
@@ -27580,7 +27580,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 116,
+									"line": 121,
 									"character": 10
 								}
 							],
@@ -27611,7 +27611,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 117,
+									"line": 122,
 									"character": 9
 								}
 							],
@@ -27633,7 +27633,7 @@
 											"sources": [
 												{
 													"fileName": "Scale.ts",
-													"line": 117,
+													"line": 122,
 													"character": 37
 												}
 											],
@@ -27661,7 +27661,7 @@
 											"sources": [
 												{
 													"fileName": "Scale.ts",
-													"line": 117,
+													"line": 122,
 													"character": 17
 												}
 											],
@@ -27694,7 +27694,7 @@
 									"sources": [
 										{
 											"fileName": "Scale.ts",
-											"line": 117,
+											"line": 122,
 											"character": 10
 										}
 									]
@@ -27712,7 +27712,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 114,
+									"line": 119,
 									"character": 8
 								}
 							],
@@ -27738,7 +27738,7 @@
 					"sources": [
 						{
 							"fileName": "Scale.ts",
-							"line": 113,
+							"line": 118,
 							"character": 30
 						}
 					]
@@ -27783,7 +27783,7 @@
 					"sources": [
 						{
 							"fileName": "Scale.ts",
-							"line": 123,
+							"line": 128,
 							"character": 34
 						}
 					]
@@ -27828,7 +27828,7 @@
 					"sources": [
 						{
 							"fileName": "Scale.ts",
-							"line": 90,
+							"line": 95,
 							"character": 26
 						}
 					]
@@ -27878,7 +27878,7 @@
 					"sources": [
 						{
 							"fileName": "Scale.ts",
-							"line": 61,
+							"line": 66,
 							"character": 17
 						}
 					],
@@ -27942,7 +27942,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 132,
+									"line": 137,
 									"character": 8
 								}
 							],
@@ -27963,7 +27963,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 131,
+									"line": 136,
 									"character": 10
 								}
 							],
@@ -27985,7 +27985,7 @@
 											"sources": [
 												{
 													"fileName": "Scale.ts",
-													"line": 131,
+													"line": 136,
 													"character": 59
 												}
 											],
@@ -28003,7 +28003,7 @@
 											"sources": [
 												{
 													"fileName": "Scale.ts",
-													"line": 131,
+													"line": 136,
 													"character": 18
 												}
 											],
@@ -28021,7 +28021,7 @@
 											"sources": [
 												{
 													"fileName": "Scale.ts",
-													"line": 131,
+													"line": 136,
 													"character": 44
 												}
 											],
@@ -28039,7 +28039,7 @@
 											"sources": [
 												{
 													"fileName": "Scale.ts",
-													"line": 131,
+													"line": 136,
 													"character": 30
 												}
 											],
@@ -28064,7 +28064,7 @@
 									"sources": [
 										{
 											"fileName": "Scale.ts",
-											"line": 131,
+											"line": 136,
 											"character": 11
 										}
 									]
@@ -28085,7 +28085,7 @@
 					"sources": [
 						{
 							"fileName": "Scale.ts",
-							"line": 130,
+							"line": 135,
 							"character": 31
 						}
 					],
@@ -28108,7 +28108,7 @@
 					"sources": [
 						{
 							"fileName": "Scale.ts",
-							"line": 108,
+							"line": 113,
 							"character": 31
 						}
 					],
@@ -28132,7 +28132,7 @@
 					"sources": [
 						{
 							"fileName": "Scale.ts",
-							"line": 66,
+							"line": 71,
 							"character": 17
 						}
 					],
@@ -28166,7 +28166,7 @@
 					"sources": [
 						{
 							"fileName": "Scale.ts",
-							"line": 99,
+							"line": 104,
 							"character": 21
 						}
 					],
@@ -28203,7 +28203,7 @@
 					"sources": [
 						{
 							"fileName": "Scale.ts",
-							"line": 101,
+							"line": 106,
 							"character": 22
 						}
 					],
@@ -28223,7 +28223,7 @@
 					"sources": [
 						{
 							"fileName": "Scale.ts",
-							"line": 49,
+							"line": 54,
 							"character": 56
 						}
 					],
@@ -28289,7 +28289,7 @@
 					"sources": [
 						{
 							"fileName": "Scale.ts",
-							"line": 135,
+							"line": 140,
 							"character": 25
 						}
 					]
@@ -28312,7 +28312,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 191,
+									"line": 196,
 									"character": 10
 								}
 							],
@@ -28331,7 +28331,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 192,
+									"line": 197,
 									"character": 8
 								}
 							],
@@ -28350,7 +28350,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 193,
+									"line": 198,
 									"character": 9
 								}
 							],
@@ -28369,7 +28369,7 @@
 							"sources": [
 								{
 									"fileName": "Scale.ts",
-									"line": 190,
+									"line": 195,
 									"character": 7
 								}
 							],
@@ -28395,7 +28395,7 @@
 					"sources": [
 						{
 							"fileName": "Scale.ts",
-							"line": 189,
+							"line": 194,
 							"character": 10
 						}
 					],
