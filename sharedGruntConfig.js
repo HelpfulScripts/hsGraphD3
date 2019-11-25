@@ -52,14 +52,15 @@ module.exports = (grunt, dir, dependencies, type, lib) => {
     grunt.registerTask('test', ['clean:cov', 'jest', 'copy:coverage', 'cleanupCoverage']); 
     
     //------ Support Tasks
+    grunt.registerTask('run-coveralls', [/*'coveralls:main'*/]);
     grunt.registerTask('build-html',    ['copy:buildHTML']);
     grunt.registerTask('build-css',     ['less']);
     // grunt.registerTask('build-example', ['clean:example', 'copy:example', 'ts:example', 'less:example', 'webpack:exampleDev']);
     grunt.registerTask('build-js',      ['tslint:src', 'ts:src']);
     // grunt.registerTask('build-spec',    ['tslint:spec', 'ts:test']);    
     grunt.registerTask('build-base',    ['clean:dist', 'clean:docs', 'build-html', 'build-css', 'copy:bin', 'copy:example']);
-    grunt.registerTask('buildMin',      (type === 'node')?['build-base', 'build-js', 'doc', 'test', 'coveralls'] : 
-                                                          ['build-base', 'build-js', 'webpack:appDev', 'webpack:appProd', 'doc', 'test', 'coveralls']);
+    grunt.registerTask('buildMin',      (type === 'node')?['build-base', 'build-js', 'doc', 'test', 'run-coveralls'] : 
+                                                          ['build-base', 'build-js', 'webpack:appDev', 'webpack:appProd', 'doc', 'test', 'run-coveralls']);
     grunt.registerTask('buildDev',      ['build-base', 'build-js', 'webpack:appDev']);
 
     //------ Entry-point MultiTasks
@@ -279,8 +280,10 @@ module.exports = (grunt, dir, dependencies, type, lib) => {
             }
         },
         coveralls: {
-            src: `docs/data/src/${lib}/coverage/lcov.info`,
-            options: { force: true }
+            options: { force: true },
+            main: {
+                src: `docs/data/src/${lib}/coverage/lcov.info`
+            }
         },
 
         watch: {

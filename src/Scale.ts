@@ -80,6 +80,8 @@ export interface Scale extends ScaleFn {
     domain(): Domain;
     domain(domain: Domain): this;
     ticks(count:number): number[];
+    tickCountMajor: number;
+    tickCountMinor: number;
 
     bandwidth?(): number;
     paddingInner?(padding?:number): number;
@@ -233,6 +235,8 @@ abstract class BaseScale {
         scale.copy = ():Scale => d3Scale.copy();
         scale.axis = (loc:string):d3.Axis<d3.AxisDomain> => axes[loc](d3Scale);
         scale.ticks = this.getTicks();
+        scale.tickCountMajor = 2;
+        scale.tickCountMinor = 10;
 
         scale.domain(this.getDomain());
         scale.range(this.getRange());

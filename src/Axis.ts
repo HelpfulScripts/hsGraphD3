@@ -55,6 +55,8 @@ export interface AxisDefaults extends ComponentDefaults {
     tickMarks:  Line;
     tickLabel:  Text;
     crossing:   string|number|Date|'auto';
+    numTicksMajor: 'auto' | number;
+    numTicksMinor: 'auto' | number;
 
 }
 
@@ -91,7 +93,12 @@ export class Axes extends GraphComponent {
     initialize(svg:def.d3Base): void {
     } 
 
-    preRender(): void {} 
+    preRender(): void {
+        const def = <AxesDefaults>this.cfg.defaults.axes;
+        if (def.rendered) {
+            this.axes.forEach(axis => axis.defaults.rendered? axis.preRender() : '');
+        }
+    } 
 
     renderComponent() {
         const def = <AxesDefaults>this.cfg.defaults.axes;
@@ -102,6 +109,8 @@ export class Axes extends GraphComponent {
     postRender(): void {} 
 }
 
+const pixPerMajorTick = 200;
+const pixPerMinorTick =  30;
 
 export class Axis {
     private dir: Direction;
@@ -118,13 +127,15 @@ export class Axis {
 
     public createDefaults():AxisDefaults {
         return {
-            color:      'currentColor',
-            rendered:   true,
-            line:       def.defaultLine(1),
-            tickWidth:  5,
-            tickMarks:  def.defaultLine(2),
-            tickLabel:  def.defaultText(),
-            crossing:   'auto'
+            color:          'currentColor',
+            rendered:       true,
+            line:           def.defaultLine(1),
+            tickWidth:      5,
+            tickMarks:      def.defaultLine(2),
+            tickLabel:      def.defaultText(),
+            crossing:       'auto',
+            numTicksMajor:  'auto',
+            numTicksMinor:  'auto',
         };
     }
 
@@ -132,15 +143,26 @@ export class Axis {
         return (<AxisDefaults>this.cfg.defaults.axes)[this.dir];
     }
     
+    preRender(): void {
+        const axisDef = this.defaults;
+        const scale = (this.dir===Direction.horizontal)? this.cfg.scales.hor : this.cfg.scales.ver;
+        const clientSize = (this.dir===Direction.horizontal)? this.cfg.client.width : this.cfg.client.height;
+        scale.tickCountMajor = axisDef.numTicksMajor==='auto'? parseInt(''+(clientSize / pixPerMajorTick)) : axisDef.numTicksMajor;
+        scale.tickCountMinor = axisDef.numTicksMinor==='auto'? parseInt(''+(clientSize / pixPerMinorTick))  : axisDef.numTicksMinor;
+        // log.info(`ticks: ${this.dir}:${scale.tickCountMajor}/${scale.tickCountMinor}`);
+    } 
+
     public renderComponent() {
         const trans = this.cfg.transition;
-        const axisDef = <AxisDefaults>this.cfg.defaults.axes[this.dir];
+        const axisDef = this.defaults;
         this.cfg.baseSVG.select('.axes')
             .attr('color', this.cfg.defaults.axes.color);
 
         setStroke(this.svg, axisDef.line);
         this.setTransform(this.cfg.scales);
         const axis:any = this.getD3Axis(this.cfg.scales, axisDef);
+        const scale = (this.dir===Direction.horizontal)? this.cfg.scales.hor : this.cfg.scales.ver;
+        axis.ticks(scale.tickCountMinor);
         this.svg.transition(trans).call(axis);
 
         this.svg.attr('color', axisDef.color);

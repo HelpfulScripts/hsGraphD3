@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Bubble should plot line 1`] = `
+exports[`Bubble should plot series 1`] = `
 <div
   style="width: 300px; height: 300px;"
 >

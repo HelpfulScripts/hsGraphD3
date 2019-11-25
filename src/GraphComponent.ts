@@ -31,7 +31,7 @@ export interface Area extends Fill, Rendered {}
 export interface Marker extends MarkerStyle, Rendered {}
 export interface Text extends TextStyle, Rendered {}
 
-
+type pixel = number;
 /** 
  * Configuration parameters for the render tree, passed to each `GraphComponent` during construction. 
  */
@@ -39,10 +39,10 @@ export interface GraphCfg {
     /** the base svg for the rendering tree */
     baseSVG:    d3Base;
 
-    /** dimensions of the HTML client rect containing this graph */
-    client:     RectDef;
+    /** dimensions of the HTML client rect containing this graph in pixel. */
+    client:     { x:pixel; y:pixel; width:pixel; height:pixel; };
 
-    /** top level svg viewBox dimensions */
+    /** top level svg viewBox dimensions in viewport units*/
     viewPort: {
         width:  UnitVp;
         height: UnitVp;

@@ -1,6 +1,7 @@
 import * as hsGraphD3   from '../';
 import * as d3 from 'd3';
 import { DataSet }      from '../Graph';
+import { AxesDefaults } from '../Axis';
 
 let clientWidth = 300;
 const root = window.document.createElement("div");
@@ -22,10 +23,20 @@ const data:DataSet = {
     ]
 };
 
+function createGraph(root:any) {
+    const graph = new hsGraphD3.GraphCartesian(root);
+    graph.isRendered = () => true;
+    (<AxesDefaults>graph.defaults.axes).hor.numTicksMinor = 10;
+    (<AxesDefaults>graph.defaults.axes).hor.numTicksMajor = 2;
+    (<AxesDefaults>graph.defaults.axes).ver.numTicksMinor = 10;
+    (<AxesDefaults>graph.defaults.axes).ver.numTicksMajor = 2;
+    return graph;
+}
+
 describe('Voronoi', () => {
     let graph:hsGraphD3.GraphCartesian;
     beforeAll(() => {
-        graph = new hsGraphD3.GraphCartesian(root);
+        graph = createGraph(root);
         graph.addSeries('voronoi', {x:'xval', y:'yval'});
         graph.render(data);
     });

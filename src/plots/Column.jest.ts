@@ -2,6 +2,7 @@ import * as hsGraphD3   from '../';
 import * as d3          from 'd3';
 import { DataSet }      from '../Graph';
 import { SeriesPlotDefaults } from '../SeriesPlot';
+import { AxesDefaults } from '../Axis';
 
 let clientWidth = 300;
 const root = window.document.createElement("div");
@@ -22,10 +23,20 @@ const data:DataSet = {
               ['NC',      1,       0.2]]
    };
 
+function createGraph(root:any) {
+    const graph = new hsGraphD3.GraphCartesian(root);
+    graph.isRendered = () => true;
+    (<AxesDefaults>graph.defaults.axes).hor.numTicksMinor = 10;
+    (<AxesDefaults>graph.defaults.axes).hor.numTicksMajor = 2;
+    (<AxesDefaults>graph.defaults.axes).ver.numTicksMinor = 10;
+    (<AxesDefaults>graph.defaults.axes).ver.numTicksMajor = 2;
+    return graph;
+}
+
 describe('Column', () => {
     let graph:hsGraphD3.GraphCartesian;
     beforeAll(() => {
-        graph = new hsGraphD3.GraphCartesian(root);
+        graph = createGraph(root);
         graph.addSeries('column', {x:'State', y:'volume', stacked:'grp'});
         graph.addSeries('column', {x:'State', y:'volume', stacked:'grp'});
         (<SeriesPlotDefaults>graph.defaults.series.series0).line.rendered = true;

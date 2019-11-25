@@ -118,14 +118,14 @@ export class Grid {
         const style = (<GridDefaults>this.cfg.defaults.grids)[this.dir][this.type];
         if (style.rendered) {
             const trans = this.cfg.transition;
-            const count = this.type===MajorMinor.major? 2 : 10;
             const scaleX = this.cfg.scales.hor;
             const scaleY = this.cfg.scales.ver;
             setStroke(this.svg, style);
             const c = this.hor? 
                 { range:  scaleX.range(), scale:  scaleY,   dim: { fix:'x', var:'y'}}   // hor grid
               : { range:  scaleY.range(), scale:  scaleX,   dim: { fix:'y', var:'x'}};  // ver grid
-            const gridlines:SVGLineSelection = <SVGLineSelection>this.svg.selectAll("line").data(<any>c.scale.ticks(count), d => <any>d);
+            const count = this.type===MajorMinor.major? c.scale.tickCountMajor : c.scale.tickCountMinor;
+            const gridlines:SVGLineSelection = <SVGLineSelection>this.svg.selectAll("line").data(c.scale.ticks(count), d => <any>d);
             gridlines.exit().remove();          // remove unneeded lines
             gridlines.enter().append('line')    // add new lines
                 .attr(`${c.dim.fix}1`, c.range[0])

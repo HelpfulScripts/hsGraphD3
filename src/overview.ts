@@ -29,7 +29,8 @@ Helpful Scripts Graph convenience wrapper for D3js.
  * 4. render the graph for a given data set: 
  * `graph.render(data);`
  * 
- * To dynamically update the graph to new data, call the {@link Graph.RenderChain `update`} method
+ * To dynamically update the graph to new data, call the {@link Graph.RenderChain `update`} method.
+ * See {@link examples examples}.
  * 
  * ## Data
  * Data is provided either in table form

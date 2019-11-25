@@ -59,4 +59,5 @@ graph.render(data).update(ms, data => {
 });
 ``` 
 
-See an [example](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/0).
+See an [example](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/0) or visit the 
+[examples page](indexlocal.html#!/api/hsGraphD3/hsGraphD3.examples)

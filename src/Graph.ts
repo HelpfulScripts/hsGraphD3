@@ -238,6 +238,21 @@ export interface LifecycleCalls {
  * Abstract base Graph.
  */
 export abstract class Graph implements LifecycleCalls {
+    private static graphs = {};
+    private static addGraph(id:string, fn:()=>void) { 
+        // log.info(`adding ${Graph.graphs[id]?'existing':'new'} graph ${id}`);
+        Graph.graphs[id] = fn; 
+    }
+    private static removeGraph(id:string) { 
+        // log.info(`removing graph ${id}`);
+        delete Graph.graphs[id]; 
+    }
+    private static resizeGraphs() {
+        const keys = Object.keys(Graph.graphs);
+        // log.info(`resizing ${keys.length} graphs: ${keys.join(', ')}`);
+        keys.forEach(g => Graph.graphs[g]());
+    }
+    
     /** the HTML root element to attach the render tree to. */
     protected root:any;
 
@@ -255,7 +270,19 @@ export abstract class Graph implements LifecycleCalls {
 
     protected cumulativeDomains: Domains = {};
 
-    constructor(root:any) { 
+    public static getSvgElement(selector:string) {
+        return d3Select(selector);
+    }
+
+    public isRendered() {
+        const base = (<any>d3Select(this.root).select('.baseSVG'));
+        const node = base.node();
+        const isRendered = node.clientWidth? true : false;
+        // log.info(`graph ${this.root.id} is ${isRendered?'':'not'} rendered, size=${node.clientWidth}x${node.clientHeight}`);
+        return isRendered;
+    }
+
+    constructor(root:HTMLElement) { 
         this.root = root;
         this.config = this.initializeCfg();
         this.config.baseSVG = this.createBaseSVG(this.config); 
@@ -263,7 +290,7 @@ export abstract class Graph implements LifecycleCalls {
         this.components = this.createComponents(this.config);
         this.makeDefaults();
         this.resize();
-        window.onresize = () => this.resize();
+        window.onresize = Graph.resizeGraphs;
     }
 
     public get defaults(): ComponentDefaults {
@@ -303,20 +330,31 @@ export abstract class Graph implements LifecycleCalls {
         const graph = this;
 
         function renderLifecycle() {
-            log.debug('starting lifecycle --------------');
-            if (!graph.initialized) {
-                graph.initialize(graph.config.baseSVG);
-                graph.initialized = true;
+            const isRendered = graph.isRendered.bind(graph)();
+            if (isRendered) {
+                log.debug(`rendering lifecycle ${graph.root.id}`);
+                if (!graph.initialized) {
+                    graph.initialize(graph.config.baseSVG);
+                    graph.initialized = true;
+                }
+                const scalesDefaults = <ScalesDefaults>graph.config.defaults.scales;
+                graph.preRender(data, graph.prepareDomains(scalesDefaults));
+                graph.renderComponent(data);
+            } else {
+                Graph.removeGraph(graph.root.id);
             }
-            const scalesDefaults = <ScalesDefaults>graph.config.defaults.scales;
-            graph.preRender(data, graph.prepareDomains(scalesDefaults));
-            graph.renderComponent(data);
         }
 
         const easing = d3[graphDef.easing];
         this.config.transition = this.config.baseSVG.transition().duration(graphDef.transitionTime).ease(easing);
 
-        renderLifecycle.bind(this)();
+        Graph.addGraph(graph.root.id, () => {
+            setTimeout(() => {
+                graph.resize();
+                renderLifecycle();
+            }, 0);
+        });
+        renderLifecycle();
         
         return {
             update: (duration:number, callback:RenderCallback):void => {
@@ -324,15 +362,15 @@ export abstract class Graph implements LifecycleCalls {
                     try {
                         graphDef.transitionTime = duration || graphDef.transitionTime;
                         graph.config.transition = graph.config.transition.transition().duration(graphDef.transitionTime);
-                        const isRendered:boolean = (<any>d3.select('.baseSVG'))._groups[0][0]? true : false;
+                        const isRendered = graph.isRendered.bind(graph)();
                         if (isRendered && callback(data) !== false) {
                             graph.config.transition.on('end', listener); 
                         }
                     }
                     catch(e) { log.warn(`error in callback: ${e}`); }
-                    setTimeout(renderLifecycle.bind(graph),0);  // render on the next event loop pass, outside the transition listener.
+                    setTimeout(renderLifecycle,0);  // render on the next event loop pass, outside the transition listener.
                 }
-            graph.config.transition.on('end', listener); 
+                graph.config.transition.on('end', listener); 
             }
         };
     }
@@ -443,7 +481,7 @@ export abstract class Graph implements LifecycleCalls {
         // if (this.root && this.root.clientWidth > 0) {
         if (this.root) {
             if (this.root.clientWidth !== cfg.client.width || this.root.clientHeight !== cfg.client.height) {
-                log.debug(`resizing svg: [${cfg.client.width} x ${cfg.client.height}] -> [${this.root.clientWidth} x ${this.root.clientHeight}]`);
+                log.info(`resizing svg for ${this.root.id}: [${cfg.client.width} x ${cfg.client.height}] -> [${this.root.clientWidth} x ${this.root.clientHeight}]`);
                 cfg.client.width = this.root.clientWidth;
                 cfg.client.height = this.root.clientHeight;
                 cfg.viewPort.height = cfg.viewPort.width * this.root.clientHeight / this.root.clientWidth;
