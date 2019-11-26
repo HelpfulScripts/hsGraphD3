@@ -297,7 +297,7 @@ export abstract class Graph implements LifecycleCalls {
         return this.config.defaults;
     }
 
-    public get viewport() {
+    protected get viewport() {
         return this.config.viewPort;
     }
 
@@ -484,6 +484,7 @@ export abstract class Graph implements LifecycleCalls {
                 log.info(`resizing svg for ${this.root.id}: [${cfg.client.width} x ${cfg.client.height}] -> [${this.root.clientWidth} x ${this.root.clientHeight}]`);
                 cfg.client.width = this.root.clientWidth;
                 cfg.client.height = this.root.clientHeight;
+                cfg.viewPort.width = 2*this.root.clientWidth;
                 cfg.viewPort.height = cfg.viewPort.width * this.root.clientHeight / this.root.clientWidth;
                 this.updateBaseSVG(cfg);
             }

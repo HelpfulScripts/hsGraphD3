@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">68.82% </span>
+        <span class="strong">68.09% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>64/93</span>
+        <span class='fraction'>64/94</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">33.33% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>22/34</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">68.6% </span>
+        <span class="strong">67.82% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>59/86</span>
+        <span class='fraction'>59/87</span>
       </div>
     </div>
     <p class="quiet">
@@ -559,7 +559,8 @@
 <a name='L511'></a><a href='#L511'>511</a>
 <a name='L512'></a><a href='#L512'>512</a>
 <a name='L513'></a><a href='#L513'>513</a>
-<a name='L514'></a><a href='#L514'>514</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L514'></a><a href='#L514'>514</a>
+<a name='L515'></a><a href='#L515'>515</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1047,6 +1048,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1371,7 +1373,7 @@ export abstract class Graph implements LifecycleCalls {
         return this.config.defaults;
     }
 &nbsp;
-    public get viewport() {
+    protected get viewport() {
         return this.config.viewPort;
     }
 &nbsp;
@@ -1558,6 +1560,7 @@ export abstract class Graph implements LifecycleCalls {
 <span class="cstat-no" title="statement not covered" >                log.info(`resizing svg for ${this.root.id}: [${cfg.client.width} x ${cfg.client.height}] -&gt; [${this.root.clientWidth} x ${this.root.clientHeight}]`);</span>
 <span class="cstat-no" title="statement not covered" >                cfg.client.width = this.root.clientWidth;</span>
 <span class="cstat-no" title="statement not covered" >                cfg.client.height = this.root.clientHeight;</span>
+<span class="cstat-no" title="statement not covered" >                cfg.viewPort.width = 2*this.root.clientWidth;</span>
 <span class="cstat-no" title="statement not covered" >                cfg.viewPort.height = cfg.viewPort.width * this.root.clientHeight / this.root.clientWidth;</span>
 <span class="cstat-no" title="statement not covered" >                this.updateBaseSVG(cfg);</span>
             }
