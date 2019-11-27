@@ -55,9 +55,9 @@
 <p id=32 class="line"><span>&nbsp;&nbsp;32</span>import&nbsp;{&nbsp;ComponentDefaults&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;'</quote>./GraphComponent<quote>';&nbsp;</p>
 <p id=33 class="line"><span>&nbsp;&nbsp;33</span>import&nbsp;{&nbsp;GraphCfg&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;'</quote>./GraphComponent<quote>';&nbsp;</p>
 <p id=34 class="line"><span>&nbsp;&nbsp;34</span>import&nbsp;{&nbsp;RectStyle&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;'</quote>./Settings<quote>';</p>
-<p id=35 class="line"><span>&nbsp;&nbsp;35</span>import&nbsp;{&nbsp;defaultRect&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;'</quote>./Settings<quote>';</p>
+<p id=35 class="line"><span>&nbsp;&nbsp;35</span>import&nbsp;{&nbsp;defaultRectStyle&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;'</quote>./Settings<quote>';</p>
 <p id=36 class="line"><span>&nbsp;&nbsp;36</span>import&nbsp;{&nbsp;d3Base&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;'</quote>./Settings<quote>';</p>
-<p id=37 class="line"><span>&nbsp;&nbsp;37</span>import&nbsp;{&nbsp;setRect&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;'</quote>./Settings<quote>';</p>
+<p id=37 class="line"><span>&nbsp;&nbsp;37</span>import&nbsp;{&nbsp;setRect&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;'</quote>./Settings<quote>';</p>
 <p id=38 class="line"><span>&nbsp;&nbsp;38</span></p>
 <p id=39 class="line"><span>&nbsp;&nbsp;39</span>export&nbsp;interface&nbsp;CanvasDefaults&nbsp;extends&nbsp;ComponentDefaults,&nbsp;RectStyle&nbsp;{&nbsp;}</p>
 <p id=40 class="line"><span>&nbsp;&nbsp;40</span></p>
@@ -71,10 +71,10 @@
 <p id=48 class="line"><span>&nbsp;&nbsp;48</span></p>
 <p id=49 class="line"><span>&nbsp;&nbsp;49</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;get&nbsp;componentType()&nbsp;{&nbsp;return&nbsp;Canvas.type;&nbsp;}</p>
 <p id=50 class="line"><span>&nbsp;&nbsp;50</span></p>
-<p id=51 class="line"><span>&nbsp;&nbsp;51</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;get&nbsp;defaults():CanvasDefaults&nbsp;{&nbsp;return&nbsp;<CanvasDefaults>this.cfg.defaults[this.componentType];&nbsp;}</p>
+<p id=51 class="line"><span>&nbsp;&nbsp;51</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;get&nbsp;defaults():CanvasDefaults&nbsp;{&nbsp;return&nbsp;this.cfg.graph.defaults.canvas;&nbsp;}</p>
 <p id=52 class="line"><span>&nbsp;&nbsp;52</span></p>
 <p id=53 class="line"><span>&nbsp;&nbsp;53</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;createDefaults():CanvasDefaults&nbsp;{</p>
-<p id=54 class="line"><span>&nbsp;&nbsp;54</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;defaultRect('</quote>#fff<quote>',&nbsp;1,&nbsp;'</quote>#00c<quote>');</p>
+<p id=54 class="line"><span>&nbsp;&nbsp;54</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;defaultRectStyle('</quote>#fff<quote>',&nbsp;1,&nbsp;'</quote>#00c<quote>');</p>
 <p id=55 class="line"><span>&nbsp;&nbsp;55</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
 <p id=56 class="line"><span>&nbsp;&nbsp;56</span></p>
 <p id=57 class="line"><span>&nbsp;&nbsp;57</span>&nbsp;&nbsp;&nbsp;&nbsp;initialize(svg:d3Base):&nbsp;void&nbsp;{</p>
@@ -88,9 +88,9 @@
 <p id=65 class="line"><span>&nbsp;&nbsp;65</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;cfg&nbsp;</comment></p>
 <p id=66 class="line"><span>&nbsp;&nbsp;66</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</comment></p>
 <p id=67 class="line"><span>&nbsp;&nbsp;67</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;renderComponent()&nbsp;{</p>
-<p id=68 class="line"><span>&nbsp;&nbsp;68</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;canvas&nbsp;=&nbsp;this.cfg.defaults.canvas;</p>
+<p id=68 class="line"><span>&nbsp;&nbsp;68</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;canvas&nbsp;=&nbsp;this.defaults;</p>
 <p id=69 class="line"><span>&nbsp;&nbsp;69</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;area&nbsp;=&nbsp;this.svg.select(<quote>'.graphArea'</quote>);</p>
-<p id=70 class="line"><span>&nbsp;&nbsp;70</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setRect(area,&nbsp;<CanvasDefaults>canvas)</p>
+<p id=70 class="line"><span>&nbsp;&nbsp;70</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setRect(area,&nbsp;canvas)</p>
 <p id=71 class="line"><span>&nbsp;&nbsp;71</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>'width'</quote>,&nbsp;this.cfg.viewPort.width)</p>
 <p id=72 class="line"><span>&nbsp;&nbsp;72</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>'height'</quote>,&nbsp;this.cfg.viewPort.height);</p>
 <p id=73 class="line"><span>&nbsp;&nbsp;73</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>

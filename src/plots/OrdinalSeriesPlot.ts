@@ -63,7 +63,7 @@ export function accessor(v:ValueDef, colNames:string[], def=0):(row?:number[], i
  */
 export abstract class OrdinalSeriesPlot extends CartSeriesPlot { 
     getDefaults(): SeriesPlotDefaults {
-        const scaleDef = (<ScalesDefaults>this.cfg.defaults.scales).dims[this.independentAxis];
+        const scaleDef = this.cfg.graph.defaults.scales.dims[this.independentAxis];
         scaleDef.type = 'ordinal';
         scaleDef.ordinal = scaleDef.ordinal || { gap:0.3, overlap:0};
 
@@ -103,9 +103,11 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
 
     preRender(data:DataSet, domains:Domains): void {
         super.preRender(data, domains);
-        const scaleDef = (<ScalesDefaults>this.cfg.defaults.scales).dims[this.independentAxis];
+        const scaleDef = this.cfg.graph.defaults.scales.dims[this.independentAxis];
         const gap = scaleDef.ordinal.gap;
-        this.cfg.scales[this.independentAxis].padding(gap);
+        const scale = this.cfg.graph.scales.scaleDims[this.independentAxis];
+        scale.paddingInner(gap);
+        scale.paddingOuter(gap/2);
     }
  
 
@@ -120,7 +122,7 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
     }
 
     protected d3RenderFill(svg:d3Base, data:DataSet) {
-        const defaults = (<SeriesPlotDefaults>this.cfg.defaults.series[this.key]).area;
+        const defaults = this.defaults.area;
         if (defaults.rendered) {
             const samples:any = svg.select('.area').selectAll("rect")
                 .data(data.rows, d => d[0]);                    // bind to data, iterate over rows
@@ -133,12 +135,13 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
     }
  
     private getParams(plot:OrdinalSeriesPlot, colNames:string[]):any[] {
-        const scaleDef = (<ScalesDefaults>plot.cfg.defaults.scales).dims[this.independentAxis];
+        const scales = plot.cfg.graph.scales;
+        const scaleDef = scales.defaults.dims[this.independentAxis];
         const stackGroup = plot.dims.stacked || false;
-        const allKeys = Object.keys(plot.cfg.defaults.series).filter(k => k.indexOf(Series.type)===0);
+        const allKeys = Object.keys(plot.cfg.graph.series.defaults).filter(k => k.indexOf(Series.type)===0);
         const myKey = allKeys.indexOf(plot.key) || 0;
-        const step = plot.cfg.scales[plot.independentAxis].step();
-        const pad = plot.cfg.scales[plot.independentAxis].padding();
+        const step = scales.scaleDims[plot.independentAxis].step();
+        const pad = scales.scaleDims[plot.independentAxis].paddingInner();
         const overlap = scaleDef.ordinal.overlap;
         const thickness = step * (1-pad) / (stackGroup? 1 : (allKeys.length * (1-overlap) + overlap));
         const offset = step*pad/2 + (stackGroup? 0 : thickness*myKey * (1-overlap));
@@ -148,8 +151,8 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
     protected d3DrawBar(markers:d3Base, plot:OrdinalSeriesPlot, colNames:string[]) {
         const [offset, thickness, stackGroup] = this.getParams(plot, colNames);
         const stack = stackGroup? (i:number)=>plot.cfg.stack[stackGroup][i] : ()=>0;
-        const xScale = plot.cfg.scales.hor;
-        const yScale = plot.cfg.scales.ver;
+        const xScale = plot.cfg.graph.scales.scaleDims.hor;
+        const yScale = plot.cfg.graph.scales.scaleDims.ver;
 
         if (plot.independentAxis==='hor') { // Column
             const index = colNames.indexOf(<string>plot.dims.y);
@@ -180,8 +183,8 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
         const y  = accessor(plot.dims.y, colNames);
         const [offset, thickness, stackGroup] = this.getParams(plot, colNames);
         const stack = stackGroup? (i:number)=>plot.cfg.stack[stackGroup][i] : ()=>0;
-        const xScale = plot.cfg.scales.hor;
-        const yScale = plot.cfg.scales.ver;
+        const xScale = plot.cfg.graph.scales.scaleDims.hor;
+        const yScale = plot.cfg.graph.scales.scaleDims.ver;
 
         const line = hor?
             stepLine(parseInt(''+thickness), 'hor')

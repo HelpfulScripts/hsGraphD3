@@ -209,12 +209,12 @@ exports[`TimeSeries should plot timeSeries 1`] = `
     </g>
     <g
       class="axes"
-      color="#000"
+      color="currentColor"
     >
       <g
         class="horAxis"
         color="currentColor"
-        fill="none"
+        fill="currentColor"
         fill-opacity="0"
         font-family="sans-serif"
         font-size="16px"
@@ -375,7 +375,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
       <g
         class="verAxis"
         color="currentColor"
-        fill="none"
+        fill="currentColor"
         fill-opacity="0"
         font-family="sans-serif"
         font-size="16px"
@@ -673,6 +673,11 @@ exports[`TimeSeries should plot timeSeries 1`] = `
           </text>
         </g>
       </g>
+    </g>
+    <g
+      class="title"
+    >
+      <text />
     </g>
     <g
       class="series"

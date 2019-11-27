@@ -127,12 +127,12 @@ exports[`Column should plot column 1`] = `
     </g>
     <g
       class="axes"
-      color="#000"
+      color="currentColor"
     >
       <g
         class="horAxis"
         color="currentColor"
-        fill="none"
+        fill="currentColor"
         fill-opacity="0"
         font-family="sans-serif"
         font-size="16px"
@@ -142,7 +142,7 @@ exports[`Column should plot column 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         text-anchor="middle"
-        transform="translate(22.857142857142858, 345)"
+        transform="translate(24, 345)"
       >
         <path
           class="domain"
@@ -152,7 +152,7 @@ exports[`Column should plot column 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(119.04761904761905,0)"
+          transform="translate(100,0)"
         >
           <line
             fill-opacity="0"
@@ -172,7 +172,7 @@ exports[`Column should plot column 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(271.42857142857144,0)"
+          transform="translate(260,0)"
         >
           <line
             fill-opacity="0"
@@ -192,7 +192,7 @@ exports[`Column should plot column 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(423.8095238095238,0)"
+          transform="translate(420,0)"
         >
           <line
             fill-opacity="0"
@@ -212,7 +212,7 @@ exports[`Column should plot column 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(576.1904761904763,0)"
+          transform="translate(580,0)"
         >
           <line
             fill-opacity="0"
@@ -232,7 +232,7 @@ exports[`Column should plot column 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(728.5714285714286,0)"
+          transform="translate(740,0)"
         >
           <line
             fill-opacity="0"
@@ -252,7 +252,7 @@ exports[`Column should plot column 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(880.9523809523811,0)"
+          transform="translate(900,0)"
         >
           <line
             fill-opacity="0"
@@ -273,7 +273,7 @@ exports[`Column should plot column 1`] = `
       <g
         class="verAxis"
         color="currentColor"
-        fill="none"
+        fill="currentColor"
         fill-opacity="0"
         font-family="sans-serif"
         font-size="16px"
@@ -283,7 +283,7 @@ exports[`Column should plot column 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         text-anchor="end"
-        transform="translate(65.71428571428572, 0)"
+        transform="translate(44, 0)"
       >
         <path
           class="domain"
@@ -473,6 +473,11 @@ exports[`Column should plot column 1`] = `
       </g>
     </g>
     <g
+      class="title"
+    >
+      <text />
+    </g>
+    <g
       class="series"
     >
       <g
@@ -487,38 +492,38 @@ exports[`Column should plot column 1`] = `
           <path />
           <rect
             height="163"
-            width="106.66666666666666"
-            x="88.57142857142858"
+            width="112"
+            x="68"
             y="345"
           />
           <rect
             height="33"
-            width="106.66666666666666"
-            x="240.95238095238096"
+            width="112"
+            x="228"
             y="312"
           />
           <rect
             height="65"
-            width="106.66666666666666"
-            x="393.3333333333333"
+            width="112"
+            x="388"
             y="280"
           />
           <rect
             height="97"
-            width="106.66666666666666"
-            x="545.7142857142858"
+            width="112"
+            x="548"
             y="248"
           />
           <rect
             height="130"
-            width="106.66666666666666"
-            x="698.0952380952381"
+            width="112"
+            x="708"
             y="215"
           />
           <rect
             height="162"
-            width="106.66666666666666"
-            x="850.4761904761906"
+            width="112"
+            x="868"
             y="183"
           />
         </g>
@@ -530,7 +535,7 @@ exports[`Column should plot column 1`] = `
           stroke-width="1"
         >
           <path
-            d="M88 508L194 508L240 312L346 312L393 280L499 280L545 248L651 248L698 215L804 215L850 183L956 183"
+            d="M68 508L180 508L228 312L340 312L388 280L500 280L548 248L660 248L708 215L820 215L868 183L980 183"
           />
         </g>
         <g
@@ -554,38 +559,38 @@ exports[`Column should plot column 1`] = `
           <path />
           <rect
             height="162"
-            width="106.66666666666666"
-            x="88.57142857142858"
+            width="112"
+            x="68"
             y="508"
           />
           <rect
             height="32"
-            width="106.66666666666666"
-            x="240.95238095238096"
+            width="112"
+            x="228"
             y="280"
           />
           <rect
             height="65"
-            width="106.66666666666666"
-            x="393.3333333333333"
+            width="112"
+            x="388"
             y="215"
           />
           <rect
             height="98"
-            width="106.66666666666666"
-            x="545.7142857142858"
+            width="112"
+            x="548"
             y="150"
           />
           <rect
             height="130"
-            width="106.66666666666666"
-            x="698.0952380952381"
+            width="112"
+            x="708"
             y="85"
           />
           <rect
             height="163"
-            width="106.66666666666666"
-            x="850.4761904761906"
+            width="112"
+            x="868"
             y="20"
           />
         </g>

@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">97.92% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>48/48</span>
+        <span class='fraction'>47/48</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">81.82% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>9/11</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">93.75% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>16/16</span>
+        <span class='fraction'>15/16</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">97.73% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>44/44</span>
+        <span class='fraction'>43/44</span>
       </div>
     </div>
     <p class="quiet">
@@ -256,7 +256,7 @@
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -362,7 +362,7 @@ import { GraphComponent }   from './GraphComponent';
 import { ComponentDefaults }from './GraphComponent'; 
 import { GraphCfg }         from './GraphComponent';
 import { SVGLineSelection } from './GraphComponent';
-import { Line }             from './GraphComponent';
+import { Line }             from './Settings';
 import { d3Base }           from './Settings';
 import { defaultLine }      from './Settings';
 import { setStroke }        from './Settings';
@@ -374,7 +374,7 @@ export enum MajorMinor {
     minor   = 'minor'
 }
 &nbsp;
-export interface GridDefaults extends ComponentDefaults {
+export interface GridsDefaults extends ComponentDefaults {
     rendered: boolean;
     hor: {
         major: Line;
@@ -397,11 +397,11 @@ export class Grids extends GraphComponent {
         super(cfg, Grids.type);
     }
 &nbsp;
-    public get componentType() { return Grids.type; }
+<span class="fstat-no" title="function not covered" >    public get c</span>omponentType() { <span class="cstat-no" title="statement not covered" >return Grids.type; </span>}
 &nbsp;
-    public get defaults():GridDefaults { return &lt;GridDefaults&gt;this.cfg.defaults[this.componentType]; }
+    public get defaults():GridsDefaults { return this.cfg.graph.defaults.grids; }
 &nbsp;
-    public createDefaults():GridDefaults {
+    public createDefaults():GridsDefaults {
         return {
             rendered: true,
             hor: {
@@ -425,7 +425,7 @@ export class Grids extends GraphComponent {
     public preRender(): void {} 
 &nbsp;
     public renderComponent() {
-        <span class="missing-if-branch" title="else path not taken" >E</span>if ((&lt;GridDefaults&gt;this.cfg.defaults.grids).rendered) {
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (this.cfg.graph.defaults.grids.rendered) {
             this.grids['hor']['major'].renderComponent();
             this.grids['hor']['minor'].renderComponent();
             this.grids['ver']['major'].renderComponent();
@@ -447,11 +447,11 @@ export class Grid {
     }
 &nbsp;
     renderComponent() {
-        const style = (&lt;GridDefaults&gt;this.cfg.defaults.grids)[this.dir][this.type];
+        const style = this.cfg.graph.defaults.grids[this.dir][this.type];
         if (style.rendered) {
             const trans = this.cfg.transition;
-            const scaleX = this.cfg.scales.hor;
-            const scaleY = this.cfg.scales.ver;
+            const scaleX = this.cfg.graph.scales.scaleDims.hor;
+            const scaleY = this.cfg.graph.scales.scaleDims.ver;
             setStroke(this.svg, style);
             const c = this.hor? 
                 { range:  scaleX.range(), scale:  scaleY,   dim: { fix:'x', var:'y'}}   // hor grid

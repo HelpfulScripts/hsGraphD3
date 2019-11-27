@@ -4,17 +4,11 @@
 
 /** */
 
-import { DataSet }          from './Graph';
+import { DataSet, Graph }   from './Graph';
 import { Domains }          from './Graph';
 import { LifecycleCalls }   from './Graph';
-import { DefaultsType }     from './Settings';
 import { d3Base }           from './Settings';
 import { UnitVp }           from './Settings';
-import { Stroke }           from './Settings';
-import { Fill }             from './Settings';
-import { MarkerStyle }      from './Settings';
-import { TextStyle }        from './Settings';
-import { Scale }            from './Scale'; 
 import { Selection }        from 'd3';
 import { BaseType }         from 'd3';
 
@@ -22,13 +16,6 @@ import { BaseType }         from 'd3';
 export interface SVGLineSelection extends Selection<SVGLineElement, number, BaseType, unknown> {}
 export interface SVGCircleSelection extends Selection<SVGCircleElement, number, BaseType, unknown> {}
 
-export interface Rendered {
-    rendered: boolean;
-}
-export interface Line extends Stroke, Rendered {}
-export interface Area extends Fill, Rendered {}
-export interface Marker extends MarkerStyle, Rendered {}
-export interface Text extends TextStyle, Rendered {}
 
 type pixel = number;
 /** 
@@ -37,6 +24,9 @@ type pixel = number;
 export interface GraphCfg {
     /** the base svg for the rendering tree */
     baseSVG:    d3Base;
+
+    /** the `graph` object that this config belongs to. */
+    graph:      Graph;
 
     /** dimensions of the HTML client rect containing this graph in pixel. */
     client:     { x:pixel; y:pixel; width:pixel; height:pixel; };
@@ -47,9 +37,8 @@ export interface GraphCfg {
         height: UnitVp;
     };
 
-    /** Default settings for GraphComp[onents in this graph] */
-    defaults: DefaultsType;
-    // defaults:   (compName?:string) => ComponentDefaults;
+    /** Default settings for GraphComponents in this graph */
+    // defaults: DefaultsType;
 
     /** 
      * mapping of semantic scales to data columns and scaling functions. 
@@ -57,7 +46,7 @@ export interface GraphCfg {
      * @param dim *string* the semantic name of the axis to plot and scale. E.g. for 2D cartesian plots, 
      * `dim` is `hor`, `ver`, or `size`. 
      */    
-    scales: { [dim:string]: Scale};
+    // scales: { [dim:string]: Scale};
 
     /**
      * used to aggregate series into grouped stacks. 
@@ -72,7 +61,6 @@ export interface GraphCfg {
  * Generic base interface for the default setting for all component types.
  */
 export interface ComponentDefaults {
-    [filed:string]:any;
 }
 
 export abstract class GraphBase implements LifecycleCalls {

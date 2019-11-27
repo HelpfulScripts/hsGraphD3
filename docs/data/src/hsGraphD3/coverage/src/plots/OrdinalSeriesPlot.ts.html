@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">97.32% </span>
+        <span class="strong">97.39% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>109/112</span>
+        <span class='fraction'>112/115</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">78.38% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>37/41</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">99.02% </span>
+        <span class="strong">99.05% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>101/102</span>
+        <span class='fraction'>104/105</span>
       </div>
     </div>
     <p class="quiet">
@@ -264,7 +264,10 @@
 <a name='L216'></a><a href='#L216'>216</a>
 <a name='L217'></a><a href='#L217'>217</a>
 <a name='L218'></a><a href='#L218'>218</a>
-<a name='L219'></a><a href='#L219'>219</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L219'></a><a href='#L219'>219</a>
+<a name='L220'></a><a href='#L220'>220</a>
+<a name='L221'></a><a href='#L221'>221</a>
+<a name='L222'></a><a href='#L222'>222</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -372,6 +375,8 @@
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -401,7 +406,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">40x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">50x</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
@@ -547,7 +553,7 @@ export function accessor(v:ValueDef, colNames:string[], def=0):(row?:number[], i
  */
 export abstract class OrdinalSeriesPlot extends CartSeriesPlot { 
     getDefaults(): SeriesPlotDefaults {
-        const scaleDef = (&lt;ScalesDefaults&gt;this.cfg.defaults.scales).dims[this.independentAxis];
+        const scaleDef = this.cfg.graph.defaults.scales.dims[this.independentAxis];
         scaleDef.type = 'ordinal';
         scaleDef.ordinal = scaleDef.ordinal || { gap:0.3, overlap:0};
 &nbsp;
@@ -587,9 +593,11 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
 &nbsp;
     preRender(data:DataSet, domains:Domains): void {
         super.preRender(data, domains);
-        const scaleDef = (&lt;ScalesDefaults&gt;this.cfg.defaults.scales).dims[this.independentAxis];
+        const scaleDef = this.cfg.graph.defaults.scales.dims[this.independentAxis];
         const gap = scaleDef.ordinal.gap;
-        this.cfg.scales[this.independentAxis].padding(gap);
+        const scale = this.cfg.graph.scales.scaleDims[this.independentAxis];
+        scale.paddingInner(gap);
+        scale.paddingOuter(gap/2);
     }
  
 &nbsp;
@@ -604,7 +612,7 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
     }
 &nbsp;
     protected d3RenderFill(svg:d3Base, data:DataSet) {
-        const defaults = (&lt;SeriesPlotDefaults&gt;this.cfg.defaults.series[this.key]).area;
+        const defaults = this.defaults.area;
         <span class="missing-if-branch" title="else path not taken" >E</span>if (defaults.rendered) {
             const samples:any = svg.select('.area').selectAll("rect")
                 .data(data.rows, d =&gt; d[0]);                    // bind to data, iterate over rows
@@ -617,12 +625,13 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
     }
  
     private getParams(plot:OrdinalSeriesPlot, colNames:string[]):any[] {
-        const scaleDef = (&lt;ScalesDefaults&gt;plot.cfg.defaults.scales).dims[this.independentAxis];
+        const scales = plot.cfg.graph.scales;
+        const scaleDef = scales.defaults.dims[this.independentAxis];
         const stackGroup = plot.dims.stacked || <span class="branch-1 cbranch-no" title="branch not covered" >false;</span>
-        const allKeys = Object.keys(plot.cfg.defaults.series).filter(k =&gt; k.indexOf(Series.type)===0);
+        const allKeys = Object.keys(plot.cfg.graph.series.defaults).filter(k =&gt; k.indexOf(Series.type)===0);
         const myKey = allKeys.indexOf(plot.key) || 0;
-        const step = plot.cfg.scales[plot.independentAxis].step();
-        const pad = plot.cfg.scales[plot.independentAxis].padding();
+        const step = scales.scaleDims[plot.independentAxis].step();
+        const pad = scales.scaleDims[plot.independentAxis].paddingInner();
         const overlap = scaleDef.ordinal.overlap;
         const thickness = step * (1-pad) / (stackGroup? 1 : (<span class="branch-1 cbranch-no" title="branch not covered" >allKeys.length * (1-overlap) + overlap)</span>);
         const offset = step*pad/2 + (stackGroup? 0 : <span class="branch-1 cbranch-no" title="branch not covered" >thickness*myKey * (1-overlap))</span>;
@@ -632,8 +641,8 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
     protected d3DrawBar(markers:d3Base, plot:OrdinalSeriesPlot, colNames:string[]) {
         const [offset, thickness, stackGroup] = this.getParams(plot, colNames);
         const stack = stackGroup? (i:number)=&gt;plot.cfg.stack[stackGroup][i] : <span class="fstat-no" title="function not covered" ><span class="branch-1 cbranch-no" title="branch not covered" >()=</span>&gt;<span class="cstat-no" title="statement not covered" >0;</span></span>
-        const xScale = plot.cfg.scales.hor;
-        const yScale = plot.cfg.scales.ver;
+        const xScale = plot.cfg.graph.scales.scaleDims.hor;
+        const yScale = plot.cfg.graph.scales.scaleDims.ver;
 &nbsp;
         if (plot.independentAxis==='hor') { // Column
             const index = colNames.indexOf(&lt;string&gt;plot.dims.y);
@@ -664,8 +673,8 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
         const y  = accessor(plot.dims.y, colNames);
         const [offset, thickness, stackGroup] = this.getParams(plot, colNames);
         const stack = stackGroup? (i:number)=&gt;plot.cfg.stack[stackGroup][i] : <span class="fstat-no" title="function not covered" ><span class="branch-1 cbranch-no" title="branch not covered" >()=</span>&gt;<span class="cstat-no" title="statement not covered" >0;</span></span>
-        const xScale = plot.cfg.scales.hor;
-        const yScale = plot.cfg.scales.ver;
+        const xScale = plot.cfg.graph.scales.scaleDims.hor;
+        const yScale = plot.cfg.graph.scales.scaleDims.ver;
 &nbsp;
         const line = hor?
             stepLine(parseInt(''+thickness), 'hor')

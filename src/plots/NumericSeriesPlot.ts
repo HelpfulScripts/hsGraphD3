@@ -79,7 +79,7 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
 
     preRender(data:NumericDataSet, domains:Domains): void {
         super.preRender(data, domains);
-        const defaults = (<SeriesPlotDefaults>this.cfg.defaults.series[this.key]);
+        const defaults = this.defaults;
         if (defaults.area.rendered && this.dims.y0===undefined) { this.dims.y0 = ()=>0; } 
         this.line = undefined;
     }
@@ -87,7 +87,7 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
     //---------- support methods during lifecylce --------------------
 
     protected d3RenderMarkers(svg:d3Base, data:NumericDataSet) {
-        const defaults = (<SeriesPlotDefaults>this.cfg.defaults.series[this.key]).marker;
+        const defaults = this.defaults.marker;
         if (defaults.rendered) {
             const samples:any = svg.select('.markers').selectAll("circle")
                 .data(data.rows, d => d[0]);                // bind to data, iterate over rows
@@ -105,13 +105,14 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
     }
 
     protected d3RenderFill(svg:d3Base, data:NumericDataSet) {
+        const scales = this.cfg.graph.scales.scaleDims;
         this.line = this.line || this.getLine(data.rows, data.colNames, this.dims.y);
         let line0 = '';
         if (this.dims.y0!==undefined) {
             const max = data.rows.length-1;
-            const xmax = accessor(this.dims.x, data.colNames, this.cfg.scales.hor)(data.rows[max]);
-            const x0   = accessor(this.dims.x, data.colNames, this.cfg.scales.hor)(data.rows[0]);
-            const y    = accessor(this.dims.y0, data.colNames, this.cfg.scales.ver)(data.rows[max]);
+            const xmax = accessor(this.dims.x,  data.colNames, scales.hor)(data.rows[max]);
+            const x0   = accessor(this.dims.x,  data.colNames, scales.hor)(data.rows[0]);
+            const y    = accessor(this.dims.y0, data.colNames, scales.ver)(data.rows[max]);
             line0 = `L${xmax},${y}`;
             line0 += (typeof(this.dims.y0)==='function')? `L${x0},${y}` :
                 this.getLine(data.rows.reverse(), data.colNames, this.dims.y0).slice(8);  // remove first 'M' command
@@ -120,10 +121,11 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
     }
 
     protected d3DrawMarker(markers:d3Base, plot:NumericSeriesPlot, colNames:string[]) {
-        const xAccess = accessor(plot.dims.x, colNames, plot.cfg.scales.hor);
-        const yAccess = accessor(plot.dims.y, colNames, plot.cfg.scales.ver);
-        const rDefault = plot.cfg.defaults.series[plot.key].marker.size;
-        const rAccess = accessor(plot.dims.r, colNames, plot.cfg.scales.size, rDefault);
+        const scales = plot.cfg.graph.scales.scaleDims;
+        const xAccess = accessor(plot.dims.x, colNames, scales.hor);
+        const yAccess = accessor(plot.dims.y, colNames, scales.ver);
+        const rDefault = plot.defaults.marker.size;
+        const rAccess = accessor(plot.dims.r, colNames, scales.size, rDefault);
         markers
             .attr("cx", (d:number[]) => xAccess(d))
             .attr("cy", (d:number[]) => yAccess(d))
@@ -136,9 +138,10 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
      * @param yDef a constant (defaults to 0), or the data column to render from
      */
     protected getLine(rows:NumericDataRow[], colNames:string[], yDef: ValueDef = () => 0):string {
+        const scales = this.cfg.graph.scales.scaleDims;
         const line = d3line()
-            .x(accessor(this.dims.x, colNames, this.cfg.scales.hor))
-            .y(accessor(yDef, colNames, this.cfg.scales.ver))
+            .x(accessor(this.dims.x, colNames, scales.hor))
+            .y(accessor(yDef, colNames, scales.ver))
             .curve(curveCatmullRom.alpha(0.2));
         return line(<[number, number][]>rows);
     }

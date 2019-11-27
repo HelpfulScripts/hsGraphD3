@@ -32,14 +32,16 @@ import { log as gLog }      from 'hsutil';   const log = gLog('Axis');
 import { GraphComponent }   from './GraphComponent'; 
 import { GraphCfg }         from './GraphComponent';
 import { ComponentDefaults }from './GraphComponent';
-import { Line }             from './GraphComponent';
-import { Text }             from './GraphComponent';
-import * as def             from './Settings';
 import { ScaleDims }        from './Scale';
 import { ScalesDefaults }   from './Scale';
-import { UnitVp, d3Base }   from './Settings';
+import { UnitVp }           from './Settings';
+import { d3Base }           from './Settings';
 import { setText }          from './Settings';
 import { setStroke }        from './Settings';
+import { defaultLine }      from './Settings';
+import { defaultText }      from './Settings';
+import { Line }             from './Settings';
+import { Text }             from './Settings';
 import { DataVal }          from './Graph';
 
 
@@ -79,13 +81,13 @@ export class Axes extends GraphComponent {
 
     constructor(cfg:GraphCfg) {
         super(cfg, Axes.type);
-        this.axes.push(new Axis(this.cfg, Direction.horizontal));
-        this.axes.push(new Axis(this.cfg, Direction.vertical));
+        this.axes.push(new Axis(this, cfg, Direction.horizontal));
+        this.axes.push(new Axis(this, cfg, Direction.vertical));
     }
 
     public get componentType() { return Axes.type; }
 
-    public get defaults():AxesDefaults { return <AxesDefaults>this.cfg.defaults[this.componentType]; }
+    public get defaults():AxesDefaults { return this.cfg.graph.defaults.axes; }
 
     public createDefaults():AxesDefaults {
         return {
@@ -96,18 +98,18 @@ export class Axes extends GraphComponent {
         };
     }
 
-    initialize(svg:def.d3Base): void {
+    initialize(svg:d3Base): void {
     } 
 
     preRender(): void {
-        const def = <AxesDefaults>this.cfg.defaults.axes;
+        const def = this.defaults;
         if (def.rendered) {
             this.axes.forEach(axis => axis.defaults.rendered? axis.preRender() : '');
         }
     } 
 
     renderComponent() {
-        const def = <AxesDefaults>this.cfg.defaults.axes;
+        const def = this.defaults;
         if (def.rendered) {
             this.axes.forEach(axis => axis.defaults.rendered? axis.renderComponent() : '');
         }
@@ -116,15 +118,11 @@ export class Axes extends GraphComponent {
 }
 
 export class Axis {
-    private dir: Direction;
     private pos: string;    // left/right or top/bottom
-    private cfg: GraphCfg;
     private svg: d3Base;
 
-    constructor(cfg:GraphCfg, dir:Direction) {
-        this.cfg = cfg;
+    constructor(private axes:Axes, private cfg:GraphCfg, private dir:Direction) {
         this.svg = cfg.baseSVG.select('.axes').append('g');
-        this.dir = dir;
         this.svg.classed(`${dir}Axis`, true);
     }
 
@@ -132,39 +130,39 @@ export class Axis {
         return {
             color:          'currentColor',
             rendered:       true,
-            line:           def.defaultLine(1),
+            line:           defaultLine(1),
             tickWidth:      5,
-            tickMarks:      def.defaultLine(2),
-            tickLabel:      def.defaultText(),
+            tickMarks:      defaultLine(2),
+            tickLabel:      defaultText(),
             crossing:       'auto',
             numTicksMajor:  'auto',
             numTicksMinor:  'auto',
         };
     }
 
-    public get defaults():AxisDefaults {
-        return (<AxisDefaults>this.cfg.defaults.axes)[this.dir];
-    }
+    public get defaults():AxisDefaults { return this.axes.defaults[this.dir]; }
     
     preRender(): void {
         const axisDef = this.defaults;
-        const scale = (this.dir===Direction.horizontal)? this.cfg.scales.hor : this.cfg.scales.ver;
+        const scales = this.cfg.graph.scales.scaleDims;
+        const scale = scales[this.dir];
         const clientSize = (this.dir===Direction.horizontal)? this.cfg.client.width : this.cfg.client.height;
         scale.tickCountMajor = axisDef.numTicksMajor==='auto'? parseInt(''+(clientSize / pixPerMajorTick)) : axisDef.numTicksMajor;
-        scale.tickCountMinor = axisDef.numTicksMinor==='auto'? parseInt(''+(clientSize / pixPerMinorTick))  : axisDef.numTicksMinor;
-        // log.info(`ticks: ${this.dir}:${scale.tickCountMajor}/${scale.tickCountMinor}`);
+        scale.tickCountMinor = axisDef.numTicksMinor==='auto'? parseInt(''+(clientSize / pixPerMinorTick)) : axisDef.numTicksMinor;
+        if (this.dir==='ver') { log.info(`ticks: ${this.dir}:${scale.tickCountMajor}/${scale.tickCountMinor}, size = ${clientSize}`); }
     } 
 
     public renderComponent() {
         const trans = this.cfg.transition;
         const axisDef = this.defaults;
         this.cfg.baseSVG.select('.axes')
-            .attr('color', this.cfg.defaults.axes.color);
+            .attr('color', this.defaults.color);
 
         setStroke(this.svg, axisDef.line);
-        this.setTransform(this.cfg.scales);
-        const axis:any = this.getD3Axis(this.cfg.scales, axisDef);
-        const scale = (this.dir===Direction.horizontal)? this.cfg.scales.hor : this.cfg.scales.ver;
+        const scales = this.cfg.graph.scales.scaleDims;
+        this.setTransform(scales);
+        const axis:any = this.getD3Axis(scales, axisDef);
+        const scale = scales[this.dir];
         axis.ticks(scale.tickCountMinor);
         this.svg.transition(trans).call(axis);
 
@@ -185,36 +183,35 @@ export class Axis {
     }
 
     setTransform(scales:ScaleDims) {
-        const margins = (<ScalesDefaults>this.cfg.defaults.scales).margin;
+        const margins = this.cfg.graph.scales.defaults.margin;
         const trans = this.cfg.transition;
+        const orth = (this.dir===Direction.horizontal)? Direction.vertical : Direction.horizontal;
+        const scale = scales[this.dir];
+        const oscale = scales[orth];
+        const axisDef = this.cfg.graph.axes.defaults[orth];
+        const dom = oscale.domain();
+        const cross:DataVal = axisDef.crossing==='auto'? ((dom[0] < 0 && dom[1] > 0)? 0 : dom[0]) : axisDef.crossing;
+        let crossing = oscale(cross);
+        const d = scale.type()==='ordinal'? scale.paddingInner()*scale.step()/2 : 0;
         if (this.dir===Direction.horizontal) {
-            const axisDef = <AxisDefaults>this.cfg.defaults.axes.ver;
-            const dom = scales.ver.domain();
-            const cross:DataVal = axisDef.crossing==='auto'? ((dom[0] < 0 && dom[1] > 0)? 0 : dom[0]) : axisDef.crossing;
-            let yCrossing = scales.ver(cross) + ((scales.ver.type()==='ordinal')? scales.ver.step() : 0);
             this.pos = 'bottom';
-            if (yCrossing < margins.top) {
-                yCrossing = margins.top;
-            } else if (yCrossing > this.cfg.viewPort.height-margins.bottom) {
-                yCrossing = this.cfg.viewPort.height-margins.bottom;
+            if (crossing < margins.top) {
+                crossing = margins.top;
+            } else if (crossing > this.cfg.viewPort.height-margins.bottom) {
+                crossing = this.cfg.viewPort.height-margins.bottom;
                 this.pos = 'top';
             }
-            const dx = scales.hor.type()==='ordinal'? scales.hor.paddingOuter()*scales.hor.step()/2 : 0;
-            this.svg.transition(trans).attr("transform", `translate(${dx}, ${yCrossing})`);
+            crossing += ((oscale.type()==='ordinal')? oscale.step() : 0);
+            this.svg.transition(trans).attr("transform", `translate(${d}, ${crossing})`);
         } else {
-            const axisDef = <AxisDefaults>this.cfg.defaults.axes.hor;
-            const dom = scales.hor.domain();
-            const cross:DataVal = axisDef.crossing==='auto'? ((dom[0] < 0 && dom[1] > 0)? 0 : dom[0]) : axisDef.crossing;
-            let xCrossing = scales.hor(cross);
             this.pos = 'left';
-            if (xCrossing < margins.left) {
-                xCrossing = margins.left;
+            if (crossing < margins.left) {
+                crossing = margins.left;
                 this.pos = 'right';
-            } else if (xCrossing > this.cfg.viewPort.width-margins.right) {
-                xCrossing = this.cfg.viewPort.width-margins.right;
+            } else if (crossing > this.cfg.viewPort.width-margins.right) {
+                crossing = this.cfg.viewPort.width-margins.right;
             }
-            const dy = scales.ver.type()==='ordinal'? scales.ver.paddingOuter()*scales.ver.step()/2 : 0;
-            this.svg.transition(trans).attr("transform", `translate(${xCrossing}, ${dy})`);
+            this.svg.transition(trans).attr("transform", `translate(${crossing}, ${d})`);
         }
     }
 

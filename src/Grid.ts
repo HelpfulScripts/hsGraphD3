@@ -32,7 +32,7 @@ import { GraphComponent }   from './GraphComponent';
 import { ComponentDefaults }from './GraphComponent'; 
 import { GraphCfg }         from './GraphComponent';
 import { SVGLineSelection } from './GraphComponent';
-import { Line }             from './GraphComponent';
+import { Line }             from './Settings';
 import { d3Base }           from './Settings';
 import { defaultLine }      from './Settings';
 import { setStroke }        from './Settings';
@@ -44,7 +44,7 @@ export enum MajorMinor {
     minor   = 'minor'
 }
 
-export interface GridDefaults extends ComponentDefaults {
+export interface GridsDefaults extends ComponentDefaults {
     rendered: boolean;
     hor: {
         major: Line;
@@ -69,9 +69,9 @@ export class Grids extends GraphComponent {
 
     public get componentType() { return Grids.type; }
 
-    public get defaults():GridDefaults { return <GridDefaults>this.cfg.defaults[this.componentType]; }
+    public get defaults():GridsDefaults { return this.cfg.graph.defaults.grids; }
 
-    public createDefaults():GridDefaults {
+    public createDefaults():GridsDefaults {
         return {
             rendered: true,
             hor: {
@@ -95,7 +95,7 @@ export class Grids extends GraphComponent {
     public preRender(): void {} 
 
     public renderComponent() {
-        if ((<GridDefaults>this.cfg.defaults.grids).rendered) {
+        if (this.cfg.graph.defaults.grids.rendered) {
             this.grids['hor']['major'].renderComponent();
             this.grids['hor']['minor'].renderComponent();
             this.grids['ver']['major'].renderComponent();
@@ -117,11 +117,11 @@ export class Grid {
     }
 
     renderComponent() {
-        const style = (<GridDefaults>this.cfg.defaults.grids)[this.dir][this.type];
+        const style = this.cfg.graph.defaults.grids[this.dir][this.type];
         if (style.rendered) {
             const trans = this.cfg.transition;
-            const scaleX = this.cfg.scales.hor;
-            const scaleY = this.cfg.scales.ver;
+            const scaleX = this.cfg.graph.scales.scaleDims.hor;
+            const scaleY = this.cfg.graph.scales.scaleDims.ver;
             setStroke(this.svg, style);
             const c = this.hor? 
                 { range:  scaleX.range(), scale:  scaleY,   dim: { fix:'x', var:'y'}}   // hor grid

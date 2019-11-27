@@ -32,9 +32,9 @@ import { GraphComponent }       from './GraphComponent';
 import { ComponentDefaults }    from './GraphComponent'; 
 import { GraphCfg }             from './GraphComponent'; 
 import { RectStyle }            from './Settings';
-import { defaultRect }          from './Settings';
+import { defaultRectStyle }     from './Settings';
 import { d3Base }               from './Settings';
-import { setRect }               from './Settings';
+import { setRect }              from './Settings';
 
 export interface CanvasDefaults extends ComponentDefaults, RectStyle { }
 
@@ -48,10 +48,10 @@ export class Canvas extends GraphComponent {
 
     public get componentType() { return Canvas.type; }
 
-    public get defaults():CanvasDefaults { return <CanvasDefaults>this.cfg.defaults[this.componentType]; }
+    public get defaults():CanvasDefaults { return this.cfg.graph.defaults.canvas; }
 
     public createDefaults():CanvasDefaults {
-        return defaultRect('#fff', 1, '#00c');
+        return defaultRectStyle('#fff', 1, '#00c');
     }
 
     initialize(svg:d3Base): void {
@@ -65,9 +65,9 @@ export class Canvas extends GraphComponent {
      * @param cfg 
      */
     public renderComponent() {
-        const canvas = this.cfg.defaults.canvas;
+        const canvas = this.defaults;
         const area = this.svg.select('.graphArea');
-        setRect(area, <CanvasDefaults>canvas)
+        setRect(area, canvas)
             .attr('width', this.cfg.viewPort.width)
             .attr('height', this.cfg.viewPort.height);
     }

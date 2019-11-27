@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">86.25% </span>
+        <span class="strong">85.71% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>69/80</span>
+        <span class='fraction'>72/84</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">72.22% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>26/36</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">77.14% </span>
+        <span class="strong">77.78% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>27/35</span>
+        <span class='fraction'>28/36</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">87.88% </span>
+        <span class="strong">85.92% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>58/66</span>
+        <span class='fraction'>61/71</span>
       </div>
     </div>
     <p class="quiet">
@@ -376,7 +376,14 @@
 <a name='L328'></a><a href='#L328'>328</a>
 <a name='L329'></a><a href='#L329'>329</a>
 <a name='L330'></a><a href='#L330'>330</a>
-<a name='L331'></a><a href='#L331'>331</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L331'></a><a href='#L331'>331</a>
+<a name='L332'></a><a href='#L332'>332</a>
+<a name='L333'></a><a href='#L333'>333</a>
+<a name='L334'></a><a href='#L334'>334</a>
+<a name='L335'></a><a href='#L335'>335</a>
+<a name='L336'></a><a href='#L336'>336</a>
+<a name='L337'></a><a href='#L337'>337</a>
+<a name='L338'></a><a href='#L338'>338</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -541,7 +548,10 @@
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">72x</span>
+<span class="cline-any cline-yes">178x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -564,6 +574,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -868,10 +882,13 @@ export const scaleDefault = (minRange?:UnitVp, maxRange?:UnitVp):ScaleDefaults =
 export class Scales extends GraphComponent {
     static type = 'scales';
 &nbsp;
+    private scales: { [name:string]: Scale; } = {};
+&nbsp;
     constructor(cfg:GraphCfg) { super(cfg, null); }
 &nbsp;
-    public get componentType() { return Scales.type; }
-<span class="fstat-no" title="function not covered" >    public get d</span>efaults():ScalesDefaults { <span class="cstat-no" title="statement not covered" >return &lt;ScalesDefaults&gt;this.cfg.defaults[this.componentType]; </span>}
+<span class="fstat-no" title="function not covered" >    public get c</span>omponentType() { <span class="cstat-no" title="statement not covered" >return Scales.type; </span>}
+    public get defaults():ScalesDefaults { return this.cfg.graph.defaults.scales; }
+    public get scaleDims() { return this.scales; }
 &nbsp;
     public initialize(): void {} 
     public preRender(): void {} 
@@ -888,19 +905,23 @@ export class Scales extends GraphComponent {
 &nbsp;
     /**
      * creates a d3 scale object based on the provided settings.
-     * @param scaleDef scale defaults, possibly modified by the application
+     * @param name name of the new scale, must also match the name of a predefined scale default.
      * @param domain the data domain to scale for
      * @param range the viewport range to scale for 
      */
-    public static createScale(scaleDef: ScaleDefaults, domain: Domain, range?:Range):Scale {
-        <span class="missing-if-branch" title="if path not taken" >I</span>if (!scaleDef) { <span class="cstat-no" title="statement not covered" >return; </span>}
+    public createScale(name:string, domain: Domain, range?:Range):Scale {
+        const scaleDef: ScaleDefaults = this.defaults.dims[name];
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (!scaleDef) { 
+<span class="cstat-no" title="statement not covered" >            log.warn(`can't create scale ${name}; noe default available`);</span>
+<span class="cstat-no" title="statement not covered" >            return; </span>
+        }
         let scales = {
             ordinal:    BandScale,
             time:       TimeScale,
             log:        LogScale,
             linear:     LinearScale,
         };
-        return new scales[scaleDef.type](scaleDef, domain, range).getScale();
+        return this.scales[name] = new scales[scaleDef.type](scaleDef, domain, range).getScale();
     }
 }
 &nbsp;

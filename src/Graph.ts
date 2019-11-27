@@ -59,22 +59,30 @@
 import { log as gLog }      from 'hsutil';   const log = gLog('Graph');
 
 import { select as d3Select}from 'd3';
-import * as d3              from 'd3';
+import { easeLinear}        from 'd3';
+import { easeCubic}         from 'd3';
 
-import { GraphComponent, GraphBase}    from './GraphComponent';
+import { GraphBase}         from './GraphComponent';
 import { ComponentDefaults} from './GraphComponent';
 import { GraphCfg}          from './GraphComponent';
 import { Series }           from './Series';
-import { SeriesDimensions } from './Series';
+import { SeriesDefaults }   from './Series';
 import { Scales }           from './Scale';
 import { ScalesDefaults }   from './Scale';
 import { Axes }             from './Axis';
+import { AxesDefaults }     from './Axis';
 import { Grids }            from './Grid';
+import { GridsDefaults }    from './Grid';
 import { Canvas }           from './Canvas';
-import { DefaultsType }     from './Settings';
+import { CanvasDefaults }   from './Canvas';
 import { d3Base }           from './Settings';
-import { SeriesPlot }       from './SeriesPlot';
+import { Title }            from './Title';
+import { TitleDefaults }    from './Title';
 
+const easings = {
+    easeLinear: easeLinear,
+    easeCubic:  easeCubic,
+};
 /** 
  * The standard width of the viewport, in viewport coordinates. 
  * Viewport coordinates are established via the SVG `viewBox` node, 
@@ -98,9 +106,24 @@ export interface ValueFn { (i?:number): DataVal; }
 
 /** default settings for the `Graph` component */
 export interface GraphDefaults extends ComponentDefaults {
-    /** the duration of the `Graph`-wide transition, restarted whith each `render` call.  */
-    transitionTime: number; // in ms
-    easing: string;         // e.g. 'easeCubic'
+    graph:  GraphComponentDefaults;
+    scales: ScalesDefaults;
+    canvas: CanvasDefaults;
+    grids:  GridsDefaults;
+    axes:   AxesDefaults;
+    series: SeriesDefaults;
+    title:  TitleDefaults;
+}
+
+/** default settings for the `Graph` component */
+export interface GraphComponentDefaults extends ComponentDefaults {
+    transition : {
+        /** the duration of the `Graph`-wide transition, restarted whith each `render` call.  */
+        duration:   number; // in ms
+
+        /** the easing function used for trsansitions */
+        easing:     'easeCubic' | 'easeLinear'; 
+    };
 }
 
 /** Basic generic data type */
@@ -242,25 +265,26 @@ export interface LifecycleCalls {
  * Provides access to the `Components` managed by a `Graph`.
  */
 interface Components {
-    readonly scales:Scales;
-    readonly canvas:Canvas;
-    readonly grids:Grids;
-    readonly axes:Axes;
-    readonly series:Series;
+    scales:Scales;
+    canvas:Canvas;
+    grids:Grids;
+    axes:Axes;
+    series:Series;
+    title:Title;
 }
 
 
 /** creates and initializes the `Graph`-wide configuration object. */
 function initializeCfg():GraphCfg {
     return {
-        baseSVG:  undefined,    
+        baseSVG:  undefined,  
+        graph: undefined,
         client:   { x:0, y:0, width: 0, height: 0 },
         viewPort: {
             width: vpWidth,
             height: vpWidth * 0.7   // initial height: 70% of width
         },
-        defaults: <DefaultsType>{},
-        scales: {},
+        // defaults: <DefaultsType>{},
         transition: null,
         stack: { }
     };
@@ -271,30 +295,43 @@ function initializeCfg():GraphCfg {
  * Abstract base Graph.
  */
 export abstract class Graph extends GraphBase implements Components {
+    //------------ static parts  -------------------
+    static type = 'graph';
+
     private static graphs = {};
     private static addGraph(id:string, fn:()=>void) { 
+        log.debug(`addGraph ${id}`);
         Graph.graphs[id] = fn; 
     }
     private static removeGraph(id:string) { 
+        log.debug(`removeGraph ${id}`);
         delete Graph.graphs[id]; 
     }
     private static resizeGraphs() {
         Object.keys(Graph.graphs).forEach(g => Graph.graphs[g]());
     }
     
+
+    //------------ instance variables  -------------------
     /** the HTML root element to attach the render tree to. */
     protected root:any;
 
     /** the list of components to render */
-    private components: GraphComponent[] = [];
+    private components = <Components>{};
 
     /** tracks whether components have been initialized. */
     private initialized = false;
 
+    /** Default settings for GraphComponents in this graph */
+    graphDefaults = <GraphDefaults>{};
+
     protected cumulativeDomains: Domains = {};
 
+    
+    //------------ public methods  -------------------
     constructor(root:HTMLElement) { 
         super(initializeCfg());
+        this.cfg.graph = this;
         this.root = root;
         this.cfg.baseSVG = this.createBaseSVG(this.cfg); 
         this.updateBaseSVG(this.cfg);
@@ -304,13 +341,9 @@ export abstract class Graph extends GraphBase implements Components {
         window.onresize = Graph.resizeGraphs;
     }
 
-    public get defaults(): ComponentDefaults {
-        return this.cfg.defaults;
-    }
+    public get componentType() { return Graph.type; }
 
-    protected get viewport() {
-        return this.cfg.viewPort;
-    }
+    public get defaults(): GraphDefaults { return this.graphDefaults; }
 
     /** returns the types of all registered `Series` */
     public get seriesTypes():string[] {
@@ -344,11 +377,11 @@ export abstract class Graph extends GraphBase implements Components {
      * @return a `RenderChain`.
      */
     public render(data:DataSet | DataSet[]):RenderChain {
-        const graphDef = <GraphDefaults>this.cfg.defaults.graph;
+        const transitionDef = this.defaults.graph.transition;
         const graph = this;
 
-        const easing = d3[graphDef.easing];
-        this.cfg.transition = this.cfg.baseSVG.transition().duration(graphDef.transitionTime).ease(easing);
+        const easing = easings[transitionDef.easing];
+        this.cfg.transition = this.cfg.baseSVG.transition().duration(transitionDef.duration).ease(easing);
 
         Graph.addGraph(graph.root.id, () => {
             setTimeout(() => {
@@ -361,14 +394,85 @@ export abstract class Graph extends GraphBase implements Components {
         return { update: graph.updateFn(data)};
     }
 
+    /** called once during construction to create the components defaults. */
+    public createDefaults():GraphComponentDefaults {
+        return {
+            transition: {
+                duration: 1000,
+                easing: 'easeCubic'
+            }
+        };
+    }
+
+
+    //************** Components calls **************************/
+    get scales():Scales { return this.components.scales; }
+    get canvas():Canvas { return this.components.canvas; }
+    get grids():Grids   { return this.components.grids; }
+    get axes():Axes     { return this.components.axes; }
+    get series():Series { return this.components.series; }
+    get title():Title   { return this.components.title; }
+
+
+    //************** Lifecycle calls **************************/
+
+    /** 
+     * Called once at the beginning of the first call to `Graph.render()`
+     * and initializes all known `GraphComponts`.
+     */
+    initialize(svg:d3Base): void {
+        Object.keys(this.components).forEach(comp => this.components[comp].initialize(svg));
+    } 
+
+    /** Called immediately before each call to renderComponent. */
+    preRender(data:DataSet | DataSet[], domains:Domains): void {
+        this.series.expandDomains(data, domains);
+        this.setScales();
+        Object.keys(this.components).forEach(comp => this.components[comp].preRender(data, domains));
+    } 
+
+    /** renders the component. */
+    renderComponent(data:DataSet | DataSet[]): void {
+        Object.keys(this.components).forEach(comp => this.components[comp].renderComponent(data));
+    } 
+
+    /** renders the component. */
+    postRender(data:DataSet | DataSet[]): void {
+        Object.keys(this.components).forEach(comp => this.components[comp].postRender(data));
+    } 
+
+    renderLifecycle(data:DataSet | DataSet[]) {
+        const isRendered = this.isRendered();
+        if (isRendered) {
+            log.debug(`rendering lifecycle ${this.root.id}`);
+            if (!this.initialized) {
+                this.initialize(this.cfg.baseSVG);
+                this.initialized = true;
+            }
+            const scalesDefaults = <ScalesDefaults>this.defaults['scales'];
+            this.preRender(data, this.prepareDomains(scalesDefaults));
+            this.renderComponent(data);
+            this.postRender(data);
+        } else {
+            Graph.removeGraph(this.root.id);
+        }
+    }
+
+    //************** Non-public part **************************/
+
+    protected get viewport() {
+        return this.cfg.viewPort;
+    }
+
     private updateFn(data:DataSet | DataSet[]) {
-        const graphDef = <GraphDefaults>this.cfg.defaults.graph;
+        const graphDef = this.defaults.graph;
         const graph = this;
         return (duration:number, callback?:RenderCallback):void => {
             function listener() {
                 try {
-                    graphDef.transitionTime = duration || graphDef.transitionTime;
-                    graph.cfg.transition = graph.cfg.transition.transition().duration(graphDef.transitionTime);
+                    graphDef.transition.duration = duration || graphDef.transition.duration;
+                    graph.cfg.transition = graph.cfg.transition.transition().duration(graphDef.transition.duration);
+                    
                     // set new transition if a) still rendered, b) callback is missing, or c) callback returns undefined or truthy
                     if (graph.isRendered() && (!callback || callback(data) !== false)) {
                         graph.cfg.transition.on('end', listener); 
@@ -381,76 +485,13 @@ export abstract class Graph extends GraphBase implements Components {
         };
     }
 
-    /** called once during construction to create the components defaults. */
-    public createDefaults():GraphDefaults {
-        return {
-            transitionTime: 1000,
-            easing: 'easeCubic'
-        };    
-    }
-
-
-    //************** Components calls **************************/
-    get scales():Scales { return this.components['scales']; }
-    get canvas():Canvas { return this.components['canvas']; }
-    get grids():Grids   { return this.components['grids']; }
-    get axes():Axes     { return this.components['axes']; }
-    get series():Series { return this.components['series']; }
-
-
-    //************** Lifecycle calls **************************/
-
-    /** 
-     * Called once at the beginning of the first call to `Graph.render()`
-     * and initializes all known `GraphComponts`.
-     */
-    initialize(svg:d3Base): void {
-        this.components.forEach(comp => comp.initialize(svg));
-    } 
-
-    /** Called immediately before each call to renderComponent. */
-    preRender(data:DataSet | DataSet[], domains:Domains): void {
-        this.series.expandDomains(data, domains);
-        this.setScales();
-        this.components.forEach((comp:GraphComponent) => comp.preRender(data, domains));
-    } 
-
-    /** renders the component. */
-    renderComponent(data:DataSet | DataSet[]): void {
-        this.components.forEach((comp:GraphComponent) => comp.renderComponent(data));
-    } 
-
-    /** renders the component. */
-    postRender(data:DataSet | DataSet[]): void {
-        this.components.forEach((comp:GraphComponent) => comp.postRender(data));
-    } 
-
-    renderLifecycle(data:DataSet | DataSet[]) {
-        const isRendered = this.isRendered();
-        if (isRendered) {
-            log.debug(`rendering lifecycle ${this.root.id}`);
-            if (!this.initialized) {
-                this.initialize(this.cfg.baseSVG);
-                this.initialized = true;
-            }
-            const scalesDefaults = <ScalesDefaults>this.cfg.defaults.scales;
-            this.preRender(data, this.prepareDomains(scalesDefaults));
-            this.renderComponent(data);
-            this.postRender(data);
-        } else {
-            Graph.removeGraph(this.root.id);
-        }
-    }
-
-    //************** Non-public part **************************/
-
     /** set the scales for the graph prior to rendering components. */
     protected abstract setScales():void;
 
     protected makeDefaults() {
-        const defaults = this.cfg.defaults;
-        defaults['graph'] = this.createDefaults();
-        this.components.forEach(comp => defaults[comp.componentType] = comp.createDefaults());
+        this.graphDefaults = <GraphDefaults>{};
+        this.graphDefaults[this.componentType] = this.createDefaults();
+        Object.keys(this.components).forEach(comp => this.graphDefaults[comp] = this.components[comp].createDefaults());
     }
 
     protected abstract prepareDomains(scalesDefaults:ScalesDefaults):Domains;
@@ -461,15 +502,16 @@ export abstract class Graph extends GraphBase implements Components {
      * - Canvas: the background area for the plot
      * - Grids
      * - Axes
+     * - Title
      * - Series
      */
     private createComponents(cfg:GraphCfg) {
-        const comps:GraphComponent[] = this.components = [];
-        comps.push(comps['scales'] = new Scales(cfg));
-        comps.push(comps['canvas'] = new Canvas(cfg));
-        comps.push(comps['grids']  = new Grids(cfg));
-        comps.push(comps['axes']   = new Axes(cfg));
-        comps.push(comps['series'] = new Series(cfg));
+        this.components.scales  = new Scales(cfg);
+        this.components.canvas  = new Canvas(cfg);
+        this.components.grids   = new Grids(cfg);
+        this.components.axes    = new Axes(cfg);
+        this.components.title   = new Title(cfg);
+        this.components.series  = new Series(cfg);
     }
 
     /** callback on window resize event, adjusts the viewport to the new dimensions  */

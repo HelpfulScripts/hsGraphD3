@@ -101,7 +101,7 @@
 <p id=78 class="line"><span>&nbsp;&nbsp;78</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.svg.append(<quote>'g'</quote>).classed(<quote>'line'</quote>,&nbsp;true).append(<quote>'path'</quote>);</p>
 <p id=79 class="line"><span>&nbsp;&nbsp;79</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.svg.append(<quote>'g'</quote>).classed(<quote>'markers'</quote>,&nbsp;true);</p>
 <p id=80 class="line"><span>&nbsp;&nbsp;80</span></p>
-<p id=81 class="line"><span>&nbsp;&nbsp;81</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;defaults&nbsp;=&nbsp;<SeriesPlotDefaults>this.cfg.defaults.series[this.key];</p>
+<p id=81 class="line"><span>&nbsp;&nbsp;81</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;defaults&nbsp;=&nbsp;this.defaults;</p>
 <p id=82 class="line"><span>&nbsp;&nbsp;82</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(this.dims.r)&nbsp;{&nbsp;defaults.marker.rendered&nbsp;=&nbsp;true;&nbsp;}</p>
 <p id=83 class="line"><span>&nbsp;&nbsp;83</span></p>
 <p id=84 class="line"><span>&nbsp;&nbsp;84</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;line&nbsp;=&nbsp;this.svg.select(<quote>'.line'</quote>);</p>
@@ -143,7 +143,7 @@
 <p id=120 class="line"><span>&nbsp;120</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
 <p id=121 class="line"><span>&nbsp;121</span></p>
 <p id=122 class="line"><span>&nbsp;122</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;renderElements(data:DataSet)&nbsp;{</p>
-<p id=123 class="line"><span>&nbsp;123</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;defaults&nbsp;=&nbsp;(<SeriesPlotDefaults>this.cfg.defaults.series[this.key]);</p>
+<p id=123 class="line"><span>&nbsp;123</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;defaults&nbsp;=&nbsp;this.defaults;</p>
 <p id=124 class="line"><span>&nbsp;124</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(defaults.marker.rendered)&nbsp;{&nbsp;this.svg.call(this.d3RenderMarkers.bind(this),&nbsp;data);&nbsp;}</p>
 <p id=125 class="line"><span>&nbsp;125</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(defaults.line.rendered)&nbsp;&nbsp;&nbsp;{&nbsp;this.svg.call(this.d3RenderPath.bind(this),&nbsp;data);&nbsp;}</p>
 <p id=126 class="line"><span>&nbsp;126</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(defaults.area.rendered)&nbsp;&nbsp;&nbsp;{&nbsp;this.svg.call(this.d3RenderFill.bind(this),&nbsp;data);&nbsp;}</p>

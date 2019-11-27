@@ -131,12 +131,12 @@ export class Voronoi extends NumericSeriesPlot {
     } 
 
     public renderComponent(data:NumericDataSet): void {
-        const scales = this.cfg.scales;
+        const scales = this.cfg.graph.scales.scaleDims;
         if (typeof(this.dims.x)==='number') { log.warn(`renderComponent: unsupported const x=${this.dims.x} in voronoi`); }
         if (typeof(this.dims.y)==='number') { log.warn(`renderComponent: unsupported const y=${this.dims.y} in voronoi`); }
         const x = data.colNames.indexOf(<string>this.dims.x);
         const y = data.colNames.indexOf(<string>this.dims.y);
-        const m = <ScalesDefaults>this.cfg.defaults.scales.margin;
+        const m = this.cfg.graph.scales.defaults.margin;
         this.voronoi = Delaunay.from(data.rows, 
             r => scales.hor(<number>r[x]),
             r => scales.ver(<number>r[y])
@@ -146,7 +146,7 @@ export class Voronoi extends NumericSeriesPlot {
     }
 
     protected d3RenderPath(svg:d3Base, data:NumericDataSet) {
-        const defaults = (<SeriesPlotDefaults>this.cfg.defaults.series[this.key]).line;
+        const defaults = this.defaults.line;
         if (defaults.rendered) {
             const path = svg.selectAll('path')
                 .transition(this.cfg.transition)

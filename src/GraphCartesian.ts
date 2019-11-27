@@ -113,10 +113,10 @@ export class GraphCartesian extends Graph {
      */
     protected makeDefaults() {
         super.makeDefaults();
-        const scalesDefaults = <ScalesDefaults>this.cfg.defaults.scales;
-        scalesDefaults.dims['hor']  = scalesDefaults.dims['hor']  || scaleDefault();    // auto viewport range
-        scalesDefaults.dims['ver']  = scalesDefaults.dims['ver']  || scaleDefault();    // auto viewport range
-        scalesDefaults.dims['size'] = scalesDefaults.dims['size'] || scaleDefault(5, 20);  
+        const scalesDefaults = this.defaults.scales;
+        scalesDefaults.dims.hor  = scalesDefaults.dims.hor  || scaleDefault();    // auto viewport range
+        scalesDefaults.dims.ver  = scalesDefaults.dims.ver  || scaleDefault();    // auto viewport range
+        scalesDefaults.dims.size = scalesDefaults.dims.size || scaleDefault(5, 20);  
     }
 
     /**
@@ -124,12 +124,10 @@ export class GraphCartesian extends Graph {
      * @param data 
      */
     protected setScales() {
-        const scalesDefaults = <ScalesDefaults>this.cfg.defaults.scales;
-        const margins = this.cfg.defaults.scales.margin;
-        const scales = this.cfg.scales;
-        scales.hor  = Scales.createScale(scalesDefaults.dims.hor, this.cumulativeDomains.hor, [margins.left,  this.viewport.width-margins.right]);
-        scales.ver  = Scales.createScale(scalesDefaults.dims.ver, this.cumulativeDomains.ver, [this.viewport.height-margins.bottom, margins.top]);
-        scales.size = Scales.createScale(scalesDefaults.dims.size, this.cumulativeDomains.size);
+        const margins = this.scales.defaults.margin;
+        this.scales.createScale('hor', this.cumulativeDomains.hor, [margins.left,  this.viewport.width-margins.right]);
+        this.scales.createScale('ver', this.cumulativeDomains.ver, [this.viewport.height-margins.bottom, margins.top]);
+        this.scales.createScale('size', this.cumulativeDomains.size);
     }
 
     /**
@@ -149,7 +147,5 @@ export class GraphCartesian extends Graph {
     //************** Lifecycle calls **************************/
     initialize(svg:d3Base): void {
         super.initialize(svg);
-        this.cfg.scales.hor = undefined;
-        this.cfg.scales.ver = undefined;
     }
 }

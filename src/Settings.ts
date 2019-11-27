@@ -50,7 +50,7 @@
 
 import { log as _log }          from 'hsutil'; const log = _log('Defaults');
 import { ComponentDefaults }    from './GraphComponent';
-import { Line }                 from './GraphComponent';
+import { Line }                 from './Settings';
 
 
 /** viewport units */
@@ -69,8 +69,6 @@ export interface RectDef { x:UnitVp; y:UnitVp; width:UnitVp; height:UnitVp; }
 
 export type d3Base = d3.Selection<d3.BaseType, unknown, d3.BaseType, any>; 
 
-export type DefaultsType = {[compName:string]: ComponentDefaults};
-
 export type DefaultsAccess  = (compName:string) => ComponentDefaults;
 export type Color           = string;           // CSS color descriptor, e.g. '#fff'
 export type ZeroToOne       = number;           // number from [0, 1]
@@ -78,6 +76,14 @@ export type Index           = number;           // column index into data table
 
 
 //---------- interfaces --------------
+
+export interface Rendered {
+    rendered: boolean;
+}
+export interface Line extends Stroke, Rendered {}
+export interface Area extends Fill, Rendered {}
+export interface Marker extends MarkerStyle, Rendered {}
+export interface Text extends TextStyle, Rendered {}
 
 export interface Fill {
     color: Color;
@@ -91,6 +97,13 @@ export interface Stroke {
     dashed: number[];
 }
 
+export interface Font {
+    family: string;     // e.g. 'sans-serif';
+    size: UnitVp;       // e,g, 12
+    style: string;      // 'normal', 'italic'
+    weight: string;     // 'normal', 'bold'
+}
+
 export interface RectStyle {
     rx:     UnitVp;
     ry:     UnitVp;
@@ -99,14 +112,8 @@ export interface RectStyle {
 }
 
 export interface TextStyle {
-    rendered: boolean;
-    stroke: Stroke;
-    font: {
-        family: string;     // e.g. 'sans-serif';
-        size: UnitVp;       // e,g, 12
-        style: string;      // 'normal', 'italic'
-        weight: string;     // 'normal', 'bold'
-    };
+    color:  Color;
+    font:   Font;
 }
 
 export enum MarkerShape {
@@ -139,10 +146,19 @@ export const defaultLine = (width:UnitVp, color:Color='currentColor'):Line => {
     return def;
 };
 
-export const defaultFill = (areaFill:Color = 'currentColor', opacity=0.5) => {
+export const defaultFill = (areaFill:Color = 'currentColor', opacity=0.5):Fill => {
     return {
         color: areaFill,
         opacity: opacity
+    };
+};
+
+export const defaultFont = (size=16):Font => {
+    return {
+        family: 'sans-serif',
+        size:   size,
+        style: 'normal',    // 'normal', 'italic'
+        weight: '100'       // 'normal', 'bold', 100 - 999
     };
 };
 
@@ -152,7 +168,7 @@ export const defaultFill = (areaFill:Color = 'currentColor', opacity=0.5) => {
  * @param borderWidth the border width in pixel
  * @param borderColor the border color
  */
-export const defaultRect = (areaFill:Color, borderWidth:UnitVp=0, borderColor:Color='currentColor'):RectStyle => {
+export const defaultRectStyle = (areaFill:Color, borderWidth:UnitVp=0, borderColor:Color='currentColor'):RectStyle => {
     return {
         rx: 0,
         ry: 0,
@@ -161,30 +177,28 @@ export const defaultRect = (areaFill:Color, borderWidth:UnitVp=0, borderColor:Co
     };
 };
 
-export const defaultText = (size=16):TextStyle => {
+export const defaultText = (size=16):Text => {
+    const ts = <Text>defaultTextStyle(size);
+    ts.rendered = true;
+    return ts;
+};
+
+export const defaultTextStyle = (size=16):TextStyle => {
     return {
-        rendered: true,
-        stroke: defaultStroke(1),
-        font: {
-            family: 'sans-serif',
-            size:   size,
-            style: 'normal',    // 'normal', 'italic'
-            weight: '100'       // 'normal', 'bold', 100 - 999
-        }
+        color:  'currentColor',
+        font:   defaultFont(size)
     };
 };
 
-export const defaultMarker = (color='currentColor', shape=MarkerShape.circle, size=10):MarkerStyle => {
+export const defaultMarkerStyle = (color='currentColor', shape=MarkerShape.circle, size=10):MarkerStyle => {
     return {
         size:   size,
         shape:  shape,
-        fill:   {
-            color: color,
-            opacity: 0.75            
-        },
+        fill:   defaultFill(color, 0.75),
         stroke: defaultStroke(4)
     };
 };
+
 
 //---------- drawing --------------
 
@@ -212,7 +226,7 @@ export function setRect(svg:d3Base, settings:RectStyle):d3Base {
 
 export function setText(svg:d3Base, settings:TextStyle, transition:any) {
     svg.transition(transition)
-        .attr('color', settings.stroke.color)
+        .attr('fill', settings.color)
         .attr('font-family', settings.font.family)
         .attr('font-size',   settings.font.size+'px')
         .attr('font-style',  settings.font.style)

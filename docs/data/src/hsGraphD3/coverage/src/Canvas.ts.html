@@ -169,9 +169,9 @@
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
@@ -230,9 +230,9 @@ import { GraphComponent }       from './GraphComponent';
 import { ComponentDefaults }    from './GraphComponent'; 
 import { GraphCfg }             from './GraphComponent'; 
 import { RectStyle }            from './Settings';
-import { defaultRect }          from './Settings';
+import { defaultRectStyle }     from './Settings';
 import { d3Base }               from './Settings';
-import { setRect }               from './Settings';
+import { setRect }              from './Settings';
 &nbsp;
 export interface CanvasDefaults extends ComponentDefaults, RectStyle { }
 &nbsp;
@@ -244,12 +244,12 @@ export class Canvas extends GraphComponent {
         super(cfg, Canvas.type);
     }
 &nbsp;
-    public get componentType() { return Canvas.type; }
+<span class="fstat-no" title="function not covered" >    public get c</span>omponentType() { <span class="cstat-no" title="statement not covered" >return Canvas.type; </span>}
 &nbsp;
-<span class="fstat-no" title="function not covered" >    public get d</span>efaults():CanvasDefaults { <span class="cstat-no" title="statement not covered" >return &lt;CanvasDefaults&gt;this.cfg.defaults[this.componentType]; </span>}
+    public get defaults():CanvasDefaults { return this.cfg.graph.defaults.canvas; }
 &nbsp;
     public createDefaults():CanvasDefaults {
-        return defaultRect('#fff', 1, '#00c');
+        return defaultRectStyle('#fff', 1, '#00c');
     }
 &nbsp;
     initialize(svg:d3Base): void {
@@ -263,9 +263,9 @@ export class Canvas extends GraphComponent {
      * @param cfg 
      */
     public renderComponent() {
-        const canvas = this.cfg.defaults.canvas;
+        const canvas = this.defaults;
         const area = this.svg.select('.graphArea');
-        setRect(area, &lt;CanvasDefaults&gt;canvas)
+        setRect(area, canvas)
             .attr('width', this.cfg.viewPort.width)
             .attr('height', this.cfg.viewPort.height);
     }

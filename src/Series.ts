@@ -96,7 +96,7 @@ export class Series extends GraphComponent {
     /** returns the component type as a string name */
     get componentType() { return Series.type; }
 
-    public get defaults():SeriesDefaults { return <SeriesDefaults>this.cfg.defaults[this.componentType]; }
+    public get defaults():SeriesDefaults { return this.cfg.graph.defaults.series; }
     
 
     public initialize(svg:d3Base): void {
@@ -131,7 +131,9 @@ export class Series extends GraphComponent {
 
     /** creates a default entry for the component type in `Defaults` */
     public createDefaults():SeriesDefaults {
-        return {};
+        return {
+            a:'test'
+        };
     }
 
     /** 
@@ -177,9 +179,9 @@ export class Series extends GraphComponent {
         const seriesCreator = Series.seriesCreatorMap[type];
         if (seriesCreator) {
             const series = seriesCreator(this.cfg, `${Series.type}${this.series.length}`, dims);
-            const seriesDefault = <SeriesDefaults>this.cfg.defaults.series;
             const index = this.series.length;
-            seriesDefault[index] = seriesDefault[series.key] = series.getDefaults();
+            const defs = this.defaults;
+            this.defaults[index] = this.defaults[series.key] = series.getDefaults();
             this.series.push(series);
             log.debug(`added series ${index} on '${log.inspect(dims, null)}'`);
             return series;

@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">92.86% </span>
+        <span class="strong">93.33% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>39/42</span>
+        <span class='fraction'>42/45</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">50% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>35/35</span>
+        <span class='fraction'>38/38</span>
       </div>
     </div>
     <p class="quiet">
@@ -207,7 +207,10 @@
 <a name='L159'></a><a href='#L159'>159</a>
 <a name='L160'></a><a href='#L160'>160</a>
 <a name='L161'></a><a href='#L161'>161</a>
-<a name='L162'></a><a href='#L162'>162</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L162'></a><a href='#L162'>162</a>
+<a name='L163'></a><a href='#L163'>163</a>
+<a name='L164'></a><a href='#L164'>164</a>
+<a name='L165'></a><a href='#L165'>165</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -328,6 +331,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -353,12 +357,14 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
@@ -451,7 +457,7 @@ import { CartSeriesDimensions } from '../CartSeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { d3Base }               from '../Settings';
 import { GraphCfg }             from '../GraphComponent'; 
-import { ScalesDefaults } from '../Scale';
+import { ScalesDefaults }       from '../Scale';
  
 Series.register('timeseries',   (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions) =&gt; new TimeSeries(cfg, sName, dims));
 &nbsp;
@@ -463,11 +469,11 @@ export class TimeSeries extends NumericSeriesPlot {
      */
     constructor(cfg:GraphCfg, seriesName:string, dims:CartSeriesDimensions) {
         super(cfg, seriesName, dims);
-        (&lt;GraphDefaults&gt;this.cfg.defaults.graph).easing = 'easeLinear';
+        this.cfg.graph.defaults.graph.transition.easing = 'easeLinear';
     }
  
     getDefaults(): SeriesPlotDefaults {
-        const scaleDef = (&lt;ScalesDefaults&gt;this.cfg.defaults.scales).dims.hor;
+        const scaleDef = this.cfg.graph.scales.defaults.dims.hor;
         scaleDef.aggregateOverTime = false;
         return super.getDefaults();
     }
@@ -482,24 +488,25 @@ export class TimeSeries extends NumericSeriesPlot {
         const x = data.colNames.indexOf(&lt;string&gt;this.dims.x);
         <span class="missing-if-branch" title="else path not taken" >E</span>if (data.rows.length&gt;1) { // artificially shorten the x-axis by 1 unit
             const xUnit = &lt;number&gt;data.rows[1][x] - &lt;number&gt;data.rows[0][x];
-            const domain = &lt;NumDomain&gt;this.cfg.scales.hor.domain();
+            const domain = &lt;NumDomain&gt;this.cfg.graph.scales.scaleDims.hor.domain();
             <span class="missing-if-branch" title="else path not taken" >E</span>if (domain[1] - domain[0] &gt; xUnit) { domain[0] += xUnit; }
-            this.cfg.scales.hor.domain(domain);         
+            this.cfg.graph.scales.scaleDims.hor.domain(domain);         
         }   
     }
 &nbsp;
     d3RenderMarkers(svg:d3Base, data:NumericDataSet) {
         <span class="missing-if-branch" title="if path not taken" >I</span>if (data.rows.length&lt;2) { <span class="cstat-no" title="statement not covered" >return super.d3RenderMarkers(svg, data); </span>}
-        const defaults = (&lt;SeriesPlotDefaults&gt;this.cfg.defaults.series[this.key]).marker;
+        const defaults = this.defaults.marker;
         <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof(this.dims.x)==='number') { <span class="cstat-no" title="statement not covered" >log.warn(`d3RenderMarkers: unsupported const x=${this.dims.x} in timeseries`); </span>}
         const x = data.colNames.indexOf(&lt;string&gt;this.dims.x);
         <span class="missing-if-branch" title="else path not taken" >E</span>if (defaults.rendered) {
+            const scales = this.cfg.graph.scales.scaleDims;
             const xUnit = data.rows[1][x] - data.rows[0][x];
             const samples:any = svg.select('.markers').selectAll("circle").data(data.rows, d =&gt; d[0]);
             samples.exit().remove();            // remove unneeded circles
             samples.enter().append('circle')    // add new circles
                 .call(this.d3DrawMarker, this, data.colNames)
-                .attr("transform", `translate(${this.cfg.scales.hor(xUnit) - this.cfg.scales.hor(0)})`)
+                .attr("transform", `translate(${scales.hor(xUnit) - scales.hor(0)})`)
             .merge(samples).transition(this.cfg.transition)   // draw markers
                 .call(this.d3DrawMarker, this, data.colNames)
                 .attr("transform", `translate(0)`);
@@ -513,8 +520,9 @@ export class TimeSeries extends NumericSeriesPlot {
     d3RenderPath(svg:d3Base, data:NumericDataSet) {
         const x = data.colNames.indexOf(&lt;string&gt;this.dims.x);
         const xUnit = data.rows[1][x] - data.rows[0][x];
+        const scales = this.cfg.graph.scales.scaleDims;
         return super.d3RenderPath(svg, data)
-            .attr('transform', `translate(${this.cfg.scales.hor(xUnit) - this.cfg.scales.hor(0)})`)
+            .attr('transform', `translate(${scales.hor(xUnit) - scales.hor(0)})`)
             .transition(this.cfg.transition)
             .attr('transform', `translate(0)`);
     }
@@ -522,8 +530,9 @@ export class TimeSeries extends NumericSeriesPlot {
     d3RenderFill(svg:d3Base, data:NumericDataSet) {
         const x = data.colNames.indexOf(&lt;string&gt;this.dims.x);
         const xUnit = data.rows[1][x] - data.rows[0][x];
+        const scales = this.cfg.graph.scales.scaleDims;
         return super.d3RenderFill(svg, data)
-            .attr('transform', `translate(${this.cfg.scales.hor(xUnit) - this.cfg.scales.hor(0)})`)
+            .attr('transform', `translate(${scales.hor(xUnit) - scales.hor(0)})`)
             .transition(this.cfg.transition)
             .attr('transform', `translate(0)`);
     }

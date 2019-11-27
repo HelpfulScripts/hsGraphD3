@@ -227,12 +227,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
     </g>
     <g
       class="axes"
-      color="#666"
+      color="currentColor"
     >
       <g
         class="horAxis"
         color="currentColor"
-        fill="none"
+        fill="currentColor"
         fill-opacity="0"
         font-family="sans-serif"
         font-size="16px"
@@ -433,7 +433,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
       <g
         class="verAxis"
         color="currentColor"
-        fill="none"
+        fill="currentColor"
         fill-opacity="0"
         font-family="sans-serif"
         font-size="16px"
@@ -733,6 +733,11 @@ exports[`Line plot constants should plot horizontal line 1`] = `
       </g>
     </g>
     <g
+      class="title"
+    >
+      <text />
+    </g>
+    <g
       class="series"
     >
       <g
@@ -928,12 +933,12 @@ exports[`Line plot constants should plot horizontal line 1`] = `
     </g>
     <g
       class="axes"
-      color="#000"
+      color="currentColor"
     >
       <g
         class="horAxis"
         color="currentColor"
-        fill="none"
+        fill="currentColor"
         fill-opacity="0"
         font-family="sans-serif"
         font-size="16px"
@@ -1134,7 +1139,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
       <g
         class="verAxis"
         color="currentColor"
-        fill="none"
+        fill="currentColor"
         fill-opacity="0"
         font-family="sans-serif"
         font-size="16px"
@@ -1172,6 +1177,11 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           </text>
         </g>
       </g>
+    </g>
+    <g
+      class="title"
+    >
+      <text />
     </g>
     <g
       class="series"
@@ -1439,12 +1449,12 @@ exports[`Line plot data should plot line 1`] = `
     </g>
     <g
       class="axes"
-      color="#666"
+      color="currentColor"
     >
       <g
         class="horAxis"
         color="currentColor"
-        fill="none"
+        fill="currentColor"
         fill-opacity="0"
         font-family="sans-serif"
         font-size="16px"
@@ -1645,7 +1655,7 @@ exports[`Line plot data should plot line 1`] = `
       <g
         class="verAxis"
         color="currentColor"
-        fill="none"
+        fill="currentColor"
         fill-opacity="0"
         font-family="sans-serif"
         font-size="16px"
@@ -1943,6 +1953,11 @@ exports[`Line plot data should plot line 1`] = `
           </text>
         </g>
       </g>
+    </g>
+    <g
+      class="title"
+    >
+      <text />
     </g>
     <g
       class="series"

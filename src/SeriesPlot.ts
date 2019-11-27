@@ -15,25 +15,25 @@
  */
 
 /**  */
-import { log as gLog }      from 'hsutil';   const log = gLog('SeriesPlot');
-import { BaseType }         from 'd3';
-import { d3Base, }          from "./Settings";
-import { defaultStroke }    from "./Settings";
-import { defaultMarker }    from "./Settings";
-import { defaultFill }      from "./Settings";
-import { GraphCfg }         from "./GraphComponent";
-import { Area }             from "./GraphComponent";
-import { Line }             from "./GraphComponent";
-import { Marker }           from "./GraphComponent";
-import { DataSet, DataVal } from "./Graph";
-import { ValueFn }          from "./Graph";
-import { DataRow }          from "./Graph";
-import { NumDomain }        from "./Graph";
-import { OrdDomain }        from "./Graph";
-import { ValueDef }         from "./Graph";
-import { Domains }          from "./Graph";
-import { GraphDimensions }  from "./Graph";
-import { SeriesDimensions } from './Series';
+import { log as gLog }          from 'hsutil';   const log = gLog('SeriesPlot');
+import { BaseType }             from 'd3';
+import { d3Base, }              from "./Settings";
+import { defaultStroke }        from "./Settings";
+import { defaultMarkerStyle }   from "./Settings";
+import { defaultFill }          from "./Settings";
+import { GraphCfg }             from "./GraphComponent";
+import { Area }                 from "./Settings";
+import { Line }                 from "./Settings";
+import { Marker }               from "./Settings";
+import { DataSet, DataVal }     from "./Graph";
+import { ValueFn }              from "./Graph";
+import { DataRow }              from "./Graph";
+import { NumDomain }            from "./Graph";
+import { OrdDomain }            from "./Graph";
+import { ValueDef }             from "./Graph";
+import { Domains }              from "./Graph";
+import { GraphDimensions }      from "./Graph";
+import { SeriesDimensions }     from './Series';
 
 export type d3Selection = d3.Selection<BaseType, unknown, BaseType, unknown>; 
 
@@ -100,13 +100,15 @@ export abstract class SeriesPlot {
 
     public abstract get dimensions():GraphDimensions;
 
+    protected get defaults():SeriesPlotDefaults { return this.cfg.graph.defaults.series[this.key]; }
+
     /** 
      * Set the defaults for the series. Called during `addSeries`.
      * */
     public getDefaults(): SeriesPlotDefaults {
         const def:any = {
             line:   defaultStroke(5),
-            marker: defaultMarker(),
+            marker: defaultMarkerStyle(),
             area:   defaultFill()
         };
         def.line.rendered = true;
@@ -119,7 +121,7 @@ export abstract class SeriesPlot {
         this.intializeStackGroup(dataSet);
         const dims:GraphDimensions = this.dimensions;
         Object.keys(dims).map(dim => {
-            const type = this.cfg.defaults.scales.dims[dim].type;
+            const type = this.cfg.graph.defaults.scales.dims[dim].type;
             dims[dim].map(col => { if (col!==undefined) { 
                 const valueFn = this.value(dim, col, dataSet.colNames);
                 switch(type) {

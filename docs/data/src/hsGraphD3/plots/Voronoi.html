@@ -154,12 +154,12 @@
 <p id=131 class="line"><span>&nbsp;131</span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;</p>
 <p id=132 class="line"><span>&nbsp;132</span></p>
 <p id=133 class="line"><span>&nbsp;133</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;renderComponent(data:NumericDataSet):&nbsp;void&nbsp;{</p>
-<p id=134 class="line"><span>&nbsp;134</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;scales&nbsp;=&nbsp;this.cfg.scales;</p>
+<p id=134 class="line"><span>&nbsp;134</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;scales&nbsp;=&nbsp;this.cfg.graph.scales.scaleDims;</p>
 <p id=135 class="line"><span>&nbsp;135</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(typeof(this.dims.x)===<quote>'number'</quote>)&nbsp;{&nbsp;log.warn(`renderComponent:&nbsp;unsupported&nbsp;const&nbsp;x=${this.dims.x}&nbsp;in&nbsp;voronoi`);&nbsp;}</p>
 <p id=136 class="line"><span>&nbsp;136</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(typeof(this.dims.y)===<quote>'number'</quote>)&nbsp;{&nbsp;log.warn(`renderComponent:&nbsp;unsupported&nbsp;const&nbsp;y=${this.dims.y}&nbsp;in&nbsp;voronoi`);&nbsp;}</p>
 <p id=137 class="line"><span>&nbsp;137</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;x&nbsp;=&nbsp;data.colNames.indexOf(<string>this.dims.x);</p>
 <p id=138 class="line"><span>&nbsp;138</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;y&nbsp;=&nbsp;data.colNames.indexOf(<string>this.dims.y);</p>
-<p id=139 class="line"><span>&nbsp;139</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;m&nbsp;=&nbsp;<ScalesDefaults>this.cfg.defaults.scales.margin;</p>
+<p id=139 class="line"><span>&nbsp;139</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;m&nbsp;=&nbsp;this.cfg.graph.scales.defaults.margin;</p>
 <p id=140 class="line"><span>&nbsp;140</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.voronoi&nbsp;=&nbsp;Delaunay.from(data.rows,&nbsp;</p>
 <p id=141 class="line"><span>&nbsp;141</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r&nbsp;=>&nbsp;scales.hor(<number>r[x]),</p>
 <p id=142 class="line"><span>&nbsp;142</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;r&nbsp;=>&nbsp;scales.ver(<number>r[y])</p>
@@ -169,7 +169,7 @@
 <p id=146 class="line"><span>&nbsp;146</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
 <p id=147 class="line"><span>&nbsp;147</span></p>
 <p id=148 class="line"><span>&nbsp;148</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;d3RenderPath(svg:d3Base,&nbsp;data:NumericDataSet)&nbsp;{</p>
-<p id=149 class="line"><span>&nbsp;149</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;defaults&nbsp;=&nbsp;(<SeriesPlotDefaults>this.cfg.defaults.series[this.key]).line;</p>
+<p id=149 class="line"><span>&nbsp;149</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;defaults&nbsp;=&nbsp;this.defaults.line;</p>
 <p id=150 class="line"><span>&nbsp;150</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(defaults.rendered)&nbsp;{</p>
 <p id=151 class="line"><span>&nbsp;151</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;path&nbsp;=&nbsp;svg.selectAll(<quote>'path'</quote>)</p>
 <p id=152 class="line"><span>&nbsp;152</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.transition(this.cfg.transition)</p>

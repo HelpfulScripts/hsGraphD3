@@ -561,12 +561,12 @@ export class Voronoi extends NumericSeriesPlot {
     } 
 &nbsp;
     public renderComponent(data:NumericDataSet): void {
-        const scales = this.cfg.scales;
+        const scales = this.cfg.graph.scales.scaleDims;
         <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof(this.dims.x)==='number') { <span class="cstat-no" title="statement not covered" >log.warn(`renderComponent: unsupported const x=${this.dims.x} in voronoi`); </span>}
         <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof(this.dims.y)==='number') { <span class="cstat-no" title="statement not covered" >log.warn(`renderComponent: unsupported const y=${this.dims.y} in voronoi`); </span>}
         const x = data.colNames.indexOf(&lt;string&gt;this.dims.x);
         const y = data.colNames.indexOf(&lt;string&gt;this.dims.y);
-        const m = &lt;ScalesDefaults&gt;this.cfg.defaults.scales.margin;
+        const m = this.cfg.graph.scales.defaults.margin;
         this.voronoi = Delaunay.from(data.rows, 
             r =&gt; scales.hor(&lt;number&gt;r[x]),
             r =&gt; scales.ver(&lt;number&gt;r[y])
@@ -576,7 +576,7 @@ export class Voronoi extends NumericSeriesPlot {
     }
 &nbsp;
     protected d3RenderPath(svg:d3Base, data:NumericDataSet) {
-        const defaults = (&lt;SeriesPlotDefaults&gt;this.cfg.defaults.series[this.key]).line;
+        const defaults = this.defaults.line;
         <span class="missing-if-branch" title="else path not taken" >E</span>if (defaults.rendered) {
             const path = svg.selectAll('path')
                 .transition(this.cfg.transition)

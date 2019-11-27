@@ -113,7 +113,7 @@ import { GraphCfg}              from '../GraphComponent';
 import { Series }               from '../Series';
 import { OrdinalSeriesPlot }    from './OrdinalSeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
-import { GridDefaults }         from '../Grid';
+import { GridsDefaults }         from '../Grid';
 
 Series.register('column', (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions) => new Column(cfg, sName, dims));
 
@@ -122,7 +122,7 @@ export class Column extends OrdinalSeriesPlot {
     protected get independentAxis():'hor' { return 'hor'; }
 
     getDefaults(): SeriesPlotDefaults {
-        const gridDef = (<GridDefaults>this.cfg.defaults.grids).ver;
+        const gridDef = this.cfg.graph.defaults.grids.ver;
         gridDef.major.rendered = false;
         gridDef.minor.rendered = false;
         return super.getDefaults();

@@ -78,7 +78,7 @@ export abstract class CartSeriesPlot extends SeriesPlot {
         this.svg.append('g').classed('line', true).append('path');
         this.svg.append('g').classed('markers', true);
 
-        const defaults = <SeriesPlotDefaults>this.cfg.defaults.series[this.key];
+        const defaults = this.defaults;
         if (this.dims.r) { defaults.marker.rendered = true; }
 
         const line = this.svg.select('.line');
@@ -120,7 +120,7 @@ export abstract class CartSeriesPlot extends SeriesPlot {
     }
 
     protected renderElements(data:DataSet) {
-        const defaults = (<SeriesPlotDefaults>this.cfg.defaults.series[this.key]);
+        const defaults = this.defaults;
         if (defaults.marker.rendered) { this.svg.call(this.d3RenderMarkers.bind(this), data); }
         if (defaults.line.rendered)   { this.svg.call(this.d3RenderPath.bind(this), data); }
         if (defaults.area.rendered)   { this.svg.call(this.d3RenderFill.bind(this), data); }

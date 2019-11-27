@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">98% </span>
+        <span class="strong">98.11% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>49/50</span>
+        <span class='fraction'>52/53</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">80% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>17/18</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">97.78% </span>
+        <span class="strong">97.92% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>44/45</span>
+        <span class='fraction'>47/48</span>
       </div>
     </div>
     <p class="quiet">
@@ -192,7 +192,10 @@
 <a name='L144'></a><a href='#L144'>144</a>
 <a name='L145'></a><a href='#L145'>145</a>
 <a name='L146'></a><a href='#L146'>146</a>
-<a name='L147'></a><a href='#L147'>147</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L147'></a><a href='#L147'>147</a>
+<a name='L148'></a><a href='#L148'>148</a>
+<a name='L149'></a><a href='#L149'>149</a>
+<a name='L150'></a><a href='#L150'>150</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -308,12 +311,14 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
@@ -330,6 +335,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -419,7 +425,7 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
 &nbsp;
     preRender(data:NumericDataSet, domains:Domains): void {
         super.preRender(data, domains);
-        const defaults = (&lt;SeriesPlotDefaults&gt;this.cfg.defaults.series[this.key]);
+        const defaults = this.defaults;
         if (defaults.area.rendered &amp;&amp; this.dims.y0===undefined) { this.dims.y0 = ()=&gt;0; } 
         this.line = undefined;
     }
@@ -427,7 +433,7 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
     //---------- support methods during lifecylce --------------------
 &nbsp;
     protected d3RenderMarkers(svg:d3Base, data:NumericDataSet) {
-        const defaults = (&lt;SeriesPlotDefaults&gt;this.cfg.defaults.series[this.key]).marker;
+        const defaults = this.defaults.marker;
         <span class="missing-if-branch" title="else path not taken" >E</span>if (defaults.rendered) {
             const samples:any = svg.select('.markers').selectAll("circle")
                 .data(data.rows, d =&gt; d[0]);                // bind to data, iterate over rows
@@ -445,13 +451,14 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
     }
 &nbsp;
     protected d3RenderFill(svg:d3Base, data:NumericDataSet) {
+        const scales = this.cfg.graph.scales.scaleDims;
         this.line = this.line || this.getLine(data.rows, data.colNames, this.dims.y);
         let line0 = '';
         <span class="missing-if-branch" title="else path not taken" >E</span>if (this.dims.y0!==undefined) {
             const max = data.rows.length-1;
-            const xmax = accessor(this.dims.x, data.colNames, this.cfg.scales.hor)(data.rows[max]);
-            const x0   = accessor(this.dims.x, data.colNames, this.cfg.scales.hor)(data.rows[0]);
-            const y    = accessor(this.dims.y0, data.colNames, this.cfg.scales.ver)(data.rows[max]);
+            const xmax = accessor(this.dims.x,  data.colNames, scales.hor)(data.rows[max]);
+            const x0   = accessor(this.dims.x,  data.colNames, scales.hor)(data.rows[0]);
+            const y    = accessor(this.dims.y0, data.colNames, scales.ver)(data.rows[max]);
             line0 = `L${xmax},${y}`;
             line0 += (typeof(this.dims.y0)==='function')? `L${x0},${y}` :
 <span class="branch-1 cbranch-no" title="branch not covered" >                this.getLine(data.rows.reverse(), data.colNames, this.dims.y0).slice(8);</span>  // remove first 'M' command
@@ -460,10 +467,11 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
     }
 &nbsp;
     protected d3DrawMarker(markers:d3Base, plot:NumericSeriesPlot, colNames:string[]) {
-        const xAccess = accessor(plot.dims.x, colNames, plot.cfg.scales.hor);
-        const yAccess = accessor(plot.dims.y, colNames, plot.cfg.scales.ver);
-        const rDefault = plot.cfg.defaults.series[plot.key].marker.size;
-        const rAccess = accessor(plot.dims.r, colNames, plot.cfg.scales.size, rDefault);
+        const scales = plot.cfg.graph.scales.scaleDims;
+        const xAccess = accessor(plot.dims.x, colNames, scales.hor);
+        const yAccess = accessor(plot.dims.y, colNames, scales.ver);
+        const rDefault = plot.defaults.marker.size;
+        const rAccess = accessor(plot.dims.r, colNames, scales.size, rDefault);
         markers
             .attr("cx", (d:number[]) =&gt; xAccess(d))
             .attr("cy", (d:number[]) =&gt; yAccess(d))
@@ -476,9 +484,10 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
      * @param yDef a constant (defaults to 0), or the data column to render from
      */
     protected getLine(rows:NumericDataRow[], colNames:string[], yDef: ValueDef = <span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >0)</span></span>:string {
+        const scales = this.cfg.graph.scales.scaleDims;
         const line = d3line()
-            .x(accessor(this.dims.x, colNames, this.cfg.scales.hor))
-            .y(accessor(yDef, colNames, this.cfg.scales.ver))
+            .x(accessor(this.dims.x, colNames, scales.hor))
+            .y(accessor(yDef, colNames, scales.ver))
             .curve(curveCatmullRom.alpha(0.2));
         return line(&lt;[number, number][]&gt;rows);
     }

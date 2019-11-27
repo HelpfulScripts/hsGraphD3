@@ -160,10 +160,13 @@ export const scaleDefault = (minRange?:UnitVp, maxRange?:UnitVp):ScaleDefaults =
 export class Scales extends GraphComponent {
     static type = 'scales';
 
+    private scales: { [name:string]: Scale; } = {};
+
     constructor(cfg:GraphCfg) { super(cfg, null); }
 
     public get componentType() { return Scales.type; }
-    public get defaults():ScalesDefaults { return <ScalesDefaults>this.cfg.defaults[this.componentType]; }
+    public get defaults():ScalesDefaults { return this.cfg.graph.defaults.scales; }
+    public get scaleDims() { return this.scales; }
 
     public initialize(): void {} 
     public preRender(): void {} 
@@ -180,19 +183,23 @@ export class Scales extends GraphComponent {
 
     /**
      * creates a d3 scale object based on the provided settings.
-     * @param scaleDef scale defaults, possibly modified by the application
+     * @param name name of the new scale, must also match the name of a predefined scale default.
      * @param domain the data domain to scale for
      * @param range the viewport range to scale for 
      */
-    public static createScale(scaleDef: ScaleDefaults, domain: Domain, range?:Range):Scale {
-        if (!scaleDef) { return; }
+    public createScale(name:string, domain: Domain, range?:Range):Scale {
+        const scaleDef: ScaleDefaults = this.defaults.dims[name];
+        if (!scaleDef) { 
+            log.warn(`can't create scale ${name}; noe default available`);
+            return; 
+        }
         let scales = {
             ordinal:    BandScale,
             time:       TimeScale,
             log:        LogScale,
             linear:     LinearScale,
         };
-        return new scales[scaleDef.type](scaleDef, domain, range).getScale();
+        return this.scales[name] = new scales[scaleDef.type](scaleDef, domain, range).getScale();
     }
 }
 

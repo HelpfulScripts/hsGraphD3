@@ -136,7 +136,7 @@
 <p id=113 class="line"><span>&nbsp;113</span>import&nbsp;{&nbsp;Series&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../Series'</quote>;</p>
 <p id=114 class="line"><span>&nbsp;114</span>import&nbsp;{&nbsp;OrdinalSeriesPlot&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./OrdinalSeriesPlot'</quote>;</p>
 <p id=115 class="line"><span>&nbsp;115</span>import&nbsp;{&nbsp;SeriesPlotDefaults&nbsp;}&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../SeriesPlot'</quote>;</p>
-<p id=116 class="line"><span>&nbsp;116</span>import&nbsp;{&nbsp;GridDefaults&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../Grid'</quote>;</p>
+<p id=116 class="line"><span>&nbsp;116</span>import&nbsp;{&nbsp;GridsDefaults&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../Grid'</quote>;</p>
 <p id=117 class="line"><span>&nbsp;117</span></p>
 <p id=118 class="line"><span>&nbsp;118</span>Series.register(<quote>'column'</quote>,&nbsp;(cfg:GraphCfg,&nbsp;sName:string,&nbsp;dims:CartSeriesDimensions)&nbsp;=>&nbsp;new&nbsp;Column(cfg,&nbsp;sName,&nbsp;dims));</p>
 <p id=119 class="line"><span>&nbsp;119</span></p>
@@ -145,7 +145,7 @@
 <p id=122 class="line"><span>&nbsp;122</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;get&nbsp;independentAxis():<quote>'hor'</quote>&nbsp;{&nbsp;return&nbsp;<quote>'hor'</quote>;&nbsp;}</p>
 <p id=123 class="line"><span>&nbsp;123</span></p>
 <p id=124 class="line"><span>&nbsp;124</span>&nbsp;&nbsp;&nbsp;&nbsp;getDefaults():&nbsp;SeriesPlotDefaults&nbsp;{</p>
-<p id=125 class="line"><span>&nbsp;125</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;gridDef&nbsp;=&nbsp;(<GridDefaults>this.cfg.defaults.grids).ver;</p>
+<p id=125 class="line"><span>&nbsp;125</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;gridDef&nbsp;=&nbsp;this.cfg.graph.defaults.grids.ver;</p>
 <p id=126 class="line"><span>&nbsp;126</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gridDef.major.rendered&nbsp;=&nbsp;false;</p>
 <p id=127 class="line"><span>&nbsp;127</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gridDef.minor.rendered&nbsp;=&nbsp;false;</p>
 <p id=128 class="line"><span>&nbsp;128</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;super.getDefaults();</p>

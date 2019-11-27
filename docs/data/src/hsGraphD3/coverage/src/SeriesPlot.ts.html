@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">95.08% </span>
+        <span class="strong">95.16% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>58/61</span>
+        <span class='fraction'>59/62</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">91.67% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>22/24</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">95.83% </span>
+        <span class="strong">96% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>23/24</span>
+        <span class='fraction'>24/25</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">96.15% </span>
+        <span class="strong">96.23% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>50/52</span>
+        <span class='fraction'>51/53</span>
       </div>
     </div>
     <p class="quiet">
@@ -269,7 +269,9 @@
 <a name='L221'></a><a href='#L221'>221</a>
 <a name='L222'></a><a href='#L222'>222</a>
 <a name='L223'></a><a href='#L223'>223</a>
-<a name='L224'></a><a href='#L224'>224</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L224'></a><a href='#L224'>224</a>
+<a name='L225'></a><a href='#L225'>225</a>
+<a name='L226'></a><a href='#L226'>226</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -370,6 +372,8 @@
 <span class="cline-any cline-yes">77x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">55x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -509,25 +513,25 @@
  */
 &nbsp;
 /**  */
-import { log as gLog }      from 'hsutil';   const log = gLog('SeriesPlot');
-import { BaseType }         from 'd3';
-import { d3Base, }          from "./Settings";
-import { defaultStroke }    from "./Settings";
-import { defaultMarker }    from "./Settings";
-import { defaultFill }      from "./Settings";
-import { GraphCfg }         from "./GraphComponent";
-import { Area }             from "./GraphComponent";
-import { Line }             from "./GraphComponent";
-import { Marker }           from "./GraphComponent";
-import { DataSet, DataVal } from "./Graph";
-import { ValueFn }          from "./Graph";
-import { DataRow }          from "./Graph";
-import { NumDomain }        from "./Graph";
-import { OrdDomain }        from "./Graph";
-import { ValueDef }         from "./Graph";
-import { Domains }          from "./Graph";
-import { GraphDimensions }  from "./Graph";
-import { SeriesDimensions } from './Series';
+import { log as gLog }          from 'hsutil';   const log = gLog('SeriesPlot');
+import { BaseType }             from 'd3';
+import { d3Base, }              from "./Settings";
+import { defaultStroke }        from "./Settings";
+import { defaultMarkerStyle }   from "./Settings";
+import { defaultFill }          from "./Settings";
+import { GraphCfg }             from "./GraphComponent";
+import { Area }                 from "./Settings";
+import { Line }                 from "./Settings";
+import { Marker }               from "./Settings";
+import { DataSet, DataVal }     from "./Graph";
+import { ValueFn }              from "./Graph";
+import { DataRow }              from "./Graph";
+import { NumDomain }            from "./Graph";
+import { OrdDomain }            from "./Graph";
+import { ValueDef }             from "./Graph";
+import { Domains }              from "./Graph";
+import { GraphDimensions }      from "./Graph";
+import { SeriesDimensions }     from './Series';
 &nbsp;
 export type d3Selection = d3.Selection&lt;BaseType, unknown, BaseType, unknown&gt;; 
 &nbsp;
@@ -594,13 +598,15 @@ export abstract class SeriesPlot {
 &nbsp;
     public abstract get dimensions():GraphDimensions;
 &nbsp;
+    protected get defaults():SeriesPlotDefaults { return this.cfg.graph.defaults.series[this.key]; }
+&nbsp;
     /** 
      * Set the defaults for the series. Called during `addSeries`.
      * */
     public getDefaults(): SeriesPlotDefaults {
         const def:any = {
             line:   defaultStroke(5),
-            marker: defaultMarker(),
+            marker: defaultMarkerStyle(),
             area:   defaultFill()
         };
         def.line.rendered = true;
@@ -613,7 +619,7 @@ export abstract class SeriesPlot {
         this.intializeStackGroup(dataSet);
         const dims:GraphDimensions = this.dimensions;
         Object.keys(dims).map(dim =&gt; {
-            const type = this.cfg.defaults.scales.dims[dim].type;
+            const type = this.cfg.graph.defaults.scales.dims[dim].type;
             dims[dim].map(col =&gt; { if (col!==undefined) { 
                 const valueFn = this.value(dim, col, dataSet.colNames);
                 switch(type) {

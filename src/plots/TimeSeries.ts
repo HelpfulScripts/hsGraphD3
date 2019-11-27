@@ -81,7 +81,7 @@ import { CartSeriesDimensions } from '../CartSeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { d3Base }               from '../Settings';
 import { GraphCfg }             from '../GraphComponent'; 
-import { ScalesDefaults } from '../Scale';
+import { ScalesDefaults }       from '../Scale';
  
 Series.register('timeseries',   (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions) => new TimeSeries(cfg, sName, dims));
 
@@ -93,11 +93,11 @@ export class TimeSeries extends NumericSeriesPlot {
      */
     constructor(cfg:GraphCfg, seriesName:string, dims:CartSeriesDimensions) {
         super(cfg, seriesName, dims);
-        (<GraphDefaults>this.cfg.defaults.graph).easing = 'easeLinear';
+        this.cfg.graph.defaults.graph.transition.easing = 'easeLinear';
     }
  
     getDefaults(): SeriesPlotDefaults {
-        const scaleDef = (<ScalesDefaults>this.cfg.defaults.scales).dims.hor;
+        const scaleDef = this.cfg.graph.scales.defaults.dims.hor;
         scaleDef.aggregateOverTime = false;
         return super.getDefaults();
     }
@@ -112,24 +112,25 @@ export class TimeSeries extends NumericSeriesPlot {
         const x = data.colNames.indexOf(<string>this.dims.x);
         if (data.rows.length>1) { // artificially shorten the x-axis by 1 unit
             const xUnit = <number>data.rows[1][x] - <number>data.rows[0][x];
-            const domain = <NumDomain>this.cfg.scales.hor.domain();
+            const domain = <NumDomain>this.cfg.graph.scales.scaleDims.hor.domain();
             if (domain[1] - domain[0] > xUnit) { domain[0] += xUnit; }
-            this.cfg.scales.hor.domain(domain);         
+            this.cfg.graph.scales.scaleDims.hor.domain(domain);         
         }   
     }
 
     d3RenderMarkers(svg:d3Base, data:NumericDataSet) {
         if (data.rows.length<2) { return super.d3RenderMarkers(svg, data); }
-        const defaults = (<SeriesPlotDefaults>this.cfg.defaults.series[this.key]).marker;
+        const defaults = this.defaults.marker;
         if (typeof(this.dims.x)==='number') { log.warn(`d3RenderMarkers: unsupported const x=${this.dims.x} in timeseries`); }
         const x = data.colNames.indexOf(<string>this.dims.x);
         if (defaults.rendered) {
+            const scales = this.cfg.graph.scales.scaleDims;
             const xUnit = data.rows[1][x] - data.rows[0][x];
             const samples:any = svg.select('.markers').selectAll("circle").data(data.rows, d => d[0]);
             samples.exit().remove();            // remove unneeded circles
             samples.enter().append('circle')    // add new circles
                 .call(this.d3DrawMarker, this, data.colNames)
-                .attr("transform", `translate(${this.cfg.scales.hor(xUnit) - this.cfg.scales.hor(0)})`)
+                .attr("transform", `translate(${scales.hor(xUnit) - scales.hor(0)})`)
             .merge(samples).transition(this.cfg.transition)   // draw markers
                 .call(this.d3DrawMarker, this, data.colNames)
                 .attr("transform", `translate(0)`);
@@ -143,8 +144,9 @@ export class TimeSeries extends NumericSeriesPlot {
     d3RenderPath(svg:d3Base, data:NumericDataSet) {
         const x = data.colNames.indexOf(<string>this.dims.x);
         const xUnit = data.rows[1][x] - data.rows[0][x];
+        const scales = this.cfg.graph.scales.scaleDims;
         return super.d3RenderPath(svg, data)
-            .attr('transform', `translate(${this.cfg.scales.hor(xUnit) - this.cfg.scales.hor(0)})`)
+            .attr('transform', `translate(${scales.hor(xUnit) - scales.hor(0)})`)
             .transition(this.cfg.transition)
             .attr('transform', `translate(0)`);
     }
@@ -152,8 +154,9 @@ export class TimeSeries extends NumericSeriesPlot {
     d3RenderFill(svg:d3Base, data:NumericDataSet) {
         const x = data.colNames.indexOf(<string>this.dims.x);
         const xUnit = data.rows[1][x] - data.rows[0][x];
+        const scales = this.cfg.graph.scales.scaleDims;
         return super.d3RenderFill(svg, data)
-            .attr('transform', `translate(${this.cfg.scales.hor(xUnit) - this.cfg.scales.hor(0)})`)
+            .attr('transform', `translate(${scales.hor(xUnit) - scales.hor(0)})`)
             .transition(this.cfg.transition)
             .attr('transform', `translate(0)`);
     }

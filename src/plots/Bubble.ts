@@ -1,10 +1,10 @@
 /**
  * # Bubble Plot
  * 
- * ## Usage
+ * ### Usage
  * `graph.series.add('bubble', {x:<x-col>, y:<y-col>, r:<size-col>});`
  * 
- * ## Example
+ * ### Example
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
  * <file name='script.js'>
  * // create data set:

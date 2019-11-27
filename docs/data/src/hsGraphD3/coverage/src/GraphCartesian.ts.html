@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>33/33</span>
+        <span class='fraction'>28/28</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">66.67% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>32/32</span>
+        <span class='fraction'>27/27</span>
       </div>
     </div>
     <p class="quiet">
@@ -196,11 +196,7 @@
 <a name='L148'></a><a href='#L148'>148</a>
 <a name='L149'></a><a href='#L149'>149</a>
 <a name='L150'></a><a href='#L150'>150</a>
-<a name='L151'></a><a href='#L151'>151</a>
-<a name='L152'></a><a href='#L152'>152</a>
-<a name='L153'></a><a href='#L153'>153</a>
-<a name='L154'></a><a href='#L154'>154</a>
-<a name='L155'></a><a href='#L155'>155</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L151'></a><a href='#L151'>151</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -292,7 +288,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -330,8 +326,6 @@
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -350,8 +344,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
@@ -469,10 +461,10 @@ export class GraphCartesian extends Graph {
      */
     protected makeDefaults() {
         super.makeDefaults();
-        const scalesDefaults = &lt;ScalesDefaults&gt;this.cfg.defaults.scales;
-        scalesDefaults.dims['hor']  = scalesDefaults.dims['hor']  || scaleDefault();    // auto viewport range
-        scalesDefaults.dims['ver']  = scalesDefaults.dims['ver']  || scaleDefault();    // auto viewport range
-        scalesDefaults.dims['size'] = scalesDefaults.dims['size'] || scaleDefault(5, 20);  
+        const scalesDefaults = this.defaults.scales;
+        scalesDefaults.dims.hor  = scalesDefaults.dims.hor  || scaleDefault();    // auto viewport range
+        scalesDefaults.dims.ver  = scalesDefaults.dims.ver  || scaleDefault();    // auto viewport range
+        scalesDefaults.dims.size = scalesDefaults.dims.size || scaleDefault(5, 20);  
     }
 &nbsp;
     /**
@@ -480,12 +472,10 @@ export class GraphCartesian extends Graph {
      * @param data 
      */
     protected setScales() {
-        const scalesDefaults = &lt;ScalesDefaults&gt;this.cfg.defaults.scales;
-        const margins = this.cfg.defaults.scales.margin;
-        const scales = this.cfg.scales;
-        scales.hor  = Scales.createScale(scalesDefaults.dims.hor, this.cumulativeDomains.hor, [margins.left,  this.viewport.width-margins.right]);
-        scales.ver  = Scales.createScale(scalesDefaults.dims.ver, this.cumulativeDomains.ver, [this.viewport.height-margins.bottom, margins.top]);
-        scales.size = Scales.createScale(scalesDefaults.dims.size, this.cumulativeDomains.size);
+        const margins = this.scales.defaults.margin;
+        this.scales.createScale('hor', this.cumulativeDomains.hor, [margins.left,  this.viewport.width-margins.right]);
+        this.scales.createScale('ver', this.cumulativeDomains.ver, [this.viewport.height-margins.bottom, margins.top]);
+        this.scales.createScale('size', this.cumulativeDomains.size);
     }
 &nbsp;
     /**
@@ -505,8 +495,6 @@ export class GraphCartesian extends Graph {
     //************** Lifecycle calls **************************/
     initialize(svg:d3Base): void {
         super.initialize(svg);
-        this.cfg.scales.hor = undefined;
-        this.cfg.scales.ver = undefined;
     }
 }</pre></td></tr>
 </table></pre>

@@ -235,7 +235,9 @@
 <a name='L187'></a><a href='#L187'>187</a>
 <a name='L188'></a><a href='#L188'>188</a>
 <a name='L189'></a><a href='#L189'>189</a>
-<a name='L190'></a><a href='#L190'>190</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L190'></a><a href='#L190'>190</a>
+<a name='L191'></a><a href='#L191'>191</a>
+<a name='L192'></a><a href='#L192'>192</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -331,9 +333,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">26x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">50x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -369,6 +371,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -522,7 +526,7 @@ export class Series extends GraphComponent {
     /** returns the component type as a string name */
     get componentType() { return Series.type; }
 &nbsp;
-    public get defaults():SeriesDefaults { return &lt;SeriesDefaults&gt;this.cfg.defaults[this.componentType]; }
+    public get defaults():SeriesDefaults { return this.cfg.graph.defaults.series; }
     
 &nbsp;
     public initialize(svg:d3Base): void {
@@ -557,7 +561,9 @@ export class Series extends GraphComponent {
 &nbsp;
     /** creates a default entry for the component type in `Defaults` */
     public createDefaults():SeriesDefaults {
-        return {};
+        return {
+            a:'test'
+        };
     }
 &nbsp;
     /** 
@@ -603,9 +609,9 @@ export class Series extends GraphComponent {
         const seriesCreator = Series.seriesCreatorMap[type];
         <span class="missing-if-branch" title="else path not taken" >E</span>if (seriesCreator) {
             const series = seriesCreator(this.cfg, `${Series.type}${this.series.length}`, dims);
-            const seriesDefault = &lt;SeriesDefaults&gt;this.cfg.defaults.series;
             const index = this.series.length;
-            seriesDefault[index] = seriesDefault[series.key] = series.getDefaults();
+            const defs = this.defaults;
+            this.defaults[index] = this.defaults[series.key] = series.getDefaults();
             this.series.push(series);
             log.debug(`added series ${index} on '${log.inspect(dims, null)}'`);
             return series;
