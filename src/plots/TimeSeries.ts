@@ -4,7 +4,7 @@
  * plots a 2D line with markers and smooth x-axis tranisitions.
  * 
  * ## Usage
- * `graph.addSeries('timeseries', {x:<x-col>, y:<y-col>, y0?:<y-lower-fill>, r?:<size-col>});`
+ * `graph.series.add('timeseries', {x:<x-col>, y:<y-col>, y0?:<y-lower-fill>, r?:<size-col>});`
  * 
  * 
  * ## Example
@@ -22,13 +22,11 @@
  * 
  * // create the graph and define the series to plot:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.addSeries('timeseries', {x:'date', y:'time', y0:()=>1});
- * graph.addSeries('timeseries', {x:'date', y:'volume', r:'time'});
+ * graph.series.add('timeseries', {x:'date', y:'time', y0:()=>1});
+ * graph.series.add('timeseries', {x:'date', y:'volume', r:'time'});
  * 
  * // adjust some settings:
- * graph.defaults.scales.dims.hor.aggregateOverTime = false;  // forget early indexes
- * graph.defaults.series.series0.marker.size = 15;
- * // graph.defaults.series.series0.area.rendered = true;
+ * graph.series.defaults.series0.marker.size = 15;
  * 
  * // trigger the update loop to plot the data
  * graph.render(data).update(1000, data => {
@@ -49,13 +47,13 @@
  * 
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      graph.addSeries('timeseries', {x:'date', y:'volume', r:'time'});
- *      return graph.defaults.series[0];
+ *      graph.series.add('timeseries', {x:'date', y:'volume', r:'time'});
+ *      return graph.series.defaults[0];
  * }
  * 
  * m.mount(root, {
  *   view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [
- *      m('div', m.trust('graph.defaults.series[0] = ' + defaults)), 
+ *      m('div', m.trust('graph.series.defaults[0] = ' + defaults)), 
  *      m('div.myGraph', '')
  *   ]),
  *   oncreate: () => {
@@ -83,6 +81,7 @@ import { CartSeriesDimensions } from '../CartSeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { d3Base }               from '../Settings';
 import { GraphCfg }             from '../GraphComponent'; 
+import { ScalesDefaults } from '../Scale';
  
 Series.register('timeseries',   (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions) => new TimeSeries(cfg, sName, dims));
 
@@ -98,9 +97,9 @@ export class TimeSeries extends NumericSeriesPlot {
     }
  
     getDefaults(): SeriesPlotDefaults {
-        const def = super.getDefaults();
-        // def.area.rendered = true;
-        return def;
+        const scaleDef = (<ScalesDefaults>this.cfg.defaults.scales).dims.hor;
+        scaleDef.aggregateOverTime = false;
+        return super.getDefaults();
     }
      
     initialize(svg:d3Base, color?:string): void {
@@ -142,15 +141,19 @@ export class TimeSeries extends NumericSeriesPlot {
     }
 
     d3RenderPath(svg:d3Base, data:NumericDataSet) {
+        const x = data.colNames.indexOf(<string>this.dims.x);
+        const xUnit = data.rows[1][x] - data.rows[0][x];
         return super.d3RenderPath(svg, data)
-            .attr('transform', `translate(${this.cfg.scales.hor(1) - this.cfg.scales.hor(0)})`)
+            .attr('transform', `translate(${this.cfg.scales.hor(xUnit) - this.cfg.scales.hor(0)})`)
             .transition(this.cfg.transition)
             .attr('transform', `translate(0)`);
     }
 
     d3RenderFill(svg:d3Base, data:NumericDataSet) {
+        const x = data.colNames.indexOf(<string>this.dims.x);
+        const xUnit = data.rows[1][x] - data.rows[0][x];
         return super.d3RenderFill(svg, data)
-            .attr('transform', `translate(${this.cfg.scales.hor(1) - this.cfg.scales.hor(0)})`)
+            .attr('transform', `translate(${this.cfg.scales.hor(xUnit) - this.cfg.scales.hor(0)})`)
             .transition(this.cfg.transition)
             .attr('transform', `translate(0)`);
     }
