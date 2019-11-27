@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">90.43% </span>
+        <span class="strong">90.53% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>85/94</span>
+        <span class='fraction'>86/95</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">75% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>45/60</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">94.12% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>16/17</span>
+        <span class='fraction'>18/18</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">89.89% </span>
+        <span class="strong">90% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>80/89</span>
+        <span class='fraction'>81/90</span>
       </div>
     </div>
     <p class="quiet">
@@ -275,7 +275,10 @@
 <a name='L227'></a><a href='#L227'>227</a>
 <a name='L228'></a><a href='#L228'>228</a>
 <a name='L229'></a><a href='#L229'>229</a>
-<a name='L230'></a><a href='#L230'>230</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L230'></a><a href='#L230'>230</a>
+<a name='L231'></a><a href='#L231'>231</a>
+<a name='L232'></a><a href='#L232'>232</a>
+<a name='L233'></a><a href='#L233'>233</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -318,6 +321,10 @@
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
@@ -356,7 +363,9 @@
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">62x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">50x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
@@ -385,9 +394,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -515,7 +521,7 @@
  * 
  * m.mount(root, {
  *   view:() =&gt; m('div', {style:'background-color:#eee; font-family:Monospace'}, [
- *      m('div', m.trust('graph.defaults.axes = ' + defaults)), 
+ *      m('div', m.trust('graph.axes.defaults = ' + defaults)), 
  *      m('div.myGraph', '')
  *   ]),
  *   oncreate: () =&gt; {
@@ -547,6 +553,10 @@ import { UnitVp, d3Base }   from './Settings';
 import { setText }          from './Settings';
 import { setStroke }        from './Settings';
 import { DataVal }          from './Graph';
+&nbsp;
+&nbsp;
+const pixPerMajorTick = 200;
+const pixPerMinorTick =  50;
 &nbsp;
 export enum Direction {
     horizontal  = 'hor',
@@ -587,6 +597,8 @@ export class Axes extends GraphComponent {
 &nbsp;
     public get componentType() { return Axes.type; }
 &nbsp;
+    public get defaults():AxesDefaults { return &lt;AxesDefaults&gt;this.cfg.defaults[this.componentType]; }
+&nbsp;
     public createDefaults():AxesDefaults {
         return {
             color:  '#000',
@@ -612,11 +624,8 @@ export class Axes extends GraphComponent {
             this.axes.forEach(axis =&gt; axis.defaults.rendered? axis.renderComponent() : <span class="branch-1 cbranch-no" title="branch not covered" >'')</span>;
         }
     }
-<span class="fstat-no" title="function not covered" >    postRender(</span>): void {} 
+    postRender(): void {} 
 }
-&nbsp;
-const pixPerMajorTick = 200;
-const pixPerMinorTick =  30;
 &nbsp;
 export class Axis {
     private dir: Direction;

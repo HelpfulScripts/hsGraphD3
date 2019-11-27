@@ -24,11 +24,11 @@ const data:DataSet = {
 function createGraph(root:any) {
     const graph = new hsGraphD3.GraphCartesian(root);
     graph.isRendered = () => true;
-    (<AxesDefaults>graph.defaults.axes).hor.numTicksMinor = 10;
-    (<AxesDefaults>graph.defaults.axes).hor.numTicksMajor = 2;
-    (<AxesDefaults>graph.defaults.axes).ver.numTicksMinor = 10;
-    (<AxesDefaults>graph.defaults.axes).ver.numTicksMajor = 2;
-    graph.addSeries('line', {x:'xval', y:'yval', r:'rval'});
+    graph.axes.defaults.hor.numTicksMinor = 10;
+    graph.axes.defaults.hor.numTicksMajor = 2;
+    graph.axes.defaults.ver.numTicksMinor = 10;
+    graph.axes.defaults.ver.numTicksMajor = 2;
+    graph.series.add('line', {x:'xval', y:'yval', r:'rval'});
     return graph;
 }
 
@@ -51,8 +51,8 @@ describe('Grid', () => {
         let graph:hsGraphD3.GraphCartesian;
         beforeEach(() => graph = createGraph(root));
         it('should not plot vertical grid', () => {
-            graph.defaults.grids.ver.major.rendered = false;
-            graph.defaults.grids.ver.minor.rendered = false;
+            graph.grids.defaults.ver.major.rendered = false;
+            graph.grids.defaults.ver.minor.rendered = false;
             graph.render(data);
             return expect(d3.select(root).selectAll('.grids')['_groups'][0][0]).toMatchSnapshot();
         });

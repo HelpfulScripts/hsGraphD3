@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">92.31% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>11/11</span>
+        <span class='fraction'>12/13</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">85.71% </span>
+        <span class="strong">87.5% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>6/7</span>
+        <span class='fraction'>7/8</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">92.31% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>11/11</span>
+        <span class='fraction'>12/13</span>
       </div>
     </div>
     <p class="quiet">
@@ -115,8 +115,13 @@
 <a name='L67'></a><a href='#L67'>67</a>
 <a name='L68'></a><a href='#L68'>68</a>
 <a name='L69'></a><a href='#L69'>69</a>
-<a name='L70'></a><a href='#L70'>70</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L70'></a><a href='#L70'>70</a>
+<a name='L71'></a><a href='#L71'>71</a>
+<a name='L72'></a><a href='#L72'>72</a>
+<a name='L73'></a><a href='#L73'>73</a>
+<a name='L74'></a><a href='#L74'>74</a>
+<a name='L75'></a><a href='#L75'>75</a>
+<a name='L76'></a><a href='#L76'>76</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -147,6 +152,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -160,6 +170,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
@@ -196,7 +208,7 @@
  * 
  * m.mount(root, {
  *   view:() =&gt; m('div', {style:'background-color:#eee; font-family:Monospace'}, [
- *      m('div', m.trust('graph.defaults.canvas = ' + defaults)), 
+ *      m('div', m.trust('graph.canvas.defaults = ' + defaults)), 
  *      m('div.myGraph', '')
  *   ]),
  *   oncreate: () =&gt; {
@@ -214,27 +226,33 @@
  */
 &nbsp;
  /** */
-import { select as d3Select }   from 'd3'; 
-import * as gc                  from './GraphComponent'; 
-import * as def                 from './Settings';
+import { GraphComponent }       from './GraphComponent'; 
+import { ComponentDefaults }    from './GraphComponent'; 
+import { GraphCfg }             from './GraphComponent'; 
+import { RectStyle }            from './Settings';
+import { defaultRect }          from './Settings';
+import { d3Base }               from './Settings';
+import { setRect }               from './Settings';
 &nbsp;
-export interface CanvasDefaults extends gc.ComponentDefaults, def.RectStyle { }
+export interface CanvasDefaults extends ComponentDefaults, RectStyle { }
 &nbsp;
 &nbsp;
-export class Canvas extends gc.GraphComponent {
+export class Canvas extends GraphComponent {
     static type = 'canvas';
 &nbsp;
-    constructor(cfg:gc.GraphCfg) {
+    constructor(cfg:GraphCfg) {
         super(cfg, Canvas.type);
     }
 &nbsp;
     public get componentType() { return Canvas.type; }
 &nbsp;
+<span class="fstat-no" title="function not covered" >    public get d</span>efaults():CanvasDefaults { <span class="cstat-no" title="statement not covered" >return &lt;CanvasDefaults&gt;this.cfg.defaults[this.componentType]; </span>}
+&nbsp;
     public createDefaults():CanvasDefaults {
-        return def.defaultRect('#fff', 1, '#00c');
+        return defaultRect('#fff', 1, '#00c');
     }
 &nbsp;
-    initialize(svg:def.d3Base): void {
+    initialize(svg:d3Base): void {
         this.svg.append('rect').classed('graphArea', true);
     } 
 &nbsp;
@@ -247,12 +265,12 @@ export class Canvas extends gc.GraphComponent {
     public renderComponent() {
         const canvas = this.cfg.defaults.canvas;
         const area = this.svg.select('.graphArea');
-        def.setRect(area, &lt;CanvasDefaults&gt;canvas)
+        setRect(area, &lt;CanvasDefaults&gt;canvas)
             .attr('width', this.cfg.viewPort.width)
             .attr('height', this.cfg.viewPort.height);
     }
 &nbsp;
-<span class="fstat-no" title="function not covered" >    postRender(</span>): void {} 
+    postRender(): void {} 
 }</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->

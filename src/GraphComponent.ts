@@ -9,7 +9,6 @@ import { Domains }          from './Graph';
 import { LifecycleCalls }   from './Graph';
 import { DefaultsType }     from './Settings';
 import { d3Base }           from './Settings';
-import { RectDef }          from './Settings';
 import { UnitVp }           from './Settings';
 import { Stroke }           from './Settings';
 import { Fill }             from './Settings';
@@ -76,29 +75,19 @@ export interface ComponentDefaults {
     [filed:string]:any;
 }
 
-/**
- * Generic base class for all component types
- */
-export abstract class GraphComponent implements LifecycleCalls {
-    /** the base svg element to render the component into */
-    protected svg: d3Base;
-    
+export abstract class GraphBase implements LifecycleCalls {
     /** the render tree configuration */
     protected cfg: GraphCfg;
 
-    constructor(cfg:GraphCfg, compClass:string) { 
+    constructor(cfg:GraphCfg) { 
         this.cfg = cfg; 
-        if (compClass) {
-            this.cfg.baseSVG.append('g').classed(compClass, true);
-        }
-        this.svg = this.cfg.baseSVG.select(`.${compClass}`);
     }
-
-    /** returns the component type as a string name */
-    abstract get componentType(): string;
 
     /** creates a default entry for the component type in `Defaults` */
     abstract createDefaults(): ComponentDefaults;
+
+    /** getter for the defaults. */
+    abstract get defaults(): ComponentDefaults;
 
     //************** Lifecycle calls **************************/
 
@@ -113,5 +102,27 @@ export abstract class GraphComponent implements LifecycleCalls {
 
     /** Called immediately after each call to renderComponent. */
     abstract postRender(data:DataSet | DataSet[]): void; 
+}
+
+/**
+ * Generic base class for all component types
+ */
+export abstract class GraphComponent extends GraphBase {
+    /** the base svg element to render the component into */
+    protected svg: d3Base;
+    
+    constructor(cfg:GraphCfg, compClass:string) { 
+        super(cfg); 
+        if (compClass) { 
+            this.cfg.baseSVG.append('g').classed(compClass, true);
+            this.svg = this.cfg.baseSVG.select(`.${compClass}`);
+        } else if (compClass !== null) {
+            console.log('no CompClass');
+            console.log(new Error().stack);
+        }
+    }
+
+    /** returns the component type as a string name */
+    abstract get componentType(): string;
 }
 

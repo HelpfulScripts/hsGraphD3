@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">97.22% </span>
+        <span class="strong">97.32% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>105/108</span>
+        <span class='fraction'>109/112</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">77.14% </span>
+        <span class="strong">78.38% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>27/35</span>
+        <span class='fraction'>29/37</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">90.24% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>37/41</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">98.98% </span>
+        <span class="strong">99.02% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>97/98</span>
+        <span class='fraction'>101/102</span>
       </div>
     </div>
     <p class="quiet">
@@ -264,11 +264,7 @@
 <a name='L216'></a><a href='#L216'>216</a>
 <a name='L217'></a><a href='#L217'>217</a>
 <a name='L218'></a><a href='#L218'>218</a>
-<a name='L219'></a><a href='#L219'>219</a>
-<a name='L220'></a><a href='#L220'>220</a>
-<a name='L221'></a><a href='#L221'>221</a>
-<a name='L222'></a><a href='#L222'>222</a>
-<a name='L223'></a><a href='#L223'>223</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L219'></a><a href='#L219'>219</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -303,15 +299,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -345,6 +332,9 @@
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
@@ -378,6 +368,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">4x</span>
@@ -409,7 +400,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">50x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">40x</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
@@ -496,7 +488,7 @@
  * Abstract base class for all ordinal series plot types.
  * To create a series plot, add the desired plot type to the graph:
  * ```
- * graph.addSeries(&lt;type&gt;, {&lt;dim&gt;: &lt;data-values&gt;, ...});
+ * graph.series.add(&lt;type&gt;, {&lt;dim&gt;: &lt;data-values&gt;, ...});
  * ``` 
  * - `&lt;type&gt;` is one of the registered types: 
  *     - &amp;nbsp; {@link plots.Bar `bar`} a horizontal bar chart
@@ -525,21 +517,13 @@ import { CartSeriesPlot }       from '../CartSeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { SeriesDefaults }       from '../Series';
 import { Series }               from '../Series';
-&nbsp;
-&nbsp;
-export interface OrdinalPlotDefaults extends SeriesPlotDefaults {
-    /** gap width as a ration between 0 (no gap) and 1 (all gap). */
-    gap:   number;  
-&nbsp;
-    /** overlap between multiple series, between 0 (no overlap) and 1 (complete overlap) */
-    overlap: number;
-}
+import { ScalesDefaults } from '../Scale';
 &nbsp;
 &nbsp;
 /**
  * Returns a function to access the numeric value in a data row.
  * The numeric value is specified by the `ValueDef` `v`. 
- * - If `v` is a number, applies the `scale` to `v`, and returns the result.
+ * - If `v` is a number, returns `v` as the result.
  * - If `v` is contained in `colNames`, uses the position of `v` in `colNames` to index the 
  * supplied `row`, applies the `scale`, and returns the result.
  * - Otherwise, if `v` ends with 'u', interprets `v` to be Viewport Units and 
@@ -547,7 +531,6 @@ export interface OrdinalPlotDefaults extends SeriesPlotDefaults {
  * viewport window.
  * @param v the `ValueDef` specifying the value
  * @param colNames a list of names for the coluymns in the `DataSet`
- * @param scale a numeric scale to apply 
  * @param def defaults to `0`; the default to return if `v` is `undefined`.
  */
 export function accessor(v:ValueDef, colNames:string[], def=0):(row?:number[], i?:number) =&gt; DataVal {
@@ -563,13 +546,16 @@ export function accessor(v:ValueDef, colNames:string[], def=0):(row?:number[], i
  * Abstract base class of a  cartesian series plot. 
  */
 export abstract class OrdinalSeriesPlot extends CartSeriesPlot { 
-    getDefaults(): OrdinalPlotDefaults {
-        const def = &lt;OrdinalPlotDefaults&gt;super.getDefaults();
+    getDefaults(): SeriesPlotDefaults {
+        const scaleDef = (&lt;ScalesDefaults&gt;this.cfg.defaults.scales).dims[this.independentAxis];
+        scaleDef.type = 'ordinal';
+        scaleDef.ordinal = scaleDef.ordinal || { gap:0.3, overlap:0};
+&nbsp;
+        const def = super.getDefaults();
         def.area.rendered = true;
         def.marker.rendered = false;
         def.line.rendered = false;
         def.line.width = 1;
-        this.cfg.defaults.scales.dims[this.independentAxis].type = 'ordinal';
         return def;
     } 
 &nbsp;
@@ -601,7 +587,8 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
 &nbsp;
     preRender(data:DataSet, domains:Domains): void {
         super.preRender(data, domains);
-        const gap = (&lt;SeriesDefaults&gt;this.cfg.defaults.series).ordinal.gap;
+        const scaleDef = (&lt;ScalesDefaults&gt;this.cfg.defaults.scales).dims[this.independentAxis];
+        const gap = scaleDef.ordinal.gap;
         this.cfg.scales[this.independentAxis].padding(gap);
     }
  
@@ -617,7 +604,7 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
     }
 &nbsp;
     protected d3RenderFill(svg:d3Base, data:DataSet) {
-        const defaults = (&lt;OrdinalPlotDefaults&gt;this.cfg.defaults.series[this.key]).area;
+        const defaults = (&lt;SeriesPlotDefaults&gt;this.cfg.defaults.series[this.key]).area;
         <span class="missing-if-branch" title="else path not taken" >E</span>if (defaults.rendered) {
             const samples:any = svg.select('.area').selectAll("rect")
                 .data(data.rows, d =&gt; d[0]);                    // bind to data, iterate over rows
@@ -630,12 +617,13 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
     }
  
     private getParams(plot:OrdinalSeriesPlot, colNames:string[]):any[] {
+        const scaleDef = (&lt;ScalesDefaults&gt;plot.cfg.defaults.scales).dims[this.independentAxis];
         const stackGroup = plot.dims.stacked || <span class="branch-1 cbranch-no" title="branch not covered" >false;</span>
         const allKeys = Object.keys(plot.cfg.defaults.series).filter(k =&gt; k.indexOf(Series.type)===0);
         const myKey = allKeys.indexOf(plot.key) || 0;
         const step = plot.cfg.scales[plot.independentAxis].step();
         const pad = plot.cfg.scales[plot.independentAxis].padding();
-        const overlap = plot.cfg.defaults.series.ordinal.overlap;
+        const overlap = scaleDef.ordinal.overlap;
         const thickness = step * (1-pad) / (stackGroup? 1 : (<span class="branch-1 cbranch-no" title="branch not covered" >allKeys.length * (1-overlap) + overlap)</span>);
         const offset = step*pad/2 + (stackGroup? 0 : <span class="branch-1 cbranch-no" title="branch not covered" >thickness*myKey * (1-overlap))</span>;
         return [offset, thickness, stackGroup];

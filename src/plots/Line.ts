@@ -9,7 +9,7 @@
  * Each of these can be modified via changing the {@link Settings default settings}.
  * 
  * ## Usage
- * `graph.addSeries('line', {x:<x-col>, y:<y-col>, y0?:<y-lower-fill>, r?:<size-col>});`
+ * `graph.series.add('line', {x:<x-col>, y:<y-col>, y0?:<y-lower-fill>, r?:<size-col>});`
  * 
  * ## Example
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
@@ -22,8 +22,8 @@
  * };
  * 
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.addSeries('line', {x:'time', y:'volume', r:'costs'});
- * graph.addSeries('line', {x:'time', y:()=>0.5});
+ * graph.series.add('line', {x:'time', y:'volume', r:'costs'});
+ * graph.series.add('line', {x:'time', y:()=>0.5});
  * graph.render(data);
  * 
  * </file>
@@ -37,13 +37,13 @@
  * 
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      graph.addSeries('line', {x:'time', y:'volume', r:'costs'});
- *      return graph.defaults.series[0];
+ *      graph.series.add('line', {x:'time', y:'volume', r:'costs'});
+ *      return graph.series.defaults[0];
  * }
  * 
  * m.mount(root, {
  *   view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [
- *      m('div', m.trust('graph.defaults.series[0] = ' + defaults)), 
+ *      m('div', m.trust('graph.series.defaults[0] = ' + defaults)), 
  *      m('div.myGraph', '')
  *   ]),
  *   oncreate: () => {
@@ -71,5 +71,12 @@ import { Series }               from '../Series';
 Series.register('line', (cfg:GraphCfg, sName:string, dims: CartSeriesDimensions) => new Line(cfg, sName, dims));
 
 export class Line extends NumericSeriesPlot {
+    getDefaults(): SeriesPlotDefaults {
+        const def = super.getDefaults();
+        def.area.rendered = false;
+        def.marker.rendered = false;
+        def.line.rendered = true;
+        return def;
+    } 
 }
 

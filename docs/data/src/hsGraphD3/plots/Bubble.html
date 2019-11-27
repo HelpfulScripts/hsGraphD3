@@ -25,7 +25,7 @@
 <p id=2 class="line"><span>&nbsp;&nbsp;&nbsp;2</span><comment>&nbsp;*&nbsp;#&nbsp;Bubble&nbsp;Plot</comment></p>
 <p id=3 class="line"><span>&nbsp;&nbsp;&nbsp;3</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=4 class="line"><span>&nbsp;&nbsp;&nbsp;4</span><comment>&nbsp;*&nbsp;##&nbsp;Usage</comment></p>
-<p id=5 class="line"><span>&nbsp;&nbsp;&nbsp;5</span><comment>&nbsp;*&nbsp;`graph.addSeries(<quote>'bubble'</quote>,&nbsp;{x:<x-col>,&nbsp;y:<y-col>,&nbsp;r:<size-col>});`</comment></p>
+<p id=5 class="line"><span>&nbsp;&nbsp;&nbsp;5</span><comment>&nbsp;*&nbsp;`graph.series.add(<quote>'bubble'</quote>,&nbsp;{x:<x-col>,&nbsp;y:<y-col>,&nbsp;r:<size-col>});`</comment></p>
 <p id=6 class="line"><span>&nbsp;&nbsp;&nbsp;6</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=7 class="line"><span>&nbsp;&nbsp;&nbsp;7</span><comment>&nbsp;*&nbsp;##&nbsp;Example</comment></p>
 <p id=8 class="line"><span>&nbsp;&nbsp;&nbsp;8</span><comment>&nbsp;*&nbsp;<example&nbsp;height=200px&nbsp;libs={hsGraphD3:<quote>'hsGraphD3'</quote>}></comment></p>
@@ -43,7 +43,7 @@
 <p id=20 class="line"><span>&nbsp;&nbsp;20</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=21 class="line"><span>&nbsp;&nbsp;21</span><comment>&nbsp;*&nbsp;<comment>//&nbsp;setup&nbsp;and&nbsp;plot&nbsp;the&nbsp;data:</comment></comment></p>
 <p id=22 class="line"><span>&nbsp;&nbsp;22</span><comment><comment></comment>&nbsp;*&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.GraphCartesian(root);</comment></p>
-<p id=23 class="line"><span>&nbsp;&nbsp;23</span><comment>&nbsp;*&nbsp;graph.addSeries(<quote>'bubble'</quote>,&nbsp;{x:<quote>'time'</quote>,&nbsp;y:<quote>'volume'</quote>,&nbsp;r:<quote>'costs'</quote>});</comment></p>
+<p id=23 class="line"><span>&nbsp;&nbsp;23</span><comment>&nbsp;*&nbsp;graph.series.add(<quote>'bubble'</quote>,&nbsp;{x:<quote>'time'</quote>,&nbsp;y:<quote>'volume'</quote>,&nbsp;r:<quote>'costs'</quote>});</comment></p>
 <p id=24 class="line"><span>&nbsp;&nbsp;24</span><comment>&nbsp;*&nbsp;graph.render(data);</comment></p>
 <p id=25 class="line"><span>&nbsp;&nbsp;25</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=26 class="line"><span>&nbsp;&nbsp;26</span><comment>&nbsp;*&nbsp;</file></comment></p>
@@ -58,13 +58,13 @@
 <p id=35 class="line"><span>&nbsp;&nbsp;35</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=36 class="line"><span>&nbsp;&nbsp;36</span><comment>&nbsp;*&nbsp;function&nbsp;createGraph(svgRoot)&nbsp;{</comment></p>
 <p id=37 class="line"><span>&nbsp;&nbsp;37</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.GraphCartesian(svgRoot);</comment></p>
-<p id=38 class="line"><span>&nbsp;&nbsp;38</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;graph.addSeries(<quote>'bubble'</quote>,&nbsp;{x:<quote>'time'</quote>,&nbsp;y:<quote>'volume'</quote>,&nbsp;r:<quote>'costs'</quote>});</comment></p>
-<p id=39 class="line"><span>&nbsp;&nbsp;39</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;graph.defaults.series[0];</comment></p>
+<p id=38 class="line"><span>&nbsp;&nbsp;38</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;graph.series.add(<quote>'bubble'</quote>,&nbsp;{x:<quote>'time'</quote>,&nbsp;y:<quote>'volume'</quote>,&nbsp;r:<quote>'costs'</quote>});</comment></p>
+<p id=39 class="line"><span>&nbsp;&nbsp;39</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;graph.series.defaults[0];</comment></p>
 <p id=40 class="line"><span>&nbsp;&nbsp;40</span><comment>&nbsp;*&nbsp;}</comment></p>
 <p id=41 class="line"><span>&nbsp;&nbsp;41</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=42 class="line"><span>&nbsp;&nbsp;42</span><comment>&nbsp;*&nbsp;m.mount(root,&nbsp;{</comment></p>
 <p id=43 class="line"><span>&nbsp;&nbsp;43</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;view:()&nbsp;=>&nbsp;m(<quote>'div'</quote>,&nbsp;{style:<quote>'background-color:#eee;&nbsp;font-family:Monospace'</quote>},&nbsp;[</comment></p>
-<p id=44 class="line"><span>&nbsp;&nbsp;44</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m(<quote>'div'</quote>,&nbsp;m.trust(<quote>'graph.defaults.series[0]&nbsp;=&nbsp;'</quote>&nbsp;+&nbsp;defaults)),&nbsp;</comment></p>
+<p id=44 class="line"><span>&nbsp;&nbsp;44</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m(<quote>'div'</quote>,&nbsp;m.trust(<quote>'graph.series.defaults[0]&nbsp;=&nbsp;'</quote>&nbsp;+&nbsp;defaults)),&nbsp;</comment></p>
 <p id=45 class="line"><span>&nbsp;&nbsp;45</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m(<quote>'div.myGraph'</quote>,&nbsp;<quote>''</quote>)</comment></p>
 <p id=46 class="line"><span>&nbsp;&nbsp;46</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;]),</comment></p>
 <p id=47 class="line"><span>&nbsp;&nbsp;47</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;oncreate:&nbsp;()&nbsp;=>&nbsp;{</comment></p>

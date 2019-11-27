@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">95.08% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>55/55</span>
+        <span class='fraction'>58/61</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">95.45% </span>
+        <span class="strong">91.67% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>21/22</span>
+        <span class='fraction'>22/24</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">95.45% </span>
+        <span class="strong">95.83% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>21/22</span>
+        <span class='fraction'>23/24</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">96.15% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>48/48</span>
+        <span class='fraction'>50/52</span>
       </div>
     </div>
     <p class="quiet">
@@ -261,7 +261,15 @@
 <a name='L213'></a><a href='#L213'>213</a>
 <a name='L214'></a><a href='#L214'>214</a>
 <a name='L215'></a><a href='#L215'>215</a>
-<a name='L216'></a><a href='#L216'>216</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L216'></a><a href='#L216'>216</a>
+<a name='L217'></a><a href='#L217'>217</a>
+<a name='L218'></a><a href='#L218'>218</a>
+<a name='L219'></a><a href='#L219'>219</a>
+<a name='L220'></a><a href='#L220'>220</a>
+<a name='L221'></a><a href='#L221'>221</a>
+<a name='L222'></a><a href='#L222'>222</a>
+<a name='L223'></a><a href='#L223'>223</a>
+<a name='L224'></a><a href='#L224'>224</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -284,6 +292,7 @@
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -320,7 +329,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">28x</span>
-<span class="cline-any cline-yes">132x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">27x</span>
+<span class="cline-any cline-yes">128x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -420,6 +435,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -482,7 +498,7 @@
  * Abstract base class for all series plot types.
  * To create a series plot, add the desired plot type to the graph:
  * ```
- * graph.addSeries(&lt;type&gt;, {x:&lt;dataRef&gt;, ...});
+ * graph.series.add(&lt;type&gt;, {x:&lt;dataRef&gt;, ...});
  * ``` 
  * where `dataRef` is a data reference, either
  * - the name of a column in the data set to use
@@ -523,10 +539,11 @@ export interface SeriesPlotDefaults {
 &nbsp;
 /**
  * Returns an accessor function to access the numeric value in a data row. 
- * `v` determines how to access the value: 
- * - If `v` is contained in `colNames` it specifies the column to index in the 
- * supplied `row` to return as result.
+ * The type of `v` determines how to access the value: 
  * - If `v` is a function it will be valuated for the provided index `i` to return the result.
+ * - If `v` is a number it will be returned as constant result.
+ * - If `v` is a string and contained in `colNames` it specifies the column to index in the 
+ * supplied `row` to return as result.
  * @param v the `ValueDef` specifying the value
  * @param colNames a list of names for the coluymns in the `DataSet`
  * @return an accessor function `(row?:DataRow, i?:number) =&gt; DataVal` 
@@ -534,8 +551,14 @@ export interface SeriesPlotDefaults {
  * receives a `DataRow` and the index of the row in the `DataSet` as a parameter. 
  */
 function value(v:ValueDef, colNames:string[]):(row?:DataRow, i?:number) =&gt; DataVal {
-    const index = colNames.indexOf(''+v);
-    return (row, i) =&gt; typeof(v)==='function'? (&lt;ValueFn&gt;v)(i) : row[index];
+    switch (typeof(v)) {
+        case 'function': return (row, i) =&gt; (&lt;ValueFn&gt;v)(i);
+<span class="branch-1 cbranch-no" title="branch not covered" >        case 'number':   <span class="cstat-no" title="statement not covered" >log.info(`accessing constant number ${v}`);</span></span>
+<span class="cstat-no" title="statement not covered" >                         return <span class="fstat-no" title="function not covered" >() =</span>&gt; &lt;DataVal&gt;<span class="cstat-no" title="statement not covered" >v;</span></span>
+        case 'string':
+        default:         const index = colNames.indexOf(''+v);
+                         return (row) =&gt; row[index];
+    }
 }
 &nbsp;
 /**
@@ -627,6 +650,7 @@ export abstract class SeriesPlot {
      * - If `v` is contained in `colNames` it specifies the column to index in the 
      * supplied `row` to return as result.
      * - If `v` is a function it will be valuated for the provided index `i` to return the result.
+     * - If 'v' is a number, it will be used as a constant to return as result
      * @param dim the Graph Dimension, used for stacking; e.g. 'hor', or 'ver' 
      * @param v the `ValueDef` specifying the value
      * @param colNames a list of names for the coluymns in the `DataSet`
@@ -650,7 +674,7 @@ export abstract class SeriesPlot {
 &nbsp;
     public renderComponent(data:DataSet): void {}
 &nbsp;
-    public <span class="fstat-no" title="function not covered" >postRender(</span>data:DataSet): void {}
+    public postRender(data:DataSet): void {}
 &nbsp;
 &nbsp;
 &nbsp;

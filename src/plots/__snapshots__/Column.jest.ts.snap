@@ -120,92 +120,10 @@ exports[`Column should plot column 1`] = `
       </g>
       <g
         class="ver-major-Grid"
-        fill-opacity="0"
-        stroke="#444"
-        stroke-opacity="1"
-        stroke-width="1"
-      >
-        <line
-          x1="35.73770491803282"
-          x2="35.73770491803282"
-          y1="670"
-          y2="20"
-        />
-        <line
-          x1="193.11475409836066"
-          x2="193.11475409836066"
-          y1="670"
-          y2="20"
-        />
-        <line
-          x1="350.4918032786885"
-          x2="350.4918032786885"
-          y1="670"
-          y2="20"
-        />
-        <line
-          x1="507.86885245901635"
-          x2="507.86885245901635"
-          y1="670"
-          y2="20"
-        />
-        <line
-          x1="665.2459016393442"
-          x2="665.2459016393442"
-          y1="670"
-          y2="20"
-        />
-        <line
-          x1="822.622950819672"
-          x2="822.622950819672"
-          y1="670"
-          y2="20"
-        />
-      </g>
+      />
       <g
         class="ver-minor-Grid"
-        fill-opacity="0"
-        stroke="#eee"
-        stroke-opacity="1"
-        stroke-width="1"
-      >
-        <line
-          x1="35.73770491803282"
-          x2="35.73770491803282"
-          y1="670"
-          y2="20"
-        />
-        <line
-          x1="193.11475409836066"
-          x2="193.11475409836066"
-          y1="670"
-          y2="20"
-        />
-        <line
-          x1="350.4918032786885"
-          x2="350.4918032786885"
-          y1="670"
-          y2="20"
-        />
-        <line
-          x1="507.86885245901635"
-          x2="507.86885245901635"
-          y1="670"
-          y2="20"
-        />
-        <line
-          x1="665.2459016393442"
-          x2="665.2459016393442"
-          y1="670"
-          y2="20"
-        />
-        <line
-          x1="822.622950819672"
-          x2="822.622950819672"
-          y1="670"
-          y2="20"
-        />
-      </g>
+      />
     </g>
     <g
       class="axes"
@@ -224,7 +142,7 @@ exports[`Column should plot column 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         text-anchor="middle"
-        transform="translate(7.868852459016392, 345)"
+        transform="translate(22.857142857142858, 345)"
       >
         <path
           class="domain"
@@ -234,7 +152,7 @@ exports[`Column should plot column 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(106.55737704918035,0)"
+          transform="translate(119.04761904761905,0)"
         >
           <line
             fill-opacity="0"
@@ -254,7 +172,7 @@ exports[`Column should plot column 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(263.9344262295082,0)"
+          transform="translate(271.42857142857144,0)"
         >
           <line
             fill-opacity="0"
@@ -274,7 +192,7 @@ exports[`Column should plot column 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(421.311475409836,0)"
+          transform="translate(423.8095238095238,0)"
         >
           <line
             fill-opacity="0"
@@ -294,7 +212,7 @@ exports[`Column should plot column 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(578.6885245901639,0)"
+          transform="translate(576.1904761904763,0)"
         >
           <line
             fill-opacity="0"
@@ -314,7 +232,7 @@ exports[`Column should plot column 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(736.0655737704917,0)"
+          transform="translate(728.5714285714286,0)"
         >
           <line
             fill-opacity="0"
@@ -334,7 +252,7 @@ exports[`Column should plot column 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(893.4426229508196,0)"
+          transform="translate(880.9523809523811,0)"
         >
           <line
             fill-opacity="0"
@@ -365,7 +283,7 @@ exports[`Column should plot column 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         text-anchor="end"
-        transform="translate(35.73770491803282, 0)"
+        transform="translate(65.71428571428572, 0)"
       >
         <path
           class="domain"
@@ -569,38 +487,38 @@ exports[`Column should plot column 1`] = `
           <path />
           <rect
             height="163"
-            width="141.63934426229505"
-            x="43.606557377049214"
+            width="106.66666666666666"
+            x="88.57142857142858"
             y="345"
           />
           <rect
             height="33"
-            width="141.63934426229505"
-            x="200.98360655737704"
+            width="106.66666666666666"
+            x="240.95238095238096"
             y="312"
           />
           <rect
             height="65"
-            width="141.63934426229505"
-            x="358.3606557377049"
+            width="106.66666666666666"
+            x="393.3333333333333"
             y="280"
           />
           <rect
             height="97"
-            width="141.63934426229505"
-            x="515.7377049180327"
+            width="106.66666666666666"
+            x="545.7142857142858"
             y="248"
           />
           <rect
             height="130"
-            width="141.63934426229505"
-            x="673.1147540983605"
+            width="106.66666666666666"
+            x="698.0952380952381"
             y="215"
           />
           <rect
             height="162"
-            width="141.63934426229505"
-            x="830.4918032786884"
+            width="106.66666666666666"
+            x="850.4761904761906"
             y="183"
           />
         </g>
@@ -612,7 +530,7 @@ exports[`Column should plot column 1`] = `
           stroke-width="1"
         >
           <path
-            d="M43 508L184 508L200 312L341 312L358 280L499 280L515 248L656 248L673 215L814 215L830 183L971 183"
+            d="M88 508L194 508L240 312L346 312L393 280L499 280L545 248L651 248L698 215L804 215L850 183L956 183"
           />
         </g>
         <g
@@ -636,38 +554,38 @@ exports[`Column should plot column 1`] = `
           <path />
           <rect
             height="162"
-            width="141.63934426229505"
-            x="43.606557377049214"
+            width="106.66666666666666"
+            x="88.57142857142858"
             y="508"
           />
           <rect
             height="32"
-            width="141.63934426229505"
-            x="200.98360655737704"
+            width="106.66666666666666"
+            x="240.95238095238096"
             y="280"
           />
           <rect
             height="65"
-            width="141.63934426229505"
-            x="358.3606557377049"
+            width="106.66666666666666"
+            x="393.3333333333333"
             y="215"
           />
           <rect
             height="98"
-            width="141.63934426229505"
-            x="515.7377049180327"
+            width="106.66666666666666"
+            x="545.7142857142858"
             y="150"
           />
           <rect
             height="130"
-            width="141.63934426229505"
-            x="673.1147540983605"
+            width="106.66666666666666"
+            x="698.0952380952381"
             y="85"
           />
           <rect
             height="163"
-            width="141.63934426229505"
-            x="830.4918032786884"
+            width="106.66666666666666"
+            x="850.4761904761906"
             y="20"
           />
         </g>

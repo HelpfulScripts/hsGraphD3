@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>8/8</span>
+        <span class='fraction'>12/12</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>3/3</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>6/6</span>
+        <span class='fraction'>10/10</span>
       </div>
     </div>
     <p class="quiet">
@@ -164,7 +164,22 @@
 <a name='L116'></a><a href='#L116'>116</a>
 <a name='L117'></a><a href='#L117'>117</a>
 <a name='L118'></a><a href='#L118'>118</a>
-<a name='L119'></a><a href='#L119'>119</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a>
+<a name='L122'></a><a href='#L122'>122</a>
+<a name='L123'></a><a href='#L123'>123</a>
+<a name='L124'></a><a href='#L124'>124</a>
+<a name='L125'></a><a href='#L125'>125</a>
+<a name='L126'></a><a href='#L126'>126</a>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a>
+<a name='L129'></a><a href='#L129'>129</a>
+<a name='L130'></a><a href='#L130'>130</a>
+<a name='L131'></a><a href='#L131'>131</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -276,17 +291,26 @@
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">25x</span>
+<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
  * # Columns Plot
  * 
  * ## Usage
- * `graph.addSeries('column', {x:&lt;x-col&gt;, y:&lt;y-col&gt;, stacked?:&lt;group-name&gt;});`
+ * `graph.series.add('column', {x:&lt;x-col&gt;, y:&lt;y-col&gt;, stacked?:&lt;group-name&gt;});`
  * 
  * ## Example
  * &lt;example height=200px libs={hsGraphD3:'hsGraphD3'}&gt;
@@ -304,13 +328,13 @@
  * 
  * // setup and plot the data:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.addSeries('column', {x:'State', y:'costs'});
- * graph.addSeries('column', {x:'State', y:'volume'});
- * graph.defaults.series.ordinal.gap = 0.25;
- * graph.defaults.series.ordinal.overlap = 0.75;
- * graph.defaults.series[0].line.rendered = true;
- * graph.defaults.series[1].line.rendered = true;
- * graph.defaults.grids.ver.major.rendered = false;
+ * graph.series.add('column', {x:'State', y:'costs'});
+ * graph.series.add('column', {x:'State', y:'volume'});
+ * graph.scales.defaults.dims.hor.ordinal.gap = 0.25;
+ * graph.scales.defaults.dims.hor.ordinal.overlap = 0.75;
+ * graph.series.defaults[0].line.rendered = true;
+ * graph.series.defaults[1].line.rendered = true;
+ * graph.grids.defaults.ver.major.rendered = false;
  * graph.render(data).update(2000, data =&gt; {
  *      data.rows.forEach(row =&gt; {
  *          row[1] = 0.5*Math.random()-0.2;
@@ -338,12 +362,12 @@
  * 
  * // setup and plot the data:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.addSeries('column', {x:'State', y:'costs',  stacked:'group1'});
- * graph.addSeries('column', {x:'State', y:'volume', stacked:'group1'});
- * graph.defaults.series.ordinal.gap = 0.25;
- * graph.defaults.series[0].line.rendered = true;
- * graph.defaults.series[1].line.rendered = true;
- * graph.defaults.grids.ver.major.rendered = false;
+ * graph.series.add('column', {x:'State', y:'costs',  stacked:'group1'});
+ * graph.series.add('column', {x:'State', y:'volume', stacked:'group1'});
+ * graph.scales.defaults.dims.hor.ordinal.gap = 0.25;
+ * graph.series.defaults[0].line.rendered = true;
+ * graph.series.defaults[1].line.rendered = true;
+ * graph.grids.defaults.ver.major.rendered = false;
  * graph.render(data).update(2000, data =&gt; {
  *      data.rows.forEach(row =&gt; {
  *          row[1] = 1.0*Math.random();
@@ -364,21 +388,24 @@
  * 
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      graph.addSeries('column', {x:'state', y:'volume'});
- *      return graph.defaults.series;
+ *      graph.series.add('column', {x:'state', y:'volume'});
+ *      return graph;
  * }
  * 
  * m.mount(root, {
  *   view:() =&gt; m('div', {style:'background-color:#eee; font-family:Monospace'}, [
- *      m('div', m.trust('graph.defaults.series[0] = ' + defaults)), 
+ *      m('div', m.trust(defaults)), 
  *      m('div.myGraph', '')
  *   ]),
  *   oncreate: () =&gt; {
  *      const svgRoot = root.getElementsByClassName('myGraph');
  *      if (svgRoot &amp;&amp; svgRoot.length &amp;&amp; !defaults) { 
  *          const colors = ['#800', '#080', '#008'];
- *          defaults = hsUtil.log.inspect(createGraph(svgRoot[0]), null, '   ', colors)
- *              .replace(/\n/g, '&lt;br&gt;')
+ *          const graph = createGraph(svgRoot[0]);
+ *          defaults = `&lt;b&gt;graph.series.defaults = &lt;/b&gt;
+ *              ${hsUtil.log.inspect(graph.series.defaults, null, '   ', colors).replace(/\n/g, '&lt;br&gt;')}
+ *              &lt;br&gt;&lt;br&gt;&lt;b&gt;graph.scales.defaults.dims = &lt;/b&gt;
+ *              ${hsUtil.log.inspect(graph.scales.defaults.dims, null, '   ', colors).replace(/\n/g, '&lt;br&gt;')}`;
  *      }
  *   } 
  * });
@@ -393,12 +420,21 @@ import { CartSeriesDimensions } from '../CartSeriesPlot';
 import { GraphCfg}              from '../GraphComponent';
 import { Series }               from '../Series';
 import { OrdinalSeriesPlot }    from './OrdinalSeriesPlot';
+import { SeriesPlotDefaults }   from '../SeriesPlot';
+import { GridDefaults }         from '../Grid';
 &nbsp;
 Series.register('column', (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions) =&gt; new Column(cfg, sName, dims));
 &nbsp;
 &nbsp;
 export class Column extends OrdinalSeriesPlot {
     protected get independentAxis():'hor' { return 'hor'; }
+&nbsp;
+    getDefaults(): SeriesPlotDefaults {
+        const gridDef = (&lt;GridDefaults&gt;this.cfg.defaults.grids).ver;
+        gridDef.major.rendered = false;
+        gridDef.minor.rendered = false;
+        return super.getDefaults();
+    } 
 } 
 &nbsp;</pre></td></tr>
 </table></pre>

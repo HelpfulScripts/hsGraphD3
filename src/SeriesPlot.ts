@@ -4,7 +4,7 @@
  * Abstract base class for all series plot types.
  * To create a series plot, add the desired plot type to the graph:
  * ```
- * graph.addSeries(<type>, {x:<dataRef>, ...});
+ * graph.series.add(<type>, {x:<dataRef>, ...});
  * ``` 
  * where `dataRef` is a data reference, either
  * - the name of a column in the data set to use
@@ -45,10 +45,11 @@ export interface SeriesPlotDefaults {
 
 /**
  * Returns an accessor function to access the numeric value in a data row. 
- * `v` determines how to access the value: 
- * - If `v` is contained in `colNames` it specifies the column to index in the 
- * supplied `row` to return as result.
+ * The type of `v` determines how to access the value: 
  * - If `v` is a function it will be valuated for the provided index `i` to return the result.
+ * - If `v` is a number it will be returned as constant result.
+ * - If `v` is a string and contained in `colNames` it specifies the column to index in the 
+ * supplied `row` to return as result.
  * @param v the `ValueDef` specifying the value
  * @param colNames a list of names for the coluymns in the `DataSet`
  * @return an accessor function `(row?:DataRow, i?:number) => DataVal` 
@@ -56,8 +57,14 @@ export interface SeriesPlotDefaults {
  * receives a `DataRow` and the index of the row in the `DataSet` as a parameter. 
  */
 function value(v:ValueDef, colNames:string[]):(row?:DataRow, i?:number) => DataVal {
-    const index = colNames.indexOf(''+v);
-    return (row, i) => typeof(v)==='function'? (<ValueFn>v)(i) : row[index];
+    switch (typeof(v)) {
+        case 'function': return (row, i) => (<ValueFn>v)(i);
+        case 'number':   log.info(`accessing constant number ${v}`);
+                         return () => <DataVal>v;
+        case 'string':
+        default:         const index = colNames.indexOf(''+v);
+                         return (row) => row[index];
+    }
 }
 
 /**
@@ -149,6 +156,7 @@ export abstract class SeriesPlot {
      * - If `v` is contained in `colNames` it specifies the column to index in the 
      * supplied `row` to return as result.
      * - If `v` is a function it will be valuated for the provided index `i` to return the result.
+     * - If 'v' is a number, it will be used as a constant to return as result
      * @param dim the Graph Dimension, used for stacking; e.g. 'hor', or 'ver' 
      * @param v the `ValueDef` specifying the value
      * @param colNames a list of names for the coluymns in the `DataSet`

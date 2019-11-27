@@ -9,7 +9,7 @@
  * 
  * m.mount(root, {
  *   view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [
- *      m('div', m.trust('graph.defaults.grids = ' + defaults)), 
+ *      m('div', m.trust('graph.grids.defaults = ' + defaults)), 
  *      m('div.myGraph', '')
  *   ]),
  *   oncreate: () => {
@@ -67,7 +67,9 @@ export class Grids extends GraphComponent {
         super(cfg, Grids.type);
     }
 
-    get componentType() { return Grids.type; }
+    public get componentType() { return Grids.type; }
+
+    public get defaults():GridDefaults { return <GridDefaults>this.cfg.defaults[this.componentType]; }
 
     public createDefaults():GridDefaults {
         return {
@@ -83,16 +85,16 @@ export class Grids extends GraphComponent {
         };
     }
 
-    initialize(svg:d3Base): void {
+    public initialize(svg:d3Base): void {
         this.grids['hor']['major'] = new Grid(this.cfg, Direction.horizontal, MajorMinor.major);
         this.grids['hor']['minor'] = new Grid(this.cfg, Direction.horizontal, MajorMinor.minor);
         this.grids['ver']['major'] = new Grid(this.cfg, Direction.vertical, MajorMinor.major);
         this.grids['ver']['minor'] = new Grid(this.cfg, Direction.vertical, MajorMinor.minor);
     } 
 
-    preRender(): void {} 
+    public preRender(): void {} 
 
-    renderComponent() {
+    public renderComponent() {
         if ((<GridDefaults>this.cfg.defaults.grids).rendered) {
             this.grids['hor']['major'].renderComponent();
             this.grids['hor']['minor'].renderComponent();
@@ -101,7 +103,7 @@ export class Grids extends GraphComponent {
         }
     }
 
-    postRender(): void {} 
+    public postRender(): void {} 
 }
 
 export class Grid {

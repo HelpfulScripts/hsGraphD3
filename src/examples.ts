@@ -1,58 +1,153 @@
 /**
  * #Examples
  * 
- * <example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
+ * <example height=2000px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
  * <file name='script.js'>
- * const log = hsUtil.log('EXAMPLES');
- * const data = {
- *    colNames:['item', 'date', 'line', 'series'], 
- *    rows:[['a', 0.0,  0.2, -0.3], 
- *          ['b', 0.2,  0.7, -0.2], 
- *          ['c', 0.4,  0.1, -0.9],
- *          ['d', 0.6,  0.2, -0.1], 
- *          ['e', 0.8,  0.3, -0.5], 
- *          ['f', 1,    0.2, -0.4]]
- * };
- * 
  * const content = [
- *      m(nodeGraph(graph => {
- *          graph.addSeries('line', {x:'date', y:'line', y0:()=>0});
- *      })), 
- *      m(nodeGraph(graph => {
- *          graph.addSeries('timeseries', {x:'date', y:'series', y0:()=>-1});
- *      })), 
- *      m(nodeGraph(graph => {
- *          graph.addSeries('bubble', {x:'date', y:'series', r:'date'});
- *      })), 
- *      m(nodeGraph(graph => {
- *          graph.addSeries('bar', {x:'line', y:'item'});
- *      })), 
- *      m(nodeGraph(graph => {
- *          graph.addSeries('column', {x:'item', y:'line'});
- *      }))
+ *      graph => {  // simple 'line' graph
+ *          graph.series.add('line', {x:'time', y:'Joe'});
+ *          graph.series.add('line', {x:'time', y:'Mary'});
+ *          graph.render(data);
+ *      }, 
+ * 
+ *      
+ *      graph => {  // 'line' graph with dynamic updates
+ *          graph.series.add('line', {x:'time', y:'Joe'});
+ *          graph.series.add('line', {x:'time', y:'Mary'});
+ *          graph.render(data).update(2000, update);
+ *      }, 
+ * 
+ *      graph => {  // simple 'area' graph
+ *          graph.series.add('area', {x:'time', y:'Joe'});
+ *          graph.series.add('area', {x:'time', y:'Mary'});
+ *          graph.render(data).update(2000);
+ *      }, 
+ *      
+ * 
+ *      graph => {  // raised 'area' graph
+ *          graph.series.add('area', {x:'time', y:'Joe'});
+ *          graph.series.add('area', {x:'time', y:'Mary', y0:()=>1});
+ *          graph.render(data).update(2000);
+ *      }, 
+ * 
+ * 
+ *      graph => {  // opposed 'area' graph
+ *          graph.series.add('area', {x:'time', y:'Joe', y0:()=>1});
+ *          graph.series.add('area', {x:'time', y:'Mary', y0:()=>1});
+ *          graph.render(data).update(2000);
+ *      }, 
+ * 
+ * 
+ *      graph => {  // 'line' graph with area and markers for first series
+ *          graph.series.add('line', {x:'time', y:'Joe'});
+ *          graph.series.add('line', {x:'time', y:'Mary'});
+ *          graph.series.defaults.series0.area.rendered = true;
+ *          graph.series.defaults.series0.marker.rendered = true;
+ *          graph.render(data).update(2000);
+ *      }, 
+ * 
+ *      graph => {  // 'bubble' graph
+ *          graph.series.add('bubble', {x:'time', y:'Joe'});
+ *          graph.series.add('bubble', {x:'time', y:'Mary', r:'Joe'});
+ *          graph.render(data).update(2000);
+ *      }, 
+ * 
+ *      graph => {  // 'time series'
+ *          graph.series.add('timeseries', {x:'time', y:'Joe'});
+ *          graph.series.add('timeseries', {x:'time', y:'Mary'});
+ *          graph.render(dataTS).update(2000, updateTS);
+ *      }, 
+ * 
+ *      graph => {  // 'column' graph
+ *          graph.series.add('column', {x:'item', y:'Joe'});
+ *          graph.series.add('column', {x:'item', y:'Mary'});
+ *          graph.render(data).update(2000);
+ *      }, 
+ * 
+ *      graph => {  // stacked 'column' graph
+ *          graph.series.add('column', {x:'item', y:'Joe', stacked:'myGroup'});
+ *          graph.series.add('column', {x:'item', y:'Mary', stacked:'myGroup'});
+ *          graph.render(data).update(2000);
+ *      }, 
+ * 
+ *      graph => {  // 'bar' graph
+ *          graph.series.add('bar', {x:'Joe', y:'item'});
+ *          graph.series.add('bar', {x:'Mary', y:'item'});
+ *          graph.render(data).update(2000);
+ *      }, 
+ * 
+ *      graph => {  // stacked 'bar' graph
+ *          graph.series.add('bar', {x:'Joe', y:'item', stacked:'myGroup'});
+ *          graph.series.add('bar', {x:'Mary', y:'item', stacked:'myGroup'});
+ *          graph.render(data).update(2000);
+ *      }, 
+ * 
  * ];
  * 
- * m.mount(root, {
- *   view:() => m(hsLayout.Layout, { rows: [], content:content }),
- * });
- * 
  * function nodeGraph(configure) {
+ *      // create a random class and ID.
  *      const cls = 'a'+parseInt(''+Math.random()*100000);
+ * 
+ *      // return a mithril node
  *      return {
  *          view:() => m(`div.${cls}#${cls}`),
  *          oncreate:() => {
- *              const svg = root.getElementsByClassName(cls)[0];
- *              if (svg) { 
- *                  const graph = new hsGraphD3.GraphCartesian(svg);
+ *              const graphRoot = root.getElementsByClassName(cls)[0];
+ *              if (graphRoot) { 
+ *                  const graph = new hsGraphD3.GraphCartesian(graphRoot);
  *                  configure(graph); 
- *                  graph.render(data);
  *              }
  *          }
  *      }
  * }
+ * 
+ * const update = (data) => {
+ *      const Joe = data.colNames.indexOf('Joe');
+ *      const Mary = data.colNames.indexOf('Mary');
+ *      data.rows.forEach(row => {
+ *          row[Joe]  = Math.random();
+ *          row[Mary] = Math.random() + 1;
+ *      });
+ *      // continue updating
+ * }
+ * 
+ * const data = {
+ *    colNames:['item', 'time', 'Joe', 'Mary'], 
+ *    rows:[   ['a',    0.0,    0.2,    1.3], 
+ *             ['b',    0.2,    0.7,    1.2], 
+ *             ['c',    0.4,    0.1,    1.9],
+ *             ['d',    0.6,    0.2,    1.1], 
+ *             ['e',    0.8,    0.3,    1.5], 
+ *             ['f',    1,      0.2,    1.4]]
+ * }
+ * 
+ * const dataTS = {
+ *    colNames:['time', 'Joe', 'Mary'], 
+ *    rows:[]
+ * }
+ * 
+ * let time = 0;
+ * while (time<11) { 
+ *    val = Math.random();
+ *    dataTS.rows.push([(time++)/5, val, val-1]); 
+ * }
+ * 
+ * const updateTS = (data) => {
+ *      dataTS.rows.push([(time++)/5, Math.random(), Math.random() + 1]);
+ *      if (dataTS.rows.length > 10) { dataTS.rows.shift(); }
+ *      // continue updating
+ * }
+ * 
+ * m.mount(root, {
+ *   view:() => m(hsLayout.Layout, { rows: ['20px', '125px'], content:[
+ *      m('div.hs-layout', {style:'background-color:white;'}),
+ *      ...content.map(fn => m(nodeGraph(fn)))] }),
+ * });
+ * 
  * </file>
  * </example>
  * 
  */
 
  /** */
+

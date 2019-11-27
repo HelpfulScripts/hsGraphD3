@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>34/34</span>
+        <span class='fraction'>33/33</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">66.67% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>5/5</span>
+        <span class='fraction'>4/4</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>33/33</span>
+        <span class='fraction'>32/32</span>
       </div>
     </div>
     <p class="quiet">
@@ -200,18 +200,8 @@
 <a name='L152'></a><a href='#L152'>152</a>
 <a name='L153'></a><a href='#L153'>153</a>
 <a name='L154'></a><a href='#L154'>154</a>
-<a name='L155'></a><a href='#L155'>155</a>
-<a name='L156'></a><a href='#L156'>156</a>
-<a name='L157'></a><a href='#L157'>157</a>
-<a name='L158'></a><a href='#L158'>158</a>
-<a name='L159'></a><a href='#L159'>159</a>
-<a name='L160'></a><a href='#L160'>160</a>
-<a name='L161'></a><a href='#L161'>161</a>
-<a name='L162'></a><a href='#L162'>162</a>
-<a name='L163'></a><a href='#L163'>163</a>
-<a name='L164'></a><a href='#L164'>164</a>
-<a name='L165'></a><a href='#L165'>165</a>
-<a name='L166'></a><a href='#L166'>166</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L155'></a><a href='#L155'>155</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -328,18 +318,6 @@
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -399,26 +377,26 @@
  * 
  * // setup and plot the data:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.addSeries('line', {x:'time', y:'volume'},);
- * graph.addSeries('line', {x:'time', y:'costs'});
+ * graph.series.add('line', {x:'time', y:'volume'},);
+ * graph.series.add('line', {x:'time', y:'costs'});
  * 
- * with (graph.defaults.canvas) {
+ * with (graph.canvas.defaults) {
  *      fill.color = '#fcfcfc';
  *      stroke.width = 10;  // in viewport coordinates (0 - 1000)
  * }
  * 
  * // series defaults can be indexed by position or by name. Names are created as `series`+position index.
- * graph.defaults.series[0].marker.size = 15;
- * graph.defaults.series[0].marker.fill.color = '#66f';
- * graph.defaults.series[0].marker.stroke.color = '#00f';
- * graph.defaults.series.series0.line.width = 5;
- * graph.defaults.series.series0.line.color = '#00c';
+ * graph.series.defaults[0].marker.size = 15;
+ * graph.series.defaults[0].marker.fill.color = '#66f';
+ * graph.series.defaults[0].marker.stroke.color = '#00f';
+ * graph.series.defaults.series0.line.width = 5;
+ * graph.series.defaults.series0.line.color = '#00c';
  * 
- * graph.defaults.series.series1.marker.size = 10;
- * graph.defaults.series.series1.marker.fill.color = '#6f6';
- * graph.defaults.series.series1.marker.stroke.color = '#0a0';
- * graph.defaults.series.series1.line.width = 5;
- * graph.defaults.series[1].line.color = '#0c0';
+ * graph.series.defaults.series1.marker.size = 10;
+ * graph.series.defaults.series1.marker.fill.color = '#6f6';
+ * graph.series.defaults.series1.marker.stroke.color = '#0a0';
+ * graph.series.defaults.series1.line.width = 5;
+ * graph.series.defaults[1].line.color = '#0c0';
  * 
  * graph.render(data).update(2000, data =&gt; {
  *    data.rows.map(row =&gt; {
@@ -446,8 +424,9 @@
  *      const svgRoot = root.getElementsByClassName('myGraph');
  *      if (svgRoot &amp;&amp; svgRoot.length &amp;&amp; !defaults) { 
  *          const colors = ['#800', '#080', '#008'];
+ *          const graph = new hsGraphD3.GraphCartesian(svgRoot[0]);
  *          defaults = hsUtil.log
- *              .inspect(new hsGraphD3.GraphCartesian(svgRoot[0]).defaults, null, '   ', colors)
+ *              .inspect(graph.defaults, null, '   ', colors)
  *              .replace(/\n/g, '&lt;br&gt;')
  *      }
  *   } 
@@ -490,22 +469,10 @@ export class GraphCartesian extends Graph {
      */
     protected makeDefaults() {
         super.makeDefaults();
-        const scalesDefaults = &lt;ScalesDefaults&gt;this.config.defaults.scales;
+        const scalesDefaults = &lt;ScalesDefaults&gt;this.cfg.defaults.scales;
         scalesDefaults.dims['hor']  = scalesDefaults.dims['hor']  || scaleDefault();    // auto viewport range
         scalesDefaults.dims['ver']  = scalesDefaults.dims['ver']  || scaleDefault();    // auto viewport range
         scalesDefaults.dims['size'] = scalesDefaults.dims['size'] || scaleDefault(5, 20);  
-    }
-&nbsp;
-    /**
-     * adds a series to the plot. The series can assume the following scale defaults to have been set:
-     * - hor: scale defaults for the horizontal axis
-     * - ver: scale defaults for the vertical axis
-     * - size: scale defaults for the marker size
-     * @param type type of plot to use, e.g. 'bubble' or 'scatter'
-     * @param dims mapping of data column names to the series dimensions used to plot the series
-     */
-    public addSeries(type:string, dims:CartSeriesDimensions):SeriesPlot {
-        return super.addSeries(type, dims);
     }
 &nbsp;
     /**
@@ -513,9 +480,9 @@ export class GraphCartesian extends Graph {
      * @param data 
      */
     protected setScales() {
-        const scalesDefaults = &lt;ScalesDefaults&gt;this.config.defaults.scales;
-        const margins = this.config.defaults.scales.margin;
-        const scales = this.config.scales;
+        const scalesDefaults = &lt;ScalesDefaults&gt;this.cfg.defaults.scales;
+        const margins = this.cfg.defaults.scales.margin;
+        const scales = this.cfg.scales;
         scales.hor  = Scales.createScale(scalesDefaults.dims.hor, this.cumulativeDomains.hor, [margins.left,  this.viewport.width-margins.right]);
         scales.ver  = Scales.createScale(scalesDefaults.dims.ver, this.cumulativeDomains.ver, [this.viewport.height-margins.bottom, margins.top]);
         scales.size = Scales.createScale(scalesDefaults.dims.size, this.cumulativeDomains.size);
@@ -538,8 +505,8 @@ export class GraphCartesian extends Graph {
     //************** Lifecycle calls **************************/
     initialize(svg:d3Base): void {
         super.initialize(svg);
-        this.config.scales.hor = undefined;
-        this.config.scales.ver = undefined;
+        this.cfg.scales.hor = undefined;
+        this.cfg.scales.ver = undefined;
     }
 }</pre></td></tr>
 </table></pre>

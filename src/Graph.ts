@@ -19,8 +19,8 @@
  *       {@link Graph.Graph.createComponents sequence of rendering} in the DOM
  *     - sets the factory {@link Settings default settings} for all components
  * 2. **Graph configuration**:
- *     - adding series: `graph.addSeries(<type>, {y:'State', x:'costs'});`
- *     - configuring defaults: e.g., `graph.defaults.grids.hor.major.rendered = false;`
+ *     - adding series: `graph.series.add(<type>, {y:'State', x:'costs'});`
+ *     - configuring defaults: e.g., `graph.grids.defaults.hor.major.rendered = false;`
  * 3. **Graph rendering**: `graph.render(<data>)`
  *     - sets the graph-wide transition timing and easing
  *     - starts a {@link Graph.LifecycleCalls render lifecycle} by calling each of the lifecycle methods on all components:
@@ -38,7 +38,7 @@
  * 
  * m.mount(root, {
  *   view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [
- *      m('div', m.trust('graph.defaults.graph = ' + defaults)), 
+ *      m('div', m.trust('graph.graph.defaults = ' + defaults)), 
  *      m('div.myGraph', '')
  *   ]),
  *   oncreate: () => {
@@ -61,7 +61,7 @@ import { log as gLog }      from 'hsutil';   const log = gLog('Graph');
 import { select as d3Select}from 'd3';
 import * as d3              from 'd3';
 
-import { GraphComponent}    from './GraphComponent';
+import { GraphComponent, GraphBase}    from './GraphComponent';
 import { ComponentDefaults} from './GraphComponent';
 import { GraphCfg}          from './GraphComponent';
 import { Series }           from './Series';
@@ -85,9 +85,10 @@ const vpWidth:number = 1000;
 /** 
  * Basic `ValueDef` definition: 
  * - `string`: the name of column in the data set
+ * - `number`: a constant value
  * - `ValueFn`: a function, returning the value. 
  */
-export type ValueDef = string|ValueFn;
+export type ValueDef = string|number|ValueFn;
 
 /** 
  * a function returning the value of a data point 
@@ -126,29 +127,31 @@ export interface NumericDataSet extends DataSet {
  */
 export interface GraphDimensions { [dim:string]: ValueDef[]; }
 
-/**
- * aggregates the [min, max] ranges for each semantic {@link Graph.GraphDimensions graph dimension} (e.g. 'hor', 'ver', 'size')
- */
-export interface NumDomains extends Domains { [dim:string]: NumDomain; }
-export type      NumDomain = [number, number];
+// namespace Dom {
+    /**
+     * aggregates the [min, max] ranges for each semantic {@link Graph.GraphDimensions graph dimension} (e.g. 'hor', 'ver', 'size')
+     */
+    export interface Domains { [dim:string]:Domain; }
+    export type      Domain = NumDomain | OrdDomain | TimeDomain;
 
-/**
- * aggregates the [min, max] ranges for each semantic {@link Graph.GraphDimensions graph dimension} (e.g. 'hor', 'ver', 'size')
- */
-export interface TimeDomains extends Domains { [dim:string]: TimeDomain; }
-export type      TimeDomain = [Date, Date];
+    /**
+     * aggregates the [min, max] ranges for each semantic {@link Graph.GraphDimensions graph dimension} (e.g. 'hor', 'ver', 'size')
+     */
+    export interface NumDomains extends Domains { [dim:string]: NumDomain; }
+    export type      NumDomain = [number, number];
 
-/**
- * aggregates ordinal values for each semantic {@link Graph.GraphDimensions graph dimension} (e.g. 'hor', 'ver', 'size')
- */
-export interface OrdDomains extends Domains { [dim:string]: OrdDomain; }
-export type      OrdDomain = string[];
+    /**
+     * aggregates the [min, max] ranges for each semantic {@link Graph.GraphDimensions graph dimension} (e.g. 'hor', 'ver', 'size')
+     */
+    export interface TimeDomains extends Domains { [dim:string]: TimeDomain; }
+    export type      TimeDomain = [Date, Date];
 
-/**
- * aggregates the [min, max] ranges for each semantic {@link Graph.GraphDimensions graph dimension} (e.g. 'hor', 'ver', 'size')
- */
-export interface Domains { [dim:string]:Domain; }
-export type      Domain = NumDomain | OrdDomain | TimeDomain;
+    /**
+     * aggregates ordinal values for each semantic {@link Graph.GraphDimensions graph dimension} (e.g. 'hor', 'ver', 'size')
+     */
+    export interface OrdDomains extends Domains { [dim:string]: OrdDomain; }
+    export type      OrdDomain = string[];
+// }
 
 /**
  * Function interface, describing the signature of the call back function 
@@ -194,7 +197,6 @@ export interface RenderChain {
 }
 
 /**
- * ### Lifecycle calls
  * All `GraphComponents` implement these lifecycle methods that are called by the `Graph` instance
  * in response to a `render` call:
  * - **initialize**: called the first time the `Graph` is rendered, ahead of any other lifecycle method.
@@ -204,6 +206,8 @@ export interface RenderChain {
  *     - `initialize` has been called on all `GraphComponents`.
  *     - the main axes scales have been properly configured to the data.
  * - **renderComponent**: called each time the `Graph` is rendered, to render the component. 
+ * Implementations can assume that `preRender` has been called on all `GraphComponents`.
+ * - **postRender**: called each time the `Graph` is rendered, to render the component. 
  * Implementations can assume that `preRender` has been called on all `GraphComponents`.
  */
 export interface LifecycleCalls {
@@ -233,34 +237,53 @@ export interface LifecycleCalls {
     postRender(data:DataSet | DataSet[], domains:Domains): void;
 }
 
+
+/**
+ * Provides access to the `Components` managed by a `Graph`.
+ */
+interface Components {
+    readonly scales:Scales;
+    readonly canvas:Canvas;
+    readonly grids:Grids;
+    readonly axes:Axes;
+    readonly series:Series;
+}
+
+
+/** creates and initializes the `Graph`-wide configuration object. */
+function initializeCfg():GraphCfg {
+    return {
+        baseSVG:  undefined,    
+        client:   { x:0, y:0, width: 0, height: 0 },
+        viewPort: {
+            width: vpWidth,
+            height: vpWidth * 0.7   // initial height: 70% of width
+        },
+        defaults: <DefaultsType>{},
+        scales: {},
+        transition: null,
+        stack: { }
+    };
+}
+
 /**
  * ## Graph
  * Abstract base Graph.
  */
-export abstract class Graph implements LifecycleCalls {
+export abstract class Graph extends GraphBase implements Components {
     private static graphs = {};
     private static addGraph(id:string, fn:()=>void) { 
-        // log.info(`adding ${Graph.graphs[id]?'existing':'new'} graph ${id}`);
         Graph.graphs[id] = fn; 
     }
     private static removeGraph(id:string) { 
-        // log.info(`removing graph ${id}`);
         delete Graph.graphs[id]; 
     }
     private static resizeGraphs() {
-        const keys = Object.keys(Graph.graphs);
-        // log.info(`resizing ${keys.length} graphs: ${keys.join(', ')}`);
-        keys.forEach(g => Graph.graphs[g]());
+        Object.keys(Graph.graphs).forEach(g => Graph.graphs[g]());
     }
     
     /** the HTML root element to attach the render tree to. */
     protected root:any;
-
-    /** the `GraphCfg` object shared by all components in this graph */
-    protected config: GraphCfg;
-
-    /** the plot component, provides access to individual series components */
-    protected Series:Series;
 
     /** the list of components to render */
     private components: GraphComponent[] = [];
@@ -270,35 +293,23 @@ export abstract class Graph implements LifecycleCalls {
 
     protected cumulativeDomains: Domains = {};
 
-    public static getSvgElement(selector:string) {
-        return d3Select(selector);
-    }
-
-    public isRendered() {
-        const base = (<any>d3Select(this.root).select('.baseSVG'));
-        const node = base.node();
-        const isRendered = node.clientWidth? true : false;
-        // log.info(`graph ${this.root.id} is ${isRendered?'':'not'} rendered, size=${node.clientWidth}x${node.clientHeight}`);
-        return isRendered;
-    }
-
     constructor(root:HTMLElement) { 
+        super(initializeCfg());
         this.root = root;
-        this.config = this.initializeCfg();
-        this.config.baseSVG = this.createBaseSVG(this.config); 
-        this.updateBaseSVG(this.config);
-        this.components = this.createComponents(this.config);
+        this.cfg.baseSVG = this.createBaseSVG(this.cfg); 
+        this.updateBaseSVG(this.cfg);
+        this.createComponents(this.cfg);
         this.makeDefaults();
         this.resize();
         window.onresize = Graph.resizeGraphs;
     }
 
     public get defaults(): ComponentDefaults {
-        return this.config.defaults;
+        return this.cfg.defaults;
     }
 
     protected get viewport() {
-        return this.config.viewPort;
+        return this.cfg.viewPort;
     }
 
     /** returns the types of all registered `Series` */
@@ -315,6 +326,13 @@ export abstract class Graph implements LifecycleCalls {
     public transition(duration:number, done?:(data:DataSet) =>void) {
     }
 
+    public isRendered() {
+        const base = (<any>d3Select(this.root).select('.baseSVG'));
+        const node = base.node();
+        const isRendered = node.clientWidth? true : false;
+        return isRendered;
+    }
+
     /**
      * renders the tree with the supplied data. The call returns a {@link Graph.RenderChain `RenderChain`}
      * function that allows rendering to be repeated at fixed intervals with updated data. 
@@ -326,69 +344,58 @@ export abstract class Graph implements LifecycleCalls {
      * @return a `RenderChain`.
      */
     public render(data:DataSet | DataSet[]):RenderChain {
-        const graphDef = <GraphDefaults>this.config.defaults.graph;
+        const graphDef = <GraphDefaults>this.cfg.defaults.graph;
         const graph = this;
 
-        function renderLifecycle() {
-            const isRendered = graph.isRendered.bind(graph)();
-            if (isRendered) {
-                log.debug(`rendering lifecycle ${graph.root.id}`);
-                if (!graph.initialized) {
-                    graph.initialize(graph.config.baseSVG);
-                    graph.initialized = true;
-                }
-                const scalesDefaults = <ScalesDefaults>graph.config.defaults.scales;
-                graph.preRender(data, graph.prepareDomains(scalesDefaults));
-                graph.renderComponent(data);
-            } else {
-                Graph.removeGraph(graph.root.id);
-            }
-        }
-
         const easing = d3[graphDef.easing];
-        this.config.transition = this.config.baseSVG.transition().duration(graphDef.transitionTime).ease(easing);
+        this.cfg.transition = this.cfg.baseSVG.transition().duration(graphDef.transitionTime).ease(easing);
 
         Graph.addGraph(graph.root.id, () => {
             setTimeout(() => {
                 graph.resize();
-                renderLifecycle();
+                graph.renderLifecycle(data);
             }, 0);
         });
-        renderLifecycle();
+        graph.renderLifecycle(data);
         
-        return {
-            update: (duration:number, callback:RenderCallback):void => {
-                function listener() {
-                    try {
-                        graphDef.transitionTime = duration || graphDef.transitionTime;
-                        graph.config.transition = graph.config.transition.transition().duration(graphDef.transitionTime);
-                        const isRendered = graph.isRendered.bind(graph)();
-                        if (isRendered && callback(data) !== false) {
-                            graph.config.transition.on('end', listener); 
-                        }
+        return { update: graph.updateFn(data)};
+    }
+
+    private updateFn(data:DataSet | DataSet[]) {
+        const graphDef = <GraphDefaults>this.cfg.defaults.graph;
+        const graph = this;
+        return (duration:number, callback?:RenderCallback):void => {
+            function listener() {
+                try {
+                    graphDef.transitionTime = duration || graphDef.transitionTime;
+                    graph.cfg.transition = graph.cfg.transition.transition().duration(graphDef.transitionTime);
+                    // set new transition if a) still rendered, b) callback is missing, or c) callback returns undefined or truthy
+                    if (graph.isRendered() && (!callback || callback(data) !== false)) {
+                        graph.cfg.transition.on('end', listener); 
                     }
-                    catch(e) { log.warn(`error in callback: ${e}`); }
-                    setTimeout(renderLifecycle,0);  // render on the next event loop pass, outside the transition listener.
                 }
-                graph.config.transition.on('end', listener); 
+                catch(e) { log.warn(`error in callback: ${e}`); }
+                setTimeout(() => graph.renderLifecycle(data),0);  // render on the next event loop pass, outside the transition listener.
             }
+            graph.cfg.transition.on('end', listener); 
         };
     }
 
-    /**
-     * adds a series to the plot, for example
-     * ```
-     * graph.addSeries('area', {x:'time', y:'costs', r:5})
-     * ```
-     * The object literal `dims` specifies the data to use for each 
-     * semantic dimension the plot uses. For details on the dimensions 
-     * see {@link Series.SeriesDimensions `SeriesDimensions`}
-     * @param type type of plot to use, e.g. 'bubble' or 'scatter', See {@link Series `Series`} for available plots to use.
-     * @param dims an object literal specifying the {@link Series.SeriesDimensions `SeriesDimensions`} to use. 
-     */
-    public addSeries(type:string, dims:SeriesDimensions):SeriesPlot {
-        return this.Series.addSeries(type, dims);
+    /** called once during construction to create the components defaults. */
+    public createDefaults():GraphDefaults {
+        return {
+            transitionTime: 1000,
+            easing: 'easeCubic'
+        };    
     }
+
+
+    //************** Components calls **************************/
+    get scales():Scales { return this.components['scales']; }
+    get canvas():Canvas { return this.components['canvas']; }
+    get grids():Grids   { return this.components['grids']; }
+    get axes():Axes     { return this.components['axes']; }
+    get series():Series { return this.components['series']; }
 
 
     //************** Lifecycle calls **************************/
@@ -403,9 +410,8 @@ export abstract class Graph implements LifecycleCalls {
 
     /** Called immediately before each call to renderComponent. */
     preRender(data:DataSet | DataSet[], domains:Domains): void {
-        this.Series.expandDomains(data, domains);
+        this.series.expandDomains(data, domains);
         this.setScales();
-        // this.components.forEach((comp:GraphComponent) => comp.preRender(data, domains));
         this.components.forEach((comp:GraphComponent) => comp.preRender(data, domains));
     } 
 
@@ -419,43 +425,35 @@ export abstract class Graph implements LifecycleCalls {
         this.components.forEach((comp:GraphComponent) => comp.postRender(data));
     } 
 
+    renderLifecycle(data:DataSet | DataSet[]) {
+        const isRendered = this.isRendered();
+        if (isRendered) {
+            log.debug(`rendering lifecycle ${this.root.id}`);
+            if (!this.initialized) {
+                this.initialize(this.cfg.baseSVG);
+                this.initialized = true;
+            }
+            const scalesDefaults = <ScalesDefaults>this.cfg.defaults.scales;
+            this.preRender(data, this.prepareDomains(scalesDefaults));
+            this.renderComponent(data);
+            this.postRender(data);
+        } else {
+            Graph.removeGraph(this.root.id);
+        }
+    }
 
     //************** Non-public part **************************/
 
     /** set the scales for the graph prior to rendering components. */
     protected abstract setScales():void;
 
-    /** called once during construction to create the components defaults. */
-    protected createDefaults():GraphDefaults {
-        return {
-            transitionTime: 1000,
-            easing: 'easeCubic'
-        };    
-    }
-
     protected makeDefaults() {
-        const defaults = this.config.defaults;
+        const defaults = this.cfg.defaults;
         defaults['graph'] = this.createDefaults();
         this.components.forEach(comp => defaults[comp.componentType] = comp.createDefaults());
     }
 
     protected abstract prepareDomains(scalesDefaults:ScalesDefaults):Domains;
-
-    /** creates and initializes the `Graph`-wide configuration object. */
-    private initializeCfg():GraphCfg {
-        return {
-            baseSVG:  undefined,    
-            client:   { x:0, y:0, width: 0, height: 0 },
-            viewPort: {
-                width: vpWidth,
-                height: vpWidth * 0.7   // initial height: 70% of width
-            },
-            defaults: <DefaultsType>{},
-            scales: {},
-            transition: null,
-            stack: { }
-        };
-    }
 
     /** 
      * creates the list of `GraphComponents` and determines the rendering order: 
@@ -465,28 +463,28 @@ export abstract class Graph implements LifecycleCalls {
      * - Axes
      * - Series
      */
-    private createComponents(cfg:GraphCfg):GraphComponent[] {
-        return [
-            new Scales(cfg),
-            new Canvas(cfg),
-            new Grids(cfg),
-            new Axes(cfg),
-            this.Series = new Series(cfg)
-        ];
+    private createComponents(cfg:GraphCfg) {
+        const comps:GraphComponent[] = this.components = [];
+        comps.push(comps['scales'] = new Scales(cfg));
+        comps.push(comps['canvas'] = new Canvas(cfg));
+        comps.push(comps['grids']  = new Grids(cfg));
+        comps.push(comps['axes']   = new Axes(cfg));
+        comps.push(comps['series'] = new Series(cfg));
     }
 
     /** callback on window resize event, adjusts the viewport to the new dimensions  */
     private resize() {
-        const cfg = this.config;
+        const client = this.cfg.client;
+        const vp = this.cfg.viewPort;
         // if (this.root && this.root.clientWidth > 0) {
         if (this.root) {
-            if (this.root.clientWidth !== cfg.client.width || this.root.clientHeight !== cfg.client.height) {
-                log.info(`resizing svg for ${this.root.id}: [${cfg.client.width} x ${cfg.client.height}] -> [${this.root.clientWidth} x ${this.root.clientHeight}]`);
-                cfg.client.width = this.root.clientWidth;
-                cfg.client.height = this.root.clientHeight;
-                cfg.viewPort.width = 2*this.root.clientWidth;
-                cfg.viewPort.height = cfg.viewPort.width * this.root.clientHeight / this.root.clientWidth;
-                this.updateBaseSVG(cfg);
+            if (this.root.clientWidth !== client.width || this.root.clientHeight !== client.height) {
+                log.debug(`resizing svg for ${this.root.id}: [${client.width} x ${client.height}] -> [${this.root.clientWidth} x ${this.root.clientHeight}]`);
+                client.width = this.root.clientWidth;
+                client.height = this.root.clientHeight;
+                vp.width = 2*this.root.clientWidth;
+                vp.height = vp.width * this.root.clientHeight / this.root.clientWidth;
+                this.updateBaseSVG(this.cfg);
             }
         }
     }

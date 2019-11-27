@@ -10,7 +10,7 @@
 
  * 
  * ## Usage
- * `graph.addSeries('area', {x:<x-col>, y:<y-col>, y0:<y-lower-fill>=0, r?:<size-col>});`
+ * `graph.series.add('area', {x:<x-col>, y:<y-col>, y0:<y-lower-fill>=0, r?:<size-col>});`
  * 
  * ## Example
  * - first series (top): an orange area-band between 'costs' and 'volume', not using markers
@@ -18,8 +18,8 @@
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
  * <file name='script.js'>
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.addSeries('area', {x:'time', y:'costs', y0:'volume'});
- * graph.addSeries('area', {x:'time', y:'volume', r:'costs'});
+ * graph.series.add('area', {x:'time', y:'costs', y0:'volume'});
+ * graph.series.add('area', {x:'time', y:'volume', r:'costs'});
  * graph.render({
  *    colNames:['time', 'volume', 'costs'], 
  *    rows:[    [-1,    0.2,      0.3], 
@@ -41,13 +41,13 @@
  * 
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      graph.addSeries('area', {x:'time', y:'volume', r:'costs'});
- *      return graph.defaults.series[0];
+ *      graph.series.add('area', {x:'time', y:'volume', r:'costs'});
+ *      return graph.series.defaults[0];
  * }
  * 
  * m.mount(root, {
  *   view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [
- *      m('div', m.trust('graph.defaults.series[0] = ' + defaults)), 
+ *      m('div', m.trust('graph.series.defaults[0] = ' + defaults)), 
  *      m('div.myGraph', '')
  *   ]),
  *   oncreate: () => {

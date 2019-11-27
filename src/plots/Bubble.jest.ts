@@ -27,10 +27,10 @@ const data:DataSet = {
 function createGraph(root:any) {
     const graph = new hsGraphD3.GraphCartesian(root);
     graph.isRendered = () => true;
-    (<AxesDefaults>graph.defaults.axes).hor.numTicksMinor = 10;
-    (<AxesDefaults>graph.defaults.axes).hor.numTicksMajor = 2;
-    (<AxesDefaults>graph.defaults.axes).ver.numTicksMinor = 10;
-    (<AxesDefaults>graph.defaults.axes).ver.numTicksMajor = 2;
+    graph.axes.defaults.hor.numTicksMinor = 10;
+    graph.axes.defaults.hor.numTicksMajor = 2;
+    graph.axes.defaults.ver.numTicksMinor = 10;
+    graph.axes.defaults.ver.numTicksMajor = 2;
     return graph;
 }
 
@@ -38,7 +38,7 @@ describe('Bubble', () => {
     let graph:hsGraphD3.GraphCartesian;
     beforeAll(() => {
         graph = createGraph(root);
-        graph.addSeries('bubble', {x:'xval', y:'yval', r:'rval'});
+        graph.series.add('bubble', {x:'xval', y:'yval', r:'rval'});
         graph.render(data);
     });
     it('should plot series', () =>

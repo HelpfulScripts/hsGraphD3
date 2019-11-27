@@ -9,7 +9,7 @@
  * 
  * m.mount(root, {
  *   view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [
- *      m('div', m.trust('graph.defaults.axes = ' + defaults)), 
+ *      m('div', m.trust('graph.axes.defaults = ' + defaults)), 
  *      m('div.myGraph', '')
  *   ]),
  *   oncreate: () => {
@@ -41,6 +41,10 @@ import { UnitVp, d3Base }   from './Settings';
 import { setText }          from './Settings';
 import { setStroke }        from './Settings';
 import { DataVal }          from './Graph';
+
+
+const pixPerMajorTick = 200;
+const pixPerMinorTick =  50;
 
 export enum Direction {
     horizontal  = 'hor',
@@ -81,6 +85,8 @@ export class Axes extends GraphComponent {
 
     public get componentType() { return Axes.type; }
 
+    public get defaults():AxesDefaults { return <AxesDefaults>this.cfg.defaults[this.componentType]; }
+
     public createDefaults():AxesDefaults {
         return {
             color:  '#000',
@@ -108,9 +114,6 @@ export class Axes extends GraphComponent {
     }
     postRender(): void {} 
 }
-
-const pixPerMajorTick = 200;
-const pixPerMinorTick =  30;
 
 export class Axis {
     private dir: Direction;

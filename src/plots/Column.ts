@@ -2,7 +2,7 @@
  * # Columns Plot
  * 
  * ## Usage
- * `graph.addSeries('column', {x:<x-col>, y:<y-col>, stacked?:<group-name>});`
+ * `graph.series.add('column', {x:<x-col>, y:<y-col>, stacked?:<group-name>});`
  * 
  * ## Example
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
@@ -20,13 +20,13 @@
  * 
  * // setup and plot the data:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.addSeries('column', {x:'State', y:'costs'});
- * graph.addSeries('column', {x:'State', y:'volume'});
- * graph.defaults.series.ordinal.gap = 0.25;
- * graph.defaults.series.ordinal.overlap = 0.75;
- * graph.defaults.series[0].line.rendered = true;
- * graph.defaults.series[1].line.rendered = true;
- * graph.defaults.grids.ver.major.rendered = false;
+ * graph.series.add('column', {x:'State', y:'costs'});
+ * graph.series.add('column', {x:'State', y:'volume'});
+ * graph.scales.defaults.dims.hor.ordinal.gap = 0.25;
+ * graph.scales.defaults.dims.hor.ordinal.overlap = 0.75;
+ * graph.series.defaults[0].line.rendered = true;
+ * graph.series.defaults[1].line.rendered = true;
+ * graph.grids.defaults.ver.major.rendered = false;
  * graph.render(data).update(2000, data => {
  *      data.rows.forEach(row => {
  *          row[1] = 0.5*Math.random()-0.2;
@@ -54,12 +54,12 @@
  * 
  * // setup and plot the data:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.addSeries('column', {x:'State', y:'costs',  stacked:'group1'});
- * graph.addSeries('column', {x:'State', y:'volume', stacked:'group1'});
- * graph.defaults.series.ordinal.gap = 0.25;
- * graph.defaults.series[0].line.rendered = true;
- * graph.defaults.series[1].line.rendered = true;
- * graph.defaults.grids.ver.major.rendered = false;
+ * graph.series.add('column', {x:'State', y:'costs',  stacked:'group1'});
+ * graph.series.add('column', {x:'State', y:'volume', stacked:'group1'});
+ * graph.scales.defaults.dims.hor.ordinal.gap = 0.25;
+ * graph.series.defaults[0].line.rendered = true;
+ * graph.series.defaults[1].line.rendered = true;
+ * graph.grids.defaults.ver.major.rendered = false;
  * graph.render(data).update(2000, data => {
  *      data.rows.forEach(row => {
  *          row[1] = 1.0*Math.random();
@@ -80,21 +80,24 @@
  * 
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      graph.addSeries('column', {x:'state', y:'volume'});
- *      return graph.defaults.series;
+ *      graph.series.add('column', {x:'state', y:'volume'});
+ *      return graph;
  * }
  * 
  * m.mount(root, {
  *   view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [
- *      m('div', m.trust('graph.defaults.series[0] = ' + defaults)), 
+ *      m('div', m.trust(defaults)), 
  *      m('div.myGraph', '')
  *   ]),
  *   oncreate: () => {
  *      const svgRoot = root.getElementsByClassName('myGraph');
  *      if (svgRoot && svgRoot.length && !defaults) { 
  *          const colors = ['#800', '#080', '#008'];
- *          defaults = hsUtil.log.inspect(createGraph(svgRoot[0]), null, '   ', colors)
- *              .replace(/\n/g, '<br>')
+ *          const graph = createGraph(svgRoot[0]);
+ *          defaults = `<b>graph.series.defaults = </b>
+ *              ${hsUtil.log.inspect(graph.series.defaults, null, '   ', colors).replace(/\n/g, '<br>')}
+ *              <br><br><b>graph.scales.defaults.dims = </b>
+ *              ${hsUtil.log.inspect(graph.scales.defaults.dims, null, '   ', colors).replace(/\n/g, '<br>')}`;
  *      }
  *   } 
  * });
@@ -109,10 +112,19 @@ import { CartSeriesDimensions } from '../CartSeriesPlot';
 import { GraphCfg}              from '../GraphComponent';
 import { Series }               from '../Series';
 import { OrdinalSeriesPlot }    from './OrdinalSeriesPlot';
+import { SeriesPlotDefaults }   from '../SeriesPlot';
+import { GridDefaults }         from '../Grid';
 
 Series.register('column', (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions) => new Column(cfg, sName, dims));
 
 
 export class Column extends OrdinalSeriesPlot {
     protected get independentAxis():'hor' { return 'hor'; }
+
+    getDefaults(): SeriesPlotDefaults {
+        const gridDef = (<GridDefaults>this.cfg.defaults.grids).ver;
+        gridDef.major.rendered = false;
+        gridDef.minor.rendered = false;
+        return super.getDefaults();
+    } 
 } 

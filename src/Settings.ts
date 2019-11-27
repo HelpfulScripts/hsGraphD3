@@ -3,6 +3,18 @@
  * 
  * provides `type` aliases, `interfaces`, and support functions to generate default settings for {@link GraphComponent GraphComponents}.
  * 
+ * Each `graph` instance maintains its own copy of component settings. 
+ * The setting are initialized during construction and can be modified as needed. 
+ * `graph` provides two paths to access and modify setting:
+ * - `graph.defaults.<component>.<subselector>` provides a central access to collection of 
+ * all component settings via the `graph's` default getter. The table below lists all settings
+ * available under `graph.defaults`.
+ * - Each `GraphComponent` provides access to the component's default settings via `<component>.defaults.<subselector>`.
+ * These are also accessible via the `graph's` `defaults` getter. 
+ * 
+ * For example, the `canvas` settings can be accessed via `graph.canvas.defaults` and 
+ * `grpah.defaults.canvas`;
+ * 
  * ### Accessible format setting and defaults (for a cartesian graph):
  * <example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
  * <file name='script.js'>
@@ -11,8 +23,8 @@
  * 
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      graph.addSeries('bubble', 'time', 'volume', 'costs');
- *      graph.defaults.canvas.stroke.width = 7.8; // odd number, should appear on the left
+ *      graph.series.add('bubble', 'time', 'volume', 'costs');
+ *      graph.canvas.defaults.stroke.width = 7.8; // odd number, should appear on the left
  *      return graph.defaults;
  * }
  * 
@@ -46,6 +58,9 @@ export type UnitVp = number;
 
 /** CSS px units */
 export type UnitPx = number;        
+
+/** percent units */
+export type UnitPercent = string;        
 
 /** CSS general units */
 export type Unit = string|UnitPx;   // general CSS unit type

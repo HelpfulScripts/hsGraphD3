@@ -1,8 +1,8 @@
 /**
- * # Canvas component
- * renders the `Graph's` background, covering the entire viewport.
+ * # Title component
+ * renders the `Graph's` Title.
  * 
- * ### Canvas Default Settings:
+ * ### Title Default Settings:
  * <example height=300px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
  * <file name='script.js'>
  * const log = hsUtil.log('');
@@ -18,7 +18,7 @@
  *      if (svgRoot && svgRoot.length && !defaults) { 
  *          const colors = ['#800', '#080', '#008'];
  *          defaults = hsUtil.log
- *              .inspect(new hsGraphD3.GraphCartesian(svgRoot[0]).defaults.canvas, null, '   ', colors)
+ *              .inspect(new hsGraphD3.GraphCartesian(svgRoot[0]).defaults.title, null, '   ', colors)
  *              .replace(/\n/g, '<br>')
  *      }
  *   } 
@@ -28,30 +28,36 @@
  */
 
  /** */
-import { GraphComponent }       from './GraphComponent'; 
+import { select as d3Select }   from 'd3'; 
 import { ComponentDefaults }    from './GraphComponent'; 
+import { GraphComponent }       from './GraphComponent'; 
 import { GraphCfg }             from './GraphComponent'; 
-import { RectStyle }            from './Settings';
-import { defaultRect }          from './Settings';
 import { d3Base }               from './Settings';
-import { setRect }               from './Settings';
+import { UnitPercent }          from './Settings';
+import { setRect }              from './Settings';
 
-export interface CanvasDefaults extends ComponentDefaults, RectStyle { }
+export interface TitleDefaults extends ComponentDefaults { 
+    x: UnitPercent;
+    y: UnitPercent;
+}
 
 
-export class Canvas extends GraphComponent {
-    static type = 'canvas';
+export class Title extends GraphComponent {
+    static type = 'title';
 
     constructor(cfg:GraphCfg) {
-        super(cfg, Canvas.type);
+        super(cfg, Title.type);
     }
 
-    public get componentType() { return Canvas.type; }
+    public get componentType() { return Title.type; }
 
-    public get defaults():CanvasDefaults { return <CanvasDefaults>this.cfg.defaults[this.componentType]; }
+    public get defaults():TitleDefaults { return <TitleDefaults>this.cfg.defaults[this.componentType]; }
 
-    public createDefaults():CanvasDefaults {
-        return defaultRect('#fff', 1, '#00c');
+    public createDefaults():TitleDefaults {
+        return {
+            x: '0%',
+            y: '0%'
+        };
     }
 
     initialize(svg:d3Base): void {
@@ -65,11 +71,7 @@ export class Canvas extends GraphComponent {
      * @param cfg 
      */
     public renderComponent() {
-        const canvas = this.cfg.defaults.canvas;
-        const area = this.svg.select('.graphArea');
-        setRect(area, <CanvasDefaults>canvas)
-            .attr('width', this.cfg.viewPort.width)
-            .attr('height', this.cfg.viewPort.height);
+        const title = this.cfg.defaults.title;
     }
 
     postRender(): void {} 

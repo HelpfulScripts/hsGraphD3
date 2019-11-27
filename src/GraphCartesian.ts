@@ -21,26 +21,26 @@
  * 
  * // setup and plot the data:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.addSeries('line', {x:'time', y:'volume'},);
- * graph.addSeries('line', {x:'time', y:'costs'});
+ * graph.series.add('line', {x:'time', y:'volume'},);
+ * graph.series.add('line', {x:'time', y:'costs'});
  * 
- * with (graph.defaults.canvas) {
+ * with (graph.canvas.defaults) {
  *      fill.color = '#fcfcfc';
  *      stroke.width = 10;  // in viewport coordinates (0 - 1000)
  * }
  * 
  * // series defaults can be indexed by position or by name. Names are created as `series`+position index.
- * graph.defaults.series[0].marker.size = 15;
- * graph.defaults.series[0].marker.fill.color = '#66f';
- * graph.defaults.series[0].marker.stroke.color = '#00f';
- * graph.defaults.series.series0.line.width = 5;
- * graph.defaults.series.series0.line.color = '#00c';
+ * graph.series.defaults[0].marker.size = 15;
+ * graph.series.defaults[0].marker.fill.color = '#66f';
+ * graph.series.defaults[0].marker.stroke.color = '#00f';
+ * graph.series.defaults.series0.line.width = 5;
+ * graph.series.defaults.series0.line.color = '#00c';
  * 
- * graph.defaults.series.series1.marker.size = 10;
- * graph.defaults.series.series1.marker.fill.color = '#6f6';
- * graph.defaults.series.series1.marker.stroke.color = '#0a0';
- * graph.defaults.series.series1.line.width = 5;
- * graph.defaults.series[1].line.color = '#0c0';
+ * graph.series.defaults.series1.marker.size = 10;
+ * graph.series.defaults.series1.marker.fill.color = '#6f6';
+ * graph.series.defaults.series1.marker.stroke.color = '#0a0';
+ * graph.series.defaults.series1.line.width = 5;
+ * graph.series.defaults[1].line.color = '#0c0';
  * 
  * graph.render(data).update(2000, data => {
  *    data.rows.map(row => {
@@ -68,8 +68,9 @@
  *      const svgRoot = root.getElementsByClassName('myGraph');
  *      if (svgRoot && svgRoot.length && !defaults) { 
  *          const colors = ['#800', '#080', '#008'];
+ *          const graph = new hsGraphD3.GraphCartesian(svgRoot[0]);
  *          defaults = hsUtil.log
- *              .inspect(new hsGraphD3.GraphCartesian(svgRoot[0]).defaults, null, '   ', colors)
+ *              .inspect(graph.defaults, null, '   ', colors)
  *              .replace(/\n/g, '<br>')
  *      }
  *   } 
@@ -112,22 +113,10 @@ export class GraphCartesian extends Graph {
      */
     protected makeDefaults() {
         super.makeDefaults();
-        const scalesDefaults = <ScalesDefaults>this.config.defaults.scales;
+        const scalesDefaults = <ScalesDefaults>this.cfg.defaults.scales;
         scalesDefaults.dims['hor']  = scalesDefaults.dims['hor']  || scaleDefault();    // auto viewport range
         scalesDefaults.dims['ver']  = scalesDefaults.dims['ver']  || scaleDefault();    // auto viewport range
         scalesDefaults.dims['size'] = scalesDefaults.dims['size'] || scaleDefault(5, 20);  
-    }
-
-    /**
-     * adds a series to the plot. The series can assume the following scale defaults to have been set:
-     * - hor: scale defaults for the horizontal axis
-     * - ver: scale defaults for the vertical axis
-     * - size: scale defaults for the marker size
-     * @param type type of plot to use, e.g. 'bubble' or 'scatter'
-     * @param dims mapping of data column names to the series dimensions used to plot the series
-     */
-    public addSeries(type:string, dims:CartSeriesDimensions):SeriesPlot {
-        return super.addSeries(type, dims);
     }
 
     /**
@@ -135,9 +124,9 @@ export class GraphCartesian extends Graph {
      * @param data 
      */
     protected setScales() {
-        const scalesDefaults = <ScalesDefaults>this.config.defaults.scales;
-        const margins = this.config.defaults.scales.margin;
-        const scales = this.config.scales;
+        const scalesDefaults = <ScalesDefaults>this.cfg.defaults.scales;
+        const margins = this.cfg.defaults.scales.margin;
+        const scales = this.cfg.scales;
         scales.hor  = Scales.createScale(scalesDefaults.dims.hor, this.cumulativeDomains.hor, [margins.left,  this.viewport.width-margins.right]);
         scales.ver  = Scales.createScale(scalesDefaults.dims.ver, this.cumulativeDomains.ver, [this.viewport.height-margins.bottom, margins.top]);
         scales.size = Scales.createScale(scalesDefaults.dims.size, this.cumulativeDomains.size);
@@ -160,7 +149,7 @@ export class GraphCartesian extends Graph {
     //************** Lifecycle calls **************************/
     initialize(svg:d3Base): void {
         super.initialize(svg);
-        this.config.scales.hor = undefined;
-        this.config.scales.ver = undefined;
+        this.cfg.scales.hor = undefined;
+        this.cfg.scales.ver = undefined;
     }
 }

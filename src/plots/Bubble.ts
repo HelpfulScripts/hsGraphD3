@@ -2,7 +2,7 @@
  * # Bubble Plot
  * 
  * ## Usage
- * `graph.addSeries('bubble', {x:<x-col>, y:<y-col>, r:<size-col>});`
+ * `graph.series.add('bubble', {x:<x-col>, y:<y-col>, r:<size-col>});`
  * 
  * ## Example
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
@@ -20,7 +20,7 @@
  * 
  * // setup and plot the data:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.addSeries('bubble', {x:'time', y:'volume', r:'costs'});
+ * graph.series.add('bubble', {x:'time', y:'volume', r:'costs'});
  * graph.render(data);
  * 
  * </file>
@@ -35,13 +35,13 @@
  * 
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      graph.addSeries('bubble', {x:'time', y:'volume', r:'costs'});
- *      return graph.defaults.series[0];
+ *      graph.series.add('bubble', {x:'time', y:'volume', r:'costs'});
+ *      return graph.series.defaults[0];
  * }
  * 
  * m.mount(root, {
  *   view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [
- *      m('div', m.trust('graph.defaults.series[0] = ' + defaults)), 
+ *      m('div', m.trust('graph.series.defaults[0] = ' + defaults)), 
  *      m('div.myGraph', '')
  *   ]),
  *   oncreate: () => {

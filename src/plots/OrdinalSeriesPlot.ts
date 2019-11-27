@@ -4,7 +4,7 @@
  * Abstract base class for all ordinal series plot types.
  * To create a series plot, add the desired plot type to the graph:
  * ```
- * graph.addSeries(<type>, {<dim>: <data-values>, ...});
+ * graph.series.add(<type>, {<dim>: <data-values>, ...});
  * ``` 
  * - `<type>` is one of the registered types: 
  *     - &nbsp; {@link plots.Bar `bar`} a horizontal bar chart
@@ -33,21 +33,13 @@ import { CartSeriesPlot }       from '../CartSeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { SeriesDefaults }       from '../Series';
 import { Series }               from '../Series';
-
-
-export interface OrdinalPlotDefaults extends SeriesPlotDefaults {
-    /** gap width as a ration between 0 (no gap) and 1 (all gap). */
-    gap:   number;  
-
-    /** overlap between multiple series, between 0 (no overlap) and 1 (complete overlap) */
-    overlap: number;
-}
+import { ScalesDefaults } from '../Scale';
 
 
 /**
  * Returns a function to access the numeric value in a data row.
  * The numeric value is specified by the `ValueDef` `v`. 
- * - If `v` is a number, applies the `scale` to `v`, and returns the result.
+ * - If `v` is a number, returns `v` as the result.
  * - If `v` is contained in `colNames`, uses the position of `v` in `colNames` to index the 
  * supplied `row`, applies the `scale`, and returns the result.
  * - Otherwise, if `v` ends with 'u', interprets `v` to be Viewport Units and 
@@ -55,7 +47,6 @@ export interface OrdinalPlotDefaults extends SeriesPlotDefaults {
  * viewport window.
  * @param v the `ValueDef` specifying the value
  * @param colNames a list of names for the coluymns in the `DataSet`
- * @param scale a numeric scale to apply 
  * @param def defaults to `0`; the default to return if `v` is `undefined`.
  */
 export function accessor(v:ValueDef, colNames:string[], def=0):(row?:number[], i?:number) => DataVal {
@@ -71,13 +62,16 @@ export function accessor(v:ValueDef, colNames:string[], def=0):(row?:number[], i
  * Abstract base class of a  cartesian series plot. 
  */
 export abstract class OrdinalSeriesPlot extends CartSeriesPlot { 
-    getDefaults(): OrdinalPlotDefaults {
-        const def = <OrdinalPlotDefaults>super.getDefaults();
+    getDefaults(): SeriesPlotDefaults {
+        const scaleDef = (<ScalesDefaults>this.cfg.defaults.scales).dims[this.independentAxis];
+        scaleDef.type = 'ordinal';
+        scaleDef.ordinal = scaleDef.ordinal || { gap:0.3, overlap:0};
+
+        const def = super.getDefaults();
         def.area.rendered = true;
         def.marker.rendered = false;
         def.line.rendered = false;
         def.line.width = 1;
-        this.cfg.defaults.scales.dims[this.independentAxis].type = 'ordinal';
         return def;
     } 
 
@@ -109,7 +103,8 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
 
     preRender(data:DataSet, domains:Domains): void {
         super.preRender(data, domains);
-        const gap = (<SeriesDefaults>this.cfg.defaults.series).ordinal.gap;
+        const scaleDef = (<ScalesDefaults>this.cfg.defaults.scales).dims[this.independentAxis];
+        const gap = scaleDef.ordinal.gap;
         this.cfg.scales[this.independentAxis].padding(gap);
     }
  
@@ -125,7 +120,7 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
     }
 
     protected d3RenderFill(svg:d3Base, data:DataSet) {
-        const defaults = (<OrdinalPlotDefaults>this.cfg.defaults.series[this.key]).area;
+        const defaults = (<SeriesPlotDefaults>this.cfg.defaults.series[this.key]).area;
         if (defaults.rendered) {
             const samples:any = svg.select('.area').selectAll("rect")
                 .data(data.rows, d => d[0]);                    // bind to data, iterate over rows
@@ -138,12 +133,13 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
     }
  
     private getParams(plot:OrdinalSeriesPlot, colNames:string[]):any[] {
+        const scaleDef = (<ScalesDefaults>plot.cfg.defaults.scales).dims[this.independentAxis];
         const stackGroup = plot.dims.stacked || false;
         const allKeys = Object.keys(plot.cfg.defaults.series).filter(k => k.indexOf(Series.type)===0);
         const myKey = allKeys.indexOf(plot.key) || 0;
         const step = plot.cfg.scales[plot.independentAxis].step();
         const pad = plot.cfg.scales[plot.independentAxis].padding();
-        const overlap = plot.cfg.defaults.series.ordinal.overlap;
+        const overlap = scaleDef.ordinal.overlap;
         const thickness = step * (1-pad) / (stackGroup? 1 : (allKeys.length * (1-overlap) + overlap));
         const offset = step*pad/2 + (stackGroup? 0 : thickness*myKey * (1-overlap));
         return [offset, thickness, stackGroup];

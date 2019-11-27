@@ -4,7 +4,7 @@
  * plots a 2D Voronoi Partition.
  * 
  * ## Usage
- * `graph.addSeries('voronoi', {x:<x-col>, y:<y-col>, r?:<size-col>});`
+ * `graph.series.add('voronoi', {x:<x-col>, y:<y-col>, r?:<size-col>});`
  * Invoke a `line` series by adding a new series to the graph
  * 
  * ## Example
@@ -29,8 +29,8 @@
  * 
  * const graph = new hsGraphD3.GraphCartesian(root);
  * 
- * graph.addSeries('voronoi', {x:'x', y:'y', r:'count'});
- * graph.addSeries('bubble', {x:'x', y:'y'});
+ * graph.series.add('voronoi', {x:'x', y:'y', r:'count'});
+ * graph.series.add('bubble', {x:'x', y:'y'});
  * 
  * with (graph.defaults) {
  *     axes.rendered = false;
@@ -83,13 +83,13 @@
  * 
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(root);
- *      graph.addSeries('voronoi', {x:'x', y:'y', r:'count'});
- *      return graph.defaults.series[0];
+ *      graph.series.add('voronoi', {x:'x', y:'y', r:'count'});
+ *      return graph.series.defaults[0];
  * }
  * 
  * m.mount(root, {
  *   view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [
- *      m('div', m.trust('graph.defaults.series[0] = ' + defaults)), 
+ *      m('div', m.trust('graph.series.defaults[0] = ' + defaults)), 
  *      m('div.myGraph', '')
  *   ]),
  *   oncreate: () => {

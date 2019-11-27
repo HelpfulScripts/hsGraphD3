@@ -4,7 +4,7 @@
  * Abstract base class for all numeric series plot types.
  * To create a series plot, add the desired plot type to the graph:
  * ```
- * graph.addSeries(<type>, {<dim>: <data-values>, ...});
+ * graph.series.add(<type>, {<dim>: <data-values>, ...});
  * ``` 
  * - `<type>` is one of the registered types: 
  *     - &nbsp; {@link plots.Line `line`} a 2D line plot

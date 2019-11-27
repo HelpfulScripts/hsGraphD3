@@ -27,10 +27,10 @@ const data:DataSet = {
 function createGraph(root:any) {
     const graph = new hsGraphD3.GraphCartesian(root);
     graph.isRendered = () => true;
-    (<AxesDefaults>graph.defaults.axes).hor.numTicksMinor = 10;
-    (<AxesDefaults>graph.defaults.axes).hor.numTicksMajor = 2;
-    (<AxesDefaults>graph.defaults.axes).ver.numTicksMinor = 10;
-    (<AxesDefaults>graph.defaults.axes).ver.numTicksMajor = 2;
+    graph.axes.defaults.hor.numTicksMinor = 10;
+    graph.axes.defaults.hor.numTicksMajor = 2;
+    graph.axes.defaults.ver.numTicksMinor = 10;
+    graph.axes.defaults.ver.numTicksMajor = 2;
     return graph;
 }
 
@@ -41,15 +41,15 @@ describe('Line', () => {
     describe('plot data', () => {
         beforeAll(() => {
             graph = createGraph(root);
-            graph.addSeries('line', {x:'xval', y:'yval', r:'rval'});
-            graph.defaults.axes.color = '#666';
+            graph.series.add('line', {x:'xval', y:'yval', r:'rval'});
+            graph.axes.defaults.color = '#666';
             graph.render(data);
         });
         it(`should have 'line' registered`, () =>
             expect(graph.seriesTypes).toContain('line')
         );
         it('should support settings changes', () => {
-            expect(graph.defaults.axes.color).toBe('#666');
+            expect(graph.axes.defaults.color).toBe('#666');
         });
         it('should plot line', () =>
             expect(root).toMatchSnapshot()
@@ -59,7 +59,7 @@ describe('Line', () => {
     describe('plot constants', () => {
         beforeEach(() => {
             graph = createGraph(root);
-            graph.addSeries('line', {x:'xval', y:()=>10});
+            graph.series.add('line', {x:'xval', y:()=>10});
             graph.render(data);
         });
         it('should plot horizontal line', () => {

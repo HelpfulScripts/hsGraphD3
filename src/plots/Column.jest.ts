@@ -26,10 +26,10 @@ const data:DataSet = {
 function createGraph(root:any) {
     const graph = new hsGraphD3.GraphCartesian(root);
     graph.isRendered = () => true;
-    (<AxesDefaults>graph.defaults.axes).hor.numTicksMinor = 10;
-    (<AxesDefaults>graph.defaults.axes).hor.numTicksMajor = 2;
-    (<AxesDefaults>graph.defaults.axes).ver.numTicksMinor = 10;
-    (<AxesDefaults>graph.defaults.axes).ver.numTicksMajor = 2;
+    graph.axes.defaults.hor.numTicksMinor = 10;
+    graph.axes.defaults.hor.numTicksMajor = 2;
+    graph.axes.defaults.ver.numTicksMinor = 10;
+    graph.axes.defaults.ver.numTicksMajor = 2;
     return graph;
 }
 
@@ -37,9 +37,9 @@ describe('Column', () => {
     let graph:hsGraphD3.GraphCartesian;
     beforeAll(() => {
         graph = createGraph(root);
-        graph.addSeries('column', {x:'State', y:'volume', stacked:'grp'});
-        graph.addSeries('column', {x:'State', y:'volume', stacked:'grp'});
-        (<SeriesPlotDefaults>graph.defaults.series.series0).line.rendered = true;
+        graph.series.add('column', {x:'State', y:'volume', stacked:'grp'});
+        graph.series.add('column', {x:'State', y:'volume', stacked:'grp'});
+        graph.series.defaults.series0.line.rendered = true;
         graph.render(data);
     });
     it(`should have 'column' registered`, () =>
@@ -49,7 +49,7 @@ describe('Column', () => {
         expect(root).toMatchSnapshot()
     );
     it('should support settings changes', () => {
-        graph.defaults.axes.color = '#666';
-        expect(graph.defaults.axes.color).toBe('#666');
+        graph.axes.defaults.color = '#666';
+        expect(graph.axes.defaults.color).toBe('#666');
     });
 });

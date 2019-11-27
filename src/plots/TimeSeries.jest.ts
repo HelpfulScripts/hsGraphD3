@@ -27,10 +27,10 @@ const data:DataSet = {
 function createGraph(root:any) {
     const graph = new hsGraphD3.GraphCartesian(root);
     graph.isRendered = () => true;
-    (<AxesDefaults>graph.defaults.axes).hor.numTicksMinor = 10;
-    (<AxesDefaults>graph.defaults.axes).hor.numTicksMajor = 2;
-    (<AxesDefaults>graph.defaults.axes).ver.numTicksMinor = 10;
-    (<AxesDefaults>graph.defaults.axes).ver.numTicksMajor = 2;
+    graph.axes.defaults.hor.numTicksMinor = 10;
+    graph.axes.defaults.hor.numTicksMajor = 2;
+    graph.axes.defaults.ver.numTicksMinor = 10;
+    graph.axes.defaults.ver.numTicksMajor = 2;
     return graph;
 }
 
@@ -39,17 +39,17 @@ describe('TimeSeries', () => {
     let graph:hsGraphD3.GraphCartesian;
     beforeAll(() => {
         graph = createGraph(root);
-        graph.addSeries('timeseries', {x:'xval', y:'yval'});
-        (<SeriesPlotDefaults>graph.defaults.series.series0).marker.rendered = true;
-        (<SeriesPlotDefaults>graph.defaults.series.series0).area.rendered = true;
+        graph.series.add('timeseries', {x:'xval', y:'yval'});
+        graph.series.defaults.series0.marker.rendered = true;
+        graph.series.defaults.series0.area.rendered = true;
         graph.render(data);
     });
     it('should plot timeSeries', () =>
         expect(root).toMatchSnapshot()
     );
     it('should support settings changes', () => {
-        graph.defaults.axes.color = '#666';
-        expect(graph.defaults.axes.color).toBe('#666');
+        graph.axes.defaults.color = '#666';
+        expect(graph.axes.defaults.color).toBe('#666');
     });
     it(`should have 'timeseries' registered`, () =>
         expect(graph.seriesTypes).toContain('timeseries')

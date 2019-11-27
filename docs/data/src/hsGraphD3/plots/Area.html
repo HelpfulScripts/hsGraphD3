@@ -33,7 +33,7 @@
 <p id=10 class="line"><span>&nbsp;&nbsp;10</span><comment></comment></p>
 <p id=11 class="line"><span>&nbsp;&nbsp;11</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=12 class="line"><span>&nbsp;&nbsp;12</span><comment>&nbsp;*&nbsp;##&nbsp;Usage</comment></p>
-<p id=13 class="line"><span>&nbsp;&nbsp;13</span><comment>&nbsp;*&nbsp;`graph.addSeries(<quote>'area'</quote>,&nbsp;{x:<x-col>,&nbsp;y:<y-col>,&nbsp;y0:<y-lower-fill>=0,&nbsp;r?:<size-col>});`</comment></p>
+<p id=13 class="line"><span>&nbsp;&nbsp;13</span><comment>&nbsp;*&nbsp;`graph.series.add(<quote>'area'</quote>,&nbsp;{x:<x-col>,&nbsp;y:<y-col>,&nbsp;y0:<y-lower-fill>=0,&nbsp;r?:<size-col>});`</comment></p>
 <p id=14 class="line"><span>&nbsp;&nbsp;14</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=15 class="line"><span>&nbsp;&nbsp;15</span><comment>&nbsp;*&nbsp;##&nbsp;Example</comment></p>
 <p id=16 class="line"><span>&nbsp;&nbsp;16</span><comment>&nbsp;*&nbsp;-&nbsp;first&nbsp;series&nbsp;(top):&nbsp;an&nbsp;orange&nbsp;area-band&nbsp;between&nbsp;<quote>'costs'</quote>&nbsp;and&nbsp;<quote>'volume'</quote>,&nbsp;not&nbsp;using&nbsp;markers</comment></p>
@@ -41,8 +41,8 @@
 <p id=18 class="line"><span>&nbsp;&nbsp;18</span><comment>&nbsp;*&nbsp;<example&nbsp;height=200px&nbsp;libs={hsGraphD3:<quote>'hsGraphD3'</quote>}></comment></p>
 <p id=19 class="line"><span>&nbsp;&nbsp;19</span><comment>&nbsp;*&nbsp;<file&nbsp;name=<quote>'script.js'</quote>></comment></p>
 <p id=20 class="line"><span>&nbsp;&nbsp;20</span><comment>&nbsp;*&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.GraphCartesian(root);</comment></p>
-<p id=21 class="line"><span>&nbsp;&nbsp;21</span><comment>&nbsp;*&nbsp;graph.addSeries(<quote>'area'</quote>,&nbsp;{x:<quote>'time'</quote>,&nbsp;y:<quote>'costs'</quote>,&nbsp;y0:<quote>'volume'</quote>});</comment></p>
-<p id=22 class="line"><span>&nbsp;&nbsp;22</span><comment>&nbsp;*&nbsp;graph.addSeries(<quote>'area'</quote>,&nbsp;{x:<quote>'time'</quote>,&nbsp;y:<quote>'volume'</quote>,&nbsp;r:<quote>'costs'</quote>});</comment></p>
+<p id=21 class="line"><span>&nbsp;&nbsp;21</span><comment>&nbsp;*&nbsp;graph.series.add(<quote>'area'</quote>,&nbsp;{x:<quote>'time'</quote>,&nbsp;y:<quote>'costs'</quote>,&nbsp;y0:<quote>'volume'</quote>});</comment></p>
+<p id=22 class="line"><span>&nbsp;&nbsp;22</span><comment>&nbsp;*&nbsp;graph.series.add(<quote>'area'</quote>,&nbsp;{x:<quote>'time'</quote>,&nbsp;y:<quote>'volume'</quote>,&nbsp;r:<quote>'costs'</quote>});</comment></p>
 <p id=23 class="line"><span>&nbsp;&nbsp;23</span><comment>&nbsp;*&nbsp;graph.render({</comment></p>
 <p id=24 class="line"><span>&nbsp;&nbsp;24</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;colNames:[<quote>'time'</quote>,&nbsp;<quote>'volume'</quote>,&nbsp;<quote>'costs'</quote>],&nbsp;</comment></p>
 <p id=25 class="line"><span>&nbsp;&nbsp;25</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;rows:[&nbsp;&nbsp;&nbsp;&nbsp;[-1,&nbsp;&nbsp;&nbsp;&nbsp;0.2,&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.3],&nbsp;</comment></p>
@@ -64,13 +64,13 @@
 <p id=41 class="line"><span>&nbsp;&nbsp;41</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=42 class="line"><span>&nbsp;&nbsp;42</span><comment>&nbsp;*&nbsp;function&nbsp;createGraph(svgRoot)&nbsp;{</comment></p>
 <p id=43 class="line"><span>&nbsp;&nbsp;43</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.GraphCartesian(svgRoot);</comment></p>
-<p id=44 class="line"><span>&nbsp;&nbsp;44</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;graph.addSeries(<quote>'area'</quote>,&nbsp;{x:<quote>'time'</quote>,&nbsp;y:<quote>'volume'</quote>,&nbsp;r:<quote>'costs'</quote>});</comment></p>
-<p id=45 class="line"><span>&nbsp;&nbsp;45</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;graph.defaults.series[0];</comment></p>
+<p id=44 class="line"><span>&nbsp;&nbsp;44</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;graph.series.add(<quote>'area'</quote>,&nbsp;{x:<quote>'time'</quote>,&nbsp;y:<quote>'volume'</quote>,&nbsp;r:<quote>'costs'</quote>});</comment></p>
+<p id=45 class="line"><span>&nbsp;&nbsp;45</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;graph.series.defaults[0];</comment></p>
 <p id=46 class="line"><span>&nbsp;&nbsp;46</span><comment>&nbsp;*&nbsp;}</comment></p>
 <p id=47 class="line"><span>&nbsp;&nbsp;47</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=48 class="line"><span>&nbsp;&nbsp;48</span><comment>&nbsp;*&nbsp;m.mount(root,&nbsp;{</comment></p>
 <p id=49 class="line"><span>&nbsp;&nbsp;49</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;view:()&nbsp;=>&nbsp;m(<quote>'div'</quote>,&nbsp;{style:<quote>'background-color:#eee;&nbsp;font-family:Monospace'</quote>},&nbsp;[</comment></p>
-<p id=50 class="line"><span>&nbsp;&nbsp;50</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m(<quote>'div'</quote>,&nbsp;m.trust(<quote>'graph.defaults.series[0]&nbsp;=&nbsp;'</quote>&nbsp;+&nbsp;defaults)),&nbsp;</comment></p>
+<p id=50 class="line"><span>&nbsp;&nbsp;50</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m(<quote>'div'</quote>,&nbsp;m.trust(<quote>'graph.series.defaults[0]&nbsp;=&nbsp;'</quote>&nbsp;+&nbsp;defaults)),&nbsp;</comment></p>
 <p id=51 class="line"><span>&nbsp;&nbsp;51</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m(<quote>'div.myGraph'</quote>,&nbsp;<quote>''</quote>)</comment></p>
 <p id=52 class="line"><span>&nbsp;&nbsp;52</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;]),</comment></p>
 <p id=53 class="line"><span>&nbsp;&nbsp;53</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;oncreate:&nbsp;()&nbsp;=>&nbsp;{</comment></p>

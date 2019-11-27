@@ -23,9 +23,9 @@ Helpful Scripts Graph convenience wrapper for D3js.
  * `graph = new hsGraphD3.GraphCartesian(root);`
  * 2. add desired series configurations, specifying the type of series, as well as the data to use for the x- and y-axes, 
  * and other variables, depending on the series type:
- * `graph.addSeries('area', {x:'time', y:'volume', r:()=>5});`
+ * `graph.series.add('area', {x:'time', y:'volume', r:()=>5});`
  * 3. apply any desired formatting changes to the default:
- * `graph.defaults.axes.color = '#88f';`
+ * `graph.axes.defaults.color = '#88f';`
  * 4. render the graph for a given data set: 
  * `graph.render(data);`
  * 
@@ -66,11 +66,11 @@ Helpful Scripts Graph convenience wrapper for D3js.
  * 
  * // create the graph and define the series to plot:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.addSeries('bubble', {x:'time', y:'volume', r:'costs'});
+ * graph.series.add('bubble', {x:'time', y:'volume', r:'costs'});
  * 
  * // adjust some settings:
- * graph.defaults.axes.color = '#88f';  // both axes appear blue
- * with (graph.defaults.scales.dims.size.range) {
+ * graph.axes.defaults.color = '#88f';  // both axes appear blue
+ * with (graph.scales.defaults.dims.size.range) {
  *      min = 10;                       // min marker size
  *      max = 50;                       // max marker size
  * }
@@ -103,8 +103,8 @@ Helpful Scripts Graph convenience wrapper for D3js.
  * 
  * // create the graph and define the series to plot:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.addSeries('line', {x:'date', y:'line', y0:()=>0});
- * graph.addSeries('timeseries', {x:'date', y:'series', y0:()=>-1});
+ * graph.series.add('line', {x:'date', y:'line', y0:()=>0});
+ * graph.series.add('timeseries', {x:'date', y:'series', y0:()=>-1});
  * 
  * //----- adjust some settings:
  * with (graph.defaults) {

@@ -4,7 +4,7 @@
  * Abstract base class for all series plot types on cartesian coordinates.
  * To create a series plot, add the desired plot type to the graph:
  * ```
- * graph.addSeries(<type>, ...<data-columns>);
+ * graph.series.add(<type>, ...<data-columns>);
  * ``` 
  */
 

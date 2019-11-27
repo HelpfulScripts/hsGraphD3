@@ -12,9 +12,9 @@
  * };
  * 
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.addSeries('line', {x:'time', y:'costs'});
- * graph.addSeries('line', {x:'time', y:()=>0.5});
- * graph.defaults.scales.dims.ver.type = 'log';
+ * graph.series.add('line', {x:'time', y:'costs'});
+ * graph.series.add('line', {x:'time', y:()=>0.5});
+ * graph.scales.defaults.dims.ver.type = 'log';
  * graph.render(data);
  * 
  * </file>
@@ -28,13 +28,13 @@
  * 
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      graph.defaults.scales.dims.ver.type = 'log';
- *      return graph.defaults.scales;
+ *      graph.scales.defaults.dims.ver.type = 'log';
+ *      return graph.scales.defaults;
  * }
  * 
  * m.mount(root, {
  *   view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [
- *      m('div', m.trust('graph.defaults.scales = ' + defaults)), 
+ *      m('div', m.trust('graph.scales.defaults = ' + defaults)), 
  *      m('div.myGraph', '')
  *   ]),
  *   oncreate: () => {
@@ -122,6 +122,7 @@ export interface ScaleDefaults {    //  extends ComponentDefaults {
     aggregateOverTime: boolean;   // 
     domain: RangeDefaults | CategoricalDefaults;
     range:  { min: UnitVp|'auto', max: UnitVp|'auto' };  
+    ordinal?: { gap:number; overlap:number; };
 }
 
 /**
@@ -161,11 +162,13 @@ export class Scales extends GraphComponent {
 
     constructor(cfg:GraphCfg) { super(cfg, null); }
 
-    get componentType() { return Scales.type; }
-    initialize(): void {} 
-    preRender(): void {} 
-    renderComponent() {}
-    postRender(): void {} 
+    public get componentType() { return Scales.type; }
+    public get defaults():ScalesDefaults { return <ScalesDefaults>this.cfg.defaults[this.componentType]; }
+
+    public initialize(): void {} 
+    public preRender(): void {} 
+    public renderComponent() {}
+    public postRender(): void {} 
 
     /** creates a default entry for the component type in `Defaults` */
     public createDefaults():ScalesDefaults {

@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">88.61% </span>
+        <span class="strong">86.25% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>70/79</span>
+        <span class='fraction'>69/80</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">72.22% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>26/36</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">79.41% </span>
+        <span class="strong">77.14% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>27/34</span>
+        <span class='fraction'>27/35</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">89.23% </span>
+        <span class="strong">87.88% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>58/65</span>
+        <span class='fraction'>58/66</span>
       </div>
     </div>
     <p class="quiet">
@@ -373,7 +373,10 @@
 <a name='L325'></a><a href='#L325'>325</a>
 <a name='L326'></a><a href='#L326'>326</a>
 <a name='L327'></a><a href='#L327'>327</a>
-<a name='L328'></a><a href='#L328'>328</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L328'></a><a href='#L328'>328</a>
+<a name='L329'></a><a href='#L329'>329</a>
+<a name='L330'></a><a href='#L330'>330</a>
+<a name='L331'></a><a href='#L331'>331</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -432,6 +435,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -537,6 +541,8 @@
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -583,11 +589,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">68x</span>
+<span class="cline-any cline-yes">64x</span>
 <span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">38x</span>
+<span class="cline-any cline-yes">34x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -603,7 +609,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">30x</span>
-<span class="cline-any cline-yes">1428x</span>
+<span class="cline-any cline-yes">1332x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-yes">30x</span>
@@ -652,7 +658,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -714,9 +720,9 @@
  * };
  * 
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.addSeries('line', {x:'time', y:'costs'});
- * graph.addSeries('line', {x:'time', y:()=&gt;0.5});
- * graph.defaults.scales.dims.ver.type = 'log';
+ * graph.series.add('line', {x:'time', y:'costs'});
+ * graph.series.add('line', {x:'time', y:()=&gt;0.5});
+ * graph.scales.defaults.dims.ver.type = 'log';
  * graph.render(data);
  * 
  * &lt;/file&gt;
@@ -730,13 +736,13 @@
  * 
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      graph.defaults.scales.dims.ver.type = 'log';
- *      return graph.defaults.scales;
+ *      graph.scales.defaults.dims.ver.type = 'log';
+ *      return graph.scales.defaults;
  * }
  * 
  * m.mount(root, {
  *   view:() =&gt; m('div', {style:'background-color:#eee; font-family:Monospace'}, [
- *      m('div', m.trust('graph.defaults.scales = ' + defaults)), 
+ *      m('div', m.trust('graph.scales.defaults = ' + defaults)), 
  *      m('div.myGraph', '')
  *   ]),
  *   oncreate: () =&gt; {
@@ -824,6 +830,7 @@ export interface ScaleDefaults {    //  extends ComponentDefaults {
     aggregateOverTime: boolean;   // 
     domain: RangeDefaults | CategoricalDefaults;
     range:  { min: UnitVp|'auto', max: UnitVp|'auto' };  
+    ordinal?: { gap:number; overlap:number; };
 }
 &nbsp;
 /**
@@ -863,11 +870,13 @@ export class Scales extends GraphComponent {
 &nbsp;
     constructor(cfg:GraphCfg) { super(cfg, null); }
 &nbsp;
-    get componentType() { return Scales.type; }
-    initialize(): void {} 
-    preRender(): void {} 
-    renderComponent() {}
-<span class="fstat-no" title="function not covered" >    postRender(</span>): void {} 
+    public get componentType() { return Scales.type; }
+<span class="fstat-no" title="function not covered" >    public get d</span>efaults():ScalesDefaults { <span class="cstat-no" title="statement not covered" >return &lt;ScalesDefaults&gt;this.cfg.defaults[this.componentType]; </span>}
+&nbsp;
+    public initialize(): void {} 
+    public preRender(): void {} 
+    public renderComponent() {}
+    public postRender(): void {} 
 &nbsp;
     /** creates a default entry for the component type in `Defaults` */
     public createDefaults():ScalesDefaults {
@@ -979,7 +988,7 @@ class BandScale extends BaseScale {
     }
 &nbsp;
     protected getTicks() { 
-        return () =&gt; this.d3Scale.domain(); 
+        return <span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >this.d3Scale.domain(); </span>
     }
 &nbsp;
     protected getDomain():Domain { 
