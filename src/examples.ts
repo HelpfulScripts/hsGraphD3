@@ -4,84 +4,91 @@
  * <example height=2000px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
  * <file name='script.js'>
  * const content = [
- *      graph => {  // simple 'line' graph
+ *      graph => {
  *          graph.series.add('line', {x:'time', y:'Joe'});
  *          graph.series.add('line', {x:'time', y:'Mary'});
+ *          graph.title.text = `simple 'line' graph`;
  *          graph.render(data);
  *      }, 
  * 
- *      
- *      graph => {  // 'line' graph with dynamic updates
+ *      graph => {  
  *          graph.series.add('line', {x:'time', y:'Joe'});
  *          graph.series.add('line', {x:'time', y:'Mary'});
+ *          graph.title.text = `'line' graph with dynamic updates`;
  *          graph.render(data).update(2000, update);
  *      }, 
  * 
- *      graph => {  // simple 'area' graph
+ *      graph => {
  *          graph.series.add('area', {x:'time', y:'Joe'});
  *          graph.series.add('area', {x:'time', y:'Mary'});
+ *          graph.title.text = `simple 'area' graph`;
  *          graph.render(data).update(2000);
  *      }, 
- *      
  * 
- *      graph => {  // raised 'area' graph
+ *      graph => {
  *          graph.series.add('area', {x:'time', y:'Joe'});
  *          graph.series.add('area', {x:'time', y:'Mary', y0:()=>1});
+ *          graph.title.text = `raised 'area' graph`;
  *          graph.render(data).update(2000);
  *      }, 
  * 
- * 
- *      graph => {  // opposed 'area' graph
+ *      graph => {
  *          graph.series.add('area', {x:'time', y:'Joe', y0:()=>1});
  *          graph.series.add('area', {x:'time', y:'Mary', y0:()=>1});
+ *          graph.title.text = `opposed 'area' graph`;
  *          graph.render(data).update(2000);
  *      }, 
  * 
- * 
- *      graph => {  // 'line' graph with area and markers for first series
+ *      graph => {
  *          graph.series.add('line', {x:'time', y:'Joe'});
  *          graph.series.add('line', {x:'time', y:'Mary'});
  *          graph.series.defaults.series0.area.rendered = true;
  *          graph.series.defaults.series0.marker.rendered = true;
+ *          graph.title.text = `'line' graph with area and markers for 1st series`;
  *          graph.render(data).update(2000);
  *      }, 
  * 
- *      graph => {  // 'bubble' graph
+ *      graph => { 
  *          graph.series.add('bubble', {x:'time', y:'Joe'});
  *          graph.series.add('bubble', {x:'time', y:'Mary', r:'Joe'});
+ *          graph.title.text = `'bubble' graph`;
  *          graph.render(data).update(2000);
  *      }, 
  * 
- *      graph => {  // 'time series'
+ *      graph => {
  *          graph.series.add('timeseries', {x:'time', y:'Joe'});
  *          graph.series.add('timeseries', {x:'time', y:'Mary'});
+ *          graph.title.text = `'time series'`;
  *          graph.render(dataTS).update(2000, updateTS);
  *      }, 
  * 
- *      graph => {  // 'column' graph
+ *      graph => { 
  *          graph.series.add('column', {x:'item', y:'Joe'});
  *          graph.series.add('column', {x:'item', y:'Mary'});
+ *          graph.title.text = `'column' graph`;
  *          graph.render(data).update(2000);
  *      }, 
  * 
- *      graph => {  // stacked 'column' graph
+ *      graph => { 
  *          graph.series.add('column', {x:'item', y:'Joe', stacked:'myGroup'});
  *          graph.series.add('column', {x:'item', y:'Mary', stacked:'myGroup'});
+ *          graph.title.text = `stacked 'column' graph`;
  *          graph.render(data).update(2000);
  *      }, 
  * 
- *      graph => {  // 'bar' graph
+ *      graph => { 
  *          graph.series.add('bar', {x:'Joe', y:'item'});
  *          graph.series.add('bar', {x:'Mary', y:'item'});
+ *          graph.title.text = `'bar' graph`;
  *          graph.render(data).update(2000);
  *      }, 
  * 
- *      graph => {  // stacked 'bar' graph
+ *      graph => {
  *          graph.series.add('bar', {x:'Joe', y:'item', stacked:'myGroup'});
  *          graph.series.add('bar', {x:'Mary', y:'item', stacked:'myGroup'});
+ *          graph.title.text = `stacked 'bar' graph`;
  *          graph.render(data).update(2000);
  *      }, 
- * 
  * ];
  * 
  * function nodeGraph(configure) {

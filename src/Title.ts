@@ -33,7 +33,7 @@
  * 
  * m.mount(root, {
  *   view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [
- *      m('div', m.trust('graph.canvas.defaults = ' + defaults)), 
+ *      m('div', m.trust('graph.title.defaults = ' + defaults)), 
  *      m('div.myGraph', '')
  *   ]),
  *   oncreate: () => {
@@ -51,12 +51,13 @@
  */
 
  /** */
-import { select as d3Select }   from 'd3'; 
+import { log as _log }          from 'hsutil'; const log = _log('Title');
 import { ComponentDefaults }    from './GraphComponent'; 
 import { GraphComponent }       from './GraphComponent'; 
 import { GraphCfg }             from './GraphComponent'; 
-import { d3Base, setText }               from './Settings';
-import { defaultText }          from './Settings';
+import { d3Base }               from './Settings';
+import { setText }              from './Settings';
+import { defaultTextStyle }     from './Settings';
 import { TextStyle }            from './Settings';
 import { UnitPercent }          from './Settings';
 
@@ -87,12 +88,14 @@ export class Title extends GraphComponent {
     }
 
     public createDefaults():TitleDefaults {
-        return {
+        const defs = {
             rendered:   false,
-            x:          '0%',
-            y:          '0%',
-            style:       defaultText(),
+            x:          '20%',
+            y:          '5%',
+            style:       defaultTextStyle(24),
         };
+        defs.style.font.weight = 'bold';    // 100-900
+        return defs;
     }
 
     initialize(svg:d3Base): void {
@@ -107,10 +110,20 @@ export class Title extends GraphComponent {
      */
     public renderComponent() {
         const titleDefs = this.defaults;
+        const vp = this.cfg.viewPort;
+        const x = parseInt(titleDefs.x)/100;
+        const y = parseInt(titleDefs.y)/100;
+        if (x && !titleDefs.x.endsWith('%')) { log.warn(`title x pos is missing '%': ${titleDefs.x}`); }
+        if (y && !titleDefs.y.endsWith('%')) { log.warn(`title y pos is missing '%': ${titleDefs.y}`); }
         if (titleDefs.rendered) {
             const svg = this.svg.select('text');
             setText(svg, titleDefs.style, this.cfg.transition);
-            svg.attr('x',0).attr('y',0)
+            const anchor = (x<0.33)? 'start' : ((x>0.66)? 'end' : 'middle');
+            const baseline = (y<0.33)? 'hanging' : ((x>0.66)? 'baseline' : 'middle');
+            // const dy = titleDefs.style.font.size;
+            svg
+            .attr('x', x * vp.width).attr('text-anchor', anchor)
+            .attr('y', y * vp.height).attr('dominant-baseline', baseline)
             .text(this.titleText);
         }
     }
