@@ -39,7 +39,7 @@ describe('Column', () => {
         graph = createGraph(root);
         graph.series.add('column', {x:'State', y:'volume', stacked:'grp'});
         graph.series.add('column', {x:'State', y:'volume', stacked:'grp'});
-        graph.series.defaults.series0.line.rendered = true;
+        graph.series.defaults['series0'].line.rendered = true;
         graph.render(data);
     });
     it(`should have 'column' registered`, () =>

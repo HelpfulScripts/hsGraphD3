@@ -39,7 +39,7 @@ describe('Bar', () => {
         graph = createGraph(root);
         graph.series.add('bar', {x:'costs', y:'State', stacked:'grp'});
         graph.series.add('bar', {x:'volume', y:'State', stacked:'grp'});
-        graph.series.defaults.series0.line.rendered = true;
+        graph.series.defaults['series0'].line.rendered = true;
         graph.render(data);
     });
     it(`should have 'bar' registered`, () =>

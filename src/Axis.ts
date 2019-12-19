@@ -149,7 +149,7 @@ export class Axis {
         const clientSize = (this.dir===Direction.horizontal)? this.cfg.client.width : this.cfg.client.height;
         scale.tickCountMajor = axisDef.numTicksMajor==='auto'? parseInt(''+(clientSize / pixPerMajorTick)) : axisDef.numTicksMajor;
         scale.tickCountMinor = axisDef.numTicksMinor==='auto'? parseInt(''+(clientSize / pixPerMinorTick)) : axisDef.numTicksMinor;
-        if (this.dir==='ver') { log.info(`ticks: ${this.dir}:${scale.tickCountMajor}/${scale.tickCountMinor}, size = ${clientSize}`); }
+        // if (this.dir==='ver') { log.info(`ticks: ${this.dir}:${scale.tickCountMajor}/${scale.tickCountMinor}, size = ${clientSize}`); }
     } 
 
     public renderComponent() {

@@ -172,8 +172,8 @@
 <p id=149 class="line"><span>&nbsp;149</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;clientSize&nbsp;=&nbsp;(this.dir===Direction.horizontal)?&nbsp;this.cfg.client.width&nbsp;:&nbsp;this.cfg.client.height;</p>
 <p id=150 class="line"><span>&nbsp;150</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scale.tickCountMajor&nbsp;=&nbsp;axisDef.numTicksMajor===<quote>'auto'</quote>?&nbsp;parseInt(<quote>''</quote>+(clientSize&nbsp;/&nbsp;pixPerMajorTick))&nbsp;:&nbsp;axisDef.numTicksMajor;</p>
 <p id=151 class="line"><span>&nbsp;151</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;scale.tickCountMinor&nbsp;=&nbsp;axisDef.numTicksMinor===<quote>'auto'</quote>?&nbsp;parseInt(<quote>''</quote>+(clientSize&nbsp;/&nbsp;pixPerMinorTick))&nbsp;:&nbsp;axisDef.numTicksMinor;</p>
-<p id=152 class="line"><span>&nbsp;152</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(this.dir===<quote>'ver'</quote>)&nbsp;{&nbsp;log.info(`ticks:&nbsp;${this.dir}:${scale.tickCountMajor}/${scale.tickCountMinor},&nbsp;size&nbsp;=&nbsp;${clientSize}`);&nbsp;}</p>
-<p id=153 class="line"><span>&nbsp;153</span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;</p>
+<p id=152 class="line"><span>&nbsp;152</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;if&nbsp;(this.dir===<quote>'ver'</quote>)&nbsp;{&nbsp;log.info(`ticks:&nbsp;${this.dir}:${scale.tickCountMajor}/${scale.tickCountMinor},&nbsp;size&nbsp;=&nbsp;${clientSize}`);&nbsp;}</comment></p>
+<p id=153 class="line"><span>&nbsp;153</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;</p>
 <p id=154 class="line"><span>&nbsp;154</span></p>
 <p id=155 class="line"><span>&nbsp;155</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;renderComponent()&nbsp;{</p>
 <p id=156 class="line"><span>&nbsp;156</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;trans&nbsp;=&nbsp;this.cfg.transition;</p>

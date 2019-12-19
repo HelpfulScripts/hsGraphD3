@@ -40,8 +40,8 @@ describe('TimeSeries', () => {
     beforeAll(() => {
         graph = createGraph(root);
         graph.series.add('timeseries', {x:'xval', y:'yval'});
-        graph.series.defaults.series0.marker.rendered = true;
-        graph.series.defaults.series0.area.rendered = true;
+        graph.series.defaults['series0'].marker.rendered = true;
+        graph.series.defaults['series0'].area.rendered = true;
         graph.render(data);
     });
     it('should plot timeSeries', () =>
