@@ -50,7 +50,7 @@
 
 import { log as _log }          from 'hsutil'; const log = _log('Defaults');
 import { ComponentDefaults }    from './GraphComponent';
-import { Line }                 from './Settings';
+// import { Line }                 from './Settings';
 
 
 /** viewport units */
