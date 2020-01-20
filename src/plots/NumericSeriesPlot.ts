@@ -26,7 +26,7 @@
  */
 
 /** */
-import { log as gLog }          from 'hsutil';   const log = gLog('NumericSeriesPlot');
+import { Log }                  from 'hsutil'; const log = new Log('NumericSeriesPlot');
 import { line as d3line}        from "d3";
 import { curveCatmullRom }      from 'd3';
 import { NumericDataSet }       from '../Graph';

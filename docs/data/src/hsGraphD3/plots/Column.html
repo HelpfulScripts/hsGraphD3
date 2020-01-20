@@ -98,7 +98,7 @@
 <p id=75 class="line"><span>&nbsp;&nbsp;75</span><comment>&nbsp;*&nbsp;###&nbsp;Column&nbsp;plot&nbsp;Default&nbsp;Settings:</comment></p>
 <p id=76 class="line"><span>&nbsp;&nbsp;76</span><comment>&nbsp;*&nbsp;<example&nbsp;height=600px&nbsp;libs={hsGraphD3:<quote>'hsGraphD3'</quote>,&nbsp;hsUtil:<quote>'hsUtil'</quote>}></comment></p>
 <p id=77 class="line"><span>&nbsp;&nbsp;77</span><comment>&nbsp;*&nbsp;<file&nbsp;name=<quote>'script.js'</quote>></comment></p>
-<p id=78 class="line"><span>&nbsp;&nbsp;78</span><comment>&nbsp;*&nbsp;const&nbsp;log&nbsp;=&nbsp;hsUtil.log(<quote>''</quote>);</comment></p>
+<p id=78 class="line"><span>&nbsp;&nbsp;78</span><comment>&nbsp;*&nbsp;const&nbsp;log&nbsp;=&nbsp;new&nbsp;hsUtil.Log(<quote>''</quote>);</comment></p>
 <p id=79 class="line"><span>&nbsp;&nbsp;79</span><comment>&nbsp;*&nbsp;let&nbsp;defaults;</comment></p>
 <p id=80 class="line"><span>&nbsp;&nbsp;80</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=81 class="line"><span>&nbsp;&nbsp;81</span><comment>&nbsp;*&nbsp;function&nbsp;createGraph(svgRoot)&nbsp;{</comment></p>
@@ -118,9 +118,9 @@
 <p id=95 class="line"><span>&nbsp;&nbsp;95</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;colors&nbsp;=&nbsp;[<quote>'#800'</quote>,&nbsp;<quote>'#080'</quote>,&nbsp;<quote>'#008'</quote>];</comment></p>
 <p id=96 class="line"><span>&nbsp;&nbsp;96</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;graph&nbsp;=&nbsp;createGraph(svgRoot[0]);</comment></p>
 <p id=97 class="line"><span>&nbsp;&nbsp;97</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;defaults&nbsp;=&nbsp;`<b>graph.series.defaults&nbsp;=&nbsp;</b></comment></p>
-<p id=98 class="line"><span>&nbsp;&nbsp;98</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${hsUtil.log.inspect(graph.series.defaults,&nbsp;null,&nbsp;<quote>'&nbsp;&nbsp;&nbsp;'</quote>,&nbsp;colors).replace(/\n/g,&nbsp;<quote>'<br>'</quote>)}</comment></p>
+<p id=98 class="line"><span>&nbsp;&nbsp;98</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${log.inspect(graph.series.defaults,&nbsp;null,&nbsp;<quote>'&nbsp;&nbsp;&nbsp;'</quote>,&nbsp;colors).replace(/\n/g,&nbsp;<quote>'<br>'</quote>)}</comment></p>
 <p id=99 class="line"><span>&nbsp;&nbsp;99</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><br><b>graph.scales.defaults.dims&nbsp;=&nbsp;</b></comment></p>
-<p id=100 class="line"><span>&nbsp;100</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${hsUtil.log.inspect(graph.scales.defaults.dims,&nbsp;null,&nbsp;<quote>'&nbsp;&nbsp;&nbsp;'</quote>,&nbsp;colors).replace(/\n/g,&nbsp;<quote>'<br>'</quote>)}`;</comment></p>
+<p id=100 class="line"><span>&nbsp;100</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${log.inspect(graph.scales.defaults.dims,&nbsp;null,&nbsp;<quote>'&nbsp;&nbsp;&nbsp;'</quote>,&nbsp;colors).replace(/\n/g,&nbsp;<quote>'<br>'</quote>)}`;</comment></p>
 <p id=101 class="line"><span>&nbsp;101</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</comment></p>
 <p id=102 class="line"><span>&nbsp;102</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;}&nbsp;</comment></p>
 <p id=103 class="line"><span>&nbsp;103</span><comment>&nbsp;*&nbsp;});</comment></p>
@@ -130,7 +130,7 @@
 <p id=107 class="line"><span>&nbsp;107</span></p>
 <p id=108 class="line"><span>&nbsp;108</span>&nbsp;<comment>/**&nbsp;*/</comment></p>
 <p id=109 class="line"><span>&nbsp;109</span></p>
-<p id=110 class="line"><span>&nbsp;110</span>import&nbsp;{&nbsp;log&nbsp;as&nbsp;gLog&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'hsutil'</quote>;&nbsp;&nbsp;&nbsp;const&nbsp;log&nbsp;=&nbsp;gLog(<quote>'Column'</quote>);</p>
+<p id=110 class="line"><span>&nbsp;110</span>import&nbsp;{&nbsp;Log&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'hsutil'</quote>;&nbsp;const&nbsp;log&nbsp;=&nbsp;new&nbsp;Log(<quote>'Column'</quote>);</p>
 <p id=111 class="line"><span>&nbsp;111</span>import&nbsp;{&nbsp;CartSeriesDimensions&nbsp;}&nbsp;from&nbsp;<quote>'../CartSeriesPlot'</quote>;</p>
 <p id=112 class="line"><span>&nbsp;112</span>import&nbsp;{&nbsp;GraphCfg}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../GraphComponent'</quote>;</p>
 <p id=113 class="line"><span>&nbsp;113</span>import&nbsp;{&nbsp;Series&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../Series'</quote>;</p>

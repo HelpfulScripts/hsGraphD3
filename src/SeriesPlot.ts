@@ -15,7 +15,7 @@
  */
 
 /**  */
-import { log as gLog }          from 'hsutil';   const log = gLog('SeriesPlot');
+import { Log }                  from 'hsutil'; const log = new Log('SeriesPlot');
 import { BaseType }             from 'd3';
 import { d3Base, }              from "./Settings";
 import { defaultStroke }        from "./Settings";

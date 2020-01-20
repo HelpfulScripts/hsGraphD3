@@ -36,7 +36,7 @@
  * ### Area plot Default Settings:
  * <example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
  * <file name='script.js'>
- * const log = hsUtil.log('');
+ * const log = new hsUtil.Log('');
  * let defaults;
  * 
  * function createGraph(svgRoot) {
@@ -54,7 +54,7 @@
  *      const svgRoot = root.getElementsByClassName('myGraph');
  *      if (svgRoot && svgRoot.length && !defaults) { 
  *          const colors = ['#800', '#080', '#008'];
- *          defaults = hsUtil.log.inspect(createGraph(svgRoot[0]), null, '   ', colors)
+ *          defaults = log.inspect(createGraph(svgRoot[0]), null, '   ', colors)
  *              .replace(/\n/g, '<br>')
  *      }
  *   } 
@@ -65,7 +65,7 @@
 
  /** */
 
-import { log as gLog }          from 'hsutil';   const log = gLog('Area');
+import { Log }                  from 'hsutil'; const log = new Log('Area');
 import { NumericSeriesPlot }    from './NumericSeriesPlot';
 import { CartSeriesDimensions } from '../CartSeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';

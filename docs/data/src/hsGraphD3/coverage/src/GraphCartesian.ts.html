@@ -404,7 +404,7 @@
  * ### GraphCartesian Default Settings:
  * &lt;example height=300px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}&gt;
  * &lt;file name='script.js'&gt;
- * const log = hsUtil.log('');
+ * const log = new hsUtil.Log('');
  * let defaults;
  * 
  * m.mount(root, {
@@ -417,7 +417,7 @@
  *      if (svgRoot &amp;&amp; svgRoot.length &amp;&amp; !defaults) { 
  *          const colors = ['#800', '#080', '#008'];
  *          const graph = new hsGraphD3.GraphCartesian(svgRoot[0]);
- *          defaults = hsUtil.log
+ *          defaults = log
  *              .inspect(graph.defaults, null, '   ', colors)
  *              .replace(/\n/g, '&lt;br&gt;')
  *      }
@@ -429,10 +429,10 @@
 &nbsp;
  /** */
 &nbsp;
-import { log as gLog } from 'hsutil';   const log = gLog('GraphCartesian');
+import { Log }                  from 'hsutil'; const log = new Log('GraphCartesian');
 &nbsp;
 import { DataSet }              from './Graph';
-import { ValueDef }            from './Graph';
+import { ValueDef }             from './Graph';
 import { GraphDimensions }      from './Graph';
 import { Graph }                from './Graph';
 import { Domains }              from './Graph';

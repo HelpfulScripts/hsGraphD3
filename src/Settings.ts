@@ -18,7 +18,7 @@
  * ### Accessible format setting and defaults (for a cartesian graph):
  * <example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
  * <file name='script.js'>
- * const log = hsUtil.log('');
+ * const log = new hsUtil.Log('');
  * let defaults;
  * 
  * function createGraph(svgRoot) {
@@ -37,7 +37,7 @@
  *      const svgRoot = root.getElementsByClassName('myGraph');
  *      if (svgRoot && svgRoot.length && !defaults) { 
  *          const colors = ['#800', '#080', '#008'];
- *          defaults = hsUtil.log.inspect(createGraph(svgRoot[0]), null, '   ', colors)
+ *          defaults = log.inspect(createGraph(svgRoot[0]), null)
  *              .replace(/\n/g, '<br>')
  *      }
  *   } 
@@ -48,7 +48,7 @@
 
 /** */
 
-import { log as _log }          from 'hsutil'; const log = _log('Defaults');
+import { Log }                  from 'hsutil'; const log = new Log('Defaults');
 import { ComponentDefaults }    from './GraphComponent';
 // import { Line }                 from './Settings';
 

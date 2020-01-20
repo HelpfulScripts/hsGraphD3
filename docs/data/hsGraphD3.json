@@ -15,7 +15,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Axis.ts",
 			"comment": {
 				"shortText": "# Axis class",
-				"text": "### Axes Default Settings:\n<example height=300px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = hsUtil.log('');\nlet defaults;\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.axes.defaults = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = hsUtil.log\n             .inspect(new hsGraphD3.GraphCartesian(svgRoot[0]).defaults.axes, null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
+				"text": "### Axes Default Settings:\n<example height=300px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = new hsUtil.Log('');\nlet defaults;\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.axes.defaults = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = log\n             .inspect(new hsGraphD3.GraphCartesian(svgRoot[0]).defaults.axes, null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
 			},
 			"children": [
 				{
@@ -1543,14 +1543,14 @@
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Axis.ts",
 							"line": 31,
-							"character": 54
+							"character": 52
 						}
 					],
 					"type": {
 						"type": "reference",
-						"name": "LogType"
+						"name": "Log"
 					},
-					"defaultValue": " gLog('Axis')"
+					"defaultValue": " new Log('Axis')"
 				},
 				{
 					"id": 1482,
@@ -1648,7 +1648,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Canvas.ts",
 			"comment": {
 				"shortText": "# Canvas component\nrenders the `Graph's` background, covering the entire viewport.",
-				"text": "### Canvas Default Settings:\n<example height=300px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = hsUtil.log('');\nlet defaults;\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.canvas.defaults = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = hsUtil.log\n             .inspect(new hsGraphD3.GraphCartesian(svgRoot[0]).defaults.canvas, null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
+				"text": "### Canvas Default Settings:\n<example height=300px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = new hsUtil.Log('');\nlet defaults;\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.canvas.defaults = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = log\n             .inspect(new hsGraphD3.GraphCartesian(svgRoot[0]).defaults.canvas, null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
 			},
 			"children": [
 				{
@@ -4259,14 +4259,14 @@
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
 							"line": 14,
-							"character": 58
+							"character": 56
 						}
 					],
 					"type": {
 						"type": "reference",
-						"name": "LogType"
+						"name": "Log"
 					},
-					"defaultValue": " gLog('CartSeriesPlot')"
+					"defaultValue": " new Log('CartSeriesPlot')"
 				}
 			],
 			"groups": [
@@ -4311,7 +4311,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
 			"comment": {
 				"shortText": "# Graph",
-				"text": "The base class for Graph types.\nTakes care of the overall orchestration of the Graph, including the following tasks:\n- setting up the SVG environment for the `Graph`\n- creating a central {@link GraphComponent.GraphCfg configuration object} that is used throughout the library.\n- creating and managing the {@link GraphComponent components} to render in ths `Graph`\n- initializing default {@link Settings settings}\n- establishing {@link Graph.LifecycleCalls lifecycle calls}\n- adding {@link SeriesPlot `series`} to render by calling {@link Graph.Graph.addSeries `addSeries`}\n- rendering the graph by calling {@link Graph.Graph.render `render`}\n- managing a central {@link Graph.Graph.transition `transition`} that applies to all components.\n\n### Graph Management Phases\nGraph Management is dividied into the following phases:\n1. **Graph creation**: `const graph = new xxxGraph(root);`\n    - creates the graph's {@link GraphComponent components} and their\n      {@link Graph.Graph.createComponents sequence of rendering} in the DOM\n    - sets the factory {@link Settings default settings} for all components\n2. **Graph configuration**:\n    - adding series: `graph.series.add(<type>, {y:'State', x:'costs'});`\n    - configuring defaults: e.g., `graph.grids.defaults.hor.major.rendered = false;`\n3. **Graph rendering**: `graph.render(<data>)`\n    - sets the graph-wide transition timing and easing\n    - starts a {@link Graph.LifecycleCalls render lifecycle} by calling each of the lifecycle methods on all components:\n        - Once, following graph creation, {@Link Graph.LifecycleCalls.initialize initializes} the components\n        - Calls {@link Graph.LifecycleCalls.preRender preRender} for any regular preparation\n        - Calls {@link Graph.LifecycleCalls.renderComponent renderComponent} to render each component\n    - returns a {@link Graph.RenderChain RenderChain} that can be used to dynamically {@link Graph.RenderChain.update update}\n      the data or settings, which triggers a new render lifecycle.\n\n### Graph Default Settings:\n<example height=300px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = hsUtil.log('');\nlet defaults;\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.graph.defaults = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = hsUtil.log\n             .inspect(new hsGraphD3.GraphCartesian(svgRoot[0]).defaults.graph, null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
+				"text": "The base class for Graph types.\nTakes care of the overall orchestration of the Graph, including the following tasks:\n- setting up the SVG environment for the `Graph`\n- creating a central {@link GraphComponent.GraphCfg configuration object} that is used throughout the library.\n- creating and managing the {@link GraphComponent components} to render in ths `Graph`\n- initializing default {@link Settings settings}\n- establishing {@link Graph.LifecycleCalls lifecycle calls}\n- adding {@link SeriesPlot `series`} to render by calling {@link Graph.Graph.addSeries `addSeries`}\n- rendering the graph by calling {@link Graph.Graph.render `render`}\n- managing a central {@link Graph.Graph.transition `transition`} that applies to all components.\n\n### Graph Management Phases\nGraph Management is dividied into the following phases:\n1. **Graph creation**: `const graph = new xxxGraph(root);`\n    - creates the graph's {@link GraphComponent components} and their\n      {@link Graph.Graph.createComponents sequence of rendering} in the DOM\n    - sets the factory {@link Settings default settings} for all components\n2. **Graph configuration**:\n    - adding series: `graph.series.add(<type>, {y:'State', x:'costs'});`\n    - configuring defaults: e.g., `graph.grids.defaults.hor.major.rendered = false;`\n3. **Graph rendering**: `graph.render(<data>)`\n    - sets the graph-wide transition timing and easing\n    - starts a {@link Graph.LifecycleCalls render lifecycle} by calling each of the lifecycle methods on all components:\n        - Once, following graph creation, {@Link Graph.LifecycleCalls.initialize initializes} the components\n        - Calls {@link Graph.LifecycleCalls.preRender preRender} for any regular preparation\n        - Calls {@link Graph.LifecycleCalls.renderComponent renderComponent} to render each component\n    - returns a {@link Graph.RenderChain RenderChain} that can be used to dynamically {@link Graph.RenderChain.update update}\n      the data or settings, which triggers a new render lifecycle.\n\n### Graph Default Settings:\n<example height=300px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = new hsUtil.Log('');\nlet defaults;\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.graph.defaults = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = log\n             .inspect(new hsGraphD3.GraphCartesian(svgRoot[0]).defaults.graph, null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
 			},
 			"children": [
 				{
@@ -8037,14 +8037,14 @@
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
 							"line": 59,
-							"character": 54
+							"character": 56
 						}
 					],
 					"type": {
 						"type": "reference",
-						"name": "LogType"
+						"name": "Log"
 					},
-					"defaultValue": " gLog('Graph')"
+					"defaultValue": " new Log('Graph')"
 				},
 				{
 					"id": 812,
@@ -8257,7 +8257,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphCartesian.ts",
 			"comment": {
 				"shortText": "## GraphCartesian",
-				"text": "creates a 2D cartesian graph.\n\n### Example:\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n// create data set:\nconst data = {\n     colNames: ['date', 'time', 'volume', 'costs'],\n     rows: [\n         ['1/1/14', -1,   0.2, 0.3],\n         ['1/1/16', -0.2, 0.7, 0.2],\n         ['9/1/16', 0.4,  0.1, 0.3],\n         ['5/1/17', 0.6, -0.2, 0.1],\n         ['7/1/18', 0.8,  0.3, 0.5],\n         ['1/1/19', 1,    0.2, 0.4]\n     ]\n}\n\n// setup and plot the data:\nconst graph = new hsGraphD3.GraphCartesian(root);\ngraph.series.add('line', {x:'time', y:'volume'},);\ngraph.series.add('line', {x:'time', y:'costs'});\n\nwith (graph.canvas.defaults) {\n     fill.color = '#fcfcfc';\n     stroke.width = 10;  // in viewport coordinates (0 - 1000)\n}\n\n// series defaults can be indexed by position or by name. Names are created as `series`+position index.\ngraph.series.defaults[0].marker.size = 15;\ngraph.series.defaults[0].marker.fill.color = '#66f';\ngraph.series.defaults[0].marker.stroke.color = '#00f';\ngraph.series.defaults.series0.line.width = 5;\ngraph.series.defaults.series0.line.color = '#00c';\n\ngraph.series.defaults.series1.marker.size = 10;\ngraph.series.defaults.series1.marker.fill.color = '#6f6';\ngraph.series.defaults.series1.marker.stroke.color = '#0a0';\ngraph.series.defaults.series1.line.width = 5;\ngraph.series.defaults[1].line.color = '#0c0';\n\ngraph.render(data).update(2000, data => {\n   data.rows.map(row => {\n     row[2] = 2*(Math.random()-0.5); // -1...1\n     row[3] = Math.random();         //  0...1\n   });\n   return true;\n});\n\n</file>\n</example>\n\n### GraphCartesian Default Settings:\n<example height=300px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = hsUtil.log('');\nlet defaults;\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.defaults = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         const graph = new hsGraphD3.GraphCartesian(svgRoot[0]);\n         defaults = hsUtil.log\n             .inspect(graph.defaults, null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
+				"text": "creates a 2D cartesian graph.\n\n### Example:\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n// create data set:\nconst data = {\n     colNames: ['date', 'time', 'volume', 'costs'],\n     rows: [\n         ['1/1/14', -1,   0.2, 0.3],\n         ['1/1/16', -0.2, 0.7, 0.2],\n         ['9/1/16', 0.4,  0.1, 0.3],\n         ['5/1/17', 0.6, -0.2, 0.1],\n         ['7/1/18', 0.8,  0.3, 0.5],\n         ['1/1/19', 1,    0.2, 0.4]\n     ]\n}\n\n// setup and plot the data:\nconst graph = new hsGraphD3.GraphCartesian(root);\ngraph.series.add('line', {x:'time', y:'volume'},);\ngraph.series.add('line', {x:'time', y:'costs'});\n\nwith (graph.canvas.defaults) {\n     fill.color = '#fcfcfc';\n     stroke.width = 10;  // in viewport coordinates (0 - 1000)\n}\n\n// series defaults can be indexed by position or by name. Names are created as `series`+position index.\ngraph.series.defaults[0].marker.size = 15;\ngraph.series.defaults[0].marker.fill.color = '#66f';\ngraph.series.defaults[0].marker.stroke.color = '#00f';\ngraph.series.defaults.series0.line.width = 5;\ngraph.series.defaults.series0.line.color = '#00c';\n\ngraph.series.defaults.series1.marker.size = 10;\ngraph.series.defaults.series1.marker.fill.color = '#6f6';\ngraph.series.defaults.series1.marker.stroke.color = '#0a0';\ngraph.series.defaults.series1.line.width = 5;\ngraph.series.defaults[1].line.color = '#0c0';\n\ngraph.render(data).update(2000, data => {\n   data.rows.map(row => {\n     row[2] = 2*(Math.random()-0.5); // -1...1\n     row[3] = Math.random();         //  0...1\n   });\n   return true;\n});\n\n</file>\n</example>\n\n### GraphCartesian Default Settings:\n<example height=300px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = new hsUtil.Log('');\nlet defaults;\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.defaults = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         const graph = new hsGraphD3.GraphCartesian(svgRoot[0]);\n         defaults = log\n             .inspect(graph.defaults, null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
 			},
 			"children": [
 				{
@@ -10045,14 +10045,14 @@
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphCartesian.ts",
 							"line": 84,
-							"character": 49
+							"character": 56
 						}
 					],
 					"type": {
 						"type": "reference",
-						"name": "LogType"
+						"name": "Log"
 					},
-					"defaultValue": " gLog('GraphCartesian')"
+					"defaultValue": " new Log('GraphCartesian')"
 				}
 			],
 			"groups": [
@@ -17065,7 +17065,7 @@
 									"kindString": "Call signature",
 									"flags": {},
 									"comment": {
-										"shortText": "Returns the current value of the specified style property for the first (non-null) element in the selection.\nThe current value is defined as the element’s inline value, if present, and otherwise its computed value.\nAccessing the current style value is generally useful only if you know the selection contains exactly one element."
+										"shortText": "Returns the current value of the specified style property for the first (non-null) element in the selection.\nThe current value is defined as the element’s  value, if present, and otherwise its computed value.\nAccessing the current style value is generally useful only if you know the selection contains exactly one element."
 									},
 									"parameters": [
 										{
@@ -23155,7 +23155,7 @@
 									"kindString": "Call signature",
 									"flags": {},
 									"comment": {
-										"shortText": "Returns the current value of the specified style property for the first (non-null) element in the selection.\nThe current value is defined as the element’s inline value, if present, and otherwise its computed value.\nAccessing the current style value is generally useful only if you know the selection contains exactly one element."
+										"shortText": "Returns the current value of the specified style property for the first (non-null) element in the selection.\nThe current value is defined as the element’s  value, if present, and otherwise its computed value.\nAccessing the current style value is generally useful only if you know the selection contains exactly one element."
 									},
 									"parameters": [
 										{
@@ -23939,7 +23939,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Grid.ts",
 			"comment": {
 				"shortText": "# Grid class",
-				"text": "### Grids Default Settings:\n<example height=300px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = hsUtil.log('');\nlet defaults;\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.grids.defaults = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = hsUtil.log\n             .inspect(new hsGraphD3.GraphCartesian(svgRoot[0]).defaults.grids, null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
+				"text": "### Grids Default Settings:\n<example height=300px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = new hsUtil.Log('');\nlet defaults;\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.grids.defaults = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = log\n             .inspect(new hsGraphD3.GraphCartesian(svgRoot[0]).defaults.grids, null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
 			},
 			"children": [
 				{
@@ -25211,14 +25211,14 @@
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Grid.ts",
 							"line": 30,
-							"character": 54
+							"character": 52
 						}
 					],
 					"type": {
 						"type": "reference",
-						"name": "LogType"
+						"name": "Log"
 					},
-					"defaultValue": " gLog('Grid')"
+					"defaultValue": " new Log('Grid')"
 				}
 			],
 			"groups": [
@@ -25271,7 +25271,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scale.ts",
 			"comment": {
 				"shortText": "# Scale",
-				"text": "### Example\nUse of a logarithmic scale:\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\nconst data = {\n   colNames:['time', 'costs'],\n   rows:[[0,   0.2], [0.2, 0.7], [0.4, 0.1],\n         [0.6, 0.5], [0.8, 0.3], [1,   0.2]]\n};\n\nconst graph = new hsGraphD3.GraphCartesian(root);\ngraph.series.add('line', {x:'time', y:'costs'});\ngraph.series.add('line', {x:'time', y:()=>0.5});\ngraph.scales.defaults.dims.ver.type = 'log';\ngraph.render(data);\n\n</file>\n</example>\n\n### Scales Default Settings:\n<example height=300px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = hsUtil.log('');\nlet defaults;\n\nfunction createGraph(svgRoot) {\n     const graph = new hsGraphD3.GraphCartesian(svgRoot);\n     graph.scales.defaults.dims.ver.type = 'log';\n     return graph.scales.defaults;\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.scales.defaults = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = hsUtil.log.inspect(createGraph(svgRoot[0]), null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
+				"text": "### Example\nUse of a logarithmic scale:\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\nconst data = {\n   colNames:['time', 'costs'],\n   rows:[[0,   0.2], [0.2, 0.7], [0.4, 0.1],\n         [0.6, 0.5], [0.8, 0.3], [1,   0.2]]\n};\n\nconst graph = new hsGraphD3.GraphCartesian(root);\ngraph.series.add('line', {x:'time', y:'costs'});\ngraph.series.add('line', {x:'time', y:()=>0.5});\ngraph.scales.defaults.dims.ver.type = 'log';\ngraph.render(data);\n\n</file>\n</example>\n\n### Scales Default Settings:\n<example height=300px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = new hsUtil.Log('');\nlet defaults;\n\nfunction createGraph(svgRoot) {\n     const graph = new hsGraphD3.GraphCartesian(svgRoot);\n     graph.scales.defaults.dims.ver.type = 'log';\n     return graph.scales.defaults;\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.scales.defaults = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = log.inspect(createGraph(svgRoot[0]), null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
 			},
 			"children": [
 				{
@@ -30140,9 +30140,9 @@
 					],
 					"type": {
 						"type": "reference",
-						"name": "LogType"
+						"name": "Log"
 					},
-					"defaultValue": " _log('Scale')"
+					"defaultValue": " new Log('Scale')"
 				},
 				{
 					"id": 504,
@@ -30394,7 +30394,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Series.ts",
 			"comment": {
 				"shortText": "# Series\nA `GraphComponent` responsible for plotting all added series.",
-				"text": "## Available plot types:\n<example libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\nconst log = hsUtil.log('');\nlet types;\n\nfunction getTypes(svgRoot) {\n     const graph = new hsGraphD3.GraphCartesian(svgRoot);\n     return graph.seriesTypes.map(t => m('li', t));\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#fff;'}, [\n     m('ul', types),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !types) {\n         types = getTypes(svgRoot[0]);\n     }\n  }\n});\n</file>\n</example>\n"
+				"text": "## Available plot types:\n<example libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\nconst log = new hsUtil.Log('');\nlet types;\n\nfunction getTypes(svgRoot) {\n     const graph = new hsGraphD3.GraphCartesian(svgRoot);\n     return graph.seriesTypes.map(t => m('li', t));\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#fff;'}, [\n     m('ul', types),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !types) {\n         types = getTypes(svgRoot[0]);\n     }\n  }\n});\n</file>\n</example>\n"
 			},
 			"children": [
 				{
@@ -31578,14 +31578,14 @@
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Series.ts",
 							"line": 34,
-							"character": 58
+							"character": 56
 						}
 					],
 					"type": {
 						"type": "reference",
-						"name": "LogType"
+						"name": "Log"
 					},
-					"defaultValue": " gLog('Series')"
+					"defaultValue": " new Log('Series')"
 				}
 			],
 			"groups": [
@@ -32955,14 +32955,14 @@
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/SeriesPlot.ts",
 							"line": 18,
-							"character": 58
+							"character": 56
 						}
 					],
 					"type": {
 						"type": "reference",
-						"name": "LogType"
+						"name": "Log"
 					},
-					"defaultValue": " gLog('SeriesPlot')"
+					"defaultValue": " new Log('SeriesPlot')"
 				},
 				{
 					"id": 202,
@@ -33142,7 +33142,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Settings.ts",
 			"comment": {
 				"shortText": "# Configuration Defaults",
-				"text": "provides `type` aliases, `interfaces`, and support functions to generate default settings for {@link GraphComponent GraphComponents}.\n\nEach `graph` instance maintains its own copy of component settings.\nThe setting are initialized during construction and can be modified as needed.\n`graph` provides two paths to access and modify setting:\n- `graph.defaults.<component>.<subselector>` provides a central access to collection of\nall component settings via the `graph's` default getter. The table below lists all settings\navailable under `graph.defaults`.\n- Each `GraphComponent` provides access to the component's default settings via `<component>.defaults.<subselector>`.\nThese are also accessible via the `graph's` `defaults` getter.\n\nFor example, the `canvas` settings can be accessed via `graph.canvas.defaults` and\n`grpah.defaults.canvas`;\n\n### Accessible format setting and defaults (for a cartesian graph):\n<example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = hsUtil.log('');\nlet defaults;\n\nfunction createGraph(svgRoot) {\n     const graph = new hsGraphD3.GraphCartesian(svgRoot);\n     graph.series.add('bubble', 'time', 'volume', 'costs');\n     graph.canvas.defaults.stroke.width = 7.8; // odd number, should appear on the left\n     return graph.defaults;\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace; font-size:12px'}, [\n     m('div', m.trust('graph.defaults = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = hsUtil.log.inspect(createGraph(svgRoot[0]), null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
+				"text": "provides `type` aliases, `interfaces`, and support functions to generate default settings for {@link GraphComponent GraphComponents}.\n\nEach `graph` instance maintains its own copy of component settings.\nThe setting are initialized during construction and can be modified as needed.\n`graph` provides two paths to access and modify setting:\n- `graph.defaults.<component>.<subselector>` provides a central access to collection of\nall component settings via the `graph's` default getter. The table below lists all settings\navailable under `graph.defaults`.\n- Each `GraphComponent` provides access to the component's default settings via `<component>.defaults.<subselector>`.\nThese are also accessible via the `graph's` `defaults` getter.\n\nFor example, the `canvas` settings can be accessed via `graph.canvas.defaults` and\n`grpah.defaults.canvas`;\n\n### Accessible format setting and defaults (for a cartesian graph):\n<example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = new hsUtil.Log('');\nlet defaults;\n\nfunction createGraph(svgRoot) {\n     const graph = new hsGraphD3.GraphCartesian(svgRoot);\n     graph.series.add('bubble', 'time', 'volume', 'costs');\n     graph.canvas.defaults.stroke.width = 7.8; // odd number, should appear on the left\n     return graph.defaults;\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace; font-size:12px'}, [\n     m('div', m.trust('graph.defaults = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = log.inspect(createGraph(svgRoot[0]), null)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
 			},
 			"children": [
 				{
@@ -34928,9 +34928,9 @@
 					],
 					"type": {
 						"type": "reference",
-						"name": "LogType"
+						"name": "Log"
 					},
-					"defaultValue": " _log('Defaults')"
+					"defaultValue": " new Log('Defaults')"
 				},
 				{
 					"id": 82,
@@ -35715,7 +35715,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Title.ts",
 			"comment": {
 				"shortText": "# Title component\nrenders the `Graph's` Title.",
-				"text": "### Example\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n// create data set:\nconst data = {\n   colNames: ['date', 'time', 'volume', 'costs'],\n   rows:[    ['1/1/14', -1,     0.2,      0.3],\n             ['1/1/16', 0.2,    0.7,      0.2],\n             ['9/1/16', 0.4,    0.1,      0.3],\n             ['5/1/17', 0.6,   -0.2,      0.1],\n             ['7/1/18', 0.8,    0.3,      0.5],\n             ['1/1/19', 1,      0.2,      0.4]]\n};\n\n// setup and plot the data:\nconst graph = new hsGraphD3.GraphCartesian(root);\ngraph.series.add('bubble', {x:'time', y:'volume', r:'costs'});\ngraph.title.text = 'My Bubble Chart';\ngraph.render(data);\n\n</file>\n</example>\n\n### Title Default Settings:\n<example height=300px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = hsUtil.log('');\nlet defaults;\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.title.defaults = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = hsUtil.log\n             .inspect(new hsGraphD3.GraphCartesian(svgRoot[0]).defaults.title, null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
+				"text": "### Example\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n// create data set:\nconst data = {\n   colNames: ['date', 'time', 'volume', 'costs'],\n   rows:[    ['1/1/14', -1,     0.2,      0.3],\n             ['1/1/16', 0.2,    0.7,      0.2],\n             ['9/1/16', 0.4,    0.1,      0.3],\n             ['5/1/17', 0.6,   -0.2,      0.1],\n             ['7/1/18', 0.8,    0.3,      0.5],\n             ['1/1/19', 1,      0.2,      0.4]]\n};\n\n// setup and plot the data:\nconst graph = new hsGraphD3.GraphCartesian(root);\ngraph.series.add('bubble', {x:'time', y:'volume', r:'costs'});\ngraph.title.text = 'My Bubble Chart';\ngraph.render(data);\n\n</file>\n</example>\n\n### Title Default Settings:\n<example height=300px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = new hsUtil.Log('');\nlet defaults;\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.title.defaults = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = log\n             .inspect(new hsGraphD3.GraphCartesian(svgRoot[0]).defaults.title, null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
 			},
 			"children": [
 				{
@@ -36447,9 +36447,9 @@
 					],
 					"type": {
 						"type": "reference",
-						"name": "LogType"
+						"name": "Log"
 					},
-					"defaultValue": " _log('Title')"
+					"defaultValue": " new Log('Title')"
 				}
 			],
 			"groups": [
@@ -36553,7 +36553,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/Area.ts",
 			"comment": {
 				"shortText": "# Area Plot",
-				"text": "plots a 2D area. Defers to {@link NumericSeriesPlot NumericSeriesPlot} to render plot elements and uses the\ndefault configuration to\n- hide the plot line\n- hide the plot markers\n- show the plot area\nEach of these can be modified via changing the {@link Settings default settings}.\n\n\n## Usage\n`graph.series.add('area', {x:<x-col>, y:<y-col>, y0:<y-lower-fill>=0, r?:<size-col>});`\n\n## Example\n- first series (top): an orange area-band between 'costs' and 'volume', not using markers\n- second series (bottom): a green area between 'volume' and the x-axis (y0=0), using markers sized by 'costs'\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\nconst graph = new hsGraphD3.GraphCartesian(root);\ngraph.series.add('area', {x:'time', y:'costs', y0:'volume'});\ngraph.series.add('area', {x:'time', y:'volume', r:'costs'});\ngraph.render({\n   colNames:['time', 'volume', 'costs'],\n   rows:[    [-1,    0.2,      0.3],\n             [0.2,   0.4,      0.7],\n             [0.4,   0.1,      0.3],\n             [0.6,  -0.2,      0.1],\n             [0.8,   0.3,      0.5],\n             [1,     0.2,      0.4]]\n});\n\n</file>\n</example>\n\n### Area plot Default Settings:\n<example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = hsUtil.log('');\nlet defaults;\n\nfunction createGraph(svgRoot) {\n     const graph = new hsGraphD3.GraphCartesian(svgRoot);\n     graph.series.add('area', {x:'time', y:'volume', r:'costs'});\n     return graph.series.defaults[0];\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.series.defaults[0] = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = hsUtil.log.inspect(createGraph(svgRoot[0]), null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
+				"text": "plots a 2D area. Defers to {@link NumericSeriesPlot NumericSeriesPlot} to render plot elements and uses the\ndefault configuration to\n- hide the plot line\n- hide the plot markers\n- show the plot area\nEach of these can be modified via changing the {@link Settings default settings}.\n\n\n## Usage\n`graph.series.add('area', {x:<x-col>, y:<y-col>, y0:<y-lower-fill>=0, r?:<size-col>});`\n\n## Example\n- first series (top): an orange area-band between 'costs' and 'volume', not using markers\n- second series (bottom): a green area between 'volume' and the x-axis (y0=0), using markers sized by 'costs'\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\nconst graph = new hsGraphD3.GraphCartesian(root);\ngraph.series.add('area', {x:'time', y:'costs', y0:'volume'});\ngraph.series.add('area', {x:'time', y:'volume', r:'costs'});\ngraph.render({\n   colNames:['time', 'volume', 'costs'],\n   rows:[    [-1,    0.2,      0.3],\n             [0.2,   0.4,      0.7],\n             [0.4,   0.1,      0.3],\n             [0.6,  -0.2,      0.1],\n             [0.8,   0.3,      0.5],\n             [1,     0.2,      0.4]]\n});\n\n</file>\n</example>\n\n### Area plot Default Settings:\n<example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = new hsUtil.Log('');\nlet defaults;\n\nfunction createGraph(svgRoot) {\n     const graph = new hsGraphD3.GraphCartesian(svgRoot);\n     graph.series.add('area', {x:'time', y:'volume', r:'costs'});\n     return graph.series.defaults[0];\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.series.defaults[0] = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = log.inspect(createGraph(svgRoot[0]), null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
 			},
 			"children": [
 				{
@@ -38607,14 +38607,14 @@
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/Area.ts",
 							"line": 68,
-							"character": 58
+							"character": 56
 						}
 					],
 					"type": {
 						"type": "reference",
-						"name": "LogType"
+						"name": "Log"
 					},
-					"defaultValue": " gLog('Area')"
+					"defaultValue": " new Log('Area')"
 				}
 			],
 			"groups": [
@@ -38652,7 +38652,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/Bar.ts",
 			"comment": {
 				"shortText": "# Bar Plot",
-				"text": "## Usage\n`graph.series.add('bar', {x:<x-col>, y:<y-col>, stacked?:<group-name>});`\n\n## Example\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n// create data set:\nconst data = {\n   colNames: ['State', 'volume', 'costs'],\n   rows:[    ['CA',     -0.1,     0.2],\n             ['MA',      0.2,     0.7],\n             ['FL',      0.4,     0.1],\n             ['SC',      0.6,    -0.2],\n             ['NV',      0.8,     0.3],\n             ['NC',      1,       0.2]]\n};\n\n// setup and plot the data:\nconst graph = new hsGraphD3.GraphCartesian(root);\ngraph.series.add('bar', {x:'costs', y:'State'});\ngraph.series.add('bar', {x:'volume', y:'State'});\ngraph.scales.defaults.dims.ver.ordinal.gap = 0.25;\ngraph.scales.defaults.dims.ver.ordinal.overlap = 0.75;\ngraph.series.defaults[0].line.rendered = true;\ngraph.series.defaults.series1.line.rendered = true;\ngraph.grids.defaults.hor.major.rendered = false;\ngraph.render(data).update(2000, data => {\n     data.rows.forEach(row => {\n         row[1] = 0.5*Math.random()-0.2;\n         row[2] = 0.5*Math.random()+0.3;\n     });\n     return true;\n});\n\n</file>\n</example>\n\n\n## Example for stacking\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n// create data set:\nconst data = {\n   colNames: ['State', 'volume', 'costs'],\n   rows:[    ['CA',     -0.1,     0.2],\n             ['MA',      0.2,     0.7],\n             ['FL',      0.4,     0.1],\n             ['SC',      0.6,    -0.2],\n             ['NV',      0.8,     0.3],\n             ['NC',      1,       0.2]]\n};\n\n// setup and plot the data:\nconst graph = new hsGraphD3.GraphCartesian(root);\ngraph.series.add('bar', {x:'costs', y:'State', stacked:'group1'});\ngraph.series.add('bar', {x:'volume', y:'State', stacked:'group1'});\ngraph.scales.defaults.dims.ver.ordinal.gap = 0.25;\ngraph.scales.defaults.dims.ver.ordinal.overlap = 0.75;\ngraph.series.defaults.series0.line.rendered = true;\ngraph.series.defaults.series1.line.rendered = true;\ngraph.grids.defaults.hor.major.rendered = false;\ngraph.render(data).update(2000, data => {\n     data.rows.forEach(row => {\n         row[1] = 1.0*Math.random();\n         row[2] = 1.0*Math.random();\n     });\n     return true;\n});\n\n</file>\n</example>\n\n\n### Bar plot Default Settings:\n<example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = hsUtil.log('');\nlet defaults;\n\nfunction createGraph(svgRoot) {\n     const graph = new hsGraphD3.GraphCartesian(svgRoot);\n     graph.series.add('bar', {y:'state', x:'volume'});\n     return graph;\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust(defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         const graph = createGraph(svgRoot[0]);\n         defaults = `<b>graph.series.defaults = </b>\n             ${hsUtil.log.inspect(graph.series.defaults, null, '   ', colors).replace(/\\n/g, '<br>')}\n             <br><br><b>graph.scales.defaults.dims = </b>\n             ${hsUtil.log.inspect(graph.scales.defaults.dims, null, '   ', colors).replace(/\\n/g, '<br>')}`;\n     }\n  }\n});\n</file>\n</example>\n"
+				"text": "## Usage\n`graph.series.add('bar', {x:<x-col>, y:<y-col>, stacked?:<group-name>});`\n\n## Example\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n// create data set:\nconst data = {\n   colNames: ['State', 'volume', 'costs'],\n   rows:[    ['CA',     -0.1,     0.2],\n             ['MA',      0.2,     0.7],\n             ['FL',      0.4,     0.1],\n             ['SC',      0.6,    -0.2],\n             ['NV',      0.8,     0.3],\n             ['NC',      1,       0.2]]\n};\n\n// setup and plot the data:\nconst graph = new hsGraphD3.GraphCartesian(root);\ngraph.series.add('bar', {x:'costs', y:'State'});\ngraph.series.add('bar', {x:'volume', y:'State'});\ngraph.scales.defaults.dims.ver.ordinal.gap = 0.25;\ngraph.scales.defaults.dims.ver.ordinal.overlap = 0.75;\ngraph.series.defaults[0].line.rendered = true;\ngraph.series.defaults.series1.line.rendered = true;\ngraph.grids.defaults.hor.major.rendered = false;\ngraph.render(data).update(2000, data => {\n     data.rows.forEach(row => {\n         row[1] = 0.5*Math.random()-0.2;\n         row[2] = 0.5*Math.random()+0.3;\n     });\n     return true;\n});\n\n</file>\n</example>\n\n\n## Example for stacking\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n// create data set:\nconst data = {\n   colNames: ['State', 'volume', 'costs'],\n   rows:[    ['CA',     -0.1,     0.2],\n             ['MA',      0.2,     0.7],\n             ['FL',      0.4,     0.1],\n             ['SC',      0.6,    -0.2],\n             ['NV',      0.8,     0.3],\n             ['NC',      1,       0.2]]\n};\n\n// setup and plot the data:\nconst graph = new hsGraphD3.GraphCartesian(root);\ngraph.series.add('bar', {x:'costs', y:'State', stacked:'group1'});\ngraph.series.add('bar', {x:'volume', y:'State', stacked:'group1'});\ngraph.scales.defaults.dims.ver.ordinal.gap = 0.25;\ngraph.scales.defaults.dims.ver.ordinal.overlap = 0.75;\ngraph.series.defaults.series0.line.rendered = true;\ngraph.series.defaults.series1.line.rendered = true;\ngraph.grids.defaults.hor.major.rendered = false;\ngraph.render(data).update(2000, data => {\n     data.rows.forEach(row => {\n         row[1] = 1.0*Math.random();\n         row[2] = 1.0*Math.random();\n     });\n     return true;\n});\n\n</file>\n</example>\n\n\n### Bar plot Default Settings:\n<example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = new hsUtil.Log('');\nlet defaults;\n\nfunction createGraph(svgRoot) {\n     const graph = new hsGraphD3.GraphCartesian(svgRoot);\n     graph.series.add('bar', {y:'state', x:'volume'});\n     return graph;\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust(defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         const graph = createGraph(svgRoot[0]);\n         defaults = `<b>graph.series.defaults = </b>\n             ${log.inspect(graph.series.defaults, null, '   ', colors).replace(/\\n/g, '<br>')}\n             <br><br><b>graph.scales.defaults.dims = </b>\n             ${log.inspect(graph.scales.defaults.dims, null, '   ', colors).replace(/\\n/g, '<br>')}`;\n     }\n  }\n});\n</file>\n</example>\n"
 			},
 			"children": [
 				{
@@ -40664,14 +40664,14 @@
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/Bar.ts",
 							"line": 112,
-							"character": 58
+							"character": 56
 						}
 					],
 					"type": {
 						"type": "reference",
-						"name": "LogType"
+						"name": "Log"
 					},
-					"defaultValue": " gLog('Column')"
+					"defaultValue": " new Log('Column')"
 				}
 			],
 			"groups": [
@@ -40709,7 +40709,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/Bubble.ts",
 			"comment": {
 				"shortText": "# Bubble Plot",
-				"text": "### Usage\n`graph.series.add('bubble', {x:<x-col>, y:<y-col>, r:<size-col>});`\n\n### Example\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n// create data set:\nconst data = {\n   colNames: ['date', 'time', 'volume', 'costs'],\n   rows:[    ['1/1/14', -1,     0.2,      0.3],\n             ['1/1/16', 0.2,    0.7,      0.2],\n             ['9/1/16', 0.4,    0.1,      0.3],\n             ['5/1/17', 0.6,   -0.2,      0.1],\n             ['7/1/18', 0.8,    0.3,      0.5],\n             ['1/1/19', 1,      0.2,      0.4]]\n};\n\n// setup and plot the data:\nconst graph = new hsGraphD3.GraphCartesian(root);\ngraph.series.add('bubble', {x:'time', y:'volume', r:'costs'});\ngraph.render(data);\n\n</file>\n</example>\n\n\n### Bubble plot Default Settings:\n<example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = hsUtil.log('');\nlet defaults;\n\nfunction createGraph(svgRoot) {\n     const graph = new hsGraphD3.GraphCartesian(svgRoot);\n     graph.series.add('bubble', {x:'time', y:'volume', r:'costs'});\n     return graph.series.defaults[0];\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.series.defaults[0] = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = hsUtil.log.inspect(createGraph(svgRoot[0]), null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
+				"text": "### Usage\n`graph.series.add('bubble', {x:<x-col>, y:<y-col>, r:<size-col>});`\n\n### Example\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n// create data set:\nconst data = {\n   colNames: ['date', 'time', 'volume', 'costs'],\n   rows:[    ['1/1/14', -1,     0.2,      0.3],\n             ['1/1/16', 0.2,    0.7,      0.2],\n             ['9/1/16', 0.4,    0.1,      0.3],\n             ['5/1/17', 0.6,   -0.2,      0.1],\n             ['7/1/18', 0.8,    0.3,      0.5],\n             ['1/1/19', 1,      0.2,      0.4]]\n};\n\n// setup and plot the data:\nconst graph = new hsGraphD3.GraphCartesian(root);\ngraph.series.add('bubble', {x:'time', y:'volume', r:'costs'});\ngraph.render(data);\n\n</file>\n</example>\n\n\n### Bubble plot Default Settings:\n<example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = new hsUtil.Log('');\nlet defaults;\n\nfunction createGraph(svgRoot) {\n     const graph = new hsGraphD3.GraphCartesian(svgRoot);\n     graph.series.add('bubble', {x:'time', y:'volume', r:'costs'});\n     return graph.series.defaults[0];\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.series.defaults[0] = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = log.inspect(createGraph(svgRoot[0]), null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
 			},
 			"children": [
 				{
@@ -42763,14 +42763,14 @@
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/Bubble.ts",
 							"line": 62,
-							"character": 58
+							"character": 56
 						}
 					],
 					"type": {
 						"type": "reference",
-						"name": "LogType"
+						"name": "Log"
 					},
-					"defaultValue": " gLog('Bubble')"
+					"defaultValue": " new Log('Bubble')"
 				}
 			],
 			"groups": [
@@ -42808,7 +42808,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/Column.ts",
 			"comment": {
 				"shortText": "# Columns Plot",
-				"text": "## Usage\n`graph.series.add('column', {x:<x-col>, y:<y-col>, stacked?:<group-name>});`\n\n## Example\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n// create data set:\nconst data = {\n   colNames: ['State', 'volume', 'costs'],\n   rows:[    ['CA',     -0.1,     0.2],\n             ['MA',      0.2,     0.7],\n             ['FL',      0.4,     0.1],\n             ['SC',      0.6,    -0.2],\n             ['NV',      0.8,     0.3],\n             ['NC',      1,       0.2]]\n};\n\n// setup and plot the data:\nconst graph = new hsGraphD3.GraphCartesian(root);\ngraph.series.add('column', {x:'State', y:'costs'});\ngraph.series.add('column', {x:'State', y:'volume'});\ngraph.scales.defaults.dims.hor.ordinal.gap = 0.25;\ngraph.scales.defaults.dims.hor.ordinal.overlap = 0.75;\ngraph.series.defaults[0].line.rendered = true;\ngraph.series.defaults[1].line.rendered = true;\ngraph.grids.defaults.ver.major.rendered = false;\ngraph.render(data).update(2000, data => {\n     data.rows.forEach(row => {\n         row[1] = 0.5*Math.random()-0.2;\n         row[2] = 0.5*Math.random()+0.3;\n     });\n     return true;\n});\n\n</file>\n</example>\n\n## Example for stacking\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n// create data set:\nconst data = {\n   colNames: ['State', 'volume', 'costs'],\n   rows:[    ['CA',      0.0,     0.2],\n             ['MA',      0.2,     0.7],\n             ['FL',      0.4,     0.1],\n             ['SC',      0.6,     0.2],\n             ['NV',      0.8,     0.3],\n             ['NC',      1,       0.2]]\n};\n\n// setup and plot the data:\nconst graph = new hsGraphD3.GraphCartesian(root);\ngraph.series.add('column', {x:'State', y:'costs',  stacked:'group1'});\ngraph.series.add('column', {x:'State', y:'volume', stacked:'group1'});\ngraph.scales.defaults.dims.hor.ordinal.gap = 0.25;\ngraph.series.defaults[0].line.rendered = true;\ngraph.series.defaults[1].line.rendered = true;\ngraph.grids.defaults.ver.major.rendered = false;\ngraph.render(data).update(2000, data => {\n     data.rows.forEach(row => {\n         row[1] = 1.0*Math.random();\n         row[2] = 1.0*Math.random();\n     });\n     return true;\n});\n\n</file>\n</example>\n\n\n### Column plot Default Settings:\n<example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = hsUtil.log('');\nlet defaults;\n\nfunction createGraph(svgRoot) {\n     const graph = new hsGraphD3.GraphCartesian(svgRoot);\n     graph.series.add('column', {x:'state', y:'volume'});\n     return graph;\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust(defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         const graph = createGraph(svgRoot[0]);\n         defaults = `<b>graph.series.defaults = </b>\n             ${hsUtil.log.inspect(graph.series.defaults, null, '   ', colors).replace(/\\n/g, '<br>')}\n             <br><br><b>graph.scales.defaults.dims = </b>\n             ${hsUtil.log.inspect(graph.scales.defaults.dims, null, '   ', colors).replace(/\\n/g, '<br>')}`;\n     }\n  }\n});\n</file>\n</example>\n"
+				"text": "## Usage\n`graph.series.add('column', {x:<x-col>, y:<y-col>, stacked?:<group-name>});`\n\n## Example\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n// create data set:\nconst data = {\n   colNames: ['State', 'volume', 'costs'],\n   rows:[    ['CA',     -0.1,     0.2],\n             ['MA',      0.2,     0.7],\n             ['FL',      0.4,     0.1],\n             ['SC',      0.6,    -0.2],\n             ['NV',      0.8,     0.3],\n             ['NC',      1,       0.2]]\n};\n\n// setup and plot the data:\nconst graph = new hsGraphD3.GraphCartesian(root);\ngraph.series.add('column', {x:'State', y:'costs'});\ngraph.series.add('column', {x:'State', y:'volume'});\ngraph.scales.defaults.dims.hor.ordinal.gap = 0.25;\ngraph.scales.defaults.dims.hor.ordinal.overlap = 0.75;\ngraph.series.defaults[0].line.rendered = true;\ngraph.series.defaults[1].line.rendered = true;\ngraph.grids.defaults.ver.major.rendered = false;\ngraph.render(data).update(2000, data => {\n     data.rows.forEach(row => {\n         row[1] = 0.5*Math.random()-0.2;\n         row[2] = 0.5*Math.random()+0.3;\n     });\n     return true;\n});\n\n</file>\n</example>\n\n## Example for stacking\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n// create data set:\nconst data = {\n   colNames: ['State', 'volume', 'costs'],\n   rows:[    ['CA',      0.0,     0.2],\n             ['MA',      0.2,     0.7],\n             ['FL',      0.4,     0.1],\n             ['SC',      0.6,     0.2],\n             ['NV',      0.8,     0.3],\n             ['NC',      1,       0.2]]\n};\n\n// setup and plot the data:\nconst graph = new hsGraphD3.GraphCartesian(root);\ngraph.series.add('column', {x:'State', y:'costs',  stacked:'group1'});\ngraph.series.add('column', {x:'State', y:'volume', stacked:'group1'});\ngraph.scales.defaults.dims.hor.ordinal.gap = 0.25;\ngraph.series.defaults[0].line.rendered = true;\ngraph.series.defaults[1].line.rendered = true;\ngraph.grids.defaults.ver.major.rendered = false;\ngraph.render(data).update(2000, data => {\n     data.rows.forEach(row => {\n         row[1] = 1.0*Math.random();\n         row[2] = 1.0*Math.random();\n     });\n     return true;\n});\n\n</file>\n</example>\n\n\n### Column plot Default Settings:\n<example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = new hsUtil.Log('');\nlet defaults;\n\nfunction createGraph(svgRoot) {\n     const graph = new hsGraphD3.GraphCartesian(svgRoot);\n     graph.series.add('column', {x:'state', y:'volume'});\n     return graph;\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust(defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         const graph = createGraph(svgRoot[0]);\n         defaults = `<b>graph.series.defaults = </b>\n             ${log.inspect(graph.series.defaults, null, '   ', colors).replace(/\\n/g, '<br>')}\n             <br><br><b>graph.scales.defaults.dims = </b>\n             ${log.inspect(graph.scales.defaults.dims, null, '   ', colors).replace(/\\n/g, '<br>')}`;\n     }\n  }\n});\n</file>\n</example>\n"
 			},
 			"children": [
 				{
@@ -44820,14 +44820,14 @@
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/Column.ts",
 							"line": 110,
-							"character": 58
+							"character": 56
 						}
 					],
 					"type": {
 						"type": "reference",
-						"name": "LogType"
+						"name": "Log"
 					},
-					"defaultValue": " gLog('Column')"
+					"defaultValue": " new Log('Column')"
 				}
 			],
 			"groups": [
@@ -44865,7 +44865,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/Line.ts",
 			"comment": {
 				"shortText": "# Line Plot",
-				"text": "plots a 2D line. Defers to {@link NumericSeriesPlot NumericSeriesPlot} to render plot elements and uses the\ndefault configuration to\n- show the plot line\n- hide the plot markers\n- hide the plot area\nEach of these can be modified via changing the {@link Settings default settings}.\n\n## Usage\n`graph.series.add('line', {x:<x-col>, y:<y-col>, y0?:<y-lower-fill>, r?:<size-col>});`\n\n## Example\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n// create data set:\nconst data = {\n   colNames:['date', 'time', 'volume', 'costs'],\n   rows:[['1/1/14', -1,  0.2, 0.3], ['1/1/16', 0.2, 0.7, 0.2], ['9/1/16', 0.4, 0.1, 0.3],\n         ['5/1/17', 0.6, -0.2,   0.1], ['7/1/18', 0.8, 0.3, 0.5], ['1/1/19', 1,   0.2, 0.4]]\n};\n\nconst graph = new hsGraphD3.GraphCartesian(root);\ngraph.series.add('line', {x:'time', y:'volume', r:'costs'});\ngraph.series.add('line', {x:'time', y:()=>0.5});\ngraph.render(data);\n\n</file>\n</example>\n\n### Line plot Default Settings:\n<example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = hsUtil.log('');\nlet defaults;\n\nfunction createGraph(svgRoot) {\n     const graph = new hsGraphD3.GraphCartesian(svgRoot);\n     graph.series.add('line', {x:'time', y:'volume', r:'costs'});\n     return graph.series.defaults[0];\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.series.defaults[0] = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = hsUtil.log.inspect(createGraph(svgRoot[0]), null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
+				"text": "plots a 2D line. Defers to {@link NumericSeriesPlot NumericSeriesPlot} to render plot elements and uses the\ndefault configuration to\n- show the plot line\n- hide the plot markers\n- hide the plot area\nEach of these can be modified via changing the {@link Settings default settings}.\n\n## Usage\n`graph.series.add('line', {x:<x-col>, y:<y-col>, y0?:<y-lower-fill>, r?:<size-col>});`\n\n## Example\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n// create data set:\nconst data = {\n   colNames:['date', 'time', 'volume', 'costs'],\n   rows:[['1/1/14', -1,  0.2, 0.3], ['1/1/16', 0.2, 0.7, 0.2], ['9/1/16', 0.4, 0.1, 0.3],\n         ['5/1/17', 0.6, -0.2,   0.1], ['7/1/18', 0.8, 0.3, 0.5], ['1/1/19', 1,   0.2, 0.4]]\n};\n\nconst graph = new hsGraphD3.GraphCartesian(root);\ngraph.series.add('line', {x:'time', y:'volume', r:'costs'});\ngraph.series.add('line', {x:'time', y:()=>0.5});\ngraph.render(data);\n\n</file>\n</example>\n\n### Line plot Default Settings:\n<example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = new hsUtil.Log('');\nlet defaults;\n\nfunction createGraph(svgRoot) {\n     const graph = new hsGraphD3.GraphCartesian(svgRoot);\n     graph.series.add('line', {x:'time', y:'volume', r:'costs'});\n     return graph.series.defaults[0];\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.series.defaults[0] = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = log.inspect(createGraph(svgRoot[0]), null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
 			},
 			"children": [
 				{
@@ -46919,14 +46919,14 @@
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/Line.ts",
 							"line": 64,
-							"character": 58
+							"character": 56
 						}
 					],
 					"type": {
 						"type": "reference",
-						"name": "LogType"
+						"name": "Log"
 					},
-					"defaultValue": " gLog('Line')"
+					"defaultValue": " new Log('Line')"
 				}
 			],
 			"groups": [
@@ -48988,14 +48988,14 @@
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/NumericSeriesPlot.ts",
 							"line": 29,
-							"character": 58
+							"character": 56
 						}
 					],
 					"type": {
 						"type": "reference",
-						"name": "LogType"
+						"name": "Log"
 					},
-					"defaultValue": " gLog('NumericSeriesPlot')"
+					"defaultValue": " new Log('NumericSeriesPlot')"
 				},
 				{
 					"id": 1591,
@@ -51208,14 +51208,14 @@
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/OrdinalSeriesPlot.ts",
 							"line": 23,
-							"character": 58
+							"character": 56
 						}
 					],
 					"type": {
 						"type": "reference",
-						"name": "LogType"
+						"name": "Log"
 					},
-					"defaultValue": " gLog('OrdinalSeriesPlot')"
+					"defaultValue": " new Log('OrdinalSeriesPlot')"
 				},
 				{
 					"id": 2254,
@@ -51460,7 +51460,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/TimeSeries.ts",
 			"comment": {
 				"shortText": "# Time Series Plot",
-				"text": "plots a 2D line with markers and smooth x-axis tranisitions.\n\n## Usage\n`graph.series.add('timeseries', {x:<x-col>, y:<y-col>, y0?:<y-lower-fill>, r?:<size-col>});`\n\n\n## Example\n- top row: plot and update a random time series with area fill against '1'\n- bottom row: plot and update a random time series as a line with markers of random size\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n// create data set:\nlet index = 0;\nconst data = {\n   colNames:['date', 'time', 'volume'],\n   rows:[],\n};\nwhile (index<11) { data.rows.push([index++, Math.random()+1, Math.random()])}\n\n// create the graph and define the series to plot:\nconst graph = new hsGraphD3.GraphCartesian(root);\ngraph.series.add('timeseries', {x:'date', y:'time', y0:()=>1});\ngraph.series.add('timeseries', {x:'date', y:'volume', r:'time'});\n\n// adjust some settings:\ngraph.series.defaults.series0.marker.size = 15;\n\n// trigger the update loop to plot the data\ngraph.render(data).update(1000, data => {\n     // add new sample\n     data.rows.push([index++, Math.random()+1, Math.random()]);\n     // remove old sample\n     if (data.rows.length > 10) { data.rows.shift(); }\n     return true;\n});\n</file>\n</example>\n\n### TimeSeries plot Default Settings:\n<example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = hsUtil.log('');\nlet defaults;\n\nfunction createGraph(svgRoot) {\n     const graph = new hsGraphD3.GraphCartesian(svgRoot);\n     graph.series.add('timeseries', {x:'date', y:'volume', r:'time'});\n     return graph.series.defaults[0];\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.series.defaults[0] = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = hsUtil.log.inspect(createGraph(svgRoot[0]), null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
+				"text": "plots a 2D line with markers and smooth x-axis tranisitions.\n\n## Usage\n`graph.series.add('timeseries', {x:<x-col>, y:<y-col>, y0?:<y-lower-fill>, r?:<size-col>});`\n\n\n## Example\n- top row: plot and update a random time series with area fill against '1'\n- bottom row: plot and update a random time series as a line with markers of random size\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n// create data set:\nlet index = 0;\nconst data = {\n   colNames:['date', 'time', 'volume'],\n   rows:[],\n};\nwhile (index<11) { data.rows.push([index++, Math.random()+1, Math.random()])}\n\n// create the graph and define the series to plot:\nconst graph = new hsGraphD3.GraphCartesian(root);\ngraph.series.add('timeseries', {x:'date', y:'time', y0:()=>1});\ngraph.series.add('timeseries', {x:'date', y:'volume', r:'time'});\n\n// adjust some settings:\ngraph.series.defaults.series0.marker.size = 15;\n\n// trigger the update loop to plot the data\ngraph.render(data).update(1000, data => {\n     // add new sample\n     data.rows.push([index++, Math.random()+1, Math.random()]);\n     // remove old sample\n     if (data.rows.length > 10) { data.rows.shift(); }\n     return true;\n});\n</file>\n</example>\n\n### TimeSeries plot Default Settings:\n<example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = new hsUtil.Log('');\nlet defaults;\n\nfunction createGraph(svgRoot) {\n     const graph = new hsGraphD3.GraphCartesian(svgRoot);\n     graph.series.add('timeseries', {x:'date', y:'volume', r:'time'});\n     return graph.series.defaults[0];\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.series.defaults[0] = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = log.inspect(createGraph(svgRoot[0]), null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
 			},
 			"children": [
 				{
@@ -53456,14 +53456,14 @@
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/TimeSeries.ts",
 							"line": 74,
-							"character": 58
+							"character": 56
 						}
 					],
 					"type": {
 						"type": "reference",
-						"name": "LogType"
+						"name": "Log"
 					},
-					"defaultValue": " gLog('TimeSeries')"
+					"defaultValue": " new Log('TimeSeries')"
 				}
 			],
 			"groups": [
@@ -53501,7 +53501,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/Voronoi.ts",
 			"comment": {
 				"shortText": "# Voronoi Plot",
-				"text": "plots a 2D Voronoi Partition.\n\n## Usage\n`graph.series.add('voronoi', {x:<x-col>, y:<y-col>, r?:<size-col>});`\nInvoke a `line` series by adding a new series to the graph\n\n## Example\n- Generate 1000 samples per frame.\n- for each frame:\n    - calculate the centroids\n    - plot centroids and voronoi diagram\n    - split any centroid that has observed more than 10k samples\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n\nconst centroids = {\n    colNames: ['x', 'y', 'count'],\n    rows: [[0.5, 0.5, 0]]\n}\nconst samples = {\n    colNames: ['x', 'y', 'nearest'],\n    rows: [[0.5, 0.5, 0]]\n}\nlet w = 20;\nconst numSamples = 1000;\n\nconst graph = new hsGraphD3.GraphCartesian(root);\n\ngraph.series.add('voronoi', {x:'x', y:'y', r:'count'});\ngraph.series.add('bubble', {x:'x', y:'y'});\n\nwith (graph.defaults) {\n    axes.rendered = false;\n    series.series0.line.width = 1;\n    series.series0.marker.size = 3;\n    series.series0.marker.stroke.width = 0;\n    series.series1.marker.size = 1;\n    series.series1.marker.stroke.width = 0;\n    series.series1.marker.fill.color = '#000';\n    grids.rendered = false;\n    scales.margin.bottom = 0;\n    scales.margin.left = 0;\n    scales.margin.rigth = 0;\n}\n\nconst getRnd = () => (Math.random() + Math.random() + Math.random()) / 3;\n\ngraph.render([centroids, samples]).update(200, data => {\n    data[1].rows = Array.from({length: numSamples}, v => [getRnd(), getRnd(), 0]);\n    data[1].rows.map(r => r[2] = hsGraphD3.Voronoi.nearest(r, data[0].rows));\n    data[0].rows.map((row, i) => {\n        const smp = data[1].rows.filter(r => r[2]===i);\n        const cnt = smp.length;\n        const w = row[2];\n        const norm = 1 / (cnt+w);\n        const c = hsGraphD3.Voronoi.centroid(smp);\n        row[0] = (w*row[0] + cnt*c[0])*norm;\n        row[1] = (w*row[1] + cnt*c[1])*norm;\n        row[2] += cnt/2;\n    });\n    // split if enough count\n    data[0].rows.filter(row => row[2] > 10000)\n        .map((row, i) => {\n            const dx = Math.random()/10000;\n            const dy = Math.random()/10000;\n            row[0] += dx;   row[1] += dy;\n            row[2] = 500;\n            data[0].rows.push([row[0]-dx, row[1]-dy, row[2]]);\n         })\n});\n\n</file>\n</example>\n\n### Voronoi plot Default Settings:\n<example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = hsUtil.log('');\nlet defaults;\n\nfunction createGraph(svgRoot) {\n     const graph = new hsGraphD3.GraphCartesian(root);\n     graph.series.add('voronoi', {x:'x', y:'y', r:'count'});\n     return graph.series.defaults[0];\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.series.defaults[0] = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = hsUtil.log.inspect(createGraph(svgRoot[0]), null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
+				"text": "plots a 2D Voronoi Partition.\n\n## Usage\n`graph.series.add('voronoi', {x:<x-col>, y:<y-col>, r?:<size-col>});`\nInvoke a `line` series by adding a new series to the graph\n\n## Example\n- Generate 1000 samples per frame.\n- for each frame:\n    - calculate the centroids\n    - plot centroids and voronoi diagram\n    - split any centroid that has observed more than 10k samples\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n\nconst centroids = {\n    colNames: ['x', 'y', 'count'],\n    rows: [[0.5, 0.5, 0]]\n}\nconst samples = {\n    colNames: ['x', 'y', 'nearest'],\n    rows: [[0.5, 0.5, 0]]\n}\nlet w = 20;\nconst numSamples = 1000;\n\nconst graph = new hsGraphD3.GraphCartesian(root);\n\ngraph.series.add('voronoi', {x:'x', y:'y', r:'count'});\ngraph.series.add('bubble', {x:'x', y:'y'});\n\nwith (graph.defaults) {\n    axes.rendered = false;\n    series.series0.line.width = 1;\n    series.series0.marker.size = 3;\n    series.series0.marker.stroke.width = 0;\n    series.series1.marker.size = 1;\n    series.series1.marker.stroke.width = 0;\n    series.series1.marker.fill.color = '#000';\n    grids.rendered = false;\n    scales.margin.bottom = 0;\n    scales.margin.left = 0;\n    scales.margin.rigth = 0;\n}\n\nconst getRnd = () => (Math.random() + Math.random() + Math.random()) / 3;\n\ngraph.render([centroids, samples]).update(200, data => {\n    data[1].rows = Array.from({length: numSamples}, v => [getRnd(), getRnd(), 0]);\n    data[1].rows.map(r => r[2] = hsGraphD3.Voronoi.nearest(r, data[0].rows));\n    data[0].rows.map((row, i) => {\n        const smp = data[1].rows.filter(r => r[2]===i);\n        const cnt = smp.length;\n        const w = row[2];\n        const norm = 1 / (cnt+w);\n        const c = hsGraphD3.Voronoi.centroid(smp);\n        row[0] = (w*row[0] + cnt*c[0])*norm;\n        row[1] = (w*row[1] + cnt*c[1])*norm;\n        row[2] += cnt/2;\n    });\n    // split if enough count\n    data[0].rows.filter(row => row[2] > 10000)\n        .map((row, i) => {\n            const dx = Math.random()/10000;\n            const dy = Math.random()/10000;\n            row[0] += dx;   row[1] += dy;\n            row[2] = 500;\n            data[0].rows.push([row[0]-dx, row[1]-dy, row[2]]);\n         })\n});\n\n</file>\n</example>\n\n### Voronoi plot Default Settings:\n<example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = new hsUtil.Log('');\nlet defaults;\n\nfunction createGraph(svgRoot) {\n     const graph = new hsGraphD3.GraphCartesian(root);\n     graph.series.add('voronoi', {x:'x', y:'y', r:'count'});\n     return graph.series.defaults[0];\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.series.defaults[0] = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = log.inspect(createGraph(svgRoot[0]), null, '   ', colors)\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
 			},
 			"children": [
 				{
@@ -55689,14 +55689,14 @@
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/Voronoi.ts",
 							"line": 110,
-							"character": 58
+							"character": 56
 						}
 					],
 					"type": {
 						"type": "reference",
-						"name": "LogType"
+						"name": "Log"
 					},
-					"defaultValue": " gLog('Voronoi')"
+					"defaultValue": " new Log('Voronoi')"
 				}
 			],
 			"groups": [

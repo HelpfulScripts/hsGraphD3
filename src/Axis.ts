@@ -4,7 +4,7 @@
  * ### Axes Default Settings:
  * <example height=300px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
  * <file name='script.js'>
- * const log = hsUtil.log('');
+ * const log = new hsUtil.Log('');
  * let defaults;
  * 
  * m.mount(root, {
@@ -16,7 +16,7 @@
  *      const svgRoot = root.getElementsByClassName('myGraph');
  *      if (svgRoot && svgRoot.length && !defaults) { 
  *          const colors = ['#800', '#080', '#008'];
- *          defaults = hsUtil.log
+ *          defaults = log
  *              .inspect(new hsGraphD3.GraphCartesian(svgRoot[0]).defaults.axes, null, '   ', colors)
  *              .replace(/\n/g, '<br>')
  *      }
@@ -28,7 +28,7 @@
 
 /** */
 import { format }           from 'd3';
-import { log as gLog }      from 'hsutil';   const log = gLog('Axis');
+import { Log }              from 'hsutil'; const log = new Log('Axis');
 import { GraphComponent }   from './GraphComponent'; 
 import { GraphCfg }         from './GraphComponent';
 import { ComponentDefaults }from './GraphComponent';

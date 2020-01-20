@@ -5,7 +5,7 @@
  * ## Available plot types:
  * <example libs={hsGraphD3:'hsGraphD3'}>
  * <file name='script.js'>
- * const log = hsUtil.log('');
+ * const log = new hsUtil.Log('');
  * let types;
  * 
  * function getTypes(svgRoot) {
@@ -31,7 +31,7 @@
 
 /** */
 
-import { log as gLog }          from 'hsutil';   const log = gLog('Series');
+import { Log }                  from 'hsutil'; const log = new Log('Series');
 import { DataSet }              from './Graph';
 import { ValueDef }             from './Graph';
 import { Domains }              from './Graph';

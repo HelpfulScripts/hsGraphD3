@@ -33,7 +33,7 @@
  * ### Graph Default Settings:
  * <example height=300px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
  * <file name='script.js'>
- * const log = hsUtil.log('');
+ * const log = new hsUtil.Log('');
  * let defaults;
  * 
  * m.mount(root, {
@@ -45,7 +45,7 @@
  *      const svgRoot = root.getElementsByClassName('myGraph');
  *      if (svgRoot && svgRoot.length && !defaults) { 
  *          const colors = ['#800', '#080', '#008'];
- *          defaults = hsUtil.log
+ *          defaults = log
  *              .inspect(new hsGraphD3.GraphCartesian(svgRoot[0]).defaults.graph, null, '   ', colors)
  *              .replace(/\n/g, '<br>')
  *      }
@@ -56,28 +56,28 @@
  */
 
 /** the modules logging setup. */
-import { log as gLog }      from 'hsutil';   const log = gLog('Graph');
+import { Log }                  from 'hsutil'; const log = new Log('Graph');
 
-import { select as d3Select}from 'd3';
-import { easeLinear}        from 'd3';
-import { easeCubic}         from 'd3';
+import { select as d3Select}    from 'd3';
+import { easeLinear}            from 'd3';
+import { easeCubic}             from 'd3';
 
-import { GraphBase}         from './GraphComponent';
-import { ComponentDefaults} from './GraphComponent';
-import { GraphCfg}          from './GraphComponent';
-import { Series }           from './Series';
-import { SeriesDefaults }   from './Series';
-import { Scales }           from './Scale';
-import { ScalesDefaults }   from './Scale';
-import { Axes }             from './Axis';
-import { AxesDefaults }     from './Axis';
-import { Grids }            from './Grid';
-import { GridsDefaults }    from './Grid';
-import { Canvas }           from './Canvas';
-import { CanvasDefaults }   from './Canvas';
-import { d3Base }           from './Settings';
-import { Title }            from './Title';
-import { TitleDefaults }    from './Title';
+import { GraphBase}             from './GraphComponent';
+import { ComponentDefaults}     from './GraphComponent';
+import { GraphCfg}              from './GraphComponent';
+import { Series }               from './Series';
+import { SeriesDefaults }       from './Series';
+import { Scales }               from './Scale';
+import { ScalesDefaults }       from './Scale';
+import { Axes }                 from './Axis';
+import { AxesDefaults }         from './Axis';
+import { Grids }                from './Grid';
+import { GridsDefaults }        from './Grid';
+import { Canvas }               from './Canvas';
+import { CanvasDefaults }       from './Canvas';
+import { d3Base }               from './Settings';
+import { Title }                from './Title';
+import { TitleDefaults }        from './Title';
 
 const easings = {
     easeLinear: easeLinear,

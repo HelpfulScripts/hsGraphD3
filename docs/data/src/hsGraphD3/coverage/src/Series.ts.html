@@ -435,7 +435,7 @@
  * ## Available plot types:
  * &lt;example libs={hsGraphD3:'hsGraphD3'}&gt;
  * &lt;file name='script.js'&gt;
- * const log = hsUtil.log('');
+ * const log = new hsUtil.Log('');
  * let types;
  * 
  * function getTypes(svgRoot) {
@@ -461,7 +461,7 @@
 &nbsp;
 /** */
 &nbsp;
-import { log as gLog }          from 'hsutil';   const log = gLog('Series');
+import { Log }                  from 'hsutil'; const log = new Log('Series');
 import { DataSet }              from './Graph';
 import { ValueDef }             from './Graph';
 import { Domains }              from './Graph';

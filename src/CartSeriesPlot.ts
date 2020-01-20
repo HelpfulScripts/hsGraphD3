@@ -11,7 +11,7 @@
 
 /** */
 
-import { log as gLog }          from 'hsutil';   const log = gLog('CartSeriesPlot');
+import { Log }                  from 'hsutil'; const log = new Log('CartSeriesPlot');
 import { SeriesPlot }           from "./SeriesPlot";
 import { SeriesPlotDefaults }   from "./SeriesPlot";
 import { SeriesDimensions }     from "./Series";

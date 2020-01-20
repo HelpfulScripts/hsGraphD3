@@ -338,7 +338,7 @@
  * ### Title Default Settings:
  * &lt;example height=300px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}&gt;
  * &lt;file name='script.js'&gt;
- * const log = hsUtil.log('');
+ * const log = new hsUtil.Log('');
  * let defaults;
  * 
  * m.mount(root, {
@@ -350,7 +350,7 @@
  *      const svgRoot = root.getElementsByClassName('myGraph');
  *      if (svgRoot &amp;&amp; svgRoot.length &amp;&amp; !defaults) { 
  *          const colors = ['#800', '#080', '#008'];
- *          defaults = hsUtil.log
+ *          defaults = log
  *              .inspect(new hsGraphD3.GraphCartesian(svgRoot[0]).defaults.title, null, '   ', colors)
  *              .replace(/\n/g, '&lt;br&gt;')
  *      }
@@ -361,7 +361,7 @@
  */
 &nbsp;
  /** */
-import { log as _log }          from 'hsutil'; const log = _log('Title');
+import { Log }                  from 'hsutil'; const log = new Log('Title');
 import { ComponentDefaults }    from './GraphComponent'; 
 import { GraphComponent }       from './GraphComponent'; 
 import { GraphCfg }             from './GraphComponent'; 

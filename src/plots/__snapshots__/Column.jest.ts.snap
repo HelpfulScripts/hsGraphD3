@@ -509,10 +509,10 @@ exports[`Column should plot column 1`] = `
             y="280"
           />
           <rect
-            height="97"
+            height="98"
             width="112"
             x="548"
-            y="248"
+            y="247"
           />
           <rect
             height="130"
@@ -535,7 +535,7 @@ exports[`Column should plot column 1`] = `
           stroke-width="1"
         >
           <path
-            d="M68 508L180 508L228 312L340 312L388 280L500 280L548 248L660 248L708 215L820 215L868 183L980 183"
+            d="M68 508L180 508L228 312L340 312L388 280L500 280L548 247L660 247L708 215L820 215L868 183L980 183"
           />
         </g>
         <g
@@ -576,7 +576,7 @@ exports[`Column should plot column 1`] = `
             y="215"
           />
           <rect
-            height="98"
+            height="97"
             width="112"
             x="548"
             y="150"

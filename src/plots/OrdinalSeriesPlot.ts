@@ -20,7 +20,7 @@
  */
 
 /** */
-import { log as gLog }          from 'hsutil';   const log = gLog('OrdinalSeriesPlot');
+import { Log }                  from 'hsutil'; const log = new Log('OrdinalSeriesPlot');
 import { DataRow }              from '../Graph';
 import { DataVal }              from '../Graph';
 import { NumDomain }            from '../Graph';

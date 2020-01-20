@@ -79,7 +79,7 @@
 <p id=56 class="line"><span>&nbsp;&nbsp;56</span><comment>&nbsp;*&nbsp;###&nbsp;GraphCartesian&nbsp;Default&nbsp;Settings:</comment></p>
 <p id=57 class="line"><span>&nbsp;&nbsp;57</span><comment>&nbsp;*&nbsp;<example&nbsp;height=300px&nbsp;libs={hsGraphD3:<quote>'hsGraphD3'</quote>,&nbsp;hsUtil:<quote>'hsUtil'</quote>}></comment></p>
 <p id=58 class="line"><span>&nbsp;&nbsp;58</span><comment>&nbsp;*&nbsp;<file&nbsp;name=<quote>'script.js'</quote>></comment></p>
-<p id=59 class="line"><span>&nbsp;&nbsp;59</span><comment>&nbsp;*&nbsp;const&nbsp;log&nbsp;=&nbsp;hsUtil.log(<quote>''</quote>);</comment></p>
+<p id=59 class="line"><span>&nbsp;&nbsp;59</span><comment>&nbsp;*&nbsp;const&nbsp;log&nbsp;=&nbsp;new&nbsp;hsUtil.Log(<quote>''</quote>);</comment></p>
 <p id=60 class="line"><span>&nbsp;&nbsp;60</span><comment>&nbsp;*&nbsp;let&nbsp;defaults;</comment></p>
 <p id=61 class="line"><span>&nbsp;&nbsp;61</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=62 class="line"><span>&nbsp;&nbsp;62</span><comment>&nbsp;*&nbsp;m.mount(root,&nbsp;{</comment></p>
@@ -92,7 +92,7 @@
 <p id=69 class="line"><span>&nbsp;&nbsp;69</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(svgRoot&nbsp;&&&nbsp;svgRoot.length&nbsp;&&&nbsp;!defaults)&nbsp;{&nbsp;</comment></p>
 <p id=70 class="line"><span>&nbsp;&nbsp;70</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;colors&nbsp;=&nbsp;[<quote>'#800'</quote>,&nbsp;<quote>'#080'</quote>,&nbsp;<quote>'#008'</quote>];</comment></p>
 <p id=71 class="line"><span>&nbsp;&nbsp;71</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.GraphCartesian(svgRoot[0]);</comment></p>
-<p id=72 class="line"><span>&nbsp;&nbsp;72</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;defaults&nbsp;=&nbsp;hsUtil.log</comment></p>
+<p id=72 class="line"><span>&nbsp;&nbsp;72</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;defaults&nbsp;=&nbsp;log</comment></p>
 <p id=73 class="line"><span>&nbsp;&nbsp;73</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.inspect(graph.defaults,&nbsp;null,&nbsp;<quote>'&nbsp;&nbsp;&nbsp;'</quote>,&nbsp;colors)</comment></p>
 <p id=74 class="line"><span>&nbsp;&nbsp;74</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.replace(/\n/g,&nbsp;<quote>'<br>'</quote>)</comment></p>
 <p id=75 class="line"><span>&nbsp;&nbsp;75</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</comment></p>
@@ -104,10 +104,10 @@
 <p id=81 class="line"><span>&nbsp;&nbsp;81</span></p>
 <p id=82 class="line"><span>&nbsp;&nbsp;82</span>&nbsp;<comment>/**&nbsp;*/</comment></p>
 <p id=83 class="line"><span>&nbsp;&nbsp;83</span></p>
-<p id=84 class="line"><span>&nbsp;&nbsp;84</span>import&nbsp;{&nbsp;log&nbsp;as&nbsp;gLog&nbsp;}&nbsp;from&nbsp;<quote>'hsutil'</quote>;&nbsp;&nbsp;&nbsp;const&nbsp;log&nbsp;=&nbsp;gLog(<quote>'GraphCartesian'</quote>);</p>
+<p id=84 class="line"><span>&nbsp;&nbsp;84</span>import&nbsp;{&nbsp;Log&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'hsutil'</quote>;&nbsp;const&nbsp;log&nbsp;=&nbsp;new&nbsp;Log(<quote>'GraphCartesian'</quote>);</p>
 <p id=85 class="line"><span>&nbsp;&nbsp;85</span></p>
 <p id=86 class="line"><span>&nbsp;&nbsp;86</span>import&nbsp;{&nbsp;DataSet&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Graph'</quote>;</p>
-<p id=87 class="line"><span>&nbsp;&nbsp;87</span>import&nbsp;{&nbsp;ValueDef&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Graph'</quote>;</p>
+<p id=87 class="line"><span>&nbsp;&nbsp;87</span>import&nbsp;{&nbsp;ValueDef&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Graph'</quote>;</p>
 <p id=88 class="line"><span>&nbsp;&nbsp;88</span>import&nbsp;{&nbsp;GraphDimensions&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Graph'</quote>;</p>
 <p id=89 class="line"><span>&nbsp;&nbsp;89</span>import&nbsp;{&nbsp;Graph&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Graph'</quote>;</p>
 <p id=90 class="line"><span>&nbsp;&nbsp;90</span>import&nbsp;{&nbsp;Domains&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Graph'</quote>;</p>

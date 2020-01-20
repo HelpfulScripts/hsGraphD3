@@ -1,5 +1,5 @@
 import * as hsGraphD3   from './';
-import { log }          from 'hsnode';
+import { Log }          from 'hsnode';
 import * as d3 from 'd3';
 import { DataSet }      from './Graph';
 import { AxesDefaults } from './Axis';

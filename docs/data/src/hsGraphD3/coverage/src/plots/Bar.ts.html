@@ -401,7 +401,7 @@
  * ### Bar plot Default Settings:
  * &lt;example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}&gt;
  * &lt;file name='script.js'&gt;
- * const log = hsUtil.log('');
+ * const log = new hsUtil.Log('');
  * let defaults;
  * 
  * function createGraph(svgRoot) {
@@ -421,9 +421,9 @@
  *          const colors = ['#800', '#080', '#008'];
  *          const graph = createGraph(svgRoot[0]);
  *          defaults = `&lt;b&gt;graph.series.defaults = &lt;/b&gt;
- *              ${hsUtil.log.inspect(graph.series.defaults, null, '   ', colors).replace(/\n/g, '&lt;br&gt;')}
+ *              ${log.inspect(graph.series.defaults, null, '   ', colors).replace(/\n/g, '&lt;br&gt;')}
  *              &lt;br&gt;&lt;br&gt;&lt;b&gt;graph.scales.defaults.dims = &lt;/b&gt;
- *              ${hsUtil.log.inspect(graph.scales.defaults.dims, null, '   ', colors).replace(/\n/g, '&lt;br&gt;')}`;
+ *              ${log.inspect(graph.scales.defaults.dims, null, '   ', colors).replace(/\n/g, '&lt;br&gt;')}`;
  *      }
  *   } 
  * });
@@ -433,7 +433,7 @@
 &nbsp;
  /** */
 &nbsp;
-import { log as gLog }          from 'hsutil';   const log = gLog('Column');
+import { Log }                  from 'hsutil'; const log = new Log('Column');
 import { CartSeriesDimensions } from '../CartSeriesPlot';
 import { GraphCfg}              from '../GraphComponent';
 import { Series }               from '../Series';
