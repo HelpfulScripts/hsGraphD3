@@ -17065,7 +17065,7 @@
 									"kindString": "Call signature",
 									"flags": {},
 									"comment": {
-										"shortText": "Returns the current value of the specified style property for the first (non-null) element in the selection.\nThe current value is defined as the element’s  value, if present, and otherwise its computed value.\nAccessing the current style value is generally useful only if you know the selection contains exactly one element."
+										"shortText": "Returns the current value of the specified style property for the first (non-null) element in the selection.\nThe current value is defined as the element’s inline value, if present, and otherwise its computed value.\nAccessing the current style value is generally useful only if you know the selection contains exactly one element."
 									},
 									"parameters": [
 										{
@@ -23155,7 +23155,7 @@
 									"kindString": "Call signature",
 									"flags": {},
 									"comment": {
-										"shortText": "Returns the current value of the specified style property for the first (non-null) element in the selection.\nThe current value is defined as the element’s  value, if present, and otherwise its computed value.\nAccessing the current style value is generally useful only if you know the selection contains exactly one element."
+										"shortText": "Returns the current value of the specified style property for the first (non-null) element in the selection.\nThe current value is defined as the element’s inline value, if present, and otherwise its computed value.\nAccessing the current style value is generally useful only if you know the selection contains exactly one element."
 									},
 									"parameters": [
 										{
