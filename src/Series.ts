@@ -165,7 +165,6 @@ export class Series extends GraphComponent {
                 s.expandDomains(dataSet, domains);
             });
         }
-log.info(`expandDomains done`);        
         return domains;
     }
     
