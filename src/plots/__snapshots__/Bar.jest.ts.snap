@@ -22,7 +22,7 @@ exports[`Bar should plot bar 1`] = `
         rx="0"
         ry="0"
         stroke="#00c"
-        stroke-dasharray=""
+        stroke-dasharray="none"
         stroke-opacity="1"
         stroke-width="1"
         width="1000"
@@ -41,7 +41,7 @@ exports[`Bar should plot bar 1`] = `
         class="ver-major-Grid"
         fill-opacity="0"
         stroke="#444"
-        stroke-dasharray=""
+        stroke-dasharray="none"
         stroke-opacity="1"
         stroke-width="1"
       >
@@ -68,7 +68,7 @@ exports[`Bar should plot bar 1`] = `
         class="ver-minor-Grid"
         fill-opacity="0"
         stroke="#eee"
-        stroke-dasharray=""
+        stroke-dasharray="none"
         stroke-opacity="1"
         stroke-width="1"
       >
@@ -154,7 +154,7 @@ exports[`Bar should plot bar 1`] = `
         font-style="normal"
         font-weight="100"
         stroke="currentColor"
-        stroke-dasharray=""
+        stroke-dasharray="none"
         stroke-opacity="1"
         stroke-width="1"
         text-anchor="middle"
@@ -173,7 +173,7 @@ exports[`Bar should plot bar 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
-            stroke-dasharray=""
+            stroke-dasharray="none"
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -194,7 +194,7 @@ exports[`Bar should plot bar 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
-            stroke-dasharray=""
+            stroke-dasharray="none"
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -215,7 +215,7 @@ exports[`Bar should plot bar 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
-            stroke-dasharray=""
+            stroke-dasharray="none"
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -236,7 +236,7 @@ exports[`Bar should plot bar 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
-            stroke-dasharray=""
+            stroke-dasharray="none"
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -257,7 +257,7 @@ exports[`Bar should plot bar 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
-            stroke-dasharray=""
+            stroke-dasharray="none"
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -278,7 +278,7 @@ exports[`Bar should plot bar 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
-            stroke-dasharray=""
+            stroke-dasharray="none"
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -299,7 +299,7 @@ exports[`Bar should plot bar 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
-            stroke-dasharray=""
+            stroke-dasharray="none"
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -320,7 +320,7 @@ exports[`Bar should plot bar 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
-            stroke-dasharray=""
+            stroke-dasharray="none"
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -341,7 +341,7 @@ exports[`Bar should plot bar 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
-            stroke-dasharray=""
+            stroke-dasharray="none"
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -362,7 +362,7 @@ exports[`Bar should plot bar 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
-            stroke-dasharray=""
+            stroke-dasharray="none"
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -383,7 +383,7 @@ exports[`Bar should plot bar 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
-            stroke-dasharray=""
+            stroke-dasharray="none"
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -407,7 +407,7 @@ exports[`Bar should plot bar 1`] = `
         font-style="normal"
         font-weight="100"
         stroke="currentColor"
-        stroke-dasharray=""
+        stroke-dasharray="none"
         stroke-opacity="1"
         stroke-width="1"
         text-anchor="end"
@@ -426,7 +426,7 @@ exports[`Bar should plot bar 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
-            stroke-dasharray=""
+            stroke-dasharray="none"
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -447,7 +447,7 @@ exports[`Bar should plot bar 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
-            stroke-dasharray=""
+            stroke-dasharray="none"
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -468,7 +468,7 @@ exports[`Bar should plot bar 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
-            stroke-dasharray=""
+            stroke-dasharray="none"
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -489,7 +489,7 @@ exports[`Bar should plot bar 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
-            stroke-dasharray=""
+            stroke-dasharray="none"
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -510,7 +510,7 @@ exports[`Bar should plot bar 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
-            stroke-dasharray=""
+            stroke-dasharray="none"
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -531,7 +531,7 @@ exports[`Bar should plot bar 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
-            stroke-dasharray=""
+            stroke-dasharray="none"
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -563,7 +563,7 @@ exports[`Bar should plot bar 1`] = `
           fill="currentColor"
           fill-opacity="0.5"
           stroke="#fff"
-          stroke-dasharray=""
+          stroke-dasharray="none"
           stroke-opacity="1"
           stroke-width="0"
         >
@@ -609,7 +609,7 @@ exports[`Bar should plot bar 1`] = `
           class="line"
           fill-opacity="0"
           stroke="currentColor"
-          stroke-dasharray=""
+          stroke-dasharray="none"
           stroke-opacity="1"
           stroke-width="1"
         >
@@ -627,7 +627,7 @@ exports[`Bar should plot bar 1`] = `
           fill="currentColor"
           fill-opacity="0.5"
           stroke="#fff"
-          stroke-dasharray=""
+          stroke-dasharray="none"
           stroke-opacity="1"
           stroke-width="0"
         >
@@ -635,37 +635,37 @@ exports[`Bar should plot bar 1`] = `
           <rect
             height="75.83333333333333"
             width="480"
-            x="20"
+            x="116"
             y="594.1666666666666"
           />
           <rect
             height="75.83333333333333"
             width="96"
-            x="500"
+            x="836"
             y="485.8333333333333"
           />
           <rect
             height="75.83333333333333"
             width="192"
-            x="500"
+            x="548"
             y="377.5"
           />
           <rect
             height="75.83333333333333"
             width="288"
-            x="500"
+            x="404"
             y="269.16666666666663"
           />
           <rect
             height="75.83333333333333"
             width="384"
-            x="500"
+            x="644"
             y="160.83333333333331"
           />
           <rect
             height="75.83333333333333"
             width="480"
-            x="500"
+            x="596"
             y="52.5"
           />
         </g>
@@ -673,7 +673,7 @@ exports[`Bar should plot bar 1`] = `
           class="line"
           fill-opacity="0"
           stroke="currentColor"
-          stroke-dasharray=""
+          stroke-dasharray="none"
           stroke-opacity="1"
           stroke-width="1"
         >

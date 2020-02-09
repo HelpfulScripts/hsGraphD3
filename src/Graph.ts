@@ -107,6 +107,7 @@ import { CanvasDefaults }       from './Canvas';
 import { d3Base }               from './Settings';
 import { Title }                from './Title';
 import { TitleDefaults }        from './Title';
+import { ValueDef }             from "./SeriesPlot";
 
 const easings = {
     easeLinear: easeLinear,
@@ -119,19 +120,6 @@ const easings = {
  */
 const vpWidth:number = 1000;
 
-/** 
- * Basic `ValueDef` definition: 
- * - `string`: the name of column in the data set
- * - `number`: a constant value
- * - `ValueFn`: a function, returning the value. 
- */
-export type ValueDef = string|number|ValueFn;
-
-/** 
- * a function returning the value of a data point 
- * @param i an optional number, typically indicating the sequence index of a row in a data set
- */
-export interface ValueFn { (i?:number|string): DataVal; }
 
 /** default settings for the `Graph` component */
 export interface GraphDefaults extends ComponentDefaults {

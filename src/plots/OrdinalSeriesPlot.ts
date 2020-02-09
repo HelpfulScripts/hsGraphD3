@@ -4,7 +4,7 @@
  * Abstract base class for all ordinal series plot types.
  * To create a series plot, add the desired plot type to the graph:
  * ```
- * graph.series.add(<type>, {<dim>: <data-values>, ...});
+ * graph.series.add(<type>, {<dim>: <ValueDef>, ...});
  * ``` 
  * - `<type>` is one of the registered types: 
  *     - &nbsp; {@link plots.Bar `bar`} a horizontal bar chart
@@ -14,30 +14,35 @@
  *     - `x`: required; the value to plot along the x-axis
  *     - `y`: required; the value to plot along the y-axis
  *     - `stacked`: optional, specifies a group name for which series values will be stacked.
- * - `<data-values>` is the value to use for the {@link Series.SeriesDimensions semantic dimension}. Values may be specified
+ * - `<ValueDef>` is the {@link SeriesPlot.ValueDef value definition} to use for the {@link Series.SeriesDimensions semantic dimension}. Values may be specified
  *     - by `string` to specify the column name of the data set to use
  *     - by `number` to specify a constant value to use.  
  */
 
 /** */
 import { Log }                  from 'hsutil'; const log = new Log('OrdinalSeriesPlot');
-import { DataRow, OrdDomain }              from '../Graph';
+import { DataRow, OrdDomain }   from '../Graph';
 import { DataVal }              from '../Graph';
 import { NumDomain }            from '../Graph';
 import { DataSet }              from '../Graph';
-import { ValueDef }             from '../Graph';
 import { Domains }              from '../Graph';
 import { d3Base }               from '../Settings';
 import { Label }                from '../Settings';
 import { CartSeriesPlot, text } from '../CartSeriesPlot';
+import { ValueDef }             from '../SeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { Series }               from '../Series';
+import { TextHAlign }           from "../Settings";
+import { TextVAlign }           from "../Settings";
 
 
 /**
  * Abstract base class of a  cartesian series plot. 
  */
 export abstract class OrdinalSeriesPlot extends CartSeriesPlot { 
+    /** used  */
+    protected cache = { x:<number[]>[], x0:<number[]>[], y:<number[]>[], y0:<number[]>[] };
+
     getDefaults(): SeriesPlotDefaults {
         const scaleDef = this.cfg.graph.defaults.scales.dims[this.abscissa];
         scaleDef.type = 'ordinal';
@@ -48,7 +53,6 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
         def.marker.rendered = false;
         def.line.rendered = false;
         def.line.width = 1;
-        def.label.color = '#000';
         return def;
     } 
 
@@ -58,7 +62,7 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
      * @param v data column value definition
      * @param colNames 
      */
-    accessor(v:ValueDef, colNames:string[]):(row?:DataRow, rowIndex?:number) => DataVal {
+    accessor(v:ValueDef, colNames:string[]):(row:DataRow, rowIndex:number) => DataVal {
         const stack = this.cfg.stack[this.dims.stacked];
         const stackDim = this.dimensions[this.abscissa==='hor'? 'ver' : 'hor'].indexOf(v)>=0;
         const abscissaCol = {hor:this.dims.x, ver:this.dims.y}[this.abscissa];
@@ -94,6 +98,7 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
         const scale = this.cfg.graph.scales.scaleDims[this.abscissa];
         scale.paddingInner(gap);
         scale.paddingOuter(gap/2);
+        this.cache = { x:<number[]>[], x0:<number[]>[], y:<number[]>[], y0:<number[]>[] };
     }
  
 
@@ -170,25 +175,29 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
         if (this.abscissa==='hor') { // Column
             const x  = this.accessor(this.dims.x, colNames);
             const y  = this.accessor(this.dims.y, colNames);
-            const y0 = this.accessor(this.dims.stacked || 0, colNames);
+            const y0 = this.dims.stacked? this.accessor(this.dims.stacked, colNames) : ()=>0;
             markers
-                .attr("x",  (d:number[]) => xScale(x(d)) + offset)
-                .attr("y",  (d:number[]) => Math.min(yScale(y(d)), yScale(y0(d))))
+                .attr("x",  (d:number[], i:number) => this.cached('x', i, ()=>xScale(x(d, i))) + offset)
+                .attr("y",  (d:number[], i:number) => Math.min(this.cached('y', i, ()=>yScale(y(d, i))), this.cached('y0', i, ()=>yScale(y0(d, i)))))
                 .attr("width",  () => thickness)
-                .attr("height", (d:number[]) => Math.abs(yScale(y(d))-yScale(y0(d))));        
-        } else {                            // Bar
-            const x0 = this.accessor(this.dims.stacked || 0, colNames);
+                .attr("height", (d:number[], i:number) => Math.abs(this.cached('y', i, ()=>yScale(y(d, i)))-this.cached('y0', i, ()=>yScale(y0(d, i)))));        
+        } else {                    // Bar
+            const x0 = this.dims.stacked? this.accessor(this.dims.stacked, colNames) : ()=>0;
             const x  = this.accessor(this.dims.x, colNames);
             const y  = this.accessor(this.dims.y, colNames);
             markers
-                .attr("x",  (d:number[]) => Math.min(xScale(x(d)), xScale(x0(d))))
-                .attr("y",  (d:number[]) => yScale(y(d)) + offset)
+                .attr("x",  (d:number[], i:number) => Math.min(this.cached('x', i, ()=>xScale(x(d, i))), this.cached('x0', i, ()=>xScale(x0(d, i)))))
+                .attr("y",  (d:number[], i:number) => this.cached('y', i, ()=>yScale(y(d, i))) + offset)
                 .attr("height",  () => thickness)
-                .attr("width", (d:number[]) => Math.abs(xScale(x0(d))-xScale(x(d))));
+                .attr("width", (d:number[], i:number) => Math.abs(this.cached('x0', i, ()=>xScale(x0(d, i)))-this.cached('x', i, ()=>xScale(x(d, i)))));
         }
     }
 
-    protected d3DrawLabel(markers:d3Base, colNames:string[]) {
+    cached(v:string, i:number, get:()=>number) {
+        return this.cache[v][i]===undefined? this.cache[v][i]=get() : this.cache[v][i];
+    }
+
+    protected d3DrawLabel(labels:d3Base, colNames:string[]) {
         const [offset, thickness] = this.getParams(colNames);
 
         const xScale = this.cfg.graph.scales.scaleDims.hor;
@@ -197,30 +206,27 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
         const l = this.accessor(this.dims.label, colNames);
         const cfg:Label = this.defaults.label;
 
-        const [xpos, ypos, yShift] = this.labelPos(cfg);
-        if (this.abscissa==='hor') { // Column
-            const x  = this.accessor(this.dims.x, colNames);
-            const y  = this.accessor(this.dims.y, colNames);
-            const y0 = this.accessor(this.dims.stacked, colNames);
-            markers
-                .attr("x",  (d:number[]) => xScale(x(d)) + offset + thickness*xpos)
-                .attr("y",  (d:number[]) => Math.min(yScale(y(d)), yScale(y0(d)))
-                    + Math.abs(yScale(y0(d))-yScale(y(d))) * ypos);
-        } else {                            // Bar
-            const index = colNames.indexOf(<string>this.dims.x);
-            const x0 = this.accessor(this.dims.stacked, colNames);
-            const x  = this.accessor(this.dims.x, colNames);
-            const y  = this.accessor(this.dims.y, colNames);
-            markers
-                .attr("x",  (d:number[]) => Math.min(xScale(x(d)), xScale(x0(d)))
-                    + Math.abs(xScale(x0(d))-xScale(x(d))) * xpos)
-                .attr("y",  (d:number[]) => yScale(y(d)) + offset + thickness* ypos);
+        const [xpos, ypos] = this.labelPos(cfg, labels);
+        const x  = this.accessor(this.dims.x, colNames);
+        const y  = this.accessor(this.dims.y, colNames);
+        if (this.abscissa==='hor') {    // Column
+            const y0 = this.dims.stacked? this.accessor(this.dims.stacked, colNames) : ()=>0;
+            labels
+                .attr("x",  (d:number[], i:number) => this.cached('x', i, ()=>xScale(x(d, i))) + offset + thickness*xpos)
+                .attr("y",  (d:number[], i:number) => 
+                    Math.min(this.cached('y', i, ()=>yScale(y(d, i))), this.cached('y0', i, ()=>yScale(y0(d, i))))
+                  + Math.abs(this.cached('y', i, ()=>yScale(y(d, i))) -this.cached('y0', i, ()=>yScale(y0(d, i)))) * ypos
+                );
+        } else {                        // Bar
+            const x0 = this.dims.stacked? this.accessor(this.dims.stacked, colNames) : ()=>0;
+            labels
+                .attr("x",  (d:number[], i:number) => 
+                    Math.min(this.cached('x', i, ()=>xScale(x(d, i))),this.cached('x0', i, ()=>xScale(x0(d, i))))
+                  + Math.abs(this.cached('x', i, ()=>xScale(x(d, i)))-this.cached('x0', i, ()=>xScale(x0(d, i))))* xpos
+                )
+                .attr("y",  (d:number[], i:number) => this.cached('y', i, ()=>yScale(y(d, i))) + offset + thickness* ypos);
         }
-        markers
-        .attr('dx', (cfg.hOffset||0).toFixed(1) + 'em')
-        .attr('dy', ((cfg.vOffset||0)+yShift).toFixed(1) + 'em')
-        .style('text-anchor', cfg.xpos)
-        .text((d:number[]) => text(l(d)));
+        labels.text((d:number[], i:number) => text(l(d, i)));
     }
 
     protected getLine(rows:DataRow[], colNames:string[]):string {
@@ -234,14 +240,37 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
 
         const line = hor?
             stepLine(parseInt(''+thickness), 'hor')
-                .x((d:number[]) => xScale(x(d))+offset)
-                .y((d:number[]) => yScale(<number>y(d)))
+                .x((d:number[], i:number) => this.cached('x', i, ()=>xScale(x(d, i)))+offset)
+                .y((d:number[], i:number) => this.cached('y', i, ()=>yScale(y(d, i))))
           : stepLine(parseInt(''+thickness), 'ver')
-                .x((d:number[]) => xScale(<number>x(d)))
-                .y((d:number[]) => yScale(y(d))+offset);
+                .x((d:number[], i:number) => this.cached('x', i, ()=>xScale(x(d, i))))
+                .y((d:number[], i:number) => this.cached('y', i, ()=>yScale(y(d, i)))+offset);
         return line(rows);
     }
 
+    protected labelPos(cfg:Label, labels:d3Base) {
+        let xShift = 0;
+        let yShift = 0.35;
+        let xpos = 0.5; // 0: left aligned, 1: right aligned
+        let ypos = 0.5;   // 0: top of bar, 1: bottom of bar
+        let anchor = 'middle';
+        switch(cfg.xpos) { 
+            case TextHAlign.left:   xpos = 0; xShift = cfg.inside?0.2:-0.2; anchor = cfg.inside?'start':'end'; break;
+            case TextHAlign.center: break;
+            case TextHAlign.right:  xpos = 1; xShift = cfg.inside?-0.2:0.2; anchor = cfg.inside?'end':'start';  break;
+            default: log.warn(`illegal TextHAlign: ${cfg.xpos}`);
+        }
+        switch(cfg.ypos) { // additional y 'em' shift
+            case TextVAlign.top:    ypos = 0; yShift = cfg.inside? 1 : -0.2; break;
+            case TextVAlign.center: break;
+            case TextVAlign.bottom: ypos = 1; yShift = cfg.inside? -0.2 : 1; break;
+            default:  log.warn(`illegal TextVAlign: ${cfg.ypos}`);
+        }
+        labels.style('text-anchor', anchor)
+              .attr('dx', ((cfg.hOffset||0)+xShift).toFixed(1) + 'em')
+              .attr('dy', ((cfg.vOffset||0)+yShift).toFixed(1) + 'em');
+    return [xpos, ypos];
+    }
 
 
     //---------- stack methods --------------------
@@ -252,7 +281,7 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
         const group = this.dims.stacked;
         if (group) {
             const scales = this.cfg.graph.scales.scaleDims;
-            const scale = {hor:scales.hor, ver:scales.hor}[this.abscissa];
+            const scale = {hor:scales.hor, ver:scales.ver}[this.abscissa];
             if (scale) {
                 const domain = <OrdDomain>scale.domain();
                 const stack = this.cfg.stack[this.dims.stacked];
@@ -282,18 +311,18 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
                 stack[abscissaKey] += <number>row[ordinateIndex];
             });
         }
-    }
+    }  
 }
 
 
 function stepLine(step:number, axis:'hor'|'ver') {
-    interface Accessor { (d:DataVal[]): number; }
+    interface Accessor { (d:DataVal[], i:number): number; }
     let xAccess:Accessor;
     let yAccess:Accessor;
     const accessors = (rows: DataRow[]):string => {
         const result = rows.map((r, i) => {
-            const x = parseInt(''+xAccess(r));
-            const y = parseInt(''+yAccess(r));
+            const x = parseInt(''+xAccess(r, i));
+            const y = parseInt(''+yAccess(r, i));
             return (i===0?'M':'L') + x + ' ' + 
                 ((axis==='hor')? (y + 'L' + (x+step)) : ((y+step) + 'L' + x ))
                 + ' ' + y;

@@ -13,6 +13,8 @@ Helpful Scripts D3 convenience wrappers for simple plotting.
 
 **hsGraphD3** Provides JavaScript directives to facilitate really simple plotting of data. The API is designed to utilize the vast power of the [D3 framework](d3js.org) while hiding the complexity and steep learning curve.
 
+<!-- TOC -->autoauto- [Installation](#installation)auto- [Usage](#usage)autoauto<!-- /TOC -->
+
 ## Installation
 `npm i hsgraphd3`
 
@@ -61,3 +63,15 @@ graph.render(data).update(ms, data => {
 
 See an [example](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/0) or visit the 
 [examples page](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.examples)
+
+## Series Parameters
+Valid series parameters are defined as extensions of [SeriesDimensions](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.SeriesPlot.SeriesDimensions). Examples:
+
+[Column plot](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.plots.Column) with item labels
+```graph.addSeries('column', {x:'time', y:'volume', label:'costs'});```
+
+Stacked [Column plot](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.plots.Column) with item labels that are the index of the item
+```
+graph.addSeries('column', {x:'time', y:'volume', label:i=>i, stacked:'myGroup'});
+graph.addSeries('column', {x:'time', y:'costs', label:'i=>i', stacked:'myGroup'});
+```

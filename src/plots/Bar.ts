@@ -12,9 +12,9 @@
  *    colNames: ['State', 'volume', 'costs'], 
  *    rows:[    ['CA',     -0.1,     0.2], 
  *              ['MA',      0.2,     0.7], 
- *              ['FL',      0.4,     0.1],
+ *              ['Florida', 0.4,     0.1],
  *              ['SC',      0.6,    -0.2], 
- *              ['NV',      0.8,     0.3], 
+ *              ['Nevada',  0.8,     0.3], 
  *              ['NC',      1,       0.2]]
  * };
  * 
@@ -25,6 +25,7 @@
  * graph.scales.defaults.dims.ver.ordinal.gap = 0.25;
  * graph.scales.defaults.dims.ver.ordinal.overlap = 0.75;
  * graph.series.defaults[0].line.rendered = true;
+ * graph.series.defaults[0].label.xpos = 'right';
  * graph.series.defaults.series1.line.rendered = true;
  * graph.grids.defaults.hor.major.rendered = false;
  * graph.render(data).update(2000, data => {
@@ -47,9 +48,9 @@
  *    colNames: ['State', 'volume', 'costs'], 
  *    rows:[    ['CA',     -0.1,     0.2], 
  *              ['MA',      0.2,     0.7], 
- *              ['FL',      0.4,     0.1],
+ *              ['Florida', 0.4,     0.1],
  *              ['SC',      0.6,    -0.2], 
- *              ['NV',      0.8,     0.3], 
+ *              ['Nevada',  0.8,     0.3], 
  *              ['NC',      1,       0.2]]
  * };
  * 
@@ -60,7 +61,10 @@
  * graph.scales.defaults.dims.ver.ordinal.gap = 0.25;
  * graph.scales.defaults.dims.ver.ordinal.overlap = 0.75;
  * graph.series.defaults.series0.line.rendered = true;
+ * graph.series.defaults[0].label.xpos = 'center';
  * graph.series.defaults.series1.line.rendered = true;
+ * graph.series.defaults[1].label.xpos = 'right';
+ * graph.series.defaults[1].label.inside = false;
  * graph.grids.defaults.hor.major.rendered = false;
  * graph.render(data).update(2000, data => {
  *      data.rows.forEach(row => {

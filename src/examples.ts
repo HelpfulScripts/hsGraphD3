@@ -1,7 +1,7 @@
 /**
  * #Examples
  * 
- * <example height=2000px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
+ * <example height=1700px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
  * <file name='script.js'>
  * const content = [
  *      graph => {
@@ -63,15 +63,15 @@
  *      }, 
  * 
  *      graph => { 
- *          graph.series.add('column', {x:'item', y:'Joe'});
- *          graph.series.add('column', {x:'item', y:'Mary'});
+ *          graph.series.add('column', {x:'item', y:'Joe', label:'item'});
+ *          graph.series.add('column', {x:'item', y:'Mary', label:i=>i});
  *          graph.title.text = `'column' graph`;
  *          graph.render(data).update(2000);
  *      }, 
  * 
  *      graph => { 
- *          graph.series.add('column', {x:'item', y:'Joe', stacked:'myGroup'});
- *          graph.series.add('column', {x:'item', y:'Mary', stacked:'myGroup'});
+ *          graph.series.add('column', {x:'item', y:'Joe', stacked:'myGroup', label:i=>`<${i}>`});
+ *          graph.series.add('column', {x:'item', y:'Mary', stacked:'myGroup', label:5});
  *          graph.title.text = `stacked 'column' graph`;
  *          graph.render(data).update(2000);
  *      }, 
@@ -146,7 +146,7 @@
  * }
  * 
  * m.mount(root, {
- *   view:() => m(hsLayout.Layout, { rows: ['20px', '125px'], content:[
+ *   view:() => m(hsLayout.Layout, { rows: ['100px', '130px'], content:[
  *      m('div.hs-layout', {style:'background-color:white;'}),
  *      ...content.map(fn => m(nodeGraph(fn)))] }),
  * });

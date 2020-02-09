@@ -14,31 +14,37 @@
 import { Log }                  from 'hsutil'; const log = new Log('CartSeriesPlot');
 import { SeriesPlot }           from "./SeriesPlot";
 import { SeriesPlotDefaults }   from "./SeriesPlot";
-import { SeriesDimensions }     from "./Series";
-import { ValueDef, DataVal }             from "./Graph";
+import { SeriesDimensions }     from "./SeriesPlot";
+import { ValueDef }             from "./SeriesPlot";
+import { DataVal }              from "./Graph";
 import { DataSet }              from "./Graph";
 import { Domains }              from "./Graph";
 import { CartDimensions }       from "./GraphCartesian";
 import { GraphCfg }             from "./GraphComponent";
-import { d3Base, setLabel, setPopup, TextHAlign, TextVAlign, Label, setRect, setArea }               from "./Settings";
+import { d3Base }               from "./Settings";
+import { setLabel }             from "./Settings";
+import { setPopup}              from "./Settings";
+import { Label }                from "./Settings";
+import { setArea }              from "./Settings";
 import { setStroke }            from "./Settings";
 import { setFill }              from "./Settings";
-// import { ScalesDefaults } from './Scale';
 
 /**
- * valid standard dimensions on cartesian plots:
- * - x: a {@ Graph.ValueDef Value Definiton} for the x-axis.
- * - y: a {@ Graph.ValueDef Value Definiton} for the y-axis.
- * - y0: optional {@ Graph.ValueDef Value Definiton} for lower fill border on the y-axis
- * - r: optional {@ Graph.ValueDef Value Definiton} for the size of markers
+ * valid {@link SeriesPlot.ValueDef `Value Definiton`} dimensions on cartesian plots:
+ * - x?:  optional values for the x-axis. If omitted, the index of y-values will be used as x-values
+ * - y:   values for the y-axis.
+ * - y0?: optional values for lower fill border on the y-axis; defaults to `0`
+ * - r?:  optional values for the size of markers. If provided, marker rendering is enabled.
+ * - label?: optional values for item labels
+ * - popup?: optional values to show in mouse-over popups.
  */
 export interface CartSeriesDimensions extends SeriesDimensions {
     x:   ValueDef;      // name of x-axis data column, or a function returning a value
     y:   ValueDef;      // name of y-axis data column, or a function returning a value
     y0?: ValueDef;      // optional, name of y-axis data column for lower fill border, or a function returning a value
     r?:  ValueDef;      // optional, name of marker size data column, or a function returning a value
-    l?:  ValueDef;      // optional, name of label data column, or a function returning a value
-    p?:  ValueDef;      // optional, name of popup data column, or a function returning a value
+    label?: ValueDef;   // optional, name of label data column, or a function returning a value
+    popup?: ValueDef;   // optional, name of popup data column, or a function returning a value
 }
 
 /**
@@ -67,7 +73,7 @@ export abstract class CartSeriesPlot extends SeriesPlot {
             hor: [this.dims.x],
             ver: [this.dims.y, this.dims.y0],
             size:[this.dims.r],
-            label:[this.dims.label]
+            // label:[this.dims.label]
         };
     }
 
@@ -79,6 +85,7 @@ export abstract class CartSeriesPlot extends SeriesPlot {
         if (this.dims.r)    { def.marker.rendered = true; }
         if (this.dims.y0)   { def.area.rendered = true; }
         if (this.dims.label){ def.label.rendered = true; }
+        def.label.color = '#000';
         return def;
     }
 
@@ -160,26 +167,7 @@ export abstract class CartSeriesPlot extends SeriesPlot {
         return svg.select(cls).selectAll('path').transition(this.cfg.transition);
     }
 
-    protected labelPos(cfg:Label) {
-        let yShift = 0;
-        let xpos = 0;   // 0: left aligned, 1: right aligned
-        let ypos = 0;   // 0: top of bar, 1: bottom of bar
-        switch(cfg.xpos) { 
-            case TextHAlign.start:  xpos = 0;   break;
-            case TextHAlign.middle: xpos = 0.5; break;
-            case TextHAlign.end: 
-            default:                xpos = 1;   break;
-        }
-        switch(cfg.ypos) { // additional y 'em' shift
-            case TextVAlign.top:    yShift = 0.7;  ypos = 0;   break;
-            case TextVAlign.center: yShift = 0.35; ypos = 0.5; break;
-            case TextVAlign.bottom: 
-            default:                yShift =  0;   ypos = 1;   break;
-        }
-        return [xpos, ypos, yShift];
-    }
-
-
+    protected abstract labelPos(cfg:Label, labels:d3Base):void;
 
 
     //---------- stack methods --------------------

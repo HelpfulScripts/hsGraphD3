@@ -33,28 +33,14 @@
 
 import { Log }                  from 'hsutil'; const log = new Log('Series');
 import { DataSet }              from './Graph';
-import { ValueDef }             from './Graph';
 import { Domains }              from './Graph';
 import { d3Base }               from './Settings';
 import { GraphComponent }       from './GraphComponent'; 
 import { ComponentDefaults }    from './GraphComponent'; 
 import { GraphCfg }             from './GraphComponent'; 
 import { SeriesPlot }           from './SeriesPlot';
+import { SeriesDimensions }     from './SeriesPlot';
 import { schemeDark2 as colors }from 'd3';
-
-/**
- * The `SeriesDimensions` that specify the values to use for different 
- * semantic dimension (e.g. 'x' for the x-axis) of 
- * each {@link SeriesPlot `SeriesPlot`}.
- * For each dimension, the value can be either 
- * - a string that identifies the column name in the data set to use
- * - or a {@link Graph.ValueFn `ValueFn`} function that returns the data to use.
- */
-export interface SeriesDimensions { 
-    [dim:string]: ValueDef; 
-    label  ?:     string;
-    stacked?:     string;    // optional stack group. Series with the same group will be stacked on each other
-}
 
 type PlotFactory = (cfg:GraphCfg, seriesName:string, dims:SeriesDimensions) => SeriesPlot;
 

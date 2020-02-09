@@ -20,7 +20,9 @@
  * 
  * // setup and plot the data:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('bubble', {x:'time', y:'volume', r:'costs'});
+ * graph.series.add('bubble', {x:'time', y:'volume', r:'costs', label:i=>i});
+ * graph.series.defaults[0].label.xpos = 'center';
+ * graph.series.defaults[0].label.ypos = 'bottom';
  * graph.render(data);
  * 
  * </file>

@@ -118,13 +118,14 @@ export interface TextStyle {
 }
 
 
+/** horizontal text positioning  */
 export enum TextHAlign {
-    start   = 'start',
-    middle  = 'middle',
-    end     = 'end'
+    left    = 'left',
+    center  = 'center',
+    right   = 'right'
 }
 
-
+/** vertical text positioning  */
 export enum TextVAlign {
     top     = 'top',
     center  = 'center',
@@ -137,6 +138,7 @@ export interface Label extends TextStyle, Rendered {
     ypos: TextVAlign;
     hOffset: number;    // offset in `em`
     vOffset: number;    // offset in `em`
+    inside: boolean;    // render label inside the area
 }
 
 export enum MarkerShape {
@@ -191,10 +193,11 @@ export const defaultLabel = (areaFill:Color = 'currentColor', opacity=0.5):Label
     return {
         color: areaFill,
         font:   defaultFont(),
-        xpos: TextHAlign.middle,
+        xpos: TextHAlign.center,
         ypos: TextVAlign.center,
-        hOffset: 0,    // offset in `em`
-        vOffset: 0,    // offset in `em`
+        hOffset: 0,     // offset in `em`
+        vOffset: 0,     // offset in `em`
+        inside: true,   // inside the area
         rendered: false
         };
 };
@@ -245,7 +248,7 @@ export function setStroke(svg:d3Base, settings:Stroke):d3Base {
     .attr('stroke',         settings.color)
     .attr('stroke-width',   settings.width)
     .attr('stroke-opacity', settings.opacity)
-    .attr('stroke-dasharray', settings.dashed)
+    .attr('stroke-dasharray', settings.dashed||'none')
     .attr('fill-opacity',   0);
 }
 

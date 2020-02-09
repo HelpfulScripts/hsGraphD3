@@ -55,9 +55,12 @@
  * // setup and plot the data:
  * const graph = new hsGraphD3.GraphCartesian(root);
  * graph.series.add('column', {x:'State', y:'costs',  stacked:'group1', label:'costs'});
- * graph.series.add('column', {x:'State', y:'volume', stacked:'group1', label:'State'});
+ * graph.series.add('column', {x:'State', y:'volume', stacked:'group1', label:i=>`<${2*i}>`});
  * graph.scales.defaults.dims.hor.ordinal.gap = 0.25;
  * graph.series.defaults[0].line.rendered = true;
+ * graph.series.defaults[0].label.ypos = 'top';
+ * graph.series.defaults[1].label.ypos = 'top';
+ * graph.series.defaults[1].label.inside = false;
  * graph.series.defaults[1].line.rendered = true;
  * graph.grids.defaults.ver.major.rendered = false;
  * graph.render(data).update(2000, data => {

@@ -1,17 +1,4 @@
 /**
- * # SeriesPlot
- * 
- * Abstract base class for all series plot types.
- * To create a series plot, add the desired plot type to the graph:
- * ```
- * graph.series.add(<type>, {x:<dataRef>, ...});
- * ``` 
- * where `dataRef` is a data reference, either
- * - the name of a column in the data set to use
- * - or a function, returning the data to use. The function will be called at runtime once for each row
- * in the data set supplied when calling `render`, and will receive as parameters the `dataRow`, 
- * the `index` of the row, and the entire `rows` array.
- * To specify a constant of value 5, simply supply `()=>5`.
  */
 
 /**  */
@@ -26,14 +13,11 @@ import { Area }                 from "./Settings";
 import { Line }                 from "./Settings";
 import { Marker }               from "./Settings";
 import { DataSet, DataVal }     from "./Graph";
-import { ValueFn }              from "./Graph";
 import { DataRow }              from "./Graph";
 import { NumDomain }            from "./Graph";
 import { OrdDomain }            from "./Graph";
-import { ValueDef }             from "./Graph";
 import { Domains }              from "./Graph";
 import { GraphDimensions }      from "./Graph";
-import { SeriesDimensions }     from './Series';
 
 export type d3Selection = d3.Selection<BaseType, unknown, BaseType, unknown>; 
 
@@ -45,13 +29,50 @@ export interface SeriesPlotDefaults {
     popup:  Popup;
 }
 
+/**
+ * specify the values to use for different semantic dimension (e.g. 'x' for the x-axis) of 
+ * each {@link SeriesPlot.SeriesPlot `SeriesPlot`}.
+ * For each dimension, the value can be either 
+ * - a string that identifies the column name in the data set to use
+ * - or a {@link SeriesPlot.ValueFn `ValueFn`} function that returns the data to use.
+ */
+export interface SeriesDimensions { 
+    [dim:string]: ValueDef; 
+    /** optional stack group. Series with the same group will be stacked on each other */
+    stacked?:     string;
+}
+
+/** 
+ * Basic `ValueDef` definition, used in {@link SeriesPlot.SeriesPlot `SeriesPlot`}. 
+ * - `string`: the name of column in the data set, e.g. `x:'time'`
+ * - `number`: a constant value, e.g. `r: 5`
+ * - `ValueFn`: a function, returning the value, e.g. `(row, index, rows) => index`.
+ */
+export type ValueDef = string|number|ValueFn;
+
+/** 
+ * a function returning the value of a data point 
+ * The function will be called at runtime once for each row in the data set 
+ * supplied when calling `render`, and will receive as parameters the 
+ * `index` of the row in the {@link Graph.DataSet `DataSet's`} rows array.
+ */
+export interface ValueFn { (rowIndex:number): DataVal; }
+
 
 /**
- * The base class for all series plots. It manages
+ * Abstract base class for all series plot types. It manages
  * - setting the series' defaults
  * - expanding domains to values of this series
  * - the rendering lifecycle for the series
  * - maintaining a stack mechanism that allows series to be stacked on one another
+ * To create a series plot, add the desired plot type to the graph:
+ * ```
+ * graph.series.add(<type>, {x:<ValueDef>, ...});
+ * ``` 
+ * where {@link SeriesPlot.ValueDef `ValueDef`} is a data reference, either
+ * - the name of a column in the data set to use
+ * - or a function, returning the data to use. 
+ * To specify a constant of value 5, simply supply `()=>5`.
  */
 export abstract class SeriesPlot { 
     /** 
@@ -150,7 +171,7 @@ export abstract class SeriesPlot {
      * that returns a `DataVal` value. The function
      * receives a `DataRow` and the index of the row in the `DataSet` as a parameter. 
      */
-    protected accessor(v:ValueDef, colNames:string[]):(row?:DataRow, rowIndex?:number) => DataVal {
+    protected accessor(v:ValueDef, colNames:string[]):(row:DataRow, rowIndex:number) => DataVal {
         switch (typeof(v)) {
             case 'function':return (row, rowIndex) => (<ValueFn>v)(rowIndex);
             case 'number':  log.info(`accessing constant number ${v}`);

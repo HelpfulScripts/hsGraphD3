@@ -83,17 +83,13 @@
 
 import { Log }                  from 'hsutil'; const log = new Log('GraphCartesian');
 
-import { DataSet }              from './Graph';
-import { ValueDef }             from './Graph';
+import { ValueDef }             from './SeriesPlot';
 import { GraphDimensions }      from './Graph';
 import { Graph }                from './Graph';
 import { Domains }              from './Graph';
 import { scaleDefault }         from './Scale';
 import { ScalesDefaults }       from './Scale';
-import { Scales }               from './Scale';
 import { d3Base }               from './Settings';
-import { SeriesPlot }           from './SeriesPlot';
-import { CartSeriesDimensions } from './CartSeriesPlot';
 import "./plots/Bubble";
 import "./plots/Line";
 import "./plots/Area";
@@ -107,7 +103,7 @@ export interface CartDimensions extends GraphDimensions {
     hor:ValueDef[]; 
     ver:ValueDef[]; 
     size:ValueDef[]; 
-    label:string[]; 
+    // label:string[]; 
 }
 
 export class GraphCartesian extends Graph {
