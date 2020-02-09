@@ -46,7 +46,7 @@
     "grunt-contrib-watch": "^1.1.0",
     "grunt-ts": "^6.0.0-beta.22",
     "grunt-tslint": "^5.0.2",
-    "hsnode": "^2.13.2",
+    "hsnode": "^2.13.0",
     "@vamship/grunt-typedoc": "^1.6.3",
     "grunt-webpack": "^3.1.3",
     "coveralls": "^3.0.9",
