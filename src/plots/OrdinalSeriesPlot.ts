@@ -21,41 +21,17 @@
 
 /** */
 import { Log }                  from 'hsutil'; const log = new Log('OrdinalSeriesPlot');
-import { DataRow }              from '../Graph';
+import { DataRow, OrdDomain }              from '../Graph';
 import { DataVal }              from '../Graph';
 import { NumDomain }            from '../Graph';
-import { ValueFn }              from '../Graph';
 import { DataSet }              from '../Graph';
 import { ValueDef }             from '../Graph';
 import { Domains }              from '../Graph';
 import { d3Base }               from '../Settings';
-import { CartSeriesPlot }       from '../CartSeriesPlot';
+import { Label }                from '../Settings';
+import { CartSeriesPlot, text } from '../CartSeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
-import { SeriesDefaults }       from '../Series';
 import { Series }               from '../Series';
-import { ScalesDefaults } from '../Scale';
-
-
-/**
- * Returns a function to access the numeric value in a data row.
- * The numeric value is specified by the `ValueDef` `v`. 
- * - If `v` is a number, returns `v` as the result.
- * - If `v` is contained in `colNames`, uses the position of `v` in `colNames` to index the 
- * supplied `row`, applies the `scale`, and returns the result.
- * - Otherwise, if `v` ends with 'u', interprets `v` to be Viewport Units and 
- * returns `v` without aplying `scale`. This allows for absolute positioning inside the 
- * viewport window.
- * @param v the `ValueDef` specifying the value
- * @param colNames a list of names for the coluymns in the `DataSet`
- * @param def defaults to `0`; the default to return if `v` is `undefined`.
- */
-export function accessor(v:ValueDef, colNames:string[], def=0):(row?:number[], i?:number) => DataVal {
-    const index = colNames.indexOf(''+v);
-    const fn = typeof(v)==='function';
-    return v===undefined? 
-        () => def :      // always return default
-        (row?:number[], i?:number) => fn? (<ValueFn>v)(i) : row[index];
-}
 
 
 /**
@@ -63,7 +39,7 @@ export function accessor(v:ValueDef, colNames:string[], def=0):(row?:number[], i
  */
 export abstract class OrdinalSeriesPlot extends CartSeriesPlot { 
     getDefaults(): SeriesPlotDefaults {
-        const scaleDef = this.cfg.graph.defaults.scales.dims[this.independentAxis];
+        const scaleDef = this.cfg.graph.defaults.scales.dims[this.abscissa];
         scaleDef.type = 'ordinal';
         scaleDef.ordinal = scaleDef.ordinal || { gap:0.3, overlap:0};
 
@@ -72,18 +48,28 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
         def.marker.rendered = false;
         def.line.rendered = false;
         def.line.width = 1;
+        def.label.color = '#000';
         return def;
     } 
 
-    value(dim:string, v:ValueDef, colNames:string[]):(row?:DataRow, i?:number) => DataVal {
-        const stackDim = this.independentAxis==='hor'? 'ver' : 'hor';
-        if (this.dims.stacked && dim===stackDim) {
-            const fn = typeof(v)==='function';
-            const stack = this.cfg.stack[<string>this.dims.stacked];
-            const index = colNames.indexOf(''+v);
-            return (row, i) => stack[i] += <number>(fn? (<ValueFn>v)(i) : row[index]);    
+    /**
+     * Returns an accessor function to access the numeric value in a data row. 
+     * @param dim the semantic dimension ('hor', 'ver', 'size') in which to aggregate
+     * @param v data column value definition
+     * @param colNames 
+     */
+    accessor(v:ValueDef, colNames:string[]):(row?:DataRow, rowIndex?:number) => DataVal {
+        const stack = this.cfg.stack[this.dims.stacked];
+        const stackDim = this.dimensions[this.abscissa==='hor'? 'ver' : 'hor'].indexOf(v)>=0;
+        const abscissaCol = {hor:this.dims.x, ver:this.dims.y}[this.abscissa];
+        if (this.dims.stacked && stackDim && typeof abscissaCol === 'string') {
+            const stackIndex = colNames.indexOf(this.dims.stacked);
+            const fn = super.accessor(v, colNames);
+            return (row, rowIndex) => {
+                return <number>row[stackIndex] + <number>fn(row, rowIndex);
+            };
         } else {
-            return super.value(dim, v, colNames);
+            return super.accessor(v, colNames);
         }
     }
 
@@ -103,9 +89,9 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
 
     preRender(data:DataSet, domains:Domains): void {
         super.preRender(data, domains);
-        const scaleDef = this.cfg.graph.defaults.scales.dims[this.independentAxis];
+        const scaleDef = this.cfg.graph.defaults.scales.dims[this.abscissa];
         const gap = scaleDef.ordinal.gap;
-        const scale = this.cfg.graph.scales.scaleDims[this.independentAxis];
+        const scale = this.cfg.graph.scales.scaleDims[this.abscissa];
         scale.paddingInner(gap);
         scale.paddingOuter(gap/2);
     }
@@ -117,7 +103,7 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
     }
 
     protected d3RenderPath(svg:d3Base, data:DataSet) {
-        const line = this.getLine(this, data.rows, data.colNames);
+        const line = this.getLine(data.rows, data.colNames);
         return this.getPathElement(svg, '.line').attr('d', (d:any) => line);
     }
 
@@ -128,95 +114,200 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
                 .data(data.rows, d => d[0]);                    // bind to data, iterate over rows
             samples.exit().remove();                            // remove unneeded rects
             samples.enter().append('rect')                      // add new rects
-                .call(this.d3DrawBar.bind(this), this, data.colNames)
+                .call(this.d3DrawBar.bind(this), data.colNames)
                 .merge(samples).transition(this.cfg.transition) // draw markers
-                .call(this.d3DrawBar.bind(this), this, data.colNames);
+                .call(this.d3DrawBar.bind(this), data.colNames);
         }
     }
- 
-    private getParams(plot:OrdinalSeriesPlot, colNames:string[]):any[] {
-        const scales = plot.cfg.graph.scales;
-        const scaleDef = scales.defaults.dims[this.independentAxis];
-        const stackGroup = plot.dims.stacked || false;
-        const allKeys = Object.keys(plot.cfg.graph.series.defaults).filter(k => k.indexOf(Series.type)===0);
-        const myKey = allKeys.indexOf(plot.key) || 0;
-        const step = scales.scaleDims[plot.independentAxis].step();
-        const pad = scales.scaleDims[plot.independentAxis].paddingInner();
+    
+    protected d3RenderLabels(svg:d3Base, data:DataSet):void {
+        const defaults = this.defaults.label;
+        if (defaults.rendered) {
+            const samples:any = svg.select('.label').selectAll("text")
+            .data(data.rows, d => d[0]);                    // bind to data, iterate over rows
+            samples.exit().remove();                        // remove unneeded rects
+            samples.enter().append('text')                   // add new rects
+                .call(this.d3DrawLabel.bind(this), data.colNames)
+                .merge(samples).transition(this.cfg.transition) // draw markers
+                .call(this.d3DrawLabel.bind(this), data.colNames);
+        }
+    }
+
+    protected d3RenderPopup(svg:d3Base, data:DataSet):void {
+        const defaults = this.defaults.popup;
+        if (defaults.rendered) {
+            const samples:any = svg.select('.label').selectAll("text")
+            .data(data.rows, d => d[0]);                    // bind to data, iterate over rows
+        }
+    }
+
+    private getParams(colNames:string[]):any[] {
+        const scales = this.cfg.graph.scales;
+        const scaleDef = scales.defaults.dims[this.abscissa];
+        const stackGroup = this.dims.stacked || false;
+        const allKeys = Object.keys(this.cfg.graph.series.defaults).filter(k => k.indexOf(Series.type)===0);
+        const myKey = allKeys.indexOf(this.key) || 0;
+        const step = scales.scaleDims[this.abscissa].step();
+        const pad = scales.scaleDims[this.abscissa].paddingInner();
         const overlap = scaleDef.ordinal.overlap;
         const thickness = step * (1-pad) / (stackGroup? 1 : (allKeys.length * (1-overlap) + overlap));
         const offset = step*pad/2 + (stackGroup? 0 : thickness*myKey * (1-overlap));
-        return [offset, thickness, stackGroup];
+        return [offset, thickness];
     }
 
-    protected d3DrawBar(markers:d3Base, plot:OrdinalSeriesPlot, colNames:string[]) {
-        const [offset, thickness, stackGroup] = this.getParams(plot, colNames);
-        const stack = stackGroup? (i:number)=>plot.cfg.stack[stackGroup][i] : ()=>0;
-        const xScale = plot.cfg.graph.scales.scaleDims.hor;
-        const yScale = plot.cfg.graph.scales.scaleDims.ver;
+    /**
+     * returns a function that provides the stack base value for the given column Index
+     * @param row the data row to consider
+     */
+    // protected getStackVal(row: number[])
 
-        if (plot.independentAxis==='hor') { // Column
-            const index = colNames.indexOf(<string>plot.dims.y);
-            const x  = accessor(plot.dims.x, colNames);
-            const y = (r:DataRow,i:number) => <number>r[index] + stack(i);
-            const y0 = accessor(stack, colNames);
+    protected d3DrawBar(markers:d3Base, colNames:string[]) {
+        const [offset, thickness] = this.getParams(colNames);
+
+        const xScale = this.cfg.graph.scales.scaleDims.hor;
+        const yScale = this.cfg.graph.scales.scaleDims.ver;
+
+        if (this.abscissa==='hor') { // Column
+            const x  = this.accessor(this.dims.x, colNames);
+            const y  = this.accessor(this.dims.y, colNames);
+            const y0 = this.accessor(this.dims.stacked || 0, colNames);
             markers
                 .attr("x",  (d:number[]) => xScale(x(d)) + offset)
-                .attr("y",  (d:number[], i:number) => Math.min(yScale(y(d,i)), yScale(y0(d,i))))
+                .attr("y",  (d:number[]) => Math.min(yScale(y(d)), yScale(y0(d))))
                 .attr("width",  () => thickness)
-                .attr("height", (d:number[], i:number) => Math.abs(yScale(y0(d,i))-yScale(y(d,i))));        
+                .attr("height", (d:number[]) => Math.abs(yScale(y(d))-yScale(y0(d))));        
         } else {                            // Bar
-            const index = colNames.indexOf(<string>plot.dims.x);
-            const x = (r:DataRow,i:number) => <number>r[index] + stack(i);
-            const x0 = accessor(stack, colNames);
-            const y  = accessor(plot.dims.y, colNames);
+            const x0 = this.accessor(this.dims.stacked || 0, colNames);
+            const x  = this.accessor(this.dims.x, colNames);
+            const y  = this.accessor(this.dims.y, colNames);
             markers
-                .attr("x",  (d:number[], i:number) => Math.min(xScale(x(d,i)), xScale(x0(d,i))))
+                .attr("x",  (d:number[]) => Math.min(xScale(x(d)), xScale(x0(d))))
                 .attr("y",  (d:number[]) => yScale(y(d)) + offset)
                 .attr("height",  () => thickness)
-                .attr("width", (d:number[], i:number) => Math.abs(xScale(x0(d,i))-xScale(x(d,i))));
+                .attr("width", (d:number[]) => Math.abs(xScale(x0(d))-xScale(x(d))));
         }
     }
 
-    protected getLine(plot:OrdinalSeriesPlot, rows:DataRow[], colNames:string[]):string {
-        const hor = plot.independentAxis==='hor';
-        const x  = accessor(plot.dims.x, colNames);
-        const y  = accessor(plot.dims.y, colNames);
-        const [offset, thickness, stackGroup] = this.getParams(plot, colNames);
-        const stack = stackGroup? (i:number)=>plot.cfg.stack[stackGroup][i] : ()=>0;
-        const xScale = plot.cfg.graph.scales.scaleDims.hor;
-        const yScale = plot.cfg.graph.scales.scaleDims.ver;
+    protected d3DrawLabel(markers:d3Base, colNames:string[]) {
+        const [offset, thickness] = this.getParams(colNames);
+
+        const xScale = this.cfg.graph.scales.scaleDims.hor;
+        const yScale = this.cfg.graph.scales.scaleDims.ver;
+        
+        const l = this.accessor(this.dims.label, colNames);
+        const cfg:Label = this.defaults.label;
+
+        const [xpos, ypos, yShift] = this.labelPos(cfg);
+        if (this.abscissa==='hor') { // Column
+            const x  = this.accessor(this.dims.x, colNames);
+            const y  = this.accessor(this.dims.y, colNames);
+            const y0 = this.accessor(this.dims.stacked, colNames);
+            markers
+                .attr("x",  (d:number[]) => xScale(x(d)) + offset + thickness*xpos)
+                .attr("y",  (d:number[]) => Math.min(yScale(y(d)), yScale(y0(d)))
+                    + Math.abs(yScale(y0(d))-yScale(y(d))) * ypos);
+        } else {                            // Bar
+            const index = colNames.indexOf(<string>this.dims.x);
+            const x0 = this.accessor(this.dims.stacked, colNames);
+            const x  = this.accessor(this.dims.x, colNames);
+            const y  = this.accessor(this.dims.y, colNames);
+            markers
+                .attr("x",  (d:number[]) => Math.min(xScale(x(d)), xScale(x0(d)))
+                    + Math.abs(xScale(x0(d))-xScale(x(d))) * xpos)
+                .attr("y",  (d:number[]) => yScale(y(d)) + offset + thickness* ypos);
+        }
+        markers
+        .attr('dx', (cfg.hOffset||0).toFixed(1) + 'em')
+        .attr('dy', ((cfg.vOffset||0)+yShift).toFixed(1) + 'em')
+        .style('text-anchor', cfg.xpos)
+        .text((d:number[]) => text(l(d)));
+    }
+
+    protected getLine(rows:DataRow[], colNames:string[]):string {
+        const hor = this.abscissa==='hor';
+        const x  = this.accessor(this.dims.x, colNames);
+        const y  = this.accessor(this.dims.y, colNames);
+        const [offset, thickness] = this.getParams(colNames);
+
+        const xScale = this.cfg.graph.scales.scaleDims.hor;
+        const yScale = this.cfg.graph.scales.scaleDims.ver;
 
         const line = hor?
             stepLine(parseInt(''+thickness), 'hor')
-                .x((d:number[], i:number) => xScale(x(d))+offset)
-                .y((d:number[], i:number) => yScale(<number>y(d) + stack(i)))
+                .x((d:number[]) => xScale(x(d))+offset)
+                .y((d:number[]) => yScale(<number>y(d)))
           : stepLine(parseInt(''+thickness), 'ver')
-                .x((d:number[], i:number) => xScale(<number>x(d)+stack(i)))
-                .y((d:number[], i:number) => yScale(y(d))+offset);
+                .x((d:number[]) => xScale(<number>x(d)))
+                .y((d:number[]) => yScale(y(d))+offset);
         return line(rows);
+    }
+
+
+
+    //---------- stack methods --------------------
+
+    /** clears the stack for this cycle before any series rendering happens. */
+    public clearStack(data:DataSet) {
+        super.clearStack(data);
+        const group = this.dims.stacked;
+        if (group) {
+            const scales = this.cfg.graph.scales.scaleDims;
+            const scale = {hor:scales.hor, ver:scales.hor}[this.abscissa];
+            if (scale) {
+                const domain = <OrdDomain>scale.domain();
+                const stack = this.cfg.stack[this.dims.stacked];
+                domain.forEach((v:string) => stack[v] = 0);
+            }
+        }
+    }
+
+    /** Create a stack group column if necessary, initializing it to all zeros. */
+    protected intializeStackGroup(data:DataSet) {
+        this.updateStack(data);
+    }
+
+    /** update stack after rendering series. */
+    protected updateStack(data:DataSet) {
+        const group = this.dims.stacked;
+        if (group) {
+            const stack = this.cfg.stack[this.dims.stacked];
+            const stackCol = data.colNames.indexOf(group);
+            const abscissaCol = <string>{hor:this.dims.x, ver:this.dims.y}[this.abscissa];
+            const abscissaIndex = data.colNames.indexOf(abscissaCol);
+            const ordinateCol = <string>{hor:this.dims.y, ver:this.dims.x}[this.abscissa];
+            const ordinateIndex = data.colNames.indexOf(ordinateCol);
+            data.rows.forEach(row => {
+                const abscissaKey = ''+row[abscissaIndex];
+                row[stackCol] = <number>stack[abscissaKey] || 0;
+                stack[abscissaKey] += <number>row[ordinateIndex];
+            });
+        }
     }
 }
 
+
 function stepLine(step:number, axis:'hor'|'ver') {
-    let xAccess:(d:DataVal[], i:number)=> number;
-    let yAccess:(d:DataVal[], i:number)=> number;
+    interface Accessor { (d:DataVal[]): number; }
+    let xAccess:Accessor;
+    let yAccess:Accessor;
     const accessors = (rows: DataRow[]):string => {
         const result = rows.map((r, i) => {
-            const x = parseInt(''+xAccess(r, i));
-            const y = parseInt(''+yAccess(r, i));
+            const x = parseInt(''+xAccess(r));
+            const y = parseInt(''+yAccess(r));
             return (i===0?'M':'L') + x + ' ' + 
                 ((axis==='hor')? (y + 'L' + (x+step)) : ((y+step) + 'L' + x ))
                 + ' ' + y;
         }).join('');
         return result;
     };
-    accessors.x = (fn:(d:DataVal[], i:number)=> number) => {
+    accessors.x = (fn:Accessor) => {
         xAccess = fn;
         return accessors;
     };
-    accessors.y = (fn:(d:DataVal[], i:number)=> number) => {
+    accessors.y = (fn:Accessor) => {
         yAccess = fn;
         return accessors;
     };
     return accessors;
 }
+

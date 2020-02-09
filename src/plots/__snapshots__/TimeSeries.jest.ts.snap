@@ -22,6 +22,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
         rx="0"
         ry="0"
         stroke="#00c"
+        stroke-dasharray=""
         stroke-opacity="1"
         stroke-width="1"
         width="1000"
@@ -34,6 +35,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
         class="hor-major-Grid"
         fill-opacity="0"
         stroke="#444"
+        stroke-dasharray=""
         stroke-opacity="1"
         stroke-width="1"
       >
@@ -54,6 +56,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
         class="hor-minor-Grid"
         fill-opacity="0"
         stroke="#eee"
+        stroke-dasharray=""
         stroke-opacity="1"
         stroke-width="1"
       >
@@ -146,6 +149,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
         class="ver-major-Grid"
         fill-opacity="0"
         stroke="#444"
+        stroke-dasharray=""
         stroke-opacity="1"
         stroke-width="1"
       >
@@ -160,6 +164,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
         class="ver-minor-Grid"
         fill-opacity="0"
         stroke="#eee"
+        stroke-dasharray=""
         stroke-opacity="1"
         stroke-width="1"
       >
@@ -221,6 +226,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
         font-style="normal"
         font-weight="100"
         stroke="currentColor"
+        stroke-dasharray=""
         stroke-opacity="1"
         stroke-width="1"
         text-anchor="middle"
@@ -239,6 +245,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -259,6 +266,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -279,6 +287,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -299,6 +308,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -319,6 +329,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -339,6 +350,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -359,6 +371,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -382,6 +395,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
         font-style="normal"
         font-weight="100"
         stroke="currentColor"
+        stroke-dasharray=""
         stroke-opacity="1"
         stroke-width="1"
         text-anchor="end"
@@ -400,6 +414,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -420,6 +435,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -440,6 +456,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -460,6 +477,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -480,6 +498,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -500,6 +519,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -520,6 +540,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -540,6 +561,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -560,6 +582,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -580,6 +603,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -600,6 +624,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -620,6 +645,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -640,6 +666,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -660,6 +687,7 @@ exports[`TimeSeries should plot timeSeries 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -690,6 +718,10 @@ exports[`TimeSeries should plot timeSeries 1`] = `
           class="area"
           fill="currentColor"
           fill-opacity="0.5"
+          stroke="#fff"
+          stroke-dasharray=""
+          stroke-opacity="1"
+          stroke-width="0"
         >
           <path
             d="M-138,345C-138,345,-57.44057469109477,698.806930080392,20,670C109.54377757675101,636.6908290637431,226.4867110263583,63.93574031342338,388,20C547.4655140691492,-23.37869323082195,980,395,980,395L980,720L-138,720"
@@ -700,44 +732,12 @@ exports[`TimeSeries should plot timeSeries 1`] = `
           class="line"
           fill-opacity="0"
           stroke="currentColor"
+          stroke-dasharray=""
           stroke-opacity="1"
           stroke-width="5"
         >
           <path
             d="M-138,345C-138,345,-57.44057469109477,698.806930080392,20,670C109.54377757675101,636.6908290637431,226.4867110263583,63.93574031342338,388,20C547.4655140691492,-23.37869323082195,980,395,980,395"
-            transform="translate(0)"
-          />
-        </g>
-        <g
-          class="markers"
-          fill="currentColor"
-          fill-opacity="0.75"
-          stroke="currentColor"
-          stroke-opacity="1"
-          stroke-width="4"
-        >
-          <circle
-            cx="-138"
-            cy="345"
-            r="10"
-            transform="translate(0)"
-          />
-          <circle
-            cx="20"
-            cy="670"
-            r="10"
-            transform="translate(0)"
-          />
-          <circle
-            cx="388"
-            cy="20"
-            r="10"
-            transform="translate(0)"
-          />
-          <circle
-            cx="980"
-            cy="395"
-            r="10"
             transform="translate(0)"
           />
         </g>

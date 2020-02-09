@@ -152,10 +152,10 @@
 <p id=129 class="line"><span>&nbsp;129</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;samples:any&nbsp;=&nbsp;svg.select(<quote>'.markers'</quote>).selectAll(<quote>"circle"</quote>).data(data.rows,&nbsp;d&nbsp;=>&nbsp;d[0]);</p>
 <p id=130 class="line"><span>&nbsp;130</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;samples.exit().remove();&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;remove&nbsp;unneeded&nbsp;circles</comment></p>
 <p id=131 class="line"><span>&nbsp;131</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;samples.enter().append(<quote>'circle'</quote>)&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;add&nbsp;new&nbsp;circles</comment></p>
-<p id=132 class="line"><span>&nbsp;132</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.call(this.d3DrawMarker,&nbsp;this,&nbsp;data.colNames)</p>
+<p id=132 class="line"><span>&nbsp;132</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.call(this.d3DrawMarker.bind(this),&nbsp;data.colNames)</p>
 <p id=133 class="line"><span>&nbsp;133</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>"transform"</quote>,&nbsp;`translate(${scales.hor(xUnit)&nbsp;-&nbsp;scales.hor(0)})`)</p>
 <p id=134 class="line"><span>&nbsp;134</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.merge(samples).transition(this.cfg.transition)&nbsp;&nbsp;&nbsp;<comment>//&nbsp;draw&nbsp;markers</comment></p>
-<p id=135 class="line"><span>&nbsp;135</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.call(this.d3DrawMarker,&nbsp;this,&nbsp;data.colNames)</p>
+<p id=135 class="line"><span>&nbsp;135</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.call(this.d3DrawMarker.bind(this),&nbsp;data.colNames)</p>
 <p id=136 class="line"><span>&nbsp;136</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>"transform"</quote>,&nbsp;`translate(0)`);</p>
 <p id=137 class="line"><span>&nbsp;137</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
 <p id=138 class="line"><span>&nbsp;138</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>

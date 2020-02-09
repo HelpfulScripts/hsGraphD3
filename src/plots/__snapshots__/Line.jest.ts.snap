@@ -22,6 +22,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
         rx="0"
         ry="0"
         stroke="#00c"
+        stroke-dasharray=""
         stroke-opacity="1"
         stroke-width="1"
         width="1000"
@@ -34,6 +35,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
         class="hor-major-Grid"
         fill-opacity="0"
         stroke="#444"
+        stroke-dasharray=""
         stroke-opacity="1"
         stroke-width="1"
       >
@@ -54,6 +56,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
         class="hor-minor-Grid"
         fill-opacity="0"
         stroke="#eee"
+        stroke-dasharray=""
         stroke-opacity="1"
         stroke-width="1"
       >
@@ -146,6 +149,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
         class="ver-major-Grid"
         fill-opacity="0"
         stroke="#444"
+        stroke-dasharray=""
         stroke-opacity="1"
         stroke-width="1"
       >
@@ -166,6 +170,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
         class="ver-minor-Grid"
         fill-opacity="0"
         stroke="#eee"
+        stroke-dasharray=""
         stroke-opacity="1"
         stroke-width="1"
       >
@@ -239,6 +244,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
         font-style="normal"
         font-weight="100"
         stroke="currentColor"
+        stroke-dasharray=""
         stroke-opacity="1"
         stroke-width="1"
         text-anchor="middle"
@@ -257,6 +263,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -277,6 +284,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -297,6 +305,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -317,6 +326,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -337,6 +347,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -357,6 +368,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -377,6 +389,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -397,6 +410,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -417,6 +431,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -440,6 +455,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
         font-style="normal"
         font-weight="100"
         stroke="currentColor"
+        stroke-dasharray=""
         stroke-opacity="1"
         stroke-width="1"
         text-anchor="end"
@@ -458,6 +474,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -478,6 +495,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -498,6 +516,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -518,6 +537,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -538,6 +558,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -558,6 +579,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -578,6 +600,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -598,6 +621,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -618,6 +642,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -638,6 +663,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -658,6 +684,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -678,6 +705,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -698,6 +726,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -718,6 +747,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -748,6 +778,10 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           class="area"
           fill="currentColor"
           fill-opacity="0.5"
+          stroke="#fff"
+          stroke-dasharray=""
+          stroke-opacity="1"
+          stroke-width="0"
         >
           <path />
         </g>
@@ -755,6 +789,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           class="line"
           fill-opacity="0"
           stroke="currentColor"
+          stroke-dasharray=""
           stroke-opacity="1"
           stroke-width="5"
         >
@@ -767,6 +802,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           fill="currentColor"
           fill-opacity="0.75"
           stroke="currentColor"
+          stroke-dasharray=""
           stroke-opacity="1"
           stroke-width="4"
         >
@@ -812,6 +848,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
         rx="0"
         ry="0"
         stroke="#00c"
+        stroke-dasharray=""
         stroke-opacity="1"
         stroke-width="1"
         width="1000"
@@ -824,6 +861,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
         class="hor-major-Grid"
         fill-opacity="0"
         stroke="#444"
+        stroke-dasharray=""
         stroke-opacity="1"
         stroke-width="1"
       >
@@ -838,6 +876,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
         class="hor-minor-Grid"
         fill-opacity="0"
         stroke="#eee"
+        stroke-dasharray=""
         stroke-opacity="1"
         stroke-width="1"
       >
@@ -852,6 +891,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
         class="ver-major-Grid"
         fill-opacity="0"
         stroke="#444"
+        stroke-dasharray=""
         stroke-opacity="1"
         stroke-width="1"
       >
@@ -872,6 +912,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
         class="ver-minor-Grid"
         fill-opacity="0"
         stroke="#eee"
+        stroke-dasharray=""
         stroke-opacity="1"
         stroke-width="1"
       >
@@ -945,6 +986,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
         font-style="normal"
         font-weight="100"
         stroke="currentColor"
+        stroke-dasharray=""
         stroke-opacity="1"
         stroke-width="1"
         text-anchor="middle"
@@ -963,6 +1005,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -983,6 +1026,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -1003,6 +1047,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -1023,6 +1068,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -1043,6 +1089,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -1063,6 +1110,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -1083,6 +1131,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -1103,6 +1152,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -1123,6 +1173,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -1146,6 +1197,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
         font-style="normal"
         font-weight="100"
         stroke="currentColor"
+        stroke-dasharray=""
         stroke-opacity="1"
         stroke-width="1"
         text-anchor="end"
@@ -1164,6 +1216,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -1194,6 +1247,10 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           class="area"
           fill="currentColor"
           fill-opacity="0.5"
+          stroke="#fff"
+          stroke-dasharray=""
+          stroke-opacity="1"
+          stroke-width="0"
         >
           <path />
         </g>
@@ -1201,6 +1258,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           class="line"
           fill-opacity="0"
           stroke="currentColor"
+          stroke-dasharray=""
           stroke-opacity="1"
           stroke-width="5"
         >
@@ -1208,14 +1266,6 @@ exports[`Line plot constants should plot horizontal line 1`] = `
             d="M20,345C20,345,90.67477497655099,344.99999999999994,156,345C233.3233300358553,345,343.4899600873148,345,472,345C613.3098334101694,345,980,345,980,345"
           />
         </g>
-        <g
-          class="markers"
-          fill="currentColor"
-          fill-opacity="0.75"
-          stroke="currentColor"
-          stroke-opacity="1"
-          stroke-width="4"
-        />
       </g>
     </g>
   </svg>
@@ -1244,6 +1294,7 @@ exports[`Line plot data should plot line 1`] = `
         rx="0"
         ry="0"
         stroke="#00c"
+        stroke-dasharray=""
         stroke-opacity="1"
         stroke-width="1"
         width="1000"
@@ -1256,6 +1307,7 @@ exports[`Line plot data should plot line 1`] = `
         class="hor-major-Grid"
         fill-opacity="0"
         stroke="#444"
+        stroke-dasharray=""
         stroke-opacity="1"
         stroke-width="1"
       >
@@ -1276,6 +1328,7 @@ exports[`Line plot data should plot line 1`] = `
         class="hor-minor-Grid"
         fill-opacity="0"
         stroke="#eee"
+        stroke-dasharray=""
         stroke-opacity="1"
         stroke-width="1"
       >
@@ -1368,6 +1421,7 @@ exports[`Line plot data should plot line 1`] = `
         class="ver-major-Grid"
         fill-opacity="0"
         stroke="#444"
+        stroke-dasharray=""
         stroke-opacity="1"
         stroke-width="1"
       >
@@ -1388,6 +1442,7 @@ exports[`Line plot data should plot line 1`] = `
         class="ver-minor-Grid"
         fill-opacity="0"
         stroke="#eee"
+        stroke-dasharray=""
         stroke-opacity="1"
         stroke-width="1"
       >
@@ -1461,6 +1516,7 @@ exports[`Line plot data should plot line 1`] = `
         font-style="normal"
         font-weight="100"
         stroke="currentColor"
+        stroke-dasharray=""
         stroke-opacity="1"
         stroke-width="1"
         text-anchor="middle"
@@ -1479,6 +1535,7 @@ exports[`Line plot data should plot line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -1499,6 +1556,7 @@ exports[`Line plot data should plot line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -1519,6 +1577,7 @@ exports[`Line plot data should plot line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -1539,6 +1598,7 @@ exports[`Line plot data should plot line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -1559,6 +1619,7 @@ exports[`Line plot data should plot line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -1579,6 +1640,7 @@ exports[`Line plot data should plot line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -1599,6 +1661,7 @@ exports[`Line plot data should plot line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -1619,6 +1682,7 @@ exports[`Line plot data should plot line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -1639,6 +1703,7 @@ exports[`Line plot data should plot line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             y2="5"
@@ -1662,6 +1727,7 @@ exports[`Line plot data should plot line 1`] = `
         font-style="normal"
         font-weight="100"
         stroke="currentColor"
+        stroke-dasharray=""
         stroke-opacity="1"
         stroke-width="1"
         text-anchor="end"
@@ -1680,6 +1746,7 @@ exports[`Line plot data should plot line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -1700,6 +1767,7 @@ exports[`Line plot data should plot line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -1720,6 +1788,7 @@ exports[`Line plot data should plot line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -1740,6 +1809,7 @@ exports[`Line plot data should plot line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -1760,6 +1830,7 @@ exports[`Line plot data should plot line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -1780,6 +1851,7 @@ exports[`Line plot data should plot line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -1800,6 +1872,7 @@ exports[`Line plot data should plot line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -1820,6 +1893,7 @@ exports[`Line plot data should plot line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -1840,6 +1914,7 @@ exports[`Line plot data should plot line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -1860,6 +1935,7 @@ exports[`Line plot data should plot line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -1880,6 +1956,7 @@ exports[`Line plot data should plot line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -1900,6 +1977,7 @@ exports[`Line plot data should plot line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -1920,6 +1998,7 @@ exports[`Line plot data should plot line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -1940,6 +2019,7 @@ exports[`Line plot data should plot line 1`] = `
           <line
             fill-opacity="0"
             stroke="currentColor"
+            stroke-dasharray=""
             stroke-opacity="1"
             stroke-width="2"
             x2="-5"
@@ -1970,6 +2050,10 @@ exports[`Line plot data should plot line 1`] = `
           class="area"
           fill="currentColor"
           fill-opacity="0.5"
+          stroke="#fff"
+          stroke-dasharray=""
+          stroke-opacity="1"
+          stroke-width="0"
         >
           <path />
         </g>
@@ -1977,6 +2061,7 @@ exports[`Line plot data should plot line 1`] = `
           class="line"
           fill-opacity="0"
           stroke="currentColor"
+          stroke-dasharray=""
           stroke-opacity="1"
           stroke-width="5"
         >
@@ -1989,6 +2074,7 @@ exports[`Line plot data should plot line 1`] = `
           fill="currentColor"
           fill-opacity="0.75"
           stroke="currentColor"
+          stroke-dasharray=""
           stroke-opacity="1"
           stroke-width="4"
         >

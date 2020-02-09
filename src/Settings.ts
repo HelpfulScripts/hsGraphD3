@@ -81,9 +81,10 @@ export interface Rendered {
     rendered: boolean;
 }
 export interface Line extends Stroke, Rendered {}
-export interface Area extends Fill, Rendered {}
+export interface Area extends Fill, Rendered { border: Stroke; }
 export interface Marker extends MarkerStyle, Rendered {}
 export interface Text extends TextStyle, Rendered {}
+export interface Popup extends Text {}
 
 export interface Fill {
     color: Color;
@@ -94,7 +95,7 @@ export interface Stroke {
     width: UnitVp;
     color: Color;
     opacity: ZeroToOne;
-    dashed: number[];
+    dashed: string;
 }
 
 export interface Font {
@@ -114,6 +115,28 @@ export interface RectStyle {
 export interface TextStyle {
     color:  Color;
     font:   Font;
+}
+
+
+export enum TextHAlign {
+    start   = 'start',
+    middle  = 'middle',
+    end     = 'end'
+}
+
+
+export enum TextVAlign {
+    top     = 'top',
+    center  = 'center',
+    bottom  = 'bottom'
+}
+
+
+export interface Label extends TextStyle, Rendered {
+    xpos: TextHAlign;
+    ypos: TextVAlign;
+    hOffset: number;    // offset in `em`
+    vOffset: number;    // offset in `em`
 }
 
 export enum MarkerShape {
@@ -136,7 +159,7 @@ export const defaultStroke = (width:UnitVp, color:Color='currentColor'):Stroke =
         width: width,
         color: color,
         opacity: 1,
-        dashed: undefined   // or '5,10,5', alternating filled and blank
+        dashed: ''      // or '5,10,5', alternating filled and blank
     };
 };
 
@@ -146,10 +169,12 @@ export const defaultLine = (width:UnitVp, color:Color='currentColor'):Line => {
     return def;
 };
 
-export const defaultFill = (areaFill:Color = 'currentColor', opacity=0.5):Fill => {
+export const defaultArea = (areaFill:Color = 'currentColor', opacity=0.5):Area => {
     return {
+        rendered: false,
         color: areaFill,
-        opacity: opacity
+        opacity: opacity,
+        border: defaultStroke(0, '#fff')
     };
 };
 
@@ -162,6 +187,19 @@ export const defaultFont = (size=16):Font => {
     };
 };
 
+export const defaultLabel = (areaFill:Color = 'currentColor', opacity=0.5):Label => {
+    return {
+        color: areaFill,
+        font:   defaultFont(),
+        xpos: TextHAlign.middle,
+        ypos: TextVAlign.center,
+        hOffset: 0,    // offset in `em`
+        vOffset: 0,    // offset in `em`
+        rendered: false
+        };
+};
+
+
 /**
  * convenience function to create a default `RectStyle` object with configurable fill color and border. 
  * @param area  the fill color
@@ -172,7 +210,7 @@ export const defaultRectStyle = (areaFill:Color, borderWidth:UnitVp=0, borderCol
     return {
         rx: 0,
         ry: 0,
-        fill:   defaultFill(areaFill, 1),
+        fill:   defaultArea(areaFill, 1),
         stroke: defaultStroke(borderWidth, borderColor)
     };
 };
@@ -194,7 +232,7 @@ export const defaultMarkerStyle = (color='currentColor', shape=MarkerShape.circl
     return {
         size:   size,
         shape:  shape,
-        fill:   defaultFill(color, 0.75),
+        fill:   defaultArea(color, 0.75),
         stroke: defaultStroke(4)
     };
 };
@@ -207,6 +245,7 @@ export function setStroke(svg:d3Base, settings:Stroke):d3Base {
     .attr('stroke',         settings.color)
     .attr('stroke-width',   settings.width)
     .attr('stroke-opacity', settings.opacity)
+    .attr('stroke-dasharray', settings.dashed)
     .attr('fill-opacity',   0);
 }
 
@@ -214,6 +253,30 @@ export function setFill(svg:d3Base, settings:Fill):d3Base {
     return svg 
     .attr('fill',         settings.color)
     .attr('fill-opacity', settings.opacity);
+}
+
+export function setArea(svg:d3Base, settings:Area):d3Base {
+    return setStroke(svg, settings.border)
+    .attr('fill',         settings.color)
+    .attr('fill-opacity', settings.opacity);
+}
+
+export function setLabel(svg:d3Base, settings:Label):d3Base {
+    return svg 
+    .attr('fill',        settings.color)
+    .attr('font-family', settings.font.family)
+    .attr('font-size',   settings.font.size+'px')
+    .attr('font-style',  settings.font.style)
+    .attr('font-weight', settings.font.weight);
+}
+
+export function setPopup(svg:d3Base, settings:Popup):d3Base {
+    return svg
+    .attr('fill',        settings.color)
+    .attr('font-family', settings.font.family)
+    .attr('font-size',   settings.font.size+'px')
+    .attr('font-style',  settings.font.style)
+    .attr('font-weight', settings.font.weight);
 }
 
 export function setRect(svg:d3Base, settings:RectStyle):d3Base {

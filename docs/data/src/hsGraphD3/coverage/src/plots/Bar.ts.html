@@ -164,7 +164,8 @@
 <a name='L136'></a><a href='#L136'>136</a>
 <a name='L137'></a><a href='#L137'>137</a>
 <a name='L138'></a><a href='#L138'>138</a>
-<a name='L139'></a><a href='#L139'>139</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -288,7 +289,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
@@ -298,6 +299,7 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -324,7 +326,7 @@
  * 
  * // setup and plot the data:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('bar', {x:'costs', y:'State'});
+ * graph.series.add('bar', {x:'costs', y:'State', label:'State'});
  * graph.series.add('bar', {x:'volume', y:'State'});
  * graph.scales.defaults.dims.ver.ordinal.gap = 0.25;
  * graph.scales.defaults.dims.ver.ordinal.overlap = 0.75;
@@ -359,8 +361,8 @@
  * 
  * // setup and plot the data:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('bar', {x:'costs', y:'State', stacked:'group1'});
- * graph.series.add('bar', {x:'volume', y:'State', stacked:'group1'});
+ * graph.series.add('bar', {x:'costs', y:'State', label:'costs', stacked:'group1'});
+ * graph.series.add('bar', {x:'volume', y:'State', label:'State', stacked:'group1'});
  * graph.scales.defaults.dims.ver.ordinal.gap = 0.25;
  * graph.scales.defaults.dims.ver.ordinal.overlap = 0.75;
  * graph.series.defaults.series0.line.rendered = true;
@@ -426,16 +428,17 @@ Series.register('bar', (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions) =
 &nbsp;
 &nbsp;
 export class Bar extends OrdinalSeriesPlot {
-    protected get independentAxis():'ver' { return 'ver'; }
+    protected abscissa:'hor'|'ver' = 'ver';
 &nbsp;
     getDefaults(): SeriesPlotDefaults {
         const defs = super.getDefaults();
-        // const scaleDef = (&lt;ScalesDefaults&gt;this.cfg.defaults.scales).dims[this.independentAxis];
+        // const scaleDef = (&lt;ScalesDefaults&gt;this.cfg.defaults.scales).dims[this.abscissa];
         // scaleDef.ordinal.gap = 0.4;
 &nbsp;
         const gridDef = this.cfg.graph.defaults.grids.hor;
         gridDef.major.rendered = false;
         gridDef.minor.rendered = false;
+        // defs.label.
         return defs;
     } 
 }

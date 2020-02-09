@@ -129,10 +129,10 @@ export class TimeSeries extends NumericSeriesPlot {
             const samples:any = svg.select('.markers').selectAll("circle").data(data.rows, d => d[0]);
             samples.exit().remove();            // remove unneeded circles
             samples.enter().append('circle')    // add new circles
-                .call(this.d3DrawMarker, this, data.colNames)
+                .call(this.d3DrawMarker.bind(this), data.colNames)
                 .attr("transform", `translate(${scales.hor(xUnit) - scales.hor(0)})`)
             .merge(samples).transition(this.cfg.transition)   // draw markers
-                .call(this.d3DrawMarker, this, data.colNames)
+                .call(this.d3DrawMarker.bind(this), data.colNames)
                 .attr("transform", `translate(0)`);
         }
     }

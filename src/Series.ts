@@ -52,6 +52,7 @@ import { schemeDark2 as colors }from 'd3';
  */
 export interface SeriesDimensions { 
     [dim:string]: ValueDef; 
+    label  ?:     string;
     stacked?:     string;    // optional stack group. Series with the same group will be stacked on each other
 }
 
@@ -118,9 +119,10 @@ export class Series extends GraphComponent {
      * in the order they were regeistered.
      */
     public renderComponent(data:DataSet | DataSet[]) {
-        this.series.forEach((s:SeriesPlot, i:number) => s.renderComponent((<DataSet>data).colNames? 
-            data : data[i % this.series.length]
-        ));
+        this.series.forEach((s:SeriesPlot, i:number) => { 
+// log.info(`series ${i}`);
+            s.renderComponent((<DataSet>data).colNames? data : data[i % this.series.length]);
+        });
     }
 
     public postRender(data:DataSet | DataSet[]) {
@@ -148,19 +150,22 @@ export class Series extends GraphComponent {
      * @return an array of [min, max] domains ranges, indexed by data column
      */
     expandDomains(data:DataSet | DataSet[], domains:Domains):Domains {
-        this.series.forEach((s:SeriesPlot) => s.clearStack());
         if ((<DataSet>data).colNames) {  
             // use same dataset for each series
+            this.series.forEach((s:SeriesPlot) => s.clearStack(<DataSet>data));
             this.series.forEach((s:SeriesPlot) => s.expandDomains(<DataSet>data, domains));
         } else {
             // assign dataset to series based on index
             this.series.forEach((s:SeriesPlot, i:number) => {
                 const dataSet = data[i % (<DataSet[]>data).length];
+                s.clearStack(dataSet);
+            });
+            this.series.forEach((s:SeriesPlot, i:number) => {
+                const dataSet = data[i % (<DataSet[]>data).length];
                 s.expandDomains(dataSet, domains);
             });
         }
-        // reset the stack.
-        this.series.forEach((s:SeriesPlot) => s.clearStack());
+log.info(`expandDomains done`);        
         return domains;
     }
     

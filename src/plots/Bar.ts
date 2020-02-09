@@ -20,7 +20,7 @@
  * 
  * // setup and plot the data:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('bar', {x:'costs', y:'State'});
+ * graph.series.add('bar', {x:'costs', y:'State', label:'State'});
  * graph.series.add('bar', {x:'volume', y:'State'});
  * graph.scales.defaults.dims.ver.ordinal.gap = 0.25;
  * graph.scales.defaults.dims.ver.ordinal.overlap = 0.75;
@@ -55,8 +55,8 @@
  * 
  * // setup and plot the data:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('bar', {x:'costs', y:'State', stacked:'group1'});
- * graph.series.add('bar', {x:'volume', y:'State', stacked:'group1'});
+ * graph.series.add('bar', {x:'costs', y:'State', label:'costs', stacked:'group1'});
+ * graph.series.add('bar', {x:'volume', y:'State', label:'State', stacked:'group1'});
  * graph.scales.defaults.dims.ver.ordinal.gap = 0.25;
  * graph.scales.defaults.dims.ver.ordinal.overlap = 0.75;
  * graph.series.defaults.series0.line.rendered = true;
@@ -122,16 +122,17 @@ Series.register('bar', (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions) =
 
 
 export class Bar extends OrdinalSeriesPlot {
-    protected get independentAxis():'ver' { return 'ver'; }
+    protected abscissa:'hor'|'ver' = 'ver';
 
     getDefaults(): SeriesPlotDefaults {
         const defs = super.getDefaults();
-        // const scaleDef = (<ScalesDefaults>this.cfg.defaults.scales).dims[this.independentAxis];
+        // const scaleDef = (<ScalesDefaults>this.cfg.defaults.scales).dims[this.abscissa];
         // scaleDef.ordinal.gap = 0.4;
 
         const gridDef = this.cfg.graph.defaults.grids.hor;
         gridDef.major.rendered = false;
         gridDef.minor.rendered = false;
+        // defs.label.
         return defs;
     } 
 }

@@ -55,7 +55,7 @@ import { Log }                  from 'hsutil'; const log = new Log('Scale');
 import { ComponentDefaults }    from './GraphComponent'; 
 import { GraphComponent }       from './GraphComponent'; 
 import { GraphCfg }             from './GraphComponent';
-import { UnitVp }               from './Settings';
+import { UnitVp, defaultText }               from './Settings';
 import * as d3                  from 'd3'; 
 import { Domain }               from './Graph';
 import { TimeDomain }           from './Graph';
@@ -103,7 +103,7 @@ export interface ScaleDims {
 /**
  * Type of scale. For now, only 'number', 'date', and 'category' exist.
  */
-export type ScaleType = 'linear' | 'log' | 'time' | 'ordinal';
+export type ScaleType = 'linear' | 'log' | 'time' | 'ordinal' | 'none';
 
 export type TimeString = string;    // 5/6/1990 2:57
 
@@ -140,9 +140,9 @@ export interface ScalesDefaults extends ComponentDefaults {
     dims: ScaleDefaultsDims;
 }
 
-export const scaleDefault = (minRange?:UnitVp, maxRange?:UnitVp):ScaleDefaults => { 
+export const scaleDefault = (type:ScaleType, minRange?:UnitVp, maxRange?:UnitVp):ScaleDefaults => { 
     const def:ScaleDefaults = {
-        type:    'linear',
+        type: type,
         aggregateOverTime: true,                // 
         domain: {min: 'auto', max: 'auto'},     //  data domain
         range:  {                               //  viewport range
@@ -150,7 +150,10 @@ export const scaleDefault = (minRange?:UnitVp, maxRange?:UnitVp):ScaleDefaults =
             max: maxRange || 'auto' 
         }
     };
-    return def;
+    switch(type) {
+        case 'linear': return def;
+        default: return def;
+    }
 };
 
 /**
@@ -194,6 +197,7 @@ export class Scales extends GraphComponent {
             return; 
         }
         let scales = {
+            none:       NoScale,
             ordinal:    BandScale,
             time:       TimeScale,
             log:        LogScale,
@@ -209,6 +213,13 @@ const axes = {
     left:   d3.axisLeft,
     right:  d3.axisRight
 };
+
+class NoScale {
+    constructor() {}
+    getScale():Scale {
+        return undefined;
+    }
+}
 
 
 abstract class BaseScale {
@@ -229,7 +240,7 @@ abstract class BaseScale {
         function _domain(): Domain;
         function _domain(d: Domain): Scale;
         function _domain(d?:any):any { 
-            if (d) {
+            if (d!==undefined) {
                 d3Scale.domain(d);
                 return scale;
             } else {

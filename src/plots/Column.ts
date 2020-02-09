@@ -20,7 +20,7 @@
  * 
  * // setup and plot the data:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('column', {x:'State', y:'costs'});
+ * graph.series.add('column', {x:'State', y:'costs', label:'State'});
  * graph.series.add('column', {x:'State', y:'volume'});
  * graph.scales.defaults.dims.hor.ordinal.gap = 0.25;
  * graph.scales.defaults.dims.hor.ordinal.overlap = 0.75;
@@ -54,8 +54,8 @@
  * 
  * // setup and plot the data:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('column', {x:'State', y:'costs',  stacked:'group1'});
- * graph.series.add('column', {x:'State', y:'volume', stacked:'group1'});
+ * graph.series.add('column', {x:'State', y:'costs',  stacked:'group1', label:'costs'});
+ * graph.series.add('column', {x:'State', y:'volume', stacked:'group1', label:'State'});
  * graph.scales.defaults.dims.hor.ordinal.gap = 0.25;
  * graph.series.defaults[0].line.rendered = true;
  * graph.series.defaults[1].line.rendered = true;
@@ -113,13 +113,12 @@ import { GraphCfg}              from '../GraphComponent';
 import { Series }               from '../Series';
 import { OrdinalSeriesPlot }    from './OrdinalSeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
-import { GridsDefaults }         from '../Grid';
 
 Series.register('column', (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions) => new Column(cfg, sName, dims));
 
 
 export class Column extends OrdinalSeriesPlot {
-    protected get independentAxis():'hor' { return 'hor'; }
+    protected abscissa:'hor'|'ver'= 'hor';
 
     getDefaults(): SeriesPlotDefaults {
         const gridDef = this.cfg.graph.defaults.grids.ver;

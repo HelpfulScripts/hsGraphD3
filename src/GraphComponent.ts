@@ -51,7 +51,7 @@ export interface GraphCfg {
     /**
      * used to aggregate series into grouped stacks. 
      */
-    stack: { [group:string]: number[]; };
+    stack: { [group:string]: {[abscissa:string]:number}; };
 
     /** the currently used transition. A new transition will be set each time `Graph.render()` is called. */
     transition: any;

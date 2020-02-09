@@ -17,10 +17,10 @@
 /**  */
 import { Log }                  from 'hsutil'; const log = new Log('SeriesPlot');
 import { BaseType }             from 'd3';
-import { d3Base, }              from "./Settings";
+import { d3Base, Label, Popup, defaultText, defaultLabel, }              from "./Settings";
 import { defaultStroke }        from "./Settings";
 import { defaultMarkerStyle }   from "./Settings";
-import { defaultFill }          from "./Settings";
+import { defaultArea }          from "./Settings";
 import { GraphCfg }             from "./GraphComponent";
 import { Area }                 from "./Settings";
 import { Line }                 from "./Settings";
@@ -41,31 +41,10 @@ export interface SeriesPlotDefaults {
     area:   Area;
     line:   Line;
     marker: Marker;
+    label:  Label;
+    popup:  Popup;
 }
 
-/**
- * Returns an accessor function to access the numeric value in a data row. 
- * The type of `v` determines how to access the value: 
- * - If `v` is a function it will be valuated for the provided index `i` to return the result.
- * - If `v` is a number it will be returned as constant result.
- * - If `v` is a string and contained in `colNames` it specifies the column to index in the 
- * supplied `row` to return as result.
- * @param v the `ValueDef` specifying the value
- * @param colNames a list of names for the coluymns in the `DataSet`
- * @return an accessor function `(row?:DataRow, i?:number) => DataVal` 
- * that returns a `DataVal` value. The function
- * receives a `DataRow` and the index of the row in the `DataSet` as a parameter. 
- */
-function value(v:ValueDef, colNames:string[]):(row?:DataRow, i?:number) => DataVal {
-    switch (typeof(v)) {
-        case 'function': return (row, i) => (<ValueFn>v)(i);
-        case 'number':   log.info(`accessing constant number ${v}`);
-                         return () => <DataVal>v;
-        case 'string':
-        default:         const index = colNames.indexOf(''+v);
-                         return (row) => row[index];
-    }
-}
 
 /**
  * The base class for all series plots. It manages
@@ -109,21 +88,25 @@ export abstract class SeriesPlot {
         const def:any = {
             line:   defaultStroke(5),
             marker: defaultMarkerStyle(),
-            area:   defaultFill()
+            area:   defaultArea(),
+            label:  defaultLabel(),
+            popup:  defaultText()
         };
         def.line.rendered = true;
         def.marker.rendered = false;
         def.area.rendered = false;
+        def.label.rendered = false;
+        def.popup.rendered = false;
         return def;
     }
 
     public expandDomains(dataSet:DataSet, domains:Domains) {
         this.intializeStackGroup(dataSet);
         const dims:GraphDimensions = this.dimensions;
-        Object.keys(dims).map(dim => {
+        Object.keys(dims).map(dim => { // dim='hor', 'ver', size'
             const type = this.cfg.graph.defaults.scales.dims[dim].type;
-            dims[dim].map(col => { if (col!==undefined) { 
-                const valueFn = this.value(dim, col, dataSet.colNames);
+            dims[dim].map(colName => { if (colName!==undefined) { 
+                const valueFn = this.accessor(colName, dataSet.colNames);
                 switch(type) {
                     case 'ordinal':     
                         domains[dim] = this.expandOrdinalDomain(dataSet, <OrdDomain>domains[dim] || [], valueFn); 
@@ -154,20 +137,28 @@ export abstract class SeriesPlot {
 
     /**
      * Returns an accessor function to access the numeric value in a data row. 
-     * `v` determines how to access the value: 
-     * - If `v` is contained in `colNames` it specifies the column to index in the 
+     * The type of `v` determines how to access the value: 
+     * - If `v` is a function it will be valuated for the provided row index `i` to return the result.
+     * - If `v` is a number it will be returned as constant result.
+     * - If `v` is a string and contained in `colNames` it specifies the column to index in the 
+     * - Otherwise, if `v` ends with 'u', interprets `v` to be Viewport Units and 
+     * returns `v` without aplying `scale`. This allows for absolute positioning inside the 
      * supplied `row` to return as result.
-     * - If `v` is a function it will be valuated for the provided index `i` to return the result.
-     * - If 'v' is a number, it will be used as a constant to return as result
-     * @param dim the Graph Dimension, used for stacking; e.g. 'hor', or 'ver' 
      * @param v the `ValueDef` specifying the value
      * @param colNames a list of names for the coluymns in the `DataSet`
      * @return an accessor function `(row?:DataRow, i?:number) => DataVal` 
      * that returns a `DataVal` value. The function
      * receives a `DataRow` and the index of the row in the `DataSet` as a parameter. 
      */
-    value(dim:string, v:ValueDef, colNames:string[]):(row?:DataRow, i?:number) => DataVal {
-        return value(v, colNames);
+    protected accessor(v:ValueDef, colNames:string[]):(row?:DataRow, rowIndex?:number) => DataVal {
+        switch (typeof(v)) {
+            case 'function':return (row, rowIndex) => (<ValueFn>v)(rowIndex);
+            case 'number':  log.info(`accessing constant number ${v}`);
+                            return () => <DataVal>v;
+            case 'string':
+            default:        const colIndex = colNames.indexOf(''+v);
+                            return (row) => row[colIndex];
+        }
     }
 
 
@@ -189,37 +180,15 @@ export abstract class SeriesPlot {
     //---------- stack methods --------------------
 
     /** clears the stack for this cycle before any series rendering happens. */
-    public clearStack() {
-        if (this.dims.stacked) {
-            this.cfg.stack[<string>this.dims.stacked] = [];
-        }
-    }
+    public abstract clearStack(data:DataSet):void;
     
     /** 
-     * If the required stack group has not been initialized,
-     * set it to all zeros before rendering this series  
+     * Create a stack group column if necessary and 
+     * initialize it to all zeros before rendering this series.
      */
-    protected intializeStackGroup(data:DataSet) {
-        const group:string = <string>this.dims.stacked;
-        if (group && this.cfg.stack[group].length === 0) {
-            this.cfg.stack[group] = data.rows.map(() => 0);
-        }
-    }
+    protected abstract intializeStackGroup(data:DataSet):void;
 
     /** update stack after rendering series. */
-    protected updateStack(data:DataSet) {
-        const stacked = this.dims.stacked;
-        if (stacked) {
-            // use static value function to avoid stacking side effect.
-            const valFn = value(this.getStackValueDef(), data.colNames);
-            const stack = this.cfg.stack[<string>stacked];
-            data.rows.forEach((r, i) => stack[i] += <number>valFn(r, i));
-        }
-    }
-
-    /**
-     * returns the `ValueDef`, i.e. column name or `ValueFn`, for which to stack series.
-     */
-    protected abstract getStackValueDef():ValueDef;
+    protected abstract updateStack(data:DataSet):void ;
 }
 

@@ -53,6 +53,35 @@
  * });
  * </file>
  * </example>
+ * 
+ * ### Mithril Integration:
+ * <example height=300px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
+ * <file name='script.js'>
+ * const data = {
+ *    colNames:['date', 'time', 'volume', 'costs'], 
+ *    rows:[   ['1/1/14', -1,     0.2,    0.3], 
+ *             ['1/1/16',  0.2,   0.7,    0.2], 
+ *             ['9/1/16',  0.4,   0.1,    0.3],
+ *             ['5/1/17',  0.6,  -0.2,    0.1], 
+ *             ['7/1/18',  0.8,   0.3,    0.5], 
+ *             ['1/1/19',  1,     0.2,    0.4]]
+ * };
+ * 
+ * m.mount(root, {
+ *   view:() => m('#graph1', m(hsGraphD3.GraphCartesian, {
+ *      rootID: 'graph1',
+ *      define: (graph) => {
+ *          graph.series.add('line', {x:'time', y:'volume'});
+ *          graph.series.add('line', {x:'time', y:'costs'});
+ *          graph.title.text = `simple 'line' graph`;
+ *      },
+ *      data: data
+ *      //updatePeriod: number, 
+ *      //updateCallback:RenderCallback;
+ *   }))
+ * });
+ * </file>
+ * </example>
  */
 
 /** the modules logging setup. */
@@ -102,7 +131,7 @@ export type ValueDef = string|number|ValueFn;
  * a function returning the value of a data point 
  * @param i an optional number, typically indicating the sequence index of a row in a data set
  */
-export interface ValueFn { (i?:number): DataVal; }
+export interface ValueFn { (i?:number|string): DataVal; }
 
 /** default settings for the `Graph` component */
 export interface GraphDefaults extends ComponentDefaults {
@@ -150,31 +179,29 @@ export interface NumericDataSet extends DataSet {
  */
 export interface GraphDimensions { [dim:string]: ValueDef[]; }
 
-// namespace Dom {
-    /**
-     * aggregates the [min, max] ranges for each semantic {@link Graph.GraphDimensions graph dimension} (e.g. 'hor', 'ver', 'size')
-     */
-    export interface Domains { [dim:string]:Domain; }
-    export type      Domain = NumDomain | OrdDomain | TimeDomain;
+/**
+ * aggregates the [min, max] ranges for each semantic {@link Graph.GraphDimensions graph dimension} (e.g. 'hor', 'ver', 'size')
+ */
+export interface Domains { [dim:string]:Domain; }
+export type      Domain = NumDomain | OrdDomain | TimeDomain;
 
-    /**
-     * aggregates the [min, max] ranges for each semantic {@link Graph.GraphDimensions graph dimension} (e.g. 'hor', 'ver', 'size')
-     */
-    export interface NumDomains extends Domains { [dim:string]: NumDomain; }
-    export type      NumDomain = [number, number];
+/**
+ * aggregates the [min, max] ranges for each semantic {@link Graph.GraphDimensions graph dimension} (e.g. 'hor', 'ver', 'size')
+ */
+export interface NumDomains extends Domains { [dim:string]: NumDomain; }
+export type      NumDomain = [number, number];
 
-    /**
-     * aggregates the [min, max] ranges for each semantic {@link Graph.GraphDimensions graph dimension} (e.g. 'hor', 'ver', 'size')
-     */
-    export interface TimeDomains extends Domains { [dim:string]: TimeDomain; }
-    export type      TimeDomain = [Date, Date];
+/**
+ * aggregates the [min, max] ranges for each semantic {@link Graph.GraphDimensions graph dimension} (e.g. 'hor', 'ver', 'size')
+ */
+export interface TimeDomains extends Domains { [dim:string]: TimeDomain; }
+export type      TimeDomain = [Date, Date];
 
-    /**
-     * aggregates ordinal values for each semantic {@link Graph.GraphDimensions graph dimension} (e.g. 'hor', 'ver', 'size')
-     */
-    export interface OrdDomains extends Domains { [dim:string]: OrdDomain; }
-    export type      OrdDomain = string[];
-// }
+/**
+ * aggregates ordinal values for each semantic {@link Graph.GraphDimensions graph dimension} (e.g. 'hor', 'ver', 'size')
+ */
+export interface OrdDomains extends Domains { [dim:string]: OrdDomain; }
+export type      OrdDomain = string[];
 
 /**
  * Function interface, describing the signature of the call back function 
@@ -273,6 +300,17 @@ interface Components {
     title:Title;
 }
 
+interface Vnode {
+    dom: HTMLElement;
+    attrs: {
+        define: (graph:Graph)=>void;
+        data: DataSet;
+        updatePeriod: number;
+        updateCallback: RenderCallback;
+    };
+}
+
+
 
 /** creates and initializes the `Graph`-wide configuration object. */
 function initializeCfg():GraphCfg {
@@ -329,16 +367,40 @@ export abstract class Graph extends GraphBase implements Components {
 
     
     //------------ public methods  -------------------
-    constructor(root:HTMLElement) { 
-        super(initializeCfg());
+    /**
+     * D3 constructor
+     * @param root the HTML element to which to attach the graph.
+     */
+    constructor(root:HTMLElement);
+    /**
+     * D3 constructor
+     * @param root the Vnode as implicitely called by `Mithril`
+     */
+    constructor(root:Vnode);
+    /**
+     * Overload constructor
+     * @param root the HTML element or Vnode to which to attach the graph.
+     */
+    constructor(root:HTMLElement|Vnode) {
+            super(initializeCfg());
         this.cfg.graph = this;
+        if (root['attrs'] && root['attrs'].rootID) {
+            root = document.getElementById(root['attrs'].rootID);
+        }
+        if ((<Vnode>root)) { this.create((<Vnode>root).dom); }
+        if ((<HTMLElement>root).baseURI) { this.create(<HTMLElement>root); }
+    }
+
+    public create(root:HTMLElement) {
         this.root = root;
-        this.cfg.baseSVG = this.createBaseSVG(this.cfg); 
-        this.updateBaseSVG(this.cfg);
-        this.createComponents(this.cfg);
-        this.makeDefaults();
-        this.resize();
-        window.onresize = Graph.resizeGraphs;
+        if (this.root) {
+            this.cfg.baseSVG = this.createBaseSVG(this.cfg); 
+            this.updateBaseSVG(this.cfg);
+            this.createComponents(this.cfg);
+            this.makeDefaults();
+            this.resize();
+            window.onresize = Graph.resizeGraphs;
+        }
     }
 
     public get componentType() { return Graph.type; }
@@ -412,6 +474,34 @@ export abstract class Graph extends GraphBase implements Components {
     get axes():Axes     { return this.components.axes; }
     get series():Series { return this.components.series; }
     get title():Title   { return this.components.title; }
+
+    /**
+     * Mithril integration method. To use `Graph` with Mithriljs, call
+     * ```
+     * m(GraphCartesian, {
+     *    rootID: string, the ID (without the #) of the root element to which the graph will be attached. 
+     *    define: (graph:Graph) => {
+     *       graph.series.add(...);`
+     *       graph.grids.defaults....;`
+     *    },
+     *    data: DataSet | DataSet[],
+     *    updatePeriod: number, 
+     *    updateCallback:RenderCallback;
+     * })
+     * ```
+     */
+    public oninit(node:Vnode) {
+        node.attrs.define(this);
+    }
+
+    public view(node:Vnode) {
+        if (this.root) {
+            const chain = this.render(node.attrs.data);
+            if (node.attrs.updatePeriod) { 
+                chain.update(node.attrs.updatePeriod, node.attrs.updateCallback); 
+            }
+        }
+    }
 
 
     //************** Lifecycle calls **************************/
@@ -552,3 +642,4 @@ export abstract class Graph extends GraphBase implements Components {
         cfg.baseSVG.attr('viewBox', `0 0 ${cfg.viewPort.width} ${cfg.viewPort.height}`);
     }
 }
+

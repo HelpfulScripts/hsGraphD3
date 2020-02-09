@@ -13,13 +13,34 @@
  * `graph.series.add('area', {x:<x-col>, y:<y-col>, y0:<y-lower-fill>=0, r?:<size-col>});`
  * 
  * ## Example
- * - first series (top): an orange area-band between 'costs' and 'volume', not using markers
- * - second series (bottom): a green area between 'volume' and the x-axis (y0=0), using markers sized by 'costs'
+ * - first series (top): a green area-band between y0='volume' and y='costs', not using markers
+ * - second series (bottom): an orange area between 'volume' and the x-axis (y0=0), using markers sized by 'costs'
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
  * <file name='script.js'>
  * const graph = new hsGraphD3.GraphCartesian(root);
  * graph.series.add('area', {x:'time', y:'costs', y0:'volume'});
  * graph.series.add('area', {x:'time', y:'volume', r:'costs'});
+ * graph.render({
+ *    colNames:['time', 'volume', 'costs'], 
+ *    rows:[    [-1,    0.2,      0.3], 
+ *              [0.2,   0.4,      0.7], 
+ *              [0.4,   0.1,      0.3],
+ *              [0.6,  -0.2,      0.1], 
+ *              [0.8,   0.3,      0.5], 
+ *              [1,     0.2,      0.4]]
+ * });
+ * 
+ * </file>
+ * </example>
+ * 
+ * ## Example for stacked series
+ * - first series (bottom): a green area-band between the x-axis and y='costs', not using markers
+ * - second series (top): am orange area on to of the first for y='volume', using markers sized by 'costs'
+ * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
+ * <file name='script.js'>
+ * const graph = new hsGraphD3.GraphCartesian(root);
+ * graph.series.add('area', {x:'time', y:'costs', stacked:'mystack'});
+ * graph.series.add('area', {x:'time', y:'volume', r:'costs', stacked:'mystack'});
  * graph.render({
  *    colNames:['time', 'volume', 'costs'], 
  *    rows:[    [-1,    0.2,      0.3], 
@@ -41,13 +62,14 @@
  * 
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
+ *      graph.series.add('area', {x:'time', y:'costs', y0:'volume'});
  *      graph.series.add('area', {x:'time', y:'volume', r:'costs'});
- *      return graph.series.defaults[0];
+ *      return graph.series.defaults;
  * }
  * 
  * m.mount(root, {
  *   view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [
- *      m('div', m.trust('graph.series.defaults[0] = ' + defaults)), 
+ *      m('div', m.trust('graph.series.defaults = ' + defaults)), 
  *      m('div.myGraph', '')
  *   ]),
  *   oncreate: () => {

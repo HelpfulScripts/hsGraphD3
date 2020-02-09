@@ -30,38 +30,12 @@ import { Log }                  from 'hsutil'; const log = new Log('NumericSerie
 import { line as d3line}        from "d3";
 import { curveCatmullRom }      from 'd3';
 import { NumericDataSet }       from '../Graph';
-import { ValueFn }              from '../Graph';
 import { NumericDataRow }       from '../Graph';
 import { ValueDef }             from '../Graph';
 import { Domains }              from '../Graph';
-import { Scale }                from '../Scale';
 import { d3Base }               from '../Settings';
 import { CartSeriesPlot }       from '../CartSeriesPlot';
-import { SeriesPlotDefaults }   from '../SeriesPlot';
 
-/**
- * Returns a function to access the numeric value in a data row.
- * The numeric value is specified by the `ValueDef` `v`. 
- * - If `v` is a number, applies the `scale` to `v`, and returns the result.
- * - If `v` is contained in `colNames`, uses the position of `v` in `colNames` to index the 
- * supplied `row`, applies the `scale`, and returns the result.
- * - Otherwise, if `v` ends with 'u', interprets `v` to be Viewport Units and 
- * returns `v` without aplying `scale`. This allows for absolute positioning inside the 
- * viewport window.
- * @param v the `ValueDef` specifying the value
- * @param colNames a list of names for the coluymns in the `DataSet`
- * @param scale a numeric scale to apply 
- * @param def defaults to `0`; the default to return if `v` is `undefined`.
- */
-export function accessor(v:ValueDef, colNames:string[], scale:Scale, def=0):(row?:number[], i?:number) => number {
-    const index = colNames.indexOf(''+v);
-    const fn = typeof(v)==='function';
-    // const unit = (''+v).slice(-1);
-    // if (index < 0 && unit === 'u') {}
-    return v===undefined? 
-        () => def :      // always return default
-        (row?:number[], i?:number) => scale(fn? (<ValueFn>v)(i) : row[index]);
-}
 
 
 /**
@@ -70,6 +44,7 @@ export function accessor(v:ValueDef, colNames:string[], scale:Scale, def=0):(row
 export abstract class NumericSeriesPlot extends CartSeriesPlot { 
     /** the main data line  */
     protected line: string;         // d3Line<number[]>;
+
 
     //---------- lifecylce methods --------------------
 
@@ -93,9 +68,9 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
                 .data(data.rows, d => d[0]);                // bind to data, iterate over rows
             samples.exit().remove();                        // remove unneeded circles
             samples.enter().append('circle')                // add new circles
-                .call(this.d3DrawMarker, this, data.colNames)
+                .call(this.d3DrawMarker.bind(this), data.colNames)
             .merge(samples).transition(this.cfg.transition) // draw markers
-                .call(this.d3DrawMarker, this, data.colNames);
+                .call(this.d3DrawMarker.bind(this), data.colNames);
         }
     }
 
@@ -110,9 +85,9 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
         let line0 = '';
         if (this.dims.y0!==undefined) {
             const max = data.rows.length-1;
-            const xmax = accessor(this.dims.x,  data.colNames, scales.hor)(data.rows[max]);
-            const x0   = accessor(this.dims.x,  data.colNames, scales.hor)(data.rows[0]);
-            const y    = accessor(this.dims.y0, data.colNames, scales.ver)(data.rows[max]);
+            const xmax = scales.hor(this.accessor(this.dims.x,  data.colNames)(data.rows[max]));
+            const x0   = scales.hor(this.accessor(this.dims.x,  data.colNames)(data.rows[0]));
+            const y    = scales.ver(this.accessor(this.dims.y0, data.colNames)(data.rows[max]));
             line0 = `L${xmax},${y}`;
             line0 += (typeof(this.dims.y0)==='function')? `L${x0},${y}` :
                 this.getLine(data.rows.reverse(), data.colNames, this.dims.y0).slice(8);  // remove first 'M' command
@@ -120,16 +95,22 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
         return this.getPathElement(svg, '.area').attr('d', (d:any) => this.line + line0);
     }
 
-    protected d3DrawMarker(markers:d3Base, plot:NumericSeriesPlot, colNames:string[]) {
-        const scales = plot.cfg.graph.scales.scaleDims;
-        const xAccess = accessor(plot.dims.x, colNames, scales.hor);
-        const yAccess = accessor(plot.dims.y, colNames, scales.ver);
-        const rDefault = plot.defaults.marker.size;
-        const rAccess = accessor(plot.dims.r, colNames, scales.size, rDefault);
+    protected d3RenderLabels(svg:d3Base, data:NumericDataSet):void {
+    }
+
+    protected d3RenderPopup(svg:d3Base, data:NumericDataSet):void {
+    }
+
+    protected d3DrawMarker(markers:d3Base, colNames:string[]) {
+        const scales = this.cfg.graph.scales.scaleDims;
+        const xAccess = this.accessor(this.dims.x, colNames);
+        const yAccess = this.accessor(this.dims.y, colNames);
+        const rAccess = this.accessor(this.dims.r, colNames);
+        const rDefault = this.defaults.marker.size;
         markers
-            .attr("cx", (d:number[]) => xAccess(d))
-            .attr("cy", (d:number[]) => yAccess(d))
-            .attr("r",  (d:number[]) => rAccess(d));
+            .attr("cx", (d:number[]) => scales.hor(xAccess(d)))
+            .attr("cy", (d:number[]) => scales.ver(yAccess(d)))
+            .attr("r",  (d:number[]) => this.dims.r? scales.size(rAccess(d)) : rDefault);
     }
     
     /**
@@ -139,9 +120,11 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
      */
     protected getLine(rows:NumericDataRow[], colNames:string[], yDef: ValueDef = () => 0):string {
         const scales = this.cfg.graph.scales.scaleDims;
+        const xAccess = this.accessor(this.dims.x, colNames);
+        const yAccess = this.accessor(yDef, colNames);
         const line = d3line()
-            .x(accessor(this.dims.x, colNames, scales.hor))
-            .y(accessor(yDef, colNames, scales.ver))
+            .x((d:number[]) => scales.hor(xAccess(d)))
+            .y((d:number[]) => scales.ver(yAccess(d)))
             .curve(curveCatmullRom.alpha(0.2));
         return line(<[number, number][]>rows);
     }
