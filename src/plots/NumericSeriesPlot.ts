@@ -27,7 +27,7 @@
 
 /** */
 import { Log }                  from 'hsutil'; const log = new Log('NumericSeriesPlot');
-import { line as d3line}        from "d3";
+import { line as d3line}        from 'd3';
 import { curveCatmullRom }      from 'd3';
 import { NumericDataSet }       from '../Graph';
 import { NumericDataRow }       from '../Graph';
@@ -67,7 +67,7 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
         const defaults = this.defaults.marker;
         if (defaults.rendered) {
             const samples:any = svg.select('.markers').selectAll("circle")
-                .data(data.rows, d => d[0]);                // bind to data, iterate over rows
+                .data(data.rows, (d:any[]) => d[0]);                // bind to data, iterate over rows
             samples.exit().remove();                        // remove unneeded circles
             samples.enter().append('circle')                // add new circles
                 .call(this.d3DrawMarker.bind(this), data.colNames)
@@ -101,7 +101,7 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
         const defaults = this.defaults.label;
         if (defaults.rendered) {
             const samples:any = labels.select('.label').selectAll("text")
-                .data(data.rows, d => d[0]);                // bind to data, iterate over rows
+                .data(data.rows, (d:any[]) => d[0]);                // bind to data, iterate over rows
             samples.exit().remove();                        // remove unneeded circles
             samples.enter().append('text')                // add new circles
                 .call(this.d3DrawLabels.bind(this), data.colNames)

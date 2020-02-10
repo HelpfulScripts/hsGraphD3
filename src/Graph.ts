@@ -317,7 +317,7 @@ function initializeCfg():GraphCfg {
 }
 
 /**
- * ## Graph
+ * ### Graph
  * Abstract base Graph.
  */
 export abstract class Graph extends GraphBase implements Components {
@@ -361,7 +361,7 @@ export abstract class Graph extends GraphBase implements Components {
      */
     constructor(root:HTMLElement);
     /**
-     * D3 constructor
+     * `Mithril` constructor
      * @param root the Vnode as implicitely called by `Mithril`
      */
     constructor(root:Vnode);
@@ -370,7 +370,7 @@ export abstract class Graph extends GraphBase implements Components {
      * @param root the HTML element or Vnode to which to attach the graph.
      */
     constructor(root:HTMLElement|Vnode) {
-            super(initializeCfg());
+        super(initializeCfg());
         this.cfg.graph = this;
         if (root['attrs'] && root['attrs'].rootID) {
             root = document.getElementById(root['attrs'].rootID);

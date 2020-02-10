@@ -1,9 +1,16 @@
 /**
  * #Examples
  * 
- * <example height=1700px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
+ * <example height=1770px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
  * <file name='script.js'>
  * const content = [
+ *      graph => {
+ *          graph.series.add('line', {y:'Joe'});
+ *          graph.series.add('line', {y:'Mary'});
+ *          graph.title.text = `simple indexed 'line' graph`;
+ *          graph.render(data);
+ *      }, 
+ * 
  *      graph => {
  *          graph.series.add('line', {x:'time', y:'Joe'});
  *          graph.series.add('line', {x:'time', y:'Mary'});
@@ -146,7 +153,7 @@
  * }
  * 
  * m.mount(root, {
- *   view:() => m(hsLayout.Layout, { rows: ['100px', '130px'], content:[
+ *   view:() => m(hsLayout.Layout, { rows: ['70px', '130px'], content:[
  *      m('div.hs-layout', {style:'background-color:white;'}),
  *      ...content.map(fn => m(nodeGraph(fn)))] }),
  * });

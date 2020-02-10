@@ -65,13 +65,16 @@ See an [example](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/0) 
 [examples page](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.examples)
 
 ## Series Parameters
-Valid series parameters are defined as extensions of [SeriesDimensions](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.SeriesPlot.SeriesDimensions). Examples:
+Valid series parameters are defined as extensions of [SeriesDimensions](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.SeriesPlot.SeriesDimensions), for example for [CartesianSeriesDimensions](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.CartSeriesPlot.CartSeriesDimensions).
+<br>Examples:
 
-[Column plot](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.plots.Column) with item labels
-```graph.addSeries('column', {x:'time', y:'volume', label:'costs'});```
+[Column plot](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.plots.Column) with item labels:
+```
+graph.addSeries('column', {x:'time', y:'volume', label:'costs'});
+```
 
-Stacked [Column plot](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.plots.Column) with item labels that are the index of the item
+Stacked [Column plot](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.plots.Column) with item labels that are the index of the item:
 ```
 graph.addSeries('column', {x:'time', y:'volume', label:i=>i, stacked:'myGroup'});
-graph.addSeries('column', {x:'time', y:'costs', label:'i=>i', stacked:'myGroup'});
+graph.addSeries('column', {x:'time', y:'costs',  label:i=>i, stacked:'myGroup'});
 ```

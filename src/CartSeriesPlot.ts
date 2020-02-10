@@ -31,20 +31,26 @@ import { setFill }              from "./Settings";
 
 /**
  * valid {@link SeriesPlot.ValueDef `Value Definiton`} dimensions on cartesian plots:
- * - x?:  optional values for the x-axis. If omitted, the index of y-values will be used as x-values
- * - y:   values for the y-axis.
- * - y0?: optional values for lower fill border on the y-axis; defaults to `0`
- * - r?:  optional values for the size of markers. If provided, marker rendering is enabled.
- * - label?: optional values for item labels
- * - popup?: optional values to show in mouse-over popups.
+ * - `x`?:  optional values for the x-axis. If omitted, the index of y-values will be used as x-values
+ * - `y`:   values for the y-axis.
+ * - `y0`?: optional values for lower fill border on the y-axis; defaults to `0`
+ * - `r`?:  optional values for the size of markers. If provided, marker rendering is enabled.
+ * - `label`?: optional values for item labels
+ * - `popup`?: optional values to show in mouse-over popups.
  */
 export interface CartSeriesDimensions extends SeriesDimensions {
-    x:   ValueDef;      // name of x-axis data column, or a function returning a value
-    y:   ValueDef;      // name of y-axis data column, or a function returning a value
-    y0?: ValueDef;      // optional, name of y-axis data column for lower fill border, or a function returning a value
-    r?:  ValueDef;      // optional, name of marker size data column, or a function returning a value
-    label?: ValueDef;   // optional, name of label data column, or a function returning a value
-    popup?: ValueDef;   // optional, name of popup data column, or a function returning a value
+    /** name of x-axis data column, or a function returning a value */
+    x:   ValueDef;    
+    /** name of y-axis data column, or a function returning a value */ 
+    y:   ValueDef;    
+    /** optional, name of y-axis data column for lower fill border, or a function returning a value */
+    y0?: ValueDef;  
+    /** optional, name of marker size data column, or a function returning a value */
+    r?:  ValueDef;   
+    /** optional, name of label data column, or a function returning a value */
+    label?: ValueDef;  
+    /** optional, name of popup data column, or a function returning a value */
+    popup?: ValueDef;   
 }
 
 /**
@@ -96,6 +102,9 @@ export abstract class CartSeriesPlot extends SeriesPlot {
     public initialize(svg:d3Base, color?:string): void {
         super.initialize(svg, color);
         const defaults = this.defaults;
+
+        if (!this.dims.x) { this.dims.x = (i:number)=> i; }
+        if (!this.dims.y) { this.dims.y = (i:number)=> i; }
 
         this.svg.append('g').classed('area', true).append('path');
         const area = this.svg.select('.area');

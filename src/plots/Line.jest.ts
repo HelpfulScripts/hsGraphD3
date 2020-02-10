@@ -59,7 +59,29 @@ describe('Line', () => {
     describe('plot constants', () => {
         beforeEach(() => {
             graph = createGraph(root);
+            graph.series.add('line', {x:'xval', y:10});
+            graph.render(data);
+        });
+        it('should plot horizontal line', () => {
+            expect(root).toMatchSnapshot();
+        });
+    });
+
+    describe('plot function', () => {
+        beforeEach(() => {
+            graph = createGraph(root);
             graph.series.add('line', {x:'xval', y:()=>10});
+            graph.render(data);
+        });
+        it('should plot horizontal line', () => {
+            expect(root).toMatchSnapshot();
+        });
+    });
+
+    describe('plot indexed', () => {
+        beforeEach(() => {
+            graph = createGraph(root);
+            graph.series.add('line', { y:'yval'});
             graph.render(data);
         });
         it('should plot horizontal line', () => {
