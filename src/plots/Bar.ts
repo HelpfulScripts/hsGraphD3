@@ -119,8 +119,6 @@ import { GraphCfg}              from '../GraphComponent';
 import { Series }               from '../Series';
 import { OrdinalSeriesPlot }    from './OrdinalSeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
-import { GridsDefaults } from '../Grid';
-import { ScalesDefaults } from '../Scale';
 
 Series.register('bar', (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions) => new Bar(cfg, sName, dims));
 
@@ -129,15 +127,10 @@ export class Bar extends OrdinalSeriesPlot {
     protected abscissa:'hor'|'ver' = 'ver';
 
     getDefaults(): SeriesPlotDefaults {
-        const defs = super.getDefaults();
-        // const scaleDef = (<ScalesDefaults>this.cfg.defaults.scales).dims[this.abscissa];
-        // scaleDef.ordinal.gap = 0.4;
-
         const gridDef = this.cfg.graph.defaults.grids.hor;
         gridDef.major.rendered = false;
         gridDef.minor.rendered = false;
-        // defs.label.
-        return defs;
+        return super.getDefaults();
     } 
 }
    

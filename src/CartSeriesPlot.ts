@@ -21,7 +21,7 @@ import { DataSet }              from "./Graph";
 import { Domains }              from "./Graph";
 import { CartDimensions }       from "./GraphCartesian";
 import { GraphCfg }             from "./GraphComponent";
-import { d3Base }               from "./Settings";
+import { d3Base, defaultStroke }               from "./Settings";
 import { setLabel }             from "./Settings";
 import { setPopup}              from "./Settings";
 import { Label }                from "./Settings";
@@ -95,6 +95,8 @@ export abstract class CartSeriesPlot extends SeriesPlot {
             def.label.rendered = true; 
             def.label.color = '#000';
         }
+        def.marker.stroke = defaultStroke(0);
+        if (this.dims.popup){ def.popup.rendered  = true; }
         return def;
     }
 
@@ -109,35 +111,35 @@ export abstract class CartSeriesPlot extends SeriesPlot {
         if (!this.dims.x) { this.dims.x = (i:number)=> i; }
         if (!this.dims.y) { this.dims.y = (i:number)=> i; }
 
-        this.svg.append('g').classed('area', true).append('path');
-        const area = this.svg.select('.area');
-        setArea(area, defaults.area);
+        if (defaults.area.rendered) {
+            this.svg.append('g').classed('area', true).append('path');
+            const area = this.svg.select('.area');
+            setArea(area, defaults.area);
+        }
 
-        this.svg.append('g').classed('line', true).append('path');
-        const line = this.svg.select('.line');
-        setStroke(line, defaults.line);
+        if (defaults.line.rendered) {
+            this.svg.append('g').classed('line', true).append('path');
+            const line = this.svg.select('.line');
+            setStroke(line, defaults.line);
+        }
 
-        if (this.dims.r) { 
+        if (defaults.marker.rendered) {
             this.svg.append('g').classed('markers', true);
             defaults.marker.rendered = true; 
             const markers = this.svg.select('.markers');
             setStroke(markers, defaults.marker.stroke);
             setFill(markers, defaults.marker.fill);
         }
-        if (this.dims.label) {
+        if (defaults.label.rendered) {
             this.svg.append('g').classed('label', true);
             const label = this.svg.select('.label');
             setLabel(label, defaults.label);
         }
-        if (this.dims.popup) {
+        if (defaults.popup.rendered) {
             this.svg.append('g').classed('popup', true);
             const popup = this.svg.select('.popup');
             setPopup(popup, defaults.popup);
         }
-        // if (this.dims.color) {
-        //     const popup = this.svg.select('.markers');
-        //     setColor(popup, defaults.popup);
-        // }
     }
 
     public preRender(data:DataSet, domains:Domains): void {

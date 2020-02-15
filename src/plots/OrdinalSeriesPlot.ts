@@ -26,7 +26,7 @@ import { DataVal }              from '../Graph';
 import { NumDomain }            from '../Graph';
 import { DataSet }              from '../Graph';
 import { Domains }              from '../Graph';
-import { d3Base }               from '../Settings';
+import { d3Base, setColor }               from '../Settings';
 import { Label }                from '../Settings';
 import { CartSeriesPlot, text } from '../CartSeriesPlot';
 import { ValueDef }             from '../SeriesPlot';
@@ -49,8 +49,8 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
         scaleDef.ordinal = scaleDef.ordinal || { gap:0.3, overlap:0};
 
         const def = super.getDefaults();
-        def.area.rendered = true;
-        def.marker.rendered = false;
+        def.area.rendered = false;
+        def.marker.rendered = true;
         def.line.rendered = false;
         def.line.width = 1;
         return def;
@@ -89,6 +89,11 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
 
     initialize(svg:d3Base, color?:string): void {
         super.initialize(svg, color);
+        // const defaults = this.defaults;
+        // if (this.dims.color) {
+        //     const markers = this.svg.select('.markers');
+        //     setColor(markers, defaults.popup);
+        // }
     }
 
     preRender(data:DataSet, domains:Domains): void {
@@ -105,6 +110,16 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
     //---------- support methods during lifecylce --------------------
 
     protected d3RenderMarkers(svg:d3Base, data:DataSet) {
+        const defaults = this.defaults.marker;
+        if (defaults.rendered) {
+            const samples:any = svg.select('.markers').selectAll("rect")
+                .data(data.rows, d => d[0]);                    // bind to data, iterate over rows
+            samples.exit().remove();                            // remove unneeded rects
+            samples.enter().append('rect')                      // add new rects
+                .call(this.d3DrawBar.bind(this), data.colNames)
+                .merge(samples).transition(this.cfg.transition) // draw markers
+                .call(this.d3DrawBar.bind(this), data.colNames);
+        }
     }
 
     protected d3RenderPath(svg:d3Base, data:DataSet) {
@@ -113,16 +128,6 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
     }
 
     protected d3RenderFill(svg:d3Base, data:DataSet) {
-        const defaults = this.defaults.area;
-        if (defaults.rendered) {
-            const samples:any = svg.select('.area').selectAll("rect")
-                .data(data.rows, d => d[0]);                    // bind to data, iterate over rows
-            samples.exit().remove();                            // remove unneeded rects
-            samples.enter().append('rect')                      // add new rects
-                .call(this.d3DrawBar.bind(this), data.colNames)
-                .merge(samples).transition(this.cfg.transition) // draw markers
-                .call(this.d3DrawBar.bind(this), data.colNames);
-        }
     }
     
     protected d3RenderLabels(svg:d3Base, data:DataSet):void {
@@ -171,25 +176,27 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
 
         const xScale = this.cfg.graph.scales.scaleDims.hor;
         const yScale = this.cfg.graph.scales.scaleDims.ver;
+        const x  = this.accessor(this.dims.x, colNames);
+        const x0 = this.dims.stacked? this.accessor(this.dims.stacked, colNames) : ()=>0;
+        const y  = this.accessor(this.dims.y, colNames);
+        const y0 = this.dims.stacked? this.accessor(this.dims.stacked, colNames) : ()=>0;
+        const xAttr  = (d:number[], i:number) => this.cached('x', i, ()=>xScale(x(d, i)));
+        const x0Attr = (d:number[], i:number) => this.cached('x0',i, ()=>xScale(x0(d, i)));
+        const yAttr  = (d:number[], i:number) => this.cached('y', i, ()=>yScale(y(d, i)));
+        const y0Attr = (d:number[], i:number) => this.cached('y0',i, ()=>yScale(y0(d, i)));
 
         if (this.abscissa==='hor') { // Column
-            const x  = this.accessor(this.dims.x, colNames);
-            const y  = this.accessor(this.dims.y, colNames);
-            const y0 = this.dims.stacked? this.accessor(this.dims.stacked, colNames) : ()=>0;
             markers
-                .attr("x",  (d:number[], i:number) => this.cached('x', i, ()=>xScale(x(d, i))) + offset)
-                .attr("y",  (d:number[], i:number) => Math.min(this.cached('y', i, ()=>yScale(y(d, i))), this.cached('y0', i, ()=>yScale(y0(d, i)))))
+                .attr("x",  (d:number[], i:number) => xAttr(d,i) + offset)
+                .attr("y",  (d:number[], i:number) => Math.min(yAttr(d,i), y0Attr(d,i)))
                 .attr("width",  () => thickness)
-                .attr("height", (d:number[], i:number) => Math.abs(this.cached('y', i, ()=>yScale(y(d, i)))-this.cached('y0', i, ()=>yScale(y0(d, i)))));        
+                .attr("height", (d:number[], i:number) => Math.abs(yAttr(d,i)-y0Attr(d,i)));        
         } else {                    // Bar
-            const x0 = this.dims.stacked? this.accessor(this.dims.stacked, colNames) : ()=>0;
-            const x  = this.accessor(this.dims.x, colNames);
-            const y  = this.accessor(this.dims.y, colNames);
             markers
-                .attr("x",  (d:number[], i:number) => Math.min(this.cached('x', i, ()=>xScale(x(d, i))), this.cached('x0', i, ()=>xScale(x0(d, i)))))
-                .attr("y",  (d:number[], i:number) => this.cached('y', i, ()=>yScale(y(d, i))) + offset)
-                .attr("height",  () => thickness)
-                .attr("width", (d:number[], i:number) => Math.abs(this.cached('x0', i, ()=>xScale(x0(d, i)))-this.cached('x', i, ()=>xScale(x(d, i)))));
+                .attr("x",  (d:number[], i:number) => Math.min(xAttr(d,i), x0Attr(d,i)))
+                .attr("y",  (d:number[], i:number) => yAttr(d,i) + offset)
+                .attr("height", () => thickness)
+                .attr("width",  (d:number[], i:number) => Math.abs(x0Attr(d,i)-xAttr(d,i)));
         }
     }
 
@@ -208,23 +215,25 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
 
         const [xpos, ypos] = this.labelPos(cfg, labels);
         const x  = this.accessor(this.dims.x, colNames);
+        const x0 = this.dims.stacked? this.accessor(this.dims.stacked, colNames) : ()=>0;
         const y  = this.accessor(this.dims.y, colNames);
+        const y0 = this.dims.stacked? this.accessor(this.dims.stacked, colNames) : ()=>0;
+        const xAttr  = (d:number[], i:number) => this.cached('x', i, ()=>xScale(x(d, i)));
+        const x0Attr = (d:number[], i:number) => this.cached('x0', i, ()=>xScale(x0(d, i)));
+        const yAttr  = (d:number[], i:number) => this.cached('y', i, ()=>yScale(y(d, i)));
+        const y0Attr = (d:number[], i:number) => this.cached('y0', i, ()=>yScale(y0(d, i)));
         if (this.abscissa==='hor') {    // Column
-            const y0 = this.dims.stacked? this.accessor(this.dims.stacked, colNames) : ()=>0;
             labels
-                .attr("x",  (d:number[], i:number) => this.cached('x', i, ()=>xScale(x(d, i))) + offset + thickness*xpos)
+                .attr("x",  (d:number[], i:number) => xAttr(d, i) + offset + thickness*xpos)
                 .attr("y",  (d:number[], i:number) => 
-                    Math.min(this.cached('y', i, ()=>yScale(y(d, i))), this.cached('y0', i, ()=>yScale(y0(d, i))))
-                  + Math.abs(this.cached('y', i, ()=>yScale(y(d, i))) -this.cached('y0', i, ()=>yScale(y0(d, i)))) * ypos
+                    Math.min(yAttr(d,i), y0Attr(d,i)) + Math.abs(yAttr(d,i) -y0Attr(d,i)) * ypos
                 );
         } else {                        // Bar
-            const x0 = this.dims.stacked? this.accessor(this.dims.stacked, colNames) : ()=>0;
             labels
+                .attr("y",  (d:number[], i:number) => yAttr(d,i) + offset + thickness* ypos)
                 .attr("x",  (d:number[], i:number) => 
-                    Math.min(this.cached('x', i, ()=>xScale(x(d, i))),this.cached('x0', i, ()=>xScale(x0(d, i))))
-                  + Math.abs(this.cached('x', i, ()=>xScale(x(d, i)))-this.cached('x0', i, ()=>xScale(x0(d, i))))* xpos
-                )
-                .attr("y",  (d:number[], i:number) => this.cached('y', i, ()=>yScale(y(d, i))) + offset + thickness* ypos);
+                    Math.min(xAttr(d, i),x0Attr(d, i)) + Math.abs(xAttr(d, i)-x0Attr(d, i))* xpos
+                );
         }
         labels.text((d:number[], i:number) => text(l(d, i)));
     }
@@ -237,6 +246,8 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
 
         const xScale = this.cfg.graph.scales.scaleDims.hor;
         const yScale = this.cfg.graph.scales.scaleDims.ver;
+        const xAttr  = (d:number[], i:number) => this.cached('x', i, ()=>xScale(x(d, i)));
+        const yAttr  = (d:number[], i:number) => this.cached('y', i, ()=>yScale(y(d, i)));
 
         const line = hor?
             stepLine(parseInt(''+thickness), 'hor')

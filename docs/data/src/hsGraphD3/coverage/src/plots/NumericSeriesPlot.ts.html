@@ -25,9 +25,9 @@
         <span class='fraction'>52/98</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">34.29% </span>
+        <span class="strong">37.14% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>12/35</span>
+        <span class='fraction'>13/35</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">64% </span>
@@ -300,12 +300,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">16x</span>
-<span class="cline-any cline-yes">5x</span>
-<span class="cline-any cline-yes">5x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">8x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -352,15 +352,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">32x</span>
-<span class="cline-any cline-yes">32x</span>
-<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
+<span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -548,7 +548,7 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
         markers
             .attr("cx", (d:number[], i:number) =&gt; scales.hor(xAccess(d, i)))
             .attr("cy", (d:number[], i:number) =&gt; scales.ver(yAccess(d, i)))
-            .attr("r",  (d:number[], i:number) =&gt; this.dims.r? scales.size(rAccess(d, i)) : <span class="branch-1 cbranch-no" title="branch not covered" >rDefault)</span>;
+            .attr("r",  (d:number[], i:number) =&gt; this.dims.r? scales.size(rAccess(d, i)) : rDefault);
     }
     
     protected <span class="fstat-no" title="function not covered" >d3DrawLabels(</span>labels:d3Base, colNames:string[]) {

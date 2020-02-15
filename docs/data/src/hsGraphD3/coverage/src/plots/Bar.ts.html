@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>13/13</span>
+        <span class='fraction'>12/12</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>11/11</span>
+        <span class='fraction'>10/10</span>
       </div>
     </div>
     <p class="quiet">
@@ -182,14 +182,7 @@
 <a name='L134'></a><a href='#L134'>134</a>
 <a name='L135'></a><a href='#L135'>135</a>
 <a name='L136'></a><a href='#L136'>136</a>
-<a name='L137'></a><a href='#L137'>137</a>
-<a name='L138'></a><a href='#L138'>138</a>
-<a name='L139'></a><a href='#L139'>139</a>
-<a name='L140'></a><a href='#L140'>140</a>
-<a name='L141'></a><a href='#L141'>141</a>
-<a name='L142'></a><a href='#L142'>142</a>
-<a name='L143'></a><a href='#L143'>143</a>
-<a name='L144'></a><a href='#L144'>144</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L137'></a><a href='#L137'>137</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -311,8 +304,6 @@
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -321,13 +312,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -453,8 +439,6 @@ import { GraphCfg}              from '../GraphComponent';
 import { Series }               from '../Series';
 import { OrdinalSeriesPlot }    from './OrdinalSeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
-import { GridsDefaults } from '../Grid';
-import { ScalesDefaults } from '../Scale';
 &nbsp;
 Series.register('bar', (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions) =&gt; new Bar(cfg, sName, dims));
 &nbsp;
@@ -463,15 +447,10 @@ export class Bar extends OrdinalSeriesPlot {
     protected abscissa:'hor'|'ver' = 'ver';
 &nbsp;
     getDefaults(): SeriesPlotDefaults {
-        const defs = super.getDefaults();
-        // const scaleDef = (&lt;ScalesDefaults&gt;this.cfg.defaults.scales).dims[this.abscissa];
-        // scaleDef.ordinal.gap = 0.4;
-&nbsp;
         const gridDef = this.cfg.graph.defaults.grids.hor;
         gridDef.major.rendered = false;
         gridDef.minor.rendered = false;
-        // defs.label.
-        return defs;
+        return super.getDefaults();
     } 
 }
    

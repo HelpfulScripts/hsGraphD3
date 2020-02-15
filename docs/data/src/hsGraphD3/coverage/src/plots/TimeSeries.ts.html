@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">91.11% </span>
+        <span class="strong">93.33% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>41/45</span>
+        <span class='fraction'>42/45</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">50% </span>
@@ -30,9 +30,9 @@
         <span class='fraction'>6/12</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">90% </span>
+        <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>9/10</span>
+        <span class='fraction'>10/10</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -338,7 +338,7 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -502,7 +502,7 @@ export class TimeSeries extends NumericSeriesPlot {
         <span class="missing-if-branch" title="else path not taken" >E</span>if (defaults.rendered) {
             const scales = this.cfg.graph.scales.scaleDims;
             const xUnit = data.rows[1][x] - data.rows[0][x];
-            const samples:any = svg.select('.markers').selectAll("circle").data(data.rows, <span class="fstat-no" title="function not covered" >d </span>=&gt; <span class="cstat-no" title="statement not covered" >d[0])</span>;
+            const samples:any = svg.select('.markers').selectAll("circle").data(data.rows, d =&gt; d[0]);
             samples.exit().remove();            // remove unneeded circles
             samples.enter().append('circle')    // add new circles
                 .call(this.d3DrawMarker.bind(this), data.colNames)

@@ -267,7 +267,7 @@
 <p id=244 class="line"><span>&nbsp;244</span><comment>//----------&nbsp;drawing&nbsp;--------------</comment></p>
 <p id=245 class="line"><span>&nbsp;245</span><comment></comment></p>
 <p id=246 class="line"><span>&nbsp;246</span>export&nbsp;function&nbsp;setStroke(svg:d3Base,&nbsp;settings:Stroke):d3Base&nbsp;{</p>
-<p id=247 class="line"><span>&nbsp;247</span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;svg&nbsp;</p>
+<p id=247 class="line"><span>&nbsp;247</span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;(!settings&nbsp;||&nbsp;!settings.width)?&nbsp;svg&nbsp;:&nbsp;svg&nbsp;</p>
 <p id=248 class="line"><span>&nbsp;248</span>&nbsp;&nbsp;&nbsp;&nbsp;.attr('</quote>stroke<quote>',&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;settings.color)</p>
 <p id=249 class="line"><span>&nbsp;249</span>&nbsp;&nbsp;&nbsp;&nbsp;.attr('</quote>stroke-width<quote>',&nbsp;&nbsp;&nbsp;settings.width)</p>
 <p id=250 class="line"><span>&nbsp;250</span>&nbsp;&nbsp;&nbsp;&nbsp;.attr('</quote>stroke-opacity<quote>',&nbsp;settings.opacity)</p>
@@ -276,7 +276,7 @@
 <p id=253 class="line"><span>&nbsp;253</span>}</p>
 <p id=254 class="line"><span>&nbsp;254</span></p>
 <p id=255 class="line"><span>&nbsp;255</span>export&nbsp;function&nbsp;setFill(svg:d3Base,&nbsp;settings:Fill):d3Base&nbsp;{</p>
-<p id=256 class="line"><span>&nbsp;256</span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;svg&nbsp;</p>
+<p id=256 class="line"><span>&nbsp;256</span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;!settings?&nbsp;svg&nbsp;:&nbsp;svg&nbsp;</p>
 <p id=257 class="line"><span>&nbsp;257</span>&nbsp;&nbsp;&nbsp;&nbsp;.attr('</quote>fill<quote>',&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;settings.color)</p>
 <p id=258 class="line"><span>&nbsp;258</span>&nbsp;&nbsp;&nbsp;&nbsp;.attr('</quote>fill-opacity<quote>',&nbsp;settings.opacity);</p>
 <p id=259 class="line"><span>&nbsp;259</span>}</p>
@@ -288,7 +288,7 @@
 <p id=265 class="line"><span>&nbsp;265</span>}</p>
 <p id=266 class="line"><span>&nbsp;266</span></p>
 <p id=267 class="line"><span>&nbsp;267</span>export&nbsp;function&nbsp;setLabel(svg:d3Base,&nbsp;settings:Label):d3Base&nbsp;{</p>
-<p id=268 class="line"><span>&nbsp;268</span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;svg&nbsp;</p>
+<p id=268 class="line"><span>&nbsp;268</span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;!settings?&nbsp;svg&nbsp;:&nbsp;svg&nbsp;</p>
 <p id=269 class="line"><span>&nbsp;269</span>&nbsp;&nbsp;&nbsp;&nbsp;.attr('</quote>fill<quote>',&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;settings.color)</p>
 <p id=270 class="line"><span>&nbsp;270</span>&nbsp;&nbsp;&nbsp;&nbsp;.attr('</quote>font-family<quote>',&nbsp;settings.font.family)</p>
 <p id=271 class="line"><span>&nbsp;271</span>&nbsp;&nbsp;&nbsp;&nbsp;.attr('</quote>font-size<quote>',&nbsp;&nbsp;&nbsp;settings.font.size+'</quote>px<quote>')</p>
@@ -297,7 +297,7 @@
 <p id=274 class="line"><span>&nbsp;274</span>}</p>
 <p id=275 class="line"><span>&nbsp;275</span></p>
 <p id=276 class="line"><span>&nbsp;276</span>export&nbsp;function&nbsp;setPopup(svg:d3Base,&nbsp;settings:Popup):d3Base&nbsp;{</p>
-<p id=277 class="line"><span>&nbsp;277</span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;svg</p>
+<p id=277 class="line"><span>&nbsp;277</span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;!settings?&nbsp;svg&nbsp;:&nbsp;svg&nbsp;</p>
 <p id=278 class="line"><span>&nbsp;278</span>&nbsp;&nbsp;&nbsp;&nbsp;.attr('</quote>fill<quote>',&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;settings.color)</p>
 <p id=279 class="line"><span>&nbsp;279</span>&nbsp;&nbsp;&nbsp;&nbsp;.attr('</quote>font-family<quote>',&nbsp;settings.font.family)</p>
 <p id=280 class="line"><span>&nbsp;280</span>&nbsp;&nbsp;&nbsp;&nbsp;.attr('</quote>font-size<quote>',&nbsp;&nbsp;&nbsp;settings.font.size+'</quote>px<quote>')</p>

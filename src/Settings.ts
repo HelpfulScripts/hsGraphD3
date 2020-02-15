@@ -244,7 +244,7 @@ export const defaultMarkerStyle = (color='currentColor', shape=MarkerShape.circl
 //---------- drawing --------------
 
 export function setStroke(svg:d3Base, settings:Stroke):d3Base {
-    return svg 
+    return (!settings || !settings.width)? svg : svg 
     .attr('stroke',         settings.color)
     .attr('stroke-width',   settings.width)
     .attr('stroke-opacity', settings.opacity)
@@ -253,7 +253,7 @@ export function setStroke(svg:d3Base, settings:Stroke):d3Base {
 }
 
 export function setFill(svg:d3Base, settings:Fill):d3Base {
-    return svg 
+    return !settings? svg : svg 
     .attr('fill',         settings.color)
     .attr('fill-opacity', settings.opacity);
 }
@@ -265,7 +265,7 @@ export function setArea(svg:d3Base, settings:Area):d3Base {
 }
 
 export function setLabel(svg:d3Base, settings:Label):d3Base {
-    return svg 
+    return !settings? svg : svg 
     .attr('fill',        settings.color)
     .attr('font-family', settings.font.family)
     .attr('font-size',   settings.font.size+'px')
@@ -274,7 +274,7 @@ export function setLabel(svg:d3Base, settings:Label):d3Base {
 }
 
 export function setPopup(svg:d3Base, settings:Popup):d3Base {
-    return svg
+    return !settings? svg : svg 
     .attr('fill',        settings.color)
     .attr('font-family', settings.font.family)
     .attr('font-size',   settings.font.size+'px')

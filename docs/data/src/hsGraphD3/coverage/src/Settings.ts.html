@@ -25,9 +25,9 @@
         <span class='fraction'>54/58</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">86.36% </span>
+        <span class="strong">75% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>19/22</span>
+        <span class='fraction'>24/32</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">80.95% </span>
@@ -511,7 +511,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">196x</span>
+<span class="cline-any cline-yes">210x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -598,7 +598,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">134x</span>
+<span class="cline-any cline-yes">121x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -607,13 +607,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">16x</span>
+<span class="cline-any cline-yes">19x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -904,7 +904,7 @@ export const defaultMarkerStyle = (color='currentColor', shape=MarkerShape.circl
 //---------- drawing --------------
 &nbsp;
 export function setStroke(svg:d3Base, settings:Stroke):d3Base {
-    return svg 
+    return (!settings || !settings.width)? svg : svg 
     .attr('stroke',         settings.color)
     .attr('stroke-width',   settings.width)
     .attr('stroke-opacity', settings.opacity)
@@ -913,7 +913,7 @@ export function setStroke(svg:d3Base, settings:Stroke):d3Base {
 }
 &nbsp;
 export function setFill(svg:d3Base, settings:Fill):d3Base {
-    return svg 
+    return !settings? <span class="branch-0 cbranch-no" title="branch not covered" >svg </span>: svg 
     .attr('fill',         settings.color)
     .attr('fill-opacity', settings.opacity);
 }
@@ -925,7 +925,7 @@ export function setArea(svg:d3Base, settings:Area):d3Base {
 }
 &nbsp;
 export function <span class="fstat-no" title="function not covered" >setLabel(</span>svg:d3Base, settings:Label):d3Base {
-<span class="cstat-no" title="statement not covered" >    return svg </span>
+<span class="cstat-no" title="statement not covered" >    return !settings? svg : svg </span>
     .attr('fill',        settings.color)
     .attr('font-family', settings.font.family)
     .attr('font-size',   settings.font.size+'px')
@@ -934,7 +934,7 @@ export function <span class="fstat-no" title="function not covered" >setLabel(</
 }
 &nbsp;
 export function <span class="fstat-no" title="function not covered" >setPopup(</span>svg:d3Base, settings:Popup):d3Base {
-<span class="cstat-no" title="statement not covered" >    return svg</span>
+<span class="cstat-no" title="statement not covered" >    return !settings? svg : svg </span>
     .attr('fill',        settings.color)
     .attr('font-family', settings.font.family)
     .attr('font-size',   settings.font.size+'px')
