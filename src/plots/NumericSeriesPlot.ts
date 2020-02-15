@@ -90,7 +90,7 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
         this.line = this.line || this.getLine(data.rows, data.colNames, this.dims.y);
         if (this.dims.y0!==undefined) {
             const max = data.rows.length-1;
-            const xmax = scales.hor(super.accessor(this.dims.x,  data.colNames)(data.rows[max], 0));
+            const xmax = scales.hor(this.accessor(this.dims.x,  data.colNames, false)(data.rows[max], 0));
             const y0   = scales.ver(this.accessor(this.dims.y0, data.colNames, false)(data.rows[max], 0));
             // extend end of line down to base:
             this.line += `L${xmax},${y0}`
@@ -122,7 +122,7 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
         const xAccess = this.accessor(this.dims.x, colNames);
         const yAccess = this.accessor(this.dims.y, colNames);
         // don't scale markers as 'stacked markers' -> use super instead of this:
-        const rAccess = super.accessor(this.dims.r, colNames);
+        const rAccess = this.accessor(this.dims.r, colNames, false);
         const rDefault = this.defaults.marker.size;
         markers
             .attr("cx", (d:number[], i:number) => scales.hor(xAccess(d, i)))
@@ -134,9 +134,9 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
         const scales = this.cfg.graph.scales.scaleDims;
         const xAccess = this.accessor(this.dims.x, colNames);
         const yAccess = this.accessor(this.dims.y, colNames);
-        const rAccess = super.accessor(this.dims.r, colNames);
+        const rAccess = this.accessor(this.dims.r, colNames, false);
         const rDefault = this.defaults.marker.size;
-        const lAccess = super.accessor(this.dims.label, colNames);
+        const lAccess = this.accessor(this.dims.label, colNames, false);
         const cfg:Label = this.defaults.label;
 
         const [xpos, ypos, yShift] = this.labelPos(cfg, labels);

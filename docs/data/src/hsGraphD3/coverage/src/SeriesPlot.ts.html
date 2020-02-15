@@ -22,12 +22,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>52/52</span>
+        <span class='fraction'>53/53</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">93.75% </span>
+        <span class="strong">94.12% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>15/16</span>
+        <span class='fraction'>16/17</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>45/45</span>
+        <span class='fraction'>46/46</span>
       </div>
     </div>
     <p class="quiet">
@@ -389,7 +389,7 @@
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">42x</span>
 <span class="cline-any cline-yes">42x</span>
 <span class="cline-any cline-yes">56x</span>
 <span class="cline-any cline-yes">32x</span>
@@ -605,10 +605,10 @@ export abstract class SeriesPlot {
         this.updateStack(dataSet);
         const dims:GraphDimensions = this.dimensions;
         Object.keys(dims).map(dim =&gt; { // dim='hor', 'ver', size'
-            // const stacked = dim==='size'? null : undefined;
+            const useStack = dim!=='size';  // donst stack-scale marker sizes
             const type = this.cfg.graph.defaults.scales.dims[dim].type;
             dims[dim].map(colName =&gt; { if (colName!==undefined) { 
-                const valueFn = this.accessor(colName, dataSet.colNames);
+                const valueFn = this.accessor(colName, dataSet.colNames, useStack);
                 switch(type) {
                     case 'ordinal':     
                         domains[dim] = this.expandOrdinalDomain(dataSet, &lt;OrdDomain&gt;domains[dim] || [], valueFn); 
@@ -652,7 +652,7 @@ export abstract class SeriesPlot {
      * that returns a `DataVal` value. The function
      * receives a `DataRow` and the index of the row in the `DataSet` as a parameter. 
      */
-    protected accessor(v:ValueDef, colNames:string[]):(row:DataRow, rowIndex:number) =&gt; DataVal {
+    protected accessor(v:ValueDef, colNames:string[], useStack=true):(row:DataRow, rowIndex:number) =&gt; DataVal {
         switch (typeof(v)) {
             case 'function':return (row, rowIndex) =&gt; (&lt;ValueFn&gt;v)(rowIndex);
             case 'number':  log.info(`accessing constant number ${v}`);

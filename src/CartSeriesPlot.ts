@@ -113,15 +113,17 @@ export abstract class CartSeriesPlot extends SeriesPlot {
      * @param colNames 
      */
     accessor(v:ValueDef, colNames:string[], useStack=true):(row:DataRow, rowIndex:number) => DataVal {
-        const stackDim = this.dimensions[this.abscissa==='hor'? 'ver' : 'hor'].indexOf(v)>=0;
-        const abscissaCol = {hor:this.dims.x, ver:this.dims.y}[this.abscissa];
-        if (useStack &&  this.dims.stacked && stackDim && typeof abscissaCol === 'string') {
-            const stackIndex = colNames.indexOf(this.dims.stacked);
-            const fn = super.accessor(v, colNames);
-            return (row, rowIndex) => <number>row[stackIndex] + <number>fn(row, rowIndex);
-        } else {
-            return super.accessor(v, colNames);
+        if (useStack && this.dims.stacked) {
+            // stackDim = is 'v' a stackable dimension?
+            const stackDim = this.dimensions[this.abscissa==='hor'? 'ver' : 'hor'].indexOf(v)>=0;
+            const abscissaCol = {hor:this.dims.x, ver:this.dims.y}[this.abscissa];
+            if (stackDim && typeof abscissaCol === 'string') {
+                const stackIndex = colNames.indexOf(this.dims.stacked);
+                const fn = super.accessor(v, colNames);
+                return (row, rowIndex) => <number>row[stackIndex] + <number>fn(row, rowIndex);
+            }
         }
+        return super.accessor(v, colNames);
     }
 
 

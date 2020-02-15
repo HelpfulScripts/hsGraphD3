@@ -125,10 +125,10 @@ export abstract class SeriesPlot {
         this.updateStack(dataSet);
         const dims:GraphDimensions = this.dimensions;
         Object.keys(dims).map(dim => { // dim='hor', 'ver', size'
-            // const stacked = dim==='size'? null : undefined;
+            const useStack = dim!=='size';  // donst stack-scale marker sizes
             const type = this.cfg.graph.defaults.scales.dims[dim].type;
             dims[dim].map(colName => { if (colName!==undefined) { 
-                const valueFn = this.accessor(colName, dataSet.colNames);
+                const valueFn = this.accessor(colName, dataSet.colNames, useStack);
                 switch(type) {
                     case 'ordinal':     
                         domains[dim] = this.expandOrdinalDomain(dataSet, <OrdDomain>domains[dim] || [], valueFn); 
@@ -172,7 +172,7 @@ export abstract class SeriesPlot {
      * that returns a `DataVal` value. The function
      * receives a `DataRow` and the index of the row in the `DataSet` as a parameter. 
      */
-    protected accessor(v:ValueDef, colNames:string[]):(row:DataRow, rowIndex:number) => DataVal {
+    protected accessor(v:ValueDef, colNames:string[], useStack=true):(row:DataRow, rowIndex:number) => DataVal {
         switch (typeof(v)) {
             case 'function':return (row, rowIndex) => (<ValueFn>v)(rowIndex);
             case 'number':  log.info(`accessing constant number ${v}`);

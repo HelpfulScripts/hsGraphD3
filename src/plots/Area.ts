@@ -18,8 +18,8 @@
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
  * <file name='script.js'>
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('area', {x:'time', y:'volume', r:'volume'});
- * graph.series.add('area', {x:'time', y:'costs', r:'costs', y0:'volume'});
+ * graph.series.add('area', {x:'time', y:'volume', r:'volume', label:'volume'});
+ * graph.series.add('area', {x:'time', y:'costs', r:'costs', y0:'volume', label:'costs'});
  * graph.series.defaults[0].line.rendered = true;
  * graph.series.defaults[1].line.rendered = true;
  * graph.render({
@@ -41,8 +41,8 @@
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
  * <file name='script.js'>
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('area', {x:'time', y:'volume', r:'volume', stacked:'mystack'});
- * graph.series.add('area', {x:'time', y:'costs', r:'costs', stacked:'mystack'});
+ * graph.series.add('area', {x:'time', y:'volume', r:'volume', stacked:'mystack', label:'volume'});
+ * graph.series.add('area', {x:'time', y:'costs', r:'costs', stacked:'mystack', label:'costs'});
  * graph.series.defaults[0].line.rendered = true;
  * graph.series.defaults[1].line.rendered = true;
  * graph.render({

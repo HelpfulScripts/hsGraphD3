@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">85.58% </span>
+        <span class="strong">85.71% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>89/104</span>
+        <span class='fraction'>90/105</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">81.13% </span>
+        <span class="strong">81.82% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>43/53</span>
+        <span class='fraction'>45/55</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">88.89% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>16/18</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">89.01% </span>
+        <span class="strong">89.13% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>81/91</span>
+        <span class='fraction'>82/92</span>
       </div>
     </div>
     <p class="quiet">
@@ -293,7 +293,9 @@
 <a name='L245'></a><a href='#L245'>245</a>
 <a name='L246'></a><a href='#L246'>246</a>
 <a name='L247'></a><a href='#L247'>247</a>
-<a name='L248'></a><a href='#L248'>248</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L248'></a><a href='#L248'>248</a>
+<a name='L249'></a><a href='#L249'>249</a>
+<a name='L250'></a><a href='#L250'>250</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -372,7 +374,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">142x</span>
+<span class="cline-any cline-yes">58x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -409,14 +411,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">128x</span>
-<span class="cline-any cline-yes">128x</span>
-<span class="cline-any cline-yes">128x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">44x</span>
+<span class="cline-any cline-yes">44x</span>
+<span class="cline-any cline-yes">44x</span>
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">48x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">114x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">114x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -655,15 +659,17 @@ export abstract class CartSeriesPlot extends SeriesPlot {
      * @param colNames 
      */
     accessor(v:ValueDef, colNames:string[], useStack=true):(row:DataRow, rowIndex:number) =&gt; DataVal {
-        const stackDim = this.dimensions[this.abscissa==='hor'? 'ver' : 'hor'].indexOf(v)&gt;=0;
-        const abscissaCol = {hor:this.dims.x, ver:this.dims.y}[this.abscissa];
-        if (useStack &amp;&amp;  this.dims.stacked &amp;&amp; stackDim &amp;&amp; typeof abscissaCol === 'string') {
-            const stackIndex = colNames.indexOf(this.dims.stacked);
-            const fn = super.accessor(v, colNames);
-            return (row, rowIndex) =&gt; &lt;number&gt;row[stackIndex] + &lt;number&gt;fn(row, rowIndex);
-        } else {
-            return super.accessor(v, colNames);
+        if (useStack &amp;&amp; this.dims.stacked) {
+            // stackDim = is 'v' a stackable dimension?
+            const stackDim = this.dimensions[this.abscissa==='hor'? 'ver' : 'hor'].indexOf(v)&gt;=0;
+            const abscissaCol = {hor:this.dims.x, ver:this.dims.y}[this.abscissa];
+            if (stackDim &amp;&amp; typeof abscissaCol === 'string') {
+                const stackIndex = colNames.indexOf(this.dims.stacked);
+                const fn = super.accessor(v, colNames);
+                return (row, rowIndex) =&gt; &lt;number&gt;row[stackIndex] + &lt;number&gt;fn(row, rowIndex);
+            }
         }
+        return super.accessor(v, colNames);
     }
 &nbsp;
 &nbsp;

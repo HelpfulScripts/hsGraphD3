@@ -113,7 +113,7 @@
 <p id=90 class="line"><span>&nbsp;&nbsp;90</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.line&nbsp;=&nbsp;this.line&nbsp;||&nbsp;this.getLine(data.rows,&nbsp;data.colNames,&nbsp;this.dims.y);</p>
 <p id=91 class="line"><span>&nbsp;&nbsp;91</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(this.dims.y0!==undefined)&nbsp;{</p>
 <p id=92 class="line"><span>&nbsp;&nbsp;92</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;max&nbsp;=&nbsp;data.rows.length-1;</p>
-<p id=93 class="line"><span>&nbsp;&nbsp;93</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;xmax&nbsp;=&nbsp;scales.hor(super.accessor(this.dims.x,&nbsp;&nbsp;data.colNames)(data.rows[max],&nbsp;0));</p>
+<p id=93 class="line"><span>&nbsp;&nbsp;93</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;xmax&nbsp;=&nbsp;scales.hor(this.accessor(this.dims.x,&nbsp;&nbsp;data.colNames,&nbsp;false)(data.rows[max],&nbsp;0));</p>
 <p id=94 class="line"><span>&nbsp;&nbsp;94</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;y0&nbsp;&nbsp;&nbsp;=&nbsp;scales.ver(this.accessor(this.dims.y0,&nbsp;data.colNames,&nbsp;false)(data.rows[max],&nbsp;0));</p>
 <p id=95 class="line"><span>&nbsp;&nbsp;95</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;extend&nbsp;end&nbsp;of&nbsp;line&nbsp;down&nbsp;to&nbsp;base:</comment></p>
 <p id=96 class="line"><span>&nbsp;&nbsp;96</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.line&nbsp;+=&nbsp;`L${xmax},${y0}`</p>
@@ -145,7 +145,7 @@
 <p id=122 class="line"><span>&nbsp;122</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;xAccess&nbsp;=&nbsp;this.accessor(this.dims.x,&nbsp;colNames);</p>
 <p id=123 class="line"><span>&nbsp;123</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;yAccess&nbsp;=&nbsp;this.accessor(this.dims.y,&nbsp;colNames);</p>
 <p id=124 class="line"><span>&nbsp;124</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;don<quote>'t&nbsp;scale&nbsp;markers&nbsp;as&nbsp;'</quote>stacked&nbsp;markers<quote>'&nbsp;->&nbsp;use&nbsp;super&nbsp;instead&nbsp;of&nbsp;this:</comment></p>
-<p id=125 class="line"><span>&nbsp;125</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;rAccess&nbsp;=&nbsp;super.accessor(this.dims.r,&nbsp;colNames);</p>
+<p id=125 class="line"><span>&nbsp;125</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;rAccess&nbsp;=&nbsp;this.accessor(this.dims.r,&nbsp;colNames,&nbsp;false);</p>
 <p id=126 class="line"><span>&nbsp;126</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;rDefault&nbsp;=&nbsp;this.defaults.marker.size;</p>
 <p id=127 class="line"><span>&nbsp;127</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;markers</p>
 <p id=128 class="line"><span>&nbsp;128</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>"cx"</quote>,&nbsp;(d:number[],&nbsp;i:number)&nbsp;=>&nbsp;scales.hor(xAccess(d,&nbsp;i)))</p>
@@ -157,9 +157,9 @@
 <p id=134 class="line"><span>&nbsp;134</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;scales&nbsp;=&nbsp;this.cfg.graph.scales.scaleDims;</p>
 <p id=135 class="line"><span>&nbsp;135</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;xAccess&nbsp;=&nbsp;this.accessor(this.dims.x,&nbsp;colNames);</p>
 <p id=136 class="line"><span>&nbsp;136</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;yAccess&nbsp;=&nbsp;this.accessor(this.dims.y,&nbsp;colNames);</p>
-<p id=137 class="line"><span>&nbsp;137</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;rAccess&nbsp;=&nbsp;super.accessor(this.dims.r,&nbsp;colNames);</p>
+<p id=137 class="line"><span>&nbsp;137</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;rAccess&nbsp;=&nbsp;this.accessor(this.dims.r,&nbsp;colNames,&nbsp;false);</p>
 <p id=138 class="line"><span>&nbsp;138</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;rDefault&nbsp;=&nbsp;this.defaults.marker.size;</p>
-<p id=139 class="line"><span>&nbsp;139</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;lAccess&nbsp;=&nbsp;super.accessor(this.dims.label,&nbsp;colNames);</p>
+<p id=139 class="line"><span>&nbsp;139</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;lAccess&nbsp;=&nbsp;this.accessor(this.dims.label,&nbsp;colNames,&nbsp;false);</p>
 <p id=140 class="line"><span>&nbsp;140</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;cfg:Label&nbsp;=&nbsp;this.defaults.label;</p>
 <p id=141 class="line"><span>&nbsp;141</span></p>
 <p id=142 class="line"><span>&nbsp;142</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;[xpos,&nbsp;ypos,&nbsp;yShift]&nbsp;=&nbsp;this.labelPos(cfg,&nbsp;labels);</p>

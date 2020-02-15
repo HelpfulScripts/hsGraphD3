@@ -148,10 +148,10 @@
 <p id=125 class="line"><span>&nbsp;125</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.updateStack(dataSet);</p>
 <p id=126 class="line"><span>&nbsp;126</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;dims:GraphDimensions&nbsp;=&nbsp;this.dimensions;</p>
 <p id=127 class="line"><span>&nbsp;127</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Object.keys(dims).map(dim&nbsp;=>&nbsp;{&nbsp;<comment>//&nbsp;dim=<quote>'hor'</quote>,&nbsp;<quote>'ver'</quote>,&nbsp;size<quote>'</comment></p>
-<p id=128 class="line"><span>&nbsp;128</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;const&nbsp;stacked&nbsp;=&nbsp;dim==='</quote>size<quote>'?&nbsp;null&nbsp;:&nbsp;undefined;</comment></p>
+<p id=128 class="line"><span>&nbsp;128</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;useStack&nbsp;=&nbsp;dim!=='</quote>size<quote>';&nbsp;&nbsp;<comment>//&nbsp;donst&nbsp;stack-scale&nbsp;marker&nbsp;sizes</comment></p>
 <p id=129 class="line"><span>&nbsp;129</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;type&nbsp;=&nbsp;this.cfg.graph.defaults.scales.dims[dim].type;</p>
 <p id=130 class="line"><span>&nbsp;130</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dims[dim].map(colName&nbsp;=>&nbsp;{&nbsp;if&nbsp;(colName!==undefined)&nbsp;{&nbsp;</p>
-<p id=131 class="line"><span>&nbsp;131</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;valueFn&nbsp;=&nbsp;this.accessor(colName,&nbsp;dataSet.colNames);</p>
+<p id=131 class="line"><span>&nbsp;131</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;valueFn&nbsp;=&nbsp;this.accessor(colName,&nbsp;dataSet.colNames,&nbsp;useStack);</p>
 <p id=132 class="line"><span>&nbsp;132</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch(type)&nbsp;{</p>
 <p id=133 class="line"><span>&nbsp;133</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'</quote>ordinal<quote>':&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
 <p id=134 class="line"><span>&nbsp;134</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domains[dim]&nbsp;=&nbsp;this.expandOrdinalDomain(dataSet,&nbsp;<OrdDomain>domains[dim]&nbsp;||&nbsp;[],&nbsp;valueFn);&nbsp;</p>
@@ -195,7 +195,7 @@
 <p id=172 class="line"><span>&nbsp;172</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;that&nbsp;returns&nbsp;a&nbsp;`DataVal`&nbsp;value.&nbsp;The&nbsp;function</comment></p>
 <p id=173 class="line"><span>&nbsp;173</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;receives&nbsp;a&nbsp;`DataRow`&nbsp;and&nbsp;the&nbsp;index&nbsp;of&nbsp;the&nbsp;row&nbsp;in&nbsp;the&nbsp;`DataSet`&nbsp;as&nbsp;a&nbsp;parameter.&nbsp;</comment></p>
 <p id=174 class="line"><span>&nbsp;174</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</comment></p>
-<p id=175 class="line"><span>&nbsp;175</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;accessor(v:ValueDef,&nbsp;colNames:string[]):(row:DataRow,&nbsp;rowIndex:number)&nbsp;=>&nbsp;DataVal&nbsp;{</p>
+<p id=175 class="line"><span>&nbsp;175</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;accessor(v:ValueDef,&nbsp;colNames:string[],&nbsp;useStack=true):(row:DataRow,&nbsp;rowIndex:number)&nbsp;=>&nbsp;DataVal&nbsp;{</p>
 <p id=176 class="line"><span>&nbsp;176</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch&nbsp;(typeof(v))&nbsp;{</p>
 <p id=177 class="line"><span>&nbsp;177</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'</quote>function<quote>':return&nbsp;(row,&nbsp;rowIndex)&nbsp;=>&nbsp;(<ValueFn>v)(rowIndex);</p>
 <p id=178 class="line"><span>&nbsp;178</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;'</quote>number<quote>':&nbsp;&nbsp;log.info(`accessing&nbsp;constant&nbsp;number&nbsp;${v}`);</p>
