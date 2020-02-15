@@ -1,7 +1,7 @@
 /**
  * #Examples
  * 
- * <example height=1770px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
+ * <example height=2030px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
  * <file name='script.js'>
  * const content = [
  *      graph => {
@@ -29,6 +29,20 @@
  *          graph.series.add('area', {x:'time', y:'Joe'});
  *          graph.series.add('area', {x:'time', y:'Mary'});
  *          graph.title.text = `simple 'area' graph`;
+ *          graph.render(data).update(2000);
+ *      }, 
+ * 
+ *      graph => {
+ *          graph.series.add('area', {x:'time', y:'Joe'});
+ *          graph.series.add('area', {x:'time', y:'Mary', y0:'Joe'});
+ *          graph.title.text = `difference 'area' graph`;
+ *          graph.render(data).update(2000);
+ *      }, 
+ * 
+ *      graph => {
+ *          graph.series.add('area', {x:'time', y:'Joe', stacked:'myStack'});
+ *          graph.series.add('area', {x:'time', y:'Mary', stacked:'myStack'});
+ *          graph.title.text = `stacked 'area' graph`;
  *          graph.render(data).update(2000);
  *      }, 
  * 

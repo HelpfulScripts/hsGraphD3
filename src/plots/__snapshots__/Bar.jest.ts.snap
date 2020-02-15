@@ -46,20 +46,14 @@ exports[`Bar should plot bar 1`] = `
         stroke-width="1"
       >
         <line
-          x1="20"
-          x2="20"
+          x1="404"
+          x2="404"
           y1="670"
           y2="20"
         />
         <line
-          x1="500"
-          x2="500"
-          y1="670"
-          y2="20"
-        />
-        <line
-          x1="980"
-          x2="980"
+          x1="884"
+          x2="884"
           y1="670"
           y2="20"
         />
@@ -183,7 +177,7 @@ exports[`Bar should plot bar 1`] = `
             fill="currentColor"
             y="8"
           >
-            -1
+            -0.8
           </text>
         </g>
         <g
@@ -204,7 +198,7 @@ exports[`Bar should plot bar 1`] = `
             fill="currentColor"
             y="8"
           >
-            -0.8
+            -0.6
           </text>
         </g>
         <g
@@ -225,7 +219,7 @@ exports[`Bar should plot bar 1`] = `
             fill="currentColor"
             y="8"
           >
-            -0.6
+            -0.4
           </text>
         </g>
         <g
@@ -246,7 +240,7 @@ exports[`Bar should plot bar 1`] = `
             fill="currentColor"
             y="8"
           >
-            -0.4
+            -0.2
           </text>
         </g>
         <g
@@ -267,7 +261,7 @@ exports[`Bar should plot bar 1`] = `
             fill="currentColor"
             y="8"
           >
-            -0.2
+            0
           </text>
         </g>
         <g
@@ -288,7 +282,7 @@ exports[`Bar should plot bar 1`] = `
             fill="currentColor"
             y="8"
           >
-            0
+            0.2
           </text>
         </g>
         <g
@@ -309,7 +303,7 @@ exports[`Bar should plot bar 1`] = `
             fill="currentColor"
             y="8"
           >
-            0.2
+            0.4
           </text>
         </g>
         <g
@@ -330,7 +324,7 @@ exports[`Bar should plot bar 1`] = `
             fill="currentColor"
             y="8"
           >
-            0.4
+            0.6
           </text>
         </g>
         <g
@@ -351,7 +345,7 @@ exports[`Bar should plot bar 1`] = `
             fill="currentColor"
             y="8"
           >
-            0.6
+            0.8
           </text>
         </g>
         <g
@@ -372,7 +366,7 @@ exports[`Bar should plot bar 1`] = `
             fill="currentColor"
             y="8"
           >
-            0.8
+            1
           </text>
         </g>
         <g
@@ -393,7 +387,7 @@ exports[`Bar should plot bar 1`] = `
             fill="currentColor"
             y="8"
           >
-            1
+            1.2
           </text>
         </g>
       </g>
@@ -411,7 +405,7 @@ exports[`Bar should plot bar 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         text-anchor="end"
-        transform="translate(500, 16.25)"
+        transform="translate(404, 16.25)"
       >
         <path
           class="domain"
@@ -559,53 +553,6 @@ exports[`Bar should plot bar 1`] = `
         style="color: rgb(27, 158, 119);"
       >
         <g
-          class="area"
-          fill="currentColor"
-          fill-opacity="0.5"
-          stroke="#fff"
-          stroke-dasharray="none"
-          stroke-opacity="1"
-          stroke-width="0"
-        >
-          <path />
-          <rect
-            height="75.83333333333333"
-            width="96"
-            x="500"
-            y="594.1666666666666"
-          />
-          <rect
-            height="75.83333333333333"
-            width="336"
-            x="500"
-            y="485.8333333333333"
-          />
-          <rect
-            height="75.83333333333333"
-            width="48"
-            x="500"
-            y="377.5"
-          />
-          <rect
-            height="75.83333333333333"
-            width="96"
-            x="404"
-            y="269.16666666666663"
-          />
-          <rect
-            height="75.83333333333333"
-            width="144"
-            x="500"
-            y="160.83333333333331"
-          />
-          <rect
-            height="75.83333333333333"
-            width="96"
-            x="500"
-            y="52.5"
-          />
-        </g>
-        <g
           class="line"
           fill-opacity="0"
           stroke="currentColor"
@@ -614,7 +561,49 @@ exports[`Bar should plot bar 1`] = `
           stroke-width="1"
         >
           <path
-            d="M596 669L596 594L836 560L836 485L548 452L548 377L404 344L404 269L644 235L644 160L596 127L596 52"
+            d="M500 669L500 594L740 560L740 485L452 452L452 377L308 344L308 269L548 235L548 160L500 127L500 52"
+          />
+        </g>
+        <g
+          class="markers"
+          fill="currentColor"
+          fill-opacity="0.75"
+        >
+          <rect
+            height="75.83333333333333"
+            width="96"
+            x="404"
+            y="594.1666666666666"
+          />
+          <rect
+            height="75.83333333333333"
+            width="336"
+            x="404"
+            y="485.8333333333333"
+          />
+          <rect
+            height="75.83333333333333"
+            width="48"
+            x="404"
+            y="377.5"
+          />
+          <rect
+            height="75.83333333333333"
+            width="96"
+            x="308"
+            y="269.16666666666663"
+          />
+          <rect
+            height="75.83333333333333"
+            width="144"
+            x="404"
+            y="160.83333333333331"
+          />
+          <rect
+            height="75.83333333333333"
+            width="96"
+            x="404"
+            y="52.5"
           />
         </g>
       </g>
@@ -623,61 +612,46 @@ exports[`Bar should plot bar 1`] = `
         style="color: rgb(217, 95, 2);"
       >
         <g
-          class="area"
+          class="markers"
           fill="currentColor"
-          fill-opacity="0.5"
-          stroke="#fff"
-          stroke-dasharray="none"
-          stroke-opacity="1"
-          stroke-width="0"
+          fill-opacity="0.75"
         >
-          <path />
           <rect
             height="75.83333333333333"
             width="480"
-            x="116"
+            x="20"
             y="594.1666666666666"
           />
           <rect
             height="75.83333333333333"
             width="96"
-            x="836"
+            x="740"
             y="485.8333333333333"
           />
           <rect
             height="75.83333333333333"
             width="192"
-            x="548"
+            x="452"
             y="377.5"
           />
           <rect
             height="75.83333333333333"
             width="288"
-            x="404"
+            x="308"
             y="269.16666666666663"
           />
           <rect
             height="75.83333333333333"
             width="384"
-            x="644"
+            x="548"
             y="160.83333333333331"
           />
           <rect
             height="75.83333333333333"
             width="480"
-            x="596"
+            x="500"
             y="52.5"
           />
-        </g>
-        <g
-          class="line"
-          fill-opacity="0"
-          stroke="currentColor"
-          stroke-dasharray="none"
-          stroke-opacity="1"
-          stroke-width="1"
-        >
-          <path />
         </g>
       </g>
     </g>

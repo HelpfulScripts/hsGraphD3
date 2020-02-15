@@ -99,7 +99,9 @@ export class TimeSeries extends NumericSeriesPlot {
     getDefaults(): SeriesPlotDefaults {
         const scaleDef = this.cfg.graph.scales.defaults.dims.hor;
         scaleDef.aggregateOverTime = false;
-        return super.getDefaults();
+        const defs = super.getDefaults();
+        defs.line.rendered = true; 
+        return defs;
     }
      
     initialize(svg:d3Base, color?:string): void {

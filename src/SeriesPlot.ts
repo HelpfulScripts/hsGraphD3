@@ -113,7 +113,7 @@ export abstract class SeriesPlot {
             label:  defaultLabel(),
             popup:  defaultText()
         };
-        def.line.rendered = true;
+        def.line.rendered = false;
         def.marker.rendered = false;
         def.area.rendered = false;
         def.label.rendered = false;
@@ -122,9 +122,10 @@ export abstract class SeriesPlot {
     }
 
     public expandDomains(dataSet:DataSet, domains:Domains) {
-        this.intializeStackGroup(dataSet);
+        this.updateStack(dataSet);
         const dims:GraphDimensions = this.dimensions;
         Object.keys(dims).map(dim => { // dim='hor', 'ver', size'
+            // const stacked = dim==='size'? null : undefined;
             const type = this.cfg.graph.defaults.scales.dims[dim].type;
             dims[dim].map(colName => { if (colName!==undefined) { 
                 const valueFn = this.accessor(colName, dataSet.colNames);
@@ -203,11 +204,11 @@ export abstract class SeriesPlot {
     /** clears the stack for this cycle before any series rendering happens. */
     public abstract clearStack(data:DataSet):void;
     
-    /** 
-     * Create a stack group column if necessary and 
-     * initialize it to all zeros before rendering this series.
-     */
-    protected abstract intializeStackGroup(data:DataSet):void;
+    // /** 
+    //  * Create a stack group column if necessary and 
+    //  * initialize it to all zeros before rendering this series.
+    //  */
+    // protected abstract intializeStackGroup(data:DataSet):void;
 
     /** update stack after rendering series. */
     protected abstract updateStack(data:DataSet):void ;

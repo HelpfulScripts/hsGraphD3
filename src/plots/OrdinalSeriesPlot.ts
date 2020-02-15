@@ -56,27 +56,6 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
         return def;
     } 
 
-    /**
-     * Returns an accessor function to access the numeric value in a data row. 
-     * @param dim the semantic dimension ('hor', 'ver', 'size') in which to aggregate
-     * @param v data column value definition
-     * @param colNames 
-     */
-    accessor(v:ValueDef, colNames:string[]):(row:DataRow, rowIndex:number) => DataVal {
-        const stack = this.cfg.stack[this.dims.stacked];
-        const stackDim = this.dimensions[this.abscissa==='hor'? 'ver' : 'hor'].indexOf(v)>=0;
-        const abscissaCol = {hor:this.dims.x, ver:this.dims.y}[this.abscissa];
-        if (this.dims.stacked && stackDim && typeof abscissaCol === 'string') {
-            const stackIndex = colNames.indexOf(this.dims.stacked);
-            const fn = super.accessor(v, colNames);
-            return (row, rowIndex) => {
-                return <number>row[stackIndex] + <number>fn(row, rowIndex);
-            };
-        } else {
-            return super.accessor(v, colNames);
-        }
-    }
-
     /** ensures that 0 is in the domain, since the columns extend down to 0. */
     protected expandNumDomain(dataSet:DataSet, domain:NumDomain, fn:(row?:DataRow, i?:number) => DataVal):NumDomain {
         domain = super.expandNumDomain(dataSet, domain, fn);
@@ -89,11 +68,6 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
 
     initialize(svg:d3Base, color?:string): void {
         super.initialize(svg, color);
-        // const defaults = this.defaults;
-        // if (this.dims.color) {
-        //     const markers = this.svg.select('.markers');
-        //     setColor(markers, defaults.popup);
-        // }
     }
 
     preRender(data:DataSet, domains:Domains): void {
@@ -282,47 +256,6 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
               .attr('dy', ((cfg.vOffset||0)+yShift).toFixed(1) + 'em');
     return [xpos, ypos];
     }
-
-
-    //---------- stack methods --------------------
-
-    /** clears the stack for this cycle before any series rendering happens. */
-    public clearStack(data:DataSet) {
-        super.clearStack(data);
-        const group = this.dims.stacked;
-        if (group) {
-            const scales = this.cfg.graph.scales.scaleDims;
-            const scale = {hor:scales.hor, ver:scales.ver}[this.abscissa];
-            if (scale) {
-                const domain = <OrdDomain>scale.domain();
-                const stack = this.cfg.stack[this.dims.stacked];
-                domain.forEach((v:string) => stack[v] = 0);
-            }
-        }
-    }
-
-    /** Create a stack group column if necessary, initializing it to all zeros. */
-    protected intializeStackGroup(data:DataSet) {
-        this.updateStack(data);
-    }
-
-    /** update stack after rendering series. */
-    protected updateStack(data:DataSet) {
-        const group = this.dims.stacked;
-        if (group) {
-            const stack = this.cfg.stack[this.dims.stacked];
-            const stackCol = data.colNames.indexOf(group);
-            const abscissaCol = <string>{hor:this.dims.x, ver:this.dims.y}[this.abscissa];
-            const abscissaIndex = data.colNames.indexOf(abscissaCol);
-            const ordinateCol = <string>{hor:this.dims.y, ver:this.dims.x}[this.abscissa];
-            const ordinateIndex = data.colNames.indexOf(ordinateCol);
-            data.rows.forEach(row => {
-                const abscissaKey = ''+row[abscissaIndex];
-                row[stackCol] = <number>stack[abscissaKey] || 0;
-                stack[abscissaKey] += <number>row[ordinateIndex];
-            });
-        }
-    }  
 }
 
 

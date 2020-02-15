@@ -22,7 +22,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>12/12</span>
+        <span class='fraction'>10/10</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -37,7 +37,7 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>10/10</span>
+        <span class='fraction'>8/8</span>
       </div>
     </div>
     <p class="quiet">
@@ -154,7 +154,15 @@
 <a name='L106'></a><a href='#L106'>106</a>
 <a name='L107'></a><a href='#L107'>107</a>
 <a name='L108'></a><a href='#L108'>108</a>
-<a name='L109'></a><a href='#L109'>109</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L109'></a><a href='#L109'>109</a>
+<a name='L110'></a><a href='#L110'>110</a>
+<a name='L111'></a><a href='#L111'>111</a>
+<a name='L112'></a><a href='#L112'>112</a>
+<a name='L113'></a><a href='#L113'>113</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -256,8 +264,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -282,14 +290,16 @@
  * &lt;example height=200px libs={hsGraphD3:'hsGraphD3'}&gt;
  * &lt;file name='script.js'&gt;
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('area', {x:'time', y:'costs', y0:'volume'});
- * graph.series.add('area', {x:'time', y:'volume', r:'costs'});
+ * graph.series.add('area', {x:'time', y:'volume', r:'volume'});
+ * graph.series.add('area', {x:'time', y:'costs', r:'costs', y0:'volume'});
+ * graph.series.defaults[0].line.rendered = true;
+ * graph.series.defaults[1].line.rendered = true;
  * graph.render({
  *    colNames:['time', 'volume', 'costs'], 
  *    rows:[    [-1,    0.2,      0.3], 
  *              [0.2,   0.4,      0.7], 
- *              [0.4,   0.1,      0.3],
- *              [0.6,  -0.2,      0.1], 
+ *              [0.4,   0.0,      0.3],
+ *              [0.6,   0.2,      0.2], 
  *              [0.8,   0.3,      0.5], 
  *              [1,     0.2,      0.4]]
  * });
@@ -303,14 +313,16 @@
  * &lt;example height=200px libs={hsGraphD3:'hsGraphD3'}&gt;
  * &lt;file name='script.js'&gt;
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('area', {x:'time', y:'costs', stacked:'mystack'});
- * graph.series.add('area', {x:'time', y:'volume', r:'costs', stacked:'mystack'});
+ * graph.series.add('area', {x:'time', y:'volume', r:'volume', stacked:'mystack'});
+ * graph.series.add('area', {x:'time', y:'costs', r:'costs', stacked:'mystack'});
+ * graph.series.defaults[0].line.rendered = true;
+ * graph.series.defaults[1].line.rendered = true;
  * graph.render({
  *    colNames:['time', 'volume', 'costs'], 
  *    rows:[    [-1,    0.2,      0.3], 
  *              [0.2,   0.4,      0.7], 
- *              [0.4,   0.1,      0.3],
- *              [0.6,  -0.2,      0.1], 
+ *              [0.4,   0.0,      0.3],
+ *              [0.6,   0.2,      0.2], 
  *              [0.8,   0.3,      0.5], 
  *              [1,     0.2,      0.4]]
  * });
@@ -326,8 +338,8 @@
  * 
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      graph.series.add('area', {x:'time', y:'costs', y0:'volume'});
- *      graph.series.add('area', {x:'time', y:'volume', r:'costs'});
+ *      graph.series.add('area', {x:'time', y:'costs', stacked:'mystack'});
+ *      graph.series.add('area', {x:'time', y:'volume', r:'costs', stacked:'mystack'});
  *      return graph.series.defaults;
  * }
  * 
@@ -364,8 +376,8 @@ export class Area extends NumericSeriesPlot {
     getDefaults(): SeriesPlotDefaults {
         const def = super.getDefaults();
         def.area.rendered = true;
-        def.marker.rendered = false;
-        def.line.rendered = false;
+        // def.marker.rendered = false;
+        // def.line.rendered = false;
         return def;
     } 
 }

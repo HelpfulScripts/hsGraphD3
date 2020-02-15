@@ -261,7 +261,8 @@
 <a name='L213'></a><a href='#L213'>213</a>
 <a name='L214'></a><a href='#L214'>214</a>
 <a name='L215'></a><a href='#L215'>215</a>
-<a name='L216'></a><a href='#L216'>216</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L216'></a><a href='#L216'>216</a>
+<a name='L217'></a><a href='#L217'>217</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -359,24 +360,24 @@
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">76x</span>
+<span class="cline-any cline-yes">85x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">52x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">61x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">14x</span>
@@ -388,6 +389,7 @@
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">42x</span>
 <span class="cline-any cline-yes">56x</span>
 <span class="cline-any cline-yes">32x</span>
@@ -435,13 +437,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">108x</span>
-<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">128x</span>
+<span class="cline-any cline-yes">28x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">100x</span>
-<span class="cline-any cline-yes">324x</span>
+<span class="cline-any cline-yes">118x</span>
+<span class="cline-any cline-yes">404x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -591,7 +593,7 @@ export abstract class SeriesPlot {
             label:  defaultLabel(),
             popup:  defaultText()
         };
-        def.line.rendered = true;
+        def.line.rendered = false;
         def.marker.rendered = false;
         def.area.rendered = false;
         def.label.rendered = false;
@@ -600,9 +602,10 @@ export abstract class SeriesPlot {
     }
 &nbsp;
     public expandDomains(dataSet:DataSet, domains:Domains) {
-        this.intializeStackGroup(dataSet);
+        this.updateStack(dataSet);
         const dims:GraphDimensions = this.dimensions;
         Object.keys(dims).map(dim =&gt; { // dim='hor', 'ver', size'
+            // const stacked = dim==='size'? null : undefined;
             const type = this.cfg.graph.defaults.scales.dims[dim].type;
             dims[dim].map(colName =&gt; { if (colName!==undefined) { 
                 const valueFn = this.accessor(colName, dataSet.colNames);
@@ -681,11 +684,11 @@ export abstract class SeriesPlot {
     /** clears the stack for this cycle before any series rendering happens. */
     public abstract clearStack(data:DataSet):void;
     
-    /** 
-     * Create a stack group column if necessary and 
-     * initialize it to all zeros before rendering this series.
-     */
-    protected abstract intializeStackGroup(data:DataSet):void;
+    // /** 
+    //  * Create a stack group column if necessary and 
+    //  * initialize it to all zeros before rendering this series.
+    //  */
+    // protected abstract intializeStackGroup(data:DataSet):void;
 &nbsp;
     /** update stack after rendering series. */
     protected abstract updateStack(data:DataSet):void ;

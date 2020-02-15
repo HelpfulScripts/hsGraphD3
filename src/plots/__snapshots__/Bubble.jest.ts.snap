@@ -775,34 +775,13 @@ exports[`Bubble should plot series 1`] = `
         style="color: rgb(27, 158, 119);"
       >
         <g
-          class="area"
-          fill="currentColor"
-          fill-opacity="0.5"
-          stroke="#fff"
-          stroke-dasharray="none"
-          stroke-opacity="1"
-          stroke-width="0"
-        >
-          <path />
-        </g>
-        <g
-          class="line"
-          fill-opacity="0"
-          stroke="currentColor"
-          stroke-dasharray="none"
-          stroke-opacity="1"
-          stroke-width="5"
-        >
-          <path />
-        </g>
-        <g
           class="markers"
           fill="currentColor"
           fill-opacity="0.75"
           stroke="currentColor"
           stroke-dasharray="none"
           stroke-opacity="1"
-          stroke-width="4"
+          stroke-width="1"
         >
           <circle
             cx="20"

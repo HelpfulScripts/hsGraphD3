@@ -127,6 +127,7 @@ export class Voronoi extends NumericSeriesPlot {
     getDefaults(): SeriesPlotDefaults {
         const def = super.getDefaults();
         def.marker.rendered = true;
+        def.line.rendered = true;
         return def;
     } 
 

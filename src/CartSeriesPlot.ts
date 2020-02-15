@@ -16,7 +16,7 @@ import { SeriesPlot }           from "./SeriesPlot";
 import { SeriesPlotDefaults }   from "./SeriesPlot";
 import { SeriesDimensions }     from "./SeriesPlot";
 import { ValueDef }             from "./SeriesPlot";
-import { DataVal }              from "./Graph";
+import { DataVal, DataRow }              from "./Graph";
 import { DataSet }              from "./Graph";
 import { Domains }              from "./Graph";
 import { CartDimensions }       from "./GraphCartesian";
@@ -89,17 +89,40 @@ export abstract class CartSeriesPlot extends SeriesPlot {
      * */
     public getDefaults(): SeriesPlotDefaults {
         const def = super.getDefaults();
-        if (this.dims.r)    { def.marker.rendered = true; }
-        if (this.dims.y0)   { def.area.rendered = true; }
+        if (this.dims.r)    { 
+            def.marker.rendered = true; 
+            def.marker.stroke = defaultStroke(1);
+        } else {
+            def.marker.stroke = defaultStroke(0);
+        }
+        if (this.dims.y0)   { 
+            def.area.rendered = true; 
+        }
         if (this.dims.label){ 
             def.label.rendered = true; 
             def.label.color = '#000';
         }
-        def.marker.stroke = defaultStroke(0);
         if (this.dims.popup){ def.popup.rendered  = true; }
         return def;
     }
 
+    /**
+     * Returns an accessor function to access the numeric value in a data row. 
+     * @param dim the semantic dimension ('hor', 'ver', 'size') in which to aggregate
+     * @param v data column value definition
+     * @param colNames 
+     */
+    accessor(v:ValueDef, colNames:string[], useStack=true):(row:DataRow, rowIndex:number) => DataVal {
+        const stackDim = this.dimensions[this.abscissa==='hor'? 'ver' : 'hor'].indexOf(v)>=0;
+        const abscissaCol = {hor:this.dims.x, ver:this.dims.y}[this.abscissa];
+        if (useStack &&  this.dims.stacked && stackDim && typeof abscissaCol === 'string') {
+            const stackIndex = colNames.indexOf(this.dims.stacked);
+            const fn = super.accessor(v, colNames);
+            return (row, rowIndex) => <number>row[stackIndex] + <number>fn(row, rowIndex);
+        } else {
+            return super.accessor(v, colNames);
+        }
+    }
 
 
     //---------- lifecylce methods --------------------
@@ -125,7 +148,6 @@ export abstract class CartSeriesPlot extends SeriesPlot {
 
         if (defaults.marker.rendered) {
             this.svg.append('g').classed('markers', true);
-            defaults.marker.rendered = true; 
             const markers = this.svg.select('.markers');
             setStroke(markers, defaults.marker.stroke);
             setFill(markers, defaults.marker.fill);
@@ -150,7 +172,6 @@ export abstract class CartSeriesPlot extends SeriesPlot {
     /** renders the component for the given data */
     public renderComponent(data:DataSet): void {
         data = { colNames: data.colNames, rows: data.rows.slice() };
-        // this.intializeStackGroup(data);
         this.updateStack(data);
         super.renderComponent(data);
         this.renderElements(data);
@@ -203,9 +224,24 @@ export abstract class CartSeriesPlot extends SeriesPlot {
         }
     }
     
-    /** Create a stack group column if necessary, initializing it to all zeros. */
-    protected intializeStackGroup(data:DataSet) { }
+    // /** Create a stack group column if necessary, initializing it to all zeros. */
+    // protected intializeStackGroup(data:DataSet) { }
 
     /** update stack after rendering series. */
-    protected updateStack(data:DataSet) { }
+    protected updateStack(data:DataSet) {
+        const group = this.dims.stacked;
+        if (group) {
+            const stack = this.cfg.stack[group];
+            const stackCol = data.colNames.indexOf(group);
+            const abscissaCol = <string>{hor:this.dims.x, ver:this.dims.y}[this.abscissa];
+            const abscissaIndex = data.colNames.indexOf(abscissaCol);
+            const ordinateCol = <string>{hor:this.dims.y, ver:this.dims.x}[this.abscissa];
+            const ordinateIndex = data.colNames.indexOf(ordinateCol);
+            data.rows.forEach(row => {
+                const abscissaKey = ''+row[abscissaIndex];
+                row[stackCol] = <number>stack[''+abscissaKey] || 0;
+                stack[''+abscissaKey] = (stack[''+abscissaKey]||0) + <number>row[ordinateIndex];
+            });
+        }
+    }
 }

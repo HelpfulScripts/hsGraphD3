@@ -18,14 +18,16 @@
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
  * <file name='script.js'>
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('area', {x:'time', y:'costs', y0:'volume'});
- * graph.series.add('area', {x:'time', y:'volume', r:'costs'});
+ * graph.series.add('area', {x:'time', y:'volume', r:'volume'});
+ * graph.series.add('area', {x:'time', y:'costs', r:'costs', y0:'volume'});
+ * graph.series.defaults[0].line.rendered = true;
+ * graph.series.defaults[1].line.rendered = true;
  * graph.render({
  *    colNames:['time', 'volume', 'costs'], 
  *    rows:[    [-1,    0.2,      0.3], 
  *              [0.2,   0.4,      0.7], 
- *              [0.4,   0.1,      0.3],
- *              [0.6,  -0.2,      0.1], 
+ *              [0.4,   0.0,      0.3],
+ *              [0.6,   0.2,      0.2], 
  *              [0.8,   0.3,      0.5], 
  *              [1,     0.2,      0.4]]
  * });
@@ -39,14 +41,16 @@
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
  * <file name='script.js'>
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('area', {x:'time', y:'costs', stacked:'mystack'});
- * graph.series.add('area', {x:'time', y:'volume', r:'costs', stacked:'mystack'});
+ * graph.series.add('area', {x:'time', y:'volume', r:'volume', stacked:'mystack'});
+ * graph.series.add('area', {x:'time', y:'costs', r:'costs', stacked:'mystack'});
+ * graph.series.defaults[0].line.rendered = true;
+ * graph.series.defaults[1].line.rendered = true;
  * graph.render({
  *    colNames:['time', 'volume', 'costs'], 
  *    rows:[    [-1,    0.2,      0.3], 
  *              [0.2,   0.4,      0.7], 
- *              [0.4,   0.1,      0.3],
- *              [0.6,  -0.2,      0.1], 
+ *              [0.4,   0.0,      0.3],
+ *              [0.6,   0.2,      0.2], 
  *              [0.8,   0.3,      0.5], 
  *              [1,     0.2,      0.4]]
  * });
@@ -62,8 +66,8 @@
  * 
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      graph.series.add('area', {x:'time', y:'costs', y0:'volume'});
- *      graph.series.add('area', {x:'time', y:'volume', r:'costs'});
+ *      graph.series.add('area', {x:'time', y:'costs', stacked:'mystack'});
+ *      graph.series.add('area', {x:'time', y:'volume', r:'costs', stacked:'mystack'});
  *      return graph.series.defaults;
  * }
  * 
@@ -100,8 +104,8 @@ export class Area extends NumericSeriesPlot {
     getDefaults(): SeriesPlotDefaults {
         const def = super.getDefaults();
         def.area.rendered = true;
-        def.marker.rendered = false;
-        def.line.rendered = false;
+        // def.marker.rendered = false;
+        // def.line.rendered = false;
         return def;
     } 
 }
