@@ -282,6 +282,11 @@ export function setPopup(svg:d3Base, settings:Popup):d3Base {
     .attr('font-weight', settings.font.weight);
 }
 
+export function setColor(svg:d3Base, colors:string[]):d3Base {
+    return svg
+    .attr('fill',        (d:number[], i:number) => colors[i%colors.length]);
+}
+
 export function setRect(svg:d3Base, settings:RectStyle):d3Base {
     svg .attr('rx', settings.rx)
         .attr('ry', settings.ry);

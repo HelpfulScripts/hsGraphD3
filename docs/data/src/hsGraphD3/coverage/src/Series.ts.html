@@ -223,11 +223,7 @@
 <a name='L175'></a><a href='#L175'>175</a>
 <a name='L176'></a><a href='#L176'>176</a>
 <a name='L177'></a><a href='#L177'>177</a>
-<a name='L178'></a><a href='#L178'>178</a>
-<a name='L179'></a><a href='#L179'>179</a>
-<a name='L180'></a><a href='#L180'>180</a>
-<a name='L181'></a><a href='#L181'>181</a>
-<a name='L182'></a><a href='#L182'>182</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L178'></a><a href='#L178'>178</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -272,6 +268,8 @@
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -312,7 +310,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">56x</span>
+<span class="cline-any cline-yes">42x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -323,23 +335,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -349,8 +344,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -395,7 +388,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">14x</span>
@@ -450,9 +442,11 @@ import { ComponentDefaults }    from './GraphComponent';
 import { GraphCfg }             from './GraphComponent'; 
 import { SeriesPlot }           from './SeriesPlot';
 import { SeriesDimensions }     from './SeriesPlot';
-import { schemeDark2 as colors }from 'd3';
+import { schemeDark2 }          from 'd3';
 &nbsp;
 type PlotFactory = (cfg:GraphCfg, seriesName:string, dims:SeriesDimensions) =&gt; SeriesPlot;
+&nbsp;
+const defaultColors = schemeDark2;
 &nbsp;
 export interface SeriesDefaults extends ComponentDefaults {
 }
@@ -497,10 +491,8 @@ export class Series extends GraphComponent {
     
 &nbsp;
     public initialize(svg:d3Base): void {
-        // swap 0 &lt;-&gt; 1, 2 &lt;-&gt; 3, etc.
-        // const colorSwap = (i:number) =&gt; ((i+1)%2)+ (Math.floor(i/2+0.001))*2;
         const seriesSVG = svg.selectAll(`.${this.componentType}`);
-        this.series.forEach((s:SeriesPlot, i:number) =&gt; s.initialize(seriesSVG, colors[i % colors.length]));
+        this.series.forEach((s:SeriesPlot, i:number) =&gt; s.initialize(seriesSVG, defaultColors[i % defaultColors.length]));
     } 
 &nbsp;
     public preRender(data:DataSet | DataSet[], domains:Domains): void {
@@ -516,7 +508,6 @@ export class Series extends GraphComponent {
      */
     public renderComponent(data:DataSet | DataSet[]) {
         this.series.forEach((s:SeriesPlot, i:number) =&gt; { 
-// log.info(`series ${i}`);
             s.renderComponent((&lt;DataSet&gt;data).colNames? data : <span class="branch-1 cbranch-no" title="branch not covered" >data[i % this.series.length])</span>;
         });
     }
@@ -529,9 +520,7 @@ export class Series extends GraphComponent {
 &nbsp;
     /** creates a default entry for the component type in `Defaults` */
     public createDefaults():SeriesDefaults {
-        return {
-            a:'test'
-        };
+        return {};
     }
 &nbsp;
     /** 
@@ -580,7 +569,6 @@ export class Series extends GraphComponent {
         <span class="missing-if-branch" title="else path not taken" >E</span>if (seriesCreator) {
             const series = seriesCreator(this.cfg, `${Series.type}${this.series.length}`, dims);
             const index = this.series.length;
-            const defs = this.defaults;
             this.defaults[index] = this.defaults[series.key] = series.getDefaults();
             this.series.push(series);
             log.debug(`added series ${index} on '${log.inspect(dims, null)}'`);

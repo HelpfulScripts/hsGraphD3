@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">96.36% </span>
+        <span class="strong">93.1% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>53/55</span>
+        <span class='fraction'>54/58</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">86.36% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>19/22</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">89.47% </span>
+        <span class="strong">80.95% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>17/19</span>
+        <span class='fraction'>17/21</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">96% </span>
+        <span class="strong">92.45% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>48/50</span>
+        <span class='fraction'>49/53</span>
       </div>
     </div>
     <p class="quiet">
@@ -347,7 +347,12 @@
 <a name='L299'></a><a href='#L299'>299</a>
 <a name='L300'></a><a href='#L300'>300</a>
 <a name='L301'></a><a href='#L301'>301</a>
-<a name='L302'></a><a href='#L302'>302</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L302'></a><a href='#L302'>302</a>
+<a name='L303'></a><a href='#L303'>303</a>
+<a name='L304'></a><a href='#L304'>304</a>
+<a name='L305'></a><a href='#L305'>305</a>
+<a name='L306'></a><a href='#L306'>306</a>
+<a name='L307'></a><a href='#L307'>307</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -629,6 +634,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
@@ -930,6 +940,11 @@ export function <span class="fstat-no" title="function not covered" >setPopup(</
     .attr('font-size',   settings.font.size+'px')
     .attr('font-style',  settings.font.style)
     .attr('font-weight', settings.font.weight);
+}
+&nbsp;
+export function <span class="fstat-no" title="function not covered" >setColor(</span>svg:d3Base, colors:string[]):d3Base {
+<span class="cstat-no" title="statement not covered" >    return svg</span>
+    .attr('fill',        <span class="fstat-no" title="function not covered" >(d</span>:number[], i:number) =&gt; <span class="cstat-no" title="statement not covered" >colors[i%colors.length])</span>;
 }
 &nbsp;
 export function setRect(svg:d3Base, settings:RectStyle):d3Base {

@@ -51,6 +51,8 @@ export interface CartSeriesDimensions extends SeriesDimensions {
     label?: ValueDef;  
     /** optional, name of popup data column, or a function returning a value */
     popup?: ValueDef;   
+    /** optional, name of color data column, or a function returning a value */
+    color?: ValueDef;   
 }
 
 /**
@@ -73,13 +75,12 @@ export abstract class CartSeriesPlot extends SeriesPlot {
     /** return the GraphDimension of the independent axis */
     protected abscissa:'hor'|'ver' = 'hor';
 
-    /** return the list of Series dimesions for each Graph Dimension */
+    /** return the list of scalable Series dimesions for each Graph Dimension */
     get dimensions():CartDimensions { 
         return {
             hor: [this.dims.x],
             ver: [this.dims.y, this.dims.y0],
             size:[this.dims.r],
-            // label:[this.dims.label]
         };
     }
 
@@ -90,8 +91,10 @@ export abstract class CartSeriesPlot extends SeriesPlot {
         const def = super.getDefaults();
         if (this.dims.r)    { def.marker.rendered = true; }
         if (this.dims.y0)   { def.area.rendered = true; }
-        if (this.dims.label){ def.label.rendered = true; }
-        def.label.color = '#000';
+        if (this.dims.label){ 
+            def.label.rendered = true; 
+            def.label.color = '#000';
+        }
         return def;
     }
 
@@ -131,6 +134,10 @@ export abstract class CartSeriesPlot extends SeriesPlot {
             const popup = this.svg.select('.popup');
             setPopup(popup, defaults.popup);
         }
+        // if (this.dims.color) {
+        //     const popup = this.svg.select('.markers');
+        //     setColor(popup, defaults.popup);
+        // }
     }
 
     public preRender(data:DataSet, domains:Domains): void {

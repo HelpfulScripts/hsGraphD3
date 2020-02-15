@@ -40,9 +40,11 @@ import { ComponentDefaults }    from './GraphComponent';
 import { GraphCfg }             from './GraphComponent'; 
 import { SeriesPlot }           from './SeriesPlot';
 import { SeriesDimensions }     from './SeriesPlot';
-import { schemeDark2 as colors }from 'd3';
+import { schemeDark2 }          from 'd3';
 
 type PlotFactory = (cfg:GraphCfg, seriesName:string, dims:SeriesDimensions) => SeriesPlot;
+
+const defaultColors = schemeDark2;
 
 export interface SeriesDefaults extends ComponentDefaults {
 }
@@ -87,10 +89,8 @@ export class Series extends GraphComponent {
     
 
     public initialize(svg:d3Base): void {
-        // swap 0 <-> 1, 2 <-> 3, etc.
-        // const colorSwap = (i:number) => ((i+1)%2)+ (Math.floor(i/2+0.001))*2;
         const seriesSVG = svg.selectAll(`.${this.componentType}`);
-        this.series.forEach((s:SeriesPlot, i:number) => s.initialize(seriesSVG, colors[i % colors.length]));
+        this.series.forEach((s:SeriesPlot, i:number) => s.initialize(seriesSVG, defaultColors[i % defaultColors.length]));
     } 
 
     public preRender(data:DataSet | DataSet[], domains:Domains): void {
@@ -106,7 +106,6 @@ export class Series extends GraphComponent {
      */
     public renderComponent(data:DataSet | DataSet[]) {
         this.series.forEach((s:SeriesPlot, i:number) => { 
-// log.info(`series ${i}`);
             s.renderComponent((<DataSet>data).colNames? data : data[i % this.series.length]);
         });
     }
@@ -119,9 +118,7 @@ export class Series extends GraphComponent {
 
     /** creates a default entry for the component type in `Defaults` */
     public createDefaults():SeriesDefaults {
-        return {
-            a:'test'
-        };
+        return {};
     }
 
     /** 
@@ -170,7 +167,6 @@ export class Series extends GraphComponent {
         if (seriesCreator) {
             const series = seriesCreator(this.cfg, `${Series.type}${this.series.length}`, dims);
             const index = this.series.length;
-            const defs = this.defaults;
             this.defaults[index] = this.defaults[series.key] = series.getDefaults();
             this.series.push(series);
             log.debug(`added series ${index} on '${log.inspect(dims, null)}'`);

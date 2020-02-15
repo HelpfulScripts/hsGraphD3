@@ -95,7 +95,7 @@ export abstract class SeriesPlot {
         this.seriesKey = seriesName;
         this.dims = dims;
     }
-
+    
     public get key() { return this.seriesKey; }
 
     public abstract get dimensions():GraphDimensions;

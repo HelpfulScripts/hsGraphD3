@@ -679,7 +679,8 @@
 <a name='L631'></a><a href='#L631'>631</a>
 <a name='L632'></a><a href='#L632'>632</a>
 <a name='L633'></a><a href='#L633'>633</a>
-<a name='L634'></a><a href='#L634'>634</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L634'></a><a href='#L634'>634</a>
+<a name='L635'></a><a href='#L635'>635</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1051,6 +1052,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">14x</span>
@@ -1074,7 +1087,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">642x</span>
+<span class="cline-any cline-yes">628x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1143,17 +1156,6 @@
 <span class="cline-any cline-yes">82x</span>
 <span class="cline-any cline-yes">40x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1631,7 +1633,7 @@ function initializeCfg():GraphCfg {
 }
 &nbsp;
 /**
- * ## Graph
+ * ### Graph
  * Abstract base Graph.
  */
 export abstract class Graph extends GraphBase implements Components {
@@ -1670,12 +1672,24 @@ export abstract class Graph extends GraphBase implements Components {
     
     //------------ public methods  -------------------
     /**
-     * D3 constructor
+     * `D3` constructor. 
      * @param root the HTML element to which to attach the graph.
      */
     constructor(root:HTMLElement);
     /**
-     * `Mithril` constructor
+     * `Mithril` constructor. To use `Graph` with Mithriljs, call
+     * ```
+     * m(GraphCartesian, {
+     *    rootID: string, the ID (without the #) of the root element to which the graph will be attached. 
+     *    define: (graph:Graph) =&gt; {
+     *       graph.series.add(...);`
+     *       graph.grids.defaults....;`
+     *    },
+     *    data: DataSet | DataSet[],
+     *    updatePeriod: number, 
+     *    updateCallback:RenderCallback;
+     * })
+     * ```
      * @param root the Vnode as implicitely called by `Mithril`
      */
     constructor(root:Vnode);
@@ -1684,7 +1698,7 @@ export abstract class Graph extends GraphBase implements Components {
      * @param root the HTML element or Vnode to which to attach the graph.
      */
     constructor(root:HTMLElement|Vnode) {
-            super(initializeCfg());
+        super(initializeCfg());
         this.cfg.graph = this;
         <span class="missing-if-branch" title="if path not taken" >I</span>if (root['attrs'] &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >root['attrs'].rootID)</span> {
 <span class="cstat-no" title="statement not covered" >            root = document.getElementById(root['attrs'].rootID);</span>
@@ -1778,19 +1792,8 @@ export abstract class Graph extends GraphBase implements Components {
 <span class="fstat-no" title="function not covered" >    get t</span>itle():Title   { <span class="cstat-no" title="statement not covered" >return this.components.title; </span>}
 &nbsp;
     /**
-     * Mithril integration method. To use `Graph` with Mithriljs, call
-     * ```
-     * m(GraphCartesian, {
-     *    rootID: string, the ID (without the #) of the root element to which the graph will be attached. 
-     *    define: (graph:Graph) =&gt; {
-     *       graph.series.add(...);`
-     *       graph.grids.defaults....;`
-     *    },
-     *    data: DataSet | DataSet[],
-     *    updatePeriod: number, 
-     *    updateCallback:RenderCallback;
-     * })
-     * ```
+     * Mithril integration method. See the {@link Graph.Graph.constructor `Graph` constructor}
+     * for usage pattern.
      */
     public <span class="fstat-no" title="function not covered" >oninit(</span>node:Vnode) {
 <span class="cstat-no" title="statement not covered" >        node.attrs.define(this);</span>

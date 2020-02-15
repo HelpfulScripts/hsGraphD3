@@ -356,12 +356,24 @@ export abstract class Graph extends GraphBase implements Components {
     
     //------------ public methods  -------------------
     /**
-     * D3 constructor
+     * `D3` constructor. 
      * @param root the HTML element to which to attach the graph.
      */
     constructor(root:HTMLElement);
     /**
-     * `Mithril` constructor
+     * `Mithril` constructor. To use `Graph` with Mithriljs, call
+     * ```
+     * m(GraphCartesian, {
+     *    rootID: string, the ID (without the #) of the root element to which the graph will be attached. 
+     *    define: (graph:Graph) => {
+     *       graph.series.add(...);`
+     *       graph.grids.defaults....;`
+     *    },
+     *    data: DataSet | DataSet[],
+     *    updatePeriod: number, 
+     *    updateCallback:RenderCallback;
+     * })
+     * ```
      * @param root the Vnode as implicitely called by `Mithril`
      */
     constructor(root:Vnode);
@@ -464,19 +476,8 @@ export abstract class Graph extends GraphBase implements Components {
     get title():Title   { return this.components.title; }
 
     /**
-     * Mithril integration method. To use `Graph` with Mithriljs, call
-     * ```
-     * m(GraphCartesian, {
-     *    rootID: string, the ID (without the #) of the root element to which the graph will be attached. 
-     *    define: (graph:Graph) => {
-     *       graph.series.add(...);`
-     *       graph.grids.defaults....;`
-     *    },
-     *    data: DataSet | DataSet[],
-     *    updatePeriod: number, 
-     *    updateCallback:RenderCallback;
-     * })
-     * ```
+     * Mithril integration method. See the {@link Graph.Graph.constructor `Graph` constructor}
+     * for usage pattern.
      */
     public oninit(node:Vnode) {
         node.attrs.define(this);

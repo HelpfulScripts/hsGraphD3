@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">83.33% </span>
+        <span class="strong">82.05% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>65/78</span>
+        <span class='fraction'>64/78</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">71.88% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>14/16</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">89.06% </span>
+        <span class="strong">86.15% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>57/64</span>
+        <span class='fraction'>56/65</span>
       </div>
     </div>
     <p class="quiet">
@@ -248,7 +248,14 @@
 <a name='L200'></a><a href='#L200'>200</a>
 <a name='L201'></a><a href='#L201'>201</a>
 <a name='L202'></a><a href='#L202'>202</a>
-<a name='L203'></a><a href='#L203'>203</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L203'></a><a href='#L203'>203</a>
+<a name='L204'></a><a href='#L204'>204</a>
+<a name='L205'></a><a href='#L205'>205</a>
+<a name='L206'></a><a href='#L206'>206</a>
+<a name='L207'></a><a href='#L207'>207</a>
+<a name='L208'></a><a href='#L208'>208</a>
+<a name='L209'></a><a href='#L209'>209</a>
+<a name='L210'></a><a href='#L210'>210</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -278,6 +285,8 @@
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -336,12 +345,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-yes">14x</span>
-<span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -380,6 +390,10 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -503,6 +517,8 @@ export interface CartSeriesDimensions extends SeriesDimensions {
     label?: ValueDef;  
     /** optional, name of popup data column, or a function returning a value */
     popup?: ValueDef;   
+    /** optional, name of color data column, or a function returning a value */
+    color?: ValueDef;   
 }
 &nbsp;
 /**
@@ -525,13 +541,12 @@ export abstract class CartSeriesPlot extends SeriesPlot {
     /** return the GraphDimension of the independent axis */
     protected abscissa:'hor'|'ver' = 'hor';
 &nbsp;
-    /** return the list of Series dimesions for each Graph Dimension */
+    /** return the list of scalable Series dimesions for each Graph Dimension */
     get dimensions():CartDimensions { 
         return {
             hor: [this.dims.x],
             ver: [this.dims.y, this.dims.y0],
             size:[this.dims.r],
-            // label:[this.dims.label]
         };
     }
 &nbsp;
@@ -542,8 +557,10 @@ export abstract class CartSeriesPlot extends SeriesPlot {
         const def = super.getDefaults();
         if (this.dims.r)    { def.marker.rendered = true; }
         <span class="missing-if-branch" title="if path not taken" >I</span>if (this.dims.y0)   { <span class="cstat-no" title="statement not covered" >def.area.rendered = true; </span>}
-        <span class="missing-if-branch" title="if path not taken" >I</span>if (this.dims.label){ <span class="cstat-no" title="statement not covered" >def.label.rendered = true; </span>}
-        def.label.color = '#000';
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (this.dims.label){ 
+<span class="cstat-no" title="statement not covered" >            def.label.rendered = true; </span>
+<span class="cstat-no" title="statement not covered" >            def.label.color = '#000';</span>
+        }
         return def;
     }
 &nbsp;
@@ -583,6 +600,10 @@ export abstract class CartSeriesPlot extends SeriesPlot {
             const popup = <span class="cstat-no" title="statement not covered" >this.svg.select('.popup');</span>
 <span class="cstat-no" title="statement not covered" >            setPopup(popup, defaults.popup);</span>
         }
+        // if (this.dims.color) {
+        //     const popup = this.svg.select('.markers');
+        //     setColor(popup, defaults.popup);
+        // }
     }
 &nbsp;
     public preRender(data:DataSet, domains:Domains): void {
