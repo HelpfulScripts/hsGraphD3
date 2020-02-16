@@ -44,7 +44,7 @@ import { schemeDark2 }          from 'd3';
 
 type PlotFactory = (cfg:GraphCfg, seriesName:string, dims:SeriesDimensions) => SeriesPlot;
 
-const defaultColors = schemeDark2;
+export const defaultColors = schemeDark2;
 
 export interface SeriesDefaults extends ComponentDefaults {
 }

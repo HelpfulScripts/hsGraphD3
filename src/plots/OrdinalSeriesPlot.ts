@@ -13,6 +13,8 @@
  *   following dimensions:
  *     - `x`: required; the value to plot along the x-axis
  *     - `y`: required; the value to plot along the y-axis
+ *     - `label`: optional; the value to use for labels
+ *     - `color`: optional {@link SeriesPlot.d3MarkerColors color value} to apply to markers
  *     - `stacked`: optional, specifies a group name for which series values will be stacked.
  * - `<ValueDef>` is the {@link SeriesPlot.ValueDef value definition} to use for the {@link Series.SeriesDimensions semantic dimension}. Values may be specified
  *     - by `string` to specify the column name of the data set to use
@@ -21,20 +23,18 @@
 
 /** */
 import { Log }                  from 'hsutil'; const log = new Log('OrdinalSeriesPlot');
-import { DataRow, OrdDomain }   from '../Graph';
+import { DataRow }              from '../Graph';
 import { DataVal }              from '../Graph';
 import { NumDomain }            from '../Graph';
 import { DataSet }              from '../Graph';
 import { Domains }              from '../Graph';
-import { d3Base, setColor }               from '../Settings';
+import { d3Base }               from '../Settings';
 import { Label }                from '../Settings';
 import { CartSeriesPlot, text } from '../CartSeriesPlot';
-import { ValueDef }             from '../SeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { Series }               from '../Series';
 import { TextHAlign }           from "../Settings";
 import { TextVAlign }           from "../Settings";
-
 
 /**
  * Abstract base class of a  cartesian series plot. 
@@ -83,18 +83,7 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
 
     //---------- support methods during lifecylce --------------------
 
-    protected d3RenderMarkers(svg:d3Base, data:DataSet) {
-        const defaults = this.defaults.marker;
-        if (defaults.rendered) {
-            const samples:any = svg.select('.markers').selectAll("rect")
-                .data(data.rows, d => d[0]);                    // bind to data, iterate over rows
-            samples.exit().remove();                            // remove unneeded rects
-            samples.enter().append('rect')                      // add new rects
-                .call(this.d3DrawBar.bind(this), data.colNames)
-                .merge(samples).transition(this.cfg.transition) // draw markers
-                .call(this.d3DrawBar.bind(this), data.colNames);
-        }
-    }
+    protected markerShape() { return 'rect'; }
 
     protected d3RenderPath(svg:d3Base, data:DataSet) {
         const line = this.getLine(data.rows, data.colNames);
@@ -104,19 +93,6 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
     protected d3RenderFill(svg:d3Base, data:DataSet) {
     }
     
-    protected d3RenderLabels(svg:d3Base, data:DataSet):void {
-        const defaults = this.defaults.label;
-        if (defaults.rendered) {
-            const samples:any = svg.select('.label').selectAll("text")
-            .data(data.rows, d => d[0]);                    // bind to data, iterate over rows
-            samples.exit().remove();                        // remove unneeded rects
-            samples.enter().append('text')                   // add new rects
-                .call(this.d3DrawLabel.bind(this), data.colNames)
-                .merge(samples).transition(this.cfg.transition) // draw markers
-                .call(this.d3DrawLabel.bind(this), data.colNames);
-        }
-    }
-
     protected d3RenderPopup(svg:d3Base, data:DataSet):void {
         const defaults = this.defaults.popup;
         if (defaults.rendered) {
@@ -145,7 +121,7 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
      */
     // protected getStackVal(row: number[])
 
-    protected d3DrawBar(markers:d3Base, colNames:string[]) {
+    protected d3DrawMarker(markers:d3Base, colNames:string[]) {
         const [offset, thickness] = this.getParams(colNames);
 
         const xScale = this.cfg.graph.scales.scaleDims.hor;
@@ -174,11 +150,12 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
         }
     }
 
+
     cached(v:string, i:number, get:()=>number) {
         return this.cache[v][i]===undefined? this.cache[v][i]=get() : this.cache[v][i];
     }
 
-    protected d3DrawLabel(labels:d3Base, colNames:string[]) {
+    protected d3DrawLabels(labels:d3Base, colNames:string[]) {
         const [offset, thickness] = this.getParams(colNames);
 
         const xScale = this.cfg.graph.scales.scaleDims.hor;
@@ -225,11 +202,11 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
 
         const line = hor?
             stepLine(parseInt(''+thickness), 'hor')
-                .x((d:number[], i:number) => this.cached('x', i, ()=>xScale(x(d, i)))+offset)
-                .y((d:number[], i:number) => this.cached('y', i, ()=>yScale(y(d, i))))
+                .x((d:number[], i:number) => xAttr(d,i)+offset)
+                .y((d:number[], i:number) => yAttr(d,i))
           : stepLine(parseInt(''+thickness), 'ver')
-                .x((d:number[], i:number) => this.cached('x', i, ()=>xScale(x(d, i))))
-                .y((d:number[], i:number) => this.cached('y', i, ()=>yScale(y(d, i)))+offset);
+                .x((d:number[], i:number) => xAttr(d,i))
+                .y((d:number[], i:number) => yAttr(d,i)+offset);
         return line(rows);
     }
 

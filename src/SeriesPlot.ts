@@ -4,7 +4,12 @@
 /**  */
 import { Log }                  from 'hsutil'; const log = new Log('SeriesPlot');
 import { BaseType }             from 'd3';
-import { d3Base, Label, Popup, defaultText, defaultLabel, }              from "./Settings";
+import { d3Base }               from "./Settings";
+import { Label }                from "./Settings";
+import { Popup }                from "./Settings";
+import { defaultText }          from "./Settings";
+import { defaultLabel }         from "./Settings";
+import { schemes }              from "./Settings";
 import { defaultStroke }        from "./Settings";
 import { defaultMarkerStyle }   from "./Settings";
 import { defaultArea }          from "./Settings";
@@ -46,7 +51,7 @@ export interface SeriesDimensions {
  * Basic `ValueDef` definition, used in {@link SeriesPlot.SeriesPlot `SeriesPlot`}. 
  * - `string`: the name of column in the data set, e.g. `x:'time'`
  * - `number`: a constant value, e.g. `r: 5`
- * - `ValueFn`: a function, returning the value, e.g. `(row, index, rows) => index`.
+ * - {@link SeriesPlot.ValueFn `ValueFn`}: a function returning the value.
  */
 export type ValueDef = string|number|ValueFn;
 
@@ -175,13 +180,63 @@ export abstract class SeriesPlot {
     protected accessor(v:ValueDef, colNames:string[], useStack=true):(row:DataRow, rowIndex:number) => DataVal {
         switch (typeof(v)) {
             case 'function':return (row, rowIndex) => (<ValueFn>v)(rowIndex);
-            case 'number':  log.info(`accessing constant number ${v}`);
-                            return () => <DataVal>v;
+            case 'number':  return () => <DataVal>v;
             case 'string':
-            default:        const colIndex = colNames.indexOf(''+v);
-                            return (row) => row[colIndex];
+            default:        return (row) => row[colNames.indexOf(''+v)];
         }
     }
+
+
+    /**
+     * applies `stroke` and `fill` colors to `items`.
+     * Colors are determined by the `color` tag in the series definition as in
+     * ```graph.series.add('column', {x:'item', y:'Mary', color:<colorValue>}); ```
+     * Various coloring modes are available via the <colorValue> tag:
+     * - `string`: 
+     *     a. addresses a data column containing
+     *          - `numbers`: used to index the `default.marker.scheme` table
+     *          - `strings`: used as direct colors; must be in the format '#rgb'  
+     *     b. if not addressing a data column, the value addresses an entry in an
+     *        internal color schemes list. Available entries are 
+     *          [cat10](https://github.com/d3/d3-scale-chromatic#schemeCategory10),
+     *          [blues](https://github.com/d3/d3-scale-chromatic#schemeBlues),
+     *          [greens](https://github.com/d3/d3-scale-chromatic#schemeGreens),
+     *          [greys](https://github.com/d3/d3-scale-chromatic#schemeGreys),
+     *          [oranges](https://github.com/d3/d3-scale-chromatic#schemeOranges),
+     *          [purples](https://github.com/d3/d3-scale-chromatic#schemePurples),
+     *          [reds](https://github.com/d3/d3-scale-chromatic#schemeReds)
+     * - `number`: used to index the `default.marker.scheme` table
+     * - `function (rowIndex:number)=>string` a function, returning a '#rgb' string for the 
+     *    provided row index
+     * @param items the items being colored
+     * @param numRows the number of data rows
+     */
+    protected d3MarkerColors(items:d3Base, colNames:string[], numRows:number, defaults:Marker) {
+        function getColor(d:number[], i:number):string  {
+            const scheme = schemes[defaults.scheme];
+            if (typeof colors === 'function') {
+                const color = colors(i);
+                return typeof color === 'number'? scheme((color % 10) / 10) : <string>color;
+            } else if (typeof colors === 'string') {
+                const col = colNames.indexOf(colors);
+                if (col >= 0) {
+                    return schemes.blues(d[col]);
+                } else if (schemes[colors]) { 
+                    return schemes[colors](i / numRows);
+                } else {
+                    return colors;
+                }
+            } else if (typeof colors === 'number') {
+                return scheme((colors % 10) / 10);
+            } else {
+                return '#f00';
+            }
+        }
+        const colors = this.dims.color;
+        if (colors) {
+            items.attr('stroke', (d:number[], i:number)=>getColor(d,i)).attr('fill', getColor);
+        }
+    }   
 
 
     //---------- lifecylce methods -------------------

@@ -1,7 +1,7 @@
 /**
  * #Examples
  * 
- * <example height=2030px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
+ * <example height=2420px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
  * <file name='script.js'>
  * const content = [
  *      graph => {
@@ -94,6 +94,24 @@
  *          graph.series.add('column', {x:'item', y:'Joe', stacked:'myGroup', label:i=>`<${i}>`});
  *          graph.series.add('column', {x:'item', y:'Mary', stacked:'myGroup', label:5});
  *          graph.title.text = `stacked 'column' graph`;
+ *          graph.render(data).update(2000);
+ *      }, 
+ * 
+ *      graph => { 
+ *          graph.series.add('column', {x:'item', y:'Mary', color:i=>i});
+ *          graph.title.text = `'default colored column' graph`;
+ *          graph.render(data).update(2000);
+ *      }, 
+ * 
+ *      graph => { 
+ *          graph.series.add('column', {x:'item', y:'Mary', color:'greens'});
+ *          graph.title.text = `'greens colored column' graph`;
+ *          graph.render(data).update(2000);
+ *      }, 
+ * 
+ *      graph => { 
+ *          graph.series.add('column', {x:'item', y:'Mary', color:'time'});
+ *          graph.title.text = `'data colored column' graph`;
  *          graph.render(data).update(2000);
  *      }, 
  * 

@@ -68,6 +68,9 @@ export function text(val:DataVal) {
  * Abstract base class for all cartesian plots.
  */
 export abstract class CartSeriesPlot extends SeriesPlot {
+    /** the main data line  */
+    protected line: string;         // d3Line<number[]>;
+
     constructor(cfg:GraphCfg, seriesName:string, dims:CartSeriesDimensions) {
         super(cfg, seriesName, dims);
     }
@@ -169,6 +172,7 @@ export abstract class CartSeriesPlot extends SeriesPlot {
     public preRender(data:DataSet, domains:Domains): void {
         super.preRender(data, domains);
         this.clearStack(data);
+        this.line = undefined;
     }
 
     /** renders the component for the given data */
@@ -194,19 +198,55 @@ export abstract class CartSeriesPlot extends SeriesPlot {
         if (defaults.popup.rendered)  { this.svg.call(this.d3RenderPopup.bind(this), data); }
     }
 
-    protected abstract d3RenderMarkers(svg:d3Base, data:DataSet):void;
+    protected d3RenderMarkers(svg:d3Base, data:DataSet) {
+        const shape = this.markerShape();
+        const defaults = this.defaults.marker;
+        if (defaults.rendered) {
+            const samples:any = svg.select('.markers').selectAll(shape)
+                .data(data.rows, d => d[0]);                    // bind to data, iterate over rows
+            samples.exit().remove();                            // remove unneeded rects
+            samples.enter().append(shape)                      // add new rects
+                .call(this.d3DrawMarker.bind(this), data.colNames)
+                .merge(samples).transition(this.cfg.transition) // draw markers
+                .call(this.d3DrawMarker.bind(this), data.colNames)
+                .call(this.d3MarkerColors.bind(this), data.colNames, data.rows.length, defaults);
+        }
+    }
 
-    protected abstract d3RenderPath(svg:d3Base, data:DataSet):void;
+    protected abstract markerShape():string;
+
+    protected d3RenderPath(svg:d3Base, data:DataSet) {
+        this.line = this.line || this.getLine(data.rows, data.colNames, this.dims.y);
+        return this.getPathElement(svg, '.line').attr('d', (d:any) => this.line);
+    }
+
 
     protected abstract d3RenderFill(svg:d3Base, data:DataSet):void;
 
-    protected abstract d3RenderLabels(svg:d3Base, data:DataSet):void;
+    protected d3RenderLabels(labels:d3Base, data:DataSet):void {
+        const defaults = this.defaults.label;
+        if (defaults.rendered) {
+            const samples:any = labels.select('.label').selectAll("text")
+                .data(data.rows, (d:any[]) => d[0]);                // bind to data, iterate over rows
+            samples.exit().remove();                        // remove unneeded circles
+            samples.enter().append('text')                // add new circles
+                .call(this.d3DrawLabels.bind(this), data.colNames)
+                .merge(samples).transition(this.cfg.transition) // draw markers
+                .call(this.d3DrawLabels.bind(this), data.colNames);
+        }
+    }
 
     protected abstract d3RenderPopup(svg:d3Base, data:DataSet):void;
+
+    protected abstract d3DrawMarker(markers:d3Base, colNames:string[]):void;
+
+    protected abstract d3DrawLabels(labels:d3Base, colNames:string[]):void;
 
     protected getPathElement(svg:d3Base, cls:string):any {
         return svg.select(cls).selectAll('path').transition(this.cfg.transition);
     }
+
+    protected abstract getLine(rows:DataRow[], colNames:string[], yDef?: ValueDef, useStack?:boolean):string;
 
     protected abstract labelPos(cfg:Label, labels:d3Base):void;
 

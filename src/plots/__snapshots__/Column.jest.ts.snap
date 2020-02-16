@@ -75,20 +75,26 @@ exports[`Column should plot column 1`] = `
         <line
           x1="20"
           x2="980"
-          y1="589"
-          y2="589"
+          y1="605"
+          y2="605"
         />
         <line
           x1="20"
           x2="980"
-          y1="508"
-          y2="508"
+          y1="540"
+          y2="540"
         />
         <line
           x1="20"
           x2="980"
-          y1="426"
-          y2="426"
+          y1="475"
+          y2="475"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="410"
+          y2="410"
         />
         <line
           x1="20"
@@ -99,20 +105,26 @@ exports[`Column should plot column 1`] = `
         <line
           x1="20"
           x2="980"
-          y1="264"
-          y2="264"
+          y1="280"
+          y2="280"
         />
         <line
           x1="20"
           x2="980"
-          y1="183"
-          y2="183"
+          y1="215"
+          y2="215"
         />
         <line
           x1="20"
           x2="980"
-          y1="101"
-          y2="101"
+          y1="150"
+          y2="150"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="85"
+          y2="85"
         />
         <line
           x1="20"
@@ -319,55 +331,13 @@ exports[`Column should plot column 1`] = `
             fill="currentColor"
             x="-8"
           >
-            -2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,589.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            -1.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,508.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
             -1
           </text>
         </g>
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,426.5)"
+          transform="translate(0,605.5)"
         >
           <line
             fill-opacity="0"
@@ -382,7 +352,70 @@ exports[`Column should plot column 1`] = `
             fill="currentColor"
             x="-8"
           >
-            -0.5
+            -0.8
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,540.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            -0.6
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,475.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            -0.4
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,410.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            -0.2
           </text>
         </g>
         <g
@@ -409,7 +442,7 @@ exports[`Column should plot column 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,264.5)"
+          transform="translate(0,280.5)"
         >
           <line
             fill-opacity="0"
@@ -424,13 +457,13 @@ exports[`Column should plot column 1`] = `
             fill="currentColor"
             x="-8"
           >
-            0.5
+            0.2
           </text>
         </g>
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,183.5)"
+          transform="translate(0,215.5)"
         >
           <line
             fill-opacity="0"
@@ -445,13 +478,13 @@ exports[`Column should plot column 1`] = `
             fill="currentColor"
             x="-8"
           >
-            1
+            0.4
           </text>
         </g>
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,101.5)"
+          transform="translate(0,150.5)"
         >
           <line
             fill-opacity="0"
@@ -466,7 +499,28 @@ exports[`Column should plot column 1`] = `
             fill="currentColor"
             x="-8"
           >
-            1.5
+            0.6
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,85.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            0.8
           </text>
         </g>
         <g
@@ -487,7 +541,7 @@ exports[`Column should plot column 1`] = `
             fill="currentColor"
             x="-8"
           >
-            2
+            1
           </text>
         </g>
       </g>
@@ -513,7 +567,7 @@ exports[`Column should plot column 1`] = `
           stroke-width="1"
         >
           <path
-            d="M68 508L180 508L228 312L340 312L388 280L500 280L548 247L660 247L708 215L820 215L868 183L980 183"
+            d="M68 670L96 670L228 280L256 280L388 215L416 215L548 150L576 150L708 85L736 85L868 20L896 20"
           />
         </g>
         <g
@@ -522,40 +576,52 @@ exports[`Column should plot column 1`] = `
           fill-opacity="0.75"
         >
           <rect
-            height="163"
-            width="112"
+            fill="rgb(247, 251, 255)"
+            height="325"
+            stroke="rgb(247, 251, 255)"
+            width="28"
             x="68"
             y="345"
           />
           <rect
-            height="33"
-            width="112"
-            x="228"
-            y="312"
-          />
-          <rect
+            fill="rgb(207, 225, 242)"
             height="65"
-            width="112"
-            x="388"
+            stroke="rgb(207, 225, 242)"
+            width="28"
+            x="228"
             y="280"
           />
           <rect
-            height="98"
-            width="112"
-            x="548"
-            y="247"
-          />
-          <rect
+            fill="rgb(147, 195, 223)"
             height="130"
-            width="112"
-            x="708"
+            stroke="rgb(147, 195, 223)"
+            width="28"
+            x="388"
             y="215"
           />
           <rect
-            height="162"
-            width="112"
+            fill="rgb(75, 151, 201)"
+            height="195"
+            stroke="rgb(75, 151, 201)"
+            width="28"
+            x="548"
+            y="150"
+          />
+          <rect
+            fill="rgb(24, 100, 170)"
+            height="260"
+            stroke="rgb(24, 100, 170)"
+            width="28"
+            x="708"
+            y="85"
+          />
+          <rect
+            fill="rgb(8, 48, 107)"
+            height="325"
+            stroke="rgb(8, 48, 107)"
+            width="28"
             x="868"
-            y="183"
+            y="20"
           />
         </g>
       </g>
@@ -569,39 +635,169 @@ exports[`Column should plot column 1`] = `
           fill-opacity="0.75"
         >
           <rect
-            height="162"
-            width="112"
-            x="68"
-            y="508"
+            fill="rgb(247, 252, 245)"
+            height="325"
+            stroke="rgb(247, 252, 245)"
+            width="28"
+            x="96"
+            y="345"
           />
           <rect
-            height="32"
-            width="112"
-            x="228"
+            fill="rgb(218, 241, 213)"
+            height="65"
+            stroke="rgb(218, 241, 213)"
+            width="28"
+            x="256"
             y="280"
           />
           <rect
-            height="65"
-            width="112"
-            x="388"
+            fill="rgb(173, 222, 167)"
+            height="130"
+            stroke="rgb(173, 222, 167)"
+            width="28"
+            x="416"
             y="215"
           />
           <rect
-            height="97"
-            width="112"
-            x="548"
+            fill="rgb(115, 195, 120)"
+            height="195"
+            stroke="rgb(115, 195, 120)"
+            width="28"
+            x="576"
             y="150"
           />
           <rect
-            height="130"
-            width="112"
-            x="708"
+            fill="rgb(56, 160, 85)"
+            height="260"
+            stroke="rgb(56, 160, 85)"
+            width="28"
+            x="736"
             y="85"
           />
           <rect
-            height="163"
-            width="112"
-            x="868"
+            fill="rgb(13, 118, 53)"
+            height="325"
+            stroke="rgb(13, 118, 53)"
+            width="28"
+            x="896"
+            y="20"
+          />
+        </g>
+      </g>
+      <g
+        class="series2"
+        style="color: rgb(117, 112, 179);"
+      >
+        <g
+          class="markers"
+          fill="currentColor"
+          fill-opacity="0.75"
+        >
+          <rect
+            fill="#8c564b"
+            height="325"
+            stroke="#8c564b"
+            width="28"
+            x="124"
+            y="345"
+          />
+          <rect
+            fill="#8c564b"
+            height="65"
+            stroke="#8c564b"
+            width="28"
+            x="284"
+            y="280"
+          />
+          <rect
+            fill="#8c564b"
+            height="130"
+            stroke="#8c564b"
+            width="28"
+            x="444"
+            y="215"
+          />
+          <rect
+            fill="#8c564b"
+            height="195"
+            stroke="#8c564b"
+            width="28"
+            x="604"
+            y="150"
+          />
+          <rect
+            fill="#8c564b"
+            height="260"
+            stroke="#8c564b"
+            width="28"
+            x="764"
+            y="85"
+          />
+          <rect
+            fill="#8c564b"
+            height="325"
+            stroke="#8c564b"
+            width="28"
+            x="924"
+            y="20"
+          />
+        </g>
+      </g>
+      <g
+        class="series3"
+        style="color: rgb(231, 41, 138);"
+      >
+        <g
+          class="markers"
+          fill="currentColor"
+          fill-opacity="0.75"
+        >
+          <rect
+            fill="#1f77b4"
+            height="325"
+            stroke="#1f77b4"
+            width="28"
+            x="152"
+            y="345"
+          />
+          <rect
+            fill="#ff7f0e"
+            height="65"
+            stroke="#ff7f0e"
+            width="28"
+            x="312"
+            y="280"
+          />
+          <rect
+            fill="#2ca02c"
+            height="130"
+            stroke="#2ca02c"
+            width="28"
+            x="472"
+            y="215"
+          />
+          <rect
+            fill="#d62728"
+            height="195"
+            stroke="#d62728"
+            width="28"
+            x="632"
+            y="150"
+          />
+          <rect
+            fill="#9467bd"
+            height="260"
+            stroke="#9467bd"
+            width="28"
+            x="792"
+            y="85"
+          />
+          <rect
+            fill="#8c564b"
+            height="325"
+            stroke="#8c564b"
+            width="28"
+            x="952"
             y="20"
           />
         </g>

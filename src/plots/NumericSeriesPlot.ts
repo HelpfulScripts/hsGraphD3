@@ -38,17 +38,11 @@ import { CartSeriesPlot, text } from '../CartSeriesPlot';
 import { TextHAlign }           from "../Settings";
 import { TextVAlign }           from "../Settings";
 
-interface AccessorFn {
-    (v:ValueDef, colNames:string[]):(row:DataRow, rowIndex:number) => DataVal;
-}
 
 /**
  * Abstract base class of a  cartesian series plot. 
  */
 export abstract class NumericSeriesPlot extends CartSeriesPlot { 
-    /** the main data line  */
-    protected line: string;         // d3Line<number[]>;
-
 
     //---------- lifecylce methods --------------------
 
@@ -62,55 +56,21 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
         if (defaults.area.rendered && this.dims.y0===undefined) { 
             this.dims.y0 = this.dims.stacked? this.dims.stacked : ()=>0; 
         } 
-        this.line = undefined;
     }
 
     //---------- support methods during lifecylce --------------------
 
-    protected d3RenderMarkers(svg:d3Base, data:NumericDataSet) {
-        const defaults = this.defaults.marker;
-        if (defaults.rendered) {
-            const samples:any = svg.select('.markers').selectAll("circle")
-                .data(data.rows, (d:any[]) => d[0]);        // bind to data, iterate over rows
-            samples.exit().remove();                        // remove unneeded circles
-            samples.enter().append('circle')                // add new circles
-                .call(this.d3DrawMarker.bind(this), data.colNames)
-            .merge(samples).transition(this.cfg.transition) // draw markers
-                .call(this.d3DrawMarker.bind(this), data.colNames);
-        }
-    }
-
-    protected d3RenderPath(svg:d3Base, data:NumericDataSet) {
-        this.line = this.line || this.getLine(data.rows, data.colNames, this.dims.y);
-        return this.getPathElement(svg, '.line').attr('d', (d:any) => this.line);
-    }
+    protected markerShape() { return 'circle'; }
 
     protected d3RenderFill(svg:d3Base, data:NumericDataSet) {
         const scales = this.cfg.graph.scales.scaleDims;
-        this.line = this.line || this.getLine(data.rows, data.colNames, this.dims.y);
+        let line = this.line = this.line || this.getLine(data.rows, data.colNames, this.dims.y);
         if (this.dims.y0!==undefined) {
-            const max = data.rows.length-1;
-            const xmax = scales.hor(this.accessor(this.dims.x,  data.colNames, false)(data.rows[max], 0));
-            const y0   = scales.ver(this.accessor(this.dims.y0, data.colNames, false)(data.rows[max], 0));
-            // extend end of line down to base:
-            this.line += `L${xmax},${y0}`
-                + this.getLine(data.rows.reverse(), data.colNames, this.dims.y0, false).slice(8);  // remove first 'M' command
-            }
-        return this.getPathElement(svg, '.area').attr('d', (d:any) => this.line);
+            line += `L` + this.getLine(data.rows.reverse(), data.colNames, this.dims.y0, false).slice(1); // replace first 'M' with 'L'
+        }
+        return this.getPathElement(svg, '.area').attr('d', (d:any) => line);
     }
 
-    protected d3RenderLabels(labels:d3Base, data:NumericDataSet):void {
-        const defaults = this.defaults.label;
-        if (defaults.rendered) {
-            const samples:any = labels.select('.label').selectAll("text")
-                .data(data.rows, (d:any[]) => d[0]);                // bind to data, iterate over rows
-            samples.exit().remove();                        // remove unneeded circles
-            samples.enter().append('text')                // add new circles
-                .call(this.d3DrawLabels.bind(this), data.colNames)
-            .merge(samples).transition(this.cfg.transition) // draw markers
-                .call(this.d3DrawLabels.bind(this), data.colNames);
-        }
-    }
 
     protected d3RenderPopup(svg:d3Base, data:NumericDataSet):void {
     }
@@ -189,33 +149,3 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
     }
 }
 
-
-
-/*
-M 20, 290
-C 20, 290, 411, 210.23179932478553, 501, 230
-C 571.2603178095034, 245.51221789224996, 553.1221813226826, 341.8434073724211, 581, 350
-C 606.9505221479196, 357.59269726529084, 634.7137297362991, 305.08822154160134, 662, 290
-C 688.3987168157074, 275.4025601930922, 715.3333333333334, 260, 742, 260
-C 768.6666666666665, 260, 822, 290, 822, 290
-L 822, 350
-C 822, 350, 768.6666666666667, 350, 742, 350
-C 715.3333333333333, 350, 688.7996687334819, 350.00000000000006, 662, 350
-C 635.1336645998521, 350.00000000000006, 607.866335400148, 350.00000000000006, 581, 350
-C 554.2003312665181, 350.00000000000006, 562.7601121189196, 349.99999999999994, 501, 350
-C 412.58639608911926, 350, 20, 350, 20, 350
-
-
-M 20, 200
-C 20, 200, 410, -1, 501, 20
-C 579, 38, 550.5655480909484, 231.14429747195726, 581, 260
-C 605.5486261218074, 283.27519664095996, 636.3908587365714, 252.38263253416818, 662, 230
-C 690.374070616791, 205.2007929675835, 714.2831132677925, 118.11427386560845, 742, 110
-C 767., 102., 822, 170, 822, 170
-L 822, 230
-C 822, 290, 768, 260, 742, 260
-C 715.3333333333334, 260, 688.3987168157074, 275.4025601930922, 662, 290
-C 634.7137297362991, 305.08822154160134, 606.9505221479196, 357.5926972652908, 581, 350
-C 553.1221813226826, 341.84340737242115, 571.2603178095034, 245.51221789225, 501, 230
-C 411.46283183937743, 210.23179932478556, 20, 290, 20, 290
-*/

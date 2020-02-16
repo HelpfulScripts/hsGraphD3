@@ -50,7 +50,27 @@
 
 import { Log }                  from 'hsutil'; const log = new Log('Defaults');
 import { ComponentDefaults }    from './GraphComponent';
-// import { Line }                 from './Settings';
+import { interpolateBlues }     from 'd3';
+import { interpolateGreens }    from 'd3';
+import { interpolateGreys }     from 'd3';
+import { interpolateOranges }   from 'd3';
+import { interpolatePurples }   from 'd3';
+import { interpolateReds }      from 'd3';
+import { schemeCategory10 }     from 'd3';
+
+
+interface Scheme { (fraction:number):string; }
+
+
+export const schemes = {
+    'cat10':   (fraction:number) => schemeCategory10[fraction>1? (fraction % 10) : Math.round((fraction*10)).toFixed(0)],
+    'blues':   (fraction:number) => interpolateBlues(fraction),
+    'greens':  (fraction:number) => interpolateGreens(fraction),
+    'greys':   (fraction:number) => interpolateGreys(fraction),
+    'oranges': (fraction:number) => interpolateOranges(fraction),
+    'purples': (fraction:number) => interpolatePurples(fraction),
+    'reds':    (fraction:number) => interpolateReds(fraction),
+};
 
 
 /** viewport units */
@@ -150,6 +170,7 @@ export interface MarkerStyle {
     shape:  MarkerShape;
     fill:   Fill;
     stroke: Stroke;
+    scheme: string;
 }
 
 
@@ -236,7 +257,8 @@ export const defaultMarkerStyle = (color='currentColor', shape=MarkerShape.circl
         size:   size,
         shape:  shape,
         fill:   defaultArea(color, 0.75),
-        stroke: defaultStroke(4)
+        stroke: defaultStroke(4),
+        scheme: 'cat10'
     };
 };
 
@@ -282,10 +304,10 @@ export function setPopup(svg:d3Base, settings:Popup):d3Base {
     .attr('font-weight', settings.font.weight);
 }
 
-export function setColor(svg:d3Base, colors:string[]):d3Base {
-    return svg
-    .attr('fill',        (d:number[], i:number) => colors[i%colors.length]);
-}
+// export function setColor(svg:d3Base, colors:string[]):d3Base {
+//     return svg
+//     .attr('fill',        (d:number[], i:number) => colors[i%colors.length]);
+// }
 
 export function setRect(svg:d3Base, settings:RectStyle):d3Base {
     svg .attr('rx', settings.rx)
