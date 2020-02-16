@@ -1,7 +1,6 @@
 import * as hsGraphD3   from '../';
 import * as d3          from 'd3';
 import { DataSet }      from '../Graph';
-import { AxesDefaults } from '../Axis';
 
 let clientWidth = 300;
 const root = window.document.createElement("div");
@@ -33,11 +32,11 @@ function createGraph(root:any) {
     return graph;
 }
 
-describe('Area', () => {
+describe('Area indexed', () => {
     let graph:hsGraphD3.GraphCartesian;
     beforeAll(() => {
         graph = createGraph(root);
-        graph.series.add('area', {x:'time', y:'volume'});
+        graph.series.add('area', {y:'volume'});
         graph.render(data);
     });
     it(`should have 'area' registered`, () =>
@@ -50,4 +49,39 @@ describe('Area', () => {
         graph.axes.defaults.color = '#666';
         expect(graph.axes.defaults.color).toBe('#666');
     });
+});
+
+describe('Area volume vs time', () => {
+    let graph:hsGraphD3.GraphCartesian;
+    beforeAll(() => {
+        graph = createGraph(root);
+        graph.series.add('area', {x:'time', y:'volume'});
+        graph.series.add('area', {x:'time', y:'costs', y0:'volume'});
+        graph.render(data);
+    });
+    it('should plot area', () => expect(root).toMatchSnapshot());
+});
+
+describe('Area labels', () => {
+    let graph:hsGraphD3.GraphCartesian;
+    beforeAll(() => {
+        graph = createGraph(root);
+        graph.series.add('area', {x:'time', y:'volume', label:'time'});
+        graph.series.add('area', {x:'time', y:'volume', label:i=>i});
+        graph.render(data);
+    });
+    it('should plot area', () => expect(root).toMatchSnapshot());
+});
+
+describe('Area labels', () => {
+    let graph:hsGraphD3.GraphCartesian;
+    beforeAll(() => {
+        graph = createGraph(root);
+        graph.series.add('area', {x:'time', y:'volume', color:'time'});
+        graph.series.add('area', {x:'time', y:'volume', color:i=>i});
+        graph.series.add('area', {x:'time', y:'volume', color:'greens'});
+        graph.series.add('area', {x:'time', y:'volume', color:'#f00'});
+        graph.render(data);
+    });
+    it('should plot area', () => expect(root).toMatchSnapshot());
 });
