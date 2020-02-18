@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">97.26% </span>
+        <span class="strong">97.18% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>71/73</span>
+        <span class='fraction'>69/71</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">84.85% </span>
+        <span class="strong">87.1% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>28/33</span>
+        <span class='fraction'>27/31</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>22/22</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">96.88% </span>
+        <span class="strong">96.83% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>62/64</span>
+        <span class='fraction'>61/63</span>
       </div>
     </div>
     <p class="quiet">
@@ -307,8 +307,7 @@
 <a name='L259'></a><a href='#L259'>259</a>
 <a name='L260'></a><a href='#L260'>260</a>
 <a name='L261'></a><a href='#L261'>261</a>
-<a name='L262'></a><a href='#L262'>262</a>
-<a name='L263'></a><a href='#L263'>263</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L262'></a><a href='#L262'>262</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -548,7 +547,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -812,7 +810,6 @@ export abstract class SeriesPlot {
     public initialize(svg:d3Base, color?:string): void {
         this.svg = svg.append('g').classed(this.seriesKey, true);
         <span class="missing-if-branch" title="else path not taken" >E</span>if (color) { this.svg.style('color', color); }
-        <span class="missing-if-branch" title="else path not taken" >E</span>if (!this.dims.popup) { this.dims.popup = this.dims.y; }
     }
 &nbsp;
     public preRender(data:DataSet, domains:Domains): void {}

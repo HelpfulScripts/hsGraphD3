@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">96.72% </span>
+        <span class="strong">95.35% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>118/122</span>
+        <span class='fraction'>123/129</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">85.25% </span>
+        <span class="strong">81.54% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>52/61</span>
+        <span class='fraction'>53/65</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">92.31% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>24/26</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">98.18% </span>
+        <span class="strong">97.39% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>108/110</span>
+        <span class='fraction'>112/115</span>
       </div>
     </div>
     <p class="quiet">
@@ -353,7 +353,14 @@
 <a name='L305'></a><a href='#L305'>305</a>
 <a name='L306'></a><a href='#L306'>306</a>
 <a name='L307'></a><a href='#L307'>307</a>
-<a name='L308'></a><a href='#L308'>308</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L308'></a><a href='#L308'>308</a>
+<a name='L309'></a><a href='#L309'>309</a>
+<a name='L310'></a><a href='#L310'>310</a>
+<a name='L311'></a><a href='#L311'>311</a>
+<a name='L312'></a><a href='#L312'>312</a>
+<a name='L313'></a><a href='#L313'>313</a>
+<a name='L314'></a><a href='#L314'>314</a>
+<a name='L315'></a><a href='#L315'>315</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -377,15 +384,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -441,7 +448,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">46x</span>
+<span class="cline-any cline-yes">59x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -493,6 +500,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-yes">24x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -595,6 +603,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-yes">13x</span>
@@ -602,7 +616,7 @@
 <span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -678,7 +692,9 @@ import { SeriesPlot }           from "./SeriesPlot";
 import { SeriesPlotDefaults }   from "./SeriesPlot";
 import { SeriesDimensions }     from "./SeriesPlot";
 import { ValueDef }             from "./SeriesPlot";
-import { DataVal, DataRow, AccessFn }     from "./Graph";
+import { DataVal }              from "./Graph";
+import { DataRow }              from "./Graph";
+import { AccessFn }             from "./Graph";
 import { DataSet }              from "./Graph";
 import { Domains }              from "./Graph";
 import { CartDimensions }       from "./GraphCartesian";
@@ -686,13 +702,11 @@ import { GraphCfg }             from "./GraphComponent";
 import { d3Base }               from "./Settings";
 import { defaultStroke }        from "./Settings";
 import { setLabel }             from "./Settings";
-import { setPopup}              from "./Settings";
 import { Label }                from "./Settings";
 import { setArea }              from "./Settings";
 import { setStroke }            from "./Settings";
 import { setFill }              from "./Settings";
-import { select }               from 'd3';
-import { event }                from 'd3';
+import { format as d3format}    from 'd3';
 &nbsp;
 /**
  * valid {@link SeriesPlot.ValueDef `Value Definiton`} dimensions on cartesian plots:
@@ -802,6 +816,7 @@ export abstract class CartSeriesPlot extends SeriesPlot {
     public initialize(svg:d3Base, color?:string): void {
         super.initialize(svg, color);
         const defaults = this.defaults;
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (!this.dims.popup) { this.dims.popup = {hor: this.dims.y, ver: this.dims.x}[this.abscissa]; }
 &nbsp;
         if (!this.dims.x) { this.dims.x = (i:number)=&gt; i; }
         <span class="missing-if-branch" title="if path not taken" >I</span>if (!this.dims.y) { <span class="cstat-no" title="statement not covered" >this.dims.y = <span class="fstat-no" title="function not covered" >(i</span>:number)=&gt; <span class="cstat-no" title="statement not covered" >i;</span> </span>}
@@ -901,18 +916,24 @@ export abstract class CartSeriesPlot extends SeriesPlot {
         }
     }
 &nbsp;
+    /**
+     * formats the popup string to display
+     * @param colNames 
+     */
     protected d3RenderPopup(colNames:string[]):AccessFn {
         <span class="missing-if-branch" title="else path not taken" >E</span>if (this.dims.popup) {
+            const format = d3format('.4r');
             const popupAccess = this.accessor(this.dims.popup, colNames, false);
-            const xAccess     = this.accessor(this.dims.x, colNames, false);
+            const abscissa = this.dimensions[this.abscissa][0];
+            const absAccess     = this.accessor(abscissa, colNames, false);
             // if dims x present, reflect its column nname; else use 'index'
-            const xName = typeof this.dims.x === 'string'? this.dims.x : <span class="branch-1 cbranch-no" title="branch not covered" >'index';</span>
+            const absName = typeof abscissa === 'string'? abscissa : <span class="branch-1 cbranch-no" title="branch not covered" >'index';</span>
             return <span class="fstat-no" title="function not covered" >(r</span>:DataVal[], i:number) =&gt; {
-                let popupVal = <span class="cstat-no" title="statement not covered" >popupAccess(r,i);</span>
-                // if (typeof popupVal === 'number') { popupVal = popupVal.toFixed(1); }
-<span class="cstat-no" title="statement not covered" >                return typeof this.dims.popup === 'function' ? popupVal :`</span>
-                    ${this.dims.popup}${popupVal}&lt;br&gt;
-                    ${xName} = ${xAccess(r,i)}
+                let val = <span class="cstat-no" title="statement not covered" >popupAccess(r,i);</span>
+<span class="cstat-no" title="statement not covered" >                if (typeof val === 'number') { <span class="cstat-no" title="statement not covered" >val = format(val); </span>}</span>
+<span class="cstat-no" title="statement not covered" >                return typeof this.dims.popup === 'function' ? popupAccess(r,i) :`</span>
+                    ${this.dims.popup} = ${val}&lt;br&gt;
+                    ${absName} = ${absAccess(r,i)}
                 `;
             };
         }

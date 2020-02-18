@@ -2914,7 +2914,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 275,
+									"line": 282,
 									"character": 21
 								}
 							],
@@ -2978,7 +2978,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 261,
+									"line": 268,
 									"character": 35
 								}
 							]
@@ -3037,7 +3037,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 259,
+									"line": 266,
 									"character": 35
 								}
 							]
@@ -3194,7 +3194,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 225,
+									"line": 226,
 									"character": 35
 								}
 							]
@@ -3250,7 +3250,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 227,
+									"line": 228,
 									"character": 28
 								}
 							]
@@ -3306,7 +3306,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 200,
+									"line": 201,
 									"character": 29
 								}
 							]
@@ -3362,7 +3362,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 219,
+									"line": 220,
 									"character": 26
 								}
 							]
@@ -3383,6 +3383,9 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"shortText": "formats the popup string to display"
+									},
 									"parameters": [
 										{
 											"id": 2925,
@@ -3390,6 +3393,9 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"text": "\n"
+											},
 											"type": {
 												"type": "array",
 												"elementType": {
@@ -3409,7 +3415,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 242,
+									"line": 247,
 									"character": 27
 								}
 							]
@@ -3876,7 +3882,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 267,
+									"line": 274,
 									"character": 30
 								}
 							]
@@ -3931,7 +3937,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 263,
+									"line": 270,
 									"character": 28
 								}
 							]
@@ -4055,7 +4061,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 269,
+									"line": 276,
 									"character": 31
 								}
 							]
@@ -4086,7 +4092,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 217,
+									"line": 218,
 									"character": 34
 								}
 							]
@@ -4135,7 +4141,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 186,
+									"line": 187,
 									"character": 21
 								}
 							],
@@ -4201,7 +4207,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 172,
+									"line": 173,
 									"character": 20
 								}
 							],
@@ -4258,7 +4264,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 179,
+									"line": 180,
 									"character": 26
 								}
 							],
@@ -4307,7 +4313,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 192,
+									"line": 193,
 									"character": 28
 								}
 							]
@@ -4359,7 +4365,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 291,
+									"line": 298,
 									"character": 25
 								}
 							],
@@ -5206,7 +5212,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 483,
+									"line": 482,
 									"character": 12
 								}
 							],
@@ -5241,7 +5247,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 481,
+									"line": 480,
 									"character": 14
 								}
 							],
@@ -5276,7 +5282,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 415,
+									"line": 414,
 									"character": 28
 								}
 							]
@@ -5312,7 +5318,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 417,
+									"line": 416,
 									"character": 23
 								}
 							],
@@ -5347,7 +5353,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 482,
+									"line": 481,
 									"character": 13
 								}
 							],
@@ -5382,7 +5388,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 486,
+									"line": 485,
 									"character": 13
 								}
 							],
@@ -5417,7 +5423,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 480,
+									"line": 479,
 									"character": 14
 								}
 							],
@@ -5452,7 +5458,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 484,
+									"line": 483,
 									"character": 14
 								}
 							],
@@ -5496,7 +5502,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 420,
+									"line": 419,
 									"character": 26
 								}
 							]
@@ -5526,7 +5532,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 485,
+									"line": 484,
 									"character": 13
 								}
 							],
@@ -5617,7 +5623,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 552,
+									"line": 551,
 									"character": 26
 								}
 							]
@@ -5660,7 +5666,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 403,
+									"line": 402,
 									"character": 17
 								}
 							]
@@ -5733,7 +5739,7 @@
 									"kindString": "Call signature",
 									"flags": {},
 									"comment": {
-										"shortText": "creates the list of `GraphComponents` and determines the rendering order:\n- Scales: not rendered explicitly, but used in other components\n- Canvas: the background area for the plot\n- Grids\n- Axes\n- Title\n- Series"
+										"shortText": "creates the list of `GraphComponents` and determines the rendering order:\n- Scales: not rendered explicitly, but used in other components\n- Canvas: the background area for the plot\n- Grids\n- Axes\n- Title\n- Series\n- Popup"
 									},
 									"parameters": [
 										{
@@ -5797,7 +5803,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 469,
+									"line": 468,
 									"character": 25
 								}
 							],
@@ -5858,7 +5864,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 512,
+									"line": 511,
 									"character": 14
 								}
 							],
@@ -5898,7 +5904,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 433,
+									"line": 432,
 									"character": 21
 								}
 							]
@@ -5928,7 +5934,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 580,
+									"line": 579,
 									"character": 26
 								}
 							]
@@ -5975,7 +5981,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 492,
+									"line": 491,
 									"character": 17
 								}
 							]
@@ -6039,7 +6045,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 529,
+									"line": 528,
 									"character": 14
 								}
 							],
@@ -6130,7 +6136,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 517,
+									"line": 516,
 									"character": 13
 								}
 							],
@@ -6186,7 +6192,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 586,
+									"line": 585,
 									"character": 37
 								}
 							]
@@ -6251,7 +6257,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 450,
+									"line": 449,
 									"character": 17
 								}
 							]
@@ -6320,7 +6326,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 524,
+									"line": 523,
 									"character": 19
 								}
 							],
@@ -6386,7 +6392,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 533,
+									"line": 532,
 									"character": 19
 								}
 							]
@@ -6453,7 +6459,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 578,
+									"line": 577,
 									"character": 32
 								}
 							]
@@ -6539,7 +6545,7 @@
 													"sources": [
 														{
 															"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-															"line": 430,
+															"line": 429,
 															"character": 45
 														}
 													]
@@ -6556,7 +6562,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 430,
+									"line": 429,
 									"character": 21
 								}
 							]
@@ -6663,7 +6669,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 556,
+									"line": 555,
 									"character": 20
 								}
 							]
@@ -6707,7 +6713,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 496,
+									"line": 495,
 									"character": 15
 								}
 							]
@@ -9259,7 +9265,7 @@
 					},
 					"children": [
 						{
-							"id": 2790,
+							"id": 2787,
 							"name": "constructor",
 							"kind": 512,
 							"kindString": "Constructor",
@@ -9271,7 +9277,7 @@
 							},
 							"signatures": [
 								{
-									"id": 2791,
+									"id": 2788,
 									"name": "new GraphCartesian",
 									"kind": 16384,
 									"kindString": "Constructor signature",
@@ -9281,7 +9287,7 @@
 									},
 									"parameters": [
 										{
-											"id": 2792,
+											"id": 2789,
 											"name": "root",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -9312,7 +9318,7 @@
 									}
 								},
 								{
-									"id": 2793,
+									"id": 2790,
 									"name": "new GraphCartesian",
 									"kind": 16384,
 									"kindString": "Constructor signature",
@@ -9322,7 +9328,7 @@
 									},
 									"parameters": [
 										{
-											"id": 2794,
+											"id": 2791,
 											"name": "root",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -9413,7 +9419,7 @@
 							}
 						},
 						{
-							"id": 2789,
+							"id": 2786,
 							"name": "cumulativeDomains",
 							"kind": 1024,
 							"kindString": "Property",
@@ -9440,7 +9446,7 @@
 							}
 						},
 						{
-							"id": 2788,
+							"id": 2785,
 							"name": "graphDefaults",
 							"kind": 1024,
 							"kindString": "Property",
@@ -9470,7 +9476,7 @@
 							}
 						},
 						{
-							"id": 2787,
+							"id": 2784,
 							"name": "root",
 							"kind": 1024,
 							"kindString": "Property",
@@ -9499,7 +9505,7 @@
 							}
 						},
 						{
-							"id": 2786,
+							"id": 2783,
 							"name": "type",
 							"kind": 1024,
 							"kindString": "Property",
@@ -9526,7 +9532,7 @@
 							}
 						},
 						{
-							"id": 2824,
+							"id": 2821,
 							"name": "axes",
 							"kind": 262144,
 							"kindString": "Accessor",
@@ -9535,7 +9541,7 @@
 							},
 							"getSignature": [
 								{
-									"id": 2825,
+									"id": 2822,
 									"name": "__get",
 									"kind": 524288,
 									"kindString": "Get signature",
@@ -9555,7 +9561,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 483,
+									"line": 482,
 									"character": 12
 								}
 							],
@@ -9571,7 +9577,7 @@
 							}
 						},
 						{
-							"id": 2820,
+							"id": 2817,
 							"name": "canvas",
 							"kind": 262144,
 							"kindString": "Accessor",
@@ -9580,7 +9586,7 @@
 							},
 							"getSignature": [
 								{
-									"id": 2821,
+									"id": 2818,
 									"name": "__get",
 									"kind": 524288,
 									"kindString": "Get signature",
@@ -9600,7 +9606,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 481,
+									"line": 480,
 									"character": 14
 								}
 							],
@@ -9616,7 +9622,7 @@
 							}
 						},
 						{
-							"id": 2798,
+							"id": 2795,
 							"name": "componentType",
 							"kind": 262144,
 							"kindString": "Accessor",
@@ -9626,7 +9632,7 @@
 							},
 							"getSignature": [
 								{
-									"id": 2799,
+									"id": 2796,
 									"name": "__get",
 									"kind": 524288,
 									"kindString": "Get signature",
@@ -9645,7 +9651,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 415,
+									"line": 414,
 									"character": 28
 								}
 							],
@@ -9656,7 +9662,7 @@
 							}
 						},
 						{
-							"id": 2800,
+							"id": 2797,
 							"name": "defaults",
 							"kind": 262144,
 							"kindString": "Accessor",
@@ -9666,7 +9672,7 @@
 							},
 							"getSignature": [
 								{
-									"id": 2801,
+									"id": 2798,
 									"name": "__get",
 									"kind": 524288,
 									"kindString": "Get signature",
@@ -9691,7 +9697,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 417,
+									"line": 416,
 									"character": 23
 								}
 							],
@@ -9707,7 +9713,7 @@
 							}
 						},
 						{
-							"id": 2822,
+							"id": 2819,
 							"name": "grids",
 							"kind": 262144,
 							"kindString": "Accessor",
@@ -9716,7 +9722,7 @@
 							},
 							"getSignature": [
 								{
-									"id": 2823,
+									"id": 2820,
 									"name": "__get",
 									"kind": 524288,
 									"kindString": "Get signature",
@@ -9736,7 +9742,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 482,
+									"line": 481,
 									"character": 13
 								}
 							],
@@ -9752,7 +9758,7 @@
 							}
 						},
 						{
-							"id": 2830,
+							"id": 2827,
 							"name": "popup",
 							"kind": 262144,
 							"kindString": "Accessor",
@@ -9761,7 +9767,7 @@
 							},
 							"getSignature": [
 								{
-									"id": 2831,
+									"id": 2828,
 									"name": "__get",
 									"kind": 524288,
 									"kindString": "Get signature",
@@ -9781,7 +9787,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 486,
+									"line": 485,
 									"character": 13
 								}
 							],
@@ -9797,7 +9803,7 @@
 							}
 						},
 						{
-							"id": 2818,
+							"id": 2815,
 							"name": "scales",
 							"kind": 262144,
 							"kindString": "Accessor",
@@ -9806,7 +9812,7 @@
 							},
 							"getSignature": [
 								{
-									"id": 2819,
+									"id": 2816,
 									"name": "__get",
 									"kind": 524288,
 									"kindString": "Get signature",
@@ -9826,7 +9832,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 480,
+									"line": 479,
 									"character": 14
 								}
 							],
@@ -9842,7 +9848,7 @@
 							}
 						},
 						{
-							"id": 2826,
+							"id": 2823,
 							"name": "series",
 							"kind": 262144,
 							"kindString": "Accessor",
@@ -9851,7 +9857,7 @@
 							},
 							"getSignature": [
 								{
-									"id": 2827,
+									"id": 2824,
 									"name": "__get",
 									"kind": 524288,
 									"kindString": "Get signature",
@@ -9871,7 +9877,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 484,
+									"line": 483,
 									"character": 14
 								}
 							],
@@ -9887,7 +9893,7 @@
 							}
 						},
 						{
-							"id": 2802,
+							"id": 2799,
 							"name": "seriesTypes",
 							"kind": 262144,
 							"kindString": "Accessor",
@@ -9900,7 +9906,7 @@
 							},
 							"getSignature": [
 								{
-									"id": 2803,
+									"id": 2800,
 									"name": "__get",
 									"kind": 524288,
 									"kindString": "Get signature",
@@ -9925,7 +9931,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 420,
+									"line": 419,
 									"character": 26
 								}
 							],
@@ -9936,7 +9942,7 @@
 							}
 						},
 						{
-							"id": 2828,
+							"id": 2825,
 							"name": "title",
 							"kind": 262144,
 							"kindString": "Accessor",
@@ -9945,7 +9951,7 @@
 							},
 							"getSignature": [
 								{
-									"id": 2829,
+									"id": 2826,
 									"name": "__get",
 									"kind": 524288,
 									"kindString": "Get signature",
@@ -9965,7 +9971,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 485,
+									"line": 484,
 									"character": 13
 								}
 							],
@@ -10066,7 +10072,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 552,
+									"line": 551,
 									"character": 26
 								}
 							],
@@ -10077,7 +10083,7 @@
 							}
 						},
 						{
-							"id": 2795,
+							"id": 2792,
 							"name": "create",
 							"kind": 2048,
 							"kindString": "Method",
@@ -10087,14 +10093,14 @@
 							},
 							"signatures": [
 								{
-									"id": 2796,
+									"id": 2793,
 									"name": "create",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 2797,
+											"id": 2794,
 											"name": "root",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -10119,7 +10125,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 403,
+									"line": 402,
 									"character": 17
 								}
 							],
@@ -10130,7 +10136,7 @@
 							}
 						},
 						{
-							"id": 2816,
+							"id": 2813,
 							"name": "createDefaults",
 							"kind": 2048,
 							"kindString": "Method",
@@ -10140,7 +10146,7 @@
 							},
 							"signatures": [
 								{
-									"id": 2817,
+									"id": 2814,
 									"name": "createDefaults",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -10168,7 +10174,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 469,
+									"line": 468,
 									"character": 25
 								}
 							],
@@ -10184,7 +10190,7 @@
 							}
 						},
 						{
-							"id": 2783,
+							"id": 2835,
 							"name": "initialize",
 							"kind": 2048,
 							"kindString": "Method",
@@ -10193,14 +10199,17 @@
 							},
 							"signatures": [
 								{
-									"id": 2784,
+									"id": 2836,
 									"name": "initialize",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"shortText": "Called once at the beginning of the first call to `Graph.render()`\nand initializes all known `GraphComponts`."
+									},
 									"parameters": [
 										{
-											"id": 2785,
+											"id": 2837,
 											"name": "svg",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -10218,6 +10227,11 @@
 									},
 									"overwrites": {
 										"type": "reference",
+										"name": "GraphBase.initialize",
+										"id": 1511
+									},
+									"inheritedFrom": {
+										"type": "reference",
 										"name": "Graph.initialize",
 										"id": 904
 									},
@@ -10230,12 +10244,17 @@
 							],
 							"sources": [
 								{
-									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphCartesian.ts",
-									"line": 149,
+									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
+									"line": 511,
 									"character": 14
 								}
 							],
 							"overwrites": {
+								"type": "reference",
+								"name": "GraphBase.initialize",
+								"id": 1511
+							},
+							"inheritedFrom": {
 								"type": "reference",
 								"name": "Graph.initialize",
 								"id": 904
@@ -10247,7 +10266,7 @@
 							}
 						},
 						{
-							"id": 2811,
+							"id": 2808,
 							"name": "isRendered",
 							"kind": 2048,
 							"kindString": "Method",
@@ -10257,7 +10276,7 @@
 							},
 							"signatures": [
 								{
-									"id": 2812,
+									"id": 2809,
 									"name": "isRendered",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -10276,7 +10295,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 433,
+									"line": 432,
 									"character": 21
 								}
 							],
@@ -10330,7 +10349,7 @@
 							}
 						},
 						{
-							"id": 2832,
+							"id": 2829,
 							"name": "oninit",
 							"kind": 2048,
 							"kindString": "Method",
@@ -10340,7 +10359,7 @@
 							},
 							"signatures": [
 								{
-									"id": 2833,
+									"id": 2830,
 									"name": "oninit",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -10350,7 +10369,7 @@
 									},
 									"parameters": [
 										{
-											"id": 2834,
+											"id": 2831,
 											"name": "node",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -10376,7 +10395,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 492,
+									"line": 491,
 									"character": 17
 								}
 							],
@@ -10450,7 +10469,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 529,
+									"line": 528,
 									"character": 14
 								}
 							],
@@ -10551,7 +10570,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 517,
+									"line": 516,
 									"character": 13
 								}
 							],
@@ -10633,7 +10652,7 @@
 							}
 						},
 						{
-							"id": 2813,
+							"id": 2810,
 							"name": "render",
 							"kind": 2048,
 							"kindString": "Method",
@@ -10643,7 +10662,7 @@
 							},
 							"signatures": [
 								{
-									"id": 2814,
+									"id": 2811,
 									"name": "render",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -10654,7 +10673,7 @@
 									},
 									"parameters": [
 										{
-											"id": 2815,
+											"id": 2812,
 											"name": "data",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -10697,7 +10716,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 450,
+									"line": 449,
 									"character": 17
 								}
 							],
@@ -10776,7 +10795,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 524,
+									"line": 523,
 									"character": 19
 								}
 							],
@@ -10852,7 +10871,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 533,
+									"line": 532,
 									"character": 19
 								}
 							],
@@ -10906,7 +10925,7 @@
 							}
 						},
 						{
-							"id": 2804,
+							"id": 2801,
 							"name": "transition",
 							"kind": 2048,
 							"kindString": "Method",
@@ -10916,7 +10935,7 @@
 							},
 							"signatures": [
 								{
-									"id": 2805,
+									"id": 2802,
 									"name": "transition",
 									"kind": 4096,
 									"kindString": "Call signature",
@@ -10926,7 +10945,7 @@
 									},
 									"parameters": [
 										{
-											"id": 2806,
+											"id": 2803,
 											"name": "duration",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -10938,7 +10957,7 @@
 											}
 										},
 										{
-											"id": 2807,
+											"id": 2804,
 											"name": "done",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -10951,21 +10970,21 @@
 											"type": {
 												"type": "reflection",
 												"declaration": {
-													"id": 2808,
+													"id": 2805,
 													"name": "__type",
 													"kind": 65536,
 													"kindString": "Type literal",
 													"flags": {},
 													"signatures": [
 														{
-															"id": 2809,
+															"id": 2806,
 															"name": "__call",
 															"kind": 4096,
 															"kindString": "Call signature",
 															"flags": {},
 															"parameters": [
 																{
-																	"id": 2810,
+																	"id": 2807,
 																	"name": "data",
 																	"kind": 32768,
 																	"kindString": "Parameter",
@@ -10986,7 +11005,7 @@
 													"sources": [
 														{
 															"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-															"line": 430,
+															"line": 429,
 															"character": 45
 														}
 													]
@@ -11008,7 +11027,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 430,
+									"line": 429,
 									"character": 21
 								}
 							],
@@ -11019,7 +11038,7 @@
 							}
 						},
 						{
-							"id": 2835,
+							"id": 2832,
 							"name": "view",
 							"kind": 2048,
 							"kindString": "Method",
@@ -11029,14 +11048,14 @@
 							},
 							"signatures": [
 								{
-									"id": 2836,
+									"id": 2833,
 									"name": "view",
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
 									"parameters": [
 										{
-											"id": 2837,
+											"id": 2834,
 											"name": "node",
 											"kind": 32768,
 											"kindString": "Parameter",
@@ -11062,7 +11081,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Graph.ts",
-									"line": 496,
+									"line": 495,
 									"character": 15
 								}
 							],
@@ -11078,7 +11097,7 @@
 							"title": "Constructors",
 							"kind": 512,
 							"children": [
-								2790
+								2787
 							]
 						},
 						{
@@ -11086,26 +11105,26 @@
 							"kind": 1024,
 							"children": [
 								2856,
-								2789,
-								2788,
-								2787,
-								2786
+								2786,
+								2785,
+								2784,
+								2783
 							]
 						},
 						{
 							"title": "Accessors",
 							"kind": 262144,
 							"children": [
-								2824,
-								2820,
-								2798,
-								2800,
-								2822,
-								2830,
-								2818,
-								2826,
-								2802,
-								2828,
+								2821,
+								2817,
+								2795,
+								2797,
+								2819,
+								2827,
+								2815,
+								2823,
+								2799,
+								2825,
 								2851
 							]
 						},
@@ -11113,21 +11132,21 @@
 							"title": "Methods",
 							"kind": 2048,
 							"children": [
-								2795,
-								2816,
-								2783,
-								2811,
+								2792,
+								2813,
+								2835,
+								2808,
 								2776,
-								2832,
+								2829,
 								2845,
 								2838,
 								2780,
-								2813,
+								2810,
 								2842,
 								2848,
 								2778,
-								2804,
-								2835
+								2801,
+								2832
 							]
 						}
 					],
@@ -34395,7 +34414,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/SeriesPlot.ts",
-									"line": 257,
+									"line": 256,
 									"character": 30
 								}
 							]
@@ -34924,7 +34943,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/SeriesPlot.ts",
-									"line": 250,
+									"line": 249,
 									"character": 21
 								}
 							]
@@ -34980,7 +34999,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/SeriesPlot.ts",
-									"line": 246,
+									"line": 245,
 									"character": 20
 								}
 							]
@@ -35024,7 +35043,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/SeriesPlot.ts",
-									"line": 248,
+									"line": 247,
 									"character": 26
 								}
 							]
@@ -35072,7 +35091,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/SeriesPlot.ts",
-									"line": 260,
+									"line": 259,
 									"character": 34
 								}
 							]
@@ -40051,7 +40070,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/examples.ts",
 			"comment": {
 				"shortText": "#Examples",
-				"text": "<example height=2420px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst content = [\n     graph => {\n         graph.series.add('line', {y:'Joe'});\n         graph.series.add('line', {y:'Mary'});\n         graph.title.text = `simple indexed 'line' graph`;\n         graph.render(data);\n     },\n\n     graph => {\n         graph.series.add('line', {x:'time', y:'Joe'});\n         graph.series.add('line', {x:'time', y:'Mary'});\n         graph.title.text = `simple 'line' graph`;\n         graph.render(data);\n     },\n\n     graph => {\n         graph.series.add('line', {x:'time', y:'Joe'});\n         graph.series.add('line', {x:'time', y:'Mary'});\n         graph.title.text = `'line' graph with dynamic updates`;\n         graph.render(data).update(2000, update);\n     },\n\n     graph => {\n         graph.series.add('area', {x:'time', y:'Joe'});\n         graph.series.add('area', {x:'time', y:'Mary'});\n         graph.title.text = `simple 'area' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('area', {x:'time', y:'Joe'});\n         graph.series.add('area', {x:'time', y:'Mary', y0:'Joe'});\n         graph.title.text = `difference 'area' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('area', {x:'time', y:'Joe', stacked:'myStack'});\n         graph.series.add('area', {x:'time', y:'Mary', stacked:'myStack'});\n         graph.title.text = `stacked 'area' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('area', {x:'time', y:'Joe'});\n         graph.series.add('area', {x:'time', y:'Mary', y0:()=>1});\n         graph.title.text = `raised 'area' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('area', {x:'time', y:'Joe', y0:()=>1});\n         graph.series.add('area', {x:'time', y:'Mary', y0:()=>1});\n         graph.title.text = `opposed 'area' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('line', {x:'time', y:'Joe'});\n         graph.series.add('line', {x:'time', y:'Mary'});\n         graph.series.defaults.series0.area.rendered = true;\n         graph.series.defaults.series0.marker.rendered = true;\n         graph.title.text = `'line' graph with area and markers for 1st series`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('bubble', {x:'time', y:'Joe'});\n         graph.series.add('bubble', {x:'time', y:'Mary', r:'Joe'});\n         graph.title.text = `'bubble' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('timeseries', {x:'time', y:'Joe'});\n         graph.series.add('timeseries', {x:'time', y:'Mary'});\n         graph.title.text = `'time series'`;\n         graph.render(dataTS).update(2000, updateTS);\n     },\n\n     graph => {\n         graph.series.add('column', {x:'item', y:'Joe', label:'item'});\n         graph.series.add('column', {x:'item', y:'Mary', label:i=>i});\n         graph.title.text = `'column' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('column', {x:'item', y:'Joe', stacked:'myGroup', label:i=>`<${i}>`});\n         graph.series.add('column', {x:'item', y:'Mary', stacked:'myGroup', label:5});\n         graph.title.text = `stacked 'column' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('column', {x:'item', y:'Mary', color:i=>i});\n         graph.title.text = `'default colored column' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('column', {x:'item', y:'Mary', color:'greens'});\n         graph.title.text = `'greens colored column' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('column', {x:'item', y:'Mary', color:'time'});\n         graph.title.text = `'data colored column' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('bar', {x:'Joe', y:'item'});\n         graph.series.add('bar', {x:'Mary', y:'item'});\n         graph.title.text = `'bar' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('bar', {x:'Joe', y:'item', stacked:'myGroup'});\n         graph.series.add('bar', {x:'Mary', y:'item', stacked:'myGroup'});\n         graph.title.text = `stacked 'bar' graph`;\n         graph.render(data).update(2000);\n     },\n];\n\nconst data = {\n   colNames:['item', 'time', 'Joe', 'Mary'],\n   rows:[   ['a',    0.0,    0.2,    1.3],\n            ['b',    0.2,    0.7,    1.2],\n            ['c',    0.4,    0.1,    1.9],\n            ['d',    0.6,    0.2,    1.1],\n            ['e',    0.8,    0.3,    1.5],\n            ['f',    1,      0.2,    1.4]]\n}\n\nm.mount(root, {\n  view:() => m(hsLayout.Layout, { rows: ['50px', '130px'], content:[\n     m('div.hs-layout', {style:'background-color:white;'}),\n     ...content.map(fn => m(nodeGraph(fn)))] }),\n});\n\nfunction nodeGraph(configure) {\n     // create a random class and ID.\n     const cls = 'a'+parseInt(''+Math.random()*100000);\n\n     // return a mithril node\n     return {\n         view:() => m(`div.${cls}#${cls}`),\n         oncreate:() => {\n             const graphRoot = root.getElementsByClassName(cls)[0];\n             if (graphRoot) {\n                 const graph = new hsGraphD3.GraphCartesian(graphRoot);\n                 configure(graph);\n             }\n         }\n     }\n}\n\nconst update = (data) => {\n     const Joe = data.colNames.indexOf('Joe');\n     const Mary = data.colNames.indexOf('Mary');\n     data.rows.forEach(row => {\n         row[Joe]  = Math.random();\n         row[Mary] = Math.random() + 1;\n     });\n     // continue updating\n}\n\n// time series structures\nconst dataTS = {\n   colNames:['time', 'Joe', 'Mary'],\n   rows:[]\n}\n\nlet time = 0;\nwhile (time<11) {\n   val = Math.random();\n   dataTS.rows.push([(time++)/5, val, val-1]);\n}\n\nconst updateTS = (data) => {\n     dataTS.rows.push([(time++)/5, Math.random(), Math.random() + 1]);\n     if (dataTS.rows.length > 10) { dataTS.rows.shift(); }\n     // no return -> continue updating\n}\n\n</file>\n</example>\n\n"
+				"text": "<example height=2420px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst content = [\n     graph => {\n         graph.series.add('line', {y:'Joe'});\n         graph.series.add('line', {y:'Mary'});\n         graph.title.text = `simple indexed 'line' graph`;\n         graph.render(data);\n     },\n\n     graph => {\n         graph.series.add('line', {x:'time', y:'Joe'});\n         graph.series.add('line', {x:'time', y:'Mary'});\n         graph.title.text = `simple 'line' graph`;\n         graph.render(data);\n     },\n\n     graph => {\n         graph.series.add('line', {x:'time', y:'Joe'});\n         graph.series.add('line', {x:'time', y:'Mary'});\n         graph.title.text = `'line' graph with dynamic updates`;\n         graph.render(data).update(2000, update);\n     },\n\n     graph => {\n         graph.series.add('area', {x:'time', y:'Joe'});\n         graph.series.add('area', {x:'time', y:'Mary'});\n         graph.title.text = `simple 'area' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('area', {x:'time', y:'Joe'});\n         graph.series.add('area', {x:'time', y:'Mary', y0:'Joe'});\n         graph.title.text = `difference 'area' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('area', {x:'time', y:'Joe', stacked:'myStack'});\n         graph.series.add('area', {x:'time', y:'Mary', stacked:'myStack'});\n         graph.title.text = `stacked 'area' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('area', {x:'time', y:'Joe'});\n         graph.series.add('area', {x:'time', y:'Mary', y0:()=>1});\n         graph.title.text = `raised 'area' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('area', {x:'time', y:'Joe', y0:()=>1});\n         graph.series.add('area', {x:'time', y:'Mary', y0:()=>1});\n         graph.title.text = `opposed 'area' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('line', {x:'time', y:'Joe'});\n         graph.series.add('line', {x:'time', y:'Mary'});\n         graph.series.defaults.series0.area.rendered = true;\n         graph.series.defaults.series0.marker.rendered = true;\n         graph.title.text = `'line' graph with area and markers for 1st series`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('bubble', {x:'time', y:'Joe'});\n         graph.series.add('bubble', {x:'time', y:'Mary', r:'Joe'});\n         graph.title.text = `'bubble' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('timeseries', {x:'time', y:'Joe'});\n         graph.series.add('timeseries', {x:'time', y:'Mary'});\n         graph.title.text = `'time series'`;\n         graph.render(dataTS).update(2000, updateTS);\n     },\n\n     graph => {\n         graph.series.add('column', {x:'item', y:'Joe', label:'item'});\n         graph.series.add('column', {x:'item', y:'Mary', label:i=>i});\n         graph.title.text = `'column' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('column', {x:'item', y:'Joe', stacked:'myGroup', label:i=>`<${i}>`});\n         graph.series.add('column', {x:'item', y:'Mary', stacked:'myGroup', label:5});\n         graph.title.text = `stacked 'column' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('column', {x:'item', y:'Mary', color:i=>i});\n         graph.title.text = `'default colored column' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('column', {x:'item', y:'Mary', color:'greens'});\n         graph.title.text = `'greens colored column' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('column', {x:'item', y:'Mary', color:'time'});\n         graph.title.text = `'data colored column' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('bar', {x:'Joe', y:'item'});\n         graph.series.add('bar', {x:'Mary', y:'item'});\n         graph.title.text = `'bar' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('bar', {x:'Joe', y:'item', stacked:'myGroup'});\n         graph.series.add('bar', {x:'Mary', y:'item', stacked:'myGroup'});\n         graph.title.text = `stacked 'bar' graph`;\n         graph.render(data).update(2000);\n     },\n];\n\nconst data = {\n   colNames:['item', 'time', 'Joe', 'Mary'],\n   rows:[   ['a',    0.0,    0.2,    1.3],\n            ['b',    0.2,    0.7,    1.2],\n            ['c',    0.4,    0.1,    1.9],\n            ['d',    0.6,    0.2,    1.1],\n            ['e',    0.8,    0.3,    1.5],\n            ['f',    1,      0.2,    1.4]]\n}\n\nconst update = (data) => {\n     const Joe = data.colNames.indexOf('Joe');\n     const Mary = data.colNames.indexOf('Mary');\n     data.rows.forEach(row => {\n         row[Joe]  = Math.random();\n         row[Mary] = Math.random() + 1;\n     });\n     // continue updating\n}\n\n// time series structures\nconst dataTS = {\n   colNames:['time', 'Joe', 'Mary'],\n   rows:[]\n}\n\nlet time = 0;\nwhile (time<11) {\n   val = Math.random();\n   dataTS.rows.push([(time++)/5, val, val-1]);\n}\n\nconst updateTS = (data) => {\n     dataTS.rows.push([(time++)/5, Math.random(), Math.random() + 1]);\n     if (dataTS.rows.length > 10) { dataTS.rows.shift(); }\n     // no return -> continue updating\n}\n\nm.mount(root, {\n  view:() => m(hsLayout.Layout, { rows: ['50px', '130px'], content:[\n     m('div.hs-layout', {style:'background-color:white;'}),\n     ...content.map(fn => m(nodeGraph(fn)))] }),\n});\n\nfunction nodeGraph(configure) {\n     // create a random class and ID.\n     const cls = 'a'+parseInt(''+Math.random()*100000);\n\n     // return a mithril node\n     return {\n         view:() => m(`div.${cls}#${cls}`),\n         oncreate:() => {\n             const graphRoot = root.getElementsByClassName(cls)[0];\n             if (graphRoot) {\n                 const graph = new hsGraphD3.GraphCartesian(graphRoot);\n                 configure(graph);\n             }\n         }\n     }\n}\n\n</file>\n</example>\n\n"
 			},
 			"sources": [
 				{
@@ -40711,7 +40730,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 275,
+									"line": 282,
 									"character": 21
 								}
 							],
@@ -41114,7 +41133,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 227,
+									"line": 228,
 									"character": 28
 								}
 							],
@@ -41180,7 +41199,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 200,
+									"line": 201,
 									"character": 29
 								}
 							],
@@ -41246,7 +41265,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 219,
+									"line": 220,
 									"character": 26
 								}
 							],
@@ -41272,6 +41291,9 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"shortText": "formats the popup string to display"
+									},
 									"parameters": [
 										{
 											"id": 2065,
@@ -41279,6 +41301,9 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"text": "\n"
+											},
 											"type": {
 												"type": "array",
 												"elementType": {
@@ -41303,7 +41328,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 242,
+									"line": 247,
 									"character": 27
 								}
 							],
@@ -41857,7 +41882,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 263,
+									"line": 270,
 									"character": 28
 								}
 							],
@@ -42121,7 +42146,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 186,
+									"line": 187,
 									"character": 21
 								}
 							],
@@ -42263,7 +42288,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 179,
+									"line": 180,
 									"character": 26
 								}
 							],
@@ -42322,7 +42347,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 192,
+									"line": 193,
 									"character": 28
 								}
 							],
@@ -42384,7 +42409,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 291,
+									"line": 298,
 									"character": 25
 								}
 							],
@@ -43231,7 +43256,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 275,
+									"line": 282,
 									"character": 21
 								}
 							],
@@ -43637,7 +43662,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 227,
+									"line": 228,
 									"character": 28
 								}
 							],
@@ -43703,7 +43728,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 200,
+									"line": 201,
 									"character": 29
 								}
 							],
@@ -43805,6 +43830,9 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"shortText": "formats the popup string to display"
+									},
 									"parameters": [
 										{
 											"id": 2729,
@@ -43812,6 +43840,9 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"text": "\n"
+											},
 											"type": {
 												"type": "array",
 												"elementType": {
@@ -43836,7 +43867,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 242,
+									"line": 247,
 									"character": 27
 								}
 							],
@@ -44369,7 +44400,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 263,
+									"line": 270,
 									"character": 28
 								}
 							],
@@ -44633,7 +44664,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 186,
+									"line": 187,
 									"character": 21
 								}
 							],
@@ -44775,7 +44806,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 179,
+									"line": 180,
 									"character": 26
 								}
 							],
@@ -44834,7 +44865,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 192,
+									"line": 193,
 									"character": 28
 								}
 							],
@@ -44896,7 +44927,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 291,
+									"line": 298,
 									"character": 25
 								}
 							],
@@ -45793,7 +45824,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 275,
+									"line": 282,
 									"character": 21
 								}
 							],
@@ -46196,7 +46227,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 227,
+									"line": 228,
 									"character": 28
 								}
 							],
@@ -46262,7 +46293,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 200,
+									"line": 201,
 									"character": 29
 								}
 							],
@@ -46328,7 +46359,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 219,
+									"line": 220,
 									"character": 26
 								}
 							],
@@ -46354,6 +46385,9 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"shortText": "formats the popup string to display"
+									},
 									"parameters": [
 										{
 											"id": 1821,
@@ -46361,6 +46395,9 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"text": "\n"
+											},
 											"type": {
 												"type": "array",
 												"elementType": {
@@ -46385,7 +46422,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 242,
+									"line": 247,
 									"character": 27
 								}
 							],
@@ -46939,7 +46976,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 263,
+									"line": 270,
 									"character": 28
 								}
 							],
@@ -47203,7 +47240,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 186,
+									"line": 187,
 									"character": 21
 								}
 							],
@@ -47345,7 +47382,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 179,
+									"line": 180,
 									"character": 26
 								}
 							],
@@ -47404,7 +47441,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 192,
+									"line": 193,
 									"character": 28
 								}
 							],
@@ -47466,7 +47503,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 291,
+									"line": 298,
 									"character": 25
 								}
 							],
@@ -48313,7 +48350,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 275,
+									"line": 282,
 									"character": 21
 								}
 							],
@@ -48719,7 +48756,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 227,
+									"line": 228,
 									"character": 28
 								}
 							],
@@ -48785,7 +48822,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 200,
+									"line": 201,
 									"character": 29
 								}
 							],
@@ -48887,6 +48924,9 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"shortText": "formats the popup string to display"
+									},
 									"parameters": [
 										{
 											"id": 2597,
@@ -48894,6 +48934,9 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"text": "\n"
+											},
 											"type": {
 												"type": "array",
 												"elementType": {
@@ -48918,7 +48961,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 242,
+									"line": 247,
 									"character": 27
 								}
 							],
@@ -49451,7 +49494,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 263,
+									"line": 270,
 									"character": 28
 								}
 							],
@@ -49715,7 +49758,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 186,
+									"line": 187,
 									"character": 21
 								}
 							],
@@ -49857,7 +49900,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 179,
+									"line": 180,
 									"character": 26
 								}
 							],
@@ -49916,7 +49959,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 192,
+									"line": 193,
 									"character": 28
 								}
 							],
@@ -49978,7 +50021,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 291,
+									"line": 298,
 									"character": 25
 								}
 							],
@@ -50875,7 +50918,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 275,
+									"line": 282,
 									"character": 21
 								}
 							],
@@ -51278,7 +51321,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 227,
+									"line": 228,
 									"character": 28
 								}
 							],
@@ -51344,7 +51387,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 200,
+									"line": 201,
 									"character": 29
 								}
 							],
@@ -51410,7 +51453,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 219,
+									"line": 220,
 									"character": 26
 								}
 							],
@@ -51436,6 +51479,9 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"shortText": "formats the popup string to display"
+									},
 									"parameters": [
 										{
 											"id": 1943,
@@ -51443,6 +51489,9 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"text": "\n"
+											},
 											"type": {
 												"type": "array",
 												"elementType": {
@@ -51467,7 +51516,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 242,
+									"line": 247,
 									"character": 27
 								}
 							],
@@ -52021,7 +52070,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 263,
+									"line": 270,
 									"character": 28
 								}
 							],
@@ -52285,7 +52334,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 186,
+									"line": 187,
 									"character": 21
 								}
 							],
@@ -52427,7 +52476,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 179,
+									"line": 180,
 									"character": 26
 								}
 							],
@@ -52486,7 +52535,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 192,
+									"line": 193,
 									"character": 28
 								}
 							],
@@ -52548,7 +52597,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 291,
+									"line": 298,
 									"character": 25
 								}
 							],
@@ -53302,7 +53351,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 275,
+									"line": 282,
 									"character": 21
 								}
 							],
@@ -53675,7 +53724,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 227,
+									"line": 228,
 									"character": 28
 								}
 							],
@@ -53741,7 +53790,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 200,
+									"line": 201,
 									"character": 29
 								}
 							],
@@ -53807,7 +53856,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 219,
+									"line": 220,
 									"character": 26
 								}
 							],
@@ -53833,6 +53882,9 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"shortText": "formats the popup string to display"
+									},
 									"parameters": [
 										{
 											"id": 1699,
@@ -53840,6 +53892,9 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"text": "\n"
+											},
 											"type": {
 												"type": "array",
 												"elementType": {
@@ -53864,7 +53919,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 242,
+									"line": 247,
 									"character": 27
 								}
 							],
@@ -54422,7 +54477,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 263,
+									"line": 270,
 									"character": 28
 								}
 							],
@@ -54656,7 +54711,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 186,
+									"line": 187,
 									"character": 21
 								}
 							],
@@ -54788,7 +54843,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 179,
+									"line": 180,
 									"character": 26
 								}
 							],
@@ -54847,7 +54902,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 192,
+									"line": 193,
 									"character": 28
 								}
 							],
@@ -54909,7 +54964,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 291,
+									"line": 298,
 									"character": 25
 								}
 							],
@@ -55780,7 +55835,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 275,
+									"line": 282,
 									"character": 21
 								}
 							],
@@ -56156,7 +56211,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 227,
+									"line": 228,
 									"character": 28
 								}
 							],
@@ -56222,7 +56277,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 200,
+									"line": 201,
 									"character": 29
 								}
 							],
@@ -56314,6 +56369,9 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"shortText": "formats the popup string to display"
+									},
 									"parameters": [
 										{
 											"id": 2461,
@@ -56321,6 +56379,9 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"text": "\n"
+											},
 											"type": {
 												"type": "array",
 												"elementType": {
@@ -56345,7 +56406,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 242,
+									"line": 247,
 									"character": 27
 								}
 							],
@@ -56907,7 +56968,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 263,
+									"line": 270,
 									"character": 28
 								}
 							],
@@ -57141,7 +57202,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 186,
+									"line": 187,
 									"character": 21
 								}
 							],
@@ -57273,7 +57334,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 179,
+									"line": 180,
 									"character": 26
 								}
 							],
@@ -57332,7 +57393,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 192,
+									"line": 193,
 									"character": 28
 								}
 							],
@@ -57394,7 +57455,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 291,
+									"line": 298,
 									"character": 25
 								}
 							],
@@ -58362,7 +58423,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 275,
+									"line": 282,
 									"character": 21
 								}
 							],
@@ -58754,7 +58815,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 227,
+									"line": 228,
 									"character": 28
 								}
 							],
@@ -58910,6 +58971,9 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"shortText": "formats the popup string to display"
+									},
 									"parameters": [
 										{
 											"id": 2191,
@@ -58917,6 +58981,9 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"text": "\n"
+											},
 											"type": {
 												"type": "array",
 												"elementType": {
@@ -58941,7 +59008,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 242,
+									"line": 247,
 									"character": 27
 								}
 							],
@@ -59748,7 +59815,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 186,
+									"line": 187,
 									"character": 21
 								}
 							],
@@ -59880,7 +59947,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 179,
+									"line": 180,
 									"character": 26
 								}
 							],
@@ -59939,7 +60006,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 192,
+									"line": 193,
 									"character": 28
 								}
 							],
@@ -60001,7 +60068,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 291,
+									"line": 298,
 									"character": 25
 								}
 							],
@@ -60778,7 +60845,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 275,
+									"line": 282,
 									"character": 21
 								}
 							],
@@ -61181,7 +61248,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 227,
+									"line": 228,
 									"character": 28
 								}
 							],
@@ -61247,7 +61314,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 200,
+									"line": 201,
 									"character": 29
 								}
 							],
@@ -61339,6 +61406,9 @@
 									"kind": 4096,
 									"kindString": "Call signature",
 									"flags": {},
+									"comment": {
+										"shortText": "formats the popup string to display"
+									},
 									"parameters": [
 										{
 											"id": 2317,
@@ -61346,6 +61416,9 @@
 											"kind": 32768,
 											"kindString": "Parameter",
 											"flags": {},
+											"comment": {
+												"text": "\n"
+											},
 											"type": {
 												"type": "array",
 												"elementType": {
@@ -61370,7 +61443,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 242,
+									"line": 247,
 									"character": 27
 								}
 							],
@@ -61924,7 +61997,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 263,
+									"line": 270,
 									"character": 28
 								}
 							],
@@ -62188,7 +62261,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 186,
+									"line": 187,
 									"character": 21
 								}
 							],
@@ -62376,7 +62449,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 192,
+									"line": 193,
 									"character": 28
 								}
 							],
@@ -62438,7 +62511,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/CartSeriesPlot.ts",
-									"line": 291,
+									"line": 298,
 									"character": 25
 								}
 							],

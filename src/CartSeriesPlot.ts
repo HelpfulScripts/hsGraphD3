@@ -30,6 +30,7 @@ import { Label }                from "./Settings";
 import { setArea }              from "./Settings";
 import { setStroke }            from "./Settings";
 import { setFill }              from "./Settings";
+import { format as d3format}    from 'd3';
 
 /**
  * valid {@link SeriesPlot.ValueDef `Value Definiton`} dimensions on cartesian plots:
@@ -139,6 +140,7 @@ export abstract class CartSeriesPlot extends SeriesPlot {
     public initialize(svg:d3Base, color?:string): void {
         super.initialize(svg, color);
         const defaults = this.defaults;
+        if (!this.dims.popup) { this.dims.popup = {hor: this.dims.y, ver: this.dims.x}[this.abscissa]; }
 
         if (!this.dims.x) { this.dims.x = (i:number)=> i; }
         if (!this.dims.y) { this.dims.y = (i:number)=> i; }
@@ -244,14 +246,18 @@ export abstract class CartSeriesPlot extends SeriesPlot {
      */
     protected d3RenderPopup(colNames:string[]):AccessFn {
         if (this.dims.popup) {
+            const format = d3format('.4r');
             const popupAccess = this.accessor(this.dims.popup, colNames, false);
-            const xAccess     = this.accessor(this.dims.x, colNames, false);
+            const abscissa = this.dimensions[this.abscissa][0];
+            const absAccess     = this.accessor(abscissa, colNames, false);
             // if dims x present, reflect its column nname; else use 'index'
-            const xName = typeof this.dims.x === 'string'? this.dims.x : 'index';
+            const absName = typeof abscissa === 'string'? abscissa : 'index';
             return (r:DataVal[], i:number) => {
+                let val = popupAccess(r,i);
+                if (typeof val === 'number') { val = format(val); }
                 return typeof this.dims.popup === 'function' ? popupAccess(r,i) :`
-                    ${this.dims.popup}${popupAccess(r,i)}<br>
-                    ${xName} = ${xAccess(r,i)}
+                    ${this.dims.popup} = ${val}<br>
+                    ${absName} = ${absAccess(r,i)}
                 `;
             };
         }

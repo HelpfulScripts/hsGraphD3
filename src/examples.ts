@@ -140,29 +140,6 @@
  *             ['f',    1,      0.2,    1.4]]
  * }
  * 
- * m.mount(root, {
- *   view:() => m(hsLayout.Layout, { rows: ['50px', '130px'], content:[
- *      m('div.hs-layout', {style:'background-color:white;'}),
- *      ...content.map(fn => m(nodeGraph(fn)))] }),
- * });
- * 
- * function nodeGraph(configure) {
- *      // create a random class and ID.
- *      const cls = 'a'+parseInt(''+Math.random()*100000);
- * 
- *      // return a mithril node
- *      return {
- *          view:() => m(`div.${cls}#${cls}`),
- *          oncreate:() => {
- *              const graphRoot = root.getElementsByClassName(cls)[0];
- *              if (graphRoot) { 
- *                  const graph = new hsGraphD3.GraphCartesian(graphRoot);
- *                  configure(graph); 
- *              }
- *          }
- *      }
- * }
- * 
  * const update = (data) => {
  *      const Joe = data.colNames.indexOf('Joe');
  *      const Mary = data.colNames.indexOf('Mary');
@@ -189,6 +166,29 @@
  *      dataTS.rows.push([(time++)/5, Math.random(), Math.random() + 1]);
  *      if (dataTS.rows.length > 10) { dataTS.rows.shift(); }
  *      // no return -> continue updating
+ * }
+ * 
+ * m.mount(root, {
+ *   view:() => m(hsLayout.Layout, { rows: ['50px', '130px'], content:[
+ *      m('div.hs-layout', {style:'background-color:white;'}),
+ *      ...content.map(fn => m(nodeGraph(fn)))] }),
+ * });
+ * 
+ * function nodeGraph(configure) {
+ *      // create a random class and ID.
+ *      const cls = 'a'+parseInt(''+Math.random()*100000);
+ * 
+ *      // return a mithril node
+ *      return {
+ *          view:() => m(`div.${cls}#${cls}`),
+ *          oncreate:() => {
+ *              const graphRoot = root.getElementsByClassName(cls)[0];
+ *              if (graphRoot) { 
+ *                  const graph = new hsGraphD3.GraphCartesian(graphRoot);
+ *                  configure(graph); 
+ *              }
+ *          }
+ *      }
  * }
  * 
  * </file>

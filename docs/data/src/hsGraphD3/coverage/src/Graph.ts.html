@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">73.28% </span>
+        <span class="strong">73.08% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>96/131</span>
+        <span class='fraction'>95/130</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">32.26% </span>
@@ -799,8 +799,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1088,7 +1088,6 @@
 <span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1288,6 +1287,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-yes">17x</span>
@@ -1444,10 +1444,10 @@ import { Canvas }               from './Canvas';
 import { CanvasDefaults }       from './Canvas';
 import { d3Base }               from './Settings';
 import { Popup }                from './Popup';
+import { PopupDefaults }        from './Popup';
 import { Title }                from './Title';
 import { TitleDefaults }        from './Title';
 import { ValueDef }             from "./SeriesPlot";
-import { PopupDefaults } from './Popup';
 &nbsp;
 const easings = {
     easeLinear: easeLinear,
@@ -1734,8 +1734,7 @@ export abstract class Graph extends GraphBase implements Components {
         <span class="missing-if-branch" title="if path not taken" >I</span>if (root['attrs'] &amp;&amp; <span class="branch-1 cbranch-no" title="branch not covered" >root['attrs'].rootID)</span> {
 <span class="cstat-no" title="statement not covered" >            root = document.getElementById(root['attrs'].rootID);</span>
         }
-        // if ((&lt;Vnode&gt;root)) { log.info('Vnode'); this.create((&lt;Vnode&gt;root).dom); }
-        <span class="missing-if-branch" title="else path not taken" >E</span>if ((&lt;HTMLElement&gt;root).baseURI) { log.info('HTML'); this.create(&lt;HTMLElement&gt;root); }
+        <span class="missing-if-branch" title="else path not taken" >E</span>if ((&lt;HTMLElement&gt;root).baseURI) { this.create(&lt;HTMLElement&gt;root); }
     }
 &nbsp;
     public create(root:HTMLElement) {
@@ -1931,6 +1930,7 @@ export abstract class Graph extends GraphBase implements Components {
      * - Axes
      * - Title
      * - Series
+     * - Popup
      */
     private createComponents(cfg:GraphCfg) {
         this.components.scales  = new Scales(cfg);

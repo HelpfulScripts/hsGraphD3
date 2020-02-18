@@ -396,7 +396,7 @@ export abstract class Graph extends GraphBase implements Components {
         if (root['attrs'] && root['attrs'].rootID) {
             root = document.getElementById(root['attrs'].rootID);
         }
-        if ((<HTMLElement>root).baseURI) { log.info('HTML'); this.create(<HTMLElement>root); }
+        if ((<HTMLElement>root).baseURI) { this.create(<HTMLElement>root); }
     }
 
     public create(root:HTMLElement) {

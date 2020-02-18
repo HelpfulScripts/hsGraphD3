@@ -240,7 +240,6 @@ export abstract class SeriesPlot {
     public initialize(svg:d3Base, color?:string): void {
         this.svg = svg.append('g').classed(this.seriesKey, true);
         if (color) { this.svg.style('color', color); }
-        if (!this.dims.popup) { this.dims.popup = this.dims.y; }
     }
 
     public preRender(data:DataSet, domains:Domains): void {}
