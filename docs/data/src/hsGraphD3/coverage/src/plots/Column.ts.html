@@ -332,8 +332,8 @@
  * 
  * // setup and plot the data:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('column', {x:'State', y:'costs', label:'State'});
- * graph.series.add('column', {x:'State', y:'volume'});
+ * graph.series.add('column', {x:'State', y:'costs', label:'State', popup:'costs'});
+ * graph.series.add('column', {x:'State', y:'volume', popup:'volume'});
  * graph.scales.defaults.dims.hor.ordinal.gap = 0.25;
  * graph.scales.defaults.dims.hor.ordinal.overlap = 0.75;
  * graph.series.defaults[0].line.rendered = true;

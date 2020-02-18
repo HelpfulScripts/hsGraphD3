@@ -16,14 +16,16 @@ import { SeriesPlot }           from "./SeriesPlot";
 import { SeriesPlotDefaults }   from "./SeriesPlot";
 import { SeriesDimensions }     from "./SeriesPlot";
 import { ValueDef }             from "./SeriesPlot";
-import { DataVal, DataRow }              from "./Graph";
+import { DataVal }              from "./Graph";
+import { DataRow }              from "./Graph";
+import { AccessFn }             from "./Graph";
 import { DataSet }              from "./Graph";
 import { Domains }              from "./Graph";
 import { CartDimensions }       from "./GraphCartesian";
 import { GraphCfg }             from "./GraphComponent";
-import { d3Base, defaultStroke }               from "./Settings";
+import { d3Base }               from "./Settings";
+import { defaultStroke }        from "./Settings";
 import { setLabel }             from "./Settings";
-import { setPopup}              from "./Settings";
 import { Label }                from "./Settings";
 import { setArea }              from "./Settings";
 import { setStroke }            from "./Settings";
@@ -55,6 +57,7 @@ export interface CartSeriesDimensions extends SeriesDimensions {
     color?: ValueDef;   
 }
 
+
 /**
  * coverts a `DataVal` to a `string`
  * @param val 
@@ -70,6 +73,8 @@ export function text(val:DataVal) {
 export abstract class CartSeriesPlot extends SeriesPlot {
     /** the main data line  */
     protected line: string;         // d3Line<number[]>;
+
+    protected popupDiv:d3Base;
 
     constructor(cfg:GraphCfg, seriesName:string, dims:CartSeriesDimensions) {
         super(cfg, seriesName, dims);
@@ -105,7 +110,6 @@ export abstract class CartSeriesPlot extends SeriesPlot {
             def.label.rendered = true; 
             def.label.color = '#000';
         }
-        if (this.dims.popup){ def.popup.rendered  = true; }
         return def;
     }
 
@@ -115,7 +119,7 @@ export abstract class CartSeriesPlot extends SeriesPlot {
      * @param v data column value definition
      * @param colNames 
      */
-    accessor(v:ValueDef, colNames:string[], useStack=true):(row:DataRow, rowIndex:number) => DataVal {
+    accessor(v:ValueDef, colNames:string[], useStack=true):AccessFn {
         if (useStack && this.dims.stacked) {
             // stackDim = is 'v' a stackable dimension?
             const stackDim = this.dimensions[this.abscissa==='hor'? 'ver' : 'hor'].indexOf(v)>=0;
@@ -162,11 +166,6 @@ export abstract class CartSeriesPlot extends SeriesPlot {
             const label = this.svg.select('.label');
             setLabel(label, defaults.label);
         }
-        if (defaults.popup.rendered) {
-            this.svg.append('g').classed('popup', true);
-            const popup = this.svg.select('.popup');
-            setPopup(popup, defaults.popup);
-        }
     }
 
     public preRender(data:DataSet, domains:Domains): void {
@@ -195,21 +194,22 @@ export abstract class CartSeriesPlot extends SeriesPlot {
         if (defaults.line.rendered)   { this.svg.call(this.d3RenderPath.bind(this), data); }
         if (defaults.area.rendered)   { this.svg.call(this.d3RenderFill.bind(this), data); }
         if (defaults.label.rendered)  { this.svg.call(this.d3RenderLabels.bind(this), data); }
-        if (defaults.popup.rendered)  { this.svg.call(this.d3RenderPopup.bind(this), data); }
     }
 
     protected d3RenderMarkers(svg:d3Base, data:DataSet) {
         const shape = this.markerShape();
         const defaults = this.defaults.marker;
+        const popup = this.cfg.graph.popup;
         if (defaults.rendered) {
-            const samples:any = svg.select('.markers').selectAll(shape)
+            const samples = svg.select('.markers').selectAll(shape)
                 .data(data.rows, d => d[0]);                    // bind to data, iterate over rows
             samples.exit().remove();                            // remove unneeded rects
-            samples.enter().append(shape)                      // add new rects
+            samples.enter().append(shape)                       // add new rects
+                .call(popup.addListener.bind(popup), this.d3RenderPopup(data.colNames))
                 .call(this.d3DrawMarker.bind(this), data.colNames)
+                .call(this.d3MarkerColors.bind(this), data.colNames, data.rows.length, defaults)
                 .merge(samples).transition(this.cfg.transition) // draw markers
-                .call(this.d3DrawMarker.bind(this), data.colNames)
-                .call(this.d3MarkerColors.bind(this), data.colNames, data.rows.length, defaults);
+                .call(this.d3DrawMarker.bind(this), data.colNames);
         }
     }
 
@@ -225,18 +225,37 @@ export abstract class CartSeriesPlot extends SeriesPlot {
 
     protected d3RenderLabels(labels:d3Base, data:DataSet):void {
         const defaults = this.defaults.label;
+        const popup = this.cfg.graph.popup;
         if (defaults.rendered) {
             const samples:any = labels.select('.label').selectAll("text")
                 .data(data.rows, (d:any[]) => d[0]);                // bind to data, iterate over rows
             samples.exit().remove();                        // remove unneeded circles
             samples.enter().append('text')                // add new circles
+                .call(popup.addListener.bind(popup), this.d3RenderPopup(data.colNames))
                 .call(this.d3DrawLabels.bind(this), data.colNames)
                 .merge(samples).transition(this.cfg.transition) // draw markers
                 .call(this.d3DrawLabels.bind(this), data.colNames);
         }
     }
 
-    protected abstract d3RenderPopup(svg:d3Base, data:DataSet):void;
+    /**
+     * formats the popup string to display
+     * @param colNames 
+     */
+    protected d3RenderPopup(colNames:string[]):AccessFn {
+        if (this.dims.popup) {
+            const popupAccess = this.accessor(this.dims.popup, colNames, false);
+            const xAccess     = this.accessor(this.dims.x, colNames, false);
+            // if dims x present, reflect its column nname; else use 'index'
+            const xName = typeof this.dims.x === 'string'? this.dims.x : 'index';
+            return (r:DataVal[], i:number) => {
+                return typeof this.dims.popup === 'function' ? popupAccess(r,i) :`
+                    ${this.dims.popup}${popupAccess(r,i)}<br>
+                    ${xName} = ${xAccess(r,i)}
+                `;
+            };
+        }
+    }
 
     protected abstract d3DrawMarker(markers:d3Base, colNames:string[]):void;
 

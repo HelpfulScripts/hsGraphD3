@@ -90,6 +90,8 @@ import { Domains }              from './Graph';
 import { scaleDefault }         from './Scale';
 import { ScalesDefaults }       from './Scale';
 import { d3Base }               from './Settings';
+
+// these imports perform self-registration:
 import "./plots/Bubble";
 import "./plots/Line";
 import "./plots/Area";
@@ -103,11 +105,9 @@ export interface CartDimensions extends GraphDimensions {
     hor:ValueDef[]; 
     ver:ValueDef[]; 
     size:ValueDef[]; 
-    // label:string[]; 
 }
 
 export class GraphCartesian extends Graph {
-
     /**
      * Called during `Graph` construction to create component defaults and 
      * scale defaults for the `GraphDimensions` used in cartedian plots.
@@ -118,8 +118,6 @@ export class GraphCartesian extends Graph {
         scalesDefaults.dims.hor  = scalesDefaults.dims.hor  || scaleDefault('linear');    // auto viewport range
         scalesDefaults.dims.ver  = scalesDefaults.dims.ver  || scaleDefault('linear');    // auto viewport range
         scalesDefaults.dims.size = scalesDefaults.dims.size || scaleDefault('linear', 5, 20);  
-        scalesDefaults.dims.label= scalesDefaults.dims.label|| scaleDefault('none'); 
-        scalesDefaults.dims.popup= scalesDefaults.dims.popup|| scaleDefault('none');  
     }
 
     /**
@@ -131,8 +129,6 @@ export class GraphCartesian extends Graph {
         this.scales.createScale('hor', this.cumulativeDomains.hor, [margins.left,  this.viewport.width-margins.right]);
         this.scales.createScale('ver', this.cumulativeDomains.ver, [this.viewport.height-margins.bottom, margins.top]);
         this.scales.createScale('size', this.cumulativeDomains.size);
-        this.scales.createScale('label', []);
-        this.scales.createScale('popup', []);
     }
 
     /**
@@ -146,11 +142,5 @@ export class GraphCartesian extends Graph {
         dom.ver  = (dom.ver  && dims.ver.aggregateOverTime)?  dom.ver  : undefined;
         dom.size = (dom.size && dims.size.aggregateOverTime)? dom.size : undefined;
         return dom;
-    }
-
-
-    //************** Lifecycle calls **************************/
-    initialize(svg:d3Base): void {
-        super.initialize(svg);
     }
 }

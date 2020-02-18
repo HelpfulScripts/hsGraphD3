@@ -59,7 +59,7 @@ import { interpolateReds }      from 'd3';
 import { schemeCategory10 }     from 'd3';
 
 
-interface Scheme { (fraction:number):string; }
+// interface Scheme { (fraction:number):string; }
 
 
 export const schemes = {

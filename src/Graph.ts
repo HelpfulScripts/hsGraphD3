@@ -105,6 +105,8 @@ import { GridsDefaults }        from './Grid';
 import { Canvas }               from './Canvas';
 import { CanvasDefaults }       from './Canvas';
 import { d3Base }               from './Settings';
+import { Popup }                from './Popup';
+import { PopupDefaults }        from './Popup';
 import { Title }                from './Title';
 import { TitleDefaults }        from './Title';
 import { ValueDef }             from "./SeriesPlot";
@@ -130,6 +132,7 @@ export interface GraphDefaults extends ComponentDefaults {
     axes:   AxesDefaults;
     series: SeriesDefaults;
     title:  TitleDefaults;
+    popup:  PopupDefaults;
 }
 
 /** default settings for the `Graph` component */
@@ -199,6 +202,11 @@ export type      OrdDomain = string[];
 export interface RenderCallback {
     (data:DataSet | DataSet[]): boolean|void;
 }
+
+export interface AccessFn {
+    (dataRow:DataVal[], rowIndex:number): DataVal;
+}
+
 
 /**
  * Function interface, describing the signature of the `update` function
@@ -286,6 +294,7 @@ interface Components {
     axes:Axes;
     series:Series;
     title:Title;
+    popup:Popup;
 }
 
 interface Vnode {
@@ -387,8 +396,7 @@ export abstract class Graph extends GraphBase implements Components {
         if (root['attrs'] && root['attrs'].rootID) {
             root = document.getElementById(root['attrs'].rootID);
         }
-        if ((<Vnode>root)) { this.create((<Vnode>root).dom); }
-        if ((<HTMLElement>root).baseURI) { this.create(<HTMLElement>root); }
+        if ((<HTMLElement>root).baseURI) { log.info('HTML'); this.create(<HTMLElement>root); }
     }
 
     public create(root:HTMLElement) {
@@ -474,6 +482,7 @@ export abstract class Graph extends GraphBase implements Components {
     get axes():Axes     { return this.components.axes; }
     get series():Series { return this.components.series; }
     get title():Title   { return this.components.title; }
+    get popup():Popup   { return this.components.popup; }
 
     /**
      * Mithril integration method. See the {@link Graph.Graph.constructor `Graph` constructor}
@@ -583,6 +592,7 @@ export abstract class Graph extends GraphBase implements Components {
      * - Axes
      * - Title
      * - Series
+     * - Popup
      */
     private createComponents(cfg:GraphCfg) {
         this.components.scales  = new Scales(cfg);
@@ -591,6 +601,7 @@ export abstract class Graph extends GraphBase implements Components {
         this.components.axes    = new Axes(cfg);
         this.components.title   = new Title(cfg);
         this.components.series  = new Series(cfg);
+        this.components.popup   = new Popup(cfg);
     }
 
     /** callback on window resize event, adjusts the viewport to the new dimensions  */

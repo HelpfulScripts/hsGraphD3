@@ -806,6 +806,9 @@ exports[`Bubble should plot series 1`] = `
         </g>
       </g>
     </g>
+    <g
+      class="popup"
+    />
   </svg>
 </div>
 `;

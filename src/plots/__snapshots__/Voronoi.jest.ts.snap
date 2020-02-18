@@ -814,6 +814,9 @@ exports[`Voronoi should plot voronoi diagram 1`] = `
         </g>
       </g>
     </g>
+    <g
+      class="popup"
+    />
   </svg>
 </div>
 `;

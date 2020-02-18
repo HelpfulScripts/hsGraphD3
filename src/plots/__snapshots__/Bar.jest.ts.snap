@@ -655,6 +655,9 @@ exports[`Bar should plot bar 1`] = `
         </g>
       </g>
     </g>
+    <g
+      class="popup"
+    />
   </svg>
 </div>
 `;

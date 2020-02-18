@@ -818,6 +818,9 @@ exports[`Line plot constants should plot horizontal line 1`] = `
         </g>
       </g>
     </g>
+    <g
+      class="popup"
+    />
   </svg>
   <svg
     class="baseSVG"
@@ -1246,6 +1249,9 @@ exports[`Line plot constants should plot horizontal line 1`] = `
         </g>
       </g>
     </g>
+    <g
+      class="popup"
+    />
   </svg>
 </div>
 `;
@@ -2068,6 +2074,9 @@ exports[`Line plot data should plot line 1`] = `
         </g>
       </g>
     </g>
+    <g
+      class="popup"
+    />
   </svg>
 </div>
 `;
@@ -2890,6 +2899,9 @@ exports[`Line plot function should plot horizontal line 1`] = `
         </g>
       </g>
     </g>
+    <g
+      class="popup"
+    />
   </svg>
   <svg
     class="baseSVG"
@@ -3318,6 +3330,9 @@ exports[`Line plot function should plot horizontal line 1`] = `
         </g>
       </g>
     </g>
+    <g
+      class="popup"
+    />
   </svg>
   <svg
     class="baseSVG"
@@ -3746,6 +3761,9 @@ exports[`Line plot function should plot horizontal line 1`] = `
         </g>
       </g>
     </g>
+    <g
+      class="popup"
+    />
   </svg>
 </div>
 `;
@@ -4568,6 +4586,9 @@ exports[`Line plot indexed should plot horizontal line 1`] = `
         </g>
       </g>
     </g>
+    <g
+      class="popup"
+    />
   </svg>
   <svg
     class="baseSVG"
@@ -4996,6 +5017,9 @@ exports[`Line plot indexed should plot horizontal line 1`] = `
         </g>
       </g>
     </g>
+    <g
+      class="popup"
+    />
   </svg>
   <svg
     class="baseSVG"
@@ -5424,6 +5448,9 @@ exports[`Line plot indexed should plot horizontal line 1`] = `
         </g>
       </g>
     </g>
+    <g
+      class="popup"
+    />
   </svg>
   <svg
     class="baseSVG"
@@ -6398,6 +6425,9 @@ exports[`Line plot indexed should plot horizontal line 1`] = `
         </g>
       </g>
     </g>
+    <g
+      class="popup"
+    />
   </svg>
 </div>
 `;

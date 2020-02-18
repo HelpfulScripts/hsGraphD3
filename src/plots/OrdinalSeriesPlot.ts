@@ -93,14 +93,6 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
     protected d3RenderFill(svg:d3Base, data:DataSet) {
     }
     
-    protected d3RenderPopup(svg:d3Base, data:DataSet):void {
-        const defaults = this.defaults.popup;
-        if (defaults.rendered) {
-            const samples:any = svg.select('.label').selectAll("text")
-            .data(data.rows, d => d[0]);                    // bind to data, iterate over rows
-        }
-    }
-
     private getParams(colNames:string[]):any[] {
         const scales = this.cfg.graph.scales;
         const scaleDef = scales.defaults.dims[this.abscissa];

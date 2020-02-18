@@ -72,9 +72,6 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
     }
 
 
-    protected d3RenderPopup(svg:d3Base, data:NumericDataSet):void {
-    }
-
     //-------------------
 
     protected d3DrawMarker(markers:d3Base, colNames:string[]) {

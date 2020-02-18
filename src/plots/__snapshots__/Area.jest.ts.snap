@@ -737,6 +737,9 @@ exports[`Area indexed should plot area 1`] = `
         </g>
       </g>
     </g>
+    <g
+      class="popup"
+    />
   </svg>
 </div>
 `;
@@ -1478,6 +1481,9 @@ exports[`Area labels should plot area 1`] = `
         </g>
       </g>
     </g>
+    <g
+      class="popup"
+    />
   </svg>
   <svg
     class="baseSVG"
@@ -2226,6 +2232,9 @@ exports[`Area labels should plot area 1`] = `
         </g>
       </g>
     </g>
+    <g
+      class="popup"
+    />
   </svg>
   <svg
     class="baseSVG"
@@ -3100,6 +3109,9 @@ exports[`Area labels should plot area 1`] = `
         </g>
       </g>
     </g>
+    <g
+      class="popup"
+    />
   </svg>
 </div>
 `;
@@ -3841,6 +3853,9 @@ exports[`Area labels should plot area 2`] = `
         </g>
       </g>
     </g>
+    <g
+      class="popup"
+    />
   </svg>
   <svg
     class="baseSVG"
@@ -4589,6 +4604,9 @@ exports[`Area labels should plot area 2`] = `
         </g>
       </g>
     </g>
+    <g
+      class="popup"
+    />
   </svg>
   <svg
     class="baseSVG"
@@ -5463,6 +5481,9 @@ exports[`Area labels should plot area 2`] = `
         </g>
       </g>
     </g>
+    <g
+      class="popup"
+    />
   </svg>
   <svg
     class="baseSVG"
@@ -6239,6 +6260,9 @@ exports[`Area labels should plot area 2`] = `
         </g>
       </g>
     </g>
+    <g
+      class="popup"
+    />
   </svg>
 </div>
 `;
@@ -6980,6 +7004,9 @@ exports[`Area volume vs time should plot area 1`] = `
         </g>
       </g>
     </g>
+    <g
+      class="popup"
+    />
   </svg>
   <svg
     class="baseSVG"
@@ -7728,6 +7755,9 @@ exports[`Area volume vs time should plot area 1`] = `
         </g>
       </g>
     </g>
+    <g
+      class="popup"
+    />
   </svg>
 </div>
 `;

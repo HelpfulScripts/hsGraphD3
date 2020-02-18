@@ -769,6 +769,9 @@ exports[`TimeSeries should plot timeSeries 1`] = `
         </g>
       </g>
     </g>
+    <g
+      class="popup"
+    />
   </svg>
 </div>
 `;

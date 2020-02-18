@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for src/GraphComponent.ts</title>
+    <title>Code coverage report for src/Popup.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -16,35 +16,35 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../index.html">hsGraphD3: All files</a> / <a href="index.html">src</a> GraphComponent.ts
+      <a href="../index.html">hsGraphD3: All files</a> / <a href="index.html">src</a> Popup.ts
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">80% </span>
+        <span class="strong">74.07% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>8/10</span>
+        <span class='fraction'>20/27</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">75% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>3/4</span>
+        <span class='fraction'>1/2</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">69.23% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>9/13</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">80% </span>
+        <span class="strong">73.08% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>8/10</span>
+        <span class='fraction'>19/26</span>
       </div>
     </div>
     <p class="quiet">
       Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
     </p>
   </div>
-  <div class='status-line high'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -162,19 +162,50 @@
 <a name='L114'></a><a href='#L114'>114</a>
 <a name='L115'></a><a href='#L115'>115</a>
 <a name='L116'></a><a href='#L116'>116</a>
-<a name='L117'></a><a href='#L117'>117</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L117'></a><a href='#L117'>117</a>
+<a name='L118'></a><a href='#L118'>118</a>
+<a name='L119'></a><a href='#L119'>119</a>
+<a name='L120'></a><a href='#L120'>120</a>
+<a name='L121'></a><a href='#L121'>121</a>
+<a name='L122'></a><a href='#L122'>122</a>
+<a name='L123'></a><a href='#L123'>123</a>
+<a name='L124'></a><a href='#L124'>124</a>
+<a name='L125'></a><a href='#L125'>125</a>
+<a name='L126'></a><a href='#L126'>126</a>
+<a name='L127'></a><a href='#L127'>127</a>
+<a name='L128'></a><a href='#L128'>128</a>
+<a name='L129'></a><a href='#L129'>129</a>
+<a name='L130'></a><a href='#L130'>130</a>
+<a name='L131'></a><a href='#L131'>131</a>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a>
+<a name='L135'></a><a href='#L135'>135</a>
+<a name='L136'></a><a href='#L136'>136</a>
+<a name='L137'></a><a href='#L137'>137</a>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a>
+<a name='L143'></a><a href='#L143'>143</a>
+<a name='L144'></a><a href='#L144'>144</a>
+<a name='L145'></a><a href='#L145'>145</a>
+<a name='L146'></a><a href='#L146'>146</a>
+<a name='L147'></a><a href='#L147'>147</a>
+<a name='L148'></a><a href='#L148'>148</a>
+<a name='L149'></a><a href='#L149'>149</a>
+<a name='L150'></a><a href='#L150'>150</a>
+<a name='L151'></a><a href='#L151'>151</a>
+<a name='L152'></a><a href='#L152'>152</a>
+<a name='L153'></a><a href='#L153'>153</a>
+<a name='L154'></a><a href='#L154'>154</a>
+<a name='L155'></a><a href='#L155'>155</a>
+<a name='L156'></a><a href='#L156'>156</a>
+<a name='L157'></a><a href='#L157'>157</a>
+<a name='L158'></a><a href='#L158'>158</a>
+<a name='L159'></a><a href='#L159'>159</a>
+<a name='L160'></a><a href='#L160'>160</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -229,28 +260,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">136x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -261,16 +278,85 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">119x</span>
-<span class="cline-any cline-yes">119x</span>
-<span class="cline-any cline-yes">102x</span>
-<span class="cline-any cline-yes">102x</span>
 <span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-yes">17x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -279,122 +365,165 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
+ * # Popup component
+ * renders popups for mouseovers in the graph.
  * 
+ * ### Example
+ * &lt;example height=200px libs={hsGraphD3:'hsGraphD3'}&gt;
+ * &lt;file name='script.js'&gt;
+ * // create data set:
+ * const data = {
+ *    colNames: ['date', 'time', 'volume', 'costs'], 
+ *    rows:[    ['1/1/14', -1,     0.2,      0.3], 
+ *              ['1/1/16', 0.2,    0.7,      0.2], 
+ *              ['9/1/16', 0.4,    0.1,      0.3],
+ *              ['5/1/17', 0.6,   -0.2,      0.1], 
+ *              ['7/1/18', 0.8,    0.3,      0.5], 
+ *              ['1/1/19', 1,      0.2,      0.4]]
+ * };
+ * 
+ * // setup and plot the data:
+ * const graph = new hsGraphD3.GraphCartesian(root);
+ * graph.series.add('bubble', {x:'time', y:'volume', r:'costs'});
+ * graph.title.text = 'My Bubble Chart';
+ * graph.render(data);
+ * 
+ * &lt;/file&gt;
+ * &lt;/example&gt;
+ * 
+ * ### Popup Default Settings:
+ * &lt;example height=300px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}&gt;
+ * &lt;file name='script.js'&gt;
+ * const log = new hsUtil.Log('');
+ * let defaults;
+ * 
+ * m.mount(root, {
+ *   view:() =&gt; m('div', {style:'background-color:#eee; font-family:Monospace'}, [
+ *      m('div', m.trust('graph.popup.defaults = ' + defaults)), 
+ *      m('div.myGraph', '')
+ *   ]),
+ *   oncreate: () =&gt; {
+ *      const svgRoot = root.getElementsByClassName('myGraph');
+ *      if (svgRoot &amp;&amp; svgRoot.length &amp;&amp; !defaults) { 
+ *          const colors = ['#800', '#080', '#008'];
+ *          defaults = log
+ *              .inspect(new hsGraphD3.GraphCartesian(svgRoot[0]).defaults.popup, null, '   ', colors)
+ *              .replace(/\n/g, '&lt;br&gt;')
+ *      }
+ *   } 
+ * });
+ * &lt;/file&gt;
+ * &lt;/example&gt;
  */
 &nbsp;
 /** */
-&nbsp;
-import { DataSet, Graph }   from './Graph';
-import { Domains }          from './Graph';
-import { LifecycleCalls }   from './Graph';
-import { d3Base }           from './Settings';
-import { UnitVp }           from './Settings';
-import { Selection }        from 'd3';
-import { BaseType }         from 'd3';
-&nbsp;
-&nbsp;
-export interface SVGLineSelection extends Selection&lt;SVGLineElement, number, BaseType, unknown&gt; {}
-export interface SVGCircleSelection extends Selection&lt;SVGCircleElement, number, BaseType, unknown&gt; {}
-&nbsp;
-&nbsp;
-type pixel = number;
-/** 
- * Configuration parameters for the render tree, passed to each `GraphComponent` during construction. 
- */
-export interface GraphCfg {
-    /** the base svg for the rendering tree */
-    baseSVG:    d3Base;
-&nbsp;
-    /** the `graph` object that this config belongs to. */
-    graph:      Graph;
-&nbsp;
-    /** dimensions of the HTML client rect containing this graph in pixel. */
-    client:     { x:pixel; y:pixel; width:pixel; height:pixel; };
-&nbsp;
-    /** top level svg viewBox dimensions in viewport units*/
-    viewPort: {
-        width:  UnitVp;
-        height: UnitVp;
-    };
-&nbsp;
-    /** Default settings for GraphComponents in this graph */
-    // defaults: DefaultsType;
-&nbsp;
-    /** 
-     * mapping of semantic scales to data columns and scaling functions. 
-     * The scaling function will be set at rendering time for each new rendering frame.
-     * @param dim *string* the semantic name of the axis to plot and scale. E.g. for 2D cartesian plots, 
-     * `dim` is `hor`, `ver`, or `size`. 
-     */    
-    // scales: { [dim:string]: Scale};
-&nbsp;
-    /**
-     * used to aggregate series into grouped stacks. 
-     */
-    stack: { [group:string]: {[abscissa:string]:number}; };
-&nbsp;
-    /** the currently used transition. A new transition will be set each time `Graph.render()` is called. */
-    transition: any;
+import { Log }                  from 'hsutil'; const log = new Log('Popup');
+import { ComponentDefaults }    from './GraphComponent'; 
+import { GraphComponent }       from './GraphComponent'; 
+import { GraphCfg }             from './GraphComponent'; 
+import { d3Base, defaultArea }               from './Settings';
+import { defaultTextStyle }     from './Settings';
+import { TextStyle }            from './Settings';
+import { Area }                 from './Settings';
+import { AccessFn }             from './Graph';
+import { select, event }        from 'd3';
+ 
+export interface PopupDefaults extends ComponentDefaults { 
+    rendered:   boolean;
+    style:      TextStyle;
+    fill:       Area;
+    offset: { xPx: number, yPx:number; };
 }
 &nbsp;
-/**
- * Generic base interface for the default setting for all component types.
- */
-export interface ComponentDefaults {
-}
+let cnt=0;
 &nbsp;
-export abstract class GraphBase implements LifecycleCalls {
-    /** the render tree configuration */
-    protected cfg: GraphCfg;
+export class Popup extends GraphComponent {
+    static type = 'popup';
 &nbsp;
-    constructor(cfg:GraphCfg) { 
-        this.cfg = cfg; 
+    constructor(cfg:GraphCfg) {
+        super(cfg, Popup.type);
     }
 &nbsp;
-    /** creates a default entry for the component type in `Defaults` */
-    abstract createDefaults(): ComponentDefaults;
+<span class="fstat-no" title="function not covered" >    public get c</span>omponentType() { <span class="cstat-no" title="statement not covered" >return Popup.type; </span>}
 &nbsp;
-    /** getter for the defaults. */
-    abstract get defaults(): ComponentDefaults;
+    public get defaults():PopupDefaults { return this.cfg.graph.defaults.popup; }
+ 
+    public createDefaults():PopupDefaults {
+        const defs:PopupDefaults = {
+            rendered:   false,
+            fill:       defaultArea('#eee', 0.8),
+            style:      defaultTextStyle(10),
+            offset:     { xPx: -50, yPx:5 }
 &nbsp;
-    //************** Lifecycle calls **************************/
+        };
+        defs.style.font.weight = 'bold';    // 100-900
+        return defs;
+    }
 &nbsp;
-    /** called once during creation of the `Graph`. m*/
-    abstract initialize(svg:d3Base): void;
-&nbsp;
-    /** Called immediately before each call to renderComponent. */
-    abstract preRender(data:DataSet | DataSet[], domains:Domains): void; 
-&nbsp;
-    /** renders the component. */
-    abstract renderComponent(data:DataSet | DataSet[]): void;
-&nbsp;
-    /** Called immediately after each call to renderComponent. */
-    abstract postRender(data:DataSet | DataSet[]): void; 
-}
-&nbsp;
-/**
- * Generic base class for all component types
- */
-export abstract class GraphComponent extends GraphBase {
-    /** the base svg element to render the component into */
-    protected svg: d3Base;
+    public addListener(items:d3Base, popupAccess:AccessFn) {
+        items
+            .on('mouseenter', this.showPopup(popupAccess).bind(this))
+            .on('mousemove', this.movePopup.bind(this))
+            .on('mouseleave', this.hidePopup.bind(this));
+    }
     
-    constructor(cfg:GraphCfg, compClass:string) { 
-        super(cfg); 
-        if (compClass) { 
-            this.cfg.baseSVG.append('g').classed(compClass, true);
-            this.svg = this.cfg.baseSVG.select(`.${compClass}`);
-        } else <span class="missing-if-branch" title="if path not taken" >I</span>if (compClass !== null) {
-<span class="cstat-no" title="statement not covered" >            console.log('no CompClass');</span>
-<span class="cstat-no" title="statement not covered" >            console.log(new Error().stack);</span>
-        }
+    private showPopup(popupAccess:AccessFn) { 
+        return <span class="fstat-no" title="function not covered" >(d</span>:number[], i:number) =&gt; {	
+<span class="cstat-no" title="statement not covered" >        this.svg</span>
+            .html(&lt;string&gt;popupAccess(d,i))	
+            .transition()		
+            .duration(100)		
+            .style('opacity', this.defaults.fill.opacity)	
+            ;		
+        };
     }
 &nbsp;
-    /** returns the component type as a string name */
-    abstract get componentType(): string;
-}
+    private <span class="fstat-no" title="function not covered" >movePopup(</span>) {
+        const o = <span class="cstat-no" title="statement not covered" >this.defaults.offset;</span>
+<span class="cstat-no" title="statement not covered" >        this.svg</span>
+            .style('left', `${event.layerX+o.xPx}px`)		
+            .style('top',  `${(event.layerY+o.yPx)}px`);
+    }					
 &nbsp;
-&nbsp;</pre></td></tr>
+    private <span class="fstat-no" title="function not covered" >hidePopup(</span>) {
+<span class="cstat-no" title="statement not covered" >        this.svg</span>
+        .transition()		
+        .duration(500)		
+        .style('opacity', 0);	
+    }
+&nbsp;
+    public initialize(svg:d3Base): void {
+        const def = this.defaults;
+        const parentID = (&lt;any&gt;this.cfg.baseSVG)._groups[0][0].parentElement.id;
+        <span class="missing-if-branch" title="if path not taken" >I</span>if (parentID) {
+<span class="cstat-no" title="statement not covered" >            this.svg = select(`#${parentID}`).append('div');</span>
+<span class="cstat-no" title="statement not covered" >            this.svg.attr('id', 'tooltip').attr('style', `</span>
+                position: absolute;
+                padding: 5px;
+                background-color: ${def.fill.color};
+                border: ${def.fill.border.width}px solid ${def.fill.border.color};
+                border-radius: 5px;
+                color: ${def.style.color};
+                font-family: ${def.style.font.family};
+                font-size: ${def.style.font.size};
+                font-style: ${def.style.font.style};
+                font-weight: ${def.style.font.weight};
+                text-align: center;
+                line-height: 1.2em;
+            `)
+            .style('opacity', 0);
+        } else {
+            this.svg = undefined;
+        }
+    } 
+ 
+    preRender(): void {} 
+&nbsp;
+    public renderComponent() {
+    }
+&nbsp;
+    postRender(): void {} 
+}</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->

@@ -130,6 +130,22 @@
  *      }, 
  * ];
  * 
+ * const data = {
+ *    colNames:['item', 'time', 'Joe', 'Mary'], 
+ *    rows:[   ['a',    0.0,    0.2,    1.3], 
+ *             ['b',    0.2,    0.7,    1.2], 
+ *             ['c',    0.4,    0.1,    1.9],
+ *             ['d',    0.6,    0.2,    1.1], 
+ *             ['e',    0.8,    0.3,    1.5], 
+ *             ['f',    1,      0.2,    1.4]]
+ * }
+ * 
+ * m.mount(root, {
+ *   view:() => m(hsLayout.Layout, { rows: ['50px', '130px'], content:[
+ *      m('div.hs-layout', {style:'background-color:white;'}),
+ *      ...content.map(fn => m(nodeGraph(fn)))] }),
+ * });
+ * 
  * function nodeGraph(configure) {
  *      // create a random class and ID.
  *      const cls = 'a'+parseInt(''+Math.random()*100000);
@@ -157,16 +173,7 @@
  *      // continue updating
  * }
  * 
- * const data = {
- *    colNames:['item', 'time', 'Joe', 'Mary'], 
- *    rows:[   ['a',    0.0,    0.2,    1.3], 
- *             ['b',    0.2,    0.7,    1.2], 
- *             ['c',    0.4,    0.1,    1.9],
- *             ['d',    0.6,    0.2,    1.1], 
- *             ['e',    0.8,    0.3,    1.5], 
- *             ['f',    1,      0.2,    1.4]]
- * }
- * 
+ * // time series structures
  * const dataTS = {
  *    colNames:['time', 'Joe', 'Mary'], 
  *    rows:[]
@@ -181,14 +188,8 @@
  * const updateTS = (data) => {
  *      dataTS.rows.push([(time++)/5, Math.random(), Math.random() + 1]);
  *      if (dataTS.rows.length > 10) { dataTS.rows.shift(); }
- *      // continue updating
+ *      // no return -> continue updating
  * }
- * 
- * m.mount(root, {
- *   view:() => m(hsLayout.Layout, { rows: ['70px', '130px'], content:[
- *      m('div.hs-layout', {style:'background-color:white;'}),
- *      ...content.map(fn => m(nodeGraph(fn)))] }),
- * });
  * 
  * </file>
  * </example>

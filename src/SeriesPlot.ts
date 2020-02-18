@@ -31,7 +31,6 @@ export interface SeriesPlotDefaults {
     line:   Line;
     marker: Marker;
     label:  Label;
-    popup:  Popup;
 }
 
 /**
@@ -163,17 +162,14 @@ export abstract class SeriesPlot {
     }
 
     /**
-     * Returns an accessor function to access the numeric value in a data row. 
+     * Returns an accessor function `(row:DataVal[], rowIndex:number) => DataVal` to access the numeric value in a data row.
      * The type of `v` determines how to access the value: 
-     * - If `v` is a function it will be valuated for the provided row index `i` to return the result.
+     * - If `v` is a function it will be valuated for the provided `row` and `rowIndex` to return the result.
      * - If `v` is a number it will be returned as constant result.
-     * - If `v` is a string and contained in `colNames` it specifies the column to index in the 
-     * - Otherwise, if `v` ends with 'u', interprets `v` to be Viewport Units and 
-     * returns `v` without aplying `scale`. This allows for absolute positioning inside the 
-     * supplied `row` to return as result.
+     * - If `v` is a string and contained in `colNames` it specifies the column to index in `row` 
      * @param v the `ValueDef` specifying the value
      * @param colNames a list of names for the coluymns in the `DataSet`
-     * @return an accessor function `(row?:DataRow, i?:number) => DataVal` 
+     * @return an accessor function `(row:DataVal[], rowIndex:number) => DataVal` 
      * that returns a `DataVal` value. The function
      * receives a `DataRow` and the index of the row in the `DataSet` as a parameter. 
      */
@@ -244,6 +240,7 @@ export abstract class SeriesPlot {
     public initialize(svg:d3Base, color?:string): void {
         this.svg = svg.append('g').classed(this.seriesKey, true);
         if (color) { this.svg.style('color', color); }
+        if (!this.dims.popup) { this.dims.popup = this.dims.y; }
     }
 
     public preRender(data:DataSet, domains:Domains): void {}
@@ -259,12 +256,6 @@ export abstract class SeriesPlot {
     /** clears the stack for this cycle before any series rendering happens. */
     public abstract clearStack(data:DataSet):void;
     
-    // /** 
-    //  * Create a stack group column if necessary and 
-    //  * initialize it to all zeros before rendering this series.
-    //  */
-    // protected abstract intializeStackGroup(data:DataSet):void;
-
     /** update stack after rendering series. */
     protected abstract updateStack(data:DataSet):void ;
 }

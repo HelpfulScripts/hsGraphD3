@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">61.27% </span>
+        <span class="strong">62.72% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>106/173</span>
+        <span class='fraction'>106/169</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">42.86% </span>
+        <span class="strong">44.44% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>24/56</span>
+        <span class='fraction'>24/54</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">64.06% </span>
+        <span class="strong">66.13% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>41/64</span>
+        <span class='fraction'>41/62</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">68.15% </span>
+        <span class="strong">70.23% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>92/135</span>
+        <span class='fraction'>92/131</span>
       </div>
     </div>
     <p class="quiet">
@@ -301,15 +301,7 @@
 <a name='L253'></a><a href='#L253'>253</a>
 <a name='L254'></a><a href='#L254'>254</a>
 <a name='L255'></a><a href='#L255'>255</a>
-<a name='L256'></a><a href='#L256'>256</a>
-<a name='L257'></a><a href='#L257'>257</a>
-<a name='L258'></a><a href='#L258'>258</a>
-<a name='L259'></a><a href='#L259'>259</a>
-<a name='L260'></a><a href='#L260'>260</a>
-<a name='L261'></a><a href='#L261'>261</a>
-<a name='L262'></a><a href='#L262'>262</a>
-<a name='L263'></a><a href='#L263'>263</a>
-<a name='L264'></a><a href='#L264'>264</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L256'></a><a href='#L256'>256</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -401,14 +393,6 @@
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -667,14 +651,6 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
     protected <span class="fstat-no" title="function not covered" >d3RenderFill(</span>svg:d3Base, data:DataSet) {
     }
     
-    protected <span class="fstat-no" title="function not covered" >d3RenderPopup(</span>svg:d3Base, data:DataSet):void {
-        const defaults = <span class="cstat-no" title="statement not covered" >this.defaults.popup;</span>
-<span class="cstat-no" title="statement not covered" >        if (defaults.rendered) {</span>
-            const samples:any = <span class="cstat-no" title="statement not covered" >svg.select('.label').selectAll("text")</span>
-            .data(data.rows, <span class="fstat-no" title="function not covered" >d </span>=&gt; <span class="cstat-no" title="statement not covered" >d[0])</span>;                    // bind to data, iterate over rows
-        }
-    }
-&nbsp;
     private getParams(colNames:string[]):any[] {
         const scales = this.cfg.graph.scales;
         const scaleDef = scales.defaults.dims[this.abscissa];

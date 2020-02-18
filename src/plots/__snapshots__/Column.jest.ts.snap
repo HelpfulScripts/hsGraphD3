@@ -803,6 +803,9 @@ exports[`Column should plot column 1`] = `
         </g>
       </g>
     </g>
+    <g
+      class="popup"
+    />
   </svg>
 </div>
 `;
