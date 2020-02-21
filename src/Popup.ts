@@ -76,6 +76,8 @@ export class Popup extends GraphComponent {
 
     constructor(cfg:GraphCfg) {
         super(cfg, Popup.type);
+        const style = this.cfg.baseSVG.append('style');
+        style.text('.popup:hover { filter: brightness(0.8);}');
     }
 
     public get componentType() { return Popup.type; }
@@ -87,7 +89,7 @@ export class Popup extends GraphComponent {
             rendered:   false,
             fill:       defaultArea('#eee', 0.8),
             style:      defaultTextStyle(10),
-            offset:     { xPx:-50, yPx:-38 }
+            offset:     { xPx:-50, yPx:-50 }
 
         };
         defs.style.font.weight = 'bold';    // 100-900
@@ -96,6 +98,7 @@ export class Popup extends GraphComponent {
 
     public addListener(items:d3Base, popupAccess:AccessFn) {
         items
+            .classed(`popup`, true)
             .on('mouseenter', this.showPopup(popupAccess).bind(this))
             .on('mousemove', this.movePopup.bind(this))
             .on('mouseleave', this.hidePopup.bind(this));
@@ -103,7 +106,7 @@ export class Popup extends GraphComponent {
     
     private showPopup(popupAccess:AccessFn) { 
         return (d:number[], i:number) => {	
-        this.svg
+            this.svg
             .html(<string>popupAccess(d,i))	
             .transition()		
             .duration(100)		
@@ -115,15 +118,15 @@ export class Popup extends GraphComponent {
     private movePopup() {
         const o = this.defaults.offset;
         this.svg
-            .style('left', `${event.layerX+o.xPx}px`)		
-            .style('top',  `${(event.layerY+o.yPx)}px`);
+            .style('left', `${event.x+o.xPx}px`)		
+            .style('top',  `${(event.y+o.yPx)}px`);
     }					
 
     private hidePopup() {
         this.svg
-        .transition()		
-        .duration(500)		
-        .style('opacity', 0);	
+            .transition()		
+            .duration(500)		
+            .style('opacity', 0);	
     }
 
     public initialize(svg:d3Base): void {
@@ -132,7 +135,7 @@ export class Popup extends GraphComponent {
         if (parentID) {
             this.svg = select(`#${parentID}`).append('div');
             this.svg.attr('id', 'tooltip').attr('style', `
-                position: absolute;
+                position: fixed;
                 padding: 5px;
                 background-color: ${def.fill.color};
                 border: ${def.fill.border.width}px solid ${def.fill.border.color};

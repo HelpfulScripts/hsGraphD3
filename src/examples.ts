@@ -185,6 +185,8 @@
  *              const graphRoot = root.getElementsByClassName(cls)[0];
  *              if (graphRoot) { 
  *                  const graph = new hsGraphD3.GraphCartesian(graphRoot);
+ *                  graph.defaults.popup.offset.xPx = -45;
+ *                  graph.defaults.popup.offset.yPx = -45;
  *                  configure(graph); 
  *              }
  *          }

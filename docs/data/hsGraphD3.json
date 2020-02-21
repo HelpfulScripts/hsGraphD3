@@ -26777,7 +26777,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Popup.ts",
-									"line": 81,
+									"line": 83,
 									"character": 28
 								}
 							],
@@ -26818,7 +26818,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Popup.ts",
-									"line": 83,
+									"line": 85,
 									"character": 23
 								}
 							],
@@ -26879,7 +26879,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Popup.ts",
-									"line": 97,
+									"line": 99,
 									"character": 22
 								}
 							]
@@ -26915,7 +26915,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Popup.ts",
-									"line": 85,
+									"line": 87,
 									"character": 25
 								}
 							],
@@ -26950,7 +26950,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Popup.ts",
-									"line": 122,
+									"line": 125,
 									"character": 21
 								}
 							]
@@ -27004,7 +27004,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Popup.ts",
-									"line": 129,
+									"line": 132,
 									"character": 21
 								}
 							],
@@ -27044,7 +27044,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Popup.ts",
-									"line": 115,
+									"line": 118,
 									"character": 21
 								}
 							]
@@ -27078,7 +27078,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Popup.ts",
-									"line": 159,
+									"line": 162,
 									"character": 14
 								}
 							],
@@ -27122,7 +27122,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Popup.ts",
-									"line": 154,
+									"line": 157,
 									"character": 13
 								}
 							],
@@ -27167,7 +27167,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Popup.ts",
-									"line": 156,
+									"line": 159,
 									"character": 26
 								}
 							],
@@ -27221,7 +27221,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Popup.ts",
-									"line": 104,
+									"line": 107,
 									"character": 21
 								}
 							]
@@ -40070,7 +40070,7 @@
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/examples.ts",
 			"comment": {
 				"shortText": "#Examples",
-				"text": "<example height=2420px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst content = [\n     graph => {\n         graph.series.add('line', {y:'Joe'});\n         graph.series.add('line', {y:'Mary'});\n         graph.title.text = `simple indexed 'line' graph`;\n         graph.render(data);\n     },\n\n     graph => {\n         graph.series.add('line', {x:'time', y:'Joe'});\n         graph.series.add('line', {x:'time', y:'Mary'});\n         graph.title.text = `simple 'line' graph`;\n         graph.render(data);\n     },\n\n     graph => {\n         graph.series.add('line', {x:'time', y:'Joe'});\n         graph.series.add('line', {x:'time', y:'Mary'});\n         graph.title.text = `'line' graph with dynamic updates`;\n         graph.render(data).update(2000, update);\n     },\n\n     graph => {\n         graph.series.add('area', {x:'time', y:'Joe'});\n         graph.series.add('area', {x:'time', y:'Mary'});\n         graph.title.text = `simple 'area' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('area', {x:'time', y:'Joe'});\n         graph.series.add('area', {x:'time', y:'Mary', y0:'Joe'});\n         graph.title.text = `difference 'area' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('area', {x:'time', y:'Joe', stacked:'myStack'});\n         graph.series.add('area', {x:'time', y:'Mary', stacked:'myStack'});\n         graph.title.text = `stacked 'area' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('area', {x:'time', y:'Joe'});\n         graph.series.add('area', {x:'time', y:'Mary', y0:()=>1});\n         graph.title.text = `raised 'area' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('area', {x:'time', y:'Joe', y0:()=>1});\n         graph.series.add('area', {x:'time', y:'Mary', y0:()=>1});\n         graph.title.text = `opposed 'area' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('line', {x:'time', y:'Joe'});\n         graph.series.add('line', {x:'time', y:'Mary'});\n         graph.series.defaults.series0.area.rendered = true;\n         graph.series.defaults.series0.marker.rendered = true;\n         graph.title.text = `'line' graph with area and markers for 1st series`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('bubble', {x:'time', y:'Joe'});\n         graph.series.add('bubble', {x:'time', y:'Mary', r:'Joe'});\n         graph.title.text = `'bubble' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('timeseries', {x:'time', y:'Joe'});\n         graph.series.add('timeseries', {x:'time', y:'Mary'});\n         graph.title.text = `'time series'`;\n         graph.render(dataTS).update(2000, updateTS);\n     },\n\n     graph => {\n         graph.series.add('column', {x:'item', y:'Joe', label:'item'});\n         graph.series.add('column', {x:'item', y:'Mary', label:i=>i});\n         graph.title.text = `'column' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('column', {x:'item', y:'Joe', stacked:'myGroup', label:i=>`<${i}>`});\n         graph.series.add('column', {x:'item', y:'Mary', stacked:'myGroup', label:5});\n         graph.title.text = `stacked 'column' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('column', {x:'item', y:'Mary', color:i=>i});\n         graph.title.text = `'default colored column' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('column', {x:'item', y:'Mary', color:'greens'});\n         graph.title.text = `'greens colored column' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('column', {x:'item', y:'Mary', color:'time'});\n         graph.title.text = `'data colored column' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('bar', {x:'Joe', y:'item'});\n         graph.series.add('bar', {x:'Mary', y:'item'});\n         graph.title.text = `'bar' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('bar', {x:'Joe', y:'item', stacked:'myGroup'});\n         graph.series.add('bar', {x:'Mary', y:'item', stacked:'myGroup'});\n         graph.title.text = `stacked 'bar' graph`;\n         graph.render(data).update(2000);\n     },\n];\n\nconst data = {\n   colNames:['item', 'time', 'Joe', 'Mary'],\n   rows:[   ['a',    0.0,    0.2,    1.3],\n            ['b',    0.2,    0.7,    1.2],\n            ['c',    0.4,    0.1,    1.9],\n            ['d',    0.6,    0.2,    1.1],\n            ['e',    0.8,    0.3,    1.5],\n            ['f',    1,      0.2,    1.4]]\n}\n\nconst update = (data) => {\n     const Joe = data.colNames.indexOf('Joe');\n     const Mary = data.colNames.indexOf('Mary');\n     data.rows.forEach(row => {\n         row[Joe]  = Math.random();\n         row[Mary] = Math.random() + 1;\n     });\n     // continue updating\n}\n\n// time series structures\nconst dataTS = {\n   colNames:['time', 'Joe', 'Mary'],\n   rows:[]\n}\n\nlet time = 0;\nwhile (time<11) {\n   val = Math.random();\n   dataTS.rows.push([(time++)/5, val, val-1]);\n}\n\nconst updateTS = (data) => {\n     dataTS.rows.push([(time++)/5, Math.random(), Math.random() + 1]);\n     if (dataTS.rows.length > 10) { dataTS.rows.shift(); }\n     // no return -> continue updating\n}\n\nm.mount(root, {\n  view:() => m(hsLayout.Layout, { rows: ['50px', '130px'], content:[\n     m('div.hs-layout', {style:'background-color:white;'}),\n     ...content.map(fn => m(nodeGraph(fn)))] }),\n});\n\nfunction nodeGraph(configure) {\n     // create a random class and ID.\n     const cls = 'a'+parseInt(''+Math.random()*100000);\n\n     // return a mithril node\n     return {\n         view:() => m(`div.${cls}#${cls}`),\n         oncreate:() => {\n             const graphRoot = root.getElementsByClassName(cls)[0];\n             if (graphRoot) {\n                 const graph = new hsGraphD3.GraphCartesian(graphRoot);\n                 configure(graph);\n             }\n         }\n     }\n}\n\n</file>\n</example>\n\n"
+				"text": "<example height=2420px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst content = [\n     graph => {\n         graph.series.add('line', {y:'Joe'});\n         graph.series.add('line', {y:'Mary'});\n         graph.title.text = `simple indexed 'line' graph`;\n         graph.render(data);\n     },\n\n     graph => {\n         graph.series.add('line', {x:'time', y:'Joe'});\n         graph.series.add('line', {x:'time', y:'Mary'});\n         graph.title.text = `simple 'line' graph`;\n         graph.render(data);\n     },\n\n     graph => {\n         graph.series.add('line', {x:'time', y:'Joe'});\n         graph.series.add('line', {x:'time', y:'Mary'});\n         graph.title.text = `'line' graph with dynamic updates`;\n         graph.render(data).update(2000, update);\n     },\n\n     graph => {\n         graph.series.add('area', {x:'time', y:'Joe'});\n         graph.series.add('area', {x:'time', y:'Mary'});\n         graph.title.text = `simple 'area' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('area', {x:'time', y:'Joe'});\n         graph.series.add('area', {x:'time', y:'Mary', y0:'Joe'});\n         graph.title.text = `difference 'area' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('area', {x:'time', y:'Joe', stacked:'myStack'});\n         graph.series.add('area', {x:'time', y:'Mary', stacked:'myStack'});\n         graph.title.text = `stacked 'area' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('area', {x:'time', y:'Joe'});\n         graph.series.add('area', {x:'time', y:'Mary', y0:()=>1});\n         graph.title.text = `raised 'area' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('area', {x:'time', y:'Joe', y0:()=>1});\n         graph.series.add('area', {x:'time', y:'Mary', y0:()=>1});\n         graph.title.text = `opposed 'area' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('line', {x:'time', y:'Joe'});\n         graph.series.add('line', {x:'time', y:'Mary'});\n         graph.series.defaults.series0.area.rendered = true;\n         graph.series.defaults.series0.marker.rendered = true;\n         graph.title.text = `'line' graph with area and markers for 1st series`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('bubble', {x:'time', y:'Joe'});\n         graph.series.add('bubble', {x:'time', y:'Mary', r:'Joe'});\n         graph.title.text = `'bubble' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('timeseries', {x:'time', y:'Joe'});\n         graph.series.add('timeseries', {x:'time', y:'Mary'});\n         graph.title.text = `'time series'`;\n         graph.render(dataTS).update(2000, updateTS);\n     },\n\n     graph => {\n         graph.series.add('column', {x:'item', y:'Joe', label:'item'});\n         graph.series.add('column', {x:'item', y:'Mary', label:i=>i});\n         graph.title.text = `'column' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('column', {x:'item', y:'Joe', stacked:'myGroup', label:i=>`<${i}>`});\n         graph.series.add('column', {x:'item', y:'Mary', stacked:'myGroup', label:5});\n         graph.title.text = `stacked 'column' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('column', {x:'item', y:'Mary', color:i=>i});\n         graph.title.text = `'default colored column' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('column', {x:'item', y:'Mary', color:'greens'});\n         graph.title.text = `'greens colored column' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('column', {x:'item', y:'Mary', color:'time'});\n         graph.title.text = `'data colored column' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('bar', {x:'Joe', y:'item'});\n         graph.series.add('bar', {x:'Mary', y:'item'});\n         graph.title.text = `'bar' graph`;\n         graph.render(data).update(2000);\n     },\n\n     graph => {\n         graph.series.add('bar', {x:'Joe', y:'item', stacked:'myGroup'});\n         graph.series.add('bar', {x:'Mary', y:'item', stacked:'myGroup'});\n         graph.title.text = `stacked 'bar' graph`;\n         graph.render(data).update(2000);\n     },\n];\n\nconst data = {\n   colNames:['item', 'time', 'Joe', 'Mary'],\n   rows:[   ['a',    0.0,    0.2,    1.3],\n            ['b',    0.2,    0.7,    1.2],\n            ['c',    0.4,    0.1,    1.9],\n            ['d',    0.6,    0.2,    1.1],\n            ['e',    0.8,    0.3,    1.5],\n            ['f',    1,      0.2,    1.4]]\n}\n\nconst update = (data) => {\n     const Joe = data.colNames.indexOf('Joe');\n     const Mary = data.colNames.indexOf('Mary');\n     data.rows.forEach(row => {\n         row[Joe]  = Math.random();\n         row[Mary] = Math.random() + 1;\n     });\n     // continue updating\n}\n\n// time series structures\nconst dataTS = {\n   colNames:['time', 'Joe', 'Mary'],\n   rows:[]\n}\n\nlet time = 0;\nwhile (time<11) {\n   val = Math.random();\n   dataTS.rows.push([(time++)/5, val, val-1]);\n}\n\nconst updateTS = (data) => {\n     dataTS.rows.push([(time++)/5, Math.random(), Math.random() + 1]);\n     if (dataTS.rows.length > 10) { dataTS.rows.shift(); }\n     // no return -> continue updating\n}\n\nm.mount(root, {\n  view:() => m(hsLayout.Layout, { rows: ['50px', '130px'], content:[\n     m('div.hs-layout', {style:'background-color:white;'}),\n     ...content.map(fn => m(nodeGraph(fn)))] }),\n});\n\nfunction nodeGraph(configure) {\n     // create a random class and ID.\n     const cls = 'a'+parseInt(''+Math.random()*100000);\n\n     // return a mithril node\n     return {\n         view:() => m(`div.${cls}#${cls}`),\n         oncreate:() => {\n             const graphRoot = root.getElementsByClassName(cls)[0];\n             if (graphRoot) {\n                 const graph = new hsGraphD3.GraphCartesian(graphRoot);\n                 graph.defaults.popup.offset.xPx = -45;\n                 graph.defaults.popup.offset.yPx = -45;\n                 configure(graph);\n             }\n         }\n     }\n}\n\n</file>\n</example>\n\n"
 			},
 			"sources": [
 				{
