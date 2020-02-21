@@ -772,6 +772,9 @@ exports[`TimeSeries should plot timeSeries 1`] = `
     <g
       class="popup"
     />
+    <style>
+      .popup:hover { filter: brightness(0.8);}
+    </style>
   </svg>
 </div>
 `;

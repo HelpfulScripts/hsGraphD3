@@ -796,21 +796,25 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           stroke-width="1"
         >
           <circle
+            class="popup"
             cx="20"
             cy="345"
             r="10"
           />
           <circle
+            class="popup"
             cx="156"
             cy="670"
             r="15"
           />
           <circle
+            class="popup"
             cx="472"
             cy="20"
             r="20"
           />
           <circle
+            class="popup"
             cx="980"
             cy="395"
             r="5"
@@ -821,6 +825,9 @@ exports[`Line plot constants should plot horizontal line 1`] = `
     <g
       class="popup"
     />
+    <style>
+      .popup:hover { filter: brightness(0.8);}
+    </style>
   </svg>
   <svg
     class="baseSVG"
@@ -1252,6 +1259,9 @@ exports[`Line plot constants should plot horizontal line 1`] = `
     <g
       class="popup"
     />
+    <style>
+      .popup:hover { filter: brightness(0.8);}
+    </style>
   </svg>
 </div>
 `;
@@ -2052,21 +2062,25 @@ exports[`Line plot data should plot line 1`] = `
           stroke-width="1"
         >
           <circle
+            class="popup"
             cx="20"
             cy="345"
             r="10"
           />
           <circle
+            class="popup"
             cx="156"
             cy="670"
             r="15"
           />
           <circle
+            class="popup"
             cx="472"
             cy="20"
             r="20"
           />
           <circle
+            class="popup"
             cx="980"
             cy="395"
             r="5"
@@ -2077,6 +2091,9 @@ exports[`Line plot data should plot line 1`] = `
     <g
       class="popup"
     />
+    <style>
+      .popup:hover { filter: brightness(0.8);}
+    </style>
   </svg>
 </div>
 `;
@@ -2877,21 +2894,25 @@ exports[`Line plot function should plot horizontal line 1`] = `
           stroke-width="1"
         >
           <circle
+            class="popup"
             cx="20"
             cy="345"
             r="10"
           />
           <circle
+            class="popup"
             cx="156"
             cy="670"
             r="15"
           />
           <circle
+            class="popup"
             cx="472"
             cy="20"
             r="20"
           />
           <circle
+            class="popup"
             cx="980"
             cy="395"
             r="5"
@@ -2902,6 +2923,9 @@ exports[`Line plot function should plot horizontal line 1`] = `
     <g
       class="popup"
     />
+    <style>
+      .popup:hover { filter: brightness(0.8);}
+    </style>
   </svg>
   <svg
     class="baseSVG"
@@ -3333,6 +3357,9 @@ exports[`Line plot function should plot horizontal line 1`] = `
     <g
       class="popup"
     />
+    <style>
+      .popup:hover { filter: brightness(0.8);}
+    </style>
   </svg>
   <svg
     class="baseSVG"
@@ -3764,6 +3791,9 @@ exports[`Line plot function should plot horizontal line 1`] = `
     <g
       class="popup"
     />
+    <style>
+      .popup:hover { filter: brightness(0.8);}
+    </style>
   </svg>
 </div>
 `;
@@ -4564,21 +4594,25 @@ exports[`Line plot indexed should plot horizontal line 1`] = `
           stroke-width="1"
         >
           <circle
+            class="popup"
             cx="20"
             cy="345"
             r="10"
           />
           <circle
+            class="popup"
             cx="156"
             cy="670"
             r="15"
           />
           <circle
+            class="popup"
             cx="472"
             cy="20"
             r="20"
           />
           <circle
+            class="popup"
             cx="980"
             cy="395"
             r="5"
@@ -4589,6 +4623,9 @@ exports[`Line plot indexed should plot horizontal line 1`] = `
     <g
       class="popup"
     />
+    <style>
+      .popup:hover { filter: brightness(0.8);}
+    </style>
   </svg>
   <svg
     class="baseSVG"
@@ -5020,6 +5057,9 @@ exports[`Line plot indexed should plot horizontal line 1`] = `
     <g
       class="popup"
     />
+    <style>
+      .popup:hover { filter: brightness(0.8);}
+    </style>
   </svg>
   <svg
     class="baseSVG"
@@ -5451,6 +5491,9 @@ exports[`Line plot indexed should plot horizontal line 1`] = `
     <g
       class="popup"
     />
+    <style>
+      .popup:hover { filter: brightness(0.8);}
+    </style>
   </svg>
   <svg
     class="baseSVG"
@@ -6428,6 +6471,9 @@ exports[`Line plot indexed should plot horizontal line 1`] = `
     <g
       class="popup"
     />
+    <style>
+      .popup:hover { filter: brightness(0.8);}
+    </style>
   </svg>
 </div>
 `;
