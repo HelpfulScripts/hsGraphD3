@@ -14,14 +14,18 @@
  * 
  * ### Graph Management Phases
  * Graph Management is dividied into the following phases:
- * 1. **Graph creation**: `const graph = new xxxGraph(root);`
+ * 1. **Graph creation**: <br>
+ * `const graph = new xxxGraph(root);`
  *     - creates the graph's {@link GraphComponent components} and their 
  *       {@link Graph.Graph.createComponents sequence of rendering} in the DOM
  *     - sets the factory {@link Settings default settings} for all components
  * 2. **Graph configuration**:
- *     - adding series: `graph.series.add(<type>, {y:'State', x:'costs'});`
- *     - configuring defaults: e.g., `graph.grids.defaults.hor.major.rendered = false;`
- * 3. **Graph rendering**: `graph.render(<data>)`
+ *     - adding series: <br>
+ *      `graph.series.add(<type>, {y:'State', x:'costs'});`
+ *     - configuring defaults: e.g., <br>
+ *      `graph.grids.defaults.hor.major.rendered = false;`
+ * 3. **Graph rendering**: <br>
+ * `graph.render(<data>)`
  *     - sets the graph-wide transition timing and easing
  *     - starts a {@link Graph.LifecycleCalls render lifecycle} by calling each of the lifecycle methods on all components:
  *         - Once, following graph creation, {@Link Graph.LifecycleCalls.initialize initializes} the components
@@ -196,7 +200,7 @@ export type      OrdDomain = string[];
 
 /**
  * Function interface, describing the signature of the call back function 
- * in {@link RenderChain `RenderChain`}.
+ * in {@link Graph.RenderChain `RenderChain`}.
  * If the function returns `false`, no further callbacks will be initiated
  */
 export interface RenderCallback {
@@ -209,21 +213,24 @@ export interface AccessFn {
 
 
 /**
- * Function interface, describing the signature of the `update` function
- * @param duration optional period in ms to call `sample` function. the `Graph's` tree-wide transition
- * will be timed to end at the specified duration, upon which the `sample` callback will be called.
- * @param callback callback function that allow periodic manipulation of the `data` set. 
- * New callbacks will be scheduled at `duration` intervals as long as the callback returns `true`. 
- * Otherwise the callbacks will be stopped. Independent of the return value, 
- * a render cycle will automatically be triggered after `update` returns.
- * See {@link TimeSeries TimeSeries} for an example.
+ * Function interface, describing the signature of the `update` function.
+ * See {@link plots.TimeSeries TimeSeries} for an example.
  */
 export interface Update {
+    /**
+     * function definition:
+     * @param duration optional period in ms to call `sample` function. the `Graph's` tree-wide transition
+     * will be timed to end at the specified duration, upon which the `sample` callback will be called.
+     * @param callback callback function that allow periodic manipulation of the `data` set. 
+     * New callbacks will be scheduled at `duration` intervals as long as the callback returns `true`. 
+     * Otherwise the callbacks will be stopped. Independent of the return value, 
+     * a render cycle will automatically be triggered after `update` returns.
+     */
     (duration:number, callback:RenderCallback): void;
 }
 
 /**
- * This object is returned by a call to {@link Graph.render `Graph.render`}, providing an `update` function
+ * This object is returned by a call to {@link Graph.Graph.render `Graph.render`}, providing an `update` function
  * to call in order to render dynamic data updates.
  */
 export interface RenderChain {
@@ -237,9 +244,9 @@ export interface RenderChain {
      * New callbacks will be scheduled at `duration` intervals as long as the callback returns `true`. 
      * Otherwise the callbacks will be stopped. Independent of the return value, 
      * a render cycle will automatically be triggered after `update` returns.
-     * See {@link TimeSeries TimeSeries} for an example.
+     * See {@link plots.TimeSeries TimeSeries} for an example.
      */
-    update: (duration:number, callback:RenderCallback) => void;
+    update: Update;
 }
 
 /**
@@ -297,7 +304,7 @@ interface Components {
     popup:Popup;
 }
 
-interface Vnode {
+export interface Vnode {
     dom: HTMLElement;
     attrs: {
         define: (graph:Graph)=>void;
@@ -316,6 +323,8 @@ function initializeCfg():GraphCfg {
         graph: undefined,
         client:   { x:0, y:0, width: 0, height: 0 },
         viewPort: {
+            orgX: 0,
+            orgY: 0,
             width: vpWidth,
             height: vpWidth * 0.7   // initial height: 70% of width
         },
@@ -352,7 +361,7 @@ export abstract class Graph extends GraphBase implements Components {
     protected root:any;
 
     /** the list of components to render */
-    private components = <Components>{};
+    protected components = <Components>{};
 
     /** tracks whether components have been initialized. */
     private initialized = false;
@@ -365,12 +374,18 @@ export abstract class Graph extends GraphBase implements Components {
     
     //------------ public methods  -------------------
     /**
-     * `D3` constructor. 
+     * `D3` constructor, call
+     * ```
+     * const graph = new GraphCartesian(svgBase);
+     * graph.series.add(...);
+     * graph.grids.defaults....;
+     * graph.render(data)
+     * ```
      * @param root the HTML element to which to attach the graph.
      */
     constructor(root:HTMLElement);
     /**
-     * `Mithril` constructor. To use `Graph` with Mithriljs, call
+     * `Mithril` constructor. To use `Graph` with MithrilJS, call
      * ```
      * m(GraphCartesian, {
      *    rootID: string, the ID (without the #) of the root element to which the graph will be attached. 
@@ -394,9 +409,11 @@ export abstract class Graph extends GraphBase implements Components {
         super(initializeCfg());
         this.cfg.graph = this;
         if (root['attrs'] && root['attrs'].rootID) {
-            root = document.getElementById(root['attrs'].rootID);
+            const rootID = root['attrs'].rootID;
+            root = document.getElementById(rootID);
+            if (!root) { log.warn(`did not find element with ID ${rootID}`); }
         }
-        if ((<HTMLElement>root).baseURI) { this.create(<HTMLElement>root); }
+        if (root && (<HTMLElement>root).baseURI) { this.create(<HTMLElement>root); }
     }
 
     public create(root:HTMLElement) {
@@ -489,7 +506,7 @@ export abstract class Graph extends GraphBase implements Components {
      * for usage pattern.
      */
     public oninit(node:Vnode) {
-        node.attrs.define(this);
+        if (this.series) { node.attrs.define(this); }
     }
 
     public view(node:Vnode) {
@@ -509,24 +526,24 @@ export abstract class Graph extends GraphBase implements Components {
      * and initializes all known `GraphComponts`.
      */
     initialize(svg:d3Base): void {
-        Object.keys(this.components).forEach(comp => this.components[comp].initialize(svg));
+        Object.keys(this.components).forEach(comp => this.components[comp]?this.components[comp].initialize(svg):'');
     } 
 
     /** Called immediately before each call to renderComponent. */
     preRender(data:DataSet | DataSet[], domains:Domains): void {
         this.series.expandDomains(data, domains);
         this.setScales();
-        Object.keys(this.components).forEach(comp => this.components[comp].preRender(data, domains));
+        Object.keys(this.components).forEach(comp => this.components[comp]?this.components[comp].preRender(data, domains):'');
     } 
 
     /** renders the component. */
     renderComponent(data:DataSet | DataSet[]): void {
-        Object.keys(this.components).forEach(comp => this.components[comp].renderComponent(data));
+        Object.keys(this.components).forEach(comp => this.components[comp]?this.components[comp].renderComponent(data):'');
     } 
 
     /** renders the component. */
     postRender(data:DataSet | DataSet[]): void {
-        Object.keys(this.components).forEach(comp => this.components[comp].postRender(data));
+        Object.keys(this.components).forEach(comp => this.components[comp]?this.components[comp].postRender(data):'');
     } 
 
     renderLifecycle(data:DataSet | DataSet[]) {
@@ -579,7 +596,7 @@ export abstract class Graph extends GraphBase implements Components {
     protected makeDefaults() {
         this.graphDefaults = <GraphDefaults>{};
         this.graphDefaults[this.componentType] = this.createDefaults();
-        Object.keys(this.components).forEach(comp => this.graphDefaults[comp] = this.components[comp].createDefaults());
+        Object.keys(this.components).forEach(comp => this.graphDefaults[comp] = this.components[comp]?this.components[comp].createDefaults(): {});
     }
 
     protected abstract prepareDomains(scalesDefaults:ScalesDefaults):Domains;
@@ -594,7 +611,7 @@ export abstract class Graph extends GraphBase implements Components {
      * - Series
      * - Popup
      */
-    private createComponents(cfg:GraphCfg) {
+    protected createComponents(cfg:GraphCfg) {
         this.components.scales  = new Scales(cfg);
         this.components.canvas  = new Canvas(cfg);
         this.components.grids   = new Grids(cfg);
@@ -628,17 +645,17 @@ export abstract class Graph extends GraphBase implements Components {
      */
     private createBaseSVG(cfg: GraphCfg):d3Base {
         return d3Select(this.root).append('svg')
-            .classed('baseSVG', true)
-            .attr('height', '100%')
-            .attr('width', '100%')
-            .attr('preserveAspectRatio', 'xMinYMin meet');
+        .classed('baseSVG', true)
+        .attr('height', '100%')
+        .attr('width', '100%')
+        .attr('preserveAspectRatio', 'xMinYMin meet');
     }
 
     /**
      * sets the graph's viewBox, typically after a window resize.
      * @param cfg 
      */
-    private updateBaseSVG(cfg: GraphCfg) {
+    protected updateBaseSVG(cfg: GraphCfg) {
         cfg.baseSVG.attr('viewBox', `0 0 ${cfg.viewPort.width} ${cfg.viewPort.height}`);
     }
 }

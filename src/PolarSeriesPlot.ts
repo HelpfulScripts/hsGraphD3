@@ -1,7 +1,7 @@
 /**
- * # CartSeriesPlot
+ * # PolarSeriesPlot
  * 
- * Abstract base class for all series plot types on cartesian coordinates.
+ * Abstract base class for all series plot types on polar coordinates.
  * To create a series plot, add the desired plot type to the graph:
  * ```
  * graph.series.add(<type>, ...<data-columns>);
@@ -11,46 +11,52 @@
 
 /** */
 
-import { Log }                  from 'hsutil'; const log = new Log('CartSeriesPlot');
+import { Log }                  from 'hsutil'; const log = new Log('PolarSeriesPlot');
 import { SeriesPlot }           from "./SeriesPlot";
 import { SeriesPlotDefaults }   from "./SeriesPlot";
 import { SeriesDimensions }     from "./SeriesPlot";
 import { ValueDef }             from "./SeriesPlot";
+import { DataVal }              from "./Graph";
 import { DataRow }              from "./Graph";
 import { AccessFn }             from "./Graph";
 import { DataSet }              from "./Graph";
 import { Domains }              from "./Graph";
-import { CartDimensions }       from "./GraphCartesian";
 import { GraphCfg }             from "./GraphComponent";
-import { d3Base }               from "./Settings";
+import { d3Base, Marker, Radians }               from "./Settings";
 import { defaultStroke }        from "./Settings";
 import { setLabel }             from "./Settings";
 import { Label }                from "./Settings";
 import { setArea }              from "./Settings";
 import { setStroke }            from "./Settings";
 import { setFill }              from "./Settings";
+import { format as d3format}    from 'd3';
+import { PolarDimensions }      from './GraphPolar';
 
 /**
- * valid {@link SeriesPlot.ValueDef `Value Definiton`} dimensions on cartesian plots:
- * - `x`?:  optional values for the x-axis. If omitted, the index of y-values will be used as x-values
- * - `y`:   values for the y-axis.
- * - `y0`?: optional values for lower fill border on the y-axis; defaults to `0`
- * - `r`?:  optional values for the size of markers. If provided, marker rendering is enabled.
+ * valid {@link SeriesPlot.ValueDef `Value Definiton`} dimensions on polar plots:
+ * - `phi`?:  optional values for the angular axis. 
+ *    If omitted, the index of radial values will be used as  angular values
+ * - `r`:   values for the radial axis.
+ * - `r0`?: optional values for lower fill border on the  radial axis; defaults to `0`
  * - `label`?: optional values for item labels
  * - `popup`?: optional values to show in mouse-over popups.
  */
-export interface CartSeriesDimensions extends SeriesDimensions {
+export interface PolarSeriesDimensions extends SeriesDimensions {
     /** 
-     * optional, name of x-axis data column, or a function returning a value.
-     * If omitted, the index of y-values will be used as x-values.
+     * optional, name of angular axis data column, or a function returning a value.
+     * If omitted, the index of  radial values will be used as angular values.
      */
-    x?:   ValueDef;    
-    /** name of y-axis data column, or a function returning a value */ 
-    y:   ValueDef;    
-    /** optional, name of y-axis data column for lower fill border, or a function returning a value */
-    y0?: ValueDef;  
-    /** optional, name of marker size data column, or a function returning a value */
-    r?:  ValueDef;   
+    phi?:   ValueDef;    
+    /** name of radial axis data column, or a function returning a value */
+    r:   ValueDef;    
+    /** optional, name of  radial axis data column for lower fill border, or a function returning a value */
+    r0?:   ValueDef;    
+}
+
+export interface PolarPlotDefaults extends SeriesPlotDefaults {
+    cornerRadius: number;
+    padAngle: Radians;
+
 }
 
 
@@ -58,27 +64,26 @@ export interface CartSeriesDimensions extends SeriesDimensions {
 /**
  * Abstract base class for all cartesian plots.
  */
-export abstract class CartSeriesPlot extends SeriesPlot {
+export abstract class PolarSeriesPlot extends SeriesPlot {
     /** the main data line  */
     protected line: string;         // d3Line<number[]>;
 
     protected popupDiv:d3Base;
 
-    constructor(cfg:GraphCfg, seriesName:string, dims:CartSeriesDimensions) {
+    constructor(cfg:GraphCfg, seriesName:string, dims:PolarSeriesDimensions) {
         super(cfg, seriesName, dims);
     }
 
-    protected get dims(): CartSeriesDimensions { return <CartSeriesDimensions>super.dims; }
+    protected get dims(): PolarSeriesDimensions { return <PolarSeriesDimensions>super.dims; }
 
     /** return the GraphDimension of the independent axis */
-    protected abscissa:'hor'|'ver' = 'hor';
+    protected abscissa:'ang'|'rad' = 'ang';
 
     /** return the list of scalable Series dimesions for each Graph Dimension */
-    get dimensions():CartDimensions { 
+    get dimensions():PolarDimensions { 
         return {
-            hor: [this.dims.x],
-            ver: [this.dims.y, this.dims.y0],
-            size:[this.dims.r],
+            ang: [this.dims.phi],
+            rad: [this.dims.r, this.dims.r0]
         };
     }
 
@@ -87,20 +92,20 @@ export abstract class CartSeriesPlot extends SeriesPlot {
      * */
     public getDefaults(): SeriesPlotDefaults {
         const def = super.getDefaults();
-        if (this.dims.r)    { 
-            def.marker.rendered = true; 
-            def.marker.stroke = defaultStroke(1);
-        } else {
-            def.marker.stroke = defaultStroke(0);
-        }
-        if (this.dims.y0)   { 
-            def.area.rendered = true; 
-        }
+        def.marker.rendered = true; 
+        def.marker.stroke = defaultStroke(1);
         if (this.dims.label){ 
             def.label.rendered = true; 
             def.label.color = '#000';
         }
         return def;
+    }
+
+    public expandDomains(dataSet:DataSet, domains:Domains) {
+        super.expandDomains(dataSet, domains);
+        // in addition: ensure that min radius is 0.
+        const type = this.cfg.graph.defaults.scales.dims['rad'].type;
+        if (type === 'linear') { domains['rad'][0] = 0; }
     }
 
     /**
@@ -112,8 +117,8 @@ export abstract class CartSeriesPlot extends SeriesPlot {
     accessor(v:ValueDef, colNames:string[], useStack=true):AccessFn {
         if (useStack && this.dims.stacked) {
             // stackDim = is 'v' a stackable dimension?
-            const stackDim = this.dimensions[this.abscissa==='hor'? 'ver' : 'hor'].indexOf(v)>=0;
-            const abscissaCol = {hor:this.dims.x, ver:this.dims.y}[this.abscissa];
+            const stackDim = this.dimensions[this.abscissa==='ang'? 'rad' : 'ang'].indexOf(v)>=0;
+            const abscissaCol = {ang:this.dims.phi, rad:this.dims.r}[this.abscissa];
             if (stackDim && typeof abscissaCol === 'string') {
                 const stackIndex = colNames.indexOf(this.dims.stacked);
                 const fn = super.accessor(v, colNames);
@@ -126,17 +131,20 @@ export abstract class CartSeriesPlot extends SeriesPlot {
 
     //---------- lifecylce methods --------------------
 
-    public initialize(plot:d3Base, color?:string): void {
-        super.initialize(plot, color);
+    public initialize(svg:d3Base, color?:string): void {
+        super.initialize(svg, color);
         const defaults = this.defaults;
-        if (!this.dims.popup) { this.dims.popup = {hor: this.dims.y, ver: this.dims.x}[this.abscissa]; }
 
         // if abscissa data is missing, use implicit index as data
-        if (this.abscissa === 'hor') {
-            if (!this.dims.x) { this.dims.x = (i:number)=> i; }
+        const r = Math.min(this.cfg.viewPort.width, this.cfg.viewPort.height) / 2;
+        if (!this.dims.r0)  { this.dims.r0= ()=> 0; }
+        if (this.abscissa === 'ang') {
+            if (!this.dims.phi) { this.dims.phi = 1; }
+            if (!this.dims.r)   { this.dims.r   = ()=> r; }
         } else {
-            if (!this.dims.y) { this.dims.y = (i:number)=> i; }
+            if (!this.dims.r) { this.dims.r = 1; }
         }
+        if (!this.dims.popup) { this.dims.popup = {ang: this.dims.r, rad: this.dims.phi}[this.abscissa]; }
 
         if (defaults.area.rendered) {
             this.svg.append('g').classed('area', true).append('path');
@@ -187,54 +195,50 @@ export abstract class CartSeriesPlot extends SeriesPlot {
         const defaults = this.defaults;
         if (defaults.marker.rendered) { this.svg.call(this.d3RenderMarkers.bind(this), data); }
         if (defaults.line.rendered)   { this.svg.call(this.d3RenderLine.bind(this), data); }
-        if (defaults.area.rendered)   { this.svg.call(this.d3RenderFill.bind(this), data); }
+        // if (defaults.area.rendered)   { this.svg.call(this.d3RenderFill.bind(this), data); }
         if (defaults.label.rendered)  { this.svg.call(this.d3RenderLabels.bind(this), data); }
     }
 
-    protected d3RenderMarkers(plot:d3Base, data:DataSet) {
-        const shape = this.markerShape();
-        const defaults = this.defaults;
-        const popup = this.cfg.graph.popup;
-        if (defaults.marker.rendered) {
-            plot.select('.markers').selectAll(shape)
-                .data(data.rows, d => d[0]) // bind to first DataVal, rather than to DataRow, iterate over rows
-                .join(shape)              
-                .call(popup.addListener.bind(popup), this.d3RenderPopup(data))
-                .transition(this.cfg.transition)
-                .call(this.d3DrawMarker.bind(this), data, defaults)
-                .call(this.d3MarkerColors.bind(this), data, defaults);
-        }
-    }
+    protected abstract d3RenderMarkers(svg:d3Base, data:DataSet):void;
 
     protected abstract markerShape():string;
 
-    protected d3RenderLine(plot:d3Base, data:DataSet) {
-        this.line = this.line || this.getPath(data.rows, data.colNames, this.dims.y);
-        return this.getPathElement(plot, '.line').attr('d', (d:any) => this.line);
-    }
+    protected abstract d3RenderLine(svg:d3Base, data:DataSet):void;
 
+    // protected abstract d3RenderFill(svg:d3Base, data:DataSet):void;
 
-    protected abstract d3RenderFill(plot:d3Base, data:DataSet):void;
+    protected abstract d3RenderLabels(labels:d3Base, data:DataSet):void;
 
-    protected d3RenderLabels(plot:d3Base, data:DataSet):void {
-        const defaults = this.defaults;
-        const popup = this.cfg.graph.popup;
-        if (defaults.label.rendered) {
-            plot.select('.label').selectAll("text")
-                .data(data.rows, (d:any[]) => d[0]) // bind to first DataVal, rather than to DataRow, iterate over rows
-                .join('text')                       
-                .call(popup.addListener.bind(popup), this.d3RenderPopup(data))
-                .transition(this.cfg.transition) 
-                .call(this.d3DrawLabels.bind(this), data, defaults);
-        }
-    }
+    // /**
+    //  * formats the popup string to display
+    //  * @param colNames 
+    //  */
+    // protected d3RenderPopup(data:DataSet):AccessFn {
+    //     if (this.dims.popup) {
+    //         const format = d3format('.4r');
+    //         const popupAccess = this.accessor(this.dims.popup, data.colNames, false);
+    //         const abscissa = this.dimensions[this.abscissa][0];
+    //         const absAccess = this.accessor(abscissa, data.colNames, false);
+    //         // if dims x present, reflect its column nname; else use 'index'
+    //         const absName = typeof abscissa === 'string'? abscissa : 'index';
+    //         return (r:any, i:number) => {
+    //             let val = popupAccess(r.data,i);
+    //             if (typeof val === 'number') { val = format(val); }
+    //             return typeof this.dims.popup === 'function' ? this.dims.popup :
+    //             `
+    //                 ${this.dims.popup} = ${val}<br>
+    //                 ${absName} = ${absAccess(r.data,i)}
+    //             `;
+    //         };
+    //     }
+    // }
 
-    protected abstract d3DrawMarker(markers:d3Base, data:DataSet, defaults:SeriesPlotDefaults):void;
+    protected abstract d3DrawMarker(markers:d3Base, data:DataSet, defaults:PolarPlotDefaults):void;
 
-    protected abstract d3DrawLabels(labels:d3Base, data:DataSet, defaults:SeriesPlotDefaults):void;
+    protected abstract d3DrawLabels(labels:d3Base, data:DataSet, defaults:PolarPlotDefaults):void;
 
-    protected getPathElement(plot:d3Base, cls:string):any {
-        return plot.select(cls).selectAll('path').transition(this.cfg.transition);
+    protected getPathElement(svg:d3Base, cls:string):any {
+        return svg.select(cls).selectAll('path').transition(this.cfg.transition);
     }
 
     protected abstract getPath(rows:DataRow[], colNames:string[], yDef?: ValueDef, useStack?:boolean):string;
@@ -266,9 +270,9 @@ export abstract class CartSeriesPlot extends SeriesPlot {
         if (group) {
             const stack = this.cfg.stack[group];
             const stackCol = data.colNames.indexOf(group);
-            const abscissaCol = <string>{hor:this.dims.x, ver:this.dims.y}[this.abscissa];
+            const abscissaCol = <string>{hor:this.dims.phi, ver:this.dims.r}[this.abscissa];
             const abscissaIndex = data.colNames.indexOf(abscissaCol);
-            const ordinateCol = <string>{hor:this.dims.y, ver:this.dims.x}[this.abscissa];
+            const ordinateCol = <string>{hor:this.dims.r, ver:this.dims.phi}[this.abscissa];
             const ordinateIndex = data.colNames.indexOf(ordinateCol);
             data.rows.forEach(row => {
                 const abscissaKey = ''+row[abscissaIndex];

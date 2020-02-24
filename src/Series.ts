@@ -39,14 +39,18 @@ import { GraphComponent }       from './GraphComponent';
 import { ComponentDefaults }    from './GraphComponent'; 
 import { GraphCfg }             from './GraphComponent'; 
 import { SeriesPlot }           from './SeriesPlot';
+import { SeriesPlotDefaults }   from './SeriesPlot';
 import { SeriesDimensions }     from './SeriesPlot';
 import { schemeDark2 }          from 'd3';
+import { PolarPlotDefaults }    from './PolarSeriesPlot';
 
 type PlotFactory = (cfg:GraphCfg, seriesName:string, dims:SeriesDimensions) => SeriesPlot;
 
 export const defaultColors = schemeDark2;
 
 export interface SeriesDefaults extends ComponentDefaults {
+    [seriesName: string]: SeriesPlotDefaults | PolarPlotDefaults;
+    [seriesIndex: number]: SeriesPlotDefaults | PolarPlotDefaults;
 }
 
 

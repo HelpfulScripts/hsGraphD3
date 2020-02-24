@@ -1,0 +1,218 @@
+
+                <html><style>body { overflow:hidden;}
+            h1 { font-family: Arial, sans-serif; font-size: 24px; color: #44a; }
+            p { margin:0; padding:0; }
+            br  { margin:0; padding:0; }
+            .line { 
+                white-space: nowrap;
+                height:16px; 
+            }
+            .line>span { 
+                display:inline-block; background-color:#eef; height:100%; 
+                margin: 0 5px 0 0; padding-right: 5px; color:#999;   
+            }
+            comment {color: #080;} module {color: #804;} 
+            quote {color: #008;} comment>quote {color: #080;}
+            .listing { margin: 10px; border: 1px solid #ccc; 
+                    font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+                    font-size: 14px;  
+                    overflow:scroll;
+                    height:90%;
+            }
+            code { padding: 5px 0;}</style></html><body>
+                <h1>src/plots/Pie.ts</h1>
+                <div class='listing'><code><p id=1 class="line"><span>&nbsp;&nbsp;&nbsp;1</span><comment>/**</comment></p>
+<p id=2 class="line"><span>&nbsp;&nbsp;&nbsp;2</span><comment>&nbsp;*&nbsp;#&nbsp;Pie&nbsp;Plot</comment></p>
+<p id=3 class="line"><span>&nbsp;&nbsp;&nbsp;3</span><comment>&nbsp;*&nbsp;</comment></p>
+<p id=4 class="line"><span>&nbsp;&nbsp;&nbsp;4</span><comment>&nbsp;*&nbsp;plots&nbsp;a&nbsp;2D&nbsp;pie&nbsp;chart.&nbsp;</comment></p>
+<p id=5 class="line"><span>&nbsp;&nbsp;&nbsp;5</span><comment>&nbsp;*&nbsp;</comment></p>
+<p id=6 class="line"><span>&nbsp;&nbsp;&nbsp;6</span><comment>&nbsp;*&nbsp;##&nbsp;Usage</comment></p>
+<p id=7 class="line"><span>&nbsp;&nbsp;&nbsp;7</span><comment>&nbsp;*&nbsp;`graph.series.add(<quote>'pie'</quote>,&nbsp;{r:<radius-col>});`</comment></p>
+<p id=8 class="line"><span>&nbsp;&nbsp;&nbsp;8</span><comment>&nbsp;*&nbsp;</comment></p>
+<p id=9 class="line"><span>&nbsp;&nbsp;&nbsp;9</span><comment>&nbsp;*&nbsp;##&nbsp;Example</comment></p>
+<p id=10 class="line"><span>&nbsp;&nbsp;10</span><comment>&nbsp;*&nbsp;<example&nbsp;height=200px&nbsp;libs={hsGraphD3:<quote>'hsGraphD3'</quote>}></comment></p>
+<p id=11 class="line"><span>&nbsp;&nbsp;11</span><comment>&nbsp;*&nbsp;<file&nbsp;name=<quote>'script.js'</quote>></comment></p>
+<p id=12 class="line"><span>&nbsp;&nbsp;12</span><comment>&nbsp;*&nbsp;<comment>//&nbsp;create&nbsp;data&nbsp;set:</comment></comment></p>
+<p id=13 class="line"><span>&nbsp;&nbsp;13</span><comment><comment></comment>&nbsp;*&nbsp;const&nbsp;data&nbsp;=&nbsp;{</comment></p>
+<p id=14 class="line"><span>&nbsp;&nbsp;14</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;colNames:[<quote>'date'</quote>,&nbsp;<quote>'time'</quote>,&nbsp;<quote>'volume'</quote>,&nbsp;<quote>'costs'</quote>],&nbsp;</comment></p>
+<p id=15 class="line"><span>&nbsp;&nbsp;15</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;rows:[[<quote>'1/1/14'</quote>,&nbsp;-1,&nbsp;&nbsp;0.2,&nbsp;0.3],&nbsp;</comment></p>
+<p id=16 class="line"><span>&nbsp;&nbsp;16</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<quote>'1/1/16'</quote>,&nbsp;0.2,&nbsp;0.7,&nbsp;0.2],&nbsp;</comment></p>
+<p id=17 class="line"><span>&nbsp;&nbsp;17</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<quote>'9/1/16'</quote>,&nbsp;0.4,&nbsp;0.1,&nbsp;0.3],</comment></p>
+<p id=18 class="line"><span>&nbsp;&nbsp;18</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<quote>'5/1/17'</quote>,&nbsp;0.6,&nbsp;-0.2,0.1],&nbsp;</comment></p>
+<p id=19 class="line"><span>&nbsp;&nbsp;19</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<quote>'7/1/18'</quote>,&nbsp;0.8,&nbsp;0.3,&nbsp;0.5],&nbsp;</comment></p>
+<p id=20 class="line"><span>&nbsp;&nbsp;20</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<quote>'1/1/19'</quote>,&nbsp;1,&nbsp;&nbsp;&nbsp;0.2,&nbsp;0.4]]</comment></p>
+<p id=21 class="line"><span>&nbsp;&nbsp;21</span><comment>&nbsp;*&nbsp;};</comment></p>
+<p id=22 class="line"><span>&nbsp;&nbsp;22</span><comment>&nbsp;*&nbsp;</comment></p>
+<p id=23 class="line"><span>&nbsp;&nbsp;23</span><comment>&nbsp;*&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.GraphCartesian(root);</comment></p>
+<p id=24 class="line"><span>&nbsp;&nbsp;24</span><comment>&nbsp;*&nbsp;graph.series.add(<quote>'pie'</quote>,&nbsp;{phi:<quote>'costs'</quote>});</comment></p>
+<p id=25 class="line"><span>&nbsp;&nbsp;25</span><comment>&nbsp;*&nbsp;graph.defaults.series.series0.marker.stroke.color&nbsp;=&nbsp;<quote>'#fff'</quote>;</comment></p>
+<p id=26 class="line"><span>&nbsp;&nbsp;26</span><comment>&nbsp;*&nbsp;graph.render(data);</comment></p>
+<p id=27 class="line"><span>&nbsp;&nbsp;27</span><comment>&nbsp;*&nbsp;</comment></p>
+<p id=28 class="line"><span>&nbsp;&nbsp;28</span><comment>&nbsp;*&nbsp;</file></comment></p>
+<p id=29 class="line"><span>&nbsp;&nbsp;29</span><comment>&nbsp;*&nbsp;</example></comment></p>
+<p id=30 class="line"><span>&nbsp;&nbsp;30</span><comment>&nbsp;*&nbsp;</comment></p>
+<p id=31 class="line"><span>&nbsp;&nbsp;31</span><comment>&nbsp;*&nbsp;###&nbsp;Pie&nbsp;plot&nbsp;Default&nbsp;Settings:</comment></p>
+<p id=32 class="line"><span>&nbsp;&nbsp;32</span><comment>&nbsp;*&nbsp;<example&nbsp;height=600px&nbsp;libs={hsGraphD3:<quote>'hsGraphD3'</quote>,&nbsp;hsUtil:<quote>'hsUtil'</quote>}></comment></p>
+<p id=33 class="line"><span>&nbsp;&nbsp;33</span><comment>&nbsp;*&nbsp;<file&nbsp;name=<quote>'script.js'</quote>></comment></p>
+<p id=34 class="line"><span>&nbsp;&nbsp;34</span><comment>&nbsp;*&nbsp;const&nbsp;log&nbsp;=&nbsp;new&nbsp;hsUtil.Log(<quote>''</quote>);</comment></p>
+<p id=35 class="line"><span>&nbsp;&nbsp;35</span><comment>&nbsp;*&nbsp;let&nbsp;defaults;</comment></p>
+<p id=36 class="line"><span>&nbsp;&nbsp;36</span><comment>&nbsp;*&nbsp;</comment></p>
+<p id=37 class="line"><span>&nbsp;&nbsp;37</span><comment>&nbsp;*&nbsp;function&nbsp;createGraph(svgRoot)&nbsp;{</comment></p>
+<p id=38 class="line"><span>&nbsp;&nbsp;38</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.GraphPolar(svgRoot);</comment></p>
+<p id=39 class="line"><span>&nbsp;&nbsp;39</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;graph.series.add(<quote>'pie'</quote>,&nbsp;{phi:<quote>'volume'</quote>});</comment></p>
+<p id=40 class="line"><span>&nbsp;&nbsp;40</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;graph.series.defaults[0];</comment></p>
+<p id=41 class="line"><span>&nbsp;&nbsp;41</span><comment>&nbsp;*&nbsp;}</comment></p>
+<p id=42 class="line"><span>&nbsp;&nbsp;42</span><comment>&nbsp;*&nbsp;</comment></p>
+<p id=43 class="line"><span>&nbsp;&nbsp;43</span><comment>&nbsp;*&nbsp;m.mount(root,&nbsp;{</comment></p>
+<p id=44 class="line"><span>&nbsp;&nbsp;44</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;view:()&nbsp;=>&nbsp;m(<quote>'div'</quote>,&nbsp;{style:<quote>'background-color:#eee;&nbsp;font-family:Monospace'</quote>},&nbsp;[</comment></p>
+<p id=45 class="line"><span>&nbsp;&nbsp;45</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m(<quote>'div'</quote>,&nbsp;m.trust(<quote>'graph.series.defaults[0]&nbsp;=&nbsp;'</quote>&nbsp;+&nbsp;defaults)),&nbsp;</comment></p>
+<p id=46 class="line"><span>&nbsp;&nbsp;46</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;m(<quote>'div.myGraph'</quote>,&nbsp;<quote>''</quote>)</comment></p>
+<p id=47 class="line"><span>&nbsp;&nbsp;47</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;]),</comment></p>
+<p id=48 class="line"><span>&nbsp;&nbsp;48</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;oncreate:&nbsp;()&nbsp;=>&nbsp;{</comment></p>
+<p id=49 class="line"><span>&nbsp;&nbsp;49</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;svgRoot&nbsp;=&nbsp;root.getElementsByClassName(<quote>'myGraph'</quote>);</comment></p>
+<p id=50 class="line"><span>&nbsp;&nbsp;50</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(svgRoot&nbsp;&&&nbsp;svgRoot.length&nbsp;&&&nbsp;!defaults)&nbsp;{&nbsp;</comment></p>
+<p id=51 class="line"><span>&nbsp;&nbsp;51</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;colors&nbsp;=&nbsp;[<quote>'#800'</quote>,&nbsp;<quote>'#080'</quote>,&nbsp;<quote>'#008'</quote>];</comment></p>
+<p id=52 class="line"><span>&nbsp;&nbsp;52</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;defaults&nbsp;=&nbsp;log.inspect(createGraph(svgRoot[0]),&nbsp;null,&nbsp;<quote>'&nbsp;&nbsp;&nbsp;'</quote>,&nbsp;colors)</comment></p>
+<p id=53 class="line"><span>&nbsp;&nbsp;53</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.replace(/\n/g,&nbsp;<quote>'<br>'</quote>)</comment></p>
+<p id=54 class="line"><span>&nbsp;&nbsp;54</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</comment></p>
+<p id=55 class="line"><span>&nbsp;&nbsp;55</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;}&nbsp;</comment></p>
+<p id=56 class="line"><span>&nbsp;&nbsp;56</span><comment>&nbsp;*&nbsp;});</comment></p>
+<p id=57 class="line"><span>&nbsp;&nbsp;57</span><comment>&nbsp;*&nbsp;</file></comment></p>
+<p id=58 class="line"><span>&nbsp;&nbsp;58</span><comment>&nbsp;*&nbsp;</example></comment></p>
+<p id=59 class="line"><span>&nbsp;&nbsp;59</span><comment>&nbsp;*/</comment></p>
+<p id=60 class="line"><span>&nbsp;&nbsp;60</span></p>
+<p id=61 class="line"><span>&nbsp;&nbsp;61</span>&nbsp;<comment>/**&nbsp;*/</comment></p>
+<p id=62 class="line"><span>&nbsp;&nbsp;62</span></p>
+<p id=63 class="line"><span>&nbsp;&nbsp;63</span>import&nbsp;{&nbsp;Log&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'hsutil'</quote>;&nbsp;const&nbsp;log&nbsp;=&nbsp;new&nbsp;Log(<quote>'Pie'</quote>);</p>
+<p id=64 class="line"><span>&nbsp;&nbsp;64</span>import&nbsp;{&nbsp;ValueDef,&nbsp;text&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../SeriesPlot'</quote>;</p>
+<p id=65 class="line"><span>&nbsp;&nbsp;65</span>import&nbsp;{&nbsp;GraphCfg}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../GraphComponent'</quote>;</p>
+<p id=66 class="line"><span>&nbsp;&nbsp;66</span>import&nbsp;{&nbsp;Series&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../Series'</quote>;</p>
+<p id=67 class="line"><span>&nbsp;&nbsp;67</span>import&nbsp;{&nbsp;PolarSeriesPlot&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../PolarSeriesPlot'</quote>;</p>
+<p id=68 class="line"><span>&nbsp;&nbsp;68</span>import&nbsp;{&nbsp;PolarPlotDefaults&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../PolarSeriesPlot'</quote>;</p>
+<p id=69 class="line"><span>&nbsp;&nbsp;69</span>import&nbsp;{&nbsp;PolarSeriesDimensions&nbsp;}from&nbsp;<quote>'../PolarSeriesPlot'</quote>;</p>
+<p id=70 class="line"><span>&nbsp;&nbsp;70</span>import&nbsp;{&nbsp;Label,&nbsp;d3Base,&nbsp;TextHAlign,&nbsp;TextVAlign&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../Settings'</quote>;</p>
+<p id=71 class="line"><span>&nbsp;&nbsp;71</span>import&nbsp;{&nbsp;DataRow,&nbsp;DataSet&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../Graph'</quote>;</p>
+<p id=72 class="line"><span>&nbsp;&nbsp;72</span>import&nbsp;{&nbsp;pie&nbsp;as&nbsp;d3Pie&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'d3'</quote>;</p>
+<p id=73 class="line"><span>&nbsp;&nbsp;73</span>import&nbsp;{&nbsp;arc&nbsp;as&nbsp;d3Arc&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'d3'</quote>;</p>
+<p id=74 class="line"><span>&nbsp;&nbsp;74</span>&nbsp;</p>
+<p id=75 class="line"><span>&nbsp;&nbsp;75</span>Series.register(<quote>'pie'</quote>,&nbsp;(cfg:GraphCfg,&nbsp;sName:string,&nbsp;dims:&nbsp;PolarSeriesDimensions)&nbsp;=>&nbsp;new&nbsp;Pie(cfg,&nbsp;sName,&nbsp;dims));</p>
+<p id=76 class="line"><span>&nbsp;&nbsp;76</span></p>
+<p id=77 class="line"><span>&nbsp;&nbsp;77</span>export&nbsp;class&nbsp;Pie&nbsp;extends&nbsp;PolarSeriesPlot&nbsp;{</p>
+<p id=78 class="line"><span>&nbsp;&nbsp;78</span>&nbsp;&nbsp;&nbsp;&nbsp;arc:&nbsp;any;</p>
+<p id=79 class="line"><span>&nbsp;&nbsp;79</span></p>
+<p id=80 class="line"><span>&nbsp;&nbsp;80</span>&nbsp;&nbsp;&nbsp;&nbsp;constructor(cfg:GraphCfg,&nbsp;seriesName:string,&nbsp;dims:PolarSeriesDimensions)&nbsp;{</p>
+<p id=81 class="line"><span>&nbsp;&nbsp;81</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super(cfg,&nbsp;seriesName,&nbsp;dims);</p>
+<p id=82 class="line"><span>&nbsp;&nbsp;82</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=83 class="line"><span>&nbsp;&nbsp;83</span></p>
+<p id=84 class="line"><span>&nbsp;&nbsp;84</span>&nbsp;&nbsp;&nbsp;&nbsp;getDefaults():&nbsp;PolarPlotDefaults&nbsp;{</p>
+<p id=85 class="line"><span>&nbsp;&nbsp;85</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;def&nbsp;=&nbsp;<PolarPlotDefaults>super.getDefaults();</p>
+<p id=86 class="line"><span>&nbsp;&nbsp;86</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;def.area.rendered&nbsp;&nbsp;&nbsp;=&nbsp;false;</p>
+<p id=87 class="line"><span>&nbsp;&nbsp;87</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;def.marker.rendered&nbsp;=&nbsp;true;</p>
+<p id=88 class="line"><span>&nbsp;&nbsp;88</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;def.line.rendered&nbsp;&nbsp;&nbsp;=&nbsp;false;</p>
+<p id=89 class="line"><span>&nbsp;&nbsp;89</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;def.cornerRadius&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;0;</p>
+<p id=90 class="line"><span>&nbsp;&nbsp;90</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;def.padAngle&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;=&nbsp;0;</p>
+<p id=91 class="line"><span>&nbsp;&nbsp;91</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;def;</p>
+<p id=92 class="line"><span>&nbsp;&nbsp;92</span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;</p>
+<p id=93 class="line"><span>&nbsp;&nbsp;93</span></p>
+<p id=94 class="line"><span>&nbsp;&nbsp;94</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;markerShape():string&nbsp;{</p>
+<p id=95 class="line"><span>&nbsp;&nbsp;95</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;<quote>'path'</quote>;</p>
+<p id=96 class="line"><span>&nbsp;&nbsp;96</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=97 class="line"><span>&nbsp;&nbsp;97</span></p>
+<p id=98 class="line"><span>&nbsp;&nbsp;98</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;d3RenderMarkers(plot:d3Base,&nbsp;data:DataSet)&nbsp;{</p>
+<p id=99 class="line"><span>&nbsp;&nbsp;99</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;defaults&nbsp;=&nbsp;this.defaults;</p>
+<p id=100 class="line"><span>&nbsp;100</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(defaults.marker.rendered)&nbsp;{</p>
+<p id=101 class="line"><span>&nbsp;101</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;popup&nbsp;=&nbsp;this.cfg.graph.popup;</p>
+<p id=102 class="line"><span>&nbsp;102</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;shape&nbsp;=&nbsp;this.markerShape();</p>
+<p id=103 class="line"><span>&nbsp;103</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;phiAccess&nbsp;=&nbsp;this.accessor(this.dims.phi,&nbsp;data.colNames,&nbsp;false);</p>
+<p id=104 class="line"><span>&nbsp;104</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;pie&nbsp;=&nbsp;d3Pie().value((d:any,&nbsp;i:number)&nbsp;=>&nbsp;<number>phiAccess(d,&nbsp;i));</p>
+<p id=105 class="line"><span>&nbsp;105</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;arcs&nbsp;=&nbsp;pie(<any>data.rows);</p>
+<p id=106 class="line"><span>&nbsp;106</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;plot.select(<quote>'.markers'</quote>).selectAll(shape)</p>
+<p id=107 class="line"><span>&nbsp;107</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.data(arcs,&nbsp;d&nbsp;=>&nbsp;d[0])&nbsp;<comment>//&nbsp;bind&nbsp;to&nbsp;first&nbsp;DataVal,&nbsp;rather&nbsp;than&nbsp;to&nbsp;DataRow,&nbsp;iterate&nbsp;over&nbsp;rows</comment></p>
+<p id=108 class="line"><span>&nbsp;108</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.join(shape)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p id=109 class="line"><span>&nbsp;109</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.call(popup.addListener.bind(popup),&nbsp;this.d3RenderPopup(data))</p>
+<p id=110 class="line"><span>&nbsp;110</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.transition(this.cfg.transition)&nbsp;<comment>//&nbsp;draw&nbsp;markers</comment></p>
+<p id=111 class="line"><span>&nbsp;111</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.call(this.d3DrawMarker.bind(this),&nbsp;data,&nbsp;defaults)</p>
+<p id=112 class="line"><span>&nbsp;112</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.call(this.d3MarkerColors.bind(this),&nbsp;data,&nbsp;defaults);</p>
+<p id=113 class="line"><span>&nbsp;113</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=114 class="line"><span>&nbsp;114</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=115 class="line"><span>&nbsp;115</span></p>
+<p id=116 class="line"><span>&nbsp;116</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;d3RenderLine(plot:d3Base,&nbsp;data:DataSet)&nbsp;{</p>
+<p id=117 class="line"><span>&nbsp;117</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.line&nbsp;=&nbsp;this.line&nbsp;||&nbsp;this.getPath(data.rows,&nbsp;data.colNames,&nbsp;this.dims.r);</p>
+<p id=118 class="line"><span>&nbsp;118</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;this.getPathElement(plot,&nbsp;<quote>'.line'</quote>).attr(<quote>'d'</quote>,&nbsp;(d:any)&nbsp;=>&nbsp;this.line);</p>
+<p id=119 class="line"><span>&nbsp;119</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=120 class="line"><span>&nbsp;120</span></p>
+<p id=121 class="line"><span>&nbsp;121</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;d3RenderLabels(plot:d3Base,&nbsp;data:DataSet):void&nbsp;{</p>
+<p id=122 class="line"><span>&nbsp;122</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;defaults&nbsp;=&nbsp;this.defaults;</p>
+<p id=123 class="line"><span>&nbsp;123</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;popup&nbsp;=&nbsp;this.cfg.graph.popup;</p>
+<p id=124 class="line"><span>&nbsp;124</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(defaults.label.rendered)&nbsp;{</p>
+<p id=125 class="line"><span>&nbsp;125</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;phiAccess&nbsp;=&nbsp;this.accessor(this.dims.phi,&nbsp;data.colNames,&nbsp;false);</p>
+<p id=126 class="line"><span>&nbsp;126</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;pie&nbsp;=&nbsp;d3Pie().value((d:any,&nbsp;i:number)&nbsp;=>&nbsp;<number>phiAccess(d,&nbsp;i));</p>
+<p id=127 class="line"><span>&nbsp;127</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;arcs&nbsp;=&nbsp;pie(<any>data.rows);</p>
+<p id=128 class="line"><span>&nbsp;128</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;plot.select(<quote>'.label'</quote>).selectAll(<quote>'text'</quote>)</p>
+<p id=129 class="line"><span>&nbsp;129</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.data(arcs,&nbsp;d&nbsp;=>&nbsp;d[0])&nbsp;<comment>//&nbsp;bind&nbsp;to&nbsp;first&nbsp;DataVal,&nbsp;rather&nbsp;than&nbsp;to&nbsp;DataRow,&nbsp;iterate&nbsp;over&nbsp;rows</comment></p>
+<p id=130 class="line"><span>&nbsp;130</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.join(<quote>'text'</quote>)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p id=131 class="line"><span>&nbsp;131</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.call(popup.addListener.bind(popup),&nbsp;this.d3RenderPopup(data))</p>
+<p id=132 class="line"><span>&nbsp;132</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.transition(this.cfg.transition)&nbsp;<comment>//&nbsp;draw&nbsp;markers</comment></p>
+<p id=133 class="line"><span>&nbsp;133</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.call(this.d3DrawLabels.bind(this),&nbsp;data,&nbsp;defaults);</p>
+<p id=134 class="line"><span>&nbsp;134</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=135 class="line"><span>&nbsp;135</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=136 class="line"><span>&nbsp;136</span>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p id=137 class="line"><span>&nbsp;137</span></p>
+<p id=138 class="line"><span>&nbsp;138</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;d3DrawMarker(markers:d3Base,&nbsp;data:DataSet,&nbsp;defaults:PolarPlotDefaults):void&nbsp;{</p>
+<p id=139 class="line"><span>&nbsp;139</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;scales&nbsp;=&nbsp;this.cfg.graph.scales.scaleDims;</p>
+<p id=140 class="line"><span>&nbsp;140</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;rAccess&nbsp;=&nbsp;this.accessor(this.dims.r,&nbsp;data.colNames,&nbsp;false);</p>
+<p id=141 class="line"><span>&nbsp;141</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;r0Access&nbsp;=&nbsp;this.accessor(this.dims.r0,&nbsp;data.colNames,&nbsp;false);</p>
+<p id=142 class="line"><span>&nbsp;142</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.arc&nbsp;=&nbsp;d3Arc()</p>
+<p id=143 class="line"><span>&nbsp;143</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.padAngle(defaults.padAngle)</p>
+<p id=144 class="line"><span>&nbsp;144</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.cornerRadius(defaults.cornerRadius)</p>
+<p id=145 class="line"><span>&nbsp;145</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.innerRadius((d:any,&nbsp;i:number)&nbsp;=>&nbsp;scales.rad(r0Access(d.data,&nbsp;i)))</p>
+<p id=146 class="line"><span>&nbsp;146</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.outerRadius((d:any,&nbsp;i:number)&nbsp;=>&nbsp;scales.rad(rAccess(d.data,&nbsp;i)));</p>
+<p id=147 class="line"><span>&nbsp;147</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;markers.attr(<quote>"d"</quote>,&nbsp;this.arc);</p>
+<p id=148 class="line"><span>&nbsp;148</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=149 class="line"><span>&nbsp;149</span></p>
+<p id=150 class="line"><span>&nbsp;150</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;d3DrawLabels(labels:d3Base,&nbsp;data:DataSet,&nbsp;defaults:PolarPlotDefaults):void&nbsp;{</p>
+<p id=151 class="line"><span>&nbsp;151</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;scales&nbsp;=&nbsp;this.cfg.graph.scales.scaleDims;</p>
+<p id=152 class="line"><span>&nbsp;152</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;rAccess&nbsp;=&nbsp;this.accessor(this.dims.r,&nbsp;data.colNames,&nbsp;false);</p>
+<p id=153 class="line"><span>&nbsp;153</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;r0Access&nbsp;=&nbsp;this.accessor(this.dims.r0,&nbsp;data.colNames,&nbsp;false);</p>
+<p id=154 class="line"><span>&nbsp;154</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;lAccess&nbsp;=&nbsp;this.accessor(this.dims.label,&nbsp;data.colNames,&nbsp;false);</p>
+<p id=155 class="line"><span>&nbsp;155</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;cfg:Label&nbsp;=&nbsp;this.defaults.label;</p>
+<p id=156 class="line"><span>&nbsp;156</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;[xpos,&nbsp;ypos]&nbsp;=&nbsp;this.labelPos(cfg,&nbsp;labels);</p>
+<p id=157 class="line"><span>&nbsp;157</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;labels.attr(<quote>"transform"</quote>,&nbsp;(d:any,&nbsp;i:number)&nbsp;=>&nbsp;{&nbsp;</p>
+<p id=158 class="line"><span>&nbsp;158</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;c&nbsp;=&nbsp;this.arc.centroid(d);</p>
+<p id=159 class="line"><span>&nbsp;159</span>log.info(`label&nbsp;translate:&nbsp;${i},&nbsp;[${c.join(<quote>',&nbsp;'</quote>)}]`);</p>
+<p id=160 class="line"><span>&nbsp;160</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;`translate(${c[0]}&nbsp;${c[1]})`;})</p>
+<p id=161 class="line"><span>&nbsp;161</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.text((d:any,&nbsp;i:number)&nbsp;=>&nbsp;text(lAccess(d.data,&nbsp;i)));</p>
+<p id=162 class="line"><span>&nbsp;162</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=163 class="line"><span>&nbsp;163</span></p>
+<p id=164 class="line"><span>&nbsp;164</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;getPath(rows:DataRow[],&nbsp;colNames:string[],&nbsp;yDef?:&nbsp;ValueDef,&nbsp;useStack?:boolean):string&nbsp;{</p>
+<p id=165 class="line"><span>&nbsp;165</span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;<quote>''</quote>;</p>
+<p id=166 class="line"><span>&nbsp;166</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=167 class="line"><span>&nbsp;167</span></p>
+<p id=168 class="line"><span>&nbsp;168</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;labelPos(cfg:Label,&nbsp;labels:d3Base)&nbsp;{</p>
+<p id=169 class="line"><span>&nbsp;169</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;xShift&nbsp;=&nbsp;0;</p>
+<p id=170 class="line"><span>&nbsp;170</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;yShift&nbsp;=&nbsp;0.35;</p>
+<p id=171 class="line"><span>&nbsp;171</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;xpos&nbsp;=&nbsp;0.5;&nbsp;<comment>//&nbsp;0:&nbsp;left&nbsp;aligned,&nbsp;1:&nbsp;right&nbsp;aligned</comment></p>
+<p id=172 class="line"><span>&nbsp;172</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;ypos&nbsp;=&nbsp;0.5;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;0:&nbsp;top&nbsp;of&nbsp;bar,&nbsp;1:&nbsp;bottom&nbsp;of&nbsp;bar</comment></p>
+<p id=173 class="line"><span>&nbsp;173</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;anchor&nbsp;=&nbsp;<quote>'middle'</quote>;</p>
+<p id=174 class="line"><span>&nbsp;174</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch(cfg.xpos)&nbsp;{&nbsp;</p>
+<p id=175 class="line"><span>&nbsp;175</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;TextHAlign.left:&nbsp;&nbsp;&nbsp;xpos&nbsp;=&nbsp;0;&nbsp;xShift&nbsp;=&nbsp;cfg.inside?0.2:-0.2;&nbsp;anchor&nbsp;=&nbsp;cfg.inside?<quote>'start'</quote>:<quote>'end'</quote>;&nbsp;break;</p>
+<p id=176 class="line"><span>&nbsp;176</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;TextHAlign.center:&nbsp;break;</p>
+<p id=177 class="line"><span>&nbsp;177</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;TextHAlign.right:&nbsp;&nbsp;xpos&nbsp;=&nbsp;1;&nbsp;xShift&nbsp;=&nbsp;cfg.inside?-0.2:0.2;&nbsp;anchor&nbsp;=&nbsp;cfg.inside?<quote>'end'</quote>:<quote>'start'</quote>;&nbsp;&nbsp;break;</p>
+<p id=178 class="line"><span>&nbsp;178</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default:&nbsp;log.warn(`illegal&nbsp;TextHAlign:&nbsp;${cfg.xpos}`);</p>
+<p id=179 class="line"><span>&nbsp;179</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=180 class="line"><span>&nbsp;180</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch(cfg.ypos)&nbsp;{&nbsp;<comment>//&nbsp;additional&nbsp;y&nbsp;<quote>'em'</quote>&nbsp;shift</comment></p>
+<p id=181 class="line"><span>&nbsp;181</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;TextVAlign.top:&nbsp;&nbsp;&nbsp;&nbsp;ypos&nbsp;=&nbsp;0;&nbsp;yShift&nbsp;=&nbsp;cfg.inside?&nbsp;1&nbsp;:&nbsp;-0.2;&nbsp;break;</p>
+<p id=182 class="line"><span>&nbsp;182</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;TextVAlign.center:&nbsp;break;</p>
+<p id=183 class="line"><span>&nbsp;183</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;TextVAlign.bottom:&nbsp;ypos&nbsp;=&nbsp;1;&nbsp;yShift&nbsp;=&nbsp;cfg.inside?&nbsp;-0.2&nbsp;:&nbsp;1;&nbsp;break;</p>
+<p id=184 class="line"><span>&nbsp;184</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default:&nbsp;&nbsp;log.warn(`illegal&nbsp;TextVAlign:&nbsp;${cfg.ypos}`);</p>
+<p id=185 class="line"><span>&nbsp;185</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=186 class="line"><span>&nbsp;186</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;labels.style(<quote>'text-anchor'</quote>,&nbsp;anchor)</p>
+<p id=187 class="line"><span>&nbsp;187</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>'dx'</quote>,&nbsp;((cfg.hOffset||0)+xShift).toFixed(1)&nbsp;+&nbsp;<quote>'em'</quote>)</p>
+<p id=188 class="line"><span>&nbsp;188</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>'dy'</quote>,&nbsp;((cfg.vOffset||0)+yShift).toFixed(1)&nbsp;+&nbsp;<quote>'em'</quote>);</p>
+<p id=189 class="line"><span>&nbsp;189</span>&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;[xpos,&nbsp;ypos];</p>
+<p id=190 class="line"><span>&nbsp;190</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=191 class="line"><span>&nbsp;191</span>}</p>
+<p id=192 class="line"><span>&nbsp;192</span>&nbsp;</p>
+<p id=193 class="line"><span>&nbsp;193</span>&nbsp;</p></code></div>
+                </body>
+            

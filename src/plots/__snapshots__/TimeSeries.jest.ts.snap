@@ -26,6 +26,8 @@ exports[`TimeSeries should plot timeSeries 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         width="1000"
+        x="0"
+        y="0"
       />
     </g>
     <g

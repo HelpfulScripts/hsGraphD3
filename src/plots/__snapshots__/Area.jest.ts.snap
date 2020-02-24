@@ -26,6 +26,8 @@ exports[`Area indexed should plot area 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         width="1000"
+        x="0"
+        y="0"
       />
     </g>
     <g
@@ -773,6 +775,8 @@ exports[`Area labels should plot area 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         width="1000"
+        x="0"
+        y="0"
       />
     </g>
     <g
@@ -1513,6 +1517,8 @@ exports[`Area labels should plot area 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         width="1000"
+        x="0"
+        y="0"
       />
     </g>
     <g
@@ -2267,6 +2273,8 @@ exports[`Area labels should plot area 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         width="1000"
+        x="0"
+        y="0"
       />
     </g>
     <g
@@ -3166,6 +3174,8 @@ exports[`Area labels should plot area 2`] = `
         stroke-opacity="1"
         stroke-width="1"
         width="1000"
+        x="0"
+        y="0"
       />
     </g>
     <g
@@ -3906,6 +3916,8 @@ exports[`Area labels should plot area 2`] = `
         stroke-opacity="1"
         stroke-width="1"
         width="1000"
+        x="0"
+        y="0"
       />
     </g>
     <g
@@ -4660,6 +4672,8 @@ exports[`Area labels should plot area 2`] = `
         stroke-opacity="1"
         stroke-width="1"
         width="1000"
+        x="0"
+        y="0"
       />
     </g>
     <g
@@ -5552,6 +5566,8 @@ exports[`Area labels should plot area 2`] = `
         stroke-opacity="1"
         stroke-width="1"
         width="1000"
+        x="0"
+        y="0"
       />
     </g>
     <g
@@ -6341,6 +6357,8 @@ exports[`Area volume vs time should plot area 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         width="1000"
+        x="0"
+        y="0"
       />
     </g>
     <g
@@ -7081,6 +7099,8 @@ exports[`Area volume vs time should plot area 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         width="1000"
+        x="0"
+        y="0"
       />
     </g>
     <g

@@ -33,6 +33,8 @@ export interface GraphCfg {
 
     /** top level svg viewBox dimensions in viewport units*/
     viewPort: {
+        orgX:   UnitVp;
+        orgY:   UnitVp;
         width:  UnitVp;
         height: UnitVp;
     };

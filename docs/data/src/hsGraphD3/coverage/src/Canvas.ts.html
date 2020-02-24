@@ -121,7 +121,9 @@
 <a name='L73'></a><a href='#L73'>73</a>
 <a name='L74'></a><a href='#L74'>74</a>
 <a name='L75'></a><a href='#L75'>75</a>
-<a name='L76'></a><a href='#L76'>76</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L76'></a><a href='#L76'>76</a>
+<a name='L77'></a><a href='#L77'>77</a>
+<a name='L78'></a><a href='#L78'>78</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -191,6 +193,8 @@
 <span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -266,9 +270,11 @@ export class Canvas extends GraphComponent {
         const canvas = this.defaults;
         const area = this.svg.select('.graphArea');
         setRect(area, canvas)
-            .attr('width', this.cfg.viewPort.width)
+            .attr('x',      this.cfg.viewPort.orgX)
+            .attr('y',      this.cfg.viewPort.orgY)
+            .attr('width',  this.cfg.viewPort.width)
             .attr('height', this.cfg.viewPort.height);
-    }
+}
 &nbsp;
     postRender(): void {} 
 }</pre></td></tr>

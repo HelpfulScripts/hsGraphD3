@@ -1,7 +1,7 @@
 /**
  * #Examples
  * 
- * <example height=2420px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
+ * <example height=2550px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
  * <file name='script.js'>
  * const content = [
  *      graph => {
@@ -99,6 +99,12 @@
  * 
  *      graph => { 
  *          graph.series.add('column', {x:'item', y:'Mary', color:i=>i});
+ *          graph.title.text = `'default colored column' graph`;
+ *          graph.render(data).update(2000);
+ *      }, 
+ * 
+ *      graph => { 
+ *          graph.series.add('column', {x:'item', y:'Mary', color:'item'});
  *          graph.title.text = `'default colored column' graph`;
  *          graph.render(data).update(2000);
  *      }, 

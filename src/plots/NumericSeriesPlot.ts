@@ -29,12 +29,14 @@
 import { Log }                  from 'hsutil'; const log = new Log('NumericSeriesPlot');
 import { line as d3line}        from 'd3';
 import { curveCatmullRom }      from 'd3';
-import { NumericDataSet, DataRow, DataVal, DataSet, NumDomain }       from '../Graph';
+import { NumericDataSet }       from '../Graph';
+import { DataSet }              from '../Graph';
 import { NumericDataRow }       from '../Graph';
-import { ValueDef }             from '../SeriesPlot';
+import { ValueDef, text }       from '../SeriesPlot';
+import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { Domains }              from '../Graph';
 import { d3Base, Label }        from '../Settings';
-import { CartSeriesPlot, text } from '../CartSeriesPlot';
+import { CartSeriesPlot }       from '../CartSeriesPlot';
 import { TextHAlign }           from "../Settings";
 import { TextVAlign }           from "../Settings";
 
@@ -46,8 +48,8 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
 
     //---------- lifecylce methods --------------------
 
-    initialize(svg:d3Base, color?:string): void {
-        super.initialize(svg, color);
+    initialize(plot:d3Base, color?:string): void {
+        super.initialize(plot, color);
     }
 
     preRender(data:NumericDataSet, domains:Domains): void {
@@ -62,24 +64,24 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
 
     protected markerShape() { return 'circle'; }
 
-    protected d3RenderFill(svg:d3Base, data:NumericDataSet) {
+    protected d3RenderFill(plot:d3Base, data:NumericDataSet) {
         const scales = this.cfg.graph.scales.scaleDims;
-        let line = this.line = this.line || this.getLine(data.rows, data.colNames, this.dims.y);
+        let line = this.line = this.line || this.getPath(data.rows, data.colNames, this.dims.y);
         if (this.dims.y0!==undefined) {
-            line += `L` + this.getLine(data.rows.reverse(), data.colNames, this.dims.y0, false).slice(1); // replace first 'M' with 'L'
+            line += `L` + this.getPath(data.rows.reverse(), data.colNames, this.dims.y0, false).slice(1); // replace first 'M' with 'L'
         }
-        return this.getPathElement(svg, '.area').attr('d', (d:any) => line);
+        return this.getPathElement(plot, '.area').attr('d', (d:any) => line);
     }
 
 
     //-------------------
 
-    protected d3DrawMarker(markers:d3Base, colNames:string[]) {
+    protected d3DrawMarker(markers:d3Base, data:DataSet, defaults:SeriesPlotDefaults) {
         const scales = this.cfg.graph.scales.scaleDims;
-        const xAccess = this.accessor(this.dims.x, colNames);
-        const yAccess = this.accessor(this.dims.y, colNames);
+        const xAccess = this.accessor(this.dims.x, data.colNames);
+        const yAccess = this.accessor(this.dims.y, data.colNames);
         // don't scale markers as 'stacked markers' -> use super instead of this:
-        const rAccess = this.accessor(this.dims.r, colNames, false);
+        const rAccess = this.accessor(this.dims.r, data.colNames, false);
         const rDefault = this.defaults.marker.size;
         markers
             .attr("cx", (d:number[], i:number) => scales.hor(xAccess(d, i)))
@@ -87,13 +89,13 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
             .attr("r",  (d:number[], i:number) => this.dims.r? scales.size(rAccess(d, i)) : rDefault);
     }
     
-    protected d3DrawLabels(labels:d3Base, colNames:string[]) {
+    protected d3DrawLabels(labels:d3Base, data:DataSet, defaults:SeriesPlotDefaults) {
         const scales = this.cfg.graph.scales.scaleDims;
-        const xAccess = this.accessor(this.dims.x, colNames);
-        const yAccess = this.accessor(this.dims.y, colNames);
-        const rAccess = this.accessor(this.dims.r, colNames, false);
+        const xAccess = this.accessor(this.dims.x, data.colNames);
+        const yAccess = this.accessor(this.dims.y, data.colNames);
+        const rAccess = this.accessor(this.dims.r, data.colNames, false);
         const rDefault = this.defaults.marker.size;
-        const lAccess = this.accessor(this.dims.label, colNames, false);
+        const lAccess = this.accessor(this.dims.label, data.colNames, false);
         const cfg:Label = this.defaults.label;
 
         const [xpos, ypos, yShift] = this.labelPos(cfg, labels);
@@ -103,14 +105,14 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
             .attr("y", (d:number[], i:number) => scales.ver(yAccess(d, i)) 
                 + (this.dims.r? scales.size(rAccess(d, i)) : rDefault) * ypos)
             .text((d:number[], i:number) => text(lAccess(d, i)));
-        }
+    }
     
     /**
      * returns the path rendering for the main data line 
      * @param rows the data rows set to render from
      * @param yDef a constant (defaults to 0), or the data column to render from
      */
-    protected getLine(rows:NumericDataRow[], colNames:string[], yDef: ValueDef = () => 0, useStack=true):string {
+    protected getPath(rows:NumericDataRow[], colNames:string[], yDef: ValueDef = () => 0, useStack=true):string {
         const scales = this.cfg.graph.scales.scaleDims;
         const xAccess = this.accessor(this.dims.x, colNames, useStack);
         const yAccess = this.accessor(yDef, colNames, useStack);

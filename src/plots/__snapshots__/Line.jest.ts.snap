@@ -26,6 +26,8 @@ exports[`Line plot constants should plot horizontal line 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         width="1000"
+        x="0"
+        y="0"
       />
     </g>
     <g
@@ -851,6 +853,8 @@ exports[`Line plot constants should plot horizontal line 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         width="1000"
+        x="0"
+        y="0"
       />
     </g>
     <g
@@ -1292,6 +1296,8 @@ exports[`Line plot data should plot line 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         width="1000"
+        x="0"
+        y="0"
       />
     </g>
     <g
@@ -2124,6 +2130,8 @@ exports[`Line plot function should plot horizontal line 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         width="1000"
+        x="0"
+        y="0"
       />
     </g>
     <g
@@ -2949,6 +2957,8 @@ exports[`Line plot function should plot horizontal line 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         width="1000"
+        x="0"
+        y="0"
       />
     </g>
     <g
@@ -3383,6 +3393,8 @@ exports[`Line plot function should plot horizontal line 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         width="1000"
+        x="0"
+        y="0"
       />
     </g>
     <g
@@ -3824,6 +3836,8 @@ exports[`Line plot indexed should plot horizontal line 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         width="1000"
+        x="0"
+        y="0"
       />
     </g>
     <g
@@ -4649,6 +4663,8 @@ exports[`Line plot indexed should plot horizontal line 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         width="1000"
+        x="0"
+        y="0"
       />
     </g>
     <g
@@ -5083,6 +5099,8 @@ exports[`Line plot indexed should plot horizontal line 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         width="1000"
+        x="0"
+        y="0"
       />
     </g>
     <g
@@ -5517,6 +5535,8 @@ exports[`Line plot indexed should plot horizontal line 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         width="1000"
+        x="0"
+        y="0"
       />
     </g>
     <g

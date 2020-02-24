@@ -6,7 +6,6 @@ import { Log }                  from 'hsutil'; const log = new Log('SeriesPlot')
 import { BaseType }             from 'd3';
 import { d3Base }               from "./Settings";
 import { Label }                from "./Settings";
-import { Popup }                from "./Settings";
 import { defaultText }          from "./Settings";
 import { defaultLabel }         from "./Settings";
 import { schemes }              from "./Settings";
@@ -17,12 +16,15 @@ import { GraphCfg }             from "./GraphComponent";
 import { Area }                 from "./Settings";
 import { Line }                 from "./Settings";
 import { Marker }               from "./Settings";
-import { DataSet, DataVal }     from "./Graph";
+import { DataSet }              from "./Graph";
+import { DataVal }              from "./Graph";
+import { AccessFn }             from "./Graph";
 import { DataRow }              from "./Graph";
 import { NumDomain }            from "./Graph";
 import { OrdDomain }            from "./Graph";
 import { Domains }              from "./Graph";
 import { GraphDimensions }      from "./Graph";
+import { format as d3format}    from 'd3';
 
 export type d3Selection = d3.Selection<BaseType, unknown, BaseType, unknown>; 
 
@@ -42,6 +44,12 @@ export interface SeriesPlotDefaults {
  */
 export interface SeriesDimensions { 
     [dim:string]: ValueDef; 
+    /** optional, name of label data column, or a function returning a value */
+    label?: ValueDef;  
+    /** optional, name of popup data column, or a function returning a value */
+    popup?: ValueDef;   
+    /** optional, name of color data column, or a function returning a value */
+    color?: ValueDef;   
     /** optional stack group. Series with the same group will be stacked on each other */
     stacked?:     string;
 }
@@ -61,6 +69,14 @@ export type ValueDef = string|number|ValueFn;
  * `index` of the row in the {@link Graph.DataSet `DataSet's`} rows array.
  */
 export interface ValueFn { (rowIndex:number): DataVal; }
+
+/**
+ * coverts a `DataVal` to a `string`
+ * @param val 
+ */
+export function text(val:DataVal) {
+    return typeof val==='number'? val.toFixed(1) : <string>val;
+}
 
 
 /**
@@ -83,7 +99,7 @@ export abstract class SeriesPlot {
      * a list of data column names used,
      * reflecting the list of column names provided during construction.
      */
-    protected dims: SeriesDimensions;
+    private _dims: SeriesDimensions;
 
     /** the base svg element to render the component into */
     protected svg: d3Base;
@@ -94,13 +110,19 @@ export abstract class SeriesPlot {
     /** the unique series key assigned during cinstruction, used to index the series settings. */
     protected seriesKey:string;
 
+    /** return the GraphDimension of the independent axis */
+    protected abscissa:string;
+
+
     constructor(cfg:GraphCfg, seriesName:string, dims:SeriesDimensions) {
         this.cfg = cfg; 
         this.seriesKey = seriesName;
-        this.dims = dims;
+        this._dims = dims;
     }
     
     public get key() { return this.seriesKey; }
+
+    protected get dims(): SeriesDimensions { return this._dims; }
 
     public abstract get dimensions():GraphDimensions;
 
@@ -207,18 +229,18 @@ export abstract class SeriesPlot {
      * @param items the items being colored
      * @param numRows the number of data rows
      */
-    protected d3MarkerColors(items:d3Base, colNames:string[], numRows:number, defaults:Marker) {
+    protected d3MarkerColors(items:d3Base, data:DataSet, defaults:SeriesPlotDefaults) {
         function getColor(d:number[], i:number):string  {
-            const scheme = schemes[defaults.scheme];
+            const scheme = schemes[defaults.marker.scheme];
             if (typeof colors === 'function') {
                 const color = colors(i);
                 return typeof color === 'number'? scheme((color % 10) / 10) : <string>color;
             } else if (typeof colors === 'string') {
-                const col = colNames.indexOf(colors);
+                const col = data.colNames.indexOf(colors);
                 if (col >= 0) {
-                    return schemes.blues(d[col]);
+                    return d['data']? scheme(d['data'][col]) : scheme(d[col]);
                 } else if (schemes[colors]) { 
-                    return schemes[colors](i / numRows);
+                    return schemes[colors](i / data.rows.length);
                 } else {
                     return colors;
                 }
@@ -230,9 +252,34 @@ export abstract class SeriesPlot {
         }
         const colors = this.dims.color;
         if (colors) {
-            items.attr('stroke', (d:number[], i:number)=>getColor(d,i)).attr('fill', getColor);
+            // items.attr('stroke', getColor)
+            //      .attr('fill', getColor);
+            items.attr('color', getColor);
         }
     }   
+
+        /**
+     * formats the popup string to display
+     * @param colNames 
+     */
+    protected d3RenderPopup(data:DataSet):AccessFn {
+        if (this.dims.popup) {
+            const format = d3format('.4r');
+            const popupAccess = this.accessor(this.dims.popup, data.colNames, false);
+            const abscissa = this.dimensions[this.abscissa][0];
+            const absAccess     = this.accessor(abscissa, data.colNames, false);
+            // if dims x present, reflect its column nname; else use 'index'
+            const absName = typeof abscissa === 'string'? abscissa : 'index';
+            return (r:DataVal[], i:number) => {
+                let val = popupAccess(r,i);
+                if (typeof val === 'number') { val = format(val); }
+                return typeof this.dims.popup === 'function' ? popupAccess(r,i) :`
+                    ${this.dims.popup} = ${val}<br>
+                    ${absName} = ${absAccess(r,i)}
+                `;
+            };
+        }
+    }
 
 
     //---------- lifecylce methods -------------------

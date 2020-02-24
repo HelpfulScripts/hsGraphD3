@@ -73,8 +73,6 @@ Series.register('line', (cfg:GraphCfg, sName:string, dims: CartSeriesDimensions)
 export class Line extends NumericSeriesPlot {
     getDefaults(): SeriesPlotDefaults {
         const def = super.getDefaults();
-        // def.area.rendered   = false;
-        // def.marker.rendered = false;
         def.line.rendered   = true;
         return def;
     } 

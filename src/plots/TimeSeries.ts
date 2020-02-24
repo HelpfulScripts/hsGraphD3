@@ -72,14 +72,14 @@
  /** */
 
 import { Log }                  from 'hsutil'; const log = new Log('TimeSeries');
-import { NumericDataSet, NumDomain }       from '../Graph';
+import { NumericDataSet, NumDomain, DataSet }       from '../Graph';
 import { GraphDefaults }        from '../Graph';
 import { Domains }              from '../Graph';
 import { Series }               from '../Series';
 import { NumericSeriesPlot }    from './NumericSeriesPlot';
 import { CartSeriesDimensions } from '../CartSeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
-import { d3Base }               from '../Settings';
+import { d3Base, Line }               from '../Settings';
 import { GraphCfg }             from '../GraphComponent'; 
 import { ScalesDefaults }       from '../Scale';
  
@@ -122,19 +122,19 @@ export class TimeSeries extends NumericSeriesPlot {
 
     d3RenderMarkers(svg:d3Base, data:NumericDataSet) {
         if (data.rows.length<2) { return super.d3RenderMarkers(svg, data); }
-        const defaults = this.defaults.marker;
+        const defaults = this.defaults;
         if (typeof(this.dims.x)==='number') { log.warn(`d3RenderMarkers: unsupported const x=${this.dims.x} in timeseries`); }
         const x = data.colNames.indexOf(<string>this.dims.x);
-        if (defaults.rendered) {
+        if (defaults.marker.rendered) {
             const scales = this.cfg.graph.scales.scaleDims;
             const xUnit = data.rows[1][x] - data.rows[0][x];
             const samples:any = svg.select('.markers').selectAll("circle").data(data.rows, d => d[0]);
             samples.exit().remove();            // remove unneeded circles
             samples.enter().append('circle')    // add new circles
-                .call(this.d3DrawMarker.bind(this), data.colNames)
+                .call(this.d3DrawMarker.bind(this), data, defaults)
                 .attr("transform", `translate(${scales.hor(xUnit) - scales.hor(0)})`)
             .merge(samples).transition(this.cfg.transition)   // draw markers
-                .call(this.d3DrawMarker.bind(this), data.colNames)
+                .call(this.d3DrawMarker.bind(this), data, defaults)
                 .attr("transform", `translate(0)`);
         }
     }
@@ -143,11 +143,11 @@ export class TimeSeries extends NumericSeriesPlot {
         return svg.select(cls).selectAll('path');
     }
 
-    d3RenderPath(svg:d3Base, data:NumericDataSet) {
+    d3RenderLine(svg:d3Base, data:DataSet) {
         const x = data.colNames.indexOf(<string>this.dims.x);
-        const xUnit = data.rows[1][x] - data.rows[0][x];
+        const xUnit = <number>data.rows[1][x] - <number>data.rows[0][x];
         const scales = this.cfg.graph.scales.scaleDims;
-        return super.d3RenderPath(svg, data)
+        return super.d3RenderLine(svg, data)
             .attr('transform', `translate(${scales.hor(xUnit) - scales.hor(0)})`)
             .transition(this.cfg.transition)
             .attr('transform', `translate(0)`);

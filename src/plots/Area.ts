@@ -104,8 +104,6 @@ export class Area extends NumericSeriesPlot {
     getDefaults(): SeriesPlotDefaults {
         const def = super.getDefaults();
         def.area.rendered = true;
-        // def.marker.rendered = false;
-        // def.line.rendered = false;
         return def;
     } 
 }

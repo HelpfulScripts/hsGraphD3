@@ -275,7 +275,11 @@
 <a name='L227'></a><a href='#L227'>227</a>
 <a name='L228'></a><a href='#L228'>228</a>
 <a name='L229'></a><a href='#L229'>229</a>
-<a name='L230'></a><a href='#L230'>230</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L230'></a><a href='#L230'>230</a>
+<a name='L231'></a><a href='#L231'>231</a>
+<a name='L232'></a><a href='#L232'>232</a>
+<a name='L233'></a><a href='#L233'>233</a>
+<a name='L234'></a><a href='#L234'>234</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -312,7 +316,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
@@ -328,6 +331,8 @@
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -389,6 +394,9 @@
 <span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -539,7 +547,6 @@ import { GraphComponent }   from './GraphComponent';
 import { GraphCfg }         from './GraphComponent';
 import { ComponentDefaults }from './GraphComponent';
 import { ScaleDims }        from './Scale';
-import { ScalesDefaults }   from './Scale';
 import { UnitVp }           from './Settings';
 import { d3Base }           from './Settings';
 import { setText }          from './Settings';
@@ -579,7 +586,9 @@ export interface AxesDefaults extends ComponentDefaults {
     ver:        AxisDefaults;
 } 
 &nbsp;
-&nbsp;
+/**
+ * Axes class, contains and manages the visual display of individual axes of a `Graph`.
+ */
 export class Axes extends GraphComponent {
     static type = 'axes';
 &nbsp;
@@ -623,6 +632,9 @@ export class Axes extends GraphComponent {
     postRender(): void {} 
 }
 &nbsp;
+/**
+ * Individual Axis class. Manages the visual display of an individual axis of a `Graph`.
+ */
 export class Axis {
     private pos: string;    // left/right or top/bottom
     private svg: d3Base;
@@ -688,7 +700,7 @@ export class Axis {
         }
     }
 &nbsp;
-    setTransform(scales:ScaleDims) {
+    protected setTransform(scales:ScaleDims) {
         const margins = this.cfg.graph.scales.defaults.margin;
         const trans = this.cfg.transition;
         const orth = (this.dir===Direction.horizontal)? Direction.vertical : Direction.horizontal;
@@ -721,7 +733,7 @@ export class Axis {
         }
     }
 &nbsp;
-    getD3Axis(scales:ScaleDims, axisDef:AxisDefaults) {
+    protected getD3Axis(scales:ScaleDims, axisDef:AxisDefaults) {
         let axis:d3.Axis&lt;d3.AxisDomain&gt;;
         if (this.dir===Direction.horizontal) {
             axis = scales.hor.axis(this.pos);

@@ -145,8 +145,8 @@
 <p id=122 class="line"><span>&nbsp;122</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;baseline&nbsp;=&nbsp;(y<0.33)?&nbsp;<quote>'hanging'</quote>&nbsp;:&nbsp;((x>0.66)?&nbsp;<quote>'baseline'</quote>&nbsp;:&nbsp;<quote>'middle'</quote>);</p>
 <p id=123 class="line"><span>&nbsp;123</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;const&nbsp;dy&nbsp;=&nbsp;titleDefs.style.font.size;</comment></p>
 <p id=124 class="line"><span>&nbsp;124</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;svg</p>
-<p id=125 class="line"><span>&nbsp;125</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>'x'</quote>,&nbsp;x&nbsp;*&nbsp;vp.width).attr(<quote>'text-anchor'</quote>,&nbsp;anchor)</p>
-<p id=126 class="line"><span>&nbsp;126</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>'y'</quote>,&nbsp;y&nbsp;*&nbsp;vp.height).attr(<quote>'dominant-baseline'</quote>,&nbsp;baseline)</p>
+<p id=125 class="line"><span>&nbsp;125</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>'x'</quote>,&nbsp;x&nbsp;*&nbsp;vp.width&nbsp;+&nbsp;vp.orgX).attr(<quote>'text-anchor'</quote>,&nbsp;anchor)</p>
+<p id=126 class="line"><span>&nbsp;126</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>'y'</quote>,&nbsp;y&nbsp;*&nbsp;vp.height&nbsp;+&nbsp;vp.orgY).attr(<quote>'dominant-baseline'</quote>,&nbsp;baseline)</p>
 <p id=127 class="line"><span>&nbsp;127</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.text(this.titleText);</p>
 <p id=128 class="line"><span>&nbsp;128</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
 <p id=129 class="line"><span>&nbsp;129</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>

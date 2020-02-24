@@ -30,8 +30,9 @@ import { DataSet }              from '../Graph';
 import { Domains }              from '../Graph';
 import { d3Base }               from '../Settings';
 import { Label }                from '../Settings';
-import { CartSeriesPlot, text } from '../CartSeriesPlot';
+import { CartSeriesPlot }       from '../CartSeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
+import { text }                 from '../SeriesPlot';
 import { Series }               from '../Series';
 import { TextHAlign }           from "../Settings";
 import { TextVAlign }           from "../Settings";
@@ -66,8 +67,8 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
 
     //---------- lifecylce methods --------------------
 
-    initialize(svg:d3Base, color?:string): void {
-        super.initialize(svg, color);
+    initialize(plot:d3Base, color?:string): void {
+        super.initialize(plot, color);
     }
 
     preRender(data:DataSet, domains:Domains): void {
@@ -85,12 +86,12 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
 
     protected markerShape() { return 'rect'; }
 
-    protected d3RenderPath(svg:d3Base, data:DataSet) {
-        const line = this.getLine(data.rows, data.colNames);
-        return this.getPathElement(svg, '.line').attr('d', (d:any) => line);
+    protected d3RenderLine(plot:d3Base, data:DataSet) {
+        const line = this.getPath(data.rows, data.colNames);
+        return this.getPathElement(plot, '.line').attr('d', (d:any) => line);
     }
 
-    protected d3RenderFill(svg:d3Base, data:DataSet) {
+    protected d3RenderFill(plot:d3Base, data:DataSet) {
     }
     
     private getParams(colNames:string[]):any[] {
@@ -113,15 +114,15 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
      */
     // protected getStackVal(row: number[])
 
-    protected d3DrawMarker(markers:d3Base, colNames:string[]) {
-        const [offset, thickness] = this.getParams(colNames);
+    protected d3DrawMarker(markers:d3Base, data:DataSet, defaults:SeriesPlotDefaults) {
+        const [offset, thickness] = this.getParams(data.colNames);
 
         const xScale = this.cfg.graph.scales.scaleDims.hor;
         const yScale = this.cfg.graph.scales.scaleDims.ver;
-        const x  = this.accessor(this.dims.x, colNames);
-        const x0 = this.dims.stacked? this.accessor(this.dims.stacked, colNames) : ()=>0;
-        const y  = this.accessor(this.dims.y, colNames);
-        const y0 = this.dims.stacked? this.accessor(this.dims.stacked, colNames) : ()=>0;
+        const x  = this.accessor(this.dims.x, data.colNames);
+        const x0 = this.dims.stacked? this.accessor(this.dims.stacked, data.colNames) : ()=>0;
+        const y  = this.accessor(this.dims.y, data.colNames);
+        const y0 = this.dims.stacked? this.accessor(this.dims.stacked, data.colNames) : ()=>0;
         const xAttr  = (d:number[], i:number) => this.cached('x', i, ()=>xScale(x(d, i)));
         const x0Attr = (d:number[], i:number) => this.cached('x0',i, ()=>xScale(x0(d, i)));
         const yAttr  = (d:number[], i:number) => this.cached('y', i, ()=>yScale(y(d, i)));
@@ -147,20 +148,20 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
         return this.cache[v][i]===undefined? this.cache[v][i]=get() : this.cache[v][i];
     }
 
-    protected d3DrawLabels(labels:d3Base, colNames:string[]) {
-        const [offset, thickness] = this.getParams(colNames);
+    protected d3DrawLabels(labels:d3Base, data:DataSet, defaults:SeriesPlotDefaults) {
+        const [offset, thickness] = this.getParams(data.colNames);
 
         const xScale = this.cfg.graph.scales.scaleDims.hor;
         const yScale = this.cfg.graph.scales.scaleDims.ver;
         
-        const l = this.accessor(this.dims.label, colNames);
+        const l = this.accessor(this.dims.label, data.colNames);
         const cfg:Label = this.defaults.label;
 
         const [xpos, ypos] = this.labelPos(cfg, labels);
-        const x  = this.accessor(this.dims.x, colNames);
-        const x0 = this.dims.stacked? this.accessor(this.dims.stacked, colNames) : ()=>0;
-        const y  = this.accessor(this.dims.y, colNames);
-        const y0 = this.dims.stacked? this.accessor(this.dims.stacked, colNames) : ()=>0;
+        const x  = this.accessor(this.dims.x, data.colNames);
+        const x0 = this.dims.stacked? this.accessor(this.dims.stacked, data.colNames) : ()=>0;
+        const y  = this.accessor(this.dims.y, data.colNames);
+        const y0 = this.dims.stacked? this.accessor(this.dims.stacked, data.colNames) : ()=>0;
         const xAttr  = (d:number[], i:number) => this.cached('x', i, ()=>xScale(x(d, i)));
         const x0Attr = (d:number[], i:number) => this.cached('x0', i, ()=>xScale(x0(d, i)));
         const yAttr  = (d:number[], i:number) => this.cached('y', i, ()=>yScale(y(d, i)));
@@ -181,7 +182,7 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
         labels.text((d:number[], i:number) => text(l(d, i)));
     }
 
-    protected getLine(rows:DataRow[], colNames:string[]):string {
+    protected getPath(rows:DataRow[], colNames:string[]):string {
         const hor = this.abscissa==='hor';
         const x  = this.accessor(this.dims.x, colNames);
         const y  = this.accessor(this.dims.y, colNames);

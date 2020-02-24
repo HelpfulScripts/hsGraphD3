@@ -122,8 +122,8 @@ export class Title extends GraphComponent {
             const baseline = (y<0.33)? 'hanging' : ((x>0.66)? 'baseline' : 'middle');
             // const dy = titleDefs.style.font.size;
             svg
-            .attr('x', x * vp.width).attr('text-anchor', anchor)
-            .attr('y', y * vp.height).attr('dominant-baseline', baseline)
+            .attr('x', x * vp.width + vp.orgX).attr('text-anchor', anchor)
+            .attr('y', y * vp.height + vp.orgY).attr('dominant-baseline', baseline)
             .text(this.titleText);
         }
     }

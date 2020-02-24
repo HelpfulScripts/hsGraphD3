@@ -26,6 +26,8 @@ exports[`Column should plot column 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         width="1000"
+        x="0"
+        y="0"
       />
     </g>
     <g
@@ -577,54 +579,46 @@ exports[`Column should plot column 1`] = `
         >
           <rect
             class="popup"
-            fill="rgb(247, 251, 255)"
             height="325"
-            stroke="rgb(247, 251, 255)"
             width="28"
             x="68"
             y="345"
           />
           <rect
             class="popup"
-            fill="rgb(207, 225, 242)"
+            color="#2ca02c"
             height="65"
-            stroke="rgb(207, 225, 242)"
             width="28"
             x="228"
             y="280"
           />
           <rect
             class="popup"
-            fill="rgb(147, 195, 223)"
+            color="#9467bd"
             height="130"
-            stroke="rgb(147, 195, 223)"
             width="28"
             x="388"
             y="215"
           />
           <rect
             class="popup"
-            fill="rgb(75, 151, 201)"
+            color="#e377c2"
             height="195"
-            stroke="rgb(75, 151, 201)"
             width="28"
             x="548"
             y="150"
           />
           <rect
             class="popup"
-            fill="rgb(24, 100, 170)"
+            color="#bcbd22"
             height="260"
-            stroke="rgb(24, 100, 170)"
             width="28"
             x="708"
             y="85"
           />
           <rect
             class="popup"
-            fill="rgb(8, 48, 107)"
             height="325"
-            stroke="rgb(8, 48, 107)"
             width="28"
             x="868"
             y="20"
@@ -642,54 +636,48 @@ exports[`Column should plot column 1`] = `
         >
           <rect
             class="popup"
-            fill="rgb(247, 252, 245)"
+            color="rgb(247, 252, 245)"
             height="325"
-            stroke="rgb(247, 252, 245)"
             width="28"
             x="96"
             y="345"
           />
           <rect
             class="popup"
-            fill="rgb(218, 241, 213)"
+            color="rgb(218, 241, 213)"
             height="65"
-            stroke="rgb(218, 241, 213)"
             width="28"
             x="256"
             y="280"
           />
           <rect
             class="popup"
-            fill="rgb(173, 222, 167)"
+            color="rgb(173, 222, 167)"
             height="130"
-            stroke="rgb(173, 222, 167)"
             width="28"
             x="416"
             y="215"
           />
           <rect
             class="popup"
-            fill="rgb(115, 195, 120)"
+            color="rgb(115, 195, 120)"
             height="195"
-            stroke="rgb(115, 195, 120)"
             width="28"
             x="576"
             y="150"
           />
           <rect
             class="popup"
-            fill="rgb(56, 160, 85)"
+            color="rgb(56, 160, 85)"
             height="260"
-            stroke="rgb(56, 160, 85)"
             width="28"
             x="736"
             y="85"
           />
           <rect
             class="popup"
-            fill="rgb(13, 118, 53)"
+            color="rgb(13, 118, 53)"
             height="325"
-            stroke="rgb(13, 118, 53)"
             width="28"
             x="896"
             y="20"
@@ -707,54 +695,48 @@ exports[`Column should plot column 1`] = `
         >
           <rect
             class="popup"
-            fill="#8c564b"
+            color="#8c564b"
             height="325"
-            stroke="#8c564b"
             width="28"
             x="124"
             y="345"
           />
           <rect
             class="popup"
-            fill="#8c564b"
+            color="#8c564b"
             height="65"
-            stroke="#8c564b"
             width="28"
             x="284"
             y="280"
           />
           <rect
             class="popup"
-            fill="#8c564b"
+            color="#8c564b"
             height="130"
-            stroke="#8c564b"
             width="28"
             x="444"
             y="215"
           />
           <rect
             class="popup"
-            fill="#8c564b"
+            color="#8c564b"
             height="195"
-            stroke="#8c564b"
             width="28"
             x="604"
             y="150"
           />
           <rect
             class="popup"
-            fill="#8c564b"
+            color="#8c564b"
             height="260"
-            stroke="#8c564b"
             width="28"
             x="764"
             y="85"
           />
           <rect
             class="popup"
-            fill="#8c564b"
+            color="#8c564b"
             height="325"
-            stroke="#8c564b"
             width="28"
             x="924"
             y="20"
@@ -772,54 +754,48 @@ exports[`Column should plot column 1`] = `
         >
           <rect
             class="popup"
-            fill="#1f77b4"
+            color="#1f77b4"
             height="325"
-            stroke="#1f77b4"
             width="28"
             x="152"
             y="345"
           />
           <rect
             class="popup"
-            fill="#ff7f0e"
+            color="#ff7f0e"
             height="65"
-            stroke="#ff7f0e"
             width="28"
             x="312"
             y="280"
           />
           <rect
             class="popup"
-            fill="#2ca02c"
+            color="#2ca02c"
             height="130"
-            stroke="#2ca02c"
             width="28"
             x="472"
             y="215"
           />
           <rect
             class="popup"
-            fill="#d62728"
+            color="#d62728"
             height="195"
-            stroke="#d62728"
             width="28"
             x="632"
             y="150"
           />
           <rect
             class="popup"
-            fill="#9467bd"
+            color="#9467bd"
             height="260"
-            stroke="#9467bd"
             width="28"
             x="792"
             y="85"
           />
           <rect
             class="popup"
-            fill="#8c564b"
+            color="#8c564b"
             height="325"
-            stroke="#8c564b"
             width="28"
             x="952"
             y="20"

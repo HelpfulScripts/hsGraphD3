@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">92.86% </span>
+        <span class="strong">91.43% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>65/70</span>
+        <span class='fraction'>64/70</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">76.47% </span>
@@ -30,14 +30,14 @@
         <span class='fraction'>26/34</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">80.77% </span>
+        <span class="strong">76.92% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>21/26</span>
+        <span class='fraction'>20/26</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">92.31% </span>
+        <span class="strong">90.77% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>60/65</span>
+        <span class='fraction'>59/65</span>
       </div>
     </div>
     <p class="quiet">
@@ -374,7 +374,9 @@
 <a name='L326'></a><a href='#L326'>326</a>
 <a name='L327'></a><a href='#L327'>327</a>
 <a name='L328'></a><a href='#L328'>328</a>
-<a name='L329'></a><a href='#L329'>329</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L329'></a><a href='#L329'>329</a>
+<a name='L330'></a><a href='#L330'>330</a>
+<a name='L331'></a><a href='#L331'>331</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -439,13 +441,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">24x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -768,7 +772,7 @@ import { schemeCategory10 }     from 'd3';
 &nbsp;
 export const schemes = {
     'cat10':   (fraction:number) =&gt; schemeCategory10[fraction&gt;1? (<span class="branch-0 cbranch-no" title="branch not covered" >fraction % 10)</span> : Math.round((fraction*10)).toFixed(0)],
-    'blues':   (fraction:number) =&gt; interpolateBlues(fraction),
+    'blues':   <span class="fstat-no" title="function not covered" >(f</span>raction:number) =&gt; <span class="cstat-no" title="statement not covered" >interpolateBlues(fraction),</span>
     'greens':  (fraction:number) =&gt; interpolateGreens(fraction),
     'greys':   <span class="fstat-no" title="function not covered" >(f</span>raction:number) =&gt; <span class="cstat-no" title="statement not covered" >interpolateGreys(fraction),</span>
     'oranges': <span class="fstat-no" title="function not covered" >(f</span>raction:number) =&gt; <span class="cstat-no" title="statement not covered" >interpolateOranges(fraction),</span>
@@ -797,6 +801,8 @@ export type DefaultsAccess  = (compName:string) =&gt; ComponentDefaults;
 export type Color           = string;           // CSS color descriptor, e.g. '#fff'
 export type ZeroToOne       = number;           // number from [0, 1]
 export type Index           = number;           // column index into data table
+export type Radians         = number;           // angle in radians;
+export type Share           = number;           // number [0, 1] indicating a share or ratio;
 &nbsp;
 &nbsp;
 //---------- interfaces --------------

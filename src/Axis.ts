@@ -33,7 +33,6 @@ import { GraphComponent }   from './GraphComponent';
 import { GraphCfg }         from './GraphComponent';
 import { ComponentDefaults }from './GraphComponent';
 import { ScaleDims }        from './Scale';
-import { ScalesDefaults }   from './Scale';
 import { UnitVp }           from './Settings';
 import { d3Base }           from './Settings';
 import { setText }          from './Settings';
@@ -73,7 +72,9 @@ export interface AxesDefaults extends ComponentDefaults {
     ver:        AxisDefaults;
 } 
 
-
+/**
+ * Axes class, contains and manages the visual display of individual axes of a `Graph`.
+ */
 export class Axes extends GraphComponent {
     static type = 'axes';
 
@@ -117,6 +118,9 @@ export class Axes extends GraphComponent {
     postRender(): void {} 
 }
 
+/**
+ * Individual Axis class. Manages the visual display of an individual axis of a `Graph`.
+ */
 export class Axis {
     private pos: string;    // left/right or top/bottom
     private svg: d3Base;
@@ -182,7 +186,7 @@ export class Axis {
         }
     }
 
-    setTransform(scales:ScaleDims) {
+    protected setTransform(scales:ScaleDims) {
         const margins = this.cfg.graph.scales.defaults.margin;
         const trans = this.cfg.transition;
         const orth = (this.dir===Direction.horizontal)? Direction.vertical : Direction.horizontal;
@@ -215,7 +219,7 @@ export class Axis {
         }
     }
 
-    getD3Axis(scales:ScaleDims, axisDef:AxisDefaults) {
+    protected getD3Axis(scales:ScaleDims, axisDef:AxisDefaults) {
         let axis:d3.Axis<d3.AxisDomain>;
         if (this.dir===Direction.horizontal) {
             axis = scales.hor.axis(this.pos);

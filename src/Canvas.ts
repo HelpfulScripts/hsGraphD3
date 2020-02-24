@@ -68,9 +68,11 @@ export class Canvas extends GraphComponent {
         const canvas = this.defaults;
         const area = this.svg.select('.graphArea');
         setRect(area, canvas)
-            .attr('width', this.cfg.viewPort.width)
+            .attr('x',      this.cfg.viewPort.orgX)
+            .attr('y',      this.cfg.viewPort.orgY)
+            .attr('width',  this.cfg.viewPort.width)
             .attr('height', this.cfg.viewPort.height);
-    }
+}
 
     postRender(): void {} 
 }

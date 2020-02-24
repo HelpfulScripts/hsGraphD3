@@ -93,6 +93,8 @@ export type DefaultsAccess  = (compName:string) => ComponentDefaults;
 export type Color           = string;           // CSS color descriptor, e.g. '#fff'
 export type ZeroToOne       = number;           // number from [0, 1]
 export type Index           = number;           // column index into data table
+export type Radians         = number;           // angle in radians;
+export type Share           = number;           // number [0, 1] indicating a share or ratio;
 
 
 //---------- interfaces --------------
