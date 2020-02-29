@@ -4,7 +4,7 @@
  * plots a 2D pie chart. 
  * 
  * ## Usage
- * `graph.series.add('pie', {r:<radius-col>});`
+ * `graph.series.add('pie', {phi:<angle-col>});`
  * 
  * ## Example
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
@@ -20,8 +20,8 @@
  *          ['1/1/19', 1,   0.2, 0.4]]
  * };
  * 
- * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('pie', {phi:'costs'});
+ * const graph = new hsGraphD3.GraphPolar(root);
+ * graph.series.add('pie', {phi:'costs', label:i=>i});
  * graph.defaults.series.series0.marker.stroke.color = '#fff';
  * graph.render(data);
  * 
@@ -37,12 +37,12 @@
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphPolar(svgRoot);
  *      graph.series.add('pie', {phi:'volume'});
- *      return graph.series.defaults[0];
+ *      return graph.defaults;
  * }
  * 
  * m.mount(root, {
  *   view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [
- *      m('div', m.trust('graph.series.defaults[0] = ' + defaults)), 
+ *      m('div', m.trust('graph.defaults = ' + defaults)), 
  *      m('div.myGraph', '')
  *   ]),
  *   oncreate: () => {
@@ -79,6 +79,7 @@ export class Pie extends PolarSeriesPlot {
 
     constructor(cfg:GraphCfg, seriesName:string, dims:PolarSeriesDimensions) {
         super(cfg, seriesName, dims);
+        this.abscissa = 'rad';
     }
 
     getDefaults(): PolarPlotDefaults {
@@ -154,15 +155,12 @@ export class Pie extends PolarSeriesPlot {
         const lAccess = this.accessor(this.dims.label, data.colNames, false);
         const cfg:Label = this.defaults.label;
         const [xpos, ypos] = this.labelPos(cfg, labels);
-        labels.attr("transform", (d:any, i:number) => { 
-            const c = this.arc.centroid(d);
-log.info(`label translate: ${i}, [${c.join(', ')}]`);
-                return `translate(${c[0]} ${c[1]})`;})
-            .text((d:any, i:number) => text(lAccess(d.data, i)));
+        labels.attr("transform", (d:any, i:number) => `translate(${this.arc.centroid(d)})`)
+              .text((d:any, i:number) => text(lAccess(d.data, i)));
     }
 
     protected getPath(rows:DataRow[], colNames:string[], yDef?: ValueDef, useStack?:boolean):string {
-    return '';
+        return '';
     }
 
     protected labelPos(cfg:Label, labels:d3Base) {

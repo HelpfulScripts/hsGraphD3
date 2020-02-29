@@ -1,8 +1,7 @@
 import * as hsGraphD3   from '../';
-import { Log }          from 'hsnode';
-import * as d3 from 'd3';
+import { Log }          from 'hsnode'; const log = new Log('Line.jest.jest');
+import * as d3          from 'd3';
 import { DataSet }      from '../Graph';
-import { AxesDefaults } from '../Axis';
 
 let clientWidth = 300;
 const root = window.document.createElement("div");
@@ -12,6 +11,12 @@ root.style.height = "300px";
 d3.selection.prototype.transition   = function(){ return this; };
 d3.selection.prototype.duration     = function(){ return this; };
 d3.selection.prototype.ease         = function(){ return this; };
+// d3.selection.prototype.on           = function(event:string, cb:any) { 
+//     log.info(`on called for ${event}`);
+//     if (event === 'end') {
+//         setTimeout(cb, 100); 
+//     }
+// };
 
 const data:DataSet = {
     colNames: 
@@ -34,16 +39,25 @@ function createGraph(root:any) {
     return graph;
 }
 
+// function update(data:DataSet, done:()=>void) {
+//     done();
+//     return false;
+// }
+
 
 describe('Line', () => {
     let graph:hsGraphD3.GraphCartesian;
 
     describe('plot data', () => {
         beforeAll(() => {
+            jest.useFakeTimers();
             graph = createGraph(root);
-            graph.series.add('line', {x:'xval', y:'yval', r:'rval'});
+            // jest.runAllTimers();
+            graph.series.add('line', {x:'xval', y:'yval', r:'rval', popup:null});
+            // jest.runAllTimers();
             graph.axes.defaults.color = '#666';
-            graph.render(data);
+            graph.render(data); //  .update(200, (data:DataSet) => update(data, done));
+            // jest.runAllTimers();
         });
         it(`should have 'line' registered`, () =>
             expect(graph.seriesTypes).toContain('line')

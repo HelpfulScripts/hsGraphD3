@@ -3,6 +3,7 @@ import { Log }          from 'hsnode';
 import * as d3 from 'd3';
 import { DataSet }      from '../Graph';
 import { AxesDefaults } from '../Axis';
+import { TextHAlign, TextVAlign } from '../Settings';
 
 const root = window.document.createElement("div");
 root.style.width = "300px";
@@ -38,7 +39,15 @@ describe('Bubble', () => {
     let graph:hsGraphD3.GraphCartesian;
     beforeAll(() => {
         graph = createGraph(root);
-        graph.series.add('bubble', {x:'xval', y:'yval', r:'rval'});
+        graph.series.add('bubble', {x:'xval', y:'yval', r:'rval', label:5});
+        graph.series.add('bubble', {x:'xval', y:'yval', r:'rval', label:5});
+        graph.defaults.series[1].label.xpos = TextHAlign.right;
+        graph.series.add('bubble', {x:'xval', y:'yval', r:'rval', label:5});
+        graph.defaults.series[2].label.xpos = TextHAlign.left;
+        graph.series.add('bubble', {x:'xval', y:'yval', r:'rval', label:5});
+        graph.defaults.series[3].label.ypos = TextVAlign.bottom;
+        graph.series.add('bubble', {x:'xval', y:'yval', r:'rval', label:5});
+        graph.defaults.series[4].label.ypos = TextVAlign.top;
         graph.render(data);
     });
     it('should plot series', () =>

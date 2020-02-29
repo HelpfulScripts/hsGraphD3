@@ -129,7 +129,7 @@ export abstract class CartSeriesPlot extends SeriesPlot {
     public initialize(plot:d3Base, color?:string): void {
         super.initialize(plot, color);
         const defaults = this.defaults;
-        if (!this.dims.popup) { this.dims.popup = {hor: this.dims.y, ver: this.dims.x}[this.abscissa]; }
+        if (this.dims.popup===undefined) { this.dims.popup = {hor: this.dims.y, ver: this.dims.x}[this.abscissa]; }
 
         // if abscissa data is missing, use implicit index as data
         if (this.abscissa === 'hor') {

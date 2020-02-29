@@ -79,39 +79,37 @@
  * </example>
  */
 
- /** */
+/** */
 
- import { Log }                  from 'hsutil'; const log = new Log('GraphPolar');
+import { Log }                  from 'hsutil'; const log = new Log('GraphPolar');
 
- import { ValueDef }             from './SeriesPlot';
- import { GraphDimensions }      from './Graph';
- import { Graph }                from './Graph';
- import { Domains }              from './Graph';
- import { Vnode }                from './Graph';
- import { scaleDefault }         from './Scale';
- import { ScalesDefaults }       from './Scale';
- import { d3Base }               from './Settings';
+import { ValueDef }             from './SeriesPlot';
+import { GraphDimensions }      from './Graph';
+import { Graph }                from './Graph';
+import { Domains }              from './Graph';
+import { scaleDefault }         from './Scale';
+import { ScalesDefaults }       from './Scale';
+import { GraphCfg }             from './GraphComponent';
+
+// these imports perform self-registration:
+import "./plots/Pie"; 
+
+export interface PolarDimensions extends GraphDimensions { 
+    ang:ValueDef[]; 
+    rad:ValueDef[]; 
+}
  
- // these imports perform self-registration:
- import "./plots/Pie"; 
-import { GraphCfg } from './GraphComponent';
- 
- export interface PolarDimensions extends GraphDimensions { 
-     ang:ValueDef[]; 
-     rad:ValueDef[]; 
- }
- 
- export class GraphPolar extends Graph {
-     /**
-      * Called during `Graph` construction to create component defaults and 
-      * scale defaults for the `GraphDimensions` used in cartedian plots.
-      */
-     protected makeDefaults() {
-         super.makeDefaults();
-         const scalesDefaults = this.defaults.scales;
-         scalesDefaults.dims.ang  = scalesDefaults.dims.ang  || scaleDefault('linear');    // auto viewport range
-         scalesDefaults.dims.rad  = scalesDefaults.dims.rad  || scaleDefault('linear');    // auto viewport range
-     }
+export class GraphPolar extends Graph {
+    /**
+     * Called during `Graph` construction to create component defaults and 
+     * scale defaults for the `GraphDimensions` used in cartedian plots.
+     */
+    protected makeDefaults() {
+        super.makeDefaults();
+        const scalesDefaults = this.defaults.scales;
+        scalesDefaults.dims.ang  = scalesDefaults.dims.ang  || scaleDefault('linear', 0, 2*Math.PI);    // auto viewport range
+        scalesDefaults.dims.rad  = scalesDefaults.dims.rad  || scaleDefault('linear');    // auto viewport range
+    }
 
     /** 
      * disables components for polar plots
@@ -128,7 +126,7 @@ import { GraphCfg } from './GraphComponent';
      */
     protected setScales() {
         const margins = this.scales.defaults.margin;
-        this.scales.createScale('ang', this.cumulativeDomains.ang, [0,  2*Math.PI]);
+        this.scales.createScale('ang', this.cumulativeDomains.ang);
         this.scales.createScale('rad', this.cumulativeDomains.rad, [0, Math.min(this.viewport.height-margins.bottom-margins.top, this.viewport.width-margins.left-margins.right)/2]);
     }
 

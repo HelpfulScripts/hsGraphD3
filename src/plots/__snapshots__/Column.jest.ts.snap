@@ -624,6 +624,75 @@ exports[`Column should plot column 1`] = `
             y="20"
           />
         </g>
+        <g
+          class="label"
+          fill="#000"
+          font-family="sans-serif"
+          font-size="16px"
+          font-style="normal"
+          font-weight="100"
+        >
+          <text
+            class="popup"
+            dx="0.0em"
+            dy="0.3em"
+            style="text-anchor: middle;"
+            x="82"
+            y="507.5"
+          >
+            CA
+          </text>
+          <text
+            class="popup"
+            dx="0.0em"
+            dy="0.3em"
+            style="text-anchor: middle;"
+            x="242"
+            y="312.5"
+          >
+            MA
+          </text>
+          <text
+            class="popup"
+            dx="0.0em"
+            dy="0.3em"
+            style="text-anchor: middle;"
+            x="402"
+            y="280"
+          >
+            FL
+          </text>
+          <text
+            class="popup"
+            dx="0.0em"
+            dy="0.3em"
+            style="text-anchor: middle;"
+            x="562"
+            y="247.5"
+          >
+            SC
+          </text>
+          <text
+            class="popup"
+            dx="0.0em"
+            dy="0.3em"
+            style="text-anchor: middle;"
+            x="722"
+            y="215"
+          >
+            NV
+          </text>
+          <text
+            class="popup"
+            dx="0.0em"
+            dy="0.3em"
+            style="text-anchor: middle;"
+            x="882"
+            y="182.5"
+          >
+            NC
+          </text>
+        </g>
       </g>
       <g
         class="series1"

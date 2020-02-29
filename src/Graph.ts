@@ -470,7 +470,7 @@ export abstract class Graph extends GraphBase implements Components {
         const easing = easings[transitionDef.easing];
         this.cfg.transition = this.cfg.baseSVG.transition().duration(transitionDef.duration).ease(easing);
 
-        Graph.addGraph(graph.root.id, () => {
+        Graph.addGraph(graph.root.id, () => {   // called upon resize
             setTimeout(() => {
                 graph.resize();
                 graph.renderLifecycle(data);
@@ -538,7 +538,9 @@ export abstract class Graph extends GraphBase implements Components {
 
     /** renders the component. */
     renderComponent(data:DataSet | DataSet[]): void {
-        Object.keys(this.components).forEach(comp => this.components[comp]?this.components[comp].renderComponent(data):'');
+        Object.keys(this.components).forEach(comp => {
+            return this.components[comp]?this.components[comp].renderComponent(data):'';
+    });
     } 
 
     /** renders the component. */
@@ -549,7 +551,6 @@ export abstract class Graph extends GraphBase implements Components {
     renderLifecycle(data:DataSet | DataSet[]) {
         const isRendered = this.isRendered();
         if (isRendered) {
-            log.debug(`rendering lifecycle ${this.root.id}`);
             if (!this.initialized) {
                 this.initialize(this.cfg.baseSVG);
                 this.initialized = true;

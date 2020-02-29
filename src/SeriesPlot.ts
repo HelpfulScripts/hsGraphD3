@@ -5,12 +5,11 @@
 import { Log }                  from 'hsutil'; const log = new Log('SeriesPlot');
 import { BaseType }             from 'd3';
 import { d3Base }               from "./Settings";
+import { defaultLine }          from "./Settings";
+import { defaultMarker }        from "./Settings";
 import { Label }                from "./Settings";
-import { defaultText }          from "./Settings";
 import { defaultLabel }         from "./Settings";
 import { schemes }              from "./Settings";
-import { defaultStroke }        from "./Settings";
-import { defaultMarkerStyle }   from "./Settings";
 import { defaultArea }          from "./Settings";
 import { GraphCfg }             from "./GraphComponent";
 import { Area }                 from "./Settings";
@@ -132,18 +131,16 @@ export abstract class SeriesPlot {
      * Set the defaults for the series. Called during `addSeries`.
      * */
     public getDefaults(): SeriesPlotDefaults {
-        const def:any = {
-            line:   defaultStroke(5),
-            marker: defaultMarkerStyle(),
+        const def:SeriesPlotDefaults = {
+            line:   defaultLine(5),
+            marker: defaultMarker(),
             area:   defaultArea(),
-            label:  defaultLabel(),
-            popup:  defaultText()
+            label:  defaultLabel()
         };
         def.line.rendered = false;
         def.marker.rendered = false;
         def.area.rendered = false;
         def.label.rendered = false;
-        def.popup.rendered = false;
         return def;
     }
 
@@ -200,7 +197,9 @@ export abstract class SeriesPlot {
             case 'function':return (row, rowIndex) => (<ValueFn>v)(rowIndex);
             case 'number':  return () => <DataVal>v;
             case 'string':
-            default:        return (row) => row[colNames.indexOf(''+v)];
+            default:        const c = colNames.indexOf(''+v); 
+                            // try row.data[c] (as passed by d3.arc), then row[c]
+                            return (row) => row['data']? row['data'][c] : row[c];
         }
     }
 
@@ -269,7 +268,7 @@ export abstract class SeriesPlot {
             const abscissa = this.dimensions[this.abscissa][0];
             const absAccess     = this.accessor(abscissa, data.colNames, false);
             // if dims x present, reflect its column nname; else use 'index'
-            const absName = typeof abscissa === 'string'? abscissa : 'index';
+            const absName = typeof abscissa === 'string'? abscissa : this.abscissa;
             return (r:DataVal[], i:number) => {
                 let val = popupAccess(r,i);
                 if (typeof val === 'number') { val = format(val); }

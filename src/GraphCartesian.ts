@@ -89,7 +89,6 @@ import { Graph }                from './Graph';
 import { Domains }              from './Graph';
 import { scaleDefault }         from './Scale';
 import { ScalesDefaults }       from './Scale';
-import { d3Base }               from './Settings';
 
 // these imports perform self-registration:
 import "./plots/Bubble";

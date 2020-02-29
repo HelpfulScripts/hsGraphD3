@@ -56,7 +56,7 @@ export interface SeriesDefaults extends ComponentDefaults {
 
 /**
  * A class, instantiated as a primary `Graph` component and proxy for all added series.
- * `Seires` manages available series types, as well as the specific series added to a `Graph`,
+ * `Series` manages available series types, as well as the specific series added to a `Graph`,
  * including their render lifecycle and auto-domaining.
  */
 export class Series extends GraphComponent {
@@ -109,7 +109,7 @@ export class Series extends GraphComponent {
      * in the order they were regeistered.
      */
     public renderComponent(data:DataSet | DataSet[]) {
-        this.series.forEach((s:SeriesPlot, i:number) => { 
+        this.series.forEach((s:SeriesPlot, i:number) => {
             s.renderComponent((<DataSet>data).colNames? data : data[i % this.series.length]);
         });
     }

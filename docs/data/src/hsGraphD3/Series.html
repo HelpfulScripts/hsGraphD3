@@ -79,7 +79,7 @@
 <p id=56 class="line"><span>&nbsp;&nbsp;56</span></p>
 <p id=57 class="line"><span>&nbsp;&nbsp;57</span><comment>/**</comment></p>
 <p id=58 class="line"><span>&nbsp;&nbsp;58</span><comment>&nbsp;*&nbsp;A&nbsp;class,&nbsp;instantiated&nbsp;as&nbsp;a&nbsp;primary&nbsp;`Graph`&nbsp;component&nbsp;and&nbsp;proxy&nbsp;for&nbsp;all&nbsp;added&nbsp;series.</comment></p>
-<p id=59 class="line"><span>&nbsp;&nbsp;59</span><comment>&nbsp;*&nbsp;`Seires`&nbsp;manages&nbsp;available&nbsp;series&nbsp;types,&nbsp;as&nbsp;well&nbsp;as&nbsp;the&nbsp;specific&nbsp;series&nbsp;added&nbsp;to&nbsp;a&nbsp;`Graph`,</comment></p>
+<p id=59 class="line"><span>&nbsp;&nbsp;59</span><comment>&nbsp;*&nbsp;`Series`&nbsp;manages&nbsp;available&nbsp;series&nbsp;types,&nbsp;as&nbsp;well&nbsp;as&nbsp;the&nbsp;specific&nbsp;series&nbsp;added&nbsp;to&nbsp;a&nbsp;`Graph`,</comment></p>
 <p id=60 class="line"><span>&nbsp;&nbsp;60</span><comment>&nbsp;*&nbsp;including&nbsp;their&nbsp;render&nbsp;lifecycle&nbsp;and&nbsp;auto-domaining.</comment></p>
 <p id=61 class="line"><span>&nbsp;&nbsp;61</span><comment>&nbsp;*/</comment></p>
 <p id=62 class="line"><span>&nbsp;&nbsp;62</span>export&nbsp;class&nbsp;Series&nbsp;extends&nbsp;GraphComponent&nbsp;{</p>
@@ -132,7 +132,7 @@
 <p id=109 class="line"><span>&nbsp;109</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;in&nbsp;the&nbsp;order&nbsp;they&nbsp;were&nbsp;regeistered.</comment></p>
 <p id=110 class="line"><span>&nbsp;110</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</comment></p>
 <p id=111 class="line"><span>&nbsp;111</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;renderComponent(data:DataSet&nbsp;|&nbsp;DataSet[])&nbsp;{</p>
-<p id=112 class="line"><span>&nbsp;112</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.series.forEach((s:SeriesPlot,&nbsp;i:number)&nbsp;=>&nbsp;{&nbsp;</p>
+<p id=112 class="line"><span>&nbsp;112</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.series.forEach((s:SeriesPlot,&nbsp;i:number)&nbsp;=>&nbsp;{</p>
 <p id=113 class="line"><span>&nbsp;113</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;s.renderComponent((<DataSet>data).colNames?&nbsp;data&nbsp;:&nbsp;data[i&nbsp;%&nbsp;this.series.length]);</p>
 <p id=114 class="line"><span>&nbsp;114</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;});</p>
 <p id=115 class="line"><span>&nbsp;115</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>

@@ -104,8 +104,7 @@ export abstract class GraphComponent extends GraphBase {
     constructor(cfg:GraphCfg, compClass:string) { 
         super(cfg); 
         if (compClass) { 
-            this.cfg.baseSVG.append('g').classed(compClass, true);
-            this.svg = this.cfg.baseSVG.select(`.${compClass}`);
+            this.svg = this.cfg.baseSVG.append('g').classed(compClass, true);
         } else if (compClass !== null) {
             console.log('no CompClass');
             console.log(new Error().stack);

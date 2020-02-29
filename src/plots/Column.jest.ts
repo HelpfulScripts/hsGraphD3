@@ -37,7 +37,7 @@ describe('Column', () => {
     let graph:hsGraphD3.GraphCartesian;
     beforeAll(() => {
         graph = createGraph(root);
-        graph.series.add('column', {x:'State', y:'volume', color:'volume'});
+        graph.series.add('column', {x:'State', y:'volume', color:'volume', label:'State'});
         graph.series.add('column', {x:'State', y:'volume', color:'greens'});
         graph.series.add('column', {x:'State', y:'volume', color:5});
         graph.series.add('column', {x:'State', y:'volume', color:row=>row});

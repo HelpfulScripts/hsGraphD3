@@ -152,7 +152,7 @@
 <p id=129 class="line"><span>&nbsp;129</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;initialize(plot:d3Base,&nbsp;color?:string):&nbsp;void&nbsp;{</p>
 <p id=130 class="line"><span>&nbsp;130</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super.initialize(plot,&nbsp;color);</p>
 <p id=131 class="line"><span>&nbsp;131</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;defaults&nbsp;=&nbsp;this.defaults;</p>
-<p id=132 class="line"><span>&nbsp;132</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!this.dims.popup)&nbsp;{&nbsp;this.dims.popup&nbsp;=&nbsp;{hor:&nbsp;this.dims.y,&nbsp;ver:&nbsp;this.dims.x}[this.abscissa];&nbsp;}</p>
+<p id=132 class="line"><span>&nbsp;132</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(this.dims.popup===undefined)&nbsp;{&nbsp;this.dims.popup&nbsp;=&nbsp;{hor:&nbsp;this.dims.y,&nbsp;ver:&nbsp;this.dims.x}[this.abscissa];&nbsp;}</p>
 <p id=133 class="line"><span>&nbsp;133</span></p>
 <p id=134 class="line"><span>&nbsp;134</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;if&nbsp;abscissa&nbsp;data&nbsp;is&nbsp;missing,&nbsp;use&nbsp;implicit&nbsp;index&nbsp;as&nbsp;data</comment></p>
 <p id=135 class="line"><span>&nbsp;135</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(this.abscissa&nbsp;===&nbsp;<quote>'hor'</quote>)&nbsp;{</p>

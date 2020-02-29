@@ -60,7 +60,6 @@ export interface PolarPlotDefaults extends SeriesPlotDefaults {
 }
 
 
-
 /**
  * Abstract base class for all cartesian plots.
  */
@@ -208,30 +207,6 @@ export abstract class PolarSeriesPlot extends SeriesPlot {
     // protected abstract d3RenderFill(svg:d3Base, data:DataSet):void;
 
     protected abstract d3RenderLabels(labels:d3Base, data:DataSet):void;
-
-    // /**
-    //  * formats the popup string to display
-    //  * @param colNames 
-    //  */
-    // protected d3RenderPopup(data:DataSet):AccessFn {
-    //     if (this.dims.popup) {
-    //         const format = d3format('.4r');
-    //         const popupAccess = this.accessor(this.dims.popup, data.colNames, false);
-    //         const abscissa = this.dimensions[this.abscissa][0];
-    //         const absAccess = this.accessor(abscissa, data.colNames, false);
-    //         // if dims x present, reflect its column nname; else use 'index'
-    //         const absName = typeof abscissa === 'string'? abscissa : 'index';
-    //         return (r:any, i:number) => {
-    //             let val = popupAccess(r.data,i);
-    //             if (typeof val === 'number') { val = format(val); }
-    //             return typeof this.dims.popup === 'function' ? this.dims.popup :
-    //             `
-    //                 ${this.dims.popup} = ${val}<br>
-    //                 ${absName} = ${absAccess(r.data,i)}
-    //             `;
-    //         };
-    //     }
-    // }
 
     protected abstract d3DrawMarker(markers:d3Base, data:DataSet, defaults:PolarPlotDefaults):void;
 

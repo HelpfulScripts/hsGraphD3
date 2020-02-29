@@ -29,7 +29,7 @@
  * }
  * 
  * m.mount(root, {
- *   view:() => m('div', {style:'background-color:#eee; font-family:Monospace; font-size:12px'}, [
+ *   view:() => m('div', {style:'background-color:#eee; font-family:Monospace; font-size:14px'}, [
  *      m('div', m.trust('graph.defaults = ' + defaults)), 
  *      m('div.myGraph', '')
  *   ]),
@@ -252,6 +252,12 @@ export const defaultTextStyle = (size=16):TextStyle => {
         color:  'currentColor',
         font:   defaultFont(size)
     };
+};
+
+export const defaultMarker = (color='currentColor', shape=MarkerShape.circle, size=10):Marker => {
+    const def:any = defaultMarkerStyle(color, shape, size);
+    def.rendered = true;
+    return def;
 };
 
 export const defaultMarkerStyle = (color='currentColor', shape=MarkerShape.circle, size=10):MarkerStyle => {
