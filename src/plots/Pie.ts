@@ -4,9 +4,12 @@
  * plots a 2D pie chart. 
  * 
  * ## Usage
- * `graph.series.add('pie', {phi:<angle-col>});`
+ * `graph.series.add('pie', {phi:<angle-col>, ...<dim>:<ValueDef>});`
+ * - `<dim>` is the semantic dimension to set. See {@link PolarSeriesPlot.PolarSeriesDimensions PolarSeriesDimensions} for valid dimensions. 
+ * - `<ValueDef>` is the {@link SeriesPlot.ValueDef value definition}. 
  * 
  * ## Example
+ * Constant radius and variable pie slices
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
  * <file name='script.js'>
  * // create data set:
@@ -21,8 +24,34 @@
  * };
  * 
  * const graph = new hsGraphD3.GraphPolar(root);
- * graph.series.add('pie', {phi:'costs', label:i=>i});
+ * graph.series.add('pie', {phi:'costs', label:'date'});
  * graph.defaults.series.series0.marker.stroke.color = '#fff';
+ * graph.defaults.series.series0.label.xpos = 0.8;
+ * graph.render(data);
+ * 
+ * </file>
+ * </example>
+ * 
+ * ## Example
+ * Constant angles and variable pie radii. 
+ * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
+ * <file name='script.js'>
+ * // create data set:
+ * const data = {
+ *    colNames:['date', 'time', 'volume', 'costs'], 
+ *    rows:[['1/1/14', -1,  0.2, 0.3], 
+ *          ['1/1/16', 0.2, 0.7, 0.5], 
+ *          ['9/1/16', 0.4, 0.1, 0.3],
+ *          ['5/1/17', 0.6, -0.2,0.3], 
+ *          ['7/1/18', 0.8, 0.3, 0.5], 
+ *          ['1/1/19', 1,   0.2, 0.4]]
+ * };
+ * 
+ * const graph = new hsGraphD3.GraphPolar(root);
+ * // omitting 'phi' defaults to phi=1
+ * graph.series.add('pie', {r:'costs', r0:0.1, label:'date'});
+ * graph.defaults.series.series0.marker.stroke.color = '#fff';
+ * graph.defaults.series.series0.label.xpos = 0.8;
  * graph.render(data);
  * 
  * </file>
@@ -67,7 +96,7 @@ import { Series }               from '../Series';
 import { PolarSeriesPlot }      from '../PolarSeriesPlot';
 import { PolarPlotDefaults }    from '../PolarSeriesPlot';
 import { PolarSeriesDimensions }from '../PolarSeriesPlot';
-import { Label, d3Base, TextHAlign, TextVAlign }        from '../Settings';
+import { Label, d3Base, TextHAlign }        from '../Settings';
 import { DataRow, DataSet }     from '../Graph';
 import { pie as d3Pie }         from 'd3';
 import { arc as d3Arc }         from 'd3';
@@ -152,7 +181,7 @@ export class Pie extends PolarSeriesPlot {
         const r0Access = this.accessor(this.dims.r0, data.colNames, false);
         const lAccess = this.accessor(this.dims.label, data.colNames, false);
         const centroid = (d:any, i:number, pos:number) => {
-            const r = scales.rad(r0Access(d.data, i))*pos + scales.rad(rAccess(d.data, i))*(1-pos);
+            const r = scales.rad(rAccess(d.data, i))*pos + scales.rad(r0Access(d.data, i))*(1-pos);
             const a = (d.startAngle + d.endAngle) / 2 - Math.PI / 2;
             return [Math.cos(a) * r, Math.sin(a) * r];
         };

@@ -10,7 +10,9 @@
 
  * 
  * ## Usage
- * `graph.series.add('area', {x:<x-col>, y:<y-col>, y0:<y-lower-fill>=0, r?:<size-col>});`
+ * `graph.series.add('area', {x:<x-col>, y:<y-col>, ...<dim>:<ValueDef>});`
+ * - `<dim>` is the semantic dimension to set. See {@link CartSeriesPlot.CartSeriesDimensions CartSeriesDimensions} for valid dimensions. 
+ * - `<ValueDef>` is the {@link SeriesPlot.ValueDef value definition}. 
  * 
  * ## Example
  * - first series (top): a green area-band between y0='volume' and y='costs', not using markers

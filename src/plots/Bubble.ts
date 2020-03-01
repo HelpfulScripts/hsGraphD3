@@ -3,6 +3,8 @@
  * 
  * ### Usage
  * `graph.series.add('bubble', {x:<x-col>, y:<y-col>, r:<size-col>});`
+ * - `<dim>`: the semantic dimension to set. See {@link CartSeriesPlot.CartSeriesDimensions CartSeriesDimensions} for valid dimensions. 
+ * - `<ValueDef>`: the {@link SeriesPlot.ValueDef value definition}. 
  * 
  * ### Example
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>

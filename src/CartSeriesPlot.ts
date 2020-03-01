@@ -4,8 +4,11 @@
  * Abstract base class for all series plot types on cartesian coordinates.
  * To create a series plot, add the desired plot type to the graph:
  * ```
- * graph.series.add(<type>, ...<data-columns>);
+ * graph.series.add(<type>, {<dim>: <ValueDef>, ...});
  * ``` 
+ * - `<type>` is one of the registered types. See plot types for {@link plot.OrdinalSeriesPlot ordinal series} and {@link plot.NumericSeriesPlot numeric series}.
+ * - `<dim>` is the semantic dimension to set. See {@link CartSeriesPlot.CartSeriesDimensions CartSeriesDimensions} for valid dimensions. 
+ * - `<ValueDef>` is the {@link SeriesPlot.ValueDef value definition}. 
  */
 
 
@@ -36,8 +39,12 @@ import { setFill }              from "./Settings";
  * - `y`:   values for the y-axis.
  * - `y0`?: optional values for lower fill border on the y-axis; defaults to `0`
  * - `r`?:  optional values for the size of markers. If provided, marker rendering is enabled.
+ * </ul>
+ * Inherited from {@link SeriesPlot.SeriesDimensions SeriesDimensions}:<ul>
  * - `label`?: optional values for item labels
  * - `popup`?: optional values to show in mouse-over popups.
+ * - `color`?: optional values to determine marker colors
+ * - `stacked`?: optional stack group. Series with the same group will be stacked on each other
  */
 export interface CartSeriesDimensions extends SeriesDimensions {
     /** 

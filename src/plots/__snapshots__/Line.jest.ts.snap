@@ -871,8 +871,20 @@ exports[`Line plot constants should plot horizontal line 1`] = `
         <line
           x1="20"
           x2="980"
+          y1="670"
+          y2="670"
+        />
+        <line
+          x1="20"
+          x2="980"
           y1="345"
           y2="345"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="20"
+          y2="20"
         />
       </g>
       <g
@@ -886,8 +898,68 @@ exports[`Line plot constants should plot horizontal line 1`] = `
         <line
           x1="20"
           x2="980"
+          y1="670"
+          y2="670"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="605"
+          y2="605"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="540"
+          y2="540"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="475"
+          y2="475"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="410"
+          y2="410"
+        />
+        <line
+          x1="20"
+          x2="980"
           y1="345"
           y2="345"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="280"
+          y2="280"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="215"
+          y2="215"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="150"
+          y2="150"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="85"
+          y2="85"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="20"
+          y2="20"
         />
       </g>
       <g
@@ -993,7 +1065,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         text-anchor="middle"
-        transform="translate(0, 345)"
+        transform="translate(0, 670)"
       >
         <path
           class="domain"
@@ -1214,7 +1286,217 @@ exports[`Line plot constants should plot horizontal line 1`] = `
         <g
           class="tick"
           opacity="1"
+          transform="translate(0,670.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            0
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,605.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            1
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,540.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            2
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,475.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            3
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,410.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            4
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
           transform="translate(0,345.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            5
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,280.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            6
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,215.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            7
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,150.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            8
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,85.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            9
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,20.5)"
         >
           <line
             fill-opacity="0"
@@ -1255,7 +1537,7 @@ exports[`Line plot constants should plot horizontal line 1`] = `
           stroke-width="5"
         >
           <path
-            d="M20,345C20,345,90.67477497655099,344.99999999999994,156,345C233.3233300358553,345,343.4899600873148,345,472,345C613.3098334101694,345,980,345,980,345"
+            d="M20,20C20,20,90.67477497655099,20,156,20C233.3233300358553,19.999999999999996,343.4899600873148,20,472,20C613.3098334101694,20,980,20,980,20"
           />
         </g>
       </g>
@@ -2975,8 +3257,20 @@ exports[`Line plot function should plot horizontal line 1`] = `
         <line
           x1="20"
           x2="980"
+          y1="670"
+          y2="670"
+        />
+        <line
+          x1="20"
+          x2="980"
           y1="345"
           y2="345"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="20"
+          y2="20"
         />
       </g>
       <g
@@ -2990,8 +3284,68 @@ exports[`Line plot function should plot horizontal line 1`] = `
         <line
           x1="20"
           x2="980"
+          y1="670"
+          y2="670"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="605"
+          y2="605"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="540"
+          y2="540"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="475"
+          y2="475"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="410"
+          y2="410"
+        />
+        <line
+          x1="20"
+          x2="980"
           y1="345"
           y2="345"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="280"
+          y2="280"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="215"
+          y2="215"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="150"
+          y2="150"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="85"
+          y2="85"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="20"
+          y2="20"
         />
       </g>
       <g
@@ -3097,7 +3451,7 @@ exports[`Line plot function should plot horizontal line 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         text-anchor="middle"
-        transform="translate(0, 345)"
+        transform="translate(0, 670)"
       >
         <path
           class="domain"
@@ -3318,7 +3672,217 @@ exports[`Line plot function should plot horizontal line 1`] = `
         <g
           class="tick"
           opacity="1"
+          transform="translate(0,670.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            0
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,605.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            1
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,540.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            2
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,475.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            3
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,410.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            4
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
           transform="translate(0,345.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            5
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,280.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            6
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,215.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            7
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,150.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            8
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,85.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            9
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,20.5)"
         >
           <line
             fill-opacity="0"
@@ -3359,7 +3923,7 @@ exports[`Line plot function should plot horizontal line 1`] = `
           stroke-width="5"
         >
           <path
-            d="M20,345C20,345,90.67477497655099,344.99999999999994,156,345C233.3233300358553,345,343.4899600873148,345,472,345C613.3098334101694,345,980,345,980,345"
+            d="M20,20C20,20,90.67477497655099,20,156,20C233.3233300358553,19.999999999999996,343.4899600873148,20,472,20C613.3098334101694,20,980,20,980,20"
           />
         </g>
       </g>
@@ -3411,8 +3975,20 @@ exports[`Line plot function should plot horizontal line 1`] = `
         <line
           x1="20"
           x2="980"
+          y1="670"
+          y2="670"
+        />
+        <line
+          x1="20"
+          x2="980"
           y1="345"
           y2="345"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="20"
+          y2="20"
         />
       </g>
       <g
@@ -3426,8 +4002,68 @@ exports[`Line plot function should plot horizontal line 1`] = `
         <line
           x1="20"
           x2="980"
+          y1="670"
+          y2="670"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="605"
+          y2="605"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="540"
+          y2="540"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="475"
+          y2="475"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="410"
+          y2="410"
+        />
+        <line
+          x1="20"
+          x2="980"
           y1="345"
           y2="345"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="280"
+          y2="280"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="215"
+          y2="215"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="150"
+          y2="150"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="85"
+          y2="85"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="20"
+          y2="20"
         />
       </g>
       <g
@@ -3533,7 +4169,7 @@ exports[`Line plot function should plot horizontal line 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         text-anchor="middle"
-        transform="translate(0, 345)"
+        transform="translate(0, 670)"
       >
         <path
           class="domain"
@@ -3754,7 +4390,217 @@ exports[`Line plot function should plot horizontal line 1`] = `
         <g
           class="tick"
           opacity="1"
+          transform="translate(0,670.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            0
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,605.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            1
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,540.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            2
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,475.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            3
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,410.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            4
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
           transform="translate(0,345.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            5
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,280.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            6
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,215.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            7
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,150.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            8
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,85.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            9
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,20.5)"
         >
           <line
             fill-opacity="0"
@@ -3795,7 +4641,7 @@ exports[`Line plot function should plot horizontal line 1`] = `
           stroke-width="5"
         >
           <path
-            d="M20,345C20,345,90.67477497655099,344.99999999999994,156,345C233.3233300358553,345,343.4899600873148,345,472,345C613.3098334101694,345,980,345,980,345"
+            d="M20,20C20,20,90.67477497655099,20,156,20C233.3233300358553,19.999999999999996,343.4899600873148,20,472,20C613.3098334101694,20,980,20,980,20"
           />
         </g>
       </g>
@@ -4681,8 +5527,20 @@ exports[`Line plot indexed should plot horizontal line 1`] = `
         <line
           x1="20"
           x2="980"
+          y1="670"
+          y2="670"
+        />
+        <line
+          x1="20"
+          x2="980"
           y1="345"
           y2="345"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="20"
+          y2="20"
         />
       </g>
       <g
@@ -4696,8 +5554,68 @@ exports[`Line plot indexed should plot horizontal line 1`] = `
         <line
           x1="20"
           x2="980"
+          y1="670"
+          y2="670"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="605"
+          y2="605"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="540"
+          y2="540"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="475"
+          y2="475"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="410"
+          y2="410"
+        />
+        <line
+          x1="20"
+          x2="980"
           y1="345"
           y2="345"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="280"
+          y2="280"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="215"
+          y2="215"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="150"
+          y2="150"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="85"
+          y2="85"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="20"
+          y2="20"
         />
       </g>
       <g
@@ -4803,7 +5721,7 @@ exports[`Line plot indexed should plot horizontal line 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         text-anchor="middle"
-        transform="translate(0, 345)"
+        transform="translate(0, 670)"
       >
         <path
           class="domain"
@@ -5024,7 +5942,217 @@ exports[`Line plot indexed should plot horizontal line 1`] = `
         <g
           class="tick"
           opacity="1"
+          transform="translate(0,670.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            0
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,605.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            1
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,540.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            2
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,475.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            3
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,410.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            4
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
           transform="translate(0,345.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            5
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,280.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            6
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,215.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            7
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,150.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            8
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,85.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            9
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,20.5)"
         >
           <line
             fill-opacity="0"
@@ -5065,7 +6193,7 @@ exports[`Line plot indexed should plot horizontal line 1`] = `
           stroke-width="5"
         >
           <path
-            d="M20,345C20,345,90.67477497655099,344.99999999999994,156,345C233.3233300358553,345,343.4899600873148,345,472,345C613.3098334101694,345,980,345,980,345"
+            d="M20,20C20,20,90.67477497655099,20,156,20C233.3233300358553,19.999999999999996,343.4899600873148,20,472,20C613.3098334101694,20,980,20,980,20"
           />
         </g>
       </g>
@@ -5117,8 +6245,20 @@ exports[`Line plot indexed should plot horizontal line 1`] = `
         <line
           x1="20"
           x2="980"
+          y1="670"
+          y2="670"
+        />
+        <line
+          x1="20"
+          x2="980"
           y1="345"
           y2="345"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="20"
+          y2="20"
         />
       </g>
       <g
@@ -5132,8 +6272,68 @@ exports[`Line plot indexed should plot horizontal line 1`] = `
         <line
           x1="20"
           x2="980"
+          y1="670"
+          y2="670"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="605"
+          y2="605"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="540"
+          y2="540"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="475"
+          y2="475"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="410"
+          y2="410"
+        />
+        <line
+          x1="20"
+          x2="980"
           y1="345"
           y2="345"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="280"
+          y2="280"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="215"
+          y2="215"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="150"
+          y2="150"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="85"
+          y2="85"
+        />
+        <line
+          x1="20"
+          x2="980"
+          y1="20"
+          y2="20"
         />
       </g>
       <g
@@ -5239,7 +6439,7 @@ exports[`Line plot indexed should plot horizontal line 1`] = `
         stroke-opacity="1"
         stroke-width="1"
         text-anchor="middle"
-        transform="translate(0, 345)"
+        transform="translate(0, 670)"
       >
         <path
           class="domain"
@@ -5460,7 +6660,217 @@ exports[`Line plot indexed should plot horizontal line 1`] = `
         <g
           class="tick"
           opacity="1"
+          transform="translate(0,670.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            0
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,605.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            1
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,540.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            2
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,475.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            3
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,410.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            4
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
           transform="translate(0,345.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            5
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,280.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            6
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,215.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            7
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,150.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            8
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,85.5)"
+        >
+          <line
+            fill-opacity="0"
+            stroke="currentColor"
+            stroke-dasharray="none"
+            stroke-opacity="1"
+            stroke-width="2"
+            x2="-5"
+          />
+          <text
+            dy="0.32em"
+            fill="currentColor"
+            x="-8"
+          >
+            9
+          </text>
+        </g>
+        <g
+          class="tick"
+          opacity="1"
+          transform="translate(0,20.5)"
         >
           <line
             fill-opacity="0"
@@ -5501,7 +6911,7 @@ exports[`Line plot indexed should plot horizontal line 1`] = `
           stroke-width="5"
         >
           <path
-            d="M20,345C20,345,90.67477497655099,344.99999999999994,156,345C233.3233300358553,345,343.4899600873148,345,472,345C613.3098334101694,345,980,345,980,345"
+            d="M20,20C20,20,90.67477497655099,20,156,20C233.3233300358553,19.999999999999996,343.4899600873148,20,472,20C613.3098334101694,20,980,20,980,20"
           />
         </g>
       </g>

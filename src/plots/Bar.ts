@@ -2,7 +2,9 @@
  * # Bar Plot
  * 
  * ## Usage
- * `graph.series.add('bar', {x:<x-col>, y:<y-col>, stacked?:<group-name>});`
+ * `graph.series.add('bar', {x:<x-col>, y:<y-col>, ...<dim>:<ValueDef>});`
+ * - `<dim>` is the semantic dimension to set. See {@link CartSeriesPlot.CartSeriesDimensions CartSeriesDimensions} for valid dimensions. 
+ * - `<ValueDef>` is the {@link SeriesPlot.ValueDef value definition}. 
  * 
  * ## Example
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>

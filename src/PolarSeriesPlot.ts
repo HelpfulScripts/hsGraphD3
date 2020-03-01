@@ -4,8 +4,12 @@
  * Abstract base class for all series plot types on polar coordinates.
  * To create a series plot, add the desired plot type to the graph:
  * ```
- * graph.series.add(<type>, ...<data-columns>);
+ * graph.series.add(<type>, {<dim>: <ValueDef>, ...});
  * ``` 
+ * - `<type>` is one of the registered types: 
+ *     - &nbsp; {@link plots.Pie `pie`} a pie chart
+ * - `<dim>` is the semantic dimension to set. See {@link PolarSeriesPlot.PolarSeriesDimensions PolarSeriesDimensions} for valid dimensions. 
+ * - `<ValueDef>` is the {@link SeriesPlot.ValueDef value definition}. 
  */
 
 
@@ -32,12 +36,15 @@ import { PolarDimensions }      from './GraphPolar';
 
 /**
  * valid {@link SeriesPlot.ValueDef `Value Definiton`} dimensions on polar plots:
- * - `phi`?:  optional values for the angular axis. 
- *    If omitted, the index of radial values will be used as  angular values
+ * - `phi`?:  optional values for the angular axis. If omitted, equal angular values will be used.
  * - `r`:   values for the radial axis.
  * - `r0`?: optional values for lower fill border on the  radial axis; defaults to `0`
+ * </ul>
+ * Inherited from {@link SeriesPlot.SeriesDimensions SeriesDimensions}:<ul>
  * - `label`?: optional values for item labels
  * - `popup`?: optional values to show in mouse-over popups.
+ * - `color`?: optional values to determine marker colors
+ * - `stacked`?: optional stack group. Series with the same group will be stacked on each other
  */
 export interface PolarSeriesDimensions extends SeriesDimensions {
     /** 
@@ -134,13 +141,9 @@ export abstract class PolarSeriesPlot extends SeriesPlot {
 
         // if abscissa data is missing, use implicit index as data
         const r = Math.min(this.cfg.viewPort.width, this.cfg.viewPort.height) / 2;
-        if (!this.dims.r0)  { this.dims.r0= ()=> 0; }
-        if (this.abscissa === 'ang') {
-            if (!this.dims.phi) { this.dims.phi = 1; }
-            if (!this.dims.r)   { this.dims.r   = ()=> r; }
-        } else {
-            if (!this.dims.r) { this.dims.r = 1; }
-        }
+        if (!this.dims.phi)   { this.dims.phi = 1; /*+Math.random()/100;*/ }
+        if (!this.dims.r)     { this.dims.r = this.abscissa === 'ang'? ()=>r : 1; }
+        if (!this.dims.r0)    { this.dims.r0 = 0; }
         if (!this.dims.popup) { this.dims.popup = {ang: this.dims.r, rad: this.dims.phi}[this.abscissa]; }
 
         if (defaults.area.rendered) {
@@ -192,7 +195,6 @@ export abstract class PolarSeriesPlot extends SeriesPlot {
         const defaults = this.defaults;
         if (defaults.marker.rendered) { this.svg.call(this.d3RenderMarkers.bind(this), data); }
         if (defaults.line.rendered)   { this.svg.call(this.d3RenderLine.bind(this), data); }
-        // if (defaults.area.rendered)   { this.svg.call(this.d3RenderFill.bind(this), data); }
         if (defaults.label.rendered)  { this.svg.call(this.d3RenderLabels.bind(this), data); }
     }
 

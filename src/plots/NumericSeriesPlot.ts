@@ -1,7 +1,7 @@
 /**
  * # NumericSeriesPlot
  * 
- * Abstract base class for all numeric series plot types.
+ * Abstract base class for all numeric series plot types, i.e. plots with numeric coordinates
  * To create a series plot, add the desired plot type to the graph:
  * ```
  * graph.series.add(<type>, {<dim>: <ValueDef>, ...});
@@ -12,17 +12,8 @@
  *     - &nbsp; {@link plots.Area `area`} a 2D area plot filling to the x-axis
  *     - &nbsp; {@link plots.TimeSeries `timeseries`} a 2D scatter plot with marker sizes driven by the data
  *     - &nbsp; {@link plots.Voronoi `voronoi`} a voronoi diagrom with centroids and partition
- * - `<dim>` is one of the semantic dimensions defined for the plot. `NumericSeriesPlots` define the 
- *   following dimensions:
- *     - `x`: required; the value to plot along the x-axis
- *     - `y`: required; the value to plot along the y-axis
- *     - `y0`: optional; for areas, the lower bound of the area. 
- *       Specifying a value for `y0` will automatically enable area rendering
- *     - `r`: optional; for markers, the value to use for the size
- *       Specifying a value for `r` will automatically enable markers
- * - `<ValueDef>` is the value to use for the {@link Series.SeriesDimensions semantic dimension}. Values may be specified
- *     - by `string` to specify the column name of the data set to use
- *     - by `number` to specify a constant value to use.  
+ * - `<dim>` is the semantic dimension to set. See {@link CartSeriesPlot.CartSeriesDimensions CartSeriesDimensions} for valid dimensions. 
+ * - `<ValueDef>` is the {@link SeriesPlot.ValueDef value definition}. 
  */
 
 /** */

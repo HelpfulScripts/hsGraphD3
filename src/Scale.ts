@@ -203,6 +203,13 @@ export class Scales extends GraphComponent {
             log:        LogScale,
             linear:     LinearScale,
         };
+        if (domain && domain.length===2 && !isNaN(<number>domain[0]) && !isNaN(<number>domain[1])) {
+            log.info(`domain ${name}:  [${domain[0]},${domain[1]}]`);
+            if (domain[0]>0 && domain[0]===domain[1]) {
+                log.info(`expanding ${name} from [${domain[0]},${domain[1]}] to [0, ${domain[1]}]`);
+                domain[0] = 0;
+            }
+        }
         return this.scales[name] = new scales[scaleDef.type](scaleDef, domain, range).getScale();
     }
 }

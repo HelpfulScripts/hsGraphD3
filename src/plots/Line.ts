@@ -9,7 +9,9 @@
  * Each of these can be modified via changing the {@link Settings default settings}.
  * 
  * ## Usage
- * `graph.series.add('line', {x:<x-col>, y:<y-col>, y0?:<y-lower-fill>, r?:<size-col>});`
+ * `graph.series.add('line', {x:<x-col>, y:<y-col>, , ...<dim>:<ValueDef>});`
+ * - `<dim>` is the semantic dimension to set. See {@link CartSeriesPlot.CartSeriesDimensions CartSeriesDimensions} for valid dimensions. 
+ * - `<ValueDef>` is the {@link SeriesPlot.ValueDef value definition}. 
  * 
  * ## Example
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>

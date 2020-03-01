@@ -40,6 +40,12 @@ export interface SeriesPlotDefaults {
  * For each dimension, the value can be either 
  * - a string that identifies the column name in the data set to use
  * - or a {@link SeriesPlot.ValueFn `ValueFn`} function that returns the data to use.
+ * </ul>
+ * Optional auxiliary dimensions for all plots:<ul>
+ * - `label`?: optional values for item labels
+ * - `popup`?: optional values to show in mouse-over popups.
+ * - `color`?: optional values to determine marker colors
+ * - `stacked`?: optional stack group. Series with the same group will be stacked on each other
  */
 export interface SeriesDimensions { 
     [dim:string]: ValueDef; 
@@ -57,15 +63,15 @@ export interface SeriesDimensions {
  * Basic `ValueDef` definition, used in {@link SeriesPlot.SeriesPlot `SeriesPlot`}. 
  * - `string`: the name of column in the data set, e.g. `x:'time'`
  * - `number`: a constant value, e.g. `r: 5`
- * - {@link SeriesPlot.ValueFn `ValueFn`}: a function returning the value.
+ * - `ValueFn`: a {@link SeriesPlot.ValueFn `function`} returning the value.
  */
 export type ValueDef = string|number|ValueFn;
 
 /** 
- * a function returning the value of a data point 
- * The function will be called at runtime once for each row in the data set 
- * supplied when calling `render`, and will receive as parameters the 
- * `index` of the row in the {@link Graph.DataSet `DataSet's`} rows array.
+ * a function returning the {@link Graph.DataVal `DataVal`} of a data point.
+ * The function will be called at runtime once for each row in the data set.
+ * @param rowIndex the index of the row in the {@link Graph.DataSet `DataSet's`} rows array. 
+ * @return the value of type `DataVal` to use for the row.
  */
 export interface ValueFn { (rowIndex:number): DataVal; }
 

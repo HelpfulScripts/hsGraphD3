@@ -1,7 +1,7 @@
 /**
  * # OrdinalSeriesPlot
  * 
- * Abstract base class for all ordinal series plot types.
+ * Abstract base class for all ordinal series plot types, i.e. plots with a ordinal abscissa and a numeric ordinate.
  * To create a series plot, add the desired plot type to the graph:
  * ```
  * graph.series.add(<type>, {<dim>: <ValueDef>, ...});
@@ -9,16 +9,8 @@
  * - `<type>` is one of the registered types: 
  *     - &nbsp; {@link plots.Bar `bar`} a horizontal bar chart
  *     - &nbsp; {@link plots.Column `column`} a vertical column chart
- * - `<dim>` is one of the semantic dimensions defined for the plot. `NumericSeriesPlots` define the 
- *   following dimensions:
- *     - `x`: required; the value to plot along the x-axis
- *     - `y`: required; the value to plot along the y-axis
- *     - `label`: optional; the value to use for labels
- *     - `color`: optional {@link SeriesPlot.d3MarkerColors color value} to apply to markers
- *     - `stacked`: optional, specifies a group name for which series values will be stacked.
- * - `<ValueDef>` is the {@link SeriesPlot.ValueDef value definition} to use for the {@link Series.SeriesDimensions semantic dimension}. Values may be specified
- *     - by `string` to specify the column name of the data set to use
- *     - by `number` to specify a constant value to use.  
+ * - `<dim>` is the semantic dimension to set. See {@link CartSeriesPlot.CartSeriesDimensions CartSeriesDimensions} for valid dimensions. 
+ * - `<ValueDef>` is the {@link SeriesPlot.ValueDef value definition}. 
  */
 
 /** */
