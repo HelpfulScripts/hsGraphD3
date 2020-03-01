@@ -2,7 +2,7 @@
   "name": "hsgraphd3",
   "main": "./index.js",
   "types": "./index.d.ts",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "keywords": [
     "es6",
     "d3js",
