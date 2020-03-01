@@ -15,7 +15,7 @@
 
 /** */
 import { Log }                  from 'hsutil'; const log = new Log('OrdinalSeriesPlot');
-import { DataRow }              from '../Graph';
+import { DataRow, AccessFn }              from '../Graph';
 import { DataVal }              from '../Graph';
 import { NumDomain }            from '../Graph';
 import { DataSet }              from '../Graph';
@@ -158,20 +158,14 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
         const x0Attr = (d:number[], i:number) => this.cached('x0', i, ()=>xScale(x0(d, i)));
         const yAttr  = (d:number[], i:number) => this.cached('y', i, ()=>yScale(y(d, i)));
         const y0Attr = (d:number[], i:number) => this.cached('y0', i, ()=>yScale(y0(d, i)));
-        if (this.abscissa==='hor') {    // Column
-            labels
-                .attr("x",  (d:number[], i:number) => xAttr(d, i) + offset + thickness*xpos)
-                .attr("y",  (d:number[], i:number) => 
-                    Math.min(yAttr(d,i), y0Attr(d,i)) + Math.abs(yAttr(d,i) -y0Attr(d,i)) * ypos
-                );
-        } else {                        // Bar
-            labels
-                .attr("y",  (d:number[], i:number) => yAttr(d,i) + offset + thickness* ypos)
-                .attr("x",  (d:number[], i:number) => 
-                    Math.min(xAttr(d, i),x0Attr(d, i)) + Math.abs(xAttr(d, i)-x0Attr(d, i))* xpos
-                );
-        }
-        labels.text((d:number[], i:number) => text(l(d, i)));
+        const _ = {
+            hor: {x:'x', atX:xAttr, xPos:xpos, y:'y', atY:yAttr, atY0:y0Attr, yPos:ypos},
+            ver: {x:'y', atX:yAttr, xPos:ypos, y:'x', atY:xAttr, atY0:x0Attr, yPos:xpos}
+        }[this.abscissa];
+        labels
+            .attr(_.x,  (d:number[], i:number) => _.atX(d, i) + offset + thickness*_.xPos)
+            .attr(_.y,  (d:number[], i:number) =>  Math.min(_.atY(d,i), _.atY0(d,i)) + Math.abs(_.atY(d,i) -_.atY0(d,i)) * _.yPos)
+            .text((d:number[], i:number) => text(l(d, i)));
     }
 
     protected getPath(rows:DataRow[], colNames:string[]):string {

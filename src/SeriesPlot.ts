@@ -4,7 +4,7 @@
 /**  */
 import { Log }                  from 'hsutil'; const log = new Log('SeriesPlot');
 import { BaseType }             from 'd3';
-import { d3Base }               from "./Settings";
+import { d3Base, Index }               from "./Settings";
 import { defaultLine }          from "./Settings";
 import { defaultMarker }        from "./Settings";
 import { Label }                from "./Settings";
@@ -42,20 +42,41 @@ export interface SeriesPlotDefaults {
  * - or a {@link SeriesPlot.ValueFn `ValueFn`} function that returns the data to use.
  * </ul>
  * Optional auxiliary dimensions for all plots:<ul>
- * - `label`?: optional values for item labels
- * - `popup`?: optional values to show in mouse-over popups.
- * - `color`?: optional values to determine marker colors
- * - `stacked`?: optional stack group. Series with the same group will be stacked on each other
+ * - `label`?: optional values for item {@link SeriesPlot.SeriesDimensions.label labels}
+ * - `popup`?: optional values to show in mouse-over {@link SeriesPlot.SeriesDimensions.popup popups}.
+ * - `color`?: optional values to determine {@link SeriesPlot.SeriesDimensions.color marker colors}
+ * - `stacked`?: optional {@link SeriesPlot.SeriesDimensions.stacked stack group}. 
+ *    Series with the same group will be stacked on each other
  */
 export interface SeriesDimensions { 
     [dim:string]: ValueDef; 
-    /** optional, name of label data column, or a function returning a value */
+    /** 
+     * optional, name of label data column, or a function returning a value.
+     * See {@link Settings.Label Settings.Label} for configuring labels.
+     */
     label?: ValueDef;  
-    /** optional, name of popup data column, or a function returning a value */
+    /** 
+     * optional, name of popup data column, or a function returning a value.
+     * The popup is triggered when the mouse enters a marker or label area.
+     * If omitted, a default popup will configured to show the marker's 
+     * abscissa and ordinate names and values.
+     * See {@link Popup Popup} for an example.
+     */
     popup?: ValueDef;   
-    /** optional, name of color data column, or a function returning a value */
+    /** 
+     * optional, name of color data column, or a function returning a value.
+     * The returned color will be used on the marker of that data point. If 
+     * omitted, the `series'` color will be used, as defined in the default settinmgs:
+     * `graph.defaults.series.<seriesKey>.marker.fill`. 
+     * See {@link SeriesPlot.SeriesPlot.d3MarkerColors marker colors} for more details.
+     */
     color?: ValueDef;   
-    /** optional stack group. Series with the same group will be stacked on each other */
+    /** 
+     * optional stack group. Series with the same group will be stacked on each other. 
+     * `stacked` differes from other dimensions in that the `ValueDef` is always a `string`
+     * used as a unique identifier for the series to be stacked (and not as a named index into the data set).
+     * For example: `..., stacked:'myStack',..` would stack all series with the ID `myStack`. 
+     */
     stacked?:     string;
 }
 
@@ -73,7 +94,7 @@ export type ValueDef = string|number|ValueFn;
  * @param rowIndex the index of the row in the {@link Graph.DataSet `DataSet's`} rows array. 
  * @return the value of type `DataVal` to use for the row.
  */
-export interface ValueFn { (rowIndex:number): DataVal; }
+export interface ValueFn { (rowIndex:Index): DataVal; }
 
 /**
  * coverts a `DataVal` to a `string`
@@ -187,18 +208,18 @@ export abstract class SeriesPlot {
     }
 
     /**
-     * Returns an accessor function `(row:DataVal[], rowIndex:number) => DataVal` to access the numeric value in a data row.
+     * Returns an accessor function `(row:DataVal[], rowIndex:Index) => DataVal` to access the numeric value in a data row.
      * The type of `v` determines how to access the value: 
      * - If `v` is a function it will be valuated for the provided `row` and `rowIndex` to return the result.
      * - If `v` is a number it will be returned as constant result.
      * - If `v` is a string and contained in `colNames` it specifies the column to index in `row` 
      * @param v the `ValueDef` specifying the value
      * @param colNames a list of names for the coluymns in the `DataSet`
-     * @return an accessor function `(row:DataVal[], rowIndex:number) => DataVal` 
+     * @return an accessor function `(row:DataVal[], rowIndex:Index) => DataVal` 
      * that returns a `DataVal` value. The function
      * receives a `DataRow` and the index of the row in the `DataSet` as a parameter. 
      */
-    protected accessor(v:ValueDef, colNames:string[], useStack=true):(row:DataRow, rowIndex:number) => DataVal {
+    protected accessor(v:ValueDef, colNames:string[], useStack=true):(row:DataRow, rowIndex:Index) => DataVal {
         switch (typeof(v)) {
             case 'function':return (row, rowIndex) => (<ValueFn>v)(rowIndex);
             case 'number':  return () => <DataVal>v;
@@ -213,13 +234,15 @@ export abstract class SeriesPlot {
     /**
      * applies `stroke` and `fill` colors to `items`.
      * Colors are determined by the `color` tag in the series definition as in
-     * ```graph.series.add('column', {x:'item', y:'Mary', color:<colorValue>}); ```
-     * Various coloring modes are available via the <colorValue> tag:
+     * ```
+     * graph.series.add('column', {x:'item', y:'Mary', color:<colorValue>}); 
+     * ```
+     * Various coloring modes are available via the `<colorValue>` tag:
      * - `string`: 
-     *     a. addresses a data column containing
+     *     1. addresses a data column containing
      *          - `numbers`: used to index the `default.marker.scheme` table
-     *          - `strings`: used as direct colors; must be in the format '#rgb'  
-     *     b. if not addressing a data column, the value addresses an entry in an
+     *          - `strings`: used as direct colors; must be in the format `#rgb` 
+     *     2. if not addressing a data column, the value addresses an entry in an
      *        internal color schemes list. Available entries are 
      *          [cat10](https://github.com/d3/d3-scale-chromatic#schemeCategory10),
      *          [blues](https://github.com/d3/d3-scale-chromatic#schemeBlues),
@@ -229,7 +252,7 @@ export abstract class SeriesPlot {
      *          [purples](https://github.com/d3/d3-scale-chromatic#schemePurples),
      *          [reds](https://github.com/d3/d3-scale-chromatic#schemeReds)
      * - `number`: used to index the `default.marker.scheme` table
-     * - `function (rowIndex:number)=>string` a function, returning a '#rgb' string for the 
+     * - `function (rowIndex:Index)=>string` a function, returning a `#rgb` string for the 
      *    provided row index
      * @param items the items being colored
      * @param numRows the number of data rows

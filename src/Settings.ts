@@ -23,7 +23,7 @@
  * 
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      graph.series.add('bubble', 'time', 'volume', 'costs');
+ *      graph.series.add('column', 'time', 'volume', 'costs');
  *      graph.canvas.defaults.stroke.width = 7.8; // odd number, should appear on the left
  *      return graph.defaults;
  * }
@@ -76,25 +76,31 @@ export const schemes = {
 /** viewport units */
 export type UnitVp = number;        
 
-/** CSS px units */
+/** CSS `px` units */
 export type UnitPx = number;        
+
+/** CSS `em` units */
+export type UnitEm = number;        
 
 /** percent units */
 export type UnitPercent = string;        
 
 /** CSS general units */
-export type Unit = string|UnitPx;   // general CSS unit type
+export type Unit = string|UnitPx|UnitEm;   // general CSS unit type
 
 export interface RectDef { x:UnitVp; y:UnitVp; width:UnitVp; height:UnitVp; }
 
 export type d3Base = d3.Selection<d3.BaseType, unknown, d3.BaseType, any>; 
 
 export type DefaultsAccess  = (compName:string) => ComponentDefaults;
-export type Color           = string;           // CSS color descriptor, e.g. '#fff'
-export type ZeroToOne       = number;           // number from [0, 1]
-export type Index           = number;           // column index into data table
-export type Radians         = number;           // angle in radians;
-export type Share           = number;           // number [0, 1] indicating a share or ratio;
+/** CSS color descriptor, e.g. '#fff' */
+export type Color           = string;
+/** column index into data table */
+export type Index           = number;
+/** angle in `radians` */
+export type Radians         = number; 
+/** number in the range [0, 1] indicating a share or ratio; */ 
+export type Share           = number;
 
 
 //---------- interfaces --------------
@@ -110,13 +116,13 @@ export interface Popup extends Text {}
 
 export interface Fill {
     color: Color;
-    opacity: ZeroToOne;
+    opacity: Share;
 }
 
 export interface Stroke {
     width: UnitVp;
     color: Color;
-    opacity: ZeroToOne;
+    opacity: Share;
     dashed: string;
 }
 
@@ -154,12 +160,29 @@ export enum TextVAlign {
     bottom  = 'bottom'
 }
 
-
+/**
+ * defines `Label` configurations:
+ * - `xpos`: indicates the horizontal alignemnt of the label. 
+ *    Either a {@link Settings.TextHAlign TextHAlign} or a number indicating 
+ *    the horizontal position with 0=`left` and 1=`right`. 
+ *    Defaults to `TextHAlign.center`.
+ * - `ypos`: indicates the vertical alignemnt of the label. 
+ *    Either a {@link Settings.TextVAlign TextVAlign} or a number indicating 
+ *    the vertical position with 0=`top` and 1=`bottom`. 
+ *    Defaults to `TextVAlign.center`.
+ * - `hOffset`: offsets the label horizontally be the specified `em` value.
+ *    positive numbers shift right. Defaults to 0.
+ * - `vOffset`: offsets the label vertically be the specified `em` value
+ *    positive numbers shift down. Defaults to 0.
+ * - `inside`: if `true`, renders labels inside the marker. 
+ *    If `false`, renders labels outside the marker when `xpos` or `ypos`
+ *    are not `center`. Defaults to `true`.
+ */
 export interface Label extends TextStyle, Rendered {
     xpos: TextHAlign | Share;
     ypos: TextVAlign | Share;
-    hOffset: number;    // offset in `em`
-    vOffset: number;    // offset in `em`
+    hOffset: UnitEm;    // offset in `em`
+    vOffset: UnitEm;    // offset in `em`
     inside: boolean;    // render label inside the area
 }
 

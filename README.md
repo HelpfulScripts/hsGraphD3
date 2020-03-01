@@ -13,8 +13,6 @@ Helpful Scripts D3 convenience wrappers for simple plotting.
 
 **hsGraphD3** Provides JavaScript directives to facilitate really simple plotting of data. The API is designed to utilize the vast power of the [D3 framework](d3js.org) while hiding the complexity and steep learning curve.
 
-<!-- TOC -->autoauto- [Installation](#installation)auto- [Usage](#usage)autoauto<!-- /TOC -->
-
 ## Installation
 `npm i hsgraphd3`
 
@@ -42,7 +40,7 @@ const graph = new GraphCartesian(root);
 graph.addSeries('bubble', {x:'time', y:'volume', r:'costs'});
 ```
 
-Optionally, adjust some settings. See [Configuration Defaults](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.Settings) for a list of all available settings.
+Optionally, adjust some settings. See <a href='https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.Settings' target=_blank>Configuration Defaults</a> for a list of all available settings.
 ```
 graph.defaults.axes.color = '#00a';
 ```
@@ -65,16 +63,19 @@ See an [example](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/0) 
 [examples page](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.examples)
 
 ## Series Parameters
-Valid series parameters are defined as extensions of [SeriesDimensions](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.SeriesPlot.SeriesDimensions), for example for [CartesianSeriesDimensions](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.CartSeriesPlot.CartSeriesDimensions).
-<br>Examples:
+Valid series parameters are defined as extensions of [SeriesDimensions](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.SeriesPlot.SeriesDimensions), for example for [CartesianSeriesDimensions](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.CartSeriesPlot.CartSeriesDimensions) or [PolarSeriesDimensions](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.PolarSeriesPlot.PolarSeriesDimensions).
 
-[Column plot](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.plots.Column) with item labels:
+### Example: [Column plot](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.plots.Column)
+Side-by-side columns with data-driven popups and labels:
 ```
-graph.addSeries('column', {x:'time', y:'volume', label:'costs'});
+graph.series.add('column', {x:'State', y:'costs', label:'State', popup:'costs'});
+graph.series.add('column', {x:'State', y:'volume', popup:'volume'});
+
+graph.scales.defaults.dims.hor.ordinal.gap = 0.25;
 ```
 
-Stacked [Column plot](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.plots.Column) with item labels that are the index of the item:
+Stacked columns with inline-calculated item label strings:
 ```
-graph.addSeries('column', {x:'time', y:'volume', label:i=>i, stacked:'myGroup'});
-graph.addSeries('column', {x:'time', y:'costs',  label:i=>i, stacked:'myGroup'});
+graph.series.add('column', {x:'State', y:'costs',  label:i=>`costs ${i}`,  stacked:'group1'});
+graph.series.add('column', {x:'State', y:'volume', label:_=>'volume', stacked:'group1'});
 ```

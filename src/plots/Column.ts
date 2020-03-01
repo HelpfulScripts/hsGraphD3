@@ -24,10 +24,14 @@
  * const graph = new hsGraphD3.GraphCartesian(root);
  * graph.series.add('column', {x:'State', y:'costs', label:'State', popup:'costs'});
  * graph.series.add('column', {x:'State', y:'volume', popup:'volume'});
- * graph.scales.defaults.dims.hor.ordinal.gap = 0.25;
- * graph.scales.defaults.dims.hor.ordinal.overlap = 0.75;
- * graph.series.defaults[0].line.rendered = true;
- * graph.series.defaults[1].line.rendered = true;
+ * with (graph.scales.defaults.dims.hor.ordinal) {
+ *      gap = 0.25;
+ *      overlap = 0.75;
+ * }
+ * with (graph.series.defaults) {
+ *      series0.line.rendered = true
+ *      series1.line.rendered = true
+ * }
  * graph.grids.defaults.ver.major.rendered = false;
  * graph.render(data).update(2000, data => {
  *      data.rows.forEach(row => {
@@ -56,14 +60,16 @@
  * 
  * // setup and plot the data:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('column', {x:'State', y:'costs',  stacked:'group1', label:'costs'});
- * graph.series.add('column', {x:'State', y:'volume', stacked:'group1', label:i=>`<${2*i}>`});
+ * graph.series.add('column', {x:'State', y:'costs',  stacked:'group1', label:i=>`costs ${i}`});
+ * graph.series.add('column', {x:'State', y:'volume', stacked:'group1', label:'volume'});
  * graph.scales.defaults.dims.hor.ordinal.gap = 0.25;
- * graph.series.defaults[0].line.rendered = true;
- * graph.series.defaults[0].label.ypos = 'top';
- * graph.series.defaults[1].label.ypos = 'top';
- * graph.series.defaults[1].label.inside = false;
- * graph.series.defaults[1].line.rendered = true;
+ * with (graph.series.defaults) {
+ *      series0.line.rendered = true;
+ *      series0.label.ypos = 'top';
+ *      series1.label.ypos = 'top';
+ *      series1.label.inside = false;
+ *      series1.line.rendered = true;
+ * }
  * graph.grids.defaults.ver.major.rendered = false;
  * graph.render(data).update(2000, data => {
  *      data.rows.forEach(row => {
@@ -85,7 +91,16 @@
  * 
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      graph.series.add('column', {x:'state', y:'volume'});
+ *      graph.series.add('column', {x:'State', y:'costs', label:'State', popup:'costs'});
+ *      graph.series.add('column', {x:'State', y:'volume', popup:'volume'});
+ *      with (graph.scales.defaults.dims.hor.ordinal) {
+ *          gap = 0.25;
+ *          overlap = 0.75;
+ *      }
+ *      with (graph.series.defaults) {
+ *          series0.line.rendered = true
+ *          series1.line.rendered = true
+ *      }
  *      return graph;
  * }
  * 
@@ -99,10 +114,10 @@
  *      if (svgRoot && svgRoot.length && !defaults) { 
  *          const colors = ['#800', '#080', '#008'];
  *          const graph = createGraph(svgRoot[0]);
- *          defaults = `<b>graph.series.defaults = </b>
- *              ${log.inspect(graph.series.defaults, null, '   ', colors).replace(/\n/g, '<br>')}
- *              <br><br><b>graph.scales.defaults.dims = </b>
- *              ${log.inspect(graph.scales.defaults.dims, null, '   ', colors).replace(/\n/g, '<br>')}`;
+ *          defaults = `<b>graph.series.defaults = </b>` +
+ *              `${log.inspect(graph.series.defaults, null, '   ', colors).replace(/\n/g, '<br>')}` +
+ *              `<br><br><b>graph.scales.defaults.dims = </b>` +
+ *              `${log.inspect(graph.scales.defaults.dims, null, '   ', colors).replace(/\n/g, '<br>')}`;
  *      }
  *   } 
  * });

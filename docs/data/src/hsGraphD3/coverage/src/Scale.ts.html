@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">84.78% </span>
+        <span class="strong">84.62% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>78/92</span>
+        <span class='fraction'>77/91</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">77.08% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>28/38</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">84.81% </span>
+        <span class="strong">84.62% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>67/79</span>
+        <span class='fraction'>66/78</span>
       </div>
     </div>
     <p class="quiet">
@@ -401,7 +401,8 @@
 <a name='L353'></a><a href='#L353'>353</a>
 <a name='L354'></a><a href='#L354'>354</a>
 <a name='L355'></a><a href='#L355'>355</a>
-<a name='L356'></a><a href='#L356'>356</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L356'></a><a href='#L356'>356</a>
+<a name='L357'></a><a href='#L357'>357</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -606,8 +607,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">49x</span>
-<span class="cline-any cline-yes">36x</span>
 <span class="cline-any cline-yes">36x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
@@ -875,7 +877,7 @@ export type CategoricalDefaults = string[];
 /**
  * Specisifes the defaults of a specific scale.
  */
-export interface ScaleDefaults {    //  extends ComponentDefaults {
+export interface ScaleDefaults {    
     type:   ScaleType;
     aggregateOverTime: boolean;   // 
     domain: RangeDefaults | CategoricalDefaults;
@@ -961,8 +963,9 @@ export class Scales extends GraphComponent {
             log:        LogScale,
             linear:     LinearScale,
         };
+        // for numeric domains, if domain span is 0 then include origin in domain
+        // This might happen when an ordinate is defined as a constant, e.g. phi=1 in polar plots.
         if (domain &amp;&amp; domain.length===2 &amp;&amp; !isNaN(&lt;number&gt;domain[0]) &amp;&amp; !isNaN(&lt;number&gt;domain[1])) {
-            log.info(`domain ${name}:  [${domain[0]},${domain[1]}]`);
             if (domain[0]&gt;0 &amp;&amp; domain[0]===domain[1]) {
                 log.info(`expanding ${name} from [${domain[0]},${domain[1]}] to [0, ${domain[1]}]`);
                 domain[0] = 0;

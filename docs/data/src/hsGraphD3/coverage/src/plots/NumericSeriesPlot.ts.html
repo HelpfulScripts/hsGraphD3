@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">96.15% </span>
+        <span class="strong">93.9% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>75/78</span>
+        <span class='fraction'>77/82</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">83.33% </span>
+        <span class="strong">73.53% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>25/30</span>
+        <span class='fraction'>25/34</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">94.74% </span>
@@ -447,20 +447,20 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
     protected labelPos(cfg:Label, labels:d3Base) {
         let xShift = 0;
         let yShift = 0.35;
-        let xpos = 0;   // 0: left aligned, 1: right aligned
-        let ypos = 0;   // 0: top of bar, 1: bottom of bar
+        let xpos = +cfg.xpos;   // 0: left aligned, 1: right aligned
+        let ypos = +cfg.ypos;   // 0: top of bar, 1: bottom of bar
         let anchor = 'middle';
         switch(cfg.xpos) { 
             case TextHAlign.left:   xpos = -1; xShift = -0.4; anchor = 'end'; break;
-            case TextHAlign.center: break;
+            case TextHAlign.center: xpos = 0; break;
             case TextHAlign.right:  xpos = 1;  xShift = +0.4; anchor = 'start';  break;
-<span class="branch-3 cbranch-no" title="branch not covered" >            default: <span class="cstat-no" title="statement not covered" >log.warn(`illegal TextHAlign: ${cfg.xpos}`);</span></span>
+<span class="branch-3 cbranch-no" title="branch not covered" >            default: <span class="cstat-no" title="statement not covered" >if (isNaN(xpos)) { <span class="cstat-no" title="statement not covered" >log.warn(`illegal TextHAlign: ${cfg.xpos}`); </span>}</span></span>
         }
         switch(cfg.ypos) { // additional y 'em' shift
             case TextVAlign.top:    ypos = -1; yShift = -0.4; break;
-            case TextVAlign.center: break;
+            case TextVAlign.center: ypos = 0; break;
             case TextVAlign.bottom: ypos = 1;  yShift = 1.0;  break;
-<span class="branch-3 cbranch-no" title="branch not covered" >            default:  <span class="cstat-no" title="statement not covered" >log.warn(`illegal TextVAlign: ${cfg.ypos}`);</span></span>
+<span class="branch-3 cbranch-no" title="branch not covered" >            default: <span class="cstat-no" title="statement not covered" >if (isNaN(ypos)) { <span class="cstat-no" title="statement not covered" >log.warn(`illegal TextVAlign: ${cfg.ypos}`); </span>}</span></span>
         }
         labels.style('text-anchor', anchor)
               .attr('dx', ((cfg.hOffset||0)+xShift).toFixed(1) + 'em')

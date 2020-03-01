@@ -5,6 +5,9 @@
  * ### Example
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
  * <file name='script.js'>
+ * // create popup content:
+ * const popup = (rowIndex) => `${data.rows[rowIndex][0]}: ${data.rows[rowIndex][3]}`;
+ * 
  * // create data set:
  * const data = {
  *    colNames: ['date', 'time', 'volume', 'costs'], 
@@ -19,7 +22,12 @@
  * // setup and plot the data:
  * const graph = new hsGraphD3.GraphCartesian(root);
  * graph.series.add('bubble', {x:'time', y:'volume', r:'costs'});
- * graph.title.text = 'My Bubble Chart';
+ * graph.series.add('bubble', {x:'time', y:'costs', r:'volume', popup: popup, label: popup});
+ * with (graph.defaults.series[1].label) {
+ *      xpos = 'right';
+ *      inside = false;
+ * }
+ * graph.title.text = 'Popup examples';
  * graph.render(data);
  * 
  * </file>

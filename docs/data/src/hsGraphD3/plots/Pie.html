@@ -20,7 +20,7 @@
                     height:90%;
             }
             code { padding: 5px 0;}</style></html><body>
-                <h1>src/plots/Pie.ts</h1>
+                <h1>Pie.ts</h1>
                 <div class='listing'><code><p id=1 class="line"><span>&nbsp;&nbsp;&nbsp;1</span><comment>/**</comment></p>
 <p id=2 class="line"><span>&nbsp;&nbsp;&nbsp;2</span><comment>&nbsp;*&nbsp;#&nbsp;Pie&nbsp;Plot</comment></p>
 <p id=3 class="line"><span>&nbsp;&nbsp;&nbsp;3</span><comment>&nbsp;*&nbsp;</comment></p>
@@ -228,7 +228,7 @@
 <p id=205 class="line"><span>&nbsp;205</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;TextHAlign.left:&nbsp;&nbsp;&nbsp;xpos&nbsp;=&nbsp;0;&nbsp;break;</p>
 <p id=206 class="line"><span>&nbsp;206</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;TextHAlign.center:&nbsp;xpos&nbsp;=&nbsp;0.5;&nbsp;break;</p>
 <p id=207 class="line"><span>&nbsp;207</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;TextHAlign.right:&nbsp;&nbsp;xpos&nbsp;=&nbsp;1;&nbsp;break;&nbsp;</p>
-<p id=208 class="line"><span>&nbsp;208</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default:&nbsp;break;</p>
+<p id=208 class="line"><span>&nbsp;208</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default:&nbsp;if&nbsp;(isNaN(xpos))&nbsp;{&nbsp;log.warn(`illegal&nbsp;TextHAlign:&nbsp;${cfg.xpos}`);&nbsp;}</p>
 <p id=209 class="line"><span>&nbsp;209</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
 <p id=210 class="line"><span>&nbsp;210</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;labels.style(<quote>'text-anchor'</quote>,&nbsp;anchor)</p>
 <p id=211 class="line"><span>&nbsp;211</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr(<quote>'dx'</quote>,&nbsp;((cfg.hOffset||0)+xShift).toFixed(1)&nbsp;+&nbsp;<quote>'em'</quote>)</p>

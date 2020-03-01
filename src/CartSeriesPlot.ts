@@ -41,10 +41,11 @@ import { setFill }              from "./Settings";
  * - `r`?:  optional values for the size of markers. If provided, marker rendering is enabled.
  * </ul>
  * Inherited from {@link SeriesPlot.SeriesDimensions SeriesDimensions}:<ul>
- * - `label`?: optional values for item labels
- * - `popup`?: optional values to show in mouse-over popups.
- * - `color`?: optional values to determine marker colors
- * - `stacked`?: optional stack group. Series with the same group will be stacked on each other
+ * - `label`?: optional values for item {@link SeriesPlot.SeriesDimensions.label labels}
+ * - `popup`?: optional values to show in mouse-over {@link SeriesPlot.SeriesDimensions.popup popups}.
+ * - `color`?: optional values to determine {@link SeriesPlot.SeriesDimensions.color marker colors}
+ * - `stacked`?: optional {@link SeriesPlot.SeriesDimensions.stacked stack group}. 
+ *    Series with the same group will be stacked on each other
  */
 export interface CartSeriesDimensions extends SeriesDimensions {
     /** 

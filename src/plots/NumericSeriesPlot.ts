@@ -117,20 +117,20 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
     protected labelPos(cfg:Label, labels:d3Base) {
         let xShift = 0;
         let yShift = 0.35;
-        let xpos = 0;   // 0: left aligned, 1: right aligned
-        let ypos = 0;   // 0: top of bar, 1: bottom of bar
+        let xpos = +cfg.xpos;   // 0: left aligned, 1: right aligned
+        let ypos = +cfg.ypos;   // 0: top of bar, 1: bottom of bar
         let anchor = 'middle';
         switch(cfg.xpos) { 
             case TextHAlign.left:   xpos = -1; xShift = -0.4; anchor = 'end'; break;
-            case TextHAlign.center: break;
+            case TextHAlign.center: xpos = 0; break;
             case TextHAlign.right:  xpos = 1;  xShift = +0.4; anchor = 'start';  break;
-            default: log.warn(`illegal TextHAlign: ${cfg.xpos}`);
+            default: if (isNaN(xpos)) { log.warn(`illegal TextHAlign: ${cfg.xpos}`); }
         }
         switch(cfg.ypos) { // additional y 'em' shift
             case TextVAlign.top:    ypos = -1; yShift = -0.4; break;
-            case TextVAlign.center: break;
+            case TextVAlign.center: ypos = 0; break;
             case TextVAlign.bottom: ypos = 1;  yShift = 1.0;  break;
-            default:  log.warn(`illegal TextVAlign: ${cfg.ypos}`);
+            default: if (isNaN(ypos)) { log.warn(`illegal TextVAlign: ${cfg.ypos}`); }
         }
         labels.style('text-anchor', anchor)
               .attr('dx', ((cfg.hOffset||0)+xShift).toFixed(1) + 'em')

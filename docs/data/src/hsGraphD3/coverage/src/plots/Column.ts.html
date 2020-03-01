@@ -180,7 +180,37 @@
 <a name='L132'></a><a href='#L132'>132</a>
 <a name='L133'></a><a href='#L133'>133</a>
 <a name='L134'></a><a href='#L134'>134</a>
-<a name='L135'></a><a href='#L135'>135</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L135'></a><a href='#L135'>135</a>
+<a name='L136'></a><a href='#L136'>136</a>
+<a name='L137'></a><a href='#L137'>137</a>
+<a name='L138'></a><a href='#L138'>138</a>
+<a name='L139'></a><a href='#L139'>139</a>
+<a name='L140'></a><a href='#L140'>140</a>
+<a name='L141'></a><a href='#L141'>141</a>
+<a name='L142'></a><a href='#L142'>142</a>
+<a name='L143'></a><a href='#L143'>143</a>
+<a name='L144'></a><a href='#L144'>144</a>
+<a name='L145'></a><a href='#L145'>145</a>
+<a name='L146'></a><a href='#L146'>146</a>
+<a name='L147'></a><a href='#L147'>147</a>
+<a name='L148'></a><a href='#L148'>148</a>
+<a name='L149'></a><a href='#L149'>149</a>
+<a name='L150'></a><a href='#L150'>150</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -340,10 +370,14 @@
  * const graph = new hsGraphD3.GraphCartesian(root);
  * graph.series.add('column', {x:'State', y:'costs', label:'State', popup:'costs'});
  * graph.series.add('column', {x:'State', y:'volume', popup:'volume'});
- * graph.scales.defaults.dims.hor.ordinal.gap = 0.25;
- * graph.scales.defaults.dims.hor.ordinal.overlap = 0.75;
- * graph.series.defaults[0].line.rendered = true;
- * graph.series.defaults[1].line.rendered = true;
+ * with (graph.scales.defaults.dims.hor.ordinal) {
+ *      gap = 0.25;
+ *      overlap = 0.75;
+ * }
+ * with (graph.series.defaults) {
+ *      series0.line.rendered = true
+ *      series1.line.rendered = true
+ * }
  * graph.grids.defaults.ver.major.rendered = false;
  * graph.render(data).update(2000, data =&gt; {
  *      data.rows.forEach(row =&gt; {
@@ -372,14 +406,16 @@
  * 
  * // setup and plot the data:
  * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('column', {x:'State', y:'costs',  stacked:'group1', label:'costs'});
- * graph.series.add('column', {x:'State', y:'volume', stacked:'group1', label:i=&gt;`&lt;${2*i}&gt;`});
+ * graph.series.add('column', {x:'State', y:'costs',  stacked:'group1', label:i=&gt;`costs ${i}`});
+ * graph.series.add('column', {x:'State', y:'volume', stacked:'group1', label:'volume'});
  * graph.scales.defaults.dims.hor.ordinal.gap = 0.25;
- * graph.series.defaults[0].line.rendered = true;
- * graph.series.defaults[0].label.ypos = 'top';
- * graph.series.defaults[1].label.ypos = 'top';
- * graph.series.defaults[1].label.inside = false;
- * graph.series.defaults[1].line.rendered = true;
+ * with (graph.series.defaults) {
+ *      series0.line.rendered = true;
+ *      series0.label.ypos = 'top';
+ *      series1.label.ypos = 'top';
+ *      series1.label.inside = false;
+ *      series1.line.rendered = true;
+ * }
  * graph.grids.defaults.ver.major.rendered = false;
  * graph.render(data).update(2000, data =&gt; {
  *      data.rows.forEach(row =&gt; {
@@ -401,7 +437,16 @@
  * 
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      graph.series.add('column', {x:'state', y:'volume'});
+ *      graph.series.add('column', {x:'State', y:'costs', label:'State', popup:'costs'});
+ *      graph.series.add('column', {x:'State', y:'volume', popup:'volume'});
+ *      with (graph.scales.defaults.dims.hor.ordinal) {
+ *          gap = 0.25;
+ *          overlap = 0.75;
+ *      }
+ *      with (graph.series.defaults) {
+ *          series0.line.rendered = true
+ *          series1.line.rendered = true
+ *      }
  *      return graph;
  * }
  * 
@@ -415,10 +460,10 @@
  *      if (svgRoot &amp;&amp; svgRoot.length &amp;&amp; !defaults) { 
  *          const colors = ['#800', '#080', '#008'];
  *          const graph = createGraph(svgRoot[0]);
- *          defaults = `&lt;b&gt;graph.series.defaults = &lt;/b&gt;
- *              ${log.inspect(graph.series.defaults, null, '   ', colors).replace(/\n/g, '&lt;br&gt;')}
- *              &lt;br&gt;&lt;br&gt;&lt;b&gt;graph.scales.defaults.dims = &lt;/b&gt;
- *              ${log.inspect(graph.scales.defaults.dims, null, '   ', colors).replace(/\n/g, '&lt;br&gt;')}`;
+ *          defaults = `&lt;b&gt;graph.series.defaults = &lt;/b&gt;` +
+ *              `${log.inspect(graph.series.defaults, null, '   ', colors).replace(/\n/g, '&lt;br&gt;')}` +
+ *              `&lt;br&gt;&lt;br&gt;&lt;b&gt;graph.scales.defaults.dims = &lt;/b&gt;` +
+ *              `${log.inspect(graph.scales.defaults.dims, null, '   ', colors).replace(/\n/g, '&lt;br&gt;')}`;
  *      }
  *   } 
  * });

@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">82.94% </span>
+        <span class="strong">84.34% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>141/170</span>
+        <span class='fraction'>140/166</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">61.11% </span>
+        <span class="strong">61.54% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>33/54</span>
+        <span class='fraction'>32/52</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">79.03% </span>
+        <span class="strong">81.67% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>49/62</span>
+        <span class='fraction'>49/60</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">93.18% </span>
+        <span class="strong">95.35% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>123/132</span>
+        <span class='fraction'>123/129</span>
       </div>
     </div>
     <p class="quiet">
@@ -288,13 +288,7 @@
 <a name='L240'></a><a href='#L240'>240</a>
 <a name='L241'></a><a href='#L241'>241</a>
 <a name='L242'></a><a href='#L242'>242</a>
-<a name='L243'></a><a href='#L243'>243</a>
-<a name='L244'></a><a href='#L244'>244</a>
-<a name='L245'></a><a href='#L245'>245</a>
-<a name='L246'></a><a href='#L246'>246</a>
-<a name='L247'></a><a href='#L247'>247</a>
-<a name='L248'></a><a href='#L248'>248</a>
-<a name='L249'></a><a href='#L249'>249</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L243'></a><a href='#L243'>243</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -455,18 +449,12 @@
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -559,7 +547,7 @@
 &nbsp;
 /** */
 import { Log }                  from 'hsutil'; const log = new Log('OrdinalSeriesPlot');
-import { DataRow }              from '../Graph';
+import { DataRow, AccessFn }              from '../Graph';
 import { DataVal }              from '../Graph';
 import { NumDomain }            from '../Graph';
 import { DataSet }              from '../Graph';
@@ -702,20 +690,14 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
         const x0Attr = <span class="fstat-no" title="function not covered" >(d</span>:number[], i:number) =&gt; <span class="cstat-no" title="statement not covered" >this.cached('x0', i, <span class="fstat-no" title="function not covered" >()=</span>&gt;<span class="cstat-no" title="statement not covered" >xScale(x0(d, i)))</span>;</span>
         const yAttr  = (d:number[], i:number) =&gt; this.cached('y', i, <span class="fstat-no" title="function not covered" >()=</span>&gt;<span class="cstat-no" title="statement not covered" >yScale(y(d, i)))</span>;
         const y0Attr = (d:number[], i:number) =&gt; this.cached('y0', i, <span class="fstat-no" title="function not covered" >()=</span>&gt;<span class="cstat-no" title="statement not covered" >yScale(y0(d, i)))</span>;
-        <span class="missing-if-branch" title="else path not taken" >E</span>if (this.abscissa==='hor') {    // Column
-            labels
-                .attr("x",  (d:number[], i:number) =&gt; xAttr(d, i) + offset + thickness*xpos)
-                .attr("y",  (d:number[], i:number) =&gt; 
-                    Math.min(yAttr(d,i), y0Attr(d,i)) + Math.abs(yAttr(d,i) -y0Attr(d,i)) * ypos
-                );
-        } else {                        // Bar
-<span class="cstat-no" title="statement not covered" >            labels</span>
-                .attr("y",  <span class="fstat-no" title="function not covered" >(d</span>:number[], i:number) =&gt; <span class="cstat-no" title="statement not covered" >yAttr(d,i) + offset + thickness* ypos)</span>
-                .attr("x",  <span class="fstat-no" title="function not covered" >(d</span>:number[], i:number) =&gt; 
-<span class="cstat-no" title="statement not covered" >                    Math.min(xAttr(d, i),x0Attr(d, i)) + Math.abs(xAttr(d, i)-x0Attr(d, i))* xpos</span>
-                );
-        }
-        labels.text((d:number[], i:number) =&gt; text(l(d, i)));
+        const _ = {
+            hor: {x:'x', atX:xAttr, xPos:xpos, y:'y', atY:yAttr, atY0:y0Attr, yPos:ypos},
+            ver: {x:'y', atX:yAttr, xPos:ypos, y:'x', atY:xAttr, atY0:x0Attr, yPos:xpos}
+        }[this.abscissa];
+        labels
+            .attr(_.x,  (d:number[], i:number) =&gt; _.atX(d, i) + offset + thickness*_.xPos)
+            .attr(_.y,  (d:number[], i:number) =&gt;  Math.min(_.atY(d,i), _.atY0(d,i)) + Math.abs(_.atY(d,i) -_.atY0(d,i)) * _.yPos)
+            .text((d:number[], i:number) =&gt; text(l(d, i)));
     }
 &nbsp;
     protected getPath(rows:DataRow[], colNames:string[]):string {

@@ -205,7 +205,7 @@ export class Pie extends PolarSeriesPlot {
             case TextHAlign.left:   xpos = 0; break;
             case TextHAlign.center: xpos = 0.5; break;
             case TextHAlign.right:  xpos = 1; break; 
-            default: break;
+            default: if (isNaN(xpos)) { log.warn(`illegal TextHAlign: ${cfg.xpos}`); }
         }
         labels.style('text-anchor', anchor)
               .attr('dx', ((cfg.hOffset||0)+xShift).toFixed(1) + 'em')

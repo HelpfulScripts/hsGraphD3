@@ -382,7 +382,30 @@
 <a name='L334'></a><a href='#L334'>334</a>
 <a name='L335'></a><a href='#L335'>335</a>
 <a name='L336'></a><a href='#L336'>336</a>
-<a name='L337'></a><a href='#L337'>337</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L337'></a><a href='#L337'>337</a>
+<a name='L338'></a><a href='#L338'>338</a>
+<a name='L339'></a><a href='#L339'>339</a>
+<a name='L340'></a><a href='#L340'>340</a>
+<a name='L341'></a><a href='#L341'>341</a>
+<a name='L342'></a><a href='#L342'>342</a>
+<a name='L343'></a><a href='#L343'>343</a>
+<a name='L344'></a><a href='#L344'>344</a>
+<a name='L345'></a><a href='#L345'>345</a>
+<a name='L346'></a><a href='#L346'>346</a>
+<a name='L347'></a><a href='#L347'>347</a>
+<a name='L348'></a><a href='#L348'>348</a>
+<a name='L349'></a><a href='#L349'>349</a>
+<a name='L350'></a><a href='#L350'>350</a>
+<a name='L351'></a><a href='#L351'>351</a>
+<a name='L352'></a><a href='#L352'>352</a>
+<a name='L353'></a><a href='#L353'>353</a>
+<a name='L354'></a><a href='#L354'>354</a>
+<a name='L355'></a><a href='#L355'>355</a>
+<a name='L356'></a><a href='#L356'>356</a>
+<a name='L357'></a><a href='#L357'>357</a>
+<a name='L358'></a><a href='#L358'>358</a>
+<a name='L359'></a><a href='#L359'>359</a>
+<a name='L360'></a><a href='#L360'>360</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -525,6 +548,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
@@ -536,6 +565,23 @@
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -743,7 +789,7 @@
  * 
  * function createGraph(svgRoot) {
  *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      graph.series.add('bubble', 'time', 'volume', 'costs');
+ *      graph.series.add('column', 'time', 'volume', 'costs');
  *      graph.canvas.defaults.stroke.width = 7.8; // odd number, should appear on the left
  *      return graph.defaults;
  * }
@@ -796,25 +842,31 @@ export const schemes = {
 /** viewport units */
 export type UnitVp = number;        
 &nbsp;
-/** CSS px units */
+/** CSS `px` units */
 export type UnitPx = number;        
+&nbsp;
+/** CSS `em` units */
+export type UnitEm = number;        
 &nbsp;
 /** percent units */
 export type UnitPercent = string;        
 &nbsp;
 /** CSS general units */
-export type Unit = string|UnitPx;   // general CSS unit type
+export type Unit = string|UnitPx|UnitEm;   // general CSS unit type
 &nbsp;
 export interface RectDef { x:UnitVp; y:UnitVp; width:UnitVp; height:UnitVp; }
 &nbsp;
 export type d3Base = d3.Selection&lt;d3.BaseType, unknown, d3.BaseType, any&gt;; 
 &nbsp;
 export type DefaultsAccess  = (compName:string) =&gt; ComponentDefaults;
-export type Color           = string;           // CSS color descriptor, e.g. '#fff'
-export type ZeroToOne       = number;           // number from [0, 1]
-export type Index           = number;           // column index into data table
-export type Radians         = number;           // angle in radians;
-export type Share           = number;           // number [0, 1] indicating a share or ratio;
+/** CSS color descriptor, e.g. '#fff' */
+export type Color           = string;
+/** column index into data table */
+export type Index           = number;
+/** angle in `radians` */
+export type Radians         = number; 
+/** number in the range [0, 1] indicating a share or ratio; */ 
+export type Share           = number;
 &nbsp;
 &nbsp;
 //---------- interfaces --------------
@@ -830,13 +882,13 @@ export interface Popup extends Text {}
 &nbsp;
 export interface Fill {
     color: Color;
-    opacity: ZeroToOne;
+    opacity: Share;
 }
 &nbsp;
 export interface Stroke {
     width: UnitVp;
     color: Color;
-    opacity: ZeroToOne;
+    opacity: Share;
     dashed: string;
 }
 &nbsp;
@@ -874,12 +926,29 @@ export enum TextVAlign {
     bottom  = 'bottom'
 }
 &nbsp;
-&nbsp;
+/**
+ * defines `Label` configurations:
+ * - `xpos`: indicates the horizontal alignemnt of the label. 
+ *    Either a {@link Settings.TextHAlign TextHAlign} or a number indicating 
+ *    the horizontal position with 0=`left` and 1=`right`. 
+ *    Defaults to `TextHAlign.center`.
+ * - `ypos`: indicates the vertical alignemnt of the label. 
+ *    Either a {@link Settings.TextVAlign TextVAlign} or a number indicating 
+ *    the vertical position with 0=`top` and 1=`bottom`. 
+ *    Defaults to `TextVAlign.center`.
+ * - `hOffset`: offsets the label horizontally be the specified `em` value.
+ *    positive numbers shift right. Defaults to 0.
+ * - `vOffset`: offsets the label vertically be the specified `em` value
+ *    positive numbers shift down. Defaults to 0.
+ * - `inside`: if `true`, renders labels inside the marker. 
+ *    If `false`, renders labels outside the marker when `xpos` or `ypos`
+ *    are not `center`. Defaults to `true`.
+ */
 export interface Label extends TextStyle, Rendered {
     xpos: TextHAlign | Share;
     ypos: TextVAlign | Share;
-    hOffset: number;    // offset in `em`
-    vOffset: number;    // offset in `em`
+    hOffset: UnitEm;    // offset in `em`
+    vOffset: UnitEm;    // offset in `em`
     inside: boolean;    // render label inside the area
 }
 &nbsp;

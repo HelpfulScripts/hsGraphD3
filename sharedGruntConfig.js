@@ -343,10 +343,11 @@ module.exports = (grunt, dir, dependencies, type, lib) => {
                 .map(l => `<comment>${l}</comment>`)
                 .join('\n');
         }
-        function module(content) { return `<module>${content}</module>`; }
+        // function module(content) { return `<module>${content}</module>`; }
         function processFile(srcFile, destDir) {
-            let i = srcFile.lastIndexOf('/');
-            let file = (i>=0)? srcFile.slice(i+1) : srcFile;
+            const src = ''+srcFile;
+            const i = src.lastIndexOf('/');
+            const file = (i>=0)? src.slice(i+1) : src;
             let content = grunt.file.read(srcFile)
                 .replace(/( )/g, '&nbsp;')              // preserve whitespaces
                 .replace(/(\/\/.*?)<\/code>/g, comment) // color code // comments

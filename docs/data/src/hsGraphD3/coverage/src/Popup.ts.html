@@ -208,7 +208,23 @@
 <a name='L160'></a><a href='#L160'>160</a>
 <a name='L161'></a><a href='#L161'>161</a>
 <a name='L162'></a><a href='#L162'>162</a>
-<a name='L163'></a><a href='#L163'>163</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L163'></a><a href='#L163'>163</a>
+<a name='L164'></a><a href='#L164'>164</a>
+<a name='L165'></a><a href='#L165'>165</a>
+<a name='L166'></a><a href='#L166'>166</a>
+<a name='L167'></a><a href='#L167'>167</a>
+<a name='L168'></a><a href='#L168'>168</a>
+<a name='L169'></a><a href='#L169'>169</a>
+<a name='L170'></a><a href='#L170'>170</a>
+<a name='L171'></a><a href='#L171'>171</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -377,6 +393,9 @@
  * ### Example
  * &lt;example height=200px libs={hsGraphD3:'hsGraphD3'}&gt;
  * &lt;file name='script.js'&gt;
+ * // create popup content:
+ * const popup = (rowIndex) =&gt; `${data.rows[rowIndex][0]}: ${data.rows[rowIndex][3]}`;
+ * 
  * // create data set:
  * const data = {
  *    colNames: ['date', 'time', 'volume', 'costs'], 
@@ -391,7 +410,12 @@
  * // setup and plot the data:
  * const graph = new hsGraphD3.GraphCartesian(root);
  * graph.series.add('bubble', {x:'time', y:'volume', r:'costs'});
- * graph.title.text = 'My Bubble Chart';
+ * graph.series.add('bubble', {x:'time', y:'costs', r:'volume', popup: popup, label: popup});
+ * with (graph.defaults.series[1].label) {
+ *      xpos = 'right';
+ *      inside = false;
+ * }
+ * graph.title.text = 'Popup examples';
  * graph.render(data);
  * 
  * &lt;/file&gt;

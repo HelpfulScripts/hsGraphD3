@@ -33,6 +33,7 @@
  * graph.series.add('bubble', {x:'x', y:'y'});
  * 
  * with (graph.defaults) {
+ *     graph.transition.duration = 0;
  *     axes.rendered = false;
  *     series.series0.line.width = 1;
  *     series.series0.marker.size = 3;

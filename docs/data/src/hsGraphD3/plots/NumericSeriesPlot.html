@@ -20,7 +20,7 @@
                     height:90%;
             }
             code { padding: 5px 0;}</style></html><body>
-                <h1>src/plots/NumericSeriesPlot.ts</h1>
+                <h1>NumericSeriesPlot.ts</h1>
                 <div class='listing'><code><p id=1 class="line"><span>&nbsp;&nbsp;&nbsp;1</span><comment>/**</comment></p>
 <p id=2 class="line"><span>&nbsp;&nbsp;&nbsp;2</span><comment>&nbsp;*&nbsp;#&nbsp;NumericSeriesPlot</comment></p>
 <p id=3 class="line"><span>&nbsp;&nbsp;&nbsp;3</span><comment>&nbsp;*&nbsp;</comment></p>
@@ -140,20 +140,20 @@
 <p id=117 class="line"><span>&nbsp;117</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;labelPos(cfg:Label,&nbsp;labels:d3Base)&nbsp;{</p>
 <p id=118 class="line"><span>&nbsp;118</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;xShift&nbsp;=&nbsp;0;</p>
 <p id=119 class="line"><span>&nbsp;119</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;yShift&nbsp;=&nbsp;0.35;</p>
-<p id=120 class="line"><span>&nbsp;120</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;xpos&nbsp;=&nbsp;0;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;0:&nbsp;left&nbsp;aligned,&nbsp;1:&nbsp;right&nbsp;aligned</comment></p>
-<p id=121 class="line"><span>&nbsp;121</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;ypos&nbsp;=&nbsp;0;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;0:&nbsp;top&nbsp;of&nbsp;bar,&nbsp;1:&nbsp;bottom&nbsp;of&nbsp;bar</comment></p>
+<p id=120 class="line"><span>&nbsp;120</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;xpos&nbsp;=&nbsp;+cfg.xpos;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;0:&nbsp;left&nbsp;aligned,&nbsp;1:&nbsp;right&nbsp;aligned</comment></p>
+<p id=121 class="line"><span>&nbsp;121</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;ypos&nbsp;=&nbsp;+cfg.ypos;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;0:&nbsp;top&nbsp;of&nbsp;bar,&nbsp;1:&nbsp;bottom&nbsp;of&nbsp;bar</comment></p>
 <p id=122 class="line"><span>&nbsp;122</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;anchor&nbsp;=&nbsp;'</quote>middle<quote>';</p>
 <p id=123 class="line"><span>&nbsp;123</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch(cfg.xpos)&nbsp;{&nbsp;</p>
 <p id=124 class="line"><span>&nbsp;124</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;TextHAlign.left:&nbsp;&nbsp;&nbsp;xpos&nbsp;=&nbsp;-1;&nbsp;xShift&nbsp;=&nbsp;-0.4;&nbsp;anchor&nbsp;=&nbsp;'</quote>end<quote>';&nbsp;break;</p>
-<p id=125 class="line"><span>&nbsp;125</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;TextHAlign.center:&nbsp;break;</p>
+<p id=125 class="line"><span>&nbsp;125</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;TextHAlign.center:&nbsp;xpos&nbsp;=&nbsp;0;&nbsp;break;</p>
 <p id=126 class="line"><span>&nbsp;126</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;TextHAlign.right:&nbsp;&nbsp;xpos&nbsp;=&nbsp;1;&nbsp;&nbsp;xShift&nbsp;=&nbsp;+0.4;&nbsp;anchor&nbsp;=&nbsp;'</quote>start<quote>';&nbsp;&nbsp;break;</p>
-<p id=127 class="line"><span>&nbsp;127</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default:&nbsp;log.warn(`illegal&nbsp;TextHAlign:&nbsp;${cfg.xpos}`);</p>
+<p id=127 class="line"><span>&nbsp;127</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default:&nbsp;if&nbsp;(isNaN(xpos))&nbsp;{&nbsp;log.warn(`illegal&nbsp;TextHAlign:&nbsp;${cfg.xpos}`);&nbsp;}</p>
 <p id=128 class="line"><span>&nbsp;128</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
 <p id=129 class="line"><span>&nbsp;129</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch(cfg.ypos)&nbsp;{&nbsp;<comment>//&nbsp;additional&nbsp;y&nbsp;'</quote>em<quote>'&nbsp;shift</comment></p>
 <p id=130 class="line"><span>&nbsp;130</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;TextVAlign.top:&nbsp;&nbsp;&nbsp;&nbsp;ypos&nbsp;=&nbsp;-1;&nbsp;yShift&nbsp;=&nbsp;-0.4;&nbsp;break;</p>
-<p id=131 class="line"><span>&nbsp;131</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;TextVAlign.center:&nbsp;break;</p>
+<p id=131 class="line"><span>&nbsp;131</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;TextVAlign.center:&nbsp;ypos&nbsp;=&nbsp;0;&nbsp;break;</p>
 <p id=132 class="line"><span>&nbsp;132</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;TextVAlign.bottom:&nbsp;ypos&nbsp;=&nbsp;1;&nbsp;&nbsp;yShift&nbsp;=&nbsp;1.0;&nbsp;&nbsp;break;</p>
-<p id=133 class="line"><span>&nbsp;133</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default:&nbsp;&nbsp;log.warn(`illegal&nbsp;TextVAlign:&nbsp;${cfg.ypos}`);</p>
+<p id=133 class="line"><span>&nbsp;133</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default:&nbsp;if&nbsp;(isNaN(ypos))&nbsp;{&nbsp;log.warn(`illegal&nbsp;TextVAlign:&nbsp;${cfg.ypos}`);&nbsp;}</p>
 <p id=134 class="line"><span>&nbsp;134</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
 <p id=135 class="line"><span>&nbsp;135</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;labels.style('</quote>text-anchor<quote>',&nbsp;anchor)</p>
 <p id=136 class="line"><span>&nbsp;136</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.attr('</quote>dx<quote>',&nbsp;((cfg.hOffset||0)+xShift).toFixed(1)&nbsp;+&nbsp;'</quote>em<quote>')</p>

@@ -31,6 +31,8 @@ Helpful Scripts Graph convenience wrapper for D3js.
  * To dynamically update the graph to new data, call the {@link Graph.RenderChain `update`} method.
  * See {@link examples examples}.
  * 
+ * ### Using {@link SeriesPlot.SeriesDimensions Labels, Popups, Colors, }
+ * 
  * ## Data
  * Data is provided either in table form
  * ```
