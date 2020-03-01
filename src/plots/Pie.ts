@@ -75,8 +75,6 @@ import { arc as d3Arc }         from 'd3';
 Series.register('pie', (cfg:GraphCfg, sName:string, dims: PolarSeriesDimensions) => new Pie(cfg, sName, dims));
 
 export class Pie extends PolarSeriesPlot {
-    arc: any;
-
     constructor(cfg:GraphCfg, seriesName:string, dims:PolarSeriesDimensions) {
         super(cfg, seriesName, dims);
         this.abscissa = 'rad';
@@ -140,12 +138,12 @@ export class Pie extends PolarSeriesPlot {
         const scales = this.cfg.graph.scales.scaleDims;
         const rAccess = this.accessor(this.dims.r, data.colNames, false);
         const r0Access = this.accessor(this.dims.r0, data.colNames, false);
-        this.arc = d3Arc()
+        const arc = d3Arc()
             .padAngle(defaults.padAngle)
             .cornerRadius(defaults.cornerRadius)
             .innerRadius((d:any, i:number) => scales.rad(r0Access(d.data, i)))
             .outerRadius((d:any, i:number) => scales.rad(rAccess(d.data, i)));
-        markers.attr("d", this.arc);
+        markers.attr("d", arc);
     }
 
     protected d3DrawLabels(labels:d3Base, data:DataSet, defaults:PolarPlotDefaults):void {
@@ -153,9 +151,14 @@ export class Pie extends PolarSeriesPlot {
         const rAccess = this.accessor(this.dims.r, data.colNames, false);
         const r0Access = this.accessor(this.dims.r0, data.colNames, false);
         const lAccess = this.accessor(this.dims.label, data.colNames, false);
+        const centroid = (d:any, i:number, pos:number) => {
+            const r = scales.rad(r0Access(d.data, i))*pos + scales.rad(rAccess(d.data, i))*(1-pos);
+            const a = (d.startAngle + d.endAngle) / 2 - Math.PI / 2;
+            return [Math.cos(a) * r, Math.sin(a) * r];
+        };
         const cfg:Label = this.defaults.label;
         const [xpos, ypos] = this.labelPos(cfg, labels);
-        labels.attr("transform", (d:any, i:number) => `translate(${this.arc.centroid(d)})`)
+        labels.attr("transform", (d:any, i:number) => `translate(${centroid(d, i, xpos)})`)
               .text((d:any, i:number) => text(lAccess(d.data, i)));
     }
 
@@ -166,20 +169,14 @@ export class Pie extends PolarSeriesPlot {
     protected labelPos(cfg:Label, labels:d3Base) {
         let xShift = 0;
         let yShift = 0.35;
-        let xpos = 0.5; // 0: left aligned, 1: right aligned
-        let ypos = 0.5;   // 0: top of bar, 1: bottom of bar
+        let xpos = +cfg.xpos;
+        let ypos = 0.5;     // 0: top of bar, 1: bottom of bar
         let anchor = 'middle';
-        switch(cfg.xpos) { 
-            case TextHAlign.left:   xpos = 0; xShift = cfg.inside?0.2:-0.2; anchor = cfg.inside?'start':'end'; break;
-            case TextHAlign.center: break;
-            case TextHAlign.right:  xpos = 1; xShift = cfg.inside?-0.2:0.2; anchor = cfg.inside?'end':'start';  break;
-            default: log.warn(`illegal TextHAlign: ${cfg.xpos}`);
-        }
-        switch(cfg.ypos) { // additional y 'em' shift
-            case TextVAlign.top:    ypos = 0; yShift = cfg.inside? 1 : -0.2; break;
-            case TextVAlign.center: break;
-            case TextVAlign.bottom: ypos = 1; yShift = cfg.inside? -0.2 : 1; break;
-            default:  log.warn(`illegal TextVAlign: ${cfg.ypos}`);
+        switch(cfg.xpos) {
+            case TextHAlign.left:   xpos = 0; break;
+            case TextHAlign.center: xpos = 0.5; break;
+            case TextHAlign.right:  xpos = 1; break; 
+            default: break;
         }
         labels.style('text-anchor', anchor)
               .attr('dx', ((cfg.hOffset||0)+xShift).toFixed(1) + 'em')

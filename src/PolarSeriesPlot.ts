@@ -16,20 +16,18 @@ import { SeriesPlot }           from "./SeriesPlot";
 import { SeriesPlotDefaults }   from "./SeriesPlot";
 import { SeriesDimensions }     from "./SeriesPlot";
 import { ValueDef }             from "./SeriesPlot";
-import { DataVal }              from "./Graph";
 import { DataRow }              from "./Graph";
 import { AccessFn }             from "./Graph";
 import { DataSet }              from "./Graph";
 import { Domains }              from "./Graph";
 import { GraphCfg }             from "./GraphComponent";
-import { d3Base, Marker, Radians }               from "./Settings";
+import { d3Base, Radians }      from "./Settings";
 import { defaultStroke }        from "./Settings";
 import { setLabel }             from "./Settings";
 import { Label }                from "./Settings";
 import { setArea }              from "./Settings";
 import { setStroke }            from "./Settings";
 import { setFill }              from "./Settings";
-import { format as d3format}    from 'd3';
 import { PolarDimensions }      from './GraphPolar';
 
 /**
@@ -203,8 +201,6 @@ export abstract class PolarSeriesPlot extends SeriesPlot {
     protected abstract markerShape():string;
 
     protected abstract d3RenderLine(svg:d3Base, data:DataSet):void;
-
-    // protected abstract d3RenderFill(svg:d3Base, data:DataSet):void;
 
     protected abstract d3RenderLabels(labels:d3Base, data:DataSet):void;
 

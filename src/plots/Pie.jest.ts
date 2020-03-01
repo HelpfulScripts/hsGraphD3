@@ -36,13 +36,7 @@ describe('Pie labels', () => {
         graph = createGraph(root);
         graph.series.add('pie', {phi:'costs', label:i=>i});
         graph.series.add('pie', {phi:'costs', label:i=>i});
-        graph.defaults.series[1].label.xpos = TextHAlign.right;
-        graph.series.add('pie', {phi:'costs', label:i=>i});
-        graph.defaults.series[2].label.xpos = TextHAlign.left;
-        graph.series.add('pie', {phi:'costs', label:i=>i});
-        graph.defaults.series[1].label.ypos = TextVAlign.top;
-        graph.series.add('pie', {phi:'costs', label:i=>i});
-        graph.defaults.series[2].label.ypos = TextVAlign.bottom;
+        graph.defaults.series[0].label.xpos = 0.5;
         graph.render(data);
     });
     it('should plot pie', () => expect(root).toMatchSnapshot());

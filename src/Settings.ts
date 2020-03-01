@@ -156,8 +156,8 @@ export enum TextVAlign {
 
 
 export interface Label extends TextStyle, Rendered {
-    xpos: TextHAlign;
-    ypos: TextVAlign;
+    xpos: TextHAlign | Share;
+    ypos: TextVAlign | Share;
     hOffset: number;    // offset in `em`
     vOffset: number;    // offset in `em`
     inside: boolean;    // render label inside the area
