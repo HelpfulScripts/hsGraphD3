@@ -62,8 +62,18 @@ graph.render(data).update(ms, data => {
 See an [example](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/0) or visit the 
 [examples page](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.examples)
 
-## Series Parameters
-Valid series parameters are defined as extensions of [SeriesDimensions](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.SeriesPlot.SeriesDimensions), for example for [CartesianSeriesDimensions](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.CartSeriesPlot.CartSeriesDimensions) or [PolarSeriesDimensions](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.PolarSeriesPlot.PolarSeriesDimensions).
+## Series Definitions
+Series are defined via the pattern
+```
+graph.addSeries(<type>, {<dim>:<ValueDef>, ...});
+```
+- `<type>` defines the type of the plot. For plot types see [ordinal series](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.plots.OrdinalSeriesPlot) and [numeric series](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.plots.NumericSeriesPlot).
+- `<dim>` valid series dims are defined as extensions of [SeriesDimensions](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.SeriesPlot.SeriesDimensions), for example for [CartesianSeriesDimensions](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.CartSeriesPlot.CartSeriesDimensions) or [PolarSeriesDimensions](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.PolarSeriesPlot.PolarSeriesDimensions).
+- `<ValueDef>` defines the values for `<dim>`. See [ValueDef](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.SeriesPlot.ValueDef) for details. In general, values can be defined as 
+   - column key for the data set to plot 
+   - a numeric constant
+   - or a user-defined function of the rowindex of the data set to plot 
+   
 
 ### Example: [Column plot](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.plots.Column)
 Side-by-side columns with data-driven popups and labels:

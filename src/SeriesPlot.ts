@@ -84,12 +84,12 @@ export interface SeriesDimensions {
  * Basic `ValueDef` definition, used in {@link SeriesPlot.SeriesPlot `SeriesPlot`}. 
  * - `string`: the name of column in the data set, e.g. `x:'time'`
  * - `number`: a constant value, e.g. `r: 5`
- * - `ValueFn`: a {@link SeriesPlot.ValueFn `function`} returning the value.
+ * - `ValueFn`: a {@link SeriesPlot.ValueFn `user-defined function`} returning the value.
  */
 export type ValueDef = string|number|ValueFn;
 
 /** 
- * a function returning the {@link Graph.DataVal `DataVal`} of a data point.
+ * a user-defined function returning the {@link Graph.DataVal `DataVal`} of a data point.
  * The function will be called at runtime once for each row in the data set.
  * @param rowIndex the index of the row in the {@link Graph.DataSet `DataSet's`} rows array. 
  * @return the value of type `DataVal` to use for the row.

@@ -6,7 +6,7 @@
  * ```
  * graph.series.add(<type>, {<dim>: <ValueDef>, ...});
  * ``` 
- * - `<type>` is one of the registered types. See plot types for {@link plot.OrdinalSeriesPlot ordinal series} and {@link plot.NumericSeriesPlot numeric series}.
+ * - `<type>` is one of the registered types. See plot types for {@link plots.OrdinalSeriesPlot ordinal series} and {@link plots.NumericSeriesPlot numeric series}.
  * - `<dim>` is the semantic dimension to set. See {@link CartSeriesPlot.CartSeriesDimensions CartSeriesDimensions} for valid dimensions. 
  * - `<ValueDef>` is the {@link SeriesPlot.ValueDef value definition}. 
  */
