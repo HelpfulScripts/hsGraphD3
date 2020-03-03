@@ -217,7 +217,7 @@ export abstract class PolarSeriesPlot extends SeriesPlot {
 
     protected abstract getPath(rows:DataRow[], colNames:string[], yDef?: ValueDef, useStack?:boolean):string;
 
-    protected abstract labelPos(cfg:Label, labels:d3Base):void;
+    // protected abstract labelPos(cfg:Label, labels:d3Base):void;
 
 
     //---------- stack methods --------------------

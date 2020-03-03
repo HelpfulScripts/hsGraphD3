@@ -96,7 +96,7 @@ import { Series }               from '../Series';
 import { PolarSeriesPlot }      from '../PolarSeriesPlot';
 import { PolarPlotDefaults }    from '../PolarSeriesPlot';
 import { PolarSeriesDimensions }from '../PolarSeriesPlot';
-import { Label, d3Base, TextHAlign }        from '../Settings';
+import { Label, d3Base, TextHAlign, textPos }        from '../Settings';
 import { DataRow, DataSet }     from '../Graph';
 import { pie as d3Pie }         from 'd3';
 import { arc as d3Arc }         from 'd3';
@@ -132,7 +132,7 @@ export class Pie extends PolarSeriesPlot {
             const pie = d3Pie().value((d:any, i:number) => <number>phiAccess(d, i));
             const arcs = pie(<any>data.rows);
             plot.select('.markers').selectAll(shape)
-                .data(arcs, d => d[0]) // bind to first DataVal, rather than to DataRow, iterate over rows
+                .data(arcs, (d:any) => d.data[3]) // bind to first DataVal, rather than to DataRow, iterate over rows
                 .join(shape)                  
                 .call(popup.addListener.bind(popup), this.d3RenderPopup(data))
                 .transition(this.cfg.transition) // draw markers
@@ -184,32 +184,37 @@ export class Pie extends PolarSeriesPlot {
             return [Math.cos(a) * r, Math.sin(a) * r];
         };
         const cfg:Label = this.defaults.label;
-        const [xpos, ypos] = this.labelPos(cfg, labels);
-        labels.attr("transform", (d:any, i:number) => `translate(${centroid(d, i, xpos)})`)
-              .text((d:any, i:number) => text(lAccess(d.data, i)));
+        // const [xpos, ypos] = this.labelPos(cfg, labels);
+        const pos = textPos(cfg.xpos, cfg.ypos, cfg.inside);
+        labels.attr("transform", (d:any, i:number) => `translate(${centroid(d, i, pos.x.pos)})`)
+              .text((d:any, i:number) => text(lAccess(d.data, i)))
+              .attr('text-anchor', pos.x.anchor)
+              .attr('dominant-baseline', pos.y.baseline)
+              .attr('dx', ((cfg.hOffset||0)+pos.x.shift).toFixed(1) + 'em')
+              .attr('dy', ((cfg.vOffset||0)+pos.y.shift).toFixed(1) + 'em');
     }
 
     protected getPath(rows:DataRow[], colNames:string[], yDef?: ValueDef, useStack?:boolean):string {
         return '';
     }
 
-    protected labelPos(cfg:Label, labels:d3Base) {
-        let xShift = 0;
-        let yShift = 0.35;
-        let xpos = +cfg.xpos;
-        let ypos = 0.5;     // 0: top of bar, 1: bottom of bar
-        let anchor = 'middle';
-        switch(cfg.xpos) {
-            case TextHAlign.left:   xpos = 0; break;
-            case TextHAlign.center: xpos = 0.5; break;
-            case TextHAlign.right:  xpos = 1; break; 
-            default: if (isNaN(xpos)) { log.warn(`illegal TextHAlign: ${cfg.xpos}`); }
-        }
-        labels.style('text-anchor', anchor)
-              .attr('dx', ((cfg.hOffset||0)+xShift).toFixed(1) + 'em')
-              .attr('dy', ((cfg.vOffset||0)+yShift).toFixed(1) + 'em');
-    return [xpos, ypos];
-    }
+    // protected labelPos(cfg:Label, labels:d3Base) {
+    //     let xShift = 0;
+    //     let yShift = 0.35;
+    //     let xpos = +cfg.xpos;
+    //     let ypos = 0.5;     // 0: top of bar, 1: bottom of bar
+    //     let anchor = 'middle';
+    //     switch(cfg.xpos) {
+    //         case TextHAlign.left:   xpos = 0; break;
+    //         case TextHAlign.center: xpos = 0.5; break;
+    //         case TextHAlign.right:  xpos = 1; break; 
+    //         default: if (isNaN(xpos)) { log.warn(`illegal TextHAlign: ${cfg.xpos}`); }
+    //     }
+    //     labels.attr('text-anchor', anchor)
+    //           .attr('dx', ((cfg.hOffset||0)+xShift).toFixed(1) + 'em')
+    //           .attr('dy', ((cfg.vOffset||0)+yShift).toFixed(1) + 'em');
+    // return [xpos, ypos];
+    // }
 }
  
  

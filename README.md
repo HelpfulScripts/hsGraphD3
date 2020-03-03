@@ -61,8 +61,9 @@ graph.render(data).update(ms, data => {
 });
 ``` 
 
-See an [example](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/0) or visit the 
-[examples page](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.examples)
+See an [example](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/0) or visit the example pages for
+[Cartesian Plots](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.CartExamples) or
+[Polar Plots](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.PolarExamples)
 
 ## Series Definitions
 Series are defined via the pattern

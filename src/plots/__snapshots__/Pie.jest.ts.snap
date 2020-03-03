@@ -99,54 +99,60 @@ exports[`Pie colors should plot pie 1`] = `
         >
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             transform="translate(-81.25000000000004,140.72912811497127)"
           >
             0.0
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             transform="translate(-104.45298657406255,-124.482222006834)"
           >
             1.0
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             transform="translate(-162.5,-1.2442848271512585e-13)"
           >
             2.0
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             transform="translate(-28.217828870875895,-160.03125986448387)"
           >
             3.0
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             transform="translate(124.48222200683395,-104.45298657406263)"
           >
             4.0
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             transform="translate(104.45298657406259,124.48222200683396)"
           >
             5.0
@@ -201,54 +207,60 @@ exports[`Pie colors should plot pie 1`] = `
         >
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             transform="translate(-81.25000000000004,140.72912811497127)"
           >
             0.0
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             transform="translate(-104.45298657406255,-124.482222006834)"
           >
             1.0
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             transform="translate(-162.5,-1.2442848271512585e-13)"
           >
             2.0
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             transform="translate(-28.217828870875895,-160.03125986448387)"
           >
             3.0
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             transform="translate(124.48222200683395,-104.45298657406263)"
           >
             4.0
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             transform="translate(104.45298657406259,124.48222200683396)"
           >
             5.0
@@ -463,54 +475,60 @@ exports[`Pie labels should plot pie 1`] = `
         >
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             transform="translate(-81.25000000000004,140.72912811497127)"
           >
             0.0
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             transform="translate(-104.45298657406255,-124.482222006834)"
           >
             1.0
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             transform="translate(-162.5,-1.2442848271512585e-13)"
           >
             2.0
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             transform="translate(-28.217828870875895,-160.03125986448387)"
           >
             3.0
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             transform="translate(124.48222200683395,-104.45298657406263)"
           >
             4.0
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             transform="translate(104.45298657406259,124.48222200683396)"
           >
             5.0
@@ -565,54 +583,60 @@ exports[`Pie labels should plot pie 1`] = `
         >
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             transform="translate(-81.25000000000004,140.72912811497127)"
           >
             0.0
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             transform="translate(-104.45298657406255,-124.482222006834)"
           >
             1.0
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             transform="translate(-162.5,-1.2442848271512585e-13)"
           >
             2.0
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             transform="translate(-28.217828870875895,-160.03125986448387)"
           >
             3.0
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             transform="translate(124.48222200683395,-104.45298657406263)"
           >
             4.0
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             transform="translate(104.45298657406259,124.48222200683396)"
           >
             5.0

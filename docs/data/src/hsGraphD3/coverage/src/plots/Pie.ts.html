@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">92.21% </span>
+        <span class="strong">98.36% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>71/77</span>
+        <span class='fraction'>60/61</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">64.29% </span>
+        <span class="strong">75% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>9/14</span>
+        <span class='fraction'>6/8</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">90% </span>
+        <span class="strong">89.47% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>18/20</span>
+        <span class='fraction'>17/19</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">95.59% </span>
+        <span class="strong">98.21% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>65/68</span>
+        <span class='fraction'>55/56</span>
       </div>
     </div>
     <p class="quiet">
@@ -260,7 +260,12 @@
 <a name='L212'></a><a href='#L212'>212</a>
 <a name='L213'></a><a href='#L213'>213</a>
 <a name='L214'></a><a href='#L214'>214</a>
-<a name='L215'></a><a href='#L215'>215</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L215'></a><a href='#L215'>215</a>
+<a name='L216'></a><a href='#L216'>216</a>
+<a name='L217'></a><a href='#L217'>217</a>
+<a name='L218'></a><a href='#L218'>218</a>
+<a name='L219'></a><a href='#L219'>219</a>
+<a name='L220'></a><a href='#L220'>220</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -446,9 +451,14 @@
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -456,21 +466,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -572,7 +582,7 @@ import { Series }               from '../Series';
 import { PolarSeriesPlot }      from '../PolarSeriesPlot';
 import { PolarPlotDefaults }    from '../PolarSeriesPlot';
 import { PolarSeriesDimensions }from '../PolarSeriesPlot';
-import { Label, d3Base, TextHAlign }        from '../Settings';
+import { Label, d3Base, TextHAlign, textPos }        from '../Settings';
 import { DataRow, DataSet }     from '../Graph';
 import { pie as d3Pie }         from 'd3';
 import { arc as d3Arc }         from 'd3';
@@ -608,7 +618,7 @@ export class Pie extends PolarSeriesPlot {
             const pie = d3Pie().value((d:any, i:number) =&gt; &lt;number&gt;phiAccess(d, i));
             const arcs = pie(&lt;any&gt;data.rows);
             plot.select('.markers').selectAll(shape)
-                .data(arcs, d =&gt; d[0]) // bind to first DataVal, rather than to DataRow, iterate over rows
+                .data(arcs, (d:any) =&gt; d.data[3]) // bind to first DataVal, rather than to DataRow, iterate over rows
                 .join(shape)                  
                 .call(popup.addListener.bind(popup), this.d3RenderPopup(data))
                 .transition(this.cfg.transition) // draw markers
@@ -660,32 +670,37 @@ export class Pie extends PolarSeriesPlot {
             return [Math.cos(a) * r, Math.sin(a) * r];
         };
         const cfg:Label = this.defaults.label;
-        const [xpos, ypos] = this.labelPos(cfg, labels);
-        labels.attr("transform", (d:any, i:number) =&gt; `translate(${centroid(d, i, xpos)})`)
-              .text((d:any, i:number) =&gt; text(lAccess(d.data, i)));
+        // const [xpos, ypos] = this.labelPos(cfg, labels);
+        const pos = textPos(cfg.xpos, cfg.ypos, cfg.inside);
+        labels.attr("transform", (d:any, i:number) =&gt; `translate(${centroid(d, i, pos.x.pos)})`)
+              .text((d:any, i:number) =&gt; text(lAccess(d.data, i)))
+              .attr('text-anchor', pos.x.anchor)
+              .attr('dominant-baseline', pos.y.baseline)
+              .attr('dx', ((cfg.hOffset||0)+pos.x.shift).toFixed(1) + 'em')
+              .attr('dy', ((cfg.vOffset||0)+pos.y.shift).toFixed(1) + 'em');
     }
 &nbsp;
     protected <span class="fstat-no" title="function not covered" >getPath(</span>rows:DataRow[], colNames:string[], yDef?: ValueDef, useStack?:boolean):string {
 <span class="cstat-no" title="statement not covered" >        return '';</span>
     }
 &nbsp;
-    protected labelPos(cfg:Label, labels:d3Base) {
-        let xShift = 0;
-        let yShift = 0.35;
-        let xpos = +cfg.xpos;
-        let ypos = 0.5;     // 0: top of bar, 1: bottom of bar
-        let anchor = 'middle';
-        switch(cfg.xpos) {
-<span class="branch-0 cbranch-no" title="branch not covered" >            case TextHAlign.left:   <span class="cstat-no" title="statement not covered" >xpos = 0; <span class="cstat-no" title="statement not covered" ></span>break;</span></span>
-            case TextHAlign.center: xpos = 0.5; break;
-<span class="branch-2 cbranch-no" title="branch not covered" >            case TextHAlign.right:  <span class="cstat-no" title="statement not covered" >xpos = 1; <span class="cstat-no" title="statement not covered" ></span>break; </span></span>
-            default: <span class="missing-if-branch" title="if path not taken" >I</span>if (isNaN(xpos)) { <span class="cstat-no" title="statement not covered" >log.warn(`illegal TextHAlign: ${cfg.xpos}`); </span>}
-        }
-        labels.style('text-anchor', anchor)
-              .attr('dx', ((cfg.hOffset||0)+xShift).toFixed(1) + 'em')
-              .attr('dy', ((cfg.vOffset||0)+yShift).toFixed(1) + 'em');
-    return [xpos, ypos];
-    }
+    // protected labelPos(cfg:Label, labels:d3Base) {
+    //     let xShift = 0;
+    //     let yShift = 0.35;
+    //     let xpos = +cfg.xpos;
+    //     let ypos = 0.5;     // 0: top of bar, 1: bottom of bar
+    //     let anchor = 'middle';
+    //     switch(cfg.xpos) {
+    //         case TextHAlign.left:   xpos = 0; break;
+    //         case TextHAlign.center: xpos = 0.5; break;
+    //         case TextHAlign.right:  xpos = 1; break; 
+    //         default: if (isNaN(xpos)) { log.warn(`illegal TextHAlign: ${cfg.xpos}`); }
+    //     }
+    //     labels.attr('text-anchor', anchor)
+    //           .attr('dx', ((cfg.hOffset||0)+xShift).toFixed(1) + 'em')
+    //           .attr('dy', ((cfg.vOffset||0)+yShift).toFixed(1) + 'em');
+    // return [xpos, ypos];
+    // }
 }
  
  </pre></td></tr>

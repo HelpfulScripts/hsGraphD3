@@ -29,7 +29,7 @@ Helpful Scripts Graph convenience wrapper for D3js.
  * `graph.render(data);`
  * 
  * To dynamically update the graph to new data, call the {@link Graph.RenderChain `update`} method.
- * See {@link examples examples}.
+ * See {@link CartExamples cartesian examples} and {@link PolarExamples polar examples}
  * 
  * ### Using {@link SeriesPlot.SeriesDimensions Labels, Popups, Colors, }
  * 
