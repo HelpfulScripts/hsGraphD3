@@ -20,14 +20,14 @@
 import { Log }                  from 'hsutil'; const log = new Log('NumericSeriesPlot');
 import { line as d3line}        from 'd3';
 import { curveCatmullRom }      from 'd3';
-import { NumericDataSet }       from '../Graph';
-import { DataSet }              from '../Graph';
-import { NumericDataRow }       from '../Graph';
-import { ValueDef, text }       from '../SeriesPlot';
-import { SeriesPlotDefaults }   from '../SeriesPlot';
-import { Domains }              from '../Graph';
-import { d3Base, Label, textPos }        from '../Settings';
-import { CartSeriesPlot }       from '../CartSeriesPlot';
+import { NumericDataSet }       from './Graph';
+import { DataSet }              from './Graph';
+import { NumericDataRow }       from './Graph';
+import { ValueDef, text }       from './SeriesPlot';
+import { SeriesPlotDefaults }   from './SeriesPlot';
+import { Domains }              from './Graph';
+import { d3Base, Label, textPos }        from './Settings';
+import { CartSeriesPlot }       from './CartSeriesPlot';
 
 
 /**

@@ -111,12 +111,11 @@
 import { Log }                  from 'hsutil'; const log = new Log('Voronoi');
 import { Delaunay}              from "d3-delaunay";
 import { Voronoi as d3Voronoi}  from "d3-delaunay";
-import { NumericSeriesPlot }    from './NumericSeriesPlot';
-import { CartSeriesDimensions, CartSeriesPlot } from '../CartSeriesPlot';
+import { NumericSeriesPlot }    from '../NumericSeriesPlot';
+import { CartSeriesDimensions } from '../CartSeriesPlot';
 import { NumericDataSet }       from '../Graph';
 import { d3Base }               from '../Settings';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
-import { ScalesDefaults }       from '../Scale';
 import { GraphCfg}              from '../GraphComponent';
 import { Series }               from '../Series';
 

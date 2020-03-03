@@ -69,7 +69,7 @@ Series are defined via the pattern
 ```
 graph.addSeries(<type>, {<dim>:<ValueDef>, ...});
 ```
-- `<type>` defines the type of the plot. For plot types see [ordinal series](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.plots.OrdinalSeriesPlot) and [numeric series](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.plots.NumericSeriesPlot).
+- `<type>` defines the type of the plot. For plot types see [ordinal series](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.plots.OrdinalSeriesPlot), [numeric series](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.plots.NumericSeriesPlot) and [polar series](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.plots.PolarSeriesPlot).
 - `<dim>` valid series dims are defined as extensions of [SeriesDimensions](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.SeriesPlot.SeriesDimensions), for example for [CartesianSeriesDimensions](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.CartSeriesPlot.CartSeriesDimensions) or [PolarSeriesDimensions](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.PolarSeriesPlot.PolarSeriesDimensions).
 - `<ValueDef>` defines the values for `<dim>`. See [ValueDef](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.SeriesPlot.ValueDef) for details. In general, values can be defined as 
    - column key for the data set to plot 

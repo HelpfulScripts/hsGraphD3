@@ -94,7 +94,7 @@
  /** */
 
 import { Log }                  from 'hsutil'; const log = new Log('Area');
-import { NumericSeriesPlot }    from './NumericSeriesPlot';
+import { NumericSeriesPlot }    from '../NumericSeriesPlot';
 import { CartSeriesDimensions } from '../CartSeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { GraphCfg}              from '../GraphComponent';

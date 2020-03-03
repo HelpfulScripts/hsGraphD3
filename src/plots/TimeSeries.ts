@@ -72,16 +72,16 @@
  /** */
 
 import { Log }                  from 'hsutil'; const log = new Log('TimeSeries');
-import { NumericDataSet, NumDomain, DataSet }       from '../Graph';
-import { GraphDefaults }        from '../Graph';
+import { NumericDataSet }       from '../Graph';
+import { NumDomain }            from '../Graph';
+import { DataSet }              from '../Graph';
 import { Domains }              from '../Graph';
 import { Series }               from '../Series';
-import { NumericSeriesPlot }    from './NumericSeriesPlot';
+import { NumericSeriesPlot }    from '../NumericSeriesPlot';
 import { CartSeriesDimensions } from '../CartSeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
-import { d3Base, Line }               from '../Settings';
+import { d3Base }               from '../Settings';
 import { GraphCfg }             from '../GraphComponent'; 
-import { ScalesDefaults }       from '../Scale';
  
 Series.register('timeseries',   (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions) => new TimeSeries(cfg, sName, dims));
 

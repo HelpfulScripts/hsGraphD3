@@ -15,17 +15,17 @@
 
 /** */
 import { Log }                  from 'hsutil'; const log = new Log('OrdinalSeriesPlot');
-import { DataRow }              from '../Graph';
-import { DataVal }              from '../Graph';
-import { NumDomain }            from '../Graph';
-import { DataSet }              from '../Graph';
-import { Domains }              from '../Graph';
-import { d3Base, textPos }      from '../Settings';
-import { Label }                from '../Settings';
-import { CartSeriesPlot }       from '../CartSeriesPlot';
-import { SeriesPlotDefaults }   from '../SeriesPlot';
-import { text }                 from '../SeriesPlot';
-import { Series }               from '../Series';
+import { DataRow }              from './Graph';
+import { DataVal }              from './Graph';
+import { NumDomain }            from './Graph';
+import { DataSet }              from './Graph';
+import { Domains }              from './Graph';
+import { d3Base, textPos }      from './Settings';
+import { Label }                from './Settings';
+import { CartSeriesPlot }       from './CartSeriesPlot';
+import { SeriesPlotDefaults }   from './SeriesPlot';
+import { text }                 from './SeriesPlot';
+import { Series }               from './Series';
 
 /**
  * Abstract base class of a  cartesian series plot. 

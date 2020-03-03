@@ -119,7 +119,7 @@ import { Log }                  from 'hsutil'; const log = new Log('Column');
 import { CartSeriesDimensions } from '../CartSeriesPlot';
 import { GraphCfg}              from '../GraphComponent';
 import { Series }               from '../Series';
-import { OrdinalSeriesPlot }    from './OrdinalSeriesPlot';
+import { OrdinalSeriesPlot }    from '../OrdinalSeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 
 Series.register('bar', (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions) => new Bar(cfg, sName, dims));
