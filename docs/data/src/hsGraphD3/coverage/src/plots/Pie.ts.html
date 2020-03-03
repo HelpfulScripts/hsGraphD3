@@ -20,24 +20,24 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">88.75% </span>
+        <span class="strong">92.21% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>71/80</span>
+        <span class='fraction'>71/77</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">56.25% </span>
+        <span class="strong">64.29% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>9/16</span>
+        <span class='fraction'>9/14</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">85.71% </span>
+        <span class="strong">90% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>18/21</span>
+        <span class='fraction'>18/20</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">92.86% </span>
+        <span class="strong">95.59% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>65/70</span>
+        <span class='fraction'>65/68</span>
       </div>
     </div>
     <p class="quiet">
@@ -259,10 +259,7 @@
 <a name='L211'></a><a href='#L211'>211</a>
 <a name='L212'></a><a href='#L212'>212</a>
 <a name='L213'></a><a href='#L213'>213</a>
-<a name='L214'></a><a href='#L214'>214</a>
-<a name='L215'></a><a href='#L215'>215</a>
-<a name='L216'></a><a href='#L216'>216</a>
-<a name='L217'></a><a href='#L217'>217</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L214'></a><a href='#L214'>214</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -405,9 +402,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -621,10 +615,7 @@ export class Pie extends PolarSeriesPlot {
         }
     }
 &nbsp;
-    protected <span class="fstat-no" title="function not covered" >d3RenderLine(</span>plot:d3Base, data:DataSet) {
-<span class="cstat-no" title="statement not covered" >        this.line = this.line || this.getPath(data.rows, data.colNames, this.dims.r);</span>
-<span class="cstat-no" title="statement not covered" >        return this.getPathElement(plot, '.line').attr('d', <span class="fstat-no" title="function not covered" >(d</span>:any) =&gt; <span class="cstat-no" title="statement not covered" >this.line)</span>;</span>
-    }
+    protected <span class="fstat-no" title="function not covered" >d3RenderLine(</span>plot:d3Base, data:DataSet) {}
 &nbsp;
     protected d3RenderLabels(plot:d3Base, data:DataSet):void {
         const defaults = this.defaults;

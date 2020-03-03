@@ -329,12 +329,7 @@
 <a name='L281'></a><a href='#L281'>281</a>
 <a name='L282'></a><a href='#L282'>282</a>
 <a name='L283'></a><a href='#L283'>283</a>
-<a name='L284'></a><a href='#L284'>284</a>
-<a name='L285'></a><a href='#L285'>285</a>
-<a name='L286'></a><a href='#L286'>286</a>
-<a name='L287'></a><a href='#L287'>287</a>
-<a name='L288'></a><a href='#L288'>288</a>
-<a name='L289'></a><a href='#L289'>289</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L284'></a><a href='#L284'>284</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -364,11 +359,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -587,9 +580,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">56x</span>
 <span class="cline-any cline-yes">56x</span>
 <span class="cline-any cline-yes">4x</span>
@@ -630,7 +620,7 @@
  * ```
  * graph.series.add(&lt;type&gt;, {&lt;dim&gt;: &lt;ValueDef&gt;, ...});
  * ``` 
- * - `&lt;type&gt;` is one of the registered types. See plot types for {@link plot.OrdinalSeriesPlot ordinal series} and {@link plot.NumericSeriesPlot numeric series}.
+ * - `&lt;type&gt;` is one of the registered types. See plot types for {@link plots.OrdinalSeriesPlot ordinal series} and {@link plots.NumericSeriesPlot numeric series}.
  * - `&lt;dim&gt;` is the semantic dimension to set. See {@link CartSeriesPlot.CartSeriesDimensions CartSeriesDimensions} for valid dimensions. 
  * - `&lt;ValueDef&gt;` is the {@link SeriesPlot.ValueDef value definition}. 
  */
@@ -652,7 +642,6 @@ import { GraphCfg }             from "./GraphComponent";
 import { d3Base }               from "./Settings";
 import { defaultStroke }        from "./Settings";
 import { setLabel }             from "./Settings";
-import { Label }                from "./Settings";
 import { setArea }              from "./Settings";
 import { setStroke }            from "./Settings";
 import { setFill }              from "./Settings";
@@ -676,7 +665,7 @@ export interface CartSeriesDimensions extends SeriesDimensions {
      * optional, name of x-axis data column, or a function returning a value.
      * If omitted, the index of y-values will be used as x-values.
      */
-    x?:   ValueDef;    
+    x?:  ValueDef;    
     /** name of y-axis data column, or a function returning a value */ 
     y:   ValueDef;    
     /** optional, name of y-axis data column for lower fill border, or a function returning a value */
@@ -686,7 +675,6 @@ export interface CartSeriesDimensions extends SeriesDimensions {
 }
 &nbsp;
 &nbsp;
-&nbsp;
 /**
  * Abstract base class for all cartesian plots.
  */
@@ -694,7 +682,7 @@ export abstract class CartSeriesPlot extends SeriesPlot {
     /** the main data line  */
     protected line: string;         // d3Line&lt;number[]&gt;;
 &nbsp;
-    protected popupDiv:d3Base;
+    // protected popupDiv:d3Base;
 &nbsp;
     constructor(cfg:GraphCfg, seriesName:string, dims:CartSeriesDimensions) {
         super(cfg, seriesName, dims);
@@ -870,9 +858,6 @@ export abstract class CartSeriesPlot extends SeriesPlot {
     }
 &nbsp;
     protected abstract getPath(rows:DataRow[], colNames:string[], yDef?: ValueDef, useStack?:boolean):string;
-&nbsp;
-    protected abstract labelPos(cfg:Label, labels:d3Base):void;
-&nbsp;
 &nbsp;
     //---------- stack methods --------------------
 &nbsp;

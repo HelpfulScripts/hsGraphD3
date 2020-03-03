@@ -141,10 +141,8 @@ export class Pie extends PolarSeriesPlot {
         }
     }
 
-    protected d3RenderLine(plot:d3Base, data:DataSet) {
-        this.line = this.line || this.getPath(data.rows, data.colNames, this.dims.r);
-        return this.getPathElement(plot, '.line').attr('d', (d:any) => this.line);
-    }
+    /** no line for pies. */
+    protected d3RenderLine(plot:d3Base, data:DataSet) {}
 
     protected d3RenderLabels(plot:d3Base, data:DataSet):void {
         const defaults = this.defaults;

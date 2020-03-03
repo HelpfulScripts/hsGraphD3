@@ -382,7 +382,8 @@
 <a name='L334'></a><a href='#L334'>334</a>
 <a name='L335'></a><a href='#L335'>335</a>
 <a name='L336'></a><a href='#L336'>336</a>
-<a name='L337'></a><a href='#L337'>337</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L337'></a><a href='#L337'>337</a>
+<a name='L338'></a><a href='#L338'>338</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -408,7 +409,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -486,6 +486,8 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">50x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -755,8 +757,7 @@ export interface SeriesPlotDefaults {
 }
 &nbsp;
 /**
- * specify the values to use for different semantic dimension (e.g. 'x' for the x-axis) of 
- * each {@link SeriesPlot.SeriesPlot `SeriesPlot`}.
+ * specifies the valid dimensions (e.g. 'x' for the x-axis) for a {@link SeriesPlot.SeriesPlot `SeriesPlot`}.
  * For each dimension, the value can be either 
  * - a string that identifies the column name in the data set to use
  * - or a {@link SeriesPlot.ValueFn `ValueFn`} function that returns the data to use.
@@ -795,7 +796,7 @@ export interface SeriesDimensions {
      * optional stack group. Series with the same group will be stacked on each other. 
      * `stacked` differes from other dimensions in that the `ValueDef` is always a `string`
      * used as a unique identifier for the series to be stacked (and not as a named index into the data set).
-     * For example: `..., stacked:'myStack',..` would stack all series with the ID `myStack`. 
+     * For example: `stacked:'myStack'` would stack all series with the ID `myStack`. 
      */
     stacked?:     string;
 }
@@ -804,12 +805,12 @@ export interface SeriesDimensions {
  * Basic `ValueDef` definition, used in {@link SeriesPlot.SeriesPlot `SeriesPlot`}. 
  * - `string`: the name of column in the data set, e.g. `x:'time'`
  * - `number`: a constant value, e.g. `r: 5`
- * - `ValueFn`: a {@link SeriesPlot.ValueFn `function`} returning the value.
+ * - `ValueFn`: a {@link SeriesPlot.ValueFn `user-defined function`} returning the value.
  */
 export type ValueDef = string|number|ValueFn;
 &nbsp;
 /** 
- * a function returning the {@link Graph.DataVal `DataVal`} of a data point.
+ * a user-defined function returning the {@link Graph.DataVal `DataVal`} of a data point.
  * The function will be called at runtime once for each row in the data set.
  * @param rowIndex the index of the row in the {@link Graph.DataSet `DataSet's`} rows array. 
  * @return the value of type `DataVal` to use for the row.
@@ -833,12 +834,14 @@ export function text(val:DataVal) {
  * - maintaining a stack mechanism that allows series to be stacked on one another
  * To create a series plot, add the desired plot type to the graph:
  * ```
- * graph.series.add(&lt;type&gt;, {x:&lt;ValueDef&gt;, ...});
+ * graph.series.add(&lt;type&gt;, {&lt;dim&gt;:&lt;ValueDef&gt;, ...});
  * ``` 
- * where {@link SeriesPlot.ValueDef `ValueDef`} is a data reference, either
+ * where `&lt;dim&gt;` specifies a {@link SeriesPlot.SeriesDimensions series dimension}
+ * and {@link SeriesPlot.ValueDef `ValueDef`} provides the data values for the dimension, 
+ * as one of:
  * - the name of a column in the data set to use
- * - or a function, returning the data to use. 
- * To specify a constant of value 5, simply supply `()=&gt;5`.
+ * - a constant number
+ * - or a user-defined {@link SeriesPlot.ValueFn function}, returning the data to use. 
  */
 export abstract class SeriesPlot { 
     /** 

@@ -146,43 +146,65 @@ export interface TextStyle {
 }
 
 
-/** horizontal text positioning  */
+/** horizontal text alignment  */
 export enum TextHAlign {
     left    = 'left',
     center  = 'center',
     right   = 'right'
 }
 
-/** vertical text positioning  */
+/** vertical text alignment  */
 export enum TextVAlign {
     top     = 'top',
     center  = 'center',
     bottom  = 'bottom'
 }
 
-/**
- * defines `Label` configurations:
- * - `xpos`: indicates the horizontal alignemnt of the label. 
- *    Either a {@link Settings.TextHAlign TextHAlign} or a number indicating 
- *    the horizontal position with 0=`left` and 1=`right`. 
- *    Defaults to `TextHAlign.center`.
- * - `ypos`: indicates the vertical alignemnt of the label. 
- *    Either a {@link Settings.TextVAlign TextVAlign} or a number indicating 
- *    the vertical position with 0=`top` and 1=`bottom`. 
- *    Defaults to `TextVAlign.center`.
- * - `hOffset`: offsets the label horizontally be the specified `em` value.
- *    positive numbers shift right. Defaults to 0.
- * - `vOffset`: offsets the label vertically be the specified `em` value
- *    positive numbers shift down. Defaults to 0.
- * - `inside`: if `true`, renders labels inside the marker. 
- *    If `false`, renders labels outside the marker when `xpos` or `ypos`
- *    are not `center`. Defaults to `true`.
- */
+/** horizontal positioning  */
+export enum HPos {
+    left    = 'left',
+    center  = 'center',
+    right   = 'right'
+}
+
+/** vertical positioning  */
+export enum VPos {
+    top     = 'top',
+    center  = 'center',
+    bottom  = 'bottom'
+}
+
+/** defines `Label` configurations: */
 export interface Label extends TextStyle, Rendered {
-    xpos: TextHAlign | Share;
-    ypos: TextVAlign | Share;
+    /**
+     * indicates the horizontal alignemnt of the label. 
+     * Either a {@link Settings.HPos HPos} or a number or percentage indicating 
+     * the horizontal position with `0=0%=left` and `1=100%=right`. 
+     * Defaults to `HPos.center`.
+     */
+    xpos: HPos | Share | UnitPercent;
+    /**
+     * indicates the vertical alignemnt of the label. 
+     * Either a {@link Settings.VPos VPos} or a number or percentage indicating 
+     * the vertical position with `0=0%=top` and `1=100%=bottom`. 
+     * Defaults to `VPos.center`.
+     */
+    ypos: VPos | Share | UnitPercent;
+    /**
+     * offsets the label horizontally be the specified `em` value.
+     * positive numbers shift right. Defaults to 0.
+     */
     hOffset: UnitEm;    // offset in `em`
+    /**
+     * offsets the label vertically be the specified `em` value
+     * positive numbers shift down. Defaults to 0.
+     */
     vOffset: UnitEm;    // offset in `em`
+    /**
+     * if `true`, renders labels inside the marker. 
+     * If `false`, renders labels outside the marker when `xpos` or `ypos`
+     * are not `center`. Defaults to `true`.
+     */
     inside: boolean;    // render label inside the area
 }
 
@@ -198,7 +220,39 @@ export interface MarkerStyle {
     scheme: string;
 }
 
+function pct2Share(v:UnitPercent | Share | HPos | VPos):Share {
+    if (!isNaN(<Share>v)) { 
+        return <number>v; 
+    } else if ((<UnitPercent>v).endsWith('%')) {
+        return parseInt(<UnitPercent>v)/100;
+    } else {
+        switch(v) {
+            case TextHAlign.left:
+            case TextVAlign.top:    return 0;
+            case TextHAlign.right:
+            case TextVAlign.bottom: return 1;
+            case TextHAlign.center:
+            case TextVAlign.center: return 0.5;
+            default: log.warn(`value ${v} is neither numeric, an alignment, nor a percentage`);
+                return 0;
+        }
+    }
+}
 
+export interface TextPos {
+    x:{pos: number, shift:number, anchor:string};
+    y:{pos: number, shift:number, baseline:string};
+}
+
+export function textPos(x:UnitPercent|Share|HPos, y:UnitPercent|Share|VPos, inside=true):TextPos {
+    let xpos = pct2Share(x);
+    let ypos = pct2Share(y);
+    const anchor   = (xpos<0.33)? (inside?'start':'end')        : ((xpos>0.66)? (inside?'end':'start') : 'middle');
+    const baseline = (ypos<0.33)? (inside?'hanging':'baseline') : ((ypos>0.66)? (inside?'baseline':'hanging') : 'middle');
+    let xShift     = (xpos<0.33)? (inside?1:-1) : ((xpos>0.66)? (inside?-1:1) : 0);
+    let yShift     = (ypos<0.33)? (inside?1:-1) : ((ypos>0.66)? (inside?-1:1) : 0);
+    return {x:{pos:xpos, shift:xShift, anchor:anchor}, y:{pos:ypos, shift:yShift, baseline:baseline}};
+}
 
 //---------- defaults --------------
 
@@ -237,10 +291,10 @@ export const defaultFont = (size=16):Font => {
 
 export const defaultLabel = (areaFill:Color = 'currentColor', opacity=0.5):Label => {
     return {
-        color: areaFill,
+        color:  areaFill,
         font:   defaultFont(),
-        xpos: TextHAlign.center,
-        ypos: TextVAlign.center,
+        xpos:   HPos.center,
+        ypos:   VPos.center,
         hOffset: 0,     // offset in `em`
         vOffset: 0,     // offset in `em`
         inside: true,   // inside the area
@@ -334,11 +388,6 @@ export function setPopup(svg:d3Base, settings:Popup):d3Base {
     .attr('font-style',  settings.font.style)
     .attr('font-weight', settings.font.weight);
 }
-
-// export function setColor(svg:d3Base, colors:string[]):d3Base {
-//     return svg
-//     .attr('fill',        (d:number[], i:number) => colors[i%colors.length]);
-// }
 
 export function setRect(svg:d3Base, settings:RectStyle):d3Base {
     svg .attr('rx', settings.rx)

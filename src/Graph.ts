@@ -448,9 +448,7 @@ export abstract class Graph extends GraphBase implements Components {
 
     public isRendered() {
         const base = (<any>d3Select(this.root).select('.baseSVG'));
-        const node = base.node();
-        const isRendered = node.clientWidth? true : false;
-        return isRendered;
+        return base.node().clientWidth? true : false;
     }
 
     /**

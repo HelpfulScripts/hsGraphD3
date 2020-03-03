@@ -28,7 +28,6 @@ import { GraphCfg }             from "./GraphComponent";
 import { d3Base }               from "./Settings";
 import { defaultStroke }        from "./Settings";
 import { setLabel }             from "./Settings";
-import { Label }                from "./Settings";
 import { setArea }              from "./Settings";
 import { setStroke }            from "./Settings";
 import { setFill }              from "./Settings";
@@ -52,7 +51,7 @@ export interface CartSeriesDimensions extends SeriesDimensions {
      * optional, name of x-axis data column, or a function returning a value.
      * If omitted, the index of y-values will be used as x-values.
      */
-    x?:   ValueDef;    
+    x?:  ValueDef;    
     /** name of y-axis data column, or a function returning a value */ 
     y:   ValueDef;    
     /** optional, name of y-axis data column for lower fill border, or a function returning a value */
@@ -62,7 +61,6 @@ export interface CartSeriesDimensions extends SeriesDimensions {
 }
 
 
-
 /**
  * Abstract base class for all cartesian plots.
  */
@@ -70,7 +68,7 @@ export abstract class CartSeriesPlot extends SeriesPlot {
     /** the main data line  */
     protected line: string;         // d3Line<number[]>;
 
-    protected popupDiv:d3Base;
+    // protected popupDiv:d3Base;
 
     constructor(cfg:GraphCfg, seriesName:string, dims:CartSeriesDimensions) {
         super(cfg, seriesName, dims);
@@ -246,9 +244,6 @@ export abstract class CartSeriesPlot extends SeriesPlot {
     }
 
     protected abstract getPath(rows:DataRow[], colNames:string[], yDef?: ValueDef, useStack?:boolean):string;
-
-    protected abstract labelPos(cfg:Label, labels:d3Base):void;
-
 
     //---------- stack methods --------------------
 

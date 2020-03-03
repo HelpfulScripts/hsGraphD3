@@ -15,19 +15,17 @@
 
 /** */
 import { Log }                  from 'hsutil'; const log = new Log('OrdinalSeriesPlot');
-import { DataRow, AccessFn }              from '../Graph';
+import { DataRow }              from '../Graph';
 import { DataVal }              from '../Graph';
 import { NumDomain }            from '../Graph';
 import { DataSet }              from '../Graph';
 import { Domains }              from '../Graph';
-import { d3Base }               from '../Settings';
+import { d3Base, textPos }      from '../Settings';
 import { Label }                from '../Settings';
 import { CartSeriesPlot }       from '../CartSeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { text }                 from '../SeriesPlot';
 import { Series }               from '../Series';
-import { TextHAlign }           from "../Settings";
-import { TextVAlign }           from "../Settings";
 
 /**
  * Abstract base class of a  cartesian series plot. 
@@ -149,7 +147,7 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
         const l = this.accessor(this.dims.label, data.colNames);
         const cfg:Label = this.defaults.label;
 
-        const [xpos, ypos] = this.labelPos(cfg, labels);
+        const pos = textPos(cfg.xpos, cfg.ypos, cfg.inside);
         const x  = this.accessor(this.dims.x, data.colNames);
         const x0 = this.dims.stacked? this.accessor(this.dims.stacked, data.colNames) : ()=>0;
         const y  = this.accessor(this.dims.y, data.colNames);
@@ -159,14 +157,18 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
         const yAttr  = (d:number[], i:number) => this.cached('y', i, ()=>yScale(y(d, i)));
         const y0Attr = (d:number[], i:number) => this.cached('y0', i, ()=>yScale(y0(d, i)));
         const _ = {
-            hor: {x:'x', atX:xAttr, xPos:xpos, y:'y', atY:yAttr, atY0:y0Attr, yPos:ypos},
-            ver: {x:'y', atX:yAttr, xPos:ypos, y:'x', atY:xAttr, atY0:x0Attr, yPos:xpos}
+            hor: {x:'x', atX:xAttr, xPos:pos.x.pos, y:'y', atY:yAttr, atY0:y0Attr, yPos:pos.y.pos},
+            ver: {x:'y', atX:yAttr, xPos:pos.y.pos, y:'x', atY:xAttr, atY0:x0Attr, yPos:pos.x.pos}
         }[this.abscissa];
         labels
             .attr(_.x,  (d:number[], i:number) => _.atX(d, i) + offset + thickness*_.xPos)
             .attr(_.y,  (d:number[], i:number) =>  Math.min(_.atY(d,i), _.atY0(d,i)) + Math.abs(_.atY(d,i) -_.atY0(d,i)) * _.yPos)
-            .text((d:number[], i:number) => text(l(d, i)));
-    }
+            .text((d:number[], i:number) => text(l(d, i)))
+            .attr('text-anchor', pos.x.anchor)
+            .attr('dominant-baseline', pos.y.baseline)
+            .attr('dx', ((cfg.hOffset||0)+pos.x.shift*0.2).toFixed(1) + 'em')
+            .attr('dy', ((cfg.vOffset||0)+pos.y.shift*0.2).toFixed(1) + 'em');
+  }
 
     protected getPath(rows:DataRow[], colNames:string[]):string {
         const hor = this.abscissa==='hor';
@@ -188,32 +190,7 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
                 .y((d:number[], i:number) => yAttr(d,i)+offset);
         return line(rows);
     }
-
-    protected labelPos(cfg:Label, labels:d3Base) {
-        let xShift = 0;
-        let yShift = 0.35;
-        let xpos = 0.5; // 0: left aligned, 1: right aligned
-        let ypos = 0.5;   // 0: top of bar, 1: bottom of bar
-        let anchor = 'middle';
-        switch(cfg.xpos) { 
-            case TextHAlign.left:   xpos = 0; xShift = cfg.inside?0.2:-0.2; anchor = cfg.inside?'start':'end'; break;
-            case TextHAlign.center: break;
-            case TextHAlign.right:  xpos = 1; xShift = cfg.inside?-0.2:0.2; anchor = cfg.inside?'end':'start';  break;
-            default: log.warn(`illegal TextHAlign: ${cfg.xpos}`);
-        }
-        switch(cfg.ypos) { // additional y 'em' shift
-            case TextVAlign.top:    ypos = 0; yShift = cfg.inside? 1 : -0.2; break;
-            case TextVAlign.center: break;
-            case TextVAlign.bottom: ypos = 1; yShift = cfg.inside? -0.2 : 1; break;
-            default:  log.warn(`illegal TextVAlign: ${cfg.ypos}`);
-        }
-        labels.style('text-anchor', anchor)
-              .attr('dx', ((cfg.hOffset||0)+xShift).toFixed(1) + 'em')
-              .attr('dy', ((cfg.vOffset||0)+yShift).toFixed(1) + 'em');
-    return [xpos, ypos];
-    }
 }
-
 
 function stepLine(step:number, axis:'hor'|'ver') {
     interface Accessor { (d:DataVal[], i:number): number; }

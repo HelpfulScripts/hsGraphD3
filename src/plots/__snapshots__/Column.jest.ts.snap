@@ -634,9 +634,10 @@ exports[`Column should plot column 1`] = `
         >
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="82"
             y="507.5"
           >
@@ -644,9 +645,10 @@ exports[`Column should plot column 1`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="242"
             y="312.5"
           >
@@ -654,9 +656,10 @@ exports[`Column should plot column 1`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="402"
             y="280"
           >
@@ -664,9 +667,10 @@ exports[`Column should plot column 1`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="562"
             y="247.5"
           >
@@ -674,9 +678,10 @@ exports[`Column should plot column 1`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="722"
             y="215"
           >
@@ -684,9 +689,10 @@ exports[`Column should plot column 1`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="882"
             y="182.5"
           >

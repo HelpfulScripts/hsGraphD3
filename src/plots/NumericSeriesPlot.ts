@@ -26,10 +26,8 @@ import { NumericDataRow }       from '../Graph';
 import { ValueDef, text }       from '../SeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { Domains }              from '../Graph';
-import { d3Base, Label }        from '../Settings';
+import { d3Base, Label, textPos }        from '../Settings';
 import { CartSeriesPlot }       from '../CartSeriesPlot';
-import { TextHAlign }           from "../Settings";
-import { TextVAlign }           from "../Settings";
 
 
 /**
@@ -56,7 +54,7 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
     protected markerShape() { return 'circle'; }
 
     protected d3RenderFill(plot:d3Base, data:NumericDataSet) {
-        const scales = this.cfg.graph.scales.scaleDims;
+        // const scales = this.cfg.graph.scales.scaleDims;
         let line = this.line = this.line || this.getPath(data.rows, data.colNames, this.dims.y);
         if (this.dims.y0!==undefined) {
             line += `L` + this.getPath(data.rows.reverse(), data.colNames, this.dims.y0, false).slice(1); // replace first 'M' with 'L'
@@ -89,13 +87,18 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
         const lAccess = this.accessor(this.dims.label, data.colNames, false);
         const cfg:Label = this.defaults.label;
 
-        const [xpos, ypos, yShift] = this.labelPos(cfg, labels);
+        // const [xpos, ypos, yShift] = this.labelPos(cfg, labels);
+        const pos = textPos(cfg.xpos, cfg.ypos, cfg.inside);
         labels
             .attr("x", (d:number[], i:number) => scales.hor(xAccess(d, i))
-                + (this.dims.r? scales.size(rAccess(d, i)) : rDefault) * xpos)
+                + (this.dims.r? scales.size(rAccess(d, i)) : rDefault) * (pos.x.pos-0.5)*2)
             .attr("y", (d:number[], i:number) => scales.ver(yAccess(d, i)) 
-                + (this.dims.r? scales.size(rAccess(d, i)) : rDefault) * ypos)
-            .text((d:number[], i:number) => text(lAccess(d, i)));
+                + (this.dims.r? scales.size(rAccess(d, i)) : rDefault) * (pos.y.pos-0.5)*2)
+            .text((d:number[], i:number) => text(lAccess(d, i)))
+            .attr('text-anchor', pos.x.anchor)
+            .attr('dominant-baseline', pos.y.baseline)
+            .attr('dx', ((cfg.hOffset||0)+pos.x.shift*0.4).toFixed(1) + 'em')
+            .attr('dy', ((cfg.vOffset||0)+pos.y.shift*0.2).toFixed(1) + 'em');
     }
     
     /**
@@ -112,30 +115,6 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
             .y((d:number[], i:number) => scales.ver(yAccess(d, i)))
             .curve(curveCatmullRom.alpha(0.2));
         return line(<[number, number][]>rows);
-    }
-
-    protected labelPos(cfg:Label, labels:d3Base) {
-        let xShift = 0;
-        let yShift = 0.35;
-        let xpos = +cfg.xpos;   // 0: left aligned, 1: right aligned
-        let ypos = +cfg.ypos;   // 0: top of bar, 1: bottom of bar
-        let anchor = 'middle';
-        switch(cfg.xpos) { 
-            case TextHAlign.left:   xpos = -1; xShift = -0.4; anchor = 'end'; break;
-            case TextHAlign.center: xpos = 0; break;
-            case TextHAlign.right:  xpos = 1;  xShift = +0.4; anchor = 'start';  break;
-            default: if (isNaN(xpos)) { log.warn(`illegal TextHAlign: ${cfg.xpos}`); }
-        }
-        switch(cfg.ypos) { // additional y 'em' shift
-            case TextVAlign.top:    ypos = -1; yShift = -0.4; break;
-            case TextVAlign.center: ypos = 0; break;
-            case TextVAlign.bottom: ypos = 1;  yShift = 1.0;  break;
-            default: if (isNaN(ypos)) { log.warn(`illegal TextVAlign: ${cfg.ypos}`); }
-        }
-        labels.style('text-anchor', anchor)
-              .attr('dx', ((cfg.hOffset||0)+xShift).toFixed(1) + 'em')
-              .attr('dy', ((cfg.vOffset||0)+yShift).toFixed(1) + 'em');
-    return [xpos, ypos];
     }
 }
 

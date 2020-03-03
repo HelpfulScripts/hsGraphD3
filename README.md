@@ -21,15 +21,17 @@ Create a data set to plot. The first row contains column names:
 ```
 import { GraphCartesian } from 'hsgraphd3';
 
-const data = [
-    ['date', 'time', 'volume', 'costs'], 
-    ['1/1/14', -1,     0.2,      0.3], 
-    ['1/1/16',  0.2,   0.7,      0.2], 
-    ['9/1/16',  0.4,   0.1,      0.3],
-    ['5/1/17',  0.6,  -0.2,      0.1], 
-    ['7/1/18',  0.8,   0.3,      0.5], 
-    ['1/1/19',  1,     0.2,      0.4]
-];
+const data = {
+    colNames: ['date', 'time', 'volume', 'costs'], 
+    rows:  [
+        ['1/1/14', -1,     0.2,      0.3], 
+        ['1/1/16',  0.2,   0.7,      0.2], 
+        ['9/1/16',  0.4,   0.1,      0.3],
+        ['5/1/17',  0.6,  -0.2,      0.1], 
+        ['7/1/18',  0.8,   0.3,      0.5], 
+        ['1/1/19',  1,     0.2,      0.4]
+    ]
+};
 ```
 
 Create the graph and define the series to plot, using the column names:
@@ -53,9 +55,9 @@ graph.render(data);
 To create a periodically updated graph, call the update method returned by `render`:
 ```
 const ms = 1000;  // millisecond period
+
 graph.render(data).update(ms, data => {
-    data[2][2] = Math.random();
-    return true;    // continue updating
+    data.rows.forEach(row => row[2] = Math.random();
 });
 ``` 
 

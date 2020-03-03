@@ -820,9 +820,10 @@ exports[`Bubble should plot series 1`] = `
         >
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="20"
             y="345"
           >
@@ -830,9 +831,10 @@ exports[`Bubble should plot series 1`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="156"
             y="670"
           >
@@ -840,9 +842,10 @@ exports[`Bubble should plot series 1`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="472"
             y="20"
           >
@@ -850,9 +853,10 @@ exports[`Bubble should plot series 1`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="980"
             y="395"
           >
@@ -908,9 +912,10 @@ exports[`Bubble should plot series 1`] = `
         >
           <text
             class="popup"
-            dx="0.4em"
-            dy="0.3em"
-            style="text-anchor: start;"
+            dominant-baseline="middle"
+            dx="-0.4em"
+            dy="0.0em"
+            text-anchor="end"
             x="30"
             y="345"
           >
@@ -918,9 +923,10 @@ exports[`Bubble should plot series 1`] = `
           </text>
           <text
             class="popup"
-            dx="0.4em"
-            dy="0.3em"
-            style="text-anchor: start;"
+            dominant-baseline="middle"
+            dx="-0.4em"
+            dy="0.0em"
+            text-anchor="end"
             x="171"
             y="670"
           >
@@ -928,9 +934,10 @@ exports[`Bubble should plot series 1`] = `
           </text>
           <text
             class="popup"
-            dx="0.4em"
-            dy="0.3em"
-            style="text-anchor: start;"
+            dominant-baseline="middle"
+            dx="-0.4em"
+            dy="0.0em"
+            text-anchor="end"
             x="492"
             y="20"
           >
@@ -938,9 +945,10 @@ exports[`Bubble should plot series 1`] = `
           </text>
           <text
             class="popup"
-            dx="0.4em"
-            dy="0.3em"
-            style="text-anchor: start;"
+            dominant-baseline="middle"
+            dx="-0.4em"
+            dy="0.0em"
+            text-anchor="end"
             x="985"
             y="395"
           >
@@ -996,9 +1004,10 @@ exports[`Bubble should plot series 1`] = `
         >
           <text
             class="popup"
-            dx="-0.4em"
-            dy="0.3em"
-            style="text-anchor: end;"
+            dominant-baseline="middle"
+            dx="0.4em"
+            dy="0.0em"
+            text-anchor="start"
             x="10"
             y="345"
           >
@@ -1006,9 +1015,10 @@ exports[`Bubble should plot series 1`] = `
           </text>
           <text
             class="popup"
-            dx="-0.4em"
-            dy="0.3em"
-            style="text-anchor: end;"
+            dominant-baseline="middle"
+            dx="0.4em"
+            dy="0.0em"
+            text-anchor="start"
             x="141"
             y="670"
           >
@@ -1016,9 +1026,10 @@ exports[`Bubble should plot series 1`] = `
           </text>
           <text
             class="popup"
-            dx="-0.4em"
-            dy="0.3em"
-            style="text-anchor: end;"
+            dominant-baseline="middle"
+            dx="0.4em"
+            dy="0.0em"
+            text-anchor="start"
             x="452"
             y="20"
           >
@@ -1026,9 +1037,10 @@ exports[`Bubble should plot series 1`] = `
           </text>
           <text
             class="popup"
-            dx="-0.4em"
-            dy="0.3em"
-            style="text-anchor: end;"
+            dominant-baseline="middle"
+            dx="0.4em"
+            dy="0.0em"
+            text-anchor="start"
             x="975"
             y="395"
           >
@@ -1084,9 +1096,10 @@ exports[`Bubble should plot series 1`] = `
         >
           <text
             class="popup"
+            dominant-baseline="baseline"
             dx="0.0em"
-            dy="1.0em"
-            style="text-anchor: middle;"
+            dy="-0.2em"
+            text-anchor="middle"
             x="20"
             y="355"
           >
@@ -1094,9 +1107,10 @@ exports[`Bubble should plot series 1`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="baseline"
             dx="0.0em"
-            dy="1.0em"
-            style="text-anchor: middle;"
+            dy="-0.2em"
+            text-anchor="middle"
             x="156"
             y="685"
           >
@@ -1104,9 +1118,10 @@ exports[`Bubble should plot series 1`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="baseline"
             dx="0.0em"
-            dy="1.0em"
-            style="text-anchor: middle;"
+            dy="-0.2em"
+            text-anchor="middle"
             x="472"
             y="40"
           >
@@ -1114,9 +1129,10 @@ exports[`Bubble should plot series 1`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="baseline"
             dx="0.0em"
-            dy="1.0em"
-            style="text-anchor: middle;"
+            dy="-0.2em"
+            text-anchor="middle"
             x="980"
             y="400"
           >
@@ -1172,9 +1188,10 @@ exports[`Bubble should plot series 1`] = `
         >
           <text
             class="popup"
+            dominant-baseline="hanging"
             dx="0.0em"
-            dy="-0.4em"
-            style="text-anchor: middle;"
+            dy="0.2em"
+            text-anchor="middle"
             x="20"
             y="335"
           >
@@ -1182,9 +1199,10 @@ exports[`Bubble should plot series 1`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="hanging"
             dx="0.0em"
-            dy="-0.4em"
-            style="text-anchor: middle;"
+            dy="0.2em"
+            text-anchor="middle"
             x="156"
             y="655"
           >
@@ -1192,9 +1210,10 @@ exports[`Bubble should plot series 1`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="hanging"
             dx="0.0em"
-            dy="-0.4em"
-            style="text-anchor: middle;"
+            dy="0.2em"
+            text-anchor="middle"
             x="472"
             y="0"
           >
@@ -1202,9 +1221,10 @@ exports[`Bubble should plot series 1`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="hanging"
             dx="0.0em"
-            dy="-0.4em"
-            style="text-anchor: middle;"
+            dy="0.2em"
+            text-anchor="middle"
             x="980"
             y="390"
           >

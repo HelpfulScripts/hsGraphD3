@@ -2994,9 +2994,10 @@ exports[`Area labels should plot area 1`] = `
         >
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="980"
             y="381"
           >
@@ -3004,9 +3005,10 @@ exports[`Area labels should plot area 1`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="884"
             y="309"
           >
@@ -3014,9 +3016,10 @@ exports[`Area labels should plot area 1`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="788"
             y="670"
           >
@@ -3024,9 +3027,10 @@ exports[`Area labels should plot area 1`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="692"
             y="453"
           >
@@ -3034,9 +3038,10 @@ exports[`Area labels should plot area 1`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="596"
             y="20"
           >
@@ -3044,9 +3049,10 @@ exports[`Area labels should plot area 1`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="20"
             y="381"
           >
@@ -3077,9 +3083,10 @@ exports[`Area labels should plot area 1`] = `
         >
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="980"
             y="381"
           >
@@ -3087,9 +3094,10 @@ exports[`Area labels should plot area 1`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="884"
             y="309"
           >
@@ -3097,9 +3105,10 @@ exports[`Area labels should plot area 1`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="788"
             y="670"
           >
@@ -3107,9 +3116,10 @@ exports[`Area labels should plot area 1`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="692"
             y="453"
           >
@@ -3117,9 +3127,10 @@ exports[`Area labels should plot area 1`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="596"
             y="20"
           >
@@ -3127,9 +3138,10 @@ exports[`Area labels should plot area 1`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="20"
             y="381"
           >
@@ -5393,9 +5405,10 @@ exports[`Area labels should plot area 2`] = `
         >
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="980"
             y="381"
           >
@@ -5403,9 +5416,10 @@ exports[`Area labels should plot area 2`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="884"
             y="309"
           >
@@ -5413,9 +5427,10 @@ exports[`Area labels should plot area 2`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="788"
             y="670"
           >
@@ -5423,9 +5438,10 @@ exports[`Area labels should plot area 2`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="692"
             y="453"
           >
@@ -5433,9 +5449,10 @@ exports[`Area labels should plot area 2`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="596"
             y="20"
           >
@@ -5443,9 +5460,10 @@ exports[`Area labels should plot area 2`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="20"
             y="381"
           >
@@ -5476,9 +5494,10 @@ exports[`Area labels should plot area 2`] = `
         >
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="980"
             y="381"
           >
@@ -5486,9 +5505,10 @@ exports[`Area labels should plot area 2`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="884"
             y="309"
           >
@@ -5496,9 +5516,10 @@ exports[`Area labels should plot area 2`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="788"
             y="670"
           >
@@ -5506,9 +5527,10 @@ exports[`Area labels should plot area 2`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="692"
             y="453"
           >
@@ -5516,9 +5538,10 @@ exports[`Area labels should plot area 2`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="596"
             y="20"
           >
@@ -5526,9 +5549,10 @@ exports[`Area labels should plot area 2`] = `
           </text>
           <text
             class="popup"
+            dominant-baseline="middle"
             dx="0.0em"
-            dy="0.3em"
-            style="text-anchor: middle;"
+            dy="0.0em"
+            text-anchor="middle"
             x="20"
             y="381"
           >

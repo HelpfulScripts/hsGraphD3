@@ -55,7 +55,8 @@ import { Log }                  from 'hsutil'; const log = new Log('Title');
 import { ComponentDefaults }    from './GraphComponent'; 
 import { GraphComponent }       from './GraphComponent'; 
 import { GraphCfg }             from './GraphComponent'; 
-import { d3Base }               from './Settings';
+import { d3Base, textPos, VPos, HPos }      from './Settings';
+import { Share }                from './Settings';
 import { setText }              from './Settings';
 import { defaultTextStyle }     from './Settings';
 import { TextStyle }            from './Settings';
@@ -63,9 +64,17 @@ import { UnitPercent }          from './Settings';
 
 export interface TitleDefaults extends ComponentDefaults { 
     rendered:   boolean;
-    x:          UnitPercent;
-    y:          UnitPercent;
-    style:      TextStyle;
+    /** 
+     * the horizontal position of the title on the viewport, either as a number between [0, 1]
+     * or a percentage, or a `HPos` value: `0=0%=left edge`, `1=100%right` edge of the viewport.
+     */
+    x: UnitPercent | Share | HPos;
+    /** 
+     * the vertical position of the title on the viewport, either as a number between [0, 1]
+     * or a percentage, or a `VPos` value: `0=0%=top` edge, `1=100%=bottom` edge of the viewport.
+     */
+    y: UnitPercent | Share | VPos;
+    style: TextStyle;
 }
 
 
@@ -90,7 +99,7 @@ export class Title extends GraphComponent {
     public createDefaults():TitleDefaults {
         const defs = {
             rendered:   false,
-            x:          '20%',
+            x:          0.05,
             y:          '5%',
             style:       defaultTextStyle(24),
         };
@@ -110,21 +119,14 @@ export class Title extends GraphComponent {
      */
     public renderComponent() {
         const titleDefs = this.defaults;
-        const vp = this.cfg.viewPort;
-        const x = parseInt(titleDefs.x)/100;
-        const y = parseInt(titleDefs.y)/100;
-        if (x && !titleDefs.x.endsWith('%')) { log.warn(`title x pos is missing '%': ${titleDefs.x}`); }
-        if (y && !titleDefs.y.endsWith('%')) { log.warn(`title y pos is missing '%': ${titleDefs.y}`); }
         if (titleDefs.rendered) {
+            const vp = this.cfg.viewPort;
+            const pos = textPos(titleDefs.x, titleDefs.y);
             const svg = this.svg.select('text');
             setText(svg, titleDefs.style, this.cfg.transition);
-            const anchor = (x<0.33)? 'start' : ((x>0.66)? 'end' : 'middle');
-            const baseline = (y<0.33)? 'hanging' : ((x>0.66)? 'baseline' : 'middle');
-            // const dy = titleDefs.style.font.size;
-            svg
-            .attr('x', x * vp.width + vp.orgX).attr('text-anchor', anchor)
-            .attr('y', y * vp.height + vp.orgY).attr('dominant-baseline', baseline)
-            .text(this.titleText);
+            svg.attr('x', pos.x.pos * vp.width + vp.orgX).attr('text-anchor', pos.x.anchor)
+               .attr('y', pos.y.pos * vp.height + vp.orgY).attr('dominant-baseline', pos.y.baseline)
+               .text(this.titleText);
         }
     }
 

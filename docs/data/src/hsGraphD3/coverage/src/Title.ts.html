@@ -20,14 +20,14 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">67.74% </span>
+        <span class="strong">68% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>21/31</span>
+        <span class='fraction'>17/25</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">38.89% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>7/18</span>
+        <span class='fraction'>1/2</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">77.78% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>7/9</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">71.43% </span>
+        <span class="strong">66.67% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>20/28</span>
+        <span class='fraction'>16/24</span>
       </div>
     </div>
     <p class="quiet">
@@ -177,7 +177,9 @@
 <a name='L129'></a><a href='#L129'>129</a>
 <a name='L130'></a><a href='#L130'>130</a>
 <a name='L131'></a><a href='#L131'>131</a>
-<a name='L132'></a><a href='#L132'>132</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L132'></a><a href='#L132'>132</a>
+<a name='L133'></a><a href='#L133'>133</a>
+<a name='L134'></a><a href='#L134'>134</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -234,9 +236,18 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -290,18 +301,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-yes">17x</span>
-<span class="cline-any cline-yes">17x</span>
-<span class="cline-any cline-yes">17x</span>
-<span class="cline-any cline-yes">17x</span>
-<span class="cline-any cline-yes">17x</span>
-<span class="cline-any cline-yes">17x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -365,7 +369,8 @@ import { Log }                  from 'hsutil'; const log = new Log('Title');
 import { ComponentDefaults }    from './GraphComponent'; 
 import { GraphComponent }       from './GraphComponent'; 
 import { GraphCfg }             from './GraphComponent'; 
-import { d3Base }               from './Settings';
+import { d3Base, textPos, VPos, HPos }      from './Settings';
+import { Share }                from './Settings';
 import { setText }              from './Settings';
 import { defaultTextStyle }     from './Settings';
 import { TextStyle }            from './Settings';
@@ -373,9 +378,17 @@ import { UnitPercent }          from './Settings';
 &nbsp;
 export interface TitleDefaults extends ComponentDefaults { 
     rendered:   boolean;
-    x:          UnitPercent;
-    y:          UnitPercent;
-    style:      TextStyle;
+    /** 
+     * the horizontal position of the title on the viewport, either as a number between [0, 1]
+     * or a percentage, or a `HPos` value: `0=0%=left edge`, `1=100%right` edge of the viewport.
+     */
+    x: UnitPercent | Share | HPos;
+    /** 
+     * the vertical position of the title on the viewport, either as a number between [0, 1]
+     * or a percentage, or a `VPos` value: `0=0%=top` edge, `1=100%=bottom` edge of the viewport.
+     */
+    y: UnitPercent | Share | VPos;
+    style: TextStyle;
 }
 &nbsp;
 &nbsp;
@@ -400,7 +413,7 @@ export class Title extends GraphComponent {
     public createDefaults():TitleDefaults {
         const defs = {
             rendered:   false,
-            x:          '20%',
+            x:          0.05,
             y:          '5%',
             style:       defaultTextStyle(24),
         };
@@ -420,21 +433,14 @@ export class Title extends GraphComponent {
      */
     public renderComponent() {
         const titleDefs = this.defaults;
-        const vp = this.cfg.viewPort;
-        const x = parseInt(titleDefs.x)/100;
-        const y = parseInt(titleDefs.y)/100;
-        <span class="missing-if-branch" title="if path not taken" >I</span>if (x &amp;&amp; !titleDefs.x.endsWith('%')) { <span class="cstat-no" title="statement not covered" >log.warn(`title x pos is missing '%': ${titleDefs.x}`); </span>}
-        <span class="missing-if-branch" title="if path not taken" >I</span>if (y &amp;&amp; !titleDefs.y.endsWith('%')) { <span class="cstat-no" title="statement not covered" >log.warn(`title y pos is missing '%': ${titleDefs.y}`); </span>}
         <span class="missing-if-branch" title="if path not taken" >I</span>if (titleDefs.rendered) {
+            const vp = <span class="cstat-no" title="statement not covered" >this.cfg.viewPort;</span>
+            const pos = <span class="cstat-no" title="statement not covered" >textPos(titleDefs.x, titleDefs.y);</span>
             const svg = <span class="cstat-no" title="statement not covered" >this.svg.select('text');</span>
 <span class="cstat-no" title="statement not covered" >            setText(svg, titleDefs.style, this.cfg.transition);</span>
-            const anchor = <span class="cstat-no" title="statement not covered" >(x&lt;0.33)? 'start' : ((x&gt;0.66)? 'end' : 'middle');</span>
-            const baseline = <span class="cstat-no" title="statement not covered" >(y&lt;0.33)? 'hanging' : ((x&gt;0.66)? 'baseline' : 'middle');</span>
-            // const dy = titleDefs.style.font.size;
-<span class="cstat-no" title="statement not covered" >            svg</span>
-            .attr('x', x * vp.width + vp.orgX).attr('text-anchor', anchor)
-            .attr('y', y * vp.height + vp.orgY).attr('dominant-baseline', baseline)
-            .text(this.titleText);
+<span class="cstat-no" title="statement not covered" >            svg.attr('x', pos.x.pos * vp.width + vp.orgX).attr('text-anchor', pos.x.anchor)</span>
+               .attr('y', pos.y.pos * vp.height + vp.orgY).attr('dominant-baseline', pos.y.baseline)
+               .text(this.titleText);
         }
     }
 &nbsp;

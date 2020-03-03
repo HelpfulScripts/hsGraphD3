@@ -35,8 +35,7 @@ export interface SeriesPlotDefaults {
 }
 
 /**
- * specify the values to use for different semantic dimension (e.g. 'x' for the x-axis) of 
- * each {@link SeriesPlot.SeriesPlot `SeriesPlot`}.
+ * specifies the valid dimensions (e.g. 'x' for the x-axis) for a {@link SeriesPlot.SeriesPlot `SeriesPlot`}.
  * For each dimension, the value can be either 
  * - a string that identifies the column name in the data set to use
  * - or a {@link SeriesPlot.ValueFn `ValueFn`} function that returns the data to use.
@@ -75,7 +74,7 @@ export interface SeriesDimensions {
      * optional stack group. Series with the same group will be stacked on each other. 
      * `stacked` differes from other dimensions in that the `ValueDef` is always a `string`
      * used as a unique identifier for the series to be stacked (and not as a named index into the data set).
-     * For example: `..., stacked:'myStack',..` would stack all series with the ID `myStack`. 
+     * For example: `stacked:'myStack'` would stack all series with the ID `myStack`. 
      */
     stacked?:     string;
 }
@@ -113,12 +112,14 @@ export function text(val:DataVal) {
  * - maintaining a stack mechanism that allows series to be stacked on one another
  * To create a series plot, add the desired plot type to the graph:
  * ```
- * graph.series.add(<type>, {x:<ValueDef>, ...});
+ * graph.series.add(<type>, {<dim>:<ValueDef>, ...});
  * ``` 
- * where {@link SeriesPlot.ValueDef `ValueDef`} is a data reference, either
+ * where `<dim>` specifies a {@link SeriesPlot.SeriesDimensions series dimension}
+ * and {@link SeriesPlot.ValueDef `ValueDef`} provides the data values for the dimension, 
+ * as one of:
  * - the name of a column in the data set to use
- * - or a function, returning the data to use. 
- * To specify a constant of value 5, simply supply `()=>5`.
+ * - a constant number
+ * - or a user-defined {@link SeriesPlot.ValueFn function}, returning the data to use. 
  */
 export abstract class SeriesPlot { 
     /** 

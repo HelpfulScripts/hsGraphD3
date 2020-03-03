@@ -23,14 +23,18 @@
  * // setup and plot the data:
  * const graph = new hsGraphD3.GraphCartesian(root);
  * graph.series.add('column', {x:'State', y:'costs', label:'State', popup:'costs'});
- * graph.series.add('column', {x:'State', y:'volume', popup:'volume'});
+ * graph.series.add('column', {x:'State', y:'volume', label:'State', popup:'volume'});
  * with (graph.scales.defaults.dims.hor.ordinal) {
  *      gap = 0.25;
  *      overlap = 0.75;
  * }
  * with (graph.series.defaults) {
  *      series0.line.rendered = true
+ *      series0.label.xpos = 'left';
+ *      series0.label.ypos = 0;
  *      series1.line.rendered = true
+ *      series1.label.xpos = 1;
+ *      series1.label.ypos = 'bottom';
  * }
  * graph.grids.defaults.ver.major.rendered = false;
  * graph.render(data).update(2000, data => {
@@ -66,8 +70,9 @@
  * with (graph.series.defaults) {
  *      series0.line.rendered = true;
  *      series0.label.ypos = 'top';
- *      series1.label.ypos = 'top';
  *      series1.label.inside = false;
+ *      series1.label.xpos = 'right';
+ *      series1.label.ypos = 'top';
  *      series1.line.rendered = true;
  * }
  * graph.grids.defaults.ver.major.rendered = false;
