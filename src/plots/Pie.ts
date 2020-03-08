@@ -184,7 +184,6 @@ export class Pie extends PolarSeriesPlot {
             return [Math.cos(a) * r, Math.sin(a) * r];
         };
         const cfg:Label = this.defaults.label;
-        // const [xpos, ypos] = this.labelPos(cfg, labels);
         const pos = textPos(cfg.xpos, cfg.ypos, cfg.inside);
         labels.attr("transform", (d:any, i:number) => `translate(${centroid(d, i, pos.x.pos)})`)
               .text((d:any, i:number) => text(lAccess(d.data, i)))
@@ -197,24 +196,6 @@ export class Pie extends PolarSeriesPlot {
     protected getPath(rows:DataRow[], colNames:string[], yDef?: ValueDef, useStack?:boolean):string {
         return '';
     }
-
-    // protected labelPos(cfg:Label, labels:d3Base) {
-    //     let xShift = 0;
-    //     let yShift = 0.35;
-    //     let xpos = +cfg.xpos;
-    //     let ypos = 0.5;     // 0: top of bar, 1: bottom of bar
-    //     let anchor = 'middle';
-    //     switch(cfg.xpos) {
-    //         case TextHAlign.left:   xpos = 0; break;
-    //         case TextHAlign.center: xpos = 0.5; break;
-    //         case TextHAlign.right:  xpos = 1; break; 
-    //         default: if (isNaN(xpos)) { log.warn(`illegal TextHAlign: ${cfg.xpos}`); }
-    //     }
-    //     labels.attr('text-anchor', anchor)
-    //           .attr('dx', ((cfg.hOffset||0)+xShift).toFixed(1) + 'em')
-    //           .attr('dy', ((cfg.vOffset||0)+yShift).toFixed(1) + 'em');
-    // return [xpos, ypos];
-    // }
 }
  
  

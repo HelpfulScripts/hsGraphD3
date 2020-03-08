@@ -5,7 +5,7 @@
  * <file name='script.js'>
  * const content = [
  *      graph => {
- *          graph.series.add('pie', {phi:'Mary'});
+ *          graph.series.add('pie', {phi:'Joe'});
  *          graph.title.text = `angular 'pie' graph: constant radius`;
  *          setDefaults(graph)
  *          graph.render(data);
@@ -21,6 +21,20 @@
  *      graph => {
  *          graph.series.add('pie', {r:'Mary', label:'Mary'});
  *          graph.title.text = `radial 'pie' graph: constant angles`;
+ *          setDefaults(graph)
+ *          graph.render(data);
+ *      }, 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ *      graph => {
+ *          graph.series.add('pie', {r:'Mary', r0:1.5, label:'Mary'});
+ *          graph.title.text = `inward radial 'pie' graph: constant angles`;
  *          setDefaults(graph)
  *          graph.render(data);
  *      }, 
@@ -61,7 +75,7 @@
  * 
  * 
  *      graph => {
- *          graph.series.add('pie', {r:'Mary', r0:1.5, color:i=>i});
+ *          graph.series.add('pie', {r:'Joe', r0:0.7, color:i=>i});
  *          graph.title.text = `dynamic pie: outward and inward radials`;
  *          setDefaults(graph, 0.02)
  *          graph.render(data).update(2000, update);
@@ -81,20 +95,20 @@
  * 
  * const data = {
  *    colNames:['item', 'time', 'Joe', 'Mary'], 
- *    rows:[   ['a',    0.0,    0.2,    1.3], 
+ *    rows:[   ['a',    0.0,    0.2,    0.7], 
  *             ['b',    0.2,    0.7,    1.2], 
- *             ['c',    0.4,    0.1,    1.9],
- *             ['d',    0.6,    0.2,    1.1], 
- *             ['e',    0.8,    0.3,    1.5], 
- *             ['f',    1,      0.2,    1.4]]
+ *             ['c',    0.4,    0.1,    0.6],
+ *             ['d',    0.6,    0.2,    0.7], 
+ *             ['e',    0.8,    0.3,    0.8], 
+ *             ['f',    1,      0.2,    0.7]]
  * }
  * 
  * const update = (data) => {
  *      const Joe = data.colNames.indexOf('Joe');
  *      const Mary = data.colNames.indexOf('Mary');
  *      data.rows.forEach(row => {
- *          row[Joe]  = Math.random();
- *          row[Mary] = Math.random() + 1;
+ *          row[Joe]  = Math.random() + 0.2;
+ *          row[Mary] = Math.random() + 0.5;
  *      });
  *      // continue updating
  * }
