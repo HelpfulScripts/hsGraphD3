@@ -62,6 +62,7 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
     }
 
     preRender(data:DataSet, domains:Domains): void {
+        
         super.preRender(data, domains);
         const scaleDef = this.cfg.graph.defaults.scales.dims[this.abscissa];
         const gap = scaleDef.ordinal.gap;

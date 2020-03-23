@@ -26,7 +26,9 @@ import { NumericDataRow }       from './Graph';
 import { ValueDef, text }       from './SeriesPlot';
 import { SeriesPlotDefaults }   from './SeriesPlot';
 import { Domains }              from './Graph';
-import { d3Base, Label, textPos }        from './Settings';
+import { d3Base }               from './Settings';
+import { Label }                from './Settings';
+import { textPos }              from './Settings';
 import { CartSeriesPlot }       from './CartSeriesPlot';
 
 

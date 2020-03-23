@@ -190,8 +190,8 @@
 <p id=167 class="line"><span>&nbsp;167</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.setTransform(scales);</p>
 <p id=168 class="line"><span>&nbsp;168</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;axis:any&nbsp;=&nbsp;this.getD3Axis(scales,&nbsp;axisDef);</p>
 <p id=169 class="line"><span>&nbsp;169</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;scale&nbsp;=&nbsp;scales[this.dir];</p>
-<p id=170 class="line"><span>&nbsp;170</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;axis.ticks(scale.tickCountMinor);</p>
-<p id=171 class="line"><span>&nbsp;171</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.svg.transition(trans).call(axis);</p>
+<p id=170 class="line"><span>&nbsp;170</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;axis.ticks(scale.tickCountMinor);</comment></p>
+<p id=171 class="line"><span>&nbsp;171</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.svg.transition(trans).call(axis);</p>
 <p id=172 class="line"><span>&nbsp;172</span></p>
 <p id=173 class="line"><span>&nbsp;173</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.svg.attr(<quote>'color'</quote>,&nbsp;axisDef.color);</p>
 <p id=174 class="line"><span>&nbsp;174</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!axisDef.line.rendered)&nbsp;{</p>
@@ -244,16 +244,20 @@
 <p id=221 class="line"><span>&nbsp;221</span></p>
 <p id=222 class="line"><span>&nbsp;222</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;getD3Axis(scales:ScaleDims,&nbsp;axisDef:AxisDefaults)&nbsp;{</p>
 <p id=223 class="line"><span>&nbsp;223</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;axis:d3.Axis<d3.AxisDomain>;</p>
-<p id=224 class="line"><span>&nbsp;224</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(this.dir===Direction.horizontal)&nbsp;{</p>
-<p id=225 class="line"><span>&nbsp;225</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;axis&nbsp;=&nbsp;scales.hor.axis(this.pos);</p>
-<p id=226 class="line"><span>&nbsp;226</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(scales.hor.type()&nbsp;===&nbsp;<quote>'number'</quote>)&nbsp;{&nbsp;axis.tickFormat(format(<quote>'~g'</quote>));&nbsp;}</p>
-<p id=227 class="line"><span>&nbsp;227</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{</p>
-<p id=228 class="line"><span>&nbsp;228</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;axis&nbsp;=&nbsp;scales.ver.axis(this.pos);</p>
-<p id=229 class="line"><span>&nbsp;229</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(scales.ver.type()&nbsp;===&nbsp;<quote>'number'</quote>)&nbsp;{&nbsp;axis.tickFormat(format(<quote>'~g'</quote>));&nbsp;}</p>
-<p id=230 class="line"><span>&nbsp;230</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-<p id=231 class="line"><span>&nbsp;231</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;axis.tickSize(axisDef.tickWidth);</p>
-<p id=232 class="line"><span>&nbsp;232</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;axis;</p>
-<p id=233 class="line"><span>&nbsp;233</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-<p id=234 class="line"><span>&nbsp;234</span>}</p></code></div>
+<p id=224 class="line"><span>&nbsp;224</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;ticks:&nbsp;number;</p>
+<p id=225 class="line"><span>&nbsp;225</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(this.dir===Direction.horizontal)&nbsp;{</p>
+<p id=226 class="line"><span>&nbsp;226</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;axis&nbsp;=&nbsp;scales.hor.axis(this.pos);</p>
+<p id=227 class="line"><span>&nbsp;227</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ticks&nbsp;=&nbsp;scales.hor.tickCountMajor;</p>
+<p id=228 class="line"><span>&nbsp;228</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(scales.hor.type()&nbsp;===&nbsp;<quote>'number'</quote>)&nbsp;{&nbsp;axis.tickFormat(format(<quote>'~g'</quote>));&nbsp;}</p>
+<p id=229 class="line"><span>&nbsp;229</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{</p>
+<p id=230 class="line"><span>&nbsp;230</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;axis&nbsp;=&nbsp;scales.ver.axis(this.pos);</p>
+<p id=231 class="line"><span>&nbsp;231</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ticks&nbsp;=&nbsp;scales.ver.tickCountMajor;</p>
+<p id=232 class="line"><span>&nbsp;232</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(scales.ver.type()&nbsp;===&nbsp;<quote>'number'</quote>)&nbsp;{&nbsp;axis.tickFormat(format(<quote>'~g'</quote>));&nbsp;}</p>
+<p id=233 class="line"><span>&nbsp;233</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=234 class="line"><span>&nbsp;234</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;axis.ticks(ticks);</p>
+<p id=235 class="line"><span>&nbsp;235</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;axis.tickSize(axisDef.tickWidth);</p>
+<p id=236 class="line"><span>&nbsp;236</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;axis;</p>
+<p id=237 class="line"><span>&nbsp;237</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=238 class="line"><span>&nbsp;238</span>}</p></code></div>
                 </body>
             

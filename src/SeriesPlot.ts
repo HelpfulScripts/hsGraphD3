@@ -28,6 +28,7 @@ import { format as d3format}    from 'd3';
 export type d3Selection = d3.Selection<BaseType, unknown, BaseType, unknown>; 
 
 export interface SeriesPlotDefaults {
+    dims:   SeriesDimensions;
     area:   Area;
     line:   Line;
     marker: Marker;
@@ -160,6 +161,7 @@ export abstract class SeriesPlot {
      * */
     public getDefaults(): SeriesPlotDefaults {
         const def:SeriesPlotDefaults = {
+            dims:   this._dims,
             line:   defaultLine(5),
             marker: defaultMarker(),
             area:   defaultArea(),

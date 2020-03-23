@@ -55,7 +55,7 @@ import { Log }                  from 'hsutil'; const log = new Log('Scale');
 import { ComponentDefaults }    from './GraphComponent'; 
 import { GraphComponent }       from './GraphComponent'; 
 import { GraphCfg }             from './GraphComponent';
-import { UnitVp, defaultText }               from './Settings';
+import { UnitVp, defaultText }  from './Settings';
 import * as d3                  from 'd3'; 
 import { Domain }               from './Graph';
 import { TimeDomain }           from './Graph';
@@ -107,12 +107,12 @@ export type ScaleType = 'linear' | 'log' | 'time' | 'ordinal' | 'none';
 
 export type TimeString = string;    // 5/6/1990 2:57
 
-export interface RangeDefaults {
+export interface NumDomDefaults {
     min: number|TimeString|'auto';
     max: number|TimeString|'auto';
 }
 
-export type CategoricalDefaults = string[];
+export type CatDomDefaults = string[];
 
 /**
  * Specisifes the defaults of a specific scale.
@@ -120,7 +120,7 @@ export type CategoricalDefaults = string[];
 export interface ScaleDefaults {    
     type:   ScaleType;
     aggregateOverTime: boolean;   // 
-    domain: RangeDefaults | CategoricalDefaults;
+    domain: NumDomDefaults | CatDomDefaults;
     range:  { min: UnitVp|'auto', max: UnitVp|'auto' };  
     ordinal?: { gap:number; overlap:number; };
 }
@@ -211,6 +211,7 @@ export class Scales extends GraphComponent {
                 domain[0] = 0;
             }
         }
+        log.info(`createScale ${scaleDef.type}`);
         return this.scales[name] = new scales[scaleDef.type](scaleDef, domain, range).getScale();
     }
 }
@@ -233,6 +234,8 @@ class NoScale {
 abstract class BaseScale {
     constructor(protected d3Scale:any, protected scaleDef: ScaleDefaults, protected domain:Domain, protected range?:Range) {}
 
+    scaleFn(x:DataVal):any { return this.d3Scale(x); }
+    
     getScale():Scale {
         function _range():Range;
         function _range(r: Range): Scale;
@@ -257,7 +260,7 @@ abstract class BaseScale {
         }
         
         const d3Scale = this.d3Scale;
-        const scale:Scale = (x:DataVal) => d3Scale(x);
+        const scale:Scale = (x:DataVal) => this.scaleFn(x);
     
         scale.range = _range;
         scale.domain = _domain;
@@ -275,7 +278,10 @@ abstract class BaseScale {
 
     protected abstract getType():string; 
 
-    protected getTicks() { return (count:number) => this.d3Scale.ticks(count); }
+    protected getTicks() { return (count:number) => {
+        const ticks = this.d3Scale.ticks(count); 
+        return ticks;
+    };}
 
     protected getDomain():Domain { return this.d3Scale.domain(); }
     
@@ -305,9 +311,9 @@ class BandScale extends BaseScale {
         return scale;
     }
 
-    protected getTicks() { 
-        return () => this.d3Scale.domain(); 
-    }
+    // protected getTicks() { 
+    //     return () => this.d3Scale.domain(); 
+    // }
 
     protected getDomain():Domain { 
         return this.domain || []; 
@@ -322,8 +328,10 @@ class TimeScale extends BaseScale {
 
     protected getType() { return 'time'; }
 
+    protected getTicks() { return (count:number) => this.d3Scale.ticks(count).map((d:number) => new Date(d)); }
+
     protected getDomain():TimeDomain {
-        const domDef = <RangeDefaults>this.scaleDef.domain;
+        const domDef = <NumDomDefaults>this.scaleDef.domain;
         return [
             new Date(this.domain && domDef.min === 'auto'? this.domain[0] : domDef.min),
             new Date(this.domain && domDef.max === 'auto'? this.domain[1] : domDef.max)
@@ -339,7 +347,7 @@ class NumberScale extends BaseScale {
     protected getType() { return 'number'; }
 
     protected getDomain():NumDomain {
-        const domDef = <RangeDefaults>this.scaleDef.domain;
+        const domDef = <NumDomDefaults>this.scaleDef.domain;
         return <NumDomain>[
             (this.domain && domDef.min === 'auto'? this.domain[0] : domDef.min),
             (this.domain && domDef.max === 'auto'? this.domain[1] : domDef.max)
@@ -353,4 +361,8 @@ class LinearScale extends NumberScale {
 
 class LogScale extends NumberScale {
     constructor(scaleDef: ScaleDefaults, domain:Domain, range?:Range) { super(d3.scaleLog(), scaleDef, domain, range); }
+    scaleFn(x:DataVal):any { 
+        const scaled = this.d3Scale(x); 
+        return isNaN(scaled)? (<NumDomDefaults>this.scaleDef.domain).min : scaled;
+    }
 }

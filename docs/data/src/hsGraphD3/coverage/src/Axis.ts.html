@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">89.8% </span>
+        <span class="strong">90% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>88/98</span>
+        <span class='fraction'>90/100</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">72% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>17/18</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">89.01% </span>
+        <span class="strong">89.25% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>81/91</span>
+        <span class='fraction'>83/93</span>
       </div>
     </div>
     <p class="quiet">
@@ -279,7 +279,11 @@
 <a name='L231'></a><a href='#L231'>231</a>
 <a name='L232'></a><a href='#L232'>232</a>
 <a name='L233'></a><a href='#L233'>233</a>
-<a name='L234'></a><a href='#L234'>234</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L234'></a><a href='#L234'>234</a>
+<a name='L235'></a><a href='#L235'>235</a>
+<a name='L236'></a><a href='#L236'>236</a>
+<a name='L237'></a><a href='#L237'>237</a>
+<a name='L238'></a><a href='#L238'>238</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -448,7 +452,7 @@
 <span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-yes">30x</span>
-<span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">30x</span>
@@ -502,13 +506,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -681,7 +689,7 @@ export class Axis {
         this.setTransform(scales);
         const axis:any = this.getD3Axis(scales, axisDef);
         const scale = scales[this.dir];
-        axis.ticks(scale.tickCountMinor);
+        // axis.ticks(scale.tickCountMinor);
         this.svg.transition(trans).call(axis);
 &nbsp;
         this.svg.attr('color', axisDef.color);
@@ -735,13 +743,17 @@ export class Axis {
 &nbsp;
     protected getD3Axis(scales:ScaleDims, axisDef:AxisDefaults) {
         let axis:d3.Axis&lt;d3.AxisDomain&gt;;
+        let ticks: number;
         if (this.dir===Direction.horizontal) {
             axis = scales.hor.axis(this.pos);
+            ticks = scales.hor.tickCountMajor;
             if (scales.hor.type() === 'number') { axis.tickFormat(format('~g')); }
         } else {
             axis = scales.ver.axis(this.pos);
+            ticks = scales.ver.tickCountMajor;
             if (scales.ver.type() === 'number') { axis.tickFormat(format('~g')); }
         }
+        axis.ticks(ticks);
         axis.tickSize(axisDef.tickWidth);
         return axis;
     }

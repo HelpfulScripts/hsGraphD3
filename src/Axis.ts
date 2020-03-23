@@ -167,7 +167,7 @@ export class Axis {
         this.setTransform(scales);
         const axis:any = this.getD3Axis(scales, axisDef);
         const scale = scales[this.dir];
-        axis.ticks(scale.tickCountMinor);
+        // axis.ticks(scale.tickCountMinor);
         this.svg.transition(trans).call(axis);
 
         this.svg.attr('color', axisDef.color);
@@ -221,13 +221,17 @@ export class Axis {
 
     protected getD3Axis(scales:ScaleDims, axisDef:AxisDefaults) {
         let axis:d3.Axis<d3.AxisDomain>;
+        let ticks: number;
         if (this.dir===Direction.horizontal) {
             axis = scales.hor.axis(this.pos);
+            ticks = scales.hor.tickCountMajor;
             if (scales.hor.type() === 'number') { axis.tickFormat(format('~g')); }
         } else {
             axis = scales.ver.axis(this.pos);
+            ticks = scales.ver.tickCountMajor;
             if (scales.ver.type() === 'number') { axis.tickFormat(format('~g')); }
         }
+        axis.ticks(ticks);
         axis.tickSize(axisDef.tickWidth);
         return axis;
     }

@@ -63,7 +63,7 @@ import { Log }                  from 'hsutil'; const log = new Log('Popup');
 import { ComponentDefaults }    from './GraphComponent'; 
 import { GraphComponent }       from './GraphComponent'; 
 import { GraphCfg }             from './GraphComponent'; 
-import { d3Base, defaultArea }               from './Settings';
+import { d3Base, defaultArea }  from './Settings';
 import { defaultTextStyle }     from './Settings';
 import { TextStyle }            from './Settings';
 import { Area }                 from './Settings';

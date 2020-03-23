@@ -131,6 +131,32 @@ Helpful Scripts Graph convenience wrapper for D3js.
  * };
  * </file>
  * </example>
+ * 
+ * ## Integrations
+ * Besides using the standalone version (see examples above), `hsGraph` supports integration 
+ * with [`Mithriljs`](http://mithriljs.org):
+ * ```
+ * m(GraphCartesian, {
+ *      rootID: 'root',
+ *      define: (graph:Graph) => {
+ *          graph.series.add('column', {x:'date', y:'volume'});
+ *          graph.defaults.scales.margin.left = 50;
+ *      },
+ *      data: data
+ * })
+ * ```  
+ * Mithril will take care of the rendering automatically. Render updates can be done via two additional attributes, 
+ * `updatePeriod` and `updateCallback`. See the {@link Graph.Graph.constructor Graph.constructor} for details:
+ * 
+ * ## Dynamically changing the data series
+ * When defining the series (e.g. `graph.series.add('column', {x:'date', y:'volume'});`) 
+ * the column names used as reference to the data are made available in the defaults of the series and can 
+ * be dynamically changed there:
+ * ```
+ *    graph.defaults.series[0].dims.y = 'costs';
+ * ```
+ * If this is done within an event listener that Mithril is aware of, redrawing happens automatically. 
+ * Otherwise a redraw can be triggered by calling `m.redraw();`
  */
 
  /** */

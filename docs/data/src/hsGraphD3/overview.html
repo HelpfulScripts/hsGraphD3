@@ -154,8 +154,34 @@
 <p id=131 class="line"><span>&nbsp;131</span><comment>&nbsp;*&nbsp;};</comment></p>
 <p id=132 class="line"><span>&nbsp;132</span><comment>&nbsp;*&nbsp;</file></comment></p>
 <p id=133 class="line"><span>&nbsp;133</span><comment>&nbsp;*&nbsp;</example></comment></p>
-<p id=134 class="line"><span>&nbsp;134</span><comment>&nbsp;*/</comment></p>
-<p id=135 class="line"><span>&nbsp;135</span></p>
-<p id=136 class="line"><span>&nbsp;136</span>&nbsp;<comment>/**&nbsp;*/</comment></p></code></div>
+<p id=134 class="line"><span>&nbsp;134</span><comment>&nbsp;*&nbsp;</comment></p>
+<p id=135 class="line"><span>&nbsp;135</span><comment>&nbsp;*&nbsp;##&nbsp;Integrations</comment></p>
+<p id=136 class="line"><span>&nbsp;136</span><comment>&nbsp;*&nbsp;Besides&nbsp;using&nbsp;the&nbsp;standalone&nbsp;version&nbsp;(see&nbsp;examples&nbsp;above),&nbsp;`hsGraph`&nbsp;supports&nbsp;integration&nbsp;</comment></p>
+<p id=137 class="line"><span>&nbsp;137</span><comment>&nbsp;*&nbsp;with&nbsp;[`Mithriljs`](http:<comment>//mithriljs.org):</comment></comment></p>
+<p id=138 class="line"><span>&nbsp;138</span><comment><comment></comment>&nbsp;*&nbsp;```</comment></p>
+<p id=139 class="line"><span>&nbsp;139</span><comment>&nbsp;*&nbsp;m(GraphCartesian,&nbsp;{</comment></p>
+<p id=140 class="line"><span>&nbsp;140</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;rootID:&nbsp;<quote>'root'</quote>,</comment></p>
+<p id=141 class="line"><span>&nbsp;141</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;define:&nbsp;(graph:Graph)&nbsp;=>&nbsp;{</comment></p>
+<p id=142 class="line"><span>&nbsp;142</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;graph.series.add(<quote>'column'</quote>,&nbsp;{x:<quote>'date'</quote>,&nbsp;y:<quote>'volume'</quote>});</comment></p>
+<p id=143 class="line"><span>&nbsp;143</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;graph.defaults.scales.margin.left&nbsp;=&nbsp;50;</comment></p>
+<p id=144 class="line"><span>&nbsp;144</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;},</comment></p>
+<p id=145 class="line"><span>&nbsp;145</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data:&nbsp;data</comment></p>
+<p id=146 class="line"><span>&nbsp;146</span><comment>&nbsp;*&nbsp;})</comment></p>
+<p id=147 class="line"><span>&nbsp;147</span><comment>&nbsp;*&nbsp;```&nbsp;&nbsp;</comment></p>
+<p id=148 class="line"><span>&nbsp;148</span><comment>&nbsp;*&nbsp;Mithril&nbsp;will&nbsp;take&nbsp;care&nbsp;of&nbsp;the&nbsp;rendering&nbsp;automatically.&nbsp;Render&nbsp;updates&nbsp;can&nbsp;be&nbsp;done&nbsp;via&nbsp;two&nbsp;additional&nbsp;attributes,&nbsp;</comment></p>
+<p id=149 class="line"><span>&nbsp;149</span><comment>&nbsp;*&nbsp;`updatePeriod`&nbsp;and&nbsp;`updateCallback`.&nbsp;See&nbsp;the&nbsp;{@link&nbsp;Graph.Graph.constructor&nbsp;Graph.constructor}&nbsp;for&nbsp;details:</comment></p>
+<p id=150 class="line"><span>&nbsp;150</span><comment>&nbsp;*&nbsp;</comment></p>
+<p id=151 class="line"><span>&nbsp;151</span><comment>&nbsp;*&nbsp;##&nbsp;Dynamically&nbsp;changing&nbsp;the&nbsp;data&nbsp;series</comment></p>
+<p id=152 class="line"><span>&nbsp;152</span><comment>&nbsp;*&nbsp;When&nbsp;defining&nbsp;the&nbsp;series&nbsp;(e.g.&nbsp;`graph.series.add(<quote>'column'</quote>,&nbsp;{x:<quote>'date'</quote>,&nbsp;y:<quote>'volume'</quote>});`)&nbsp;</comment></p>
+<p id=153 class="line"><span>&nbsp;153</span><comment>&nbsp;*&nbsp;the&nbsp;column&nbsp;names&nbsp;used&nbsp;as&nbsp;reference&nbsp;to&nbsp;the&nbsp;data&nbsp;are&nbsp;made&nbsp;available&nbsp;in&nbsp;the&nbsp;defaults&nbsp;of&nbsp;the&nbsp;series&nbsp;and&nbsp;can&nbsp;</comment></p>
+<p id=154 class="line"><span>&nbsp;154</span><comment>&nbsp;*&nbsp;be&nbsp;dynamically&nbsp;changed&nbsp;there:</comment></p>
+<p id=155 class="line"><span>&nbsp;155</span><comment>&nbsp;*&nbsp;```</comment></p>
+<p id=156 class="line"><span>&nbsp;156</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;graph.defaults.series[0].dims.y&nbsp;=&nbsp;<quote>'costs'</quote>;</comment></p>
+<p id=157 class="line"><span>&nbsp;157</span><comment>&nbsp;*&nbsp;```</comment></p>
+<p id=158 class="line"><span>&nbsp;158</span><comment>&nbsp;*&nbsp;If&nbsp;this&nbsp;is&nbsp;done&nbsp;within&nbsp;an&nbsp;event&nbsp;listener&nbsp;that&nbsp;Mithril&nbsp;is&nbsp;aware&nbsp;of,&nbsp;redrawing&nbsp;happens&nbsp;automatically.&nbsp;</comment></p>
+<p id=159 class="line"><span>&nbsp;159</span><comment>&nbsp;*&nbsp;Otherwise&nbsp;a&nbsp;redraw&nbsp;can&nbsp;be&nbsp;triggered&nbsp;by&nbsp;calling&nbsp;`m.redraw();`</comment></p>
+<p id=160 class="line"><span>&nbsp;160</span><comment>&nbsp;*/</comment></p>
+<p id=161 class="line"><span>&nbsp;161</span></p>
+<p id=162 class="line"><span>&nbsp;162</span>&nbsp;<comment>/**&nbsp;*/</comment></p></code></div>
                 </body>
             

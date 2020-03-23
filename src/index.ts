@@ -1,6 +1,7 @@
-export { Graph, DataSet }   from './Graph';
-export { DataRow, DataVal } from './Graph';
-export { GraphCartesian }   from './GraphCartesian';
-export { GraphPolar }       from './GraphPolar';
-export { Voronoi }          from './plots/Voronoi';
-export { PolarPlotDefaults }from './PolarSeriesPlot';
+export *    from './Graph';
+export *    from './GraphCartesian';
+export *    from './GraphPolar';
+export *    from './plots/Voronoi';
+export *    from './PolarSeriesPlot';
+export *    from './Scale';
+export *    from './Series';
