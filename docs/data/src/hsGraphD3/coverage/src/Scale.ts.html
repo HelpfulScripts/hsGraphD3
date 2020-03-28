@@ -20,9 +20,9 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">81.44% </span>
+        <span class="strong">81.05% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>79/97</span>
+        <span class='fraction'>77/95</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">74% </span>
@@ -35,9 +35,9 @@
         <span class='fraction'>28/41</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">82.14% </span>
+        <span class="strong">81.71% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>69/84</span>
+        <span class='fraction'>67/82</span>
       </div>
     </div>
     <p class="quiet">
@@ -623,11 +623,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">49x</span>
 <span class="cline-any cline-yes">36x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">49x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">49x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -991,11 +991,11 @@ export class Scales extends GraphComponent {
         // This might happen when an ordinate is defined as a constant, e.g. phi=1 in polar plots.
         if (domain &amp;&amp; domain.length===2 &amp;&amp; !isNaN(&lt;number&gt;domain[0]) &amp;&amp; !isNaN(&lt;number&gt;domain[1])) {
             if (domain[0]&gt;0 &amp;&amp; domain[0]===domain[1]) {
-                log.info(`expanding ${name} from [${domain[0]},${domain[1]}] to [0, ${domain[1]}]`);
+                // log.info(`expanding ${name} from [${domain[0]},${domain[1]}] to [0, ${domain[1]}]`);
                 domain[0] = 0;
             }
         }
-        log.info(`createScale ${scaleDef.type}`);
+        // log.info(`createScale ${scaleDef.type}`);
         return this.scales[name] = new scales[scaleDef.type](scaleDef, domain, range).getScale();
     }
 }

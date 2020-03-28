@@ -207,11 +207,11 @@ export class Scales extends GraphComponent {
         // This might happen when an ordinate is defined as a constant, e.g. phi=1 in polar plots.
         if (domain && domain.length===2 && !isNaN(<number>domain[0]) && !isNaN(<number>domain[1])) {
             if (domain[0]>0 && domain[0]===domain[1]) {
-                log.info(`expanding ${name} from [${domain[0]},${domain[1]}] to [0, ${domain[1]}]`);
+                // log.info(`expanding ${name} from [${domain[0]},${domain[1]}] to [0, ${domain[1]}]`);
                 domain[0] = 0;
             }
         }
-        log.info(`createScale ${scaleDef.type}`);
+        // log.info(`createScale ${scaleDef.type}`);
         return this.scales[name] = new scales[scaleDef.type](scaleDef, domain, range).getScale();
     }
 }

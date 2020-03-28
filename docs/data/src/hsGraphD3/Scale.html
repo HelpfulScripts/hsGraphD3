@@ -230,12 +230,12 @@
 <p id=207 class="line"><span>&nbsp;207</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;This&nbsp;might&nbsp;happen&nbsp;when&nbsp;an&nbsp;ordinate&nbsp;is&nbsp;defined&nbsp;as&nbsp;a&nbsp;constant,&nbsp;e.g.&nbsp;phi=1&nbsp;in&nbsp;polar&nbsp;plots.</comment></p>
 <p id=208 class="line"><span>&nbsp;208</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(domain&nbsp;&&&nbsp;domain.length===2&nbsp;&&&nbsp;!isNaN(<number>domain[0])&nbsp;&&&nbsp;!isNaN(<number>domain[1]))&nbsp;{</p>
 <p id=209 class="line"><span>&nbsp;209</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(domain[0]>0&nbsp;&&&nbsp;domain[0]===domain[1])&nbsp;{</p>
-<p id=210 class="line"><span>&nbsp;210</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log.info(`expanding&nbsp;${name}&nbsp;from&nbsp;[${domain[0]},${domain[1]}]&nbsp;to&nbsp;[0,&nbsp;${domain[1]}]`);</p>
-<p id=211 class="line"><span>&nbsp;211</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain[0]&nbsp;=&nbsp;0;</p>
+<p id=210 class="line"><span>&nbsp;210</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;log.info(`expanding&nbsp;${name}&nbsp;from&nbsp;[${domain[0]},${domain[1]}]&nbsp;to&nbsp;[0,&nbsp;${domain[1]}]`);</comment></p>
+<p id=211 class="line"><span>&nbsp;211</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain[0]&nbsp;=&nbsp;0;</p>
 <p id=212 class="line"><span>&nbsp;212</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
 <p id=213 class="line"><span>&nbsp;213</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-<p id=214 class="line"><span>&nbsp;214</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log.info(`createScale&nbsp;${scaleDef.type}`);</p>
-<p id=215 class="line"><span>&nbsp;215</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;this.scales[name]&nbsp;=&nbsp;new&nbsp;scales[scaleDef.type](scaleDef,&nbsp;domain,&nbsp;range).getScale();</p>
+<p id=214 class="line"><span>&nbsp;214</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;log.info(`createScale&nbsp;${scaleDef.type}`);</comment></p>
+<p id=215 class="line"><span>&nbsp;215</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;this.scales[name]&nbsp;=&nbsp;new&nbsp;scales[scaleDef.type](scaleDef,&nbsp;domain,&nbsp;range).getScale();</p>
 <p id=216 class="line"><span>&nbsp;216</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
 <p id=217 class="line"><span>&nbsp;217</span>}</p>
 <p id=218 class="line"><span>&nbsp;218</span></p>

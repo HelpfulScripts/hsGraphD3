@@ -26,7 +26,7 @@
  * const graph = new hsGraphD3.GraphPolar(root);
  * graph.series.add('pie', {phi:'costs', label:'date'});
  * graph.defaults.series.series0.marker.stroke.color = '#fff';
- * graph.defaults.series.series0.label.xpos = 0.8;
+ * //graph.defaults.series.series0.label.xpos = 0.8;
  * graph.render(data);
  * 
  * </file>
@@ -51,7 +51,7 @@
  * // omitting 'phi' defaults to phi=1
  * graph.series.add('pie', {r:'costs', r0:0.1, label:'date'});
  * graph.defaults.series.series0.marker.stroke.color = '#fff';
- * graph.defaults.series.series0.label.xpos = 0.8;
+ * //graph.defaults.series.series0.label.xpos = 0.8;
  * graph.render(data);
  * 
  * </file>
@@ -96,7 +96,9 @@ import { Series }               from '../Series';
 import { PolarSeriesPlot }      from '../PolarSeriesPlot';
 import { PolarPlotDefaults }    from '../PolarSeriesPlot';
 import { PolarSeriesDimensions }from '../PolarSeriesPlot';
-import { Label, d3Base, TextHAlign, textPos }        from '../Settings';
+import { Label }                from '../Settings';
+import { d3Base }               from '../Settings';
+import { textPos }              from '../Settings';
 import { DataRow, DataSet }     from '../Graph';
 import { pie as d3Pie }         from 'd3';
 import { arc as d3Arc }         from 'd3';

@@ -52,6 +52,7 @@
     "coveralls": "^3.0.9",
     "grunt-coveralls": "^2.0.0",
     "jest": "^24.9.0",
+    "mithril": "^2.0.4",
     "ts-jest": "^24.2.0",
     "tslint": "^5.20.1",
     "terser-webpack-plugin": "^2.3.1",
