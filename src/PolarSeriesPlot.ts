@@ -27,11 +27,6 @@ import { Domains }              from "./Graph";
 import { GraphCfg }             from "./GraphComponent";
 import { d3Base, Radians }      from "./Settings";
 import { defaultStroke }        from "./Settings";
-import { setLabel }             from "./Settings";
-import { Label }                from "./Settings";
-import { setArea }              from "./Settings";
-import { setStroke }            from "./Settings";
-import { setFill }              from "./Settings";
 import { PolarDimensions }      from './GraphPolar';
 
 /**
@@ -138,7 +133,6 @@ export abstract class PolarSeriesPlot extends SeriesPlot {
 
     public initialize(svg:d3Base, color?:string): void {
         super.initialize(svg, color);
-        const defaults = this.defaults;
 
         // if abscissa data is missing, use implicit index as data
         const r = Math.min(this.cfg.viewPort.width, this.cfg.viewPort.height) / 2;
@@ -146,30 +140,6 @@ export abstract class PolarSeriesPlot extends SeriesPlot {
         if (!this.dims.r)     { this.dims.r = this.abscissa === 'ang'? ()=>r : 1; }
         if (!this.dims.r0)    { this.dims.r0 = 0; }
         if (!this.dims.popup) { this.dims.popup = {ang: this.dims.r, rad: this.dims.phi}[this.abscissa]; }
-
-        if (defaults.area.rendered) {
-            this.svg.append('g').classed('area', true).append('path');
-            const area = this.svg.select('.area');
-            setArea(area, defaults.area);
-        }
-
-        if (defaults.line.rendered) {
-            this.svg.append('g').classed('line', true).append('path');
-            const line = this.svg.select('.line');
-            setStroke(line, defaults.line);
-        }
-
-        if (defaults.marker.rendered) {
-            this.svg.append('g').classed('markers', true);
-            const markers = this.svg.select('.markers');
-            setStroke(markers, defaults.marker.stroke);
-            setFill(markers, defaults.marker.fill);
-        }
-        if (defaults.label.rendered) {
-            this.svg.append('g').classed('label', true);
-            const label = this.svg.select('.label');
-            setLabel(label, defaults.label);
-        }
     }
 
     public preRender(data:DataSet, domains:Domains): void {
@@ -183,7 +153,6 @@ export abstract class PolarSeriesPlot extends SeriesPlot {
         data = { colNames: data.colNames, rows: data.rows.slice() };
         this.updateStack(data);
         super.renderComponent(data);
-        this.renderElements(data);
     }
 
     public postRender(data:DataSet): void {
@@ -191,13 +160,6 @@ export abstract class PolarSeriesPlot extends SeriesPlot {
     }
         
     //---------- support methods during lifecylce --------------------
-
-    protected renderElements(data:DataSet) {
-        const defaults = this.defaults;
-        if (defaults.marker.rendered) { this.svg.call(this.d3RenderMarkers.bind(this), data); }
-        if (defaults.line.rendered)   { this.svg.call(this.d3RenderLine.bind(this), data); }
-        if (defaults.label.rendered)  { this.svg.call(this.d3RenderLabels.bind(this), data); }
-    }
 
     protected abstract d3RenderMarkers(svg:d3Base, data:DataSet):void;
 

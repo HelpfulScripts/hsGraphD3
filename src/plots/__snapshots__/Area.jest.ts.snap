@@ -275,69 +275,6 @@ exports[`Area indexed should plot area 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(116.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(212.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            1
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(308.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            1.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(404.5,0)"
         >
           <line
@@ -359,69 +296,6 @@ exports[`Area indexed should plot area 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(500.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            2.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(596.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            3
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(692.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            3.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(788.5,0)"
         >
           <line
@@ -438,48 +312,6 @@ exports[`Area indexed should plot area 1`] = `
             y="8"
           >
             4
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(884.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            4.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(980.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            5
           </text>
         </g>
       </g>
@@ -507,48 +339,6 @@ exports[`Area indexed should plot area 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,670.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            -0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,598.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            -0.1
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(0,526.5)"
         >
           <line
@@ -570,90 +360,6 @@ exports[`Area indexed should plot area 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,453.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.1
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,381.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,309.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.3
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,237.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.4
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(0,164.5)"
         >
           <line
@@ -670,48 +376,6 @@ exports[`Area indexed should plot area 1`] = `
             x="-8"
           >
             0.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,92.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.6
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,20.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.7
           </text>
         </g>
       </g>
@@ -1024,69 +688,6 @@ exports[`Area labels should plot area 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(116.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(212.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            1
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(308.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            1.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(404.5,0)"
         >
           <line
@@ -1108,69 +709,6 @@ exports[`Area labels should plot area 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(500.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            2.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(596.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            3
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(692.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            3.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(788.5,0)"
         >
           <line
@@ -1187,48 +725,6 @@ exports[`Area labels should plot area 1`] = `
             y="8"
           >
             4
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(884.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            4.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(980.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            5
           </text>
         </g>
       </g>
@@ -1256,48 +752,6 @@ exports[`Area labels should plot area 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,670.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            -0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,598.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            -0.1
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(0,526.5)"
         >
           <line
@@ -1319,90 +773,6 @@ exports[`Area labels should plot area 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,453.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.1
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,381.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,309.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.3
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,237.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.4
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(0,164.5)"
         >
           <line
@@ -1419,48 +789,6 @@ exports[`Area labels should plot area 1`] = `
             x="-8"
           >
             0.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,92.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.6
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,20.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.7
           </text>
         </g>
       </g>
@@ -1766,90 +1094,6 @@ exports[`Area labels should plot area 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(116.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            -0.8
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(212.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            -0.6
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(308.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            -0.4
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(404.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            -0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(500.5,0)"
         >
           <line
@@ -1866,90 +1110,6 @@ exports[`Area labels should plot area 1`] = `
             y="8"
           >
             0
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(596.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(692.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.4
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(788.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.6
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(884.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.8
           </text>
         </g>
         <g
@@ -1998,48 +1158,6 @@ exports[`Area labels should plot area 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,670.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            -0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,598.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            -0.1
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(0,526.5)"
         >
           <line
@@ -2061,90 +1179,6 @@ exports[`Area labels should plot area 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,453.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.1
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,381.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,309.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.3
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,237.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.4
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(0,164.5)"
         >
           <line
@@ -2161,48 +1195,6 @@ exports[`Area labels should plot area 1`] = `
             x="-8"
           >
             0.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,92.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.6
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,20.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.7
           </text>
         </g>
       </g>
@@ -2522,90 +1514,6 @@ exports[`Area labels should plot area 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(116.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            -0.8
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(212.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            -0.6
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(308.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            -0.4
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(404.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            -0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(500.5,0)"
         >
           <line
@@ -2622,90 +1530,6 @@ exports[`Area labels should plot area 1`] = `
             y="8"
           >
             0
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(596.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(692.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.4
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(788.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.6
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(884.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.8
           </text>
         </g>
         <g
@@ -2754,48 +1578,6 @@ exports[`Area labels should plot area 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,670.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            -0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,598.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            -0.1
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(0,526.5)"
         >
           <line
@@ -2817,90 +1599,6 @@ exports[`Area labels should plot area 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,453.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.1
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,381.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,309.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.3
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,237.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.4
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(0,164.5)"
         >
           <line
@@ -2917,48 +1615,6 @@ exports[`Area labels should plot area 1`] = `
             x="-8"
           >
             0.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,92.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.6
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,20.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.7
           </text>
         </g>
       </g>
@@ -3435,69 +2091,6 @@ exports[`Area labels should plot area 2`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(116.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(212.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            1
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(308.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            1.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(404.5,0)"
         >
           <line
@@ -3519,69 +2112,6 @@ exports[`Area labels should plot area 2`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(500.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            2.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(596.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            3
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(692.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            3.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(788.5,0)"
         >
           <line
@@ -3598,48 +2128,6 @@ exports[`Area labels should plot area 2`] = `
             y="8"
           >
             4
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(884.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            4.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(980.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            5
           </text>
         </g>
       </g>
@@ -3667,48 +2155,6 @@ exports[`Area labels should plot area 2`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,670.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            -0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,598.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            -0.1
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(0,526.5)"
         >
           <line
@@ -3730,90 +2176,6 @@ exports[`Area labels should plot area 2`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,453.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.1
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,381.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,309.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.3
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,237.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.4
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(0,164.5)"
         >
           <line
@@ -3830,48 +2192,6 @@ exports[`Area labels should plot area 2`] = `
             x="-8"
           >
             0.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,92.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.6
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,20.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.7
           </text>
         </g>
       </g>
@@ -4177,90 +2497,6 @@ exports[`Area labels should plot area 2`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(116.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            -0.8
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(212.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            -0.6
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(308.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            -0.4
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(404.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            -0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(500.5,0)"
         >
           <line
@@ -4277,90 +2513,6 @@ exports[`Area labels should plot area 2`] = `
             y="8"
           >
             0
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(596.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(692.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.4
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(788.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.6
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(884.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.8
           </text>
         </g>
         <g
@@ -4409,48 +2561,6 @@ exports[`Area labels should plot area 2`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,670.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            -0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,598.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            -0.1
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(0,526.5)"
         >
           <line
@@ -4472,90 +2582,6 @@ exports[`Area labels should plot area 2`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,453.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.1
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,381.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,309.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.3
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,237.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.4
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(0,164.5)"
         >
           <line
@@ -4572,48 +2598,6 @@ exports[`Area labels should plot area 2`] = `
             x="-8"
           >
             0.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,92.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.6
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,20.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.7
           </text>
         </g>
       </g>
@@ -4933,90 +2917,6 @@ exports[`Area labels should plot area 2`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(116.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            -0.8
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(212.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            -0.6
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(308.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            -0.4
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(404.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            -0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(500.5,0)"
         >
           <line
@@ -5033,90 +2933,6 @@ exports[`Area labels should plot area 2`] = `
             y="8"
           >
             0
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(596.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(692.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.4
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(788.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.6
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(884.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.8
           </text>
         </g>
         <g
@@ -5165,48 +2981,6 @@ exports[`Area labels should plot area 2`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,670.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            -0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,598.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            -0.1
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(0,526.5)"
         >
           <line
@@ -5228,90 +3002,6 @@ exports[`Area labels should plot area 2`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,453.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.1
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,381.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,309.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.3
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,237.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.4
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(0,164.5)"
         >
           <line
@@ -5328,48 +3018,6 @@ exports[`Area labels should plot area 2`] = `
             x="-8"
           >
             0.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,92.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.6
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,20.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.7
           </text>
         </g>
       </g>
@@ -5839,90 +3487,6 @@ exports[`Area labels should plot area 2`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(116.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            -0.8
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(212.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            -0.6
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(308.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            -0.4
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(404.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            -0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(500.5,0)"
         >
           <line
@@ -5939,90 +3503,6 @@ exports[`Area labels should plot area 2`] = `
             y="8"
           >
             0
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(596.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(692.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.4
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(788.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.6
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(884.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.8
           </text>
         </g>
         <g
@@ -6071,48 +3551,6 @@ exports[`Area labels should plot area 2`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,670.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            -0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,598.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            -0.1
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(0,526.5)"
         >
           <line
@@ -6134,90 +3572,6 @@ exports[`Area labels should plot area 2`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,453.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.1
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,381.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,309.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.3
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,237.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.4
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(0,164.5)"
         >
           <line
@@ -6234,48 +3588,6 @@ exports[`Area labels should plot area 2`] = `
             x="-8"
           >
             0.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,92.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.6
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,20.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.7
           </text>
         </g>
       </g>
@@ -6630,69 +3942,6 @@ exports[`Area volume vs time should plot area 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(116.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(212.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            1
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(308.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            1.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(404.5,0)"
         >
           <line
@@ -6714,69 +3963,6 @@ exports[`Area volume vs time should plot area 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(500.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            2.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(596.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            3
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(692.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            3.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(788.5,0)"
         >
           <line
@@ -6793,48 +3979,6 @@ exports[`Area volume vs time should plot area 1`] = `
             y="8"
           >
             4
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(884.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            4.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(980.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            5
           </text>
         </g>
       </g>
@@ -6862,48 +4006,6 @@ exports[`Area volume vs time should plot area 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,670.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            -0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,598.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            -0.1
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(0,526.5)"
         >
           <line
@@ -6925,90 +4027,6 @@ exports[`Area volume vs time should plot area 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,453.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.1
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,381.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,309.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.3
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,237.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.4
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(0,164.5)"
         >
           <line
@@ -7025,48 +4043,6 @@ exports[`Area volume vs time should plot area 1`] = `
             x="-8"
           >
             0.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,92.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.6
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,20.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.7
           </text>
         </g>
       </g>
@@ -7372,90 +4348,6 @@ exports[`Area volume vs time should plot area 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(116.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            -0.8
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(212.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            -0.6
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(308.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            -0.4
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(404.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            -0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(500.5,0)"
         >
           <line
@@ -7472,90 +4364,6 @@ exports[`Area volume vs time should plot area 1`] = `
             y="8"
           >
             0
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(596.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(692.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.4
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(788.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.6
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(884.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.8
           </text>
         </g>
         <g
@@ -7604,48 +4412,6 @@ exports[`Area volume vs time should plot area 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,670.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            -0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,598.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            -0.1
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(0,526.5)"
         >
           <line
@@ -7667,90 +4433,6 @@ exports[`Area volume vs time should plot area 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(0,453.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.1
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,381.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,309.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.3
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,237.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.4
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(0,164.5)"
         >
           <line
@@ -7767,48 +4449,6 @@ exports[`Area volume vs time should plot area 1`] = `
             x="-8"
           >
             0.5
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,92.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.6
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(0,20.5)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            x2="-5"
-          />
-          <text
-            dy="0.32em"
-            fill="currentColor"
-            x="-8"
-          >
-            0.7
           </text>
         </g>
       </g>

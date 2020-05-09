@@ -132,9 +132,8 @@ export class Pie extends PolarSeriesPlot {
             const shape = this.markerShape();
             const phiAccess = this.accessor(this.dims.phi, data.colNames, false);
             const pie = d3Pie().value((d:any, i:number) => <number>phiAccess(d, i));
-            const arcs = pie(<any>data.rows);
             plot.select('.markers').selectAll(shape)
-                .data(arcs, (d:any) => d.data[3]) // bind to first DataVal, rather than to DataRow, iterate over rows
+                .data(pie(<any>data.rows), (d:any) => d.data[3]) // bind to first DataVal, rather than to DataRow, iterate over rows
                 .join(shape)                  
                 .call(popup.addListener.bind(popup), this.d3RenderPopup(data))
                 .transition(this.cfg.transition) // draw markers
@@ -145,6 +144,10 @@ export class Pie extends PolarSeriesPlot {
 
     /** no line for pies. */
     protected d3RenderLine(plot:d3Base, data:DataSet) {}
+
+    /** no fill for pies. */
+    protected d3RenderFill(plot:d3Base, data:DataSet) {}
+
 
     protected d3RenderLabels(plot:d3Base, data:DataSet):void {
         const defaults = this.defaults;

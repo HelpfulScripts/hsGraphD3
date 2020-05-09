@@ -61,7 +61,7 @@
     "webpack": "^4.43.x"
   },
   "dependencies": {
-    "hsutil": "3.0.x",
+    "hsutil": "3.3.x",
     "d3": "^5.14.2",
     "d3-delaunay": "^5.1.6"
   }

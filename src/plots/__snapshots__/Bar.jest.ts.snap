@@ -164,90 +164,6 @@ exports[`Bar should plot bar 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(20.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            -0.8
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(116.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            -0.6
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(212.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            -0.4
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(308.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            -0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(404.5,0)"
         >
           <line
@@ -269,90 +185,6 @@ exports[`Bar should plot bar 1`] = `
         <g
           class="tick"
           opacity="1"
-          transform="translate(500.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.2
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(596.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.4
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(692.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.6
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(788.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            0.8
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
           transform="translate(884.5,0)"
         >
           <line
@@ -369,27 +201,6 @@ exports[`Bar should plot bar 1`] = `
             y="8"
           >
             1
-          </text>
-        </g>
-        <g
-          class="tick"
-          opacity="1"
-          transform="translate(980.5,0)"
-        >
-          <line
-            fill-opacity="0"
-            stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
-            y2="5"
-          />
-          <text
-            dy="0.71em"
-            fill="currentColor"
-            y="8"
-          >
-            1.2
           </text>
         </g>
       </g>

@@ -98,6 +98,7 @@ import "./plots/TimeSeries";
 import "./plots/Voronoi";
 import "./plots/Column";
 import "./plots/Bar";
+import "./plots/Sankey";
 
 
 export interface CartDimensions extends GraphDimensions { 

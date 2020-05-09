@@ -27,10 +27,6 @@ import { CartDimensions }       from "./GraphCartesian";
 import { GraphCfg }             from "./GraphComponent";
 import { d3Base }               from "./Settings";
 import { defaultStroke }        from "./Settings";
-import { setLabel }             from "./Settings";
-import { setArea }              from "./Settings";
-import { setStroke }            from "./Settings";
-import { setFill }              from "./Settings";
 
 /**
  * valid {@link SeriesPlot.ValueDef `Value Definiton`} dimensions on cartesian plots:
@@ -134,7 +130,6 @@ export abstract class CartSeriesPlot extends SeriesPlot {
 
     public initialize(plot:d3Base, color?:string): void {
         super.initialize(plot, color);
-        const defaults = this.defaults;
         if (this.dims.popup===undefined) { this.dims.popup = {hor: this.dims.y, ver: this.dims.x}[this.abscissa]; }
 
         // if abscissa data is missing, use implicit index as data
@@ -142,30 +137,6 @@ export abstract class CartSeriesPlot extends SeriesPlot {
             if (!this.dims.x) { this.dims.x = (i:number)=> i; }
         } else {
             if (!this.dims.y) { this.dims.y = (i:number)=> i; }
-        }
-
-        if (defaults.area.rendered) {
-            this.svg.append('g').classed('area', true).append('path');
-            const area = this.svg.select('.area');
-            setArea(area, defaults.area);
-        }
-
-        if (defaults.line.rendered) {
-            this.svg.append('g').classed('line', true).append('path');
-            const line = this.svg.select('.line');
-            setStroke(line, defaults.line);
-        }
-
-        if (defaults.marker.rendered) {
-            this.svg.append('g').classed('markers', true);
-            const markers = this.svg.select('.markers');
-            setStroke(markers, defaults.marker.stroke);
-            setFill(markers, defaults.marker.fill);
-        }
-        if (defaults.label.rendered) {
-            this.svg.append('g').classed('label', true);
-            const label = this.svg.select('.label');
-            setLabel(label, defaults.label);
         }
     }
 
@@ -180,7 +151,6 @@ export abstract class CartSeriesPlot extends SeriesPlot {
         data = { colNames: data.colNames, rows: data.rows.slice() };
         this.updateStack(data);
         super.renderComponent(data);
-        this.renderElements(data);
     }
 
     public postRender(data:DataSet): void {
@@ -188,14 +158,6 @@ export abstract class CartSeriesPlot extends SeriesPlot {
     }
         
     //---------- support methods during lifecylce --------------------
-
-    protected renderElements(data:DataSet) {
-        const defaults = this.defaults;
-        if (defaults.marker.rendered) { this.svg.call(this.d3RenderMarkers.bind(this), data); }
-        if (defaults.line.rendered)   { this.svg.call(this.d3RenderLine.bind(this), data); }
-        if (defaults.area.rendered)   { this.svg.call(this.d3RenderFill.bind(this), data); }
-        if (defaults.label.rendered)  { this.svg.call(this.d3RenderLabels.bind(this), data); }
-    }
 
     protected d3RenderMarkers(plot:d3Base, data:DataSet) {
         const shape = this.markerShape();

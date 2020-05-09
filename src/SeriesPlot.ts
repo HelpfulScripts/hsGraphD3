@@ -4,7 +4,7 @@
 /**  */
 import { Log }                  from 'hsutil'; const log = new Log('SeriesPlot');
 import { BaseType }             from 'd3';
-import { d3Base, Index }               from "./Settings";
+import { d3Base, Index }        from "./Settings";
 import { defaultLine }          from "./Settings";
 import { defaultMarker }        from "./Settings";
 import { Label }                from "./Settings";
@@ -24,6 +24,10 @@ import { OrdDomain }            from "./Graph";
 import { Domains }              from "./Graph";
 import { GraphDimensions }      from "./Graph";
 import { format as d3format}    from 'd3';
+import { setLabel }             from "./Settings";
+import { setArea }              from "./Settings";
+import { setStroke }            from "./Settings";
+import { setFill }              from "./Settings";
 
 export type d3Selection = d3.Selection<BaseType, unknown, BaseType, unknown>; 
 
@@ -85,8 +89,9 @@ export interface SeriesDimensions {
  * - `string`: the name of column in the data set, e.g. `x:'time'`
  * - `number`: a constant value, e.g. `r: 5`
  * - `ValueFn`: a {@link SeriesPlot.ValueFn `user-defined function`} returning the value.
+ * - `string[]`: a list of column names, e.g. `['from', 'to']`
  */
-export type ValueDef = string|number|ValueFn;
+export type ValueDef = string|number|ValueFn|string[];
 
 /** 
  * a user-defined function returning the {@link Graph.DataVal `DataVal`} of a data point.
@@ -287,9 +292,38 @@ export abstract class SeriesPlot {
             //      .attr('fill', getColor);
             items.attr('color', getColor);
         }
+    } 
+
+    protected d3FillColors(items:d3Base, data:DataSet, defaults:SeriesPlotDefaults) {
+        function getColor(d:number[], i:number):string  {
+            const scheme = schemes[defaults.marker.scheme];
+            if (typeof colors === 'function') {
+                const color = colors(i);
+                return typeof color === 'number'? scheme((color % 10) / 10) : <string>color;
+            } else if (typeof colors === 'string') {
+                const col = data.colNames.indexOf(colors);
+                if (col >= 0) {
+                    return d['data']? scheme(d['data'][col]) : scheme(d[col]);
+                } else if (schemes[colors]) { 
+                    return schemes[colors](i / data.rows.length);
+                } else {
+                    return colors;
+                }
+            } else if (typeof colors === 'number') {
+                return scheme((colors % 10) / 10);
+            } else {
+                return '#f00';
+            }
+        }
+        const colors = this.dims.color;
+        if (colors) {
+            // items.attr('stroke', getColor)
+            //      .attr('fill', getColor);
+            items.attr('color', getColor);
+        }
     }   
 
-        /**
+    /**
      * formats the popup string to display
      * @param colNames 
      */
@@ -318,15 +352,47 @@ export abstract class SeriesPlot {
     public initialize(svg:d3Base, color?:string): void {
         this.svg = svg.append('g').classed(this.seriesKey, true);
         if (color) { this.svg.style('color', color); }
+
+        const defaults = this.defaults;
+        if (defaults.area.rendered) {
+            this.svg.append('g').classed('area', true).append('path');
+            const area = this.svg.select('.area');
+            setArea(area, defaults.area);
+        }
+        if (defaults.line.rendered) {
+            this.svg.append('g').classed('line', true).append('path');
+            const line = this.svg.select('.line');
+            setStroke(line, defaults.line);
+        }
+        if (defaults.marker.rendered) {
+            this.svg.append('g').classed('markers', true);
+            const markers = this.svg.select('.markers');
+            setStroke(markers, defaults.marker.stroke);
+            setFill(markers, defaults.marker.fill);
+        }
+        if (defaults.label.rendered) {
+            this.svg.append('g').classed('label', true);
+            const label = this.svg.select('.label');
+            setLabel(label, defaults.label);
+        }
     }
 
     public preRender(data:DataSet, domains:Domains): void {}
 
-    public renderComponent(data:DataSet): void {}
+    public renderComponent(data:DataSet): void {
+        const defaults = this.defaults;
+        if (defaults.marker.rendered) { this.svg.call(this.d3RenderMarkers.bind(this), data); }
+        if (defaults.line.rendered)   { this.svg.call(this.d3RenderLine.bind(this), data); }
+        if (defaults.area.rendered)   { this.svg.call(this.d3RenderFill.bind(this), data); }
+        if (defaults.label.rendered)  { this.svg.call(this.d3RenderLabels.bind(this), data); }
+    }
 
     public postRender(data:DataSet): void {}
 
-
+    protected abstract d3RenderMarkers(plot:d3Base, data:DataSet):void;
+    protected abstract d3RenderLine(plot:d3Base, data:DataSet):void;
+    protected abstract d3RenderFill(plot:d3Base, data:DataSet):void;
+    protected abstract d3RenderLabels(plot:d3Base, data:DataSet):void;
 
     //---------- stack methods --------------------
 

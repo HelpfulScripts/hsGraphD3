@@ -1,51 +1,62 @@
+
 <!doctype html>
 <html lang="en">
+
 <head>
     <title>Code coverage report for src/plots/Pie.ts</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../../prettify.css" />
     <link rel="stylesheet" href="../../base.css" />
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="../../favicon.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <style type='text/css'>
         .coverage-summary .sorter {
             background-image: url(../../sort-arrow-sprite.png);
         }
     </style>
 </head>
+    
 <body>
 <div class='wrapper'>
-  <div class='pad1'>
-    <h1>
-      <a href="../../index.html">hsGraphD3: All files</a> / <a href="index.html">src/plots</a> Pie.ts
-    </h1>
-    <div class='clearfix'>
-      <div class='fl pad1y space-right2'>
-        <span class="strong">98.36% </span>
-        <span class="quiet">Statements</span>
-        <span class='fraction'>60/61</span>
-      </div>
-      <div class='fl pad1y space-right2'>
-        <span class="strong">75% </span>
-        <span class="quiet">Branches</span>
-        <span class='fraction'>6/8</span>
-      </div>
-      <div class='fl pad1y space-right2'>
-        <span class="strong">89.47% </span>
-        <span class="quiet">Functions</span>
-        <span class='fraction'>17/19</span>
-      </div>
-      <div class='fl pad1y space-right2'>
-        <span class="strong">98.21% </span>
-        <span class="quiet">Lines</span>
-        <span class='fraction'>55/56</span>
-      </div>
+    <div class='pad1'>
+        <h1><a href="../../index.html">hsGraphD3: All files</a> / <a href="index.html">src/plots</a> Pie.ts</h1>
+        <div class='clearfix'>
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">98.33% </span>
+                <span class="quiet">Statements</span>
+                <span class='fraction'>59/60</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">75% </span>
+                <span class="quiet">Branches</span>
+                <span class='fraction'>6/8</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">85% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>17/20</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">98.18% </span>
+                <span class="quiet">Lines</span>
+                <span class='fraction'>54/55</span>
+            </div>
+        
+            
+        </div>
+        <p class="quiet">
+            Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
+        </p>
     </div>
-    <p class="quiet">
-      Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
-    </p>
-  </div>
-  <div class='status-line high'></div>
-<pre><table class="coverage">
+    <div class='status-line high'></div>
+    <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
 <a name='L3'></a><a href='#L3'>3</a>
@@ -248,7 +259,10 @@
 <a name='L200'></a><a href='#L200'>200</a>
 <a name='L201'></a><a href='#L201'>201</a>
 <a name='L202'></a><a href='#L202'>202</a>
-<a name='L203'></a><a href='#L203'>203</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L203'></a><a href='#L203'>203</a>
+<a name='L204'></a><a href='#L204'>204</a>
+<a name='L205'></a><a href='#L205'>205</a>
+<a name='L206'></a><a href='#L206'>206</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -383,8 +397,11 @@
 <span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-yes">3x</span>
 <span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -584,9 +601,8 @@ export class Pie extends PolarSeriesPlot {
             const shape = this.markerShape();
             const phiAccess = this.accessor(this.dims.phi, data.colNames, false);
             const pie = d3Pie().value((d:any, i:number) =&gt; &lt;number&gt;phiAccess(d, i));
-            const arcs = pie(&lt;any&gt;data.rows);
             plot.select('.markers').selectAll(shape)
-                .data(arcs, (d:any) =&gt; d.data[3]) // bind to first DataVal, rather than to DataRow, iterate over rows
+                .data(pie(&lt;any&gt;data.rows), (d:any) =&gt; d.data[3]) // bind to first DataVal, rather than to DataRow, iterate over rows
                 .join(shape)                  
                 .call(popup.addListener.bind(popup), this.d3RenderPopup(data))
                 .transition(this.cfg.transition) // draw markers
@@ -597,6 +613,10 @@ export class Pie extends PolarSeriesPlot {
 &nbsp;
     /** no line for pies. */
     protected <span class="fstat-no" title="function not covered" >d3RenderLine(</span>plot:d3Base, data:DataSet) {}
+&nbsp;
+    /** no fill for pies. */
+    protected <span class="fstat-no" title="function not covered" >d3RenderFill(</span>plot:d3Base, data:DataSet) {}
+&nbsp;
 &nbsp;
     protected d3RenderLabels(plot:d3Base, data:DataSet):void {
         const defaults = this.defaults;
@@ -652,21 +672,20 @@ export class Pie extends PolarSeriesPlot {
     }
 }
  
- </pre></td></tr>
-</table></pre>
-<div class='push'></div><!-- for sticky footer -->
-</div><!-- /wrapper -->
+ </pre></td></tr></table></pre>
 
-</div>
-<script src="../../prettify.js"></script>
-<script>
-window.onload = function () {
-        if (typeof prettyPrint === 'function') {
-            prettyPrint();
-        }
-};
-</script>
-<script src="../../sorter.js"></script>
-<script src="../../block-navigation.js"></script>
-</body>
+                <div class='push'></div><!-- for sticky footer -->
+            </div><!-- /wrapper -->
+            
+        </div>
+        <script src="../../prettify.js"></script>
+        <script>
+            window.onload = function () {
+                prettyPrint();
+            };
+        </script>
+        <script src="../../sorter.js"></script>
+        <script src="../../block-navigation.js"></script>
+    </body>
 </html>
+    
