@@ -1,6 +1,15 @@
 /**
  * # Sankey Plot
  * 
+ * plots Sankley lines. 
+ * 
+ * ## Usage
+ * `graph.series.add('sankey', {keys:[<node-col>, ...], value:<value-col>, color:<color-scheme>});`
+ * - `keys` the columns to use as nodes. At least 2 keys are required. The sequence of keys determines the sequence of the graph flow.
+ * - `value` is the {@link SeriesPlot.ValueDef value definition}.
+ * - `color` is the color scheme to use, e.g. 'cat10'
+ * 
+ * 
  * ## Example
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
  * <file name='script.js'>
