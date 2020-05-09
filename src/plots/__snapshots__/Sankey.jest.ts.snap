@@ -1,0 +1,370 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Sankey should plot sankey 1`] = `
+<div
+  style="width: 300px; height: 300px;"
+>
+  <svg
+    class="baseSVG"
+    height="100%"
+    preserveAspectRatio="xMinYMin meet"
+    viewBox="0 0 1000 700"
+    width="100%"
+  >
+    <g
+      class="canvas"
+    >
+      <rect
+        class="graphArea"
+        fill="#fff"
+        fill-opacity="1"
+        height="700"
+        rx="0"
+        ry="0"
+        stroke="#00c"
+        stroke-dasharray="none"
+        stroke-opacity="1"
+        stroke-width="1"
+        width="1000"
+        x="0"
+        y="0"
+      />
+    </g>
+    <g
+      class="grids"
+    >
+      <g
+        class="hor-major-Grid"
+        fill-opacity="0"
+        stroke="#444"
+        stroke-dasharray="none"
+        stroke-opacity="1"
+        stroke-width="1"
+      />
+      <g
+        class="hor-minor-Grid"
+        fill-opacity="0"
+        stroke="#eee"
+        stroke-dasharray="none"
+        stroke-opacity="1"
+        stroke-width="1"
+      />
+      <g
+        class="ver-major-Grid"
+        fill-opacity="0"
+        stroke="#444"
+        stroke-dasharray="none"
+        stroke-opacity="1"
+        stroke-width="1"
+      />
+      <g
+        class="ver-minor-Grid"
+        fill-opacity="0"
+        stroke="#eee"
+        stroke-dasharray="none"
+        stroke-opacity="1"
+        stroke-width="1"
+      />
+    </g>
+    <g
+      class="axes"
+      color="currentColor"
+    >
+      <g
+        class="horAxis"
+        color="currentColor"
+        fill="currentColor"
+        fill-opacity="0"
+        font-family="sans-serif"
+        font-size="16px"
+        font-style="normal"
+        font-weight="100"
+        stroke="currentColor"
+        stroke-dasharray="none"
+        stroke-opacity="1"
+        stroke-width="1"
+        text-anchor="middle"
+        transform="translate(0, NaN)"
+      >
+        <path
+          class="domain"
+          d="M20.5,5V0.5H980.5V5"
+          stroke="currentColor"
+        />
+      </g>
+      <g
+        class="verAxis"
+        color="currentColor"
+        fill="currentColor"
+        fill-opacity="0"
+        font-family="sans-serif"
+        font-size="16px"
+        font-style="normal"
+        font-weight="100"
+        stroke="currentColor"
+        stroke-dasharray="none"
+        stroke-opacity="1"
+        stroke-width="1"
+        text-anchor="end"
+        transform="translate(undefined, 0)"
+      >
+        <path
+          class="domain"
+          d="M-5,670.5H0.5V20.5H-5"
+          stroke="currentColor"
+        />
+      </g>
+    </g>
+    <g
+      class="title"
+    >
+      <text />
+    </g>
+    <g
+      class="series"
+    >
+      <g
+        class="series0"
+        style="color: rgb(27, 158, 119);"
+      >
+        <g
+          class="area"
+          fill="currentColor"
+          fill-opacity="0.5"
+        >
+          <path />
+          <path
+            color="#1f77b4"
+            d="M40,108.5C260,108.5,260,108.5,480,108.5"
+            stroke="currentColor"
+            stroke-width="177"
+            style="mix-blend-mode: multiply;"
+          >
+            <title>
+              a → sheep
+            </title>
+          </path>
+          <path
+            color="#2ca02c"
+            d="M500,108.5C720,108.5,720,108.5,940,108.5"
+            stroke="currentColor"
+            stroke-width="177"
+            style="mix-blend-mode: multiply;"
+          >
+            <title>
+              sheep → one
+            </title>
+          </path>
+          <path
+            color="#d62728"
+            d="M40,620.5C260,620.5,260,620.5,480,620.5"
+            stroke="currentColor"
+            stroke-width="59"
+            style="mix-blend-mode: multiply;"
+          >
+            <title>
+              b → wolf
+            </title>
+          </path>
+          <path
+            color="#8c564b"
+            d="M500,530.0333333333333C720,530.0333333333333,720,383.8333333333333,940,383.8333333333333"
+            stroke="currentColor"
+            stroke-width="59"
+            style="mix-blend-mode: multiply;"
+          >
+            <title>
+              wolf → one
+            </title>
+          </path>
+          <path
+            color="#7f7f7f"
+            d="M40,279.9333333333333C260,279.9333333333333,260,240.26666666666665,480,240.26666666666665"
+            stroke="currentColor"
+            stroke-width="86.53333333333333"
+            style="mix-blend-mode: multiply;"
+          >
+            <title>
+              c → sheep
+            </title>
+          </path>
+          <path
+            color="#bcbd22"
+            d="M500,397.59999999999997C720,397.59999999999997,720,476.59999999999997,940,476.59999999999997"
+            stroke="currentColor"
+            stroke-width="86.53333333333333"
+            style="mix-blend-mode: multiply;"
+          >
+            <title>
+              sheep → two
+            </title>
+          </path>
+          <path
+            d="M40,401.86666666666656C260,401.86666666666656,260,362.19999999999993,480,362.19999999999993"
+            stroke="currentColor"
+            stroke-width="157.33333333333331"
+            style="mix-blend-mode: multiply;"
+          >
+            <title>
+              c → sheep
+            </title>
+          </path>
+          <path
+            d="M500,275.66666666666663C720,275.66666666666663,720,275.66666666666663,940,275.66666666666663"
+            stroke="currentColor"
+            stroke-width="157.33333333333331"
+            style="mix-blend-mode: multiply;"
+          >
+            <title>
+              sheep → one
+            </title>
+          </path>
+          <path
+            d="M40,525.7666666666665C260,525.7666666666665,260,545.7666666666667,480,545.7666666666667"
+            stroke="currentColor"
+            stroke-width="90.46666666666667"
+            style="mix-blend-mode: multiply;"
+          >
+            <title>
+              c → wolf
+            </title>
+          </path>
+          <path
+            d="M500,604.7666666666667C720,604.7666666666667,720,604.7666666666668,940,604.7666666666668"
+            stroke="currentColor"
+            stroke-width="90.46666666666667"
+            style="mix-blend-mode: multiply;"
+          >
+            <title>
+              wolf → three
+            </title>
+          </path>
+          <path
+            d="M40,206.83333333333334C260,206.83333333333334,260,470.69999999999993,480,470.69999999999993"
+            stroke="currentColor"
+            stroke-width="19.666666666666664"
+            style="mix-blend-mode: multiply;"
+          >
+            <title>
+              a → fence
+            </title>
+          </path>
+          <path
+            d="M500,470.69999999999993C720,470.69999999999993,720,549.7000000000002,940,549.7000000000002"
+            stroke="currentColor"
+            stroke-width="19.666666666666664"
+            style="mix-blend-mode: multiply;"
+          >
+            <title>
+              fence → three
+            </title>
+          </path>
+        </g>
+        <g
+          class="markers"
+          fill="currentColor"
+          fill-opacity="0.75"
+          stroke="currentColor"
+          stroke-dasharray="none"
+          stroke-opacity="1"
+          stroke-width="4"
+        >
+          <rect
+            class="popup"
+            color="#1f77b4"
+            fill="currentColor"
+            height="196.6666666666666"
+            opacity="0.75"
+            width="20"
+            x="20"
+            y="20"
+          />
+          <rect
+            class="popup"
+            color="#2ca02c"
+            fill="currentColor"
+            height="420.8666666666666"
+            opacity="0.75"
+            width="20"
+            x="480"
+            y="20"
+          />
+          <rect
+            class="popup"
+            color="#d62728"
+            fill="currentColor"
+            height="393.3333333333333"
+            opacity="0.75"
+            width="20"
+            x="940"
+            y="20"
+          />
+          <rect
+            class="popup"
+            color="#8c564b"
+            fill="currentColor"
+            height="58.999999999999886"
+            opacity="0.75"
+            width="20"
+            x="20"
+            y="591"
+          />
+          <rect
+            class="popup"
+            color="#7f7f7f"
+            fill="currentColor"
+            height="149.4666666666664"
+            opacity="0.75"
+            width="20"
+            x="480"
+            y="500.53333333333336"
+          />
+          <rect
+            class="popup"
+            color="#bcbd22"
+            fill="currentColor"
+            height="334.33333333333337"
+            opacity="0.75"
+            width="20"
+            x="20"
+            y="236.6666666666666"
+          />
+          <rect
+            class="popup"
+            fill="currentColor"
+            height="86.53333333333347"
+            opacity="0.75"
+            width="20"
+            x="940"
+            y="433.3333333333333"
+          />
+          <rect
+            class="popup"
+            fill="currentColor"
+            height="110.13333333333355"
+            opacity="0.75"
+            width="20"
+            x="940"
+            y="539.8666666666668"
+          />
+          <rect
+            class="popup"
+            fill="currentColor"
+            height="19.666666666666742"
+            opacity="0.75"
+            width="20"
+            x="480"
+            y="460.8666666666666"
+          />
+        </g>
+      </g>
+    </g>
+    <g
+      class="popup"
+    />
+    <style>
+      .popup:hover { filter: brightness(0.8);}
+    </style>
+  </svg>
+</div>
+`;

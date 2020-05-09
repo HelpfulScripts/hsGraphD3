@@ -48,16 +48,23 @@ import { sankeyLinkHorizontal } from "d3-sankey";
 
 Series.register('sankey', (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions) => new Sankey(cfg, sName, dims));
   
+export interface SankeyDefaults extends SeriesPlotDefaults {
+    width: number;
+    padding: number;
+}
+
 export class Sankey extends SeriesPlot {
     nodes:SankeyNodeMinimal<{}, {}>[];
     links:SankeyLinkMinimal<{}, {}>[];
 
-    getDefaults(): SeriesPlotDefaults {
-        const def = super.getDefaults();
+    getDefaults(): SankeyDefaults {
+        const def = <SankeyDefaults>super.getDefaults();
         def.area.rendered = true;
         def.line.rendered = false;
         def.marker.rendered = true;
         def.label.rendered = false;
+        def.width   = 20;
+        def.padding = 20;
         return def;
     } 
 
@@ -78,6 +85,7 @@ export class Sankey extends SeriesPlot {
         const r = Math.min(this.cfg.viewPort.width, this.cfg.viewPort.height) / 2;
         if (!this.dims.keys)  { log.error(`no keys defined`); }
         if (!this.dims.value)   { log.error(`no value defined`); }
+        this.cfg.graph.defaults.scales.margin.bottom = this.cfg.graph.defaults.scales.margin.top;
     }
 
     public preRender(data:DataSet, domains:Domains): void {
@@ -87,8 +95,8 @@ export class Sankey extends SeriesPlot {
         const sankey = d3Sankey()
             .nodeId((d:any) => d.name)
             // .nodeAlign(d3[`sankey${align[0].toUpperCase()}${align.slice(1)}`])
-            .nodeWidth(15)
-            .nodePadding(10)
+            .nodeWidth((<SankeyDefaults>this.defaults).width)
+            .nodePadding((<SankeyDefaults>this.defaults).padding)
             .extent([[margin.left, margin.top], [this.cfg.viewPort.width - margin.left - margin.right, this.cfg.viewPort.height - margin.top - margin.bottom]]);
         const {nodes, links} = sankey(this.createNodesAndLinks(data));
         this.nodes = nodes;
