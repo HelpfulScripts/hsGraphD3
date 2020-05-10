@@ -5,7 +5,7 @@
  * <file name='script.js'>
  * const content = [
  *      graph => {
- *          graph.series.add('pie', {phi:'Joe'});
+ *          graph.add('pie', {phi:'Joe'});
  *          graph.title.text = `angular 'pie' graph: constant radius`;
  *          setDefaults(graph)
  *          graph.render(data);
@@ -19,7 +19,7 @@
  * 
  * 
  *      graph => {
- *          graph.series.add('pie', {r:'Mary', label:'Mary'});
+ *          graph.add('pie', {r:'Mary', label:'Mary'});
  *          graph.title.text = `radial 'pie' graph: constant angles`;
  *          setDefaults(graph)
  *          graph.render(data);
@@ -33,7 +33,7 @@
  * 
  * 
  *      graph => {
- *          graph.series.add('pie', {r:'Mary', r0:1.5, label:'Mary'});
+ *          graph.add('pie', {r:'Mary', r0:1.5, label:'Mary'});
  *          graph.title.text = `inward radial 'pie' graph: constant angles`;
  *          setDefaults(graph)
  *          graph.render(data);
@@ -47,7 +47,7 @@
  * 
  * 
  *      graph => {
- *          graph.series.add('pie', {phi:'Mary', r0:0.5});
+ *          graph.add('pie', {phi:'Mary', r0:0.5});
  *          graph.title.text = `'doughnut' graph`;
  *          setDefaults(graph, 0.02)
  *          graph.render(data);
@@ -61,7 +61,7 @@
  * 
  * 
  *      graph => {
- *          graph.series.add('pie', {phi:'Mary', r0:0.5, color:i=>i});
+ *          graph.add('pie', {phi:'Mary', r0:0.5, color:i=>i});
  *          graph.title.text = `colored 'doughnut' graph`;
  *          setDefaults(graph, 0.02)
  *          graph.render(data);
@@ -75,7 +75,7 @@
  * 
  * 
  *      graph => {
- *          graph.series.add('pie', {r:'Joe', r0:0.7, color:i=>i});
+ *          graph.add('pie', {r:'Joe', r0:0.7, color:i=>i});
  *          graph.title.text = `dynamic pie: outward and inward radials`;
  *          setDefaults(graph, 0.02)
  *          graph.render(data).update(2000, update);
@@ -147,7 +147,7 @@
  *          oncreate:() => {
  *              const graphRoot = root.getElementsByClassName(cls)[0];
  *              if (graphRoot) { 
- *                  const graph = new hsGraphD3.GraphPolar(graphRoot);
+ *                  const graph = new hsGraphD3.Graph(graphRoot);
  *                  graph.defaults.popup.offset.xPx = -45;
  *                  graph.defaults.popup.offset.yPx = -45;
  *                  configure(graph); 

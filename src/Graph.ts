@@ -8,7 +8,7 @@
  * - creating and managing the {@link GraphComponent components} to render in ths `Graph`
  * - initializing default {@link Settings settings}
  * - establishing {@link Graph.LifecycleCalls lifecycle calls}
- * - adding {@link SeriesPlot `series`} to render by calling {@link Graph.Graph.addSeries `addSeries`}
+ * - adding {@link SeriesPlot `series`} to render by calling {@link Graph.Graph.add `add`}
  * - rendering the graph by calling {@link Graph.Graph.render `render`}
  * - managing a central {@link Graph.Graph.transition `transition`} that applies to all components.   
  * 
@@ -21,16 +21,20 @@
  *     - sets the factory {@link Settings default settings} for all components
  * 2. **Graph configuration**:
  *     - adding series: <br>
- *      `graph.series.add(<type>, {y:'State', x:'costs'});`
+ *      `graph.add(<type>, {y:'State', x:'costs'});`
  *     - configuring defaults: e.g., <br>
  *      `graph.grids.defaults.hor.major.rendered = false;`
  * 3. **Graph rendering**: <br>
  * `graph.render(<data>)`
  *     - sets the graph-wide transition timing and easing
  *     - starts a {@link Graph.LifecycleCalls render lifecycle} by calling each of the lifecycle methods on all components:
- *         - Once, following graph creation, {@Link Graph.LifecycleCalls.initialize initializes} the components
- *         - Calls {@link Graph.LifecycleCalls.preRender preRender} for any regular preparation
- *         - Calls {@link Graph.LifecycleCalls.renderComponent renderComponent} to render each component
+ *         - Once, following graph creation:
+ *             - {@link Graph.LifecycleCalls.initialize initializes} the components
+ *         - for each pass through the lifecycle:
+ *             - Calls {@link Graph.LifecycleCalls.preRender preRender} for any regular preparation:
+ *                 - calls {@link Graph.Graph.setScales setScales} to initialize scaling
+ *                 - calls {@link Graph.LifecycleCalls.preRender preRender} on all components in the sequence they were {@link Graph.Graph.createComponents created}
+ *             - Calls {@link Graph.LifecycleCalls.renderComponent renderComponent} to render each component
  *     - returns a {@link Graph.RenderChain RenderChain} that can be used to dynamically {@link Graph.RenderChain.update update}
  *       the data or settings, which triggers a new render lifecycle.
  * 
@@ -50,7 +54,7 @@
  *      if (svgRoot && svgRoot.length && !defaults) { 
  *          const colors = ['#800', '#080', '#008'];
  *          defaults = log
- *              .inspect(new hsGraphD3.GraphCartesian(svgRoot[0]).defaults.graph, null, '   ', colors)
+ *              .inspect(new hsGraphD3.Graph(svgRoot[0]).defaults.graph, null, '   ', colors)
  *              .replace(/\n/g, '<br>')
  *      }
  *   } 
@@ -72,11 +76,11 @@
  * };
  * 
  * m.mount(root, {
- *   view:() => m('#graph1', m(hsGraphD3.GraphCartesian, {
+ *   view:() => m('#graph1', m(hsGraphD3.Graph, {
  *      rootID: 'graph1',
  *      define: (graph) => {
- *          graph.series.add('line', {x:'time', y:'volume'});
- *          graph.series.add('line', {x:'time', y:'costs'});
+ *          graph.add('line', {x:'time', y:'volume'});
+ *          graph.add('line', {x:'time', y:'costs'});
  *          graph.title.text = `simple 'line' graph`;
  *      },
  *      data: data
@@ -95,13 +99,14 @@ import { select as d3Select}    from 'd3';
 import { easeLinear}            from 'd3';
 import { easeCubic}             from 'd3';
 
-import { GraphBase}             from './GraphComponent';
+import { GraphBase, GraphComponent}             from './GraphComponent';
+import { Components }           from './GraphComponent';
 import { ComponentDefaults}     from './GraphComponent';
 import { GraphCfg}              from './GraphComponent';
 import { Series }               from './Series';
 import { SeriesDefaults }       from './Series';
-import { Scales }               from './Scale';
-import { ScalesDefaults }       from './Scale';
+import { Scales }               from './Scales';
+import { ScalesDefaults }       from './Scales';
 import { Axes }                 from './Axis';
 import { AxesDefaults }         from './Axis';
 import { Grids }                from './Grid';
@@ -113,7 +118,7 @@ import { Popup }                from './Popup';
 import { PopupDefaults }        from './Popup';
 import { Title }                from './Title';
 import { TitleDefaults }        from './Title';
-import { ValueDef }             from "./SeriesPlot";
+import { ValueDef, SeriesDimensions }             from "./SeriesPlot";
 
 const easings = {
     easeLinear: easeLinear,
@@ -275,7 +280,7 @@ export interface LifecycleCalls {
      * Called immediately before each call to renderComponent. 
      * At this point, the axis scales have been set and all components are initialized.
      */
-    preRender(data:DataSet | DataSet[], domains:Domains): void;
+    preRender(data:DataSet | DataSet[]): void;
 
     /** 
      * renders the component. 
@@ -290,19 +295,6 @@ export interface LifecycleCalls {
     postRender(data:DataSet | DataSet[], domains:Domains): void;
 }
 
-
-/**
- * Provides access to the `Components` managed by a `Graph`.
- */
-interface Components {
-    scales:Scales;
-    canvas:Canvas;
-    grids:Grids;
-    axes:Axes;
-    series:Series;
-    title:Title;
-    popup:Popup;
-}
 
 export interface Vnode {
     dom: HTMLElement;
@@ -321,6 +313,7 @@ function initializeCfg():GraphCfg {
     return {
         baseSVG:  undefined,  
         graph: undefined,
+        components: <Components><unknown>[],
         client:   { x:0, y:0, width: 0, height: 0 },
         viewPort: {
             orgX: 0,
@@ -338,7 +331,7 @@ function initializeCfg():GraphCfg {
  * ### Graph
  * Abstract base Graph.
  */
-export abstract class Graph extends GraphBase implements Components {
+export class Graph extends GraphBase {
     //------------ static parts  -------------------
     static type = 'graph';
 
@@ -360,8 +353,6 @@ export abstract class Graph extends GraphBase implements Components {
     /** the HTML root element to attach the render tree to. */
     protected root:any;
 
-    /** the list of components to render */
-    protected components = <Components>{};
 
     /** tracks whether components have been initialized. */
     private initialized = false;
@@ -369,15 +360,13 @@ export abstract class Graph extends GraphBase implements Components {
     /** Default settings for GraphComponents in this graph */
     graphDefaults = <GraphDefaults>{};
 
-    protected cumulativeDomains: Domains = {};
-
     
     //------------ public methods  -------------------
     /**
      * `D3` constructor, call
      * ```
-     * const graph = new GraphCartesian(svgBase);
-     * graph.series.add(...);
+     * const graph = new Graph(svgBase);
+     * graph.add(...);
      * graph.grids.defaults....;
      * graph.render(data)
      * ```
@@ -387,10 +376,10 @@ export abstract class Graph extends GraphBase implements Components {
     /**
      * `Mithril` constructor. To use `Graph` with MithrilJS, call
      * ```
-     * m(GraphCartesian, {
+     * m(Graph, {
      *    rootID: string, the ID (without the #) of the root element to which the graph will be attached. 
      *    define: (graph:Graph) => {
-     *       graph.series.add(...);`
+     *       graph.add(...);`
      *       graph.grids.defaults....;`
      *    },
      *    data: DataSet | DataSet[],
@@ -435,6 +424,10 @@ export abstract class Graph extends GraphBase implements Components {
     /** returns the types of all registered `Series` */
     public get seriesTypes():string[] {
         return Series.types;
+    }
+
+    public add(type:string, dims:SeriesDimensions) {
+        this.cfg.components.series.add(type, dims);
     }
 
     /**
@@ -491,20 +484,20 @@ export abstract class Graph extends GraphBase implements Components {
 
 
     //************** Components calls **************************/
-    get scales():Scales { return this.components.scales; }
-    get canvas():Canvas { return this.components.canvas; }
-    get grids():Grids   { return this.components.grids; }
-    get axes():Axes     { return this.components.axes; }
-    get series():Series { return this.components.series; }
-    get title():Title   { return this.components.title; }
-    get popup():Popup   { return this.components.popup; }
+    get scales():Scales { return this.cfg.components.scales; }
+    get canvas():Canvas { return this.cfg.components.canvas; }
+    get grids():Grids   { return this.cfg.components.grids; }
+    get axes():Axes     { return this.cfg.components.axes; }
+    get series():Series { return this.cfg.components.series; }
+    get title():Title   { return this.cfg.components.title; }
+    get popup():Popup   { return this.cfg.components.popup; }
 
     /**
      * Mithril integration method. See the {@link Graph.Graph.constructor `Graph` constructor}
      * for usage pattern.
      */
     public oninit(node:Vnode) {
-        if (this.series) { node.attrs.define(this); }
+        if (this.cfg.components.series) { node.attrs.define(this); }
     }
 
     public view(node:Vnode) {
@@ -524,26 +517,26 @@ export abstract class Graph extends GraphBase implements Components {
      * and initializes all known `GraphComponts`.
      */
     initialize(svg:d3Base): void {
-        Object.keys(this.components).forEach(comp => this.components[comp]?this.components[comp].initialize(svg):'');
+        const comps = (<GraphComponent[]><unknown>this.cfg.components);
+        comps.forEach(comp => comp?comp.initialize(svg):'');
     } 
 
     /** Called immediately before each call to renderComponent. */
-    preRender(data:DataSet | DataSet[], domains:Domains): void {
-        this.series.expandDomains(data, domains);
-        this.setScales();
-        Object.keys(this.components).forEach(comp => this.components[comp]?this.components[comp].preRender(data, domains):'');
+    preRender(data:DataSet | DataSet[]): void {
+        const comps = (<GraphComponent[]><unknown>this.cfg.components);
+        comps.forEach(comp => comp?comp.preRender(data):'');
     } 
 
     /** renders the component. */
     renderComponent(data:DataSet | DataSet[]): void {
-        Object.keys(this.components).forEach(comp => {
-            return this.components[comp]?this.components[comp].renderComponent(data):'';
-    });
+        const comps = (<GraphComponent[]><unknown>this.cfg.components);
+        comps.forEach(comp => comp?comp.renderComponent(data):'');
     } 
 
     /** renders the component. */
     postRender(data:DataSet | DataSet[]): void {
-        Object.keys(this.components).forEach(comp => this.components[comp]?this.components[comp].postRender(data):'');
+        const comps = (<GraphComponent[]><unknown>this.cfg.components);
+        comps.forEach(comp => comp?comp.postRender(data):'');
     } 
 
     renderLifecycle(data:DataSet | DataSet[]) {
@@ -553,8 +546,8 @@ export abstract class Graph extends GraphBase implements Components {
                 this.initialize(this.cfg.baseSVG);
                 this.initialized = true;
             }
-            const scalesDefaults = <ScalesDefaults>this.defaults['scales'];
-            this.preRender(data, this.prepareDomains(scalesDefaults));
+            // const scalesDefaults = <ScalesDefaults>this.defaults['scales'];
+            this.preRender(data);
             this.renderComponent(data);
             this.postRender(data);
         } else {
@@ -590,15 +583,15 @@ export abstract class Graph extends GraphBase implements Components {
     }
 
     /** set the scales for the graph prior to rendering components. */
-    protected abstract setScales():void;
+    // protected abstract setScales():void;
 
     protected makeDefaults() {
         this.graphDefaults = <GraphDefaults>{};
         this.graphDefaults[this.componentType] = this.createDefaults();
-        Object.keys(this.components).forEach(comp => this.graphDefaults[comp] = this.components[comp]?this.components[comp].createDefaults(): {});
+        Object.keys(this.cfg.components).forEach(comp => this.graphDefaults[comp] = this.cfg.components[comp]?this.cfg.components[comp].createDefaults(): {});
     }
 
-    protected abstract prepareDomains(scalesDefaults:ScalesDefaults):Domains;
+    // protected abstract prepareDomains(scalesDefaults:ScalesDefaults):Domains;
 
     /** 
      * creates the list of `GraphComponents` and determines the rendering order: 
@@ -611,13 +604,14 @@ export abstract class Graph extends GraphBase implements Components {
      * - Popup
      */
     protected createComponents(cfg:GraphCfg) {
-        this.components.scales  = new Scales(cfg);
-        this.components.canvas  = new Canvas(cfg);
-        this.components.grids   = new Grids(cfg);
-        this.components.axes    = new Axes(cfg);
-        this.components.title   = new Title(cfg);
-        this.components.series  = new Series(cfg);
-        this.components.popup   = new Popup(cfg);
+        const comps = (<GraphComponent[]><unknown>this.cfg.components);
+        comps.push(this.cfg.components.scales  = new Scales(cfg));
+        comps.push(this.cfg.components.canvas  = new Canvas(cfg));
+        comps.push(this.cfg.components.grids   = new Grids(cfg));
+        comps.push(this.cfg.components.axes    = new Axes(cfg));
+        comps.push(this.cfg.components.title   = new Title(cfg));
+        comps.push(this.cfg.components.series  = new Series(cfg));
+        comps.push(this.cfg.components.popup   = new Popup(cfg));
     }
 
     /** callback on window resize event, adjusts the viewport to the new dimensions  */

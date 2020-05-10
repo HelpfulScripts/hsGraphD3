@@ -1,7 +1,7 @@
 import * as hsGraphD3       from '../';
 import * as d3              from 'd3';
 import { Graph, DataSet }   from '../Graph';
-import { Log }              from 'hsnode';import { GraphCartesian } from '../GraphCartesian';
+import { Log }              from 'hsnode';
  const log = new Log('Voronoi.jest');
 
 
@@ -37,7 +37,7 @@ const data:DataSet = {
 };
 
 function createGraph(root:any) {
-    const graph = new hsGraphD3.GraphCartesian(root);
+    const graph = new hsGraphD3.Graph(root);
     graph.isRendered = () => true;
     graph.axes.defaults.hor.numTicksMinor = 10;
     graph.axes.defaults.hor.numTicksMajor = 2;
@@ -49,7 +49,7 @@ function createGraph(root:any) {
 describe('Voronoi', () => {
     beforeAll(() => {
         graph = createGraph(root);
-        graph.series.add('voronoi', {x:'xval', y:'yval'});
+        graph.add('voronoi', {x:'xval', y:'yval'});
         graph.render(data);
     });
 

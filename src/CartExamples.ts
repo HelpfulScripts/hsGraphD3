@@ -5,64 +5,64 @@
  * <file name='script.js'>
  * const content = [
  *      graph => {
- *          graph.series.add('line', {y:'Joe'});
- *          graph.series.add('line', {y:'Mary'});
+ *          graph.add('line', {y:'Joe'});
+ *          graph.add('line', {y:'Mary'});
  *          graph.title.text = `simple indexed 'line' graph`;
  *          graph.render(data);
  *      }, 
  * 
  *      graph => {
- *          graph.series.add('line', {x:'time', y:'Joe'});
- *          graph.series.add('line', {x:'time', y:'Mary'});
+ *          graph.add('line', {x:'time', y:'Joe'});
+ *          graph.add('line', {x:'time', y:'Mary'});
  *          graph.title.text = `simple 'line' graph`;
  *          graph.render(data);
  *      }, 
  * 
  *      graph => {  
- *          graph.series.add('line', {x:'time', y:'Joe'});
- *          graph.series.add('line', {x:'time', y:'Mary'});
+ *          graph.add('line', {x:'time', y:'Joe'});
+ *          graph.add('line', {x:'time', y:'Mary'});
  *          graph.title.text = `'line' graph with dynamic updates`;
  *          graph.render(data).update(2000, update);
  *      }, 
  * 
  *      graph => {
- *          graph.series.add('area', {x:'time', y:'Joe'});
- *          graph.series.add('area', {x:'time', y:'Mary'});
+ *          graph.add('area', {x:'time', y:'Joe'});
+ *          graph.add('area', {x:'time', y:'Mary'});
  *          graph.title.text = `simple 'area' graph`;
  *          graph.render(data).update(2000);
  *      }, 
  * 
  *      graph => {
- *          graph.series.add('area', {x:'time', y:'Joe'});
- *          graph.series.add('area', {x:'time', y:'Mary', y0:'Joe'});
+ *          graph.add('area', {x:'time', y:'Joe'});
+ *          graph.add('area', {x:'time', y:'Mary', y0:'Joe'});
  *          graph.title.text = `difference 'area' graph`;
  *          graph.render(data).update(2000);
  *      }, 
  * 
  *      graph => {
- *          graph.series.add('area', {x:'time', y:'Joe', stacked:'myStack'});
- *          graph.series.add('area', {x:'time', y:'Mary', stacked:'myStack'});
+ *          graph.add('area', {x:'time', y:'Joe', stacked:'myStack'});
+ *          graph.add('area', {x:'time', y:'Mary', stacked:'myStack'});
  *          graph.title.text = `stacked 'area' graph`;
  *          graph.render(data).update(2000);
  *      }, 
  * 
  *      graph => {
- *          graph.series.add('area', {x:'time', y:'Joe'});
- *          graph.series.add('area', {x:'time', y:'Mary', y0:()=>1});
+ *          graph.add('area', {x:'time', y:'Joe'});
+ *          graph.add('area', {x:'time', y:'Mary', y0:()=>1});
  *          graph.title.text = `raised 'area' graph`;
  *          graph.render(data).update(2000);
  *      }, 
  * 
  *      graph => {
- *          graph.series.add('area', {x:'time', y:'Joe', y0:()=>1});
- *          graph.series.add('area', {x:'time', y:'Mary', y0:()=>1});
+ *          graph.add('area', {x:'time', y:'Joe', y0:()=>1});
+ *          graph.add('area', {x:'time', y:'Mary', y0:()=>1});
  *          graph.title.text = `opposed 'area' graph`;
  *          graph.render(data).update(2000);
  *      }, 
  * 
  *      graph => {
- *          graph.series.add('line', {x:'time', y:'Joe'});
- *          graph.series.add('line', {x:'time', y:'Mary'});
+ *          graph.add('line', {x:'time', y:'Joe'});
+ *          graph.add('line', {x:'time', y:'Mary'});
  *          graph.series.defaults.series0.area.rendered = true;
  *          graph.series.defaults.series0.marker.rendered = true;
  *          graph.title.text = `'line' graph with area and markers for 1st series`;
@@ -70,67 +70,67 @@
  *      }, 
  * 
  *      graph => { 
- *          graph.series.add('bubble', {x:'time', y:'Joe'});
- *          graph.series.add('bubble', {x:'time', y:'Mary', r:'Joe'});
+ *          graph.add('bubble', {x:'time', y:'Joe'});
+ *          graph.add('bubble', {x:'time', y:'Mary', r:'Joe'});
  *          graph.title.text = `'bubble' graph`;
  *          graph.render(data).update(2000);
  *      }, 
  * 
  *      graph => {
- *          graph.series.add('timeseries', {x:'time', y:'Joe'});
- *          graph.series.add('timeseries', {x:'time', y:'Mary'});
+ *          graph.add('timeseries', {x:'time', y:'Joe'});
+ *          graph.add('timeseries', {x:'time', y:'Mary'});
  *          graph.title.text = `'time series'`;
  *          graph.render(dataTS).update(2000, updateTS);
  *      }, 
  * 
  *      graph => { 
- *          graph.series.add('column', {x:'item', y:'Joe', label:'item'});
- *          graph.series.add('column', {x:'item', y:'Mary', label:i=>i});
+ *          graph.add('column', {x:'item', y:'Joe', label:'item'});
+ *          graph.add('column', {x:'item', y:'Mary', label:i=>i});
  *          graph.title.text = `'column' graph`;
  *          graph.render(data).update(2000);
  *      }, 
  * 
  *      graph => { 
- *          graph.series.add('column', {x:'item', y:'Joe', stacked:'myGroup', label:i=>`<${i}>`});
- *          graph.series.add('column', {x:'item', y:'Mary', stacked:'myGroup', label:5});
+ *          graph.add('column', {x:'item', y:'Joe', stacked:'myGroup', label:i=>`<${i}>`});
+ *          graph.add('column', {x:'item', y:'Mary', stacked:'myGroup', label:5});
  *          graph.title.text = `stacked 'column' graph`;
  *          graph.render(data).update(2000);
  *      }, 
  * 
  *      graph => { 
- *          graph.series.add('column', {x:'item', y:'Mary', color:i=>i});
+ *          graph.add('column', {x:'item', y:'Mary', color:i=>i});
  *          graph.title.text = `'default colored column' graph`;
  *          graph.render(data).update(2000);
  *      }, 
  * 
  *      graph => { 
- *          graph.series.add('column', {x:'item', y:'Mary', color:'item'});
+ *          graph.add('column', {x:'item', y:'Mary', color:'item'});
  *          graph.title.text = `'default colored column' graph`;
  *          graph.render(data).update(2000);
  *      }, 
  * 
  *      graph => { 
- *          graph.series.add('column', {x:'item', y:'Mary', color:'greens'});
+ *          graph.add('column', {x:'item', y:'Mary', color:'greens'});
  *          graph.title.text = `'greens colored column' graph`;
  *          graph.render(data).update(2000);
  *      }, 
  * 
  *      graph => { 
- *          graph.series.add('column', {x:'item', y:'Mary', color:'time'});
+ *          graph.add('column', {x:'item', y:'Mary', color:'time'});
  *          graph.title.text = `'data colored column' graph`;
  *          graph.render(data).update(2000);
  *      }, 
  * 
  *      graph => { 
- *          graph.series.add('bar', {x:'Joe', y:'item'});
- *          graph.series.add('bar', {x:'Mary', y:'item'});
+ *          graph.add('bar', {x:'Joe', y:'item'});
+ *          graph.add('bar', {x:'Mary', y:'item'});
  *          graph.title.text = `'bar' graph`;
  *          graph.render(data).update(2000);
  *      }, 
  * 
  *      graph => {
- *          graph.series.add('bar', {x:'Joe', y:'item', stacked:'myGroup'});
- *          graph.series.add('bar', {x:'Mary', y:'item', stacked:'myGroup'});
+ *          graph.add('bar', {x:'Joe', y:'item', stacked:'myGroup'});
+ *          graph.add('bar', {x:'Mary', y:'item', stacked:'myGroup'});
  *          graph.title.text = `stacked 'bar' graph`;
  *          graph.render(data).update(2000);
  *      }, 
@@ -190,7 +190,7 @@
  *          oncreate:() => {
  *              const graphRoot = root.getElementsByClassName(cls)[0];
  *              if (graphRoot) { 
- *                  const graph = new hsGraphD3.GraphCartesian(graphRoot);
+ *                  const graph = new hsGraphD3.Graph(graphRoot);
  *                  graph.defaults.popup.offset.xPx = -45;
  *                  graph.defaults.popup.offset.yPx = -45;
  *                  configure(graph); 

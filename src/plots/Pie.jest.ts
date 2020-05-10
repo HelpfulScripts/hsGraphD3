@@ -24,7 +24,7 @@ const data:DataSet = {
 };
 
 function createGraph(root:any) {
-    const graph = new hsGraphD3.GraphPolar(root);
+    const graph = new hsGraphD3.Graph(root);
     graph.isRendered = () => true;
     return graph;
 }
@@ -34,8 +34,8 @@ describe('Pie labels', () => {
     let graph:hsGraphD3.Graph;
     beforeAll(() => {
         graph = createGraph(root);
-        graph.series.add('pie', {phi:'costs', label:i=>i});
-        graph.series.add('pie', {phi:'costs', label:i=>i});
+        graph.add('pie', {phi:'costs', label:i=>i});
+        graph.add('pie', {phi:'costs', label:i=>i});
         graph.defaults.series[0].label.xpos = 0.5;
         graph.render(data);
     });
@@ -46,7 +46,7 @@ describe('Pie colors', () => {
     let graph:hsGraphD3.Graph;
     beforeAll(() => {
         graph = createGraph(root);
-        graph.series.add('pie', {phi:'costs', r0: 5, color:'time'});
+        graph.add('pie', {phi:'costs', r0: 5, color:'time'});
         graph.render(data);
     });
     it('should plot pie', () => expect(root).toMatchSnapshot());

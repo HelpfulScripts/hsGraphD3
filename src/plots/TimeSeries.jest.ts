@@ -25,7 +25,7 @@ const data:DataSet = {
 };
 
 function createGraph(root:any) {
-    const graph = new hsGraphD3.GraphCartesian(root);
+    const graph = new hsGraphD3.Graph(root);
     graph.isRendered = () => true;
     graph.axes.defaults.hor.numTicksMinor = 10;
     graph.axes.defaults.hor.numTicksMajor = 2;
@@ -36,10 +36,10 @@ function createGraph(root:any) {
 
 
 describe('TimeSeries', () => {
-    let graph:hsGraphD3.GraphCartesian;
+    let graph:hsGraphD3.Graph;
     beforeAll(() => {
         graph = createGraph(root);
-        graph.series.add('timeseries', {x:'xval', y:'yval'});
+        graph.add('timeseries', {x:'xval', y:'yval'});
         graph.series.defaults['series0'].marker.rendered = true;
         graph.series.defaults['series0'].area.rendered = true;
         graph.render(data);

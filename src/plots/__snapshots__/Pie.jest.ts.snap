@@ -32,7 +32,20 @@ exports[`Pie colors should plot pie 1`] = `
     </g>
     <g
       class="grids"
-    />
+    >
+      <g
+        class="hor-major-Grid"
+      />
+      <g
+        class="hor-minor-Grid"
+      />
+      <g
+        class="ver-major-Grid"
+      />
+      <g
+        class="ver-minor-Grid"
+      />
+    </g>
     <g
       class="axes"
     >
@@ -303,7 +316,20 @@ exports[`Pie colors should plot pie 1`] = `
     </g>
     <g
       class="grids"
-    />
+    >
+      <g
+        class="hor-major-Grid"
+      />
+      <g
+        class="hor-minor-Grid"
+      />
+      <g
+        class="ver-major-Grid"
+      />
+      <g
+        class="ver-minor-Grid"
+      />
+    </g>
     <g
       class="axes"
     >
@@ -408,7 +434,20 @@ exports[`Pie labels should plot pie 1`] = `
     </g>
     <g
       class="grids"
-    />
+    >
+      <g
+        class="hor-major-Grid"
+      />
+      <g
+        class="hor-minor-Grid"
+      />
+      <g
+        class="ver-major-Grid"
+      />
+      <g
+        class="ver-minor-Grid"
+      />
+    </g>
     <g
       class="axes"
     >

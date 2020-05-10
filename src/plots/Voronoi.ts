@@ -4,7 +4,7 @@
  * plots a 2D Voronoi Partition.
  * 
  * ## Usage
- * `graph.series.add('voronoi', {x:<x-col>, y:<y-col>, r?:<size-col>});`
+ * `graph.add('voronoi', {x:<x-col>, y:<y-col>, r?:<size-col>});`
  * Invoke a `line` series by adding a new series to the graph
  * 
  * ## Example
@@ -27,10 +27,10 @@
  * let w = 20;
  * const numSamples = 1000;
  * 
- * const graph = new hsGraphD3.GraphCartesian(root);
+ * const graph = new hsGraphD3.Graph(root);
  * 
- * graph.series.add('voronoi', {x:'x', y:'y', r:'count'});
- * graph.series.add('bubble', {x:'x', y:'y'});
+ * graph.add('voronoi', {x:'x', y:'y', r:'count'});
+ * graph.add('bubble', {x:'x', y:'y'});
  * 
  * with (graph.defaults) {
  *     graph.transition.duration = 0;
@@ -83,8 +83,8 @@
  * let defaults;
  * 
  * function createGraph(svgRoot) {
- *      const graph = new hsGraphD3.GraphCartesian(root);
- *      graph.series.add('voronoi', {x:'x', y:'y', r:'count'});
+ *      const graph = new hsGraphD3.Graph(root);
+ *      graph.add('voronoi', {x:'x', y:'y', r:'count'});
  *      return graph.series.defaults[0];
  * }
  * 
@@ -132,12 +132,12 @@ export class Voronoi extends NumericSeriesPlot {
     } 
 
     public renderComponent(data:NumericDataSet): void {
-        const scales = this.cfg.graph.scales.scaleDims;
+        const scales = this.cfg.components.scales.scaleDims;
         if (typeof(this.dims.x)==='number') { log.warn(`renderComponent: unsupported const x=${this.dims.x} in voronoi`); }
         if (typeof(this.dims.y)==='number') { log.warn(`renderComponent: unsupported const y=${this.dims.y} in voronoi`); }
         const x = data.colNames.indexOf(<string>this.dims.x);
         const y = data.colNames.indexOf(<string>this.dims.y);
-        const m = this.cfg.graph.scales.defaults.margin;
+        const m = this.cfg.components.scales.defaults.margin;
         this.voronoi = Delaunay.from(data.rows, 
             r => scales.hor(<number>r[x]),
             r => scales.ver(<number>r[y])

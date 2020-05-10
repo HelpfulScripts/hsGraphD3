@@ -276,8 +276,7 @@
 <a name='L217'></a><a href='#L217'>217</a>
 <a name='L218'></a><a href='#L218'>218</a>
 <a name='L219'></a><a href='#L219'>219</a>
-<a name='L220'></a><a href='#L220'>220</a>
-<a name='L221'></a><a href='#L221'>221</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L220'></a><a href='#L220'>220</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -293,41 +292,33 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">13x</span>
-<span class="cline-any cline-yes">13x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">13x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-yes">6x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
@@ -336,9 +327,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">6x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -503,7 +501,7 @@
  * Abstract base class for all ordinal series plot types, i.e. plots with a ordinal abscissa and a numeric ordinate.
  * To create a series plot, add the desired plot type to the graph:
  * ```
- * graph.series.add(&lt;type&gt;, {&lt;dim&gt;: &lt;ValueDef&gt;, ...});
+ * graph.add(&lt;type&gt;, {&lt;dim&gt;: &lt;ValueDef&gt;, ...});
  * ``` 
  * - `&lt;type&gt;` is one of the registered types: 
  *     - &amp;nbsp; {@link plots.Bar `bar`} a horizontal bar chart
@@ -560,12 +558,11 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
         super.initialize(plot, color);
     }
 &nbsp;
-    preRender(data:DataSet, domains:Domains): void {
-        
-        super.preRender(data, domains);
+    preRender(data:DataSet): void {
+        super.preRender(data);
         const scaleDef = this.cfg.graph.defaults.scales.dims[this.abscissa];
         const gap = scaleDef.ordinal.gap;
-        const scale = this.cfg.graph.scales.scaleDims[this.abscissa];
+        const scale = this.cfg.components.scales.scaleDims[this.abscissa];
         scale.paddingInner(gap);
         scale.paddingOuter(gap/2);
         this.cache = { x:&lt;number[]&gt;[], x0:&lt;number[]&gt;[], y:&lt;number[]&gt;[], y0:&lt;number[]&gt;[] };
@@ -585,10 +582,10 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
     }
     
     private getParams(colNames:string[]):any[] {
-        const scales = this.cfg.graph.scales;
+        const scales = this.cfg.components.scales;
         const scaleDef = scales.defaults.dims[this.abscissa];
         const stackGroup = this.dims.stacked || false;
-        const allKeys = Object.keys(this.cfg.graph.series.defaults).filter(k =&gt; k.indexOf(Series.type)===0);
+        const allKeys = Object.keys(this.cfg.components.series.defaults).filter(k =&gt; k.indexOf(Series.type)===0);
         const myKey = allKeys.indexOf(this.key) || 0;
         const step = scales.scaleDims[this.abscissa].step();
         const pad = scales.scaleDims[this.abscissa].paddingInner();
@@ -607,8 +604,8 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
     protected d3DrawMarker(markers:d3Base, data:DataSet, defaults:SeriesPlotDefaults) {
         const [offset, thickness] = this.getParams(data.colNames);
 &nbsp;
-        const xScale = this.cfg.graph.scales.scaleDims.hor;
-        const yScale = this.cfg.graph.scales.scaleDims.ver;
+        const xScale = this.cfg.components.scales.scaleDims.hor;
+        const yScale = this.cfg.components.scales.scaleDims.ver;
         const x  = this.accessor(this.dims.x, data.colNames);
         const x0 = this.dims.stacked? this.accessor(this.dims.stacked, data.colNames) : <span class="fstat-no" title="function not covered" >()=</span>&gt;<span class="cstat-no" title="statement not covered" >0;</span>
         const y  = this.accessor(this.dims.y, data.colNames);
@@ -641,8 +638,8 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
     protected d3DrawLabels(labels:d3Base, data:DataSet, defaults:SeriesPlotDefaults) {
         const [offset, thickness] = this.getParams(data.colNames);
 &nbsp;
-        const xScale = this.cfg.graph.scales.scaleDims.hor;
-        const yScale = this.cfg.graph.scales.scaleDims.ver;
+        const xScale = this.cfg.components.scales.scaleDims.hor;
+        const yScale = this.cfg.components.scales.scaleDims.ver;
         
         const l = this.accessor(this.dims.label, data.colNames);
         const cfg:Label = this.defaults.label;
@@ -676,8 +673,8 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
         const y  = this.accessor(this.dims.y, colNames);
         const [offset, thickness] = this.getParams(colNames);
 &nbsp;
-        const xScale = this.cfg.graph.scales.scaleDims.hor;
-        const yScale = this.cfg.graph.scales.scaleDims.ver;
+        const xScale = this.cfg.components.scales.scaleDims.hor;
+        const yScale = this.cfg.components.scales.scaleDims.ver;
         const xAttr  = (d:number[], i:number) =&gt; this.cached('x', i, <span class="fstat-no" title="function not covered" >()=</span>&gt;<span class="cstat-no" title="statement not covered" >xScale(x(d, i)))</span>;
         const yAttr  = (d:number[], i:number) =&gt; this.cached('y', i, <span class="fstat-no" title="function not covered" >()=</span>&gt;<span class="cstat-no" title="statement not covered" >yScale(y(d, i)))</span>;
 &nbsp;

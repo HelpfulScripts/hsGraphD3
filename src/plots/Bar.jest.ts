@@ -24,7 +24,7 @@ const data:DataSet = {
    };
 
 function createGraph(root:any) {
-    const graph = new hsGraphD3.GraphCartesian(root);
+    const graph = new hsGraphD3.Graph(root);
     graph.isRendered = () => true;
     graph.axes.defaults.hor.numTicksMinor = 10;
     graph.axes.defaults.hor.numTicksMajor = 2;
@@ -34,11 +34,11 @@ function createGraph(root:any) {
 }
 
 describe('Bar', () => {
-    let graph:hsGraphD3.GraphCartesian;
+    let graph:hsGraphD3.Graph;
     beforeAll(() => {
         graph = createGraph(root);
-        graph.series.add('bar', {x:'costs', y:'State', stacked:'grp'});
-        graph.series.add('bar', {x:'volume', y:'State', stacked:'grp'});
+        graph.add('bar', {x:'costs', y:'State', stacked:'grp'});
+        graph.add('bar', {x:'volume', y:'State', stacked:'grp'});
         graph.series.defaults['series0'].line.rendered = true;
         graph.render(data);
     });

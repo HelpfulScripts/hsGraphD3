@@ -24,7 +24,7 @@ const data:DataSet = {
    };
 
 function createGraph(root:any) {
-    const graph = new hsGraphD3.GraphCartesian(root);
+    const graph = new hsGraphD3.Graph(root);
     graph.isRendered = () => true;
     graph.axes.defaults.hor.numTicksMinor = 10;
     graph.axes.defaults.hor.numTicksMajor = 2;
@@ -34,13 +34,13 @@ function createGraph(root:any) {
 }
 
 describe('Column', () => {
-    let graph:hsGraphD3.GraphCartesian;
+    let graph:hsGraphD3.Graph;
     beforeAll(() => {
         graph = createGraph(root);
-        graph.series.add('column', {x:'State', y:'volume', color:'volume', label:'State'});
-        graph.series.add('column', {x:'State', y:'volume', color:'greens'});
-        graph.series.add('column', {x:'State', y:'volume', color:5});
-        graph.series.add('column', {x:'State', y:'volume', color:row=>row});
+        graph.add('column', {x:'State', y:'volume', color:'volume', label:'State'});
+        graph.add('column', {x:'State', y:'volume', color:'greens'});
+        graph.add('column', {x:'State', y:'volume', color:5});
+        graph.add('column', {x:'State', y:'volume', color:row=>row});
         graph.series.defaults['series0'].line.rendered = true;
         graph.render(data);
     });

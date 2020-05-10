@@ -1,0 +1,153 @@
+
+                <html><style>body { overflow:hidden;}
+            h1 { font-family: Arial, sans-serif; font-size: 24px; color: #44a; }
+            p { margin:0; padding:0; }
+            br  { margin:0; padding:0; }
+            .line { 
+                white-space: nowrap;
+                height:16px; 
+            }
+            .line>span { 
+                display:inline-block; background-color:#eef; height:100%; 
+                margin: 0 5px 0 0; padding-right: 5px; color:#999;   
+            }
+            comment {color: #080;} module {color: #804;} 
+            quote {color: #008;} comment>quote {color: #080;}
+            .listing { margin: 10px; border: 1px solid #ccc; 
+                    font-family: SFMono-Regular, Consolas, 'Liberation Mono', Menlo, Courier, monospace;
+                    font-size: 14px;  
+                    overflow:scroll;
+                    height:90%;
+            }
+            code { padding: 5px 0;}</style></html><body>
+                <h1>Scales.ts</h1>
+                <div class='listing'><code><p id=1 class="line"><span>&nbsp;&nbsp;&nbsp;1</span></p>
+<p id=2 class="line"><span>&nbsp;&nbsp;&nbsp;2</span></p>
+<p id=3 class="line"><span>&nbsp;&nbsp;&nbsp;3</span></p>
+<p id=4 class="line"><span>&nbsp;&nbsp;&nbsp;4</span></p>
+<p id=5 class="line"><span>&nbsp;&nbsp;&nbsp;5</span></p>
+<p id=6 class="line"><span>&nbsp;&nbsp;&nbsp;6</span></p>
+<p id=7 class="line"><span>&nbsp;&nbsp;&nbsp;7</span>import&nbsp;{&nbsp;Log&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'hsutil'</quote>;&nbsp;const&nbsp;log&nbsp;=&nbsp;new&nbsp;Log(<quote>'Scales'</quote>);</p>
+<p id=8 class="line"><span>&nbsp;&nbsp;&nbsp;8</span>import&nbsp;{&nbsp;GraphComponent&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./GraphComponent'</quote>;&nbsp;</p>
+<p id=9 class="line"><span>&nbsp;&nbsp;&nbsp;9</span>import&nbsp;{&nbsp;ComponentDefaults&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./GraphComponent'</quote>;&nbsp;</p>
+<p id=10 class="line"><span>&nbsp;&nbsp;10</span>import&nbsp;{&nbsp;GraphCfg&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./GraphComponent'</quote>;</p>
+<p id=11 class="line"><span>&nbsp;&nbsp;11</span>import&nbsp;{&nbsp;Scale,&nbsp;Range&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Scale'</quote>;</p>
+<p id=12 class="line"><span>&nbsp;&nbsp;12</span>import&nbsp;{&nbsp;ScaleDefaults&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Scale'</quote>;</p>
+<p id=13 class="line"><span>&nbsp;&nbsp;13</span>import&nbsp;{&nbsp;NoScale,&nbsp;BandScale&nbsp;}&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Scale'</quote>;</p>
+<p id=14 class="line"><span>&nbsp;&nbsp;14</span>import&nbsp;{&nbsp;TimeScale&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Scale'</quote>;</p>
+<p id=15 class="line"><span>&nbsp;&nbsp;15</span>import&nbsp;{&nbsp;LogScale,&nbsp;LinearScale&nbsp;}from&nbsp;<quote>'./Scale'</quote>;</p>
+<p id=16 class="line"><span>&nbsp;&nbsp;16</span>import&nbsp;{&nbsp;Domains,&nbsp;DataSet&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Graph'</quote>;</p>
+<p id=17 class="line"><span>&nbsp;&nbsp;17</span></p>
+<p id=18 class="line"><span>&nbsp;&nbsp;18</span>import&nbsp;{&nbsp;Domain&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Graph'</quote>;</p>
+<p id=19 class="line"><span>&nbsp;&nbsp;19</span></p>
+<p id=20 class="line"><span>&nbsp;&nbsp;20</span><comment>/**</comment></p>
+<p id=21 class="line"><span>&nbsp;&nbsp;21</span><comment>&nbsp;*&nbsp;Specifies&nbsp;the&nbsp;defaults&nbsp;of&nbsp;the&nbsp;Scales&nbsp;Component</comment></p>
+<p id=22 class="line"><span>&nbsp;&nbsp;22</span><comment>&nbsp;*/</comment></p>
+<p id=23 class="line"><span>&nbsp;&nbsp;23</span>export&nbsp;interface&nbsp;ScalesDefaults&nbsp;extends&nbsp;ComponentDefaults&nbsp;{</p>
+<p id=24 class="line"><span>&nbsp;&nbsp;24</span>&nbsp;&nbsp;&nbsp;&nbsp;margin:&nbsp;{&nbsp;left:number;&nbsp;top:number;&nbsp;right:number;&nbsp;bottom:number;&nbsp;};</p>
+<p id=25 class="line"><span>&nbsp;&nbsp;25</span>&nbsp;&nbsp;&nbsp;&nbsp;dims:&nbsp;ScaleDefaultsDims;</p>
+<p id=26 class="line"><span>&nbsp;&nbsp;26</span>&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;<quote>'polar'</quote>&nbsp;|&nbsp;<quote>'cartesian'</quote>;</p>
+<p id=27 class="line"><span>&nbsp;&nbsp;27</span>}</p>
+<p id=28 class="line"><span>&nbsp;&nbsp;28</span></p>
+<p id=29 class="line"><span>&nbsp;&nbsp;29</span><comment>/**</comment></p>
+<p id=30 class="line"><span>&nbsp;&nbsp;30</span><comment>&nbsp;*&nbsp;</comment></p>
+<p id=31 class="line"><span>&nbsp;&nbsp;31</span><comment>&nbsp;*/</comment></p>
+<p id=32 class="line"><span>&nbsp;&nbsp;32</span>export&nbsp;interface&nbsp;ScaleDefaultsDims&nbsp;{</p>
+<p id=33 class="line"><span>&nbsp;&nbsp;33</span>&nbsp;&nbsp;&nbsp;&nbsp;[dim:string]:&nbsp;ScaleDefaults;</p>
+<p id=34 class="line"><span>&nbsp;&nbsp;34</span>}</p>
+<p id=35 class="line"><span>&nbsp;&nbsp;35</span></p>
+<p id=36 class="line"><span>&nbsp;&nbsp;36</span><comment>/**</comment></p>
+<p id=37 class="line"><span>&nbsp;&nbsp;37</span><comment>&nbsp;*&nbsp;Manages&nbsp;the&nbsp;embedding&nbsp;of&nbsp;scales&nbsp;into&nbsp;the&nbsp;graph&nbsp;(margins,&nbsp;etc.)&nbsp;and&nbsp;provides</comment></p>
+<p id=38 class="line"><span>&nbsp;&nbsp;38</span><comment>&nbsp;*&nbsp;a&nbsp;configuration&nbsp;for&nbsp;each&nbsp;scales&nbsp;used&nbsp;in&nbsp;the&nbsp;graph.</comment></p>
+<p id=39 class="line"><span>&nbsp;&nbsp;39</span><comment>&nbsp;*/</comment></p>
+<p id=40 class="line"><span>&nbsp;&nbsp;40</span>export&nbsp;class&nbsp;Scales&nbsp;extends&nbsp;GraphComponent&nbsp;{</p>
+<p id=41 class="line"><span>&nbsp;&nbsp;41</span>&nbsp;&nbsp;&nbsp;&nbsp;static&nbsp;type&nbsp;=&nbsp;<quote>'scales'</quote>;</p>
+<p id=42 class="line"><span>&nbsp;&nbsp;42</span></p>
+<p id=43 class="line"><span>&nbsp;&nbsp;43</span>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;scales:&nbsp;{&nbsp;[name:string]:&nbsp;Scale;&nbsp;}&nbsp;=&nbsp;{};</p>
+<p id=44 class="line"><span>&nbsp;&nbsp;44</span></p>
+<p id=45 class="line"><span>&nbsp;&nbsp;45</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;cumulativeDomains:&nbsp;Domains&nbsp;=&nbsp;{};</p>
+<p id=46 class="line"><span>&nbsp;&nbsp;46</span></p>
+<p id=47 class="line"><span>&nbsp;&nbsp;47</span>&nbsp;&nbsp;&nbsp;&nbsp;constructor(cfg:GraphCfg)&nbsp;{&nbsp;super(cfg,&nbsp;null);&nbsp;}</p>
+<p id=48 class="line"><span>&nbsp;&nbsp;48</span></p>
+<p id=49 class="line"><span>&nbsp;&nbsp;49</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;get&nbsp;componentType()&nbsp;{&nbsp;return&nbsp;Scales.type;&nbsp;}</p>
+<p id=50 class="line"><span>&nbsp;&nbsp;50</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;get&nbsp;defaults():ScalesDefaults&nbsp;{&nbsp;return&nbsp;this.cfg.graph.defaults.scales;&nbsp;}</p>
+<p id=51 class="line"><span>&nbsp;&nbsp;51</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;get&nbsp;scaleDims()&nbsp;{&nbsp;return&nbsp;this.scales;&nbsp;}</p>
+<p id=52 class="line"><span>&nbsp;&nbsp;52</span></p>
+<p id=53 class="line"><span>&nbsp;&nbsp;53</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;initialize():&nbsp;void&nbsp;{</p>
+<p id=54 class="line"><span>&nbsp;&nbsp;54</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;margins&nbsp;=&nbsp;this.defaults.margin;</p>
+<p id=55 class="line"><span>&nbsp;&nbsp;55</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;vp&nbsp;=&nbsp;this.cfg.viewPort;</p>
+<p id=56 class="line"><span>&nbsp;&nbsp;56</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch(this.defaults.type)&nbsp;{</p>
+<p id=57 class="line"><span>&nbsp;&nbsp;57</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;<quote>'polar'</quote>:</p>
+<p id=58 class="line"><span>&nbsp;&nbsp;58</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.createScale(<quote>'ang'</quote>,&nbsp;this.cumulativeDomains.ang);</p>
+<p id=59 class="line"><span>&nbsp;&nbsp;59</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.createScale(<quote>'rad'</quote>,&nbsp;this.cumulativeDomains.rad,&nbsp;[0,&nbsp;Math.min(vp.height-margins.bottom-margins.top,&nbsp;vp.width-margins.left-margins.right)/2]);&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p id=60 class="line"><span>&nbsp;&nbsp;60</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;break;</p>
+<p id=61 class="line"><span>&nbsp;&nbsp;61</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;<quote>'cartesian'</quote>:</p>
+<p id=62 class="line"><span>&nbsp;&nbsp;62</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default:</p>
+<p id=63 class="line"><span>&nbsp;&nbsp;63</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.createScale(<quote>'hor'</quote>,&nbsp;this.cumulativeDomains.hor,&nbsp;[margins.left,&nbsp;&nbsp;vp.width-margins.right]);</p>
+<p id=64 class="line"><span>&nbsp;&nbsp;64</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.createScale(<quote>'ver'</quote>,&nbsp;this.cumulativeDomains.ver,&nbsp;[vp.height-margins.bottom,&nbsp;margins.top]);</p>
+<p id=65 class="line"><span>&nbsp;&nbsp;65</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.createScale(<quote>'size'</quote>,&nbsp;this.cumulativeDomains.size);</p>
+<p id=66 class="line"><span>&nbsp;&nbsp;66</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=67 class="line"><span>&nbsp;&nbsp;67</span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;</p>
+<p id=68 class="line"><span>&nbsp;&nbsp;68</span></p>
+<p id=69 class="line"><span>&nbsp;&nbsp;69</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;preRender(data:DataSet&nbsp;|&nbsp;DataSet[]):&nbsp;void&nbsp;{</p>
+<p id=70 class="line"><span>&nbsp;&nbsp;70</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;dims&nbsp;=&nbsp;this.defaults.dims;</p>
+<p id=71 class="line"><span>&nbsp;&nbsp;71</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.cumulate(data);</p>
+<p id=72 class="line"><span>&nbsp;&nbsp;72</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Object.keys(dims).forEach(dim&nbsp;=>&nbsp;this.setDomain(dim,&nbsp;this.cumulativeDomains[dim]));</p>
+<p id=73 class="line"><span>&nbsp;&nbsp;73</span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;</p>
+<p id=74 class="line"><span>&nbsp;&nbsp;74</span></p>
+<p id=75 class="line"><span>&nbsp;&nbsp;75</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;renderComponent()&nbsp;{}</p>
+<p id=76 class="line"><span>&nbsp;&nbsp;76</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;postRender():&nbsp;void&nbsp;{}&nbsp;</p>
+<p id=77 class="line"><span>&nbsp;&nbsp;77</span></p>
+<p id=78 class="line"><span>&nbsp;&nbsp;78</span>&nbsp;&nbsp;&nbsp;&nbsp;<comment>/**&nbsp;creates&nbsp;a&nbsp;default&nbsp;entry&nbsp;for&nbsp;the&nbsp;component&nbsp;type&nbsp;in&nbsp;`Defaults`&nbsp;*/</comment></p>
+<p id=79 class="line"><span>&nbsp;&nbsp;79</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;createDefaults():ScalesDefaults&nbsp;{</p>
+<p id=80 class="line"><span>&nbsp;&nbsp;80</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;{</p>
+<p id=81 class="line"><span>&nbsp;&nbsp;81</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;margin:&nbsp;{&nbsp;left:20,&nbsp;top:20,&nbsp;right:20,&nbsp;bottom:30},</p>
+<p id=82 class="line"><span>&nbsp;&nbsp;82</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;dims:&nbsp;{},</p>
+<p id=83 class="line"><span>&nbsp;&nbsp;83</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;type:&nbsp;undefined</p>
+<p id=84 class="line"><span>&nbsp;&nbsp;84</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</p>
+<p id=85 class="line"><span>&nbsp;&nbsp;85</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=86 class="line"><span>&nbsp;&nbsp;86</span></p>
+<p id=87 class="line"><span>&nbsp;&nbsp;87</span>&nbsp;&nbsp;&nbsp;&nbsp;<comment>/**</comment></p>
+<p id=88 class="line"><span>&nbsp;&nbsp;88</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;creates&nbsp;a&nbsp;d3&nbsp;scale&nbsp;object&nbsp;based&nbsp;on&nbsp;the&nbsp;provided&nbsp;settings.</comment></p>
+<p id=89 class="line"><span>&nbsp;&nbsp;89</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;name&nbsp;name&nbsp;of&nbsp;the&nbsp;new&nbsp;scale,&nbsp;must&nbsp;also&nbsp;match&nbsp;the&nbsp;name&nbsp;of&nbsp;a&nbsp;predefined&nbsp;scale&nbsp;default.</comment></p>
+<p id=90 class="line"><span>&nbsp;&nbsp;90</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;domain&nbsp;the&nbsp;data&nbsp;domain&nbsp;to&nbsp;scale&nbsp;for</comment></p>
+<p id=91 class="line"><span>&nbsp;&nbsp;91</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;range&nbsp;the&nbsp;viewport&nbsp;range&nbsp;to&nbsp;scale&nbsp;for&nbsp;</comment></p>
+<p id=92 class="line"><span>&nbsp;&nbsp;92</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</comment></p>
+<p id=93 class="line"><span>&nbsp;&nbsp;93</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;createScale(name:string,&nbsp;domain:&nbsp;Domain,&nbsp;range?:Range):Scale&nbsp;{</p>
+<p id=94 class="line"><span>&nbsp;&nbsp;94</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;scaleDef:&nbsp;ScaleDefaults&nbsp;=&nbsp;this.defaults.dims[name];</p>
+<p id=95 class="line"><span>&nbsp;&nbsp;95</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(!scaleDef)&nbsp;{&nbsp;</p>
+<p id=96 class="line"><span>&nbsp;&nbsp;96</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log.warn(`can't&nbsp;create&nbsp;scale&nbsp;${name};&nbsp;no&nbsp;default&nbsp;available`);</p>
+<p id=97 class="line"><span>&nbsp;&nbsp;97</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return;&nbsp;</p>
+<p id=98 class="line"><span>&nbsp;&nbsp;98</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=99 class="line"><span>&nbsp;&nbsp;99</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;let&nbsp;scales&nbsp;=&nbsp;{</p>
+<p id=100 class="line"><span>&nbsp;100</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;none:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NoScale,</p>
+<p id=101 class="line"><span>&nbsp;101</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ordinal:&nbsp;&nbsp;&nbsp;&nbsp;BandScale,</p>
+<p id=102 class="line"><span>&nbsp;102</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;time:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TimeScale,</p>
+<p id=103 class="line"><span>&nbsp;103</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;log:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LogScale,</p>
+<p id=104 class="line"><span>&nbsp;104</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;linear:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LinearScale,</p>
+<p id=105 class="line"><span>&nbsp;105</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</p>
+<p id=106 class="line"><span>&nbsp;106</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.scales[name]&nbsp;=&nbsp;new&nbsp;scales[scaleDef.type](scaleDef,&nbsp;domain,&nbsp;range).getScale();</p>
+<p id=107 class="line"><span>&nbsp;107</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.setDomain(name,&nbsp;domain);</p>
+<p id=108 class="line"><span>&nbsp;108</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;this.scales[name];</p>
+<p id=109 class="line"><span>&nbsp;109</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=110 class="line"><span>&nbsp;110</span></p>
+<p id=111 class="line"><span>&nbsp;111</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;setDomain(name:string,&nbsp;domain:&nbsp;Domain)&nbsp;{</p>
+<p id=112 class="line"><span>&nbsp;112</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(domain&nbsp;&&&nbsp;domain.length===2&nbsp;&&&nbsp;!isNaN(<number>domain[0])&nbsp;&&&nbsp;!isNaN(<number>domain[1]))&nbsp;{</p>
+<p id=113 class="line"><span>&nbsp;113</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(domain[0]>0&nbsp;&&&nbsp;domain[0]===domain[1])&nbsp;{</p>
+<p id=114 class="line"><span>&nbsp;114</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//&nbsp;log.info(`expanding&nbsp;${name}&nbsp;from&nbsp;[${domain[0]},${domain[1]}]&nbsp;to&nbsp;[0,&nbsp;${domain[1]}]`);</comment></p>
+<p id=115 class="line"><span>&nbsp;115</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain[0]&nbsp;=&nbsp;0;</p>
+<p id=116 class="line"><span>&nbsp;116</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=117 class="line"><span>&nbsp;117</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=118 class="line"><span>&nbsp;118</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.scales[name].domain(domain);</p>
+<p id=119 class="line"><span>&nbsp;119</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=120 class="line"><span>&nbsp;120</span></p>
+<p id=121 class="line"><span>&nbsp;121</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;cumulate(data:DataSet&nbsp;|&nbsp;DataSet[])&nbsp;{</p>
+<p id=122 class="line"><span>&nbsp;122</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;dims&nbsp;=&nbsp;this.defaults.dims;</p>
+<p id=123 class="line"><span>&nbsp;123</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;dom&nbsp;=&nbsp;this.cumulativeDomains;</p>
+<p id=124 class="line"><span>&nbsp;124</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Object.keys(dims).forEach(dim&nbsp;=>&nbsp;dom[dim]&nbsp;&nbsp;=&nbsp;(dom[dim]&nbsp;&nbsp;&&&nbsp;dims[dim].aggregateOverTime)?&nbsp;&nbsp;dom[dim]&nbsp;&nbsp;:&nbsp;undefined)</p>
+<p id=125 class="line"><span>&nbsp;125</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.cfg.components.series.expandDomains(data,&nbsp;this.cumulativeDomains);</p>
+<p id=126 class="line"><span>&nbsp;126</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=127 class="line"><span>&nbsp;127</span>}</p>
+<p id=128 class="line"><span>&nbsp;128</span></p></code></div>
+                </body>
+            

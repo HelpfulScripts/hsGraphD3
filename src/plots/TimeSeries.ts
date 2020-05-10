@@ -4,7 +4,7 @@
  * plots a 2D line with markers and smooth x-axis tranisitions.
  * 
  * ## Usage
- * `graph.series.add('timeseries', {x:<x-col>, y:<y-col>, y0?:<y-lower-fill>, r?:<size-col>});`
+ * `graph.add('timeseries', {x:<x-col>, y:<y-col>, y0?:<y-lower-fill>, r?:<size-col>});`
  * 
  * 
  * ## Example
@@ -21,9 +21,9 @@
  * while (index<11) { data.rows.push([index++, Math.random()+1, Math.random()])}
  * 
  * // create the graph and define the series to plot:
- * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('timeseries', {x:'date', y:'time', y0:()=>1});
- * graph.series.add('timeseries', {x:'date', y:'volume', r:'time'});
+ * const graph = new hsGraphD3.Graph(root);
+ * graph.add('timeseries', {x:'date', y:'time', y0:()=>1});
+ * graph.add('timeseries', {x:'date', y:'volume', r:'time'});
  * 
  * // adjust some settings:
  * graph.series.defaults.series0.marker.size = 15;
@@ -46,8 +46,8 @@
  * let defaults;
  * 
  * function createGraph(svgRoot) {
- *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      graph.series.add('timeseries', {x:'date', y:'volume', r:'time'});
+ *      const graph = new hsGraphD3.Graph(svgRoot);
+ *      graph.add('timeseries', {x:'date', y:'volume', r:'time'});
  *      return graph.series.defaults[0];
  * }
  * 
@@ -97,7 +97,7 @@ export class TimeSeries extends NumericSeriesPlot {
     }
  
     getDefaults(): SeriesPlotDefaults {
-        const scaleDef = this.cfg.graph.scales.defaults.dims.hor;
+        const scaleDef = this.cfg.components.scales.defaults.dims.hor;
         scaleDef.aggregateOverTime = false;
         const defs = super.getDefaults();
         defs.line.rendered = true; 
@@ -108,15 +108,15 @@ export class TimeSeries extends NumericSeriesPlot {
         super.initialize(svg, color);
     } 
 
-    preRender(data:NumericDataSet, domains:Domains): void {
-        super.preRender(data, domains);
+    preRender(data:NumericDataSet): void {
+        super.preRender(data);
         if (typeof(this.dims.x)==='number') { log.warn(`preRender: unsupported const x=${this.dims.x} in timeseries`); }
         const x = data.colNames.indexOf(<string>this.dims.x);
         if (data.rows.length>1) { // artificially shorten the x-axis by 1 unit
             const xUnit = <number>data.rows[1][x] - <number>data.rows[0][x];
-            const domain = <NumDomain>this.cfg.graph.scales.scaleDims.hor.domain();
+            const domain = <NumDomain>this.cfg.components.scales.scaleDims.hor.domain();
             if (domain[1] - domain[0] > xUnit) { domain[0] += xUnit; }
-            this.cfg.graph.scales.scaleDims.hor.domain(domain);         
+            this.cfg.components.scales.scaleDims.hor.domain(domain);         
         }   
     }
 
@@ -126,7 +126,7 @@ export class TimeSeries extends NumericSeriesPlot {
         if (typeof(this.dims.x)==='number') { log.warn(`d3RenderMarkers: unsupported const x=${this.dims.x} in timeseries`); }
         const x = data.colNames.indexOf(<string>this.dims.x);
         if (defaults.marker.rendered) {
-            const scales = this.cfg.graph.scales.scaleDims;
+            const scales = this.cfg.components.scales.scaleDims;
             const xUnit = data.rows[1][x] - data.rows[0][x];
             const samples:any = svg.select('.markers').selectAll("circle").data(data.rows, d => d[0]);
             samples.exit().remove();            // remove unneeded circles
@@ -146,7 +146,7 @@ export class TimeSeries extends NumericSeriesPlot {
     d3RenderLine(svg:d3Base, data:DataSet) {
         const x = data.colNames.indexOf(<string>this.dims.x);
         const xUnit = <number>data.rows[1][x] - <number>data.rows[0][x];
-        const scales = this.cfg.graph.scales.scaleDims;
+        const scales = this.cfg.components.scales.scaleDims;
         return super.d3RenderLine(svg, data)
             .attr('transform', `translate(${scales.hor(xUnit) - scales.hor(0)})`)
             .transition(this.cfg.transition)
@@ -156,7 +156,7 @@ export class TimeSeries extends NumericSeriesPlot {
     d3RenderFill(svg:d3Base, data:NumericDataSet) {
         const x = data.colNames.indexOf(<string>this.dims.x);
         const xUnit = data.rows[1][x] - data.rows[0][x];
-        const scales = this.cfg.graph.scales.scaleDims;
+        const scales = this.cfg.components.scales.scaleDims;
         return super.d3RenderFill(svg, data)
             .attr('transform', `translate(${scales.hor(xUnit) - scales.hor(0)})`)
             .transition(this.cfg.transition)

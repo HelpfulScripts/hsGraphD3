@@ -18,11 +18,11 @@ Helpful Scripts Graph convenience wrapper for D3js.
  * 
  * 
  * ## Usage
- * 1. create a {@link Graph `Graph`} object with a root DOM element to attach to: <br>
- * `graph = new hsGraphD3.GraphCartesian(root);`
+ * 1. create a {@link Graph.Graph `Graph`} object with a root DOM element to attach to: <br>
+ * `graph = new hsGraphD3.Graph(root);`
  * 2. add desired series configurations, specifying the type of series, as well as the data to use for the x- and y-axes, 
  * and other variables, depending on the series type:<br>
- * `graph.series.add('area', {x:'time', y:'volume', r:()=>5});`
+ * `graph.add('area', {x:'time', y:'volume', r:()=>5});`
  * 3. apply any desired formatting changes to the default:<br>
  * `graph.axes.defaults.color = '#88f';`
  * 4. render the graph for a given data set: <br>
@@ -66,8 +66,8 @@ Helpful Scripts Graph convenience wrapper for D3js.
  * };
  * 
  * // create the graph and define the series to plot:
- * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('bubble', {x:'time', y:'volume', r:'costs'});
+ * const graph = new hsGraphD3.Graph(root);
+ * graph.add('bubble', {x:'time', y:'volume', r:'costs'});
  * 
  * // adjust some settings:
  * graph.axes.defaults.color = '#88f';  // both axes appear blue
@@ -103,9 +103,9 @@ Helpful Scripts Graph convenience wrapper for D3js.
  * }
  * 
  * // create the graph and define the series to plot:
- * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('line', {x:'date', y:'line', y0:()=>0});
- * graph.series.add('timeseries', {x:'date', y:'series', y0:()=>-1});
+ * const graph = new hsGraphD3.Graph(root);
+ * graph.add('line', {x:'date', y:'line', y0:()=>0});
+ * graph.add('timeseries', {x:'date', y:'series', y0:()=>-1});
  * 
  * //----- adjust some settings:
  * with (graph.defaults) {
@@ -136,10 +136,10 @@ Helpful Scripts Graph convenience wrapper for D3js.
  * Besides using the standalone version (see examples above), `hsGraph` supports integration 
  * with [`Mithriljs`](http://mithriljs.org):
  * ```
- * m(GraphCartesian, {
+ * m(Graph, {
  *      rootID: 'root',
  *      define: (graph:Graph) => {
- *          graph.series.add('column', {x:'date', y:'volume'});
+ *          graph.add('column', {x:'date', y:'volume'});
  *          graph.defaults.scales.margin.left = 50;
  *      },
  *      data: data
@@ -149,7 +149,7 @@ Helpful Scripts Graph convenience wrapper for D3js.
  * `updatePeriod` and `updateCallback`. See the {@link Graph.Graph.constructor Graph.constructor} for details:
  * 
  * ## Dynamically changing the data series
- * When defining the series (e.g. `graph.series.add('column', {x:'date', y:'volume'});`) 
+ * When defining the series (e.g. `graph.add('column', {x:'date', y:'volume'});`) 
  * the column names used as reference to the data are made available in the defaults of the series and can 
  * be dynamically changed there:
  * ```

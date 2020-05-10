@@ -17,8 +17,8 @@
  * };
  * 
  * // setup and plot the data:
- * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('bubble', {x:'time', y:'volume', r:'costs'});
+ * const graph = new hsGraphD3.Graph(root);
+ * graph.add('bubble', {x:'time', y:'volume', r:'costs'});
  * graph.title.text = 'My Bubble Chart';
  * graph.render(data);
  * 
@@ -41,7 +41,7 @@
  *      if (svgRoot && svgRoot.length && !defaults) { 
  *          const colors = ['#800', '#080', '#008'];
  *          defaults = log
- *              .inspect(new hsGraphD3.GraphCartesian(svgRoot[0]).defaults.title, null, '   ', colors)
+ *              .inspect(new hsGraphD3.Graph(svgRoot[0]).defaults.title, null, '   ', colors)
  *              .replace(/\n/g, '<br>')
  *      }
  *   } 

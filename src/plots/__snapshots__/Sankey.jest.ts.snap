@@ -135,9 +135,9 @@ exports[`Sankey should plot sankey 1`] = `
           <path />
           <path
             color="#1f77b4"
-            d="M40,108.5C260,108.5,260,108.5,480,108.5"
+            d="M40,280C260,280,260,280,480,280"
             stroke="currentColor"
-            stroke-width="177"
+            stroke-width="520"
             style="mix-blend-mode: multiply;"
           >
             <title>
@@ -146,117 +146,13 @@ exports[`Sankey should plot sankey 1`] = `
           </path>
           <path
             color="#2ca02c"
-            d="M500,108.5C720,108.5,720,108.5,940,108.5"
+            d="M500,280C720,280,720,280,940,280"
             stroke="currentColor"
-            stroke-width="177"
+            stroke-width="520"
             style="mix-blend-mode: multiply;"
           >
             <title>
               sheep → one
-            </title>
-          </path>
-          <path
-            color="#d62728"
-            d="M40,620.5C260,620.5,260,620.5,480,620.5"
-            stroke="currentColor"
-            stroke-width="59"
-            style="mix-blend-mode: multiply;"
-          >
-            <title>
-              b → wolf
-            </title>
-          </path>
-          <path
-            color="#8c564b"
-            d="M500,530.0333333333333C720,530.0333333333333,720,383.8333333333333,940,383.8333333333333"
-            stroke="currentColor"
-            stroke-width="59"
-            style="mix-blend-mode: multiply;"
-          >
-            <title>
-              wolf → one
-            </title>
-          </path>
-          <path
-            color="#7f7f7f"
-            d="M40,279.9333333333333C260,279.9333333333333,260,240.26666666666665,480,240.26666666666665"
-            stroke="currentColor"
-            stroke-width="86.53333333333333"
-            style="mix-blend-mode: multiply;"
-          >
-            <title>
-              c → sheep
-            </title>
-          </path>
-          <path
-            color="#bcbd22"
-            d="M500,397.59999999999997C720,397.59999999999997,720,476.59999999999997,940,476.59999999999997"
-            stroke="currentColor"
-            stroke-width="86.53333333333333"
-            style="mix-blend-mode: multiply;"
-          >
-            <title>
-              sheep → two
-            </title>
-          </path>
-          <path
-            d="M40,401.86666666666656C260,401.86666666666656,260,362.19999999999993,480,362.19999999999993"
-            stroke="currentColor"
-            stroke-width="157.33333333333331"
-            style="mix-blend-mode: multiply;"
-          >
-            <title>
-              c → sheep
-            </title>
-          </path>
-          <path
-            d="M500,275.66666666666663C720,275.66666666666663,720,275.66666666666663,940,275.66666666666663"
-            stroke="currentColor"
-            stroke-width="157.33333333333331"
-            style="mix-blend-mode: multiply;"
-          >
-            <title>
-              sheep → one
-            </title>
-          </path>
-          <path
-            d="M40,525.7666666666665C260,525.7666666666665,260,545.7666666666667,480,545.7666666666667"
-            stroke="currentColor"
-            stroke-width="90.46666666666667"
-            style="mix-blend-mode: multiply;"
-          >
-            <title>
-              c → wolf
-            </title>
-          </path>
-          <path
-            d="M500,604.7666666666667C720,604.7666666666667,720,604.7666666666668,940,604.7666666666668"
-            stroke="currentColor"
-            stroke-width="90.46666666666667"
-            style="mix-blend-mode: multiply;"
-          >
-            <title>
-              wolf → three
-            </title>
-          </path>
-          <path
-            d="M40,206.83333333333334C260,206.83333333333334,260,470.69999999999993,480,470.69999999999993"
-            stroke="currentColor"
-            stroke-width="19.666666666666664"
-            style="mix-blend-mode: multiply;"
-          >
-            <title>
-              a → fence
-            </title>
-          </path>
-          <path
-            d="M500,470.69999999999993C720,470.69999999999993,720,549.7000000000002,940,549.7000000000002"
-            stroke="currentColor"
-            stroke-width="19.666666666666664"
-            style="mix-blend-mode: multiply;"
-          >
-            <title>
-              fence → three
             </title>
           </path>
         </g>
@@ -273,7 +169,7 @@ exports[`Sankey should plot sankey 1`] = `
             class="popup"
             color="#1f77b4"
             fill="currentColor"
-            height="196.6666666666666"
+            height="520"
             opacity="0.75"
             width="20"
             x="20"
@@ -283,7 +179,7 @@ exports[`Sankey should plot sankey 1`] = `
             class="popup"
             color="#2ca02c"
             fill="currentColor"
-            height="420.8666666666666"
+            height="520"
             opacity="0.75"
             width="20"
             x="480"
@@ -293,7 +189,7 @@ exports[`Sankey should plot sankey 1`] = `
             class="popup"
             color="#d62728"
             fill="currentColor"
-            height="393.3333333333333"
+            height="520"
             opacity="0.75"
             width="20"
             x="940"
@@ -303,58 +199,58 @@ exports[`Sankey should plot sankey 1`] = `
             class="popup"
             color="#8c564b"
             fill="currentColor"
-            height="58.999999999999886"
+            height="0"
             opacity="0.75"
             width="20"
-            x="20"
-            y="591"
+            x="940"
+            y="560"
           />
           <rect
             class="popup"
             color="#7f7f7f"
             fill="currentColor"
-            height="149.4666666666664"
+            height="0"
             opacity="0.75"
             width="20"
-            x="480"
-            y="500.53333333333336"
+            x="940"
+            y="580"
           />
           <rect
             class="popup"
             color="#bcbd22"
             fill="currentColor"
-            height="334.33333333333337"
-            opacity="0.75"
-            width="20"
-            x="20"
-            y="236.6666666666666"
-          />
-          <rect
-            class="popup"
-            fill="currentColor"
-            height="86.53333333333347"
+            height="0"
             opacity="0.75"
             width="20"
             x="940"
-            y="433.3333333333333"
+            y="600"
           />
           <rect
             class="popup"
             fill="currentColor"
-            height="110.13333333333355"
+            height="0"
             opacity="0.75"
             width="20"
             x="940"
-            y="539.8666666666668"
+            y="620"
           />
           <rect
             class="popup"
             fill="currentColor"
-            height="19.666666666666742"
+            height="0"
             opacity="0.75"
             width="20"
-            x="480"
-            y="460.8666666666666"
+            x="940"
+            y="640"
+          />
+          <rect
+            class="popup"
+            fill="currentColor"
+            height="0"
+            opacity="0.75"
+            width="20"
+            x="940"
+            y="660"
           />
         </g>
       </g>

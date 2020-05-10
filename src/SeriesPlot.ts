@@ -118,7 +118,7 @@ export function text(val:DataVal) {
  * - maintaining a stack mechanism that allows series to be stacked on one another
  * To create a series plot, add the desired plot type to the graph:
  * ```
- * graph.series.add(<type>, {<dim>:<ValueDef>, ...});
+ * graph.add(<type>, {<dim>:<ValueDef>, ...});
  * ``` 
  * where `<dim>` specifies a {@link SeriesPlot.SeriesDimensions series dimension}
  * and {@link SeriesPlot.ValueDef `ValueDef`} provides the data values for the dimension, 
@@ -146,14 +146,24 @@ export abstract class SeriesPlot {
     /** return the GraphDimension of the independent axis */
     protected abscissa:string;
 
+    /** 
+     * determines the required type of graph for this lot:  
+     * - 'cartesian': plot on a cartesian x/y coordinate system 
+     * - 'polar': plot on a polar r/phi coordinate system
+     */
+    protected type: 'polar' | 'cartesian';
+
 
     constructor(cfg:GraphCfg, seriesName:string, dims:SeriesDimensions) {
         this.cfg = cfg; 
         this.seriesKey = seriesName;
         this._dims = dims;
+        this.type = 'cartesian';
     }
     
     public get key() { return this.seriesKey; }
+
+    public get graphType() { return this.type; }
 
     protected get dims(): SeriesDimensions { return this._dims; }
 
@@ -184,6 +194,7 @@ export abstract class SeriesPlot {
         const dims:GraphDimensions = this.dimensions;
         Object.keys(dims).map(dim => { // dim='hor', 'ver', size'
             const useStack = dim!=='size';  // donst stack-scale marker sizes
+
             const type = this.cfg.graph.defaults.scales.dims[dim].type;
             dims[dim].map(colName => { if (colName!==undefined) { 
                 const valueFn = this.accessor(colName, dataSet.colNames, useStack);
@@ -243,7 +254,7 @@ export abstract class SeriesPlot {
      * applies `stroke` and `fill` colors to `items`.
      * Colors are determined by the `color` tag in the series definition as in
      * ```
-     * graph.series.add('column', {x:'item', y:'Mary', color:<colorValue>}); 
+     * graph.add('column', {x:'item', y:'Mary', color:<colorValue>}); 
      * ```
      * Various coloring modes are available via the `<colorValue>` tag:
      * - `string`: 
@@ -377,7 +388,7 @@ export abstract class SeriesPlot {
         }
     }
 
-    public preRender(data:DataSet, domains:Domains): void {}
+    public preRender(data:DataSet): void {}
 
     public renderComponent(data:DataSet): void {
         const defaults = this.defaults;

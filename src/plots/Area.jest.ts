@@ -23,7 +23,7 @@ const data:DataSet = {
 };
 
 function createGraph(root:any) {
-    const graph = new hsGraphD3.GraphCartesian(root);
+    const graph = new hsGraphD3.Graph(root);
     graph.isRendered = () => true;
     graph.axes.defaults.hor.numTicksMinor = 10;
     graph.axes.defaults.hor.numTicksMajor = 2;
@@ -33,10 +33,10 @@ function createGraph(root:any) {
 }
 
 describe('Area indexed', () => {
-    let graph:hsGraphD3.GraphCartesian;
+    let graph:hsGraphD3.Graph;
     beforeAll(() => {
         graph = createGraph(root);
-        graph.series.add('area', {y:'volume'});
+        graph.add('area', {y:'volume'});
         graph.render(data);
     });
     it(`should have 'area' registered`, () =>
@@ -52,35 +52,35 @@ describe('Area indexed', () => {
 });
 
 describe('Area volume vs time', () => {
-    let graph:hsGraphD3.GraphCartesian;
+    let graph:hsGraphD3.Graph;
     beforeAll(() => {
         graph = createGraph(root);
-        graph.series.add('area', {x:'time', y:'volume'});
-        graph.series.add('area', {x:'time', y:'costs', y0:'volume'});
+        graph.add('area', {x:'time', y:'volume'});
+        graph.add('area', {x:'time', y:'costs', y0:'volume'});
         graph.render(data);
     });
     it('should plot area', () => expect(root).toMatchSnapshot());
 });
 
 describe('Area labels', () => {
-    let graph:hsGraphD3.GraphCartesian;
+    let graph:hsGraphD3.Graph;
     beforeAll(() => {
         graph = createGraph(root);
-        graph.series.add('area', {x:'time', y:'volume', label:'time'});
-        graph.series.add('area', {x:'time', y:'volume', label:i=>i});
+        graph.add('area', {x:'time', y:'volume', label:'time'});
+        graph.add('area', {x:'time', y:'volume', label:i=>i});
         graph.render(data);
     });
     it('should plot area', () => expect(root).toMatchSnapshot());
 });
 
 describe('Area labels', () => {
-    let graph:hsGraphD3.GraphCartesian;
+    let graph:hsGraphD3.Graph;
     beforeAll(() => {
         graph = createGraph(root);
-        graph.series.add('area', {x:'time', y:'volume', color:'time'});
-        graph.series.add('area', {x:'time', y:'volume', color:i=>i});
-        graph.series.add('area', {x:'time', y:'volume', color:'greens'});
-        graph.series.add('area', {x:'time', y:'volume', color:'#f00'});
+        graph.add('area', {x:'time', y:'volume', color:'time'});
+        graph.add('area', {x:'time', y:'volume', color:i=>i});
+        graph.add('area', {x:'time', y:'volume', color:'greens'});
+        graph.add('area', {x:'time', y:'volume', color:'#f00'});
         graph.render(data);
     });
     it('should plot area', () => expect(root).toMatchSnapshot());

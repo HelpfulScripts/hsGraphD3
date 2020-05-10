@@ -30,7 +30,7 @@ const data:DataSet = {
 };
 
 function createGraph(root:any) {
-    const graph = new hsGraphD3.GraphCartesian(root);
+    const graph = new hsGraphD3.Graph(root);
     graph.isRendered = () => true;
     graph.axes.defaults.hor.numTicksMinor = 10;
     graph.axes.defaults.hor.numTicksMajor = 2;
@@ -46,14 +46,14 @@ function createGraph(root:any) {
 
 
 describe('Line', () => {
-    let graph:hsGraphD3.GraphCartesian;
+    let graph:hsGraphD3.Graph;
 
     describe('plot data', () => {
         beforeAll(() => {
             jest.useFakeTimers();
             graph = createGraph(root);
             // jest.runAllTimers();
-            graph.series.add('line', {x:'xval', y:'yval', r:'rval', popup:null});
+            graph.add('line', {x:'xval', y:'yval', r:'rval', popup:null});
             // jest.runAllTimers();
             graph.axes.defaults.color = '#666';
             graph.render(data); //  .update(200, (data:DataSet) => update(data, done));
@@ -73,7 +73,7 @@ describe('Line', () => {
     describe('plot constants', () => {
         beforeEach(() => {
             graph = createGraph(root);
-            graph.series.add('line', {x:'xval', y:10});
+            graph.add('line', {x:'xval', y:10});
             graph.render(data);
         });
         it('should plot horizontal line', () => {
@@ -84,7 +84,7 @@ describe('Line', () => {
     describe('plot function', () => {
         beforeEach(() => {
             graph = createGraph(root);
-            graph.series.add('line', {x:'xval', y:()=>10});
+            graph.add('line', {x:'xval', y:()=>10});
             graph.render(data);
         });
         it('should plot horizontal line', () => {
@@ -95,7 +95,7 @@ describe('Line', () => {
     describe('plot indexed', () => {
         beforeEach(() => {
             graph = createGraph(root);
-            graph.series.add('line', { y:'yval'});
+            graph.add('line', { y:'yval'});
             graph.render(data);
         });
         it('should plot horizontal line', () => {

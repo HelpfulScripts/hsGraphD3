@@ -11,6 +11,13 @@ import { d3Base }           from './Settings';
 import { UnitVp }           from './Settings';
 import { Selection }        from 'd3';
 import { BaseType }         from 'd3';
+import { Scales } from './Scales';
+import { Canvas } from './Canvas';
+import { Grids } from './Grid';
+import { Axes } from './Axis';
+import { Series } from './Series';
+import { Title } from './Title';
+import { Popup } from './Popup';
 
 
 export interface SVGLineSelection extends Selection<SVGLineElement, number, BaseType, unknown> {}
@@ -18,6 +25,18 @@ export interface SVGCircleSelection extends Selection<SVGCircleElement, number, 
 
 
 type pixel = number;
+
+export interface Components {
+    scales:Scales;
+    canvas:Canvas;
+    grids:Grids;
+    axes:Axes;
+    series:Series;
+    title:Title;
+    popup:Popup;
+}
+
+
 /** 
  * Configuration parameters for the render tree, passed to each `GraphComponent` during construction. 
  */
@@ -27,6 +46,9 @@ export interface GraphCfg {
 
     /** the `graph` object that this config belongs to. */
     graph:      Graph;
+
+    /** the set of graph components used  */
+    components: Components,
 
     /** dimensions of the HTML client rect containing this graph in pixel. */
     client:     { x:pixel; y:pixel; width:pixel; height:pixel; };
@@ -85,7 +107,7 @@ export abstract class GraphBase implements LifecycleCalls {
     abstract initialize(svg:d3Base): void;
 
     /** Called immediately before each call to renderComponent. */
-    abstract preRender(data:DataSet | DataSet[], domains:Domains): void; 
+    abstract preRender(data:DataSet | DataSet[]): void; 
 
     /** renders the component. */
     abstract renderComponent(data:DataSet | DataSet[]): void;

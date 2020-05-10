@@ -20,9 +20,9 @@
  * };
  * 
  * // setup and plot the data:
- * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('bubble', {x:'time', y:'volume', r:'costs'});
- * graph.series.add('bubble', {x:'time', y:'costs', r:'volume', popup: popup, label: popup});
+ * const graph = new hsGraphD3.Graph(root);
+ * graph.add('bubble', {x:'time', y:'volume', r:'costs'});
+ * graph.add('bubble', {x:'time', y:'costs', r:'volume', popup: popup, label: popup});
  * with (graph.defaults.series[1].label) {
  *      xpos = 'right';
  *      inside = false;
@@ -49,7 +49,7 @@
  *      if (svgRoot && svgRoot.length && !defaults) { 
  *          const colors = ['#800', '#080', '#008'];
  *          defaults = log
- *              .inspect(new hsGraphD3.GraphCartesian(svgRoot[0]).defaults.popup, null, '   ', colors)
+ *              .inspect(new hsGraphD3.Graph(svgRoot[0]).defaults.popup, null, '   ', colors)
  *              .replace(/\n/g, '<br>')
  *      }
  *   } 

@@ -26,7 +26,7 @@ const data:DataSet = {
 };
 
 function createGraph(root:any) {
-    const graph = new hsGraphD3.GraphCartesian(root);
+    const graph = new hsGraphD3.Graph(root);
     graph.isRendered = () => true;
     graph.axes.defaults.hor.numTicksMinor = 10;
     graph.axes.defaults.hor.numTicksMajor = 2;
@@ -36,17 +36,17 @@ function createGraph(root:any) {
 }
 
 describe('Bubble', () => {
-    let graph:hsGraphD3.GraphCartesian;
+    let graph:hsGraphD3.Graph;
     beforeAll(() => {
         graph = createGraph(root);
-        graph.series.add('bubble', {x:'xval', y:'yval', r:'rval', label:5});
-        graph.series.add('bubble', {x:'xval', y:'yval', r:'rval', label:5});
+        graph.add('bubble', {x:'xval', y:'yval', r:'rval', label:5});
+        graph.add('bubble', {x:'xval', y:'yval', r:'rval', label:5});
         graph.defaults.series[1].label.xpos = TextHAlign.right;
-        graph.series.add('bubble', {x:'xval', y:'yval', r:'rval', label:5});
+        graph.add('bubble', {x:'xval', y:'yval', r:'rval', label:5});
         graph.defaults.series[2].label.xpos = TextHAlign.left;
-        graph.series.add('bubble', {x:'xval', y:'yval', r:'rval', label:5});
+        graph.add('bubble', {x:'xval', y:'yval', r:'rval', label:5});
         graph.defaults.series[3].label.ypos = TextVAlign.bottom;
-        graph.series.add('bubble', {x:'xval', y:'yval', r:'rval', label:5});
+        graph.add('bubble', {x:'xval', y:'yval', r:'rval', label:5});
         graph.defaults.series[4].label.ypos = TextVAlign.top;
         graph.render(data);
     });

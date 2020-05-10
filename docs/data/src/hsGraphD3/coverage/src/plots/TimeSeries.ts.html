@@ -296,21 +296,21 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">13x</span>
-<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -395,7 +395,7 @@
  * plots a 2D line with markers and smooth x-axis tranisitions.
  * 
  * ## Usage
- * `graph.series.add('timeseries', {x:&lt;x-col&gt;, y:&lt;y-col&gt;, y0?:&lt;y-lower-fill&gt;, r?:&lt;size-col&gt;});`
+ * `graph.add('timeseries', {x:&lt;x-col&gt;, y:&lt;y-col&gt;, y0?:&lt;y-lower-fill&gt;, r?:&lt;size-col&gt;});`
  * 
  * 
  * ## Example
@@ -412,9 +412,9 @@
  * while (index&lt;11) { data.rows.push([index++, Math.random()+1, Math.random()])}
  * 
  * // create the graph and define the series to plot:
- * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('timeseries', {x:'date', y:'time', y0:()=&gt;1});
- * graph.series.add('timeseries', {x:'date', y:'volume', r:'time'});
+ * const graph = new hsGraphD3.Graph(root);
+ * graph.add('timeseries', {x:'date', y:'time', y0:()=&gt;1});
+ * graph.add('timeseries', {x:'date', y:'volume', r:'time'});
  * 
  * // adjust some settings:
  * graph.series.defaults.series0.marker.size = 15;
@@ -437,8 +437,8 @@
  * let defaults;
  * 
  * function createGraph(svgRoot) {
- *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      graph.series.add('timeseries', {x:'date', y:'volume', r:'time'});
+ *      const graph = new hsGraphD3.Graph(svgRoot);
+ *      graph.add('timeseries', {x:'date', y:'volume', r:'time'});
  *      return graph.series.defaults[0];
  * }
  * 
@@ -488,7 +488,7 @@ export class TimeSeries extends NumericSeriesPlot {
     }
  
     getDefaults(): SeriesPlotDefaults {
-        const scaleDef = this.cfg.graph.scales.defaults.dims.hor;
+        const scaleDef = this.cfg.components.scales.defaults.dims.hor;
         scaleDef.aggregateOverTime = false;
         const defs = super.getDefaults();
         defs.line.rendered = true; 
@@ -499,15 +499,15 @@ export class TimeSeries extends NumericSeriesPlot {
         super.initialize(svg, color);
     } 
 &nbsp;
-    preRender(data:NumericDataSet, domains:Domains): void {
-        super.preRender(data, domains);
+    preRender(data:NumericDataSet): void {
+        super.preRender(data);
         <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof(this.dims.x)==='number') { <span class="cstat-no" title="statement not covered" >log.warn(`preRender: unsupported const x=${this.dims.x} in timeseries`); </span>}
         const x = data.colNames.indexOf(&lt;string&gt;this.dims.x);
         <span class="missing-if-branch" title="else path not taken" >E</span>if (data.rows.length&gt;1) { // artificially shorten the x-axis by 1 unit
             const xUnit = &lt;number&gt;data.rows[1][x] - &lt;number&gt;data.rows[0][x];
-            const domain = &lt;NumDomain&gt;this.cfg.graph.scales.scaleDims.hor.domain();
+            const domain = &lt;NumDomain&gt;this.cfg.components.scales.scaleDims.hor.domain();
             <span class="missing-if-branch" title="else path not taken" >E</span>if (domain[1] - domain[0] &gt; xUnit) { domain[0] += xUnit; }
-            this.cfg.graph.scales.scaleDims.hor.domain(domain);         
+            this.cfg.components.scales.scaleDims.hor.domain(domain);         
         }   
     }
 &nbsp;
@@ -517,7 +517,7 @@ export class TimeSeries extends NumericSeriesPlot {
         <span class="missing-if-branch" title="if path not taken" >I</span>if (typeof(this.dims.x)==='number') { <span class="cstat-no" title="statement not covered" >log.warn(`d3RenderMarkers: unsupported const x=${this.dims.x} in timeseries`); </span>}
         const x = data.colNames.indexOf(&lt;string&gt;this.dims.x);
         <span class="missing-if-branch" title="else path not taken" >E</span>if (defaults.marker.rendered) {
-            const scales = this.cfg.graph.scales.scaleDims;
+            const scales = this.cfg.components.scales.scaleDims;
             const xUnit = data.rows[1][x] - data.rows[0][x];
             const samples:any = svg.select('.markers').selectAll("circle").data(data.rows, d =&gt; d[0]);
             samples.exit().remove();            // remove unneeded circles
@@ -537,7 +537,7 @@ export class TimeSeries extends NumericSeriesPlot {
     d3RenderLine(svg:d3Base, data:DataSet) {
         const x = data.colNames.indexOf(&lt;string&gt;this.dims.x);
         const xUnit = &lt;number&gt;data.rows[1][x] - &lt;number&gt;data.rows[0][x];
-        const scales = this.cfg.graph.scales.scaleDims;
+        const scales = this.cfg.components.scales.scaleDims;
         return super.d3RenderLine(svg, data)
             .attr('transform', `translate(${scales.hor(xUnit) - scales.hor(0)})`)
             .transition(this.cfg.transition)
@@ -547,7 +547,7 @@ export class TimeSeries extends NumericSeriesPlot {
     d3RenderFill(svg:d3Base, data:NumericDataSet) {
         const x = data.colNames.indexOf(&lt;string&gt;this.dims.x);
         const xUnit = data.rows[1][x] - data.rows[0][x];
-        const scales = this.cfg.graph.scales.scaleDims;
+        const scales = this.cfg.components.scales.scaleDims;
         return super.d3RenderFill(svg, data)
             .attr('transform', `translate(${scales.hor(xUnit) - scales.hor(0)})`)
             .transition(this.cfg.transition)

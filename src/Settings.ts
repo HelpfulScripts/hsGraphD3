@@ -22,8 +22,8 @@
  * let defaults;
  * 
  * function createGraph(svgRoot) {
- *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      graph.series.add('column', 'time', 'volume', 'costs');
+ *      const graph = new hsGraphD3.Graph(svgRoot);
+ *      graph.add('column', 'time', 'volume', 'costs');
  *      graph.canvas.defaults.stroke.width = 7.8; // odd number, should appear on the left
  *      return graph.defaults;
  * }

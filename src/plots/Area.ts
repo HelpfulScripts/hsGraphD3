@@ -10,7 +10,7 @@
 
  * 
  * ## Usage
- * `graph.series.add('area', {x:<x-col>, y:<y-col>, ...<dim>:<ValueDef>});`
+ * `graph.add('area', {x:<x-col>, y:<y-col>, ...<dim>:<ValueDef>});`
  * - `<dim>` is the semantic dimension to set. See {@link CartSeriesPlot.CartSeriesDimensions CartSeriesDimensions} for valid dimensions. 
  * - `<ValueDef>` is the {@link SeriesPlot.ValueDef value definition}. 
  * 
@@ -19,9 +19,9 @@
  * - second series (bottom): an orange area between 'volume' and the x-axis (y0=0), using markers sized by 'costs'
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
  * <file name='script.js'>
- * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('area', {x:'time', y:'volume', r:'volume', label:'volume'});
- * graph.series.add('area', {x:'time', y:'costs', r:'costs', y0:'volume', label:'costs'});
+ * const graph = new hsGraphD3.Graph(root);
+ * graph.add('area', {x:'time', y:'volume', r:'volume', label:'volume'});
+ * graph.add('area', {x:'time', y:'costs', r:'costs', y0:'volume', label:'costs'});
  * graph.series.defaults[0].line.rendered = true;
  * graph.series.defaults[1].line.rendered = true;
  * graph.render({
@@ -42,9 +42,9 @@
  * - second series (top): am orange area on to of the first for y='volume', using markers sized by 'costs'
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
  * <file name='script.js'>
- * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('area', {x:'time', y:'volume', r:'volume', stacked:'mystack', label:'volume'});
- * graph.series.add('area', {x:'time', y:'costs', r:'costs', stacked:'mystack', label:'costs'});
+ * const graph = new hsGraphD3.Graph(root);
+ * graph.add('area', {x:'time', y:'volume', r:'volume', stacked:'mystack', label:'volume'});
+ * graph.add('area', {x:'time', y:'costs', r:'costs', stacked:'mystack', label:'costs'});
  * graph.series.defaults[0].line.rendered = true;
  * graph.series.defaults[1].line.rendered = true;
  * graph.render({
@@ -67,9 +67,9 @@
  * let defaults;
  * 
  * function createGraph(svgRoot) {
- *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      graph.series.add('area', {x:'time', y:'costs', stacked:'mystack'});
- *      graph.series.add('area', {x:'time', y:'volume', r:'costs', stacked:'mystack'});
+ *      const graph = new hsGraphD3.Graph(svgRoot);
+ *      graph.add('area', {x:'time', y:'costs', stacked:'mystack'});
+ *      graph.add('area', {x:'time', y:'volume', r:'costs', stacked:'mystack'});
  *      return graph.series.defaults;
  * }
  * 

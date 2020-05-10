@@ -312,17 +312,17 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">13x</span>
-<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">13x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -337,7 +337,7 @@
  * # Bar Plot
  * 
  * ## Usage
- * `graph.series.add('bar', {x:&lt;x-col&gt;, y:&lt;y-col&gt;, ...&lt;dim&gt;:&lt;ValueDef&gt;});`
+ * `graph.add('bar', {x:&lt;x-col&gt;, y:&lt;y-col&gt;, ...&lt;dim&gt;:&lt;ValueDef&gt;});`
  * - `&lt;dim&gt;` is the semantic dimension to set. See {@link CartSeriesPlot.CartSeriesDimensions CartSeriesDimensions} for valid dimensions. 
  * - `&lt;ValueDef&gt;` is the {@link SeriesPlot.ValueDef value definition}. 
  * 
@@ -356,9 +356,9 @@
  * };
  * 
  * // setup and plot the data:
- * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('bar', {x:'costs', y:'State', label:'State'});
- * graph.series.add('bar', {x:'volume', y:'State'});
+ * const graph = new hsGraphD3.Graph(root);
+ * graph.add('bar', {x:'costs', y:'State', label:'State'});
+ * graph.add('bar', {x:'volume', y:'State'});
  * graph.scales.defaults.dims.ver.ordinal.gap = 0.25;
  * graph.scales.defaults.dims.ver.ordinal.overlap = 0.75;
  * graph.series.defaults[0].line.rendered = true;
@@ -392,9 +392,9 @@
  * };
  * 
  * // setup and plot the data:
- * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('bar', {x:'costs', y:'State', label:'costs', stacked:'group1'});
- * graph.series.add('bar', {x:'volume', y:'State', label:'State', stacked:'group1'});
+ * const graph = new hsGraphD3.Graph(root);
+ * graph.add('bar', {x:'costs', y:'State', label:'costs', stacked:'group1'});
+ * graph.add('bar', {x:'volume', y:'State', label:'State', stacked:'group1'});
  * graph.scales.defaults.dims.ver.ordinal.gap = 0.25;
  * graph.scales.defaults.dims.ver.ordinal.overlap = 0.75;
  * graph.series.defaults.series0.line.rendered = true;
@@ -422,8 +422,8 @@
  * let defaults;
  * 
  * function createGraph(svgRoot) {
- *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      graph.series.add('bar', {y:'state', x:'volume'});
+ *      const graph = new hsGraphD3.Graph(svgRoot);
+ *      graph.add('bar', {y:'state', x:'volume'});
  *      return graph;
  * }
  * 

@@ -4,7 +4,7 @@
  * Abstract base class for all ordinal series plot types, i.e. plots with a ordinal abscissa and a numeric ordinate.
  * To create a series plot, add the desired plot type to the graph:
  * ```
- * graph.series.add(<type>, {<dim>: <ValueDef>, ...});
+ * graph.add(<type>, {<dim>: <ValueDef>, ...});
  * ``` 
  * - `<type>` is one of the registered types: 
  *     - &nbsp; {@link plots.Bar `bar`} a horizontal bar chart
@@ -61,12 +61,11 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
         super.initialize(plot, color);
     }
 
-    preRender(data:DataSet, domains:Domains): void {
-        
-        super.preRender(data, domains);
+    preRender(data:DataSet): void {
+        super.preRender(data);
         const scaleDef = this.cfg.graph.defaults.scales.dims[this.abscissa];
         const gap = scaleDef.ordinal.gap;
-        const scale = this.cfg.graph.scales.scaleDims[this.abscissa];
+        const scale = this.cfg.components.scales.scaleDims[this.abscissa];
         scale.paddingInner(gap);
         scale.paddingOuter(gap/2);
         this.cache = { x:<number[]>[], x0:<number[]>[], y:<number[]>[], y0:<number[]>[] };
@@ -86,10 +85,10 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
     }
     
     private getParams(colNames:string[]):any[] {
-        const scales = this.cfg.graph.scales;
+        const scales = this.cfg.components.scales;
         const scaleDef = scales.defaults.dims[this.abscissa];
         const stackGroup = this.dims.stacked || false;
-        const allKeys = Object.keys(this.cfg.graph.series.defaults).filter(k => k.indexOf(Series.type)===0);
+        const allKeys = Object.keys(this.cfg.components.series.defaults).filter(k => k.indexOf(Series.type)===0);
         const myKey = allKeys.indexOf(this.key) || 0;
         const step = scales.scaleDims[this.abscissa].step();
         const pad = scales.scaleDims[this.abscissa].paddingInner();
@@ -108,8 +107,8 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
     protected d3DrawMarker(markers:d3Base, data:DataSet, defaults:SeriesPlotDefaults) {
         const [offset, thickness] = this.getParams(data.colNames);
 
-        const xScale = this.cfg.graph.scales.scaleDims.hor;
-        const yScale = this.cfg.graph.scales.scaleDims.ver;
+        const xScale = this.cfg.components.scales.scaleDims.hor;
+        const yScale = this.cfg.components.scales.scaleDims.ver;
         const x  = this.accessor(this.dims.x, data.colNames);
         const x0 = this.dims.stacked? this.accessor(this.dims.stacked, data.colNames) : ()=>0;
         const y  = this.accessor(this.dims.y, data.colNames);
@@ -142,8 +141,8 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
     protected d3DrawLabels(labels:d3Base, data:DataSet, defaults:SeriesPlotDefaults) {
         const [offset, thickness] = this.getParams(data.colNames);
 
-        const xScale = this.cfg.graph.scales.scaleDims.hor;
-        const yScale = this.cfg.graph.scales.scaleDims.ver;
+        const xScale = this.cfg.components.scales.scaleDims.hor;
+        const yScale = this.cfg.components.scales.scaleDims.ver;
         
         const l = this.accessor(this.dims.label, data.colNames);
         const cfg:Label = this.defaults.label;
@@ -177,8 +176,8 @@ export abstract class OrdinalSeriesPlot extends CartSeriesPlot {
         const y  = this.accessor(this.dims.y, colNames);
         const [offset, thickness] = this.getParams(colNames);
 
-        const xScale = this.cfg.graph.scales.scaleDims.hor;
-        const yScale = this.cfg.graph.scales.scaleDims.ver;
+        const xScale = this.cfg.components.scales.scaleDims.hor;
+        const yScale = this.cfg.components.scales.scaleDims.ver;
         const xAttr  = (d:number[], i:number) => this.cached('x', i, ()=>xScale(x(d, i)));
         const yAttr  = (d:number[], i:number) => this.cached('y', i, ()=>yScale(y(d, i)));
 

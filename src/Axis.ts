@@ -17,7 +17,7 @@
  *      if (svgRoot && svgRoot.length && !defaults) { 
  *          const colors = ['#800', '#080', '#008'];
  *          defaults = log
- *              .inspect(new hsGraphD3.GraphCartesian(svgRoot[0]).defaults.axes, null, '   ', colors)
+ *              .inspect(new hsGraphD3.Graph(svgRoot[0]).defaults.axes, null, '   ', colors)
  *              .replace(/\n/g, '<br>')
  *      }
  *   } 
@@ -148,7 +148,7 @@ export class Axis {
     
     preRender(): void {
         const axisDef = this.defaults;
-        const scales = this.cfg.graph.scales.scaleDims;
+        const scales = this.cfg.components.scales.scaleDims;
         const scale = scales[this.dir];
         const clientSize = (this.dir===Direction.horizontal)? this.cfg.client.width : this.cfg.client.height;
         scale.tickCountMajor = axisDef.numTicksMajor==='auto'? parseInt(''+(clientSize / pixPerMajorTick)) : axisDef.numTicksMajor;
@@ -163,7 +163,7 @@ export class Axis {
             .attr('color', this.defaults.color);
 
         setStroke(this.svg, axisDef.line);
-        const scales = this.cfg.graph.scales.scaleDims;
+        const scales = this.cfg.components.scales.scaleDims;
         this.setTransform(scales);
         const axis:any = this.getD3Axis(scales, axisDef);
         const scale = scales[this.dir];
@@ -187,12 +187,12 @@ export class Axis {
     }
 
     protected setTransform(scales:ScaleDims) {
-        const margins = this.cfg.graph.scales.defaults.margin;
+        const margins = this.cfg.components.scales.defaults.margin;
         const trans = this.cfg.transition;
         const orth = (this.dir===Direction.horizontal)? Direction.vertical : Direction.horizontal;
         const scale = scales[this.dir];
         const oscale = scales[orth];
-        const axisDef = this.cfg.graph.axes.defaults[orth];
+        const axisDef = this.cfg.components.axes.defaults[orth];
         const dom = oscale.domain();
         const cross:DataVal = axisDef.crossing==='auto'? ((dom[0] < 0 && dom[1] > 0)? 0 : dom[0]) : axisDef.crossing;
         let crossing = oscale(cross);
@@ -206,6 +206,7 @@ export class Axis {
                 this.pos = 'top';
             }
             crossing += ((oscale.type()==='ordinal')? oscale.step() : 0);
+            if (isNaN(d) || isNaN(crossing)) { log.warn(`Axis.setTransform hor: d=${d}, cr=${crossing}`); }
             this.svg.transition(trans).attr("transform", `translate(${d}, ${crossing})`);
         } else {
             this.pos = 'left';
@@ -215,6 +216,7 @@ export class Axis {
             } else if (crossing > this.cfg.viewPort.width-margins.right) {
                 crossing = this.cfg.viewPort.width-margins.right;
             }
+            if (isNaN(d) || isNaN(crossing)) { log.warn(`Axis.setTransform ver: d=${d}, cr=${crossing}`); }
             this.svg.transition(trans).attr("transform", `translate(${crossing}, ${d})`);
         }
     }

@@ -20,7 +20,7 @@ const data = {
 };
    
 function createGraph(root:any) {
-    const graph = new hsGraphD3.GraphCartesian(root);
+    const graph = new hsGraphD3.Graph(root);
     graph.isRendered = () => true;
     return graph;
 }
@@ -30,7 +30,7 @@ describe('Sankey', () => {
     let graph:hsGraphD3.Graph;
     beforeAll(() => {
         graph = createGraph(root);
-        graph.series.add('sankey', {keys:['from', 'via', 'to'], value:'count', color:'cat10'});
+        graph.add('sankey', {keys:['from', 'via', 'to'], value:'count', color:'cat10'});
         graph.render(data);
     });
     it('should plot sankey', () => expect(root).toMatchSnapshot());

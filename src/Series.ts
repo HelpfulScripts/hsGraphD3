@@ -9,7 +9,7 @@
  * let types;
  * 
  * function getTypes(svgRoot) {
- *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
+ *      const graph = new hsGraphD3.Graph(svgRoot);
  *      return graph.seriesTypes.map(t => m('li', t));
  * }
  * 
@@ -43,6 +43,8 @@ import { SeriesPlotDefaults }   from './SeriesPlot';
 import { SeriesDimensions }     from './SeriesPlot';
 import { schemeDark2 }          from 'd3';
 import { PolarPlotDefaults }    from './PolarSeriesPlot';
+import { scaleDefault }         from './Scale';
+
 
 type PlotFactory = (cfg:GraphCfg, seriesName:string, dims:SeriesDimensions) => SeriesPlot;
 
@@ -97,9 +99,9 @@ export class Series extends GraphComponent {
         this.series.forEach((s:SeriesPlot, i:number) => s.initialize(seriesSVG, defaultColors[i % defaultColors.length]));
     } 
 
-    public preRender(data:DataSet | DataSet[], domains:Domains): void {
+    public preRender(data:DataSet | DataSet[]): void {
         this.series.forEach((s:SeriesPlot, i:number) => 
-            s.preRender((<DataSet>data).colNames? data : data[i % this.series.length], domains) 
+            s.preRender((<DataSet>data).colNames? data : data[i % this.series.length]) 
         );
     } 
 
@@ -158,7 +160,7 @@ export class Series extends GraphComponent {
     /**
      * adds a series to the plot, for example
      * ```
-     * graph.series.add('area', {x:'time', y:'costs', r:5})
+     * graph.add('area', {x:'time', y:'costs', r:5})
      * ```
      * The object literal `dims` specifies the data to use for each 
      * semantic dimension the plot uses. For details on the dimensions 
@@ -170,13 +172,52 @@ export class Series extends GraphComponent {
         const seriesCreator = Series.seriesCreatorMap[type];
         if (seriesCreator) {
             const series = seriesCreator(this.cfg, `${Series.type}${this.series.length}`, dims);
-            const index = this.series.length;
-            this.defaults[index] = this.defaults[series.key] = series.getDefaults();
-            this.series.push(series);
-            log.debug(`added series ${index} on '${log.inspect(dims, null)}'`);
+            if (!this.makeGraphType(series.graphType)) {
+                log.warn(`adding ${type} series requires a graph type ${series.graphType} that is incompatible with the previously set type ${this.cfg.graph.defaults.scales.type}`);
+            } else {
+                const index = this.series.length;
+                this.defaults[index] = this.defaults[series.key] = series.getDefaults();
+                this.series.push(series);
+                log.debug(()=>`added ${series.graphType} ${type} series ${index} on '${Object.keys(dims).map(d=>d+': '+dims[d]).join(', ')}'`);
+            }
             return series;
         } else {
             log.error(`unknown plot type ${type}; available types are:\n   '${Object.keys(Series.seriesCreatorMap).join("'\n   '")}'`);
         }
+    }
+
+    makeGraphType(graphType:'polar' | 'cartesian') {
+        const scalesDefaults = this.cfg.graph.defaults.scales;
+        switch(graphType) {
+            case 'polar':
+                if (!scalesDefaults.type) {
+                    log.debug(`creating polar graph type`);
+                    scalesDefaults.type = 'polar';
+                    scalesDefaults.dims.ang  = scalesDefaults.dims.ang  || scaleDefault('linear', 0, 2*Math.PI);    // auto viewport range
+                    scalesDefaults.dims.rad  = scalesDefaults.dims.rad  || scaleDefault('linear');    // auto viewport range
+                    this.cfg.graph.defaults.axes.rendered = false;
+                    this.cfg.graph.defaults.grids.rendered = false;
+                    const hor = this.cfg.viewPort.width;
+                    const ver = this.cfg.viewPort.height;
+                    this.cfg.viewPort.orgX = -hor/2;
+                    this.cfg.viewPort.orgY = -ver/2;
+                    this.cfg.baseSVG.attr('viewBox', `${-hor/2} ${-ver/2} ${hor} ${ver}`);
+                } else if (scalesDefaults.type !== 'polar') {
+                    return false;
+                } 
+                break;
+            case 'cartesian':
+            default:
+                if (!scalesDefaults.type) {
+                    log.debug(`creating cartesian graph type`);
+                    scalesDefaults.type = 'cartesian';
+                    scalesDefaults.dims.hor  = scalesDefaults.dims.hor  || scaleDefault('linear');    // auto viewport range
+                    scalesDefaults.dims.ver  = scalesDefaults.dims.ver  || scaleDefault('linear');    // auto viewport range
+                    scalesDefaults.dims.size = scalesDefaults.dims.size || scaleDefault('linear', 5, 20);  
+                } else if (scalesDefaults.type !== 'cartesian') {
+                    return false;
+                } 
+        }
+        return true;
     }
 }

@@ -2,7 +2,7 @@
  * # Bubble Plot
  * 
  * ### Usage
- * `graph.series.add('bubble', {x:<x-col>, y:<y-col>, r:<size-col>});`
+ * `graph.add('bubble', {x:<x-col>, y:<y-col>, r:<size-col>});`
  * - `<dim>`: the semantic dimension to set. See {@link CartSeriesPlot.CartSeriesDimensions CartSeriesDimensions} for valid dimensions. 
  * - `<ValueDef>`: the {@link SeriesPlot.ValueDef value definition}. 
  * 
@@ -21,8 +21,8 @@
  * };
  * 
  * // setup and plot the data:
- * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('bubble', {x:'time', y:'volume', r:'costs', label:i=>i});
+ * const graph = new hsGraphD3.Graph(root);
+ * graph.add('bubble', {x:'time', y:'volume', r:'costs', label:i=>i});
  * graph.series.defaults[0].label.xpos = 'center';
  * graph.series.defaults[0].label.ypos = 'bottom';
  * graph.render(data);
@@ -38,8 +38,8 @@
  * let defaults;
  * 
  * function createGraph(svgRoot) {
- *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      graph.series.add('bubble', {x:'time', y:'volume', r:'costs'});
+ *      const graph = new hsGraphD3.Graph(svgRoot);
+ *      graph.add('bubble', {x:'time', y:'volume', r:'costs'});
  *      return graph.series.defaults[0];
  * }
  * 

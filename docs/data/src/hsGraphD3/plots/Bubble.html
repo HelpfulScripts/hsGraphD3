@@ -25,7 +25,7 @@
 <p id=2 class="line"><span>&nbsp;&nbsp;&nbsp;2</span><comment>&nbsp;*&nbsp;#&nbsp;Bubble&nbsp;Plot</comment></p>
 <p id=3 class="line"><span>&nbsp;&nbsp;&nbsp;3</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=4 class="line"><span>&nbsp;&nbsp;&nbsp;4</span><comment>&nbsp;*&nbsp;###&nbsp;Usage</comment></p>
-<p id=5 class="line"><span>&nbsp;&nbsp;&nbsp;5</span><comment>&nbsp;*&nbsp;`graph.series.add(<quote>'bubble'</quote>,&nbsp;{x:<x-col>,&nbsp;y:<y-col>,&nbsp;r:<size-col>});`</comment></p>
+<p id=5 class="line"><span>&nbsp;&nbsp;&nbsp;5</span><comment>&nbsp;*&nbsp;`graph.add(<quote>'bubble'</quote>,&nbsp;{x:<x-col>,&nbsp;y:<y-col>,&nbsp;r:<size-col>});`</comment></p>
 <p id=6 class="line"><span>&nbsp;&nbsp;&nbsp;6</span><comment>&nbsp;*&nbsp;-&nbsp;`<dim>`:&nbsp;the&nbsp;semantic&nbsp;dimension&nbsp;to&nbsp;set.&nbsp;See&nbsp;{@link&nbsp;CartSeriesPlot.CartSeriesDimensions&nbsp;CartSeriesDimensions}&nbsp;for&nbsp;valid&nbsp;dimensions.&nbsp;</comment></p>
 <p id=7 class="line"><span>&nbsp;&nbsp;&nbsp;7</span><comment>&nbsp;*&nbsp;-&nbsp;`<ValueDef>`:&nbsp;the&nbsp;{@link&nbsp;SeriesPlot.ValueDef&nbsp;value&nbsp;definition}.&nbsp;</comment></p>
 <p id=8 class="line"><span>&nbsp;&nbsp;&nbsp;8</span><comment>&nbsp;*&nbsp;</comment></p>
@@ -44,8 +44,8 @@
 <p id=21 class="line"><span>&nbsp;&nbsp;21</span><comment>&nbsp;*&nbsp;};</comment></p>
 <p id=22 class="line"><span>&nbsp;&nbsp;22</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=23 class="line"><span>&nbsp;&nbsp;23</span><comment>&nbsp;*&nbsp;<comment>//&nbsp;setup&nbsp;and&nbsp;plot&nbsp;the&nbsp;data:</comment></comment></p>
-<p id=24 class="line"><span>&nbsp;&nbsp;24</span><comment><comment></comment>&nbsp;*&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.GraphCartesian(root);</comment></p>
-<p id=25 class="line"><span>&nbsp;&nbsp;25</span><comment>&nbsp;*&nbsp;graph.series.add(<quote>'bubble'</quote>,&nbsp;{x:<quote>'time'</quote>,&nbsp;y:<quote>'volume'</quote>,&nbsp;r:<quote>'costs'</quote>,&nbsp;label:i=>i});</comment></p>
+<p id=24 class="line"><span>&nbsp;&nbsp;24</span><comment><comment></comment>&nbsp;*&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.Graph(root);</comment></p>
+<p id=25 class="line"><span>&nbsp;&nbsp;25</span><comment>&nbsp;*&nbsp;graph.add(<quote>'bubble'</quote>,&nbsp;{x:<quote>'time'</quote>,&nbsp;y:<quote>'volume'</quote>,&nbsp;r:<quote>'costs'</quote>,&nbsp;label:i=>i});</comment></p>
 <p id=26 class="line"><span>&nbsp;&nbsp;26</span><comment>&nbsp;*&nbsp;graph.series.defaults[0].label.xpos&nbsp;=&nbsp;<quote>'center'</quote>;</comment></p>
 <p id=27 class="line"><span>&nbsp;&nbsp;27</span><comment>&nbsp;*&nbsp;graph.series.defaults[0].label.ypos&nbsp;=&nbsp;<quote>'bottom'</quote>;</comment></p>
 <p id=28 class="line"><span>&nbsp;&nbsp;28</span><comment>&nbsp;*&nbsp;graph.render(data);</comment></p>
@@ -61,8 +61,8 @@
 <p id=38 class="line"><span>&nbsp;&nbsp;38</span><comment>&nbsp;*&nbsp;let&nbsp;defaults;</comment></p>
 <p id=39 class="line"><span>&nbsp;&nbsp;39</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=40 class="line"><span>&nbsp;&nbsp;40</span><comment>&nbsp;*&nbsp;function&nbsp;createGraph(svgRoot)&nbsp;{</comment></p>
-<p id=41 class="line"><span>&nbsp;&nbsp;41</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.GraphCartesian(svgRoot);</comment></p>
-<p id=42 class="line"><span>&nbsp;&nbsp;42</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;graph.series.add(<quote>'bubble'</quote>,&nbsp;{x:<quote>'time'</quote>,&nbsp;y:<quote>'volume'</quote>,&nbsp;r:<quote>'costs'</quote>});</comment></p>
+<p id=41 class="line"><span>&nbsp;&nbsp;41</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.Graph(svgRoot);</comment></p>
+<p id=42 class="line"><span>&nbsp;&nbsp;42</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;graph.add(<quote>'bubble'</quote>,&nbsp;{x:<quote>'time'</quote>,&nbsp;y:<quote>'volume'</quote>,&nbsp;r:<quote>'costs'</quote>});</comment></p>
 <p id=43 class="line"><span>&nbsp;&nbsp;43</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;graph.series.defaults[0];</comment></p>
 <p id=44 class="line"><span>&nbsp;&nbsp;44</span><comment>&nbsp;*&nbsp;}</comment></p>
 <p id=45 class="line"><span>&nbsp;&nbsp;45</span><comment>&nbsp;*&nbsp;</comment></p>

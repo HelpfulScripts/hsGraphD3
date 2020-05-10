@@ -2,7 +2,7 @@
  * # Bar Plot
  * 
  * ## Usage
- * `graph.series.add('bar', {x:<x-col>, y:<y-col>, ...<dim>:<ValueDef>});`
+ * `graph.add('bar', {x:<x-col>, y:<y-col>, ...<dim>:<ValueDef>});`
  * - `<dim>` is the semantic dimension to set. See {@link CartSeriesPlot.CartSeriesDimensions CartSeriesDimensions} for valid dimensions. 
  * - `<ValueDef>` is the {@link SeriesPlot.ValueDef value definition}. 
  * 
@@ -21,9 +21,9 @@
  * };
  * 
  * // setup and plot the data:
- * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('bar', {x:'costs', y:'State', label:'State'});
- * graph.series.add('bar', {x:'volume', y:'State'});
+ * const graph = new hsGraphD3.Graph(root);
+ * graph.add('bar', {x:'costs', y:'State', label:'State'});
+ * graph.add('bar', {x:'volume', y:'State'});
  * graph.scales.defaults.dims.ver.ordinal.gap = 0.25;
  * graph.scales.defaults.dims.ver.ordinal.overlap = 0.75;
  * graph.series.defaults[0].line.rendered = true;
@@ -57,9 +57,9 @@
  * };
  * 
  * // setup and plot the data:
- * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('bar', {x:'costs', y:'State', label:'costs', stacked:'group1'});
- * graph.series.add('bar', {x:'volume', y:'State', label:'State', stacked:'group1'});
+ * const graph = new hsGraphD3.Graph(root);
+ * graph.add('bar', {x:'costs', y:'State', label:'costs', stacked:'group1'});
+ * graph.add('bar', {x:'volume', y:'State', label:'State', stacked:'group1'});
  * graph.scales.defaults.dims.ver.ordinal.gap = 0.25;
  * graph.scales.defaults.dims.ver.ordinal.overlap = 0.75;
  * graph.series.defaults.series0.line.rendered = true;
@@ -87,8 +87,8 @@
  * let defaults;
  * 
  * function createGraph(svgRoot) {
- *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      graph.series.add('bar', {y:'state', x:'volume'});
+ *      const graph = new hsGraphD3.Graph(svgRoot);
+ *      graph.add('bar', {y:'state', x:'volume'});
  *      return graph;
  * }
  * 

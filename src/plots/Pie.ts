@@ -4,7 +4,7 @@
  * plots a 2D pie chart. 
  * 
  * ## Usage
- * `graph.series.add('pie', {phi:<angle-col>, ...<dim>:<ValueDef>});`
+ * `graph.add('pie', {phi:<angle-col>, ...<dim>:<ValueDef>});`
  * - `<dim>` is the semantic dimension to set. See {@link PolarSeriesPlot.PolarSeriesDimensions PolarSeriesDimensions} for valid dimensions. 
  * - `<ValueDef>` is the {@link SeriesPlot.ValueDef value definition}. 
  * 
@@ -23,8 +23,8 @@
  *          ['1/1/19', 1,   0.2, 0.4]]
  * };
  * 
- * const graph = new hsGraphD3.GraphPolar(root);
- * graph.series.add('pie', {phi:'costs', label:'date'});
+ * const graph = new hsGraphD3.Graph(root);
+ * graph.add('pie', {phi:'costs', label:'date'});
  * graph.defaults.series.series0.marker.stroke.color = '#fff';
  * //graph.defaults.series.series0.label.xpos = 0.8;
  * graph.render(data);
@@ -47,9 +47,9 @@
  *          ['1/1/19', 1,   0.2, 0.4]]
  * };
  * 
- * const graph = new hsGraphD3.GraphPolar(root);
+ * const graph = new hsGraphD3.Graph(root);
  * // omitting 'phi' defaults to phi=1
- * graph.series.add('pie', {r:'costs', r0:0.1, label:'date'});
+ * graph.add('pie', {r:'costs', r0:0.1, label:'date'});
  * graph.defaults.series.series0.marker.stroke.color = '#fff';
  * //graph.defaults.series.series0.label.xpos = 0.8;
  * graph.render(data);
@@ -64,8 +64,8 @@
  * let defaults;
  * 
  * function createGraph(svgRoot) {
- *      const graph = new hsGraphD3.GraphPolar(svgRoot);
- *      graph.series.add('pie', {phi:'volume'});
+ *      const graph = new hsGraphD3.Graph(svgRoot);
+ *      graph.add('pie', {phi:'volume'});
  *      return graph.defaults;
  * }
  * 
@@ -128,7 +128,7 @@ export class Pie extends PolarSeriesPlot {
     protected d3RenderMarkers(plot:d3Base, data:DataSet) {
         const defaults = this.defaults;
         if (defaults.marker.rendered) {
-            const popup = this.cfg.graph.popup;
+            const popup = this.cfg.components.popup;
             const shape = this.markerShape();
             const phiAccess = this.accessor(this.dims.phi, data.colNames, false);
             const pie = d3Pie().value((d:any, i:number) => <number>phiAccess(d, i));
@@ -151,7 +151,7 @@ export class Pie extends PolarSeriesPlot {
 
     protected d3RenderLabels(plot:d3Base, data:DataSet):void {
         const defaults = this.defaults;
-        const popup = this.cfg.graph.popup;
+        const popup = this.cfg.components.popup;
         if (defaults.label.rendered) {
             const phiAccess = this.accessor(this.dims.phi, data.colNames, false);
             const pie = d3Pie().value((d:any, i:number) => <number>phiAccess(d, i));
@@ -167,7 +167,7 @@ export class Pie extends PolarSeriesPlot {
     
 
     protected d3DrawMarker(markers:d3Base, data:DataSet, defaults:PolarPlotDefaults):void {
-        const scales = this.cfg.graph.scales.scaleDims;
+        const scales = this.cfg.components.scales.scaleDims;
         const rAccess = this.accessor(this.dims.r, data.colNames, false);
         const r0Access = this.accessor(this.dims.r0, data.colNames, false);
         const arc = d3Arc()
@@ -179,7 +179,7 @@ export class Pie extends PolarSeriesPlot {
     }
 
     protected d3DrawLabels(labels:d3Base, data:DataSet, defaults:PolarPlotDefaults):void {
-        const scales = this.cfg.graph.scales.scaleDims;
+        const scales = this.cfg.components.scales.scaleDims;
         const rAccess = this.accessor(this.dims.r, data.colNames, false);
         const r0Access = this.accessor(this.dims.r0, data.colNames, false);
         const lAccess = this.accessor(this.dims.label, data.colNames, false);

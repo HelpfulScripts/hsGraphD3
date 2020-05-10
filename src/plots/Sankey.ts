@@ -4,7 +4,7 @@
  * plots Sankley lines. 
  * 
  * ## Usage
- * `graph.series.add('sankey', {keys:[<node-col>, ...], value:<value-col>, color:<color-scheme>});`
+ * `graph.add('sankey', {keys:[<node-col>, ...], value:<value-col>, color:<color-scheme>});`
  * - `keys` the columns to use as nodes. At least 2 keys are required. The sequence of keys determines the sequence of the graph flow.
  * - `value` is the {@link SeriesPlot.ValueDef value definition}.
  * - `color` is the color scheme to use, e.g. 'cat10'
@@ -19,8 +19,8 @@
  *          ['c', 'sheep', 'one', 40], ['c', 'wolf', 'three', 23], ['a', 'fence', 'three', 5]
  *    ]
  * };
- * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('sankey', {keys:['from', 'via', 'to'], value:'count', color:'cat10'});
+ * const graph = new hsGraphD3.Graph(root);
+ * graph.add('sankey', {keys:['from', 'via', 'to'], value:'count', color:'cat10'});
  * graph.render(data);
  * </file>
  * </example>
@@ -53,9 +53,16 @@ export interface SankeyDefaults extends SeriesPlotDefaults {
     padding: number;
 }
 
+interface Nodes {
+    [index:number]:string,
+    names: {}
+}
+
+
 export class Sankey extends SeriesPlot {
     nodes:SankeyNodeMinimal<{}, {}>[];
     links:SankeyLinkMinimal<{}, {}>[];
+    sankey:any;
 
     getDefaults(): SankeyDefaults {
         const def = <SankeyDefaults>super.getDefaults();
@@ -88,48 +95,52 @@ export class Sankey extends SeriesPlot {
         this.cfg.graph.defaults.scales.margin.bottom = this.cfg.graph.defaults.scales.margin.top;
     }
 
-    public preRender(data:DataSet, domains:Domains): void {
+    public preRender(data:DataSet): void {
+        super.preRender(data);
         const margin = this.cfg.graph.defaults.scales.margin;
-        super.preRender(data, domains);
         
-        const sankey = d3Sankey()
-            .nodeId((d:any) => d.name)
-            // .nodeAlign(d3[`sankey${align[0].toUpperCase()}${align.slice(1)}`])
-            .nodeWidth((<SankeyDefaults>this.defaults).width)
-            .nodePadding((<SankeyDefaults>this.defaults).padding)
-            .extent([[margin.left, margin.top], [this.cfg.viewPort.width - margin.left - margin.right, this.cfg.viewPort.height - margin.top - margin.bottom]]);
-        const {nodes, links} = sankey(this.createNodesAndLinks(data));
-        this.nodes = nodes;
-        this.links = links;
+        if (this.sankey) {
+            this.sankey.update(this.createNodesAndLinks(data))
+        } else {
+            this.sankey = d3Sankey()
+                .nodeId((d:any) => d.name)
+                // .nodeAlign(d3[`sankey${align[0].toUpperCase()}${align.slice(1)}`])
+                .nodeWidth((<SankeyDefaults>this.defaults).width)
+                .nodePadding((<SankeyDefaults>this.defaults).padding)
+                .extent([[margin.left, margin.top], [this.cfg.viewPort.width - margin.left - margin.right, this.cfg.viewPort.height - margin.top - margin.bottom]]);
+            const {nodes, links} = this.sankey(this.createNodesAndLinks(data));
+            this.nodes = nodes;
+            this.links = links;
+        }
     }
 
-    private createNodesAndLinks(data:DataSet):{nodes:any[], links:any[]} {
+    private createNodesAndLinks(data:DataSet):{nodes:Nodes, links:any[]} {
         const keys = (<string[]>this.dims.keys).map(k => data.colNames.indexOf(k));
         const v = data.colNames.indexOf(<string>this.dims.value);
-        const nodes = <{name:string}[]>[];
-        const links = <any[]>[];
-        const linkByKey = {};
-        data.rows.forEach(r => { 
+        const nodes:any = this.nodes || [];
+        nodes.names = nodes.names || {};
+        const links:any = this.links || [];
+        links.myKeys = links.myKeys || {};
+        data.rows.forEach((r:number[]|string[]) => { 
             for (let i=1; i<keys.length; i++) {
                 const s = keys[i-1];
                 const d = keys[i];
-                nodes.push({ name: <string>r[s]});
-                nodes.push({ name: <string>r[d]});
+                if (!nodes.names[r[s]]) { nodes.push(nodes.names[r[s]] = { name: r[s]})}
+                if (!nodes.names[r[d]]) { nodes.push(nodes.names[r[d]] = { name: r[d]})}
                 const key = `${s}-${d}`;
-                let link = linkByKey[key];
-                if (!link) {
-                    links.push(link = {
+                if (!links.myKeys[key]) {
+                    links.push(links.myKeys[key] = {
                         source: r[s],
                         target: r[d],
                         names:  [r[s], r[d]],
                         value: 0
                     });
                 }
-                link.value += r[v];
+                links.myKeys[key].value = r[v];
             }
         });
         return {
-            nodes: uniquefy(nodes, 'name'),
+            nodes: nodes,
             links: links
         };
     }
@@ -149,7 +160,7 @@ export class Sankey extends SeriesPlot {
 
     protected d3RenderMarkers(plot:d3Base, data:DataSet) {
         const defaults = this.defaults;
-        const popup = this.cfg.graph.popup;
+        const popup = this.cfg.components.popup;
         if (defaults.marker.rendered) {
             plot.select('.markers')
                 .selectAll("rect")

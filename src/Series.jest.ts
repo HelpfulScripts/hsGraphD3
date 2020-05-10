@@ -7,7 +7,7 @@ const root = window.document.createElement("div");
 describe('Series', () => {
     let graph:any;
     beforeAll(() => {
-        graph = new hsGraphD3.GraphCartesian(root);
+        graph = new hsGraphD3.Graph(root);
     });
     it('should exist', () => 
         expect(Series).not.toBeUndefined()

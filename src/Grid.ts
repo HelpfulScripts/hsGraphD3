@@ -17,7 +17,7 @@
  *      if (svgRoot && svgRoot.length && !defaults) { 
  *          const colors = ['#800', '#080', '#008'];
  *          defaults = log
- *              .inspect(new hsGraphD3.GraphCartesian(svgRoot[0]).defaults.grids, null, '   ', colors)
+ *              .inspect(new hsGraphD3.Graph(svgRoot[0]).defaults.grids, null, '   ', colors)
  *              .replace(/\n/g, '<br>')
  *      }
  *   } 
@@ -120,8 +120,8 @@ export class Grid {
         const style = this.cfg.graph.defaults.grids[this.dir][this.type];
         if (style.rendered) {
             const trans = this.cfg.transition;
-            const scaleX = this.cfg.graph.scales.scaleDims.hor;
-            const scaleY = this.cfg.graph.scales.scaleDims.ver;
+            const scaleX = this.cfg.components.scales.scaleDims.hor;
+            const scaleY = this.cfg.components.scales.scaleDims.ver;
             setStroke(this.svg, style);
             const c = this.hor? 
                 { range:  scaleX.range(), scale:  scaleY,   dim: { fix:'x', var:'y'}}   // hor grid

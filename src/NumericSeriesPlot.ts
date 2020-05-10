@@ -4,7 +4,7 @@
  * Abstract base class for all numeric series plot types, i.e. plots with numeric coordinates
  * To create a series plot, add the desired plot type to the graph:
  * ```
- * graph.series.add(<type>, {<dim>: <ValueDef>, ...});
+ * graph.add(<type>, {<dim>: <ValueDef>, ...});
  * ``` 
  * - `<type>` is one of the registered types: 
  *     - &nbsp; {@link plots.Line `line`} a 2D line plot
@@ -43,8 +43,8 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
         super.initialize(plot, color);
     }
 
-    preRender(data:NumericDataSet, domains:Domains): void {
-        super.preRender(data, domains);
+    preRender(data:NumericDataSet): void {
+        super.preRender(data);
         const defaults = this.defaults;
         if (defaults.area.rendered && this.dims.y0===undefined) { 
             this.dims.y0 = this.dims.stacked? this.dims.stacked : ()=>0; 
@@ -56,7 +56,7 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
     protected markerShape() { return 'circle'; }
 
     protected d3RenderFill(plot:d3Base, data:NumericDataSet) {
-        // const scales = this.cfg.graph.scales.scaleDims;
+        // const scales = this.cfg.components.scales.scaleDims;
         let line = this.line = this.line || this.getPath(data.rows, data.colNames, this.dims.y);
         if (this.dims.y0!==undefined) {
             line += `L` + this.getPath(data.rows.reverse(), data.colNames, this.dims.y0, false).slice(1); // replace first 'M' with 'L'
@@ -68,7 +68,7 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
     //-------------------
 
     protected d3DrawMarker(markers:d3Base, data:DataSet, defaults:SeriesPlotDefaults) {
-        const scales = this.cfg.graph.scales.scaleDims;
+        const scales = this.cfg.components.scales.scaleDims;
         const xAccess = this.accessor(this.dims.x, data.colNames);
         const yAccess = this.accessor(this.dims.y, data.colNames);
         // don't scale markers as 'stacked markers' -> use super instead of this:
@@ -81,7 +81,7 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
     }
     
     protected d3DrawLabels(labels:d3Base, data:DataSet, defaults:SeriesPlotDefaults) {
-        const scales = this.cfg.graph.scales.scaleDims;
+        const scales = this.cfg.components.scales.scaleDims;
         const xAccess = this.accessor(this.dims.x, data.colNames);
         const yAccess = this.accessor(this.dims.y, data.colNames);
         const rAccess = this.accessor(this.dims.r, data.colNames, false);
@@ -109,7 +109,7 @@ export abstract class NumericSeriesPlot extends CartSeriesPlot {
      * @param yDef a constant (defaults to 0), or the data column to render from
      */
     protected getPath(rows:NumericDataRow[], colNames:string[], yDef: ValueDef = () => 0, useStack=true):string {
-        const scales = this.cfg.graph.scales.scaleDims;
+        const scales = this.cfg.components.scales.scaleDims;
         const xAccess = this.accessor(this.dims.x, colNames, useStack);
         const yAccess = this.accessor(yDef, colNames, useStack);
         const line = d3line()

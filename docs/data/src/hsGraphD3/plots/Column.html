@@ -25,7 +25,7 @@
 <p id=2 class="line"><span>&nbsp;&nbsp;&nbsp;2</span><comment>&nbsp;*&nbsp;#&nbsp;Columns&nbsp;Plot</comment></p>
 <p id=3 class="line"><span>&nbsp;&nbsp;&nbsp;3</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=4 class="line"><span>&nbsp;&nbsp;&nbsp;4</span><comment>&nbsp;*&nbsp;##&nbsp;Usage</comment></p>
-<p id=5 class="line"><span>&nbsp;&nbsp;&nbsp;5</span><comment>&nbsp;*&nbsp;`graph.series.add(<quote>'column'</quote>,&nbsp;{x:<x-col>,&nbsp;y:<y-col>,&nbsp;,&nbsp;...<dim>:<ValueDef>});`</comment></p>
+<p id=5 class="line"><span>&nbsp;&nbsp;&nbsp;5</span><comment>&nbsp;*&nbsp;`graph.add(<quote>'column'</quote>,&nbsp;{x:<x-col>,&nbsp;y:<y-col>,&nbsp;,&nbsp;...<dim>:<ValueDef>});`</comment></p>
 <p id=6 class="line"><span>&nbsp;&nbsp;&nbsp;6</span><comment>&nbsp;*&nbsp;-&nbsp;`<dim>`&nbsp;is&nbsp;the&nbsp;semantic&nbsp;dimension&nbsp;to&nbsp;set.&nbsp;See&nbsp;{@link&nbsp;CartSeriesPlot.CartSeriesDimensions&nbsp;CartSeriesDimensions}&nbsp;for&nbsp;valid&nbsp;dimensions.&nbsp;</comment></p>
 <p id=7 class="line"><span>&nbsp;&nbsp;&nbsp;7</span><comment>&nbsp;*&nbsp;-&nbsp;`<ValueDef>`&nbsp;is&nbsp;the&nbsp;{@link&nbsp;SeriesPlot.ValueDef&nbsp;value&nbsp;definition}.&nbsp;</comment></p>
 <p id=8 class="line"><span>&nbsp;&nbsp;&nbsp;8</span><comment>&nbsp;*&nbsp;</comment></p>
@@ -44,9 +44,9 @@
 <p id=21 class="line"><span>&nbsp;&nbsp;21</span><comment>&nbsp;*&nbsp;};</comment></p>
 <p id=22 class="line"><span>&nbsp;&nbsp;22</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=23 class="line"><span>&nbsp;&nbsp;23</span><comment>&nbsp;*&nbsp;<comment>//&nbsp;setup&nbsp;and&nbsp;plot&nbsp;the&nbsp;data:</comment></comment></p>
-<p id=24 class="line"><span>&nbsp;&nbsp;24</span><comment><comment></comment>&nbsp;*&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.GraphCartesian(root);</comment></p>
-<p id=25 class="line"><span>&nbsp;&nbsp;25</span><comment>&nbsp;*&nbsp;graph.series.add(<quote>'column'</quote>,&nbsp;{x:<quote>'State'</quote>,&nbsp;y:<quote>'costs'</quote>,&nbsp;label:<quote>'State'</quote>,&nbsp;popup:<quote>'costs'</quote>});</comment></p>
-<p id=26 class="line"><span>&nbsp;&nbsp;26</span><comment>&nbsp;*&nbsp;graph.series.add(<quote>'column'</quote>,&nbsp;{x:<quote>'State'</quote>,&nbsp;y:<quote>'volume'</quote>,&nbsp;label:<quote>'State'</quote>,&nbsp;popup:<quote>'volume'</quote>});</comment></p>
+<p id=24 class="line"><span>&nbsp;&nbsp;24</span><comment><comment></comment>&nbsp;*&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.Graph(root);</comment></p>
+<p id=25 class="line"><span>&nbsp;&nbsp;25</span><comment>&nbsp;*&nbsp;graph.add(<quote>'column'</quote>,&nbsp;{x:<quote>'State'</quote>,&nbsp;y:<quote>'costs'</quote>,&nbsp;label:<quote>'State'</quote>,&nbsp;popup:<quote>'costs'</quote>});</comment></p>
+<p id=26 class="line"><span>&nbsp;&nbsp;26</span><comment>&nbsp;*&nbsp;graph.add(<quote>'column'</quote>,&nbsp;{x:<quote>'State'</quote>,&nbsp;y:<quote>'volume'</quote>,&nbsp;label:<quote>'State'</quote>,&nbsp;popup:<quote>'volume'</quote>});</comment></p>
 <p id=27 class="line"><span>&nbsp;&nbsp;27</span><comment>&nbsp;*&nbsp;with&nbsp;(graph.scales.defaults.dims.hor.ordinal)&nbsp;{</comment></p>
 <p id=28 class="line"><span>&nbsp;&nbsp;28</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gap&nbsp;=&nbsp;0.25;</comment></p>
 <p id=29 class="line"><span>&nbsp;&nbsp;29</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;overlap&nbsp;=&nbsp;0.75;</comment></p>
@@ -86,9 +86,9 @@
 <p id=63 class="line"><span>&nbsp;&nbsp;63</span><comment>&nbsp;*&nbsp;};</comment></p>
 <p id=64 class="line"><span>&nbsp;&nbsp;64</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=65 class="line"><span>&nbsp;&nbsp;65</span><comment>&nbsp;*&nbsp;<comment>//&nbsp;setup&nbsp;and&nbsp;plot&nbsp;the&nbsp;data:</comment></comment></p>
-<p id=66 class="line"><span>&nbsp;&nbsp;66</span><comment><comment></comment>&nbsp;*&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.GraphCartesian(root);</comment></p>
-<p id=67 class="line"><span>&nbsp;&nbsp;67</span><comment>&nbsp;*&nbsp;graph.series.add(<quote>'column'</quote>,&nbsp;{x:<quote>'State'</quote>,&nbsp;y:<quote>'costs'</quote>,&nbsp;&nbsp;stacked:<quote>'group1'</quote>,&nbsp;label:i=>`costs&nbsp;${i}`});</comment></p>
-<p id=68 class="line"><span>&nbsp;&nbsp;68</span><comment>&nbsp;*&nbsp;graph.series.add(<quote>'column'</quote>,&nbsp;{x:<quote>'State'</quote>,&nbsp;y:<quote>'volume'</quote>,&nbsp;stacked:<quote>'group1'</quote>,&nbsp;label:<quote>'volume'</quote>});</comment></p>
+<p id=66 class="line"><span>&nbsp;&nbsp;66</span><comment><comment></comment>&nbsp;*&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.Graph(root);</comment></p>
+<p id=67 class="line"><span>&nbsp;&nbsp;67</span><comment>&nbsp;*&nbsp;graph.add(<quote>'column'</quote>,&nbsp;{x:<quote>'State'</quote>,&nbsp;y:<quote>'costs'</quote>,&nbsp;&nbsp;stacked:<quote>'group1'</quote>,&nbsp;label:i=>`costs&nbsp;${i}`});</comment></p>
+<p id=68 class="line"><span>&nbsp;&nbsp;68</span><comment>&nbsp;*&nbsp;graph.add(<quote>'column'</quote>,&nbsp;{x:<quote>'State'</quote>,&nbsp;y:<quote>'volume'</quote>,&nbsp;stacked:<quote>'group1'</quote>,&nbsp;label:<quote>'volume'</quote>});</comment></p>
 <p id=69 class="line"><span>&nbsp;&nbsp;69</span><comment>&nbsp;*&nbsp;graph.scales.defaults.dims.hor.ordinal.gap&nbsp;=&nbsp;0.25;</comment></p>
 <p id=70 class="line"><span>&nbsp;&nbsp;70</span><comment>&nbsp;*&nbsp;with&nbsp;(graph.series.defaults)&nbsp;{</comment></p>
 <p id=71 class="line"><span>&nbsp;&nbsp;71</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;series0.line.rendered&nbsp;=&nbsp;true;</comment></p>
@@ -118,9 +118,9 @@
 <p id=95 class="line"><span>&nbsp;&nbsp;95</span><comment>&nbsp;*&nbsp;let&nbsp;defaults;</comment></p>
 <p id=96 class="line"><span>&nbsp;&nbsp;96</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=97 class="line"><span>&nbsp;&nbsp;97</span><comment>&nbsp;*&nbsp;function&nbsp;createGraph(svgRoot)&nbsp;{</comment></p>
-<p id=98 class="line"><span>&nbsp;&nbsp;98</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.GraphCartesian(svgRoot);</comment></p>
-<p id=99 class="line"><span>&nbsp;&nbsp;99</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;graph.series.add(<quote>'column'</quote>,&nbsp;{x:<quote>'State'</quote>,&nbsp;y:<quote>'costs'</quote>,&nbsp;label:<quote>'State'</quote>,&nbsp;popup:<quote>'costs'</quote>});</comment></p>
-<p id=100 class="line"><span>&nbsp;100</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;graph.series.add(<quote>'column'</quote>,&nbsp;{x:<quote>'State'</quote>,&nbsp;y:<quote>'volume'</quote>,&nbsp;popup:<quote>'volume'</quote>});</comment></p>
+<p id=98 class="line"><span>&nbsp;&nbsp;98</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.Graph(svgRoot);</comment></p>
+<p id=99 class="line"><span>&nbsp;&nbsp;99</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;graph.add(<quote>'column'</quote>,&nbsp;{x:<quote>'State'</quote>,&nbsp;y:<quote>'costs'</quote>,&nbsp;label:<quote>'State'</quote>,&nbsp;popup:<quote>'costs'</quote>});</comment></p>
+<p id=100 class="line"><span>&nbsp;100</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;graph.add(<quote>'column'</quote>,&nbsp;{x:<quote>'State'</quote>,&nbsp;y:<quote>'volume'</quote>,&nbsp;popup:<quote>'volume'</quote>});</comment></p>
 <p id=101 class="line"><span>&nbsp;101</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;with&nbsp;(graph.scales.defaults.dims.hor.ordinal)&nbsp;{</comment></p>
 <p id=102 class="line"><span>&nbsp;102</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;gap&nbsp;=&nbsp;0.25;</comment></p>
 <p id=103 class="line"><span>&nbsp;103</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;overlap&nbsp;=&nbsp;0.75;</comment></p>

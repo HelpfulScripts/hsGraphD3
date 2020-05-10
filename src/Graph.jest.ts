@@ -1,5 +1,4 @@
 import { Graph }            from './Graph';
-import { GraphCartesian }   from './GraphCartesian';
 import { m }                from 'hslayout';
 
 const root = window.document.createElement("div");
@@ -19,10 +18,10 @@ const data = {
 describe('Label', () => {
     describe('should have DOM structure', () => {
         beforeAll(() => {
-            m.mount(root, { view: () => m(GraphCartesian, {
+            m.mount(root, { view: () => m(Graph, {
                 rootID: root,
                 define: (graph:Graph) => {
-                   graph.series.add('line', {y:'yval'});
+                   graph.add('line', {y:'yval'});
                 },
                 data: data
             })});

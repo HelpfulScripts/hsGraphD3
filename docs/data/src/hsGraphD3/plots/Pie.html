@@ -27,7 +27,7 @@
 <p id=4 class="line"><span>&nbsp;&nbsp;&nbsp;4</span><comment>&nbsp;*&nbsp;plots&nbsp;a&nbsp;2D&nbsp;pie&nbsp;chart.&nbsp;</comment></p>
 <p id=5 class="line"><span>&nbsp;&nbsp;&nbsp;5</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=6 class="line"><span>&nbsp;&nbsp;&nbsp;6</span><comment>&nbsp;*&nbsp;##&nbsp;Usage</comment></p>
-<p id=7 class="line"><span>&nbsp;&nbsp;&nbsp;7</span><comment>&nbsp;*&nbsp;`graph.series.add(<quote>'pie'</quote>,&nbsp;{phi:<angle-col>,&nbsp;...<dim>:<ValueDef>});`</comment></p>
+<p id=7 class="line"><span>&nbsp;&nbsp;&nbsp;7</span><comment>&nbsp;*&nbsp;`graph.add(<quote>'pie'</quote>,&nbsp;{phi:<angle-col>,&nbsp;...<dim>:<ValueDef>});`</comment></p>
 <p id=8 class="line"><span>&nbsp;&nbsp;&nbsp;8</span><comment>&nbsp;*&nbsp;-&nbsp;`<dim>`&nbsp;is&nbsp;the&nbsp;semantic&nbsp;dimension&nbsp;to&nbsp;set.&nbsp;See&nbsp;{@link&nbsp;PolarSeriesPlot.PolarSeriesDimensions&nbsp;PolarSeriesDimensions}&nbsp;for&nbsp;valid&nbsp;dimensions.&nbsp;</comment></p>
 <p id=9 class="line"><span>&nbsp;&nbsp;&nbsp;9</span><comment>&nbsp;*&nbsp;-&nbsp;`<ValueDef>`&nbsp;is&nbsp;the&nbsp;{@link&nbsp;SeriesPlot.ValueDef&nbsp;value&nbsp;definition}.&nbsp;</comment></p>
 <p id=10 class="line"><span>&nbsp;&nbsp;10</span><comment>&nbsp;*&nbsp;</comment></p>
@@ -46,8 +46,8 @@
 <p id=23 class="line"><span>&nbsp;&nbsp;23</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<quote>'1/1/19'</quote>,&nbsp;1,&nbsp;&nbsp;&nbsp;0.2,&nbsp;0.4]]</comment></p>
 <p id=24 class="line"><span>&nbsp;&nbsp;24</span><comment>&nbsp;*&nbsp;};</comment></p>
 <p id=25 class="line"><span>&nbsp;&nbsp;25</span><comment>&nbsp;*&nbsp;</comment></p>
-<p id=26 class="line"><span>&nbsp;&nbsp;26</span><comment>&nbsp;*&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.GraphPolar(root);</comment></p>
-<p id=27 class="line"><span>&nbsp;&nbsp;27</span><comment>&nbsp;*&nbsp;graph.series.add(<quote>'pie'</quote>,&nbsp;{phi:<quote>'costs'</quote>,&nbsp;label:<quote>'date'</quote>});</comment></p>
+<p id=26 class="line"><span>&nbsp;&nbsp;26</span><comment>&nbsp;*&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.Graph(root);</comment></p>
+<p id=27 class="line"><span>&nbsp;&nbsp;27</span><comment>&nbsp;*&nbsp;graph.add(<quote>'pie'</quote>,&nbsp;{phi:<quote>'costs'</quote>,&nbsp;label:<quote>'date'</quote>});</comment></p>
 <p id=28 class="line"><span>&nbsp;&nbsp;28</span><comment>&nbsp;*&nbsp;graph.defaults.series.series0.marker.stroke.color&nbsp;=&nbsp;<quote>'#fff'</quote>;</comment></p>
 <p id=29 class="line"><span>&nbsp;&nbsp;29</span><comment>&nbsp;*&nbsp;<comment>//graph.defaults.series.series0.label.xpos&nbsp;=&nbsp;0.8;</comment></comment></p>
 <p id=30 class="line"><span>&nbsp;&nbsp;30</span><comment><comment></comment>&nbsp;*&nbsp;graph.render(data);</comment></p>
@@ -70,9 +70,9 @@
 <p id=47 class="line"><span>&nbsp;&nbsp;47</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[<quote>'1/1/19'</quote>,&nbsp;1,&nbsp;&nbsp;&nbsp;0.2,&nbsp;0.4]]</comment></p>
 <p id=48 class="line"><span>&nbsp;&nbsp;48</span><comment>&nbsp;*&nbsp;};</comment></p>
 <p id=49 class="line"><span>&nbsp;&nbsp;49</span><comment>&nbsp;*&nbsp;</comment></p>
-<p id=50 class="line"><span>&nbsp;&nbsp;50</span><comment>&nbsp;*&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.GraphPolar(root);</comment></p>
+<p id=50 class="line"><span>&nbsp;&nbsp;50</span><comment>&nbsp;*&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.Graph(root);</comment></p>
 <p id=51 class="line"><span>&nbsp;&nbsp;51</span><comment>&nbsp;*&nbsp;<comment>//&nbsp;omitting&nbsp;<quote>'phi'</quote>&nbsp;defaults&nbsp;to&nbsp;phi=1</comment></comment></p>
-<p id=52 class="line"><span>&nbsp;&nbsp;52</span><comment><comment></comment>&nbsp;*&nbsp;graph.series.add(<quote>'pie'</quote>,&nbsp;{r:<quote>'costs'</quote>,&nbsp;r0:0.1,&nbsp;label:<quote>'date'</quote>});</comment></p>
+<p id=52 class="line"><span>&nbsp;&nbsp;52</span><comment><comment></comment>&nbsp;*&nbsp;graph.add(<quote>'pie'</quote>,&nbsp;{r:<quote>'costs'</quote>,&nbsp;r0:0.1,&nbsp;label:<quote>'date'</quote>});</comment></p>
 <p id=53 class="line"><span>&nbsp;&nbsp;53</span><comment>&nbsp;*&nbsp;graph.defaults.series.series0.marker.stroke.color&nbsp;=&nbsp;<quote>'#fff'</quote>;</comment></p>
 <p id=54 class="line"><span>&nbsp;&nbsp;54</span><comment>&nbsp;*&nbsp;<comment>//graph.defaults.series.series0.label.xpos&nbsp;=&nbsp;0.8;</comment></comment></p>
 <p id=55 class="line"><span>&nbsp;&nbsp;55</span><comment><comment></comment>&nbsp;*&nbsp;graph.render(data);</comment></p>
@@ -87,8 +87,8 @@
 <p id=64 class="line"><span>&nbsp;&nbsp;64</span><comment>&nbsp;*&nbsp;let&nbsp;defaults;</comment></p>
 <p id=65 class="line"><span>&nbsp;&nbsp;65</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=66 class="line"><span>&nbsp;&nbsp;66</span><comment>&nbsp;*&nbsp;function&nbsp;createGraph(svgRoot)&nbsp;{</comment></p>
-<p id=67 class="line"><span>&nbsp;&nbsp;67</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.GraphPolar(svgRoot);</comment></p>
-<p id=68 class="line"><span>&nbsp;&nbsp;68</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;graph.series.add(<quote>'pie'</quote>,&nbsp;{phi:<quote>'volume'</quote>});</comment></p>
+<p id=67 class="line"><span>&nbsp;&nbsp;67</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.Graph(svgRoot);</comment></p>
+<p id=68 class="line"><span>&nbsp;&nbsp;68</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;graph.add(<quote>'pie'</quote>,&nbsp;{phi:<quote>'volume'</quote>});</comment></p>
 <p id=69 class="line"><span>&nbsp;&nbsp;69</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;graph.defaults;</comment></p>
 <p id=70 class="line"><span>&nbsp;&nbsp;70</span><comment>&nbsp;*&nbsp;}</comment></p>
 <p id=71 class="line"><span>&nbsp;&nbsp;71</span><comment>&nbsp;*&nbsp;</comment></p>
@@ -151,7 +151,7 @@
 <p id=128 class="line"><span>&nbsp;128</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;d3RenderMarkers(plot:d3Base,&nbsp;data:DataSet)&nbsp;{</p>
 <p id=129 class="line"><span>&nbsp;129</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;defaults&nbsp;=&nbsp;this.defaults;</p>
 <p id=130 class="line"><span>&nbsp;130</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(defaults.marker.rendered)&nbsp;{</p>
-<p id=131 class="line"><span>&nbsp;131</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;popup&nbsp;=&nbsp;this.cfg.graph.popup;</p>
+<p id=131 class="line"><span>&nbsp;131</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;popup&nbsp;=&nbsp;this.cfg.components.popup;</p>
 <p id=132 class="line"><span>&nbsp;132</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;shape&nbsp;=&nbsp;this.markerShape();</p>
 <p id=133 class="line"><span>&nbsp;133</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;phiAccess&nbsp;=&nbsp;this.accessor(this.dims.phi,&nbsp;data.colNames,&nbsp;false);</p>
 <p id=134 class="line"><span>&nbsp;134</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;pie&nbsp;=&nbsp;d3Pie().value((d:any,&nbsp;i:number)&nbsp;=>&nbsp;<number>phiAccess(d,&nbsp;i));</p>
@@ -174,7 +174,7 @@
 <p id=151 class="line"><span>&nbsp;151</span></p>
 <p id=152 class="line"><span>&nbsp;152</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;d3RenderLabels(plot:d3Base,&nbsp;data:DataSet):void&nbsp;{</p>
 <p id=153 class="line"><span>&nbsp;153</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;defaults&nbsp;=&nbsp;this.defaults;</p>
-<p id=154 class="line"><span>&nbsp;154</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;popup&nbsp;=&nbsp;this.cfg.graph.popup;</p>
+<p id=154 class="line"><span>&nbsp;154</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;popup&nbsp;=&nbsp;this.cfg.components.popup;</p>
 <p id=155 class="line"><span>&nbsp;155</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(defaults.label.rendered)&nbsp;{</p>
 <p id=156 class="line"><span>&nbsp;156</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;phiAccess&nbsp;=&nbsp;this.accessor(this.dims.phi,&nbsp;data.colNames,&nbsp;false);</p>
 <p id=157 class="line"><span>&nbsp;157</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;pie&nbsp;=&nbsp;d3Pie().value((d:any,&nbsp;i:number)&nbsp;=>&nbsp;<number>phiAccess(d,&nbsp;i));</p>
@@ -190,7 +190,7 @@
 <p id=167 class="line"><span>&nbsp;167</span>&nbsp;&nbsp;&nbsp;&nbsp;</p>
 <p id=168 class="line"><span>&nbsp;168</span></p>
 <p id=169 class="line"><span>&nbsp;169</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;d3DrawMarker(markers:d3Base,&nbsp;data:DataSet,&nbsp;defaults:PolarPlotDefaults):void&nbsp;{</p>
-<p id=170 class="line"><span>&nbsp;170</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;scales&nbsp;=&nbsp;this.cfg.graph.scales.scaleDims;</p>
+<p id=170 class="line"><span>&nbsp;170</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;scales&nbsp;=&nbsp;this.cfg.components.scales.scaleDims;</p>
 <p id=171 class="line"><span>&nbsp;171</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;rAccess&nbsp;=&nbsp;this.accessor(this.dims.r,&nbsp;data.colNames,&nbsp;false);</p>
 <p id=172 class="line"><span>&nbsp;172</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;r0Access&nbsp;=&nbsp;this.accessor(this.dims.r0,&nbsp;data.colNames,&nbsp;false);</p>
 <p id=173 class="line"><span>&nbsp;173</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;arc&nbsp;=&nbsp;d3Arc()</p>
@@ -202,7 +202,7 @@
 <p id=179 class="line"><span>&nbsp;179</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
 <p id=180 class="line"><span>&nbsp;180</span></p>
 <p id=181 class="line"><span>&nbsp;181</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;d3DrawLabels(labels:d3Base,&nbsp;data:DataSet,&nbsp;defaults:PolarPlotDefaults):void&nbsp;{</p>
-<p id=182 class="line"><span>&nbsp;182</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;scales&nbsp;=&nbsp;this.cfg.graph.scales.scaleDims;</p>
+<p id=182 class="line"><span>&nbsp;182</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;scales&nbsp;=&nbsp;this.cfg.components.scales.scaleDims;</p>
 <p id=183 class="line"><span>&nbsp;183</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;rAccess&nbsp;=&nbsp;this.accessor(this.dims.r,&nbsp;data.colNames,&nbsp;false);</p>
 <p id=184 class="line"><span>&nbsp;184</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;r0Access&nbsp;=&nbsp;this.accessor(this.dims.r0,&nbsp;data.colNames,&nbsp;false);</p>
 <p id=185 class="line"><span>&nbsp;185</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;lAccess&nbsp;=&nbsp;this.accessor(this.dims.label,&nbsp;data.colNames,&nbsp;false);</p>

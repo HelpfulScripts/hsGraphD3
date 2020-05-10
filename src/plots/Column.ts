@@ -2,7 +2,7 @@
  * # Columns Plot
  * 
  * ## Usage
- * `graph.series.add('column', {x:<x-col>, y:<y-col>, , ...<dim>:<ValueDef>});`
+ * `graph.add('column', {x:<x-col>, y:<y-col>, , ...<dim>:<ValueDef>});`
  * - `<dim>` is the semantic dimension to set. See {@link CartSeriesPlot.CartSeriesDimensions CartSeriesDimensions} for valid dimensions. 
  * - `<ValueDef>` is the {@link SeriesPlot.ValueDef value definition}. 
  * 
@@ -21,9 +21,9 @@
  * };
  * 
  * // setup and plot the data:
- * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('column', {x:'State', y:'costs', label:'State', popup:'costs'});
- * graph.series.add('column', {x:'State', y:'volume', label:'State', popup:'volume'});
+ * const graph = new hsGraphD3.Graph(root);
+ * graph.add('column', {x:'State', y:'costs', label:'State', popup:'costs'});
+ * graph.add('column', {x:'State', y:'volume', label:'State', popup:'volume'});
  * with (graph.scales.defaults.dims.hor.ordinal) {
  *      gap = 0.25;
  *      overlap = 0.75;
@@ -63,9 +63,9 @@
  * };
  * 
  * // setup and plot the data:
- * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('column', {x:'State', y:'costs',  stacked:'group1', label:i=>`costs ${i}`});
- * graph.series.add('column', {x:'State', y:'volume', stacked:'group1', label:'volume'});
+ * const graph = new hsGraphD3.Graph(root);
+ * graph.add('column', {x:'State', y:'costs',  stacked:'group1', label:i=>`costs ${i}`});
+ * graph.add('column', {x:'State', y:'volume', stacked:'group1', label:'volume'});
  * graph.scales.defaults.dims.hor.ordinal.gap = 0.25;
  * with (graph.series.defaults) {
  *      series0.line.rendered = true;
@@ -95,9 +95,9 @@
  * let defaults;
  * 
  * function createGraph(svgRoot) {
- *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      graph.series.add('column', {x:'State', y:'costs', label:'State', popup:'costs'});
- *      graph.series.add('column', {x:'State', y:'volume', popup:'volume'});
+ *      const graph = new hsGraphD3.Graph(svgRoot);
+ *      graph.add('column', {x:'State', y:'costs', label:'State', popup:'costs'});
+ *      graph.add('column', {x:'State', y:'volume', popup:'volume'});
  *      with (graph.scales.defaults.dims.hor.ordinal) {
  *          gap = 0.25;
  *          overlap = 0.75;

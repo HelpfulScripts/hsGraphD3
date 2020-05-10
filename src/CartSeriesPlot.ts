@@ -4,7 +4,7 @@
  * Abstract base class for all series plot types on cartesian coordinates.
  * To create a series plot, add the desired plot type to the graph:
  * ```
- * graph.series.add(<type>, {<dim>: <ValueDef>, ...});
+ * graph.add(<type>, {<dim>: <ValueDef>, ...});
  * ``` 
  * - `<type>` is one of the registered types. See plot types for {@link plots.OrdinalSeriesPlot ordinal series} and {@link plots.NumericSeriesPlot numeric series}.
  * - `<dim>` is the semantic dimension to set. See {@link CartSeriesPlot.CartSeriesDimensions CartSeriesDimensions} for valid dimensions. 
@@ -19,14 +19,19 @@ import { SeriesPlot }           from "./SeriesPlot";
 import { SeriesPlotDefaults }   from "./SeriesPlot";
 import { SeriesDimensions }     from "./SeriesPlot";
 import { ValueDef }             from "./SeriesPlot";
-import { DataRow }              from "./Graph";
+import { DataRow, GraphDimensions }              from "./Graph";
 import { AccessFn }             from "./Graph";
 import { DataSet }              from "./Graph";
-import { Domains }              from "./Graph";
-import { CartDimensions }       from "./GraphCartesian";
 import { GraphCfg }             from "./GraphComponent";
 import { d3Base }               from "./Settings";
 import { defaultStroke }        from "./Settings";
+
+export interface CartDimensions extends GraphDimensions { 
+    hor:ValueDef[]; 
+    ver:ValueDef[]; 
+    size:ValueDef[]; 
+}
+
 
 /**
  * valid {@link SeriesPlot.ValueDef `Value Definiton`} dimensions on cartesian plots:
@@ -140,8 +145,8 @@ export abstract class CartSeriesPlot extends SeriesPlot {
         }
     }
 
-    public preRender(data:DataSet, domains:Domains): void {
-        super.preRender(data, domains);
+    public preRender(data:DataSet): void {
+        super.preRender(data);
         this.clearStack(data);
         this.line = undefined;
     }
@@ -162,7 +167,7 @@ export abstract class CartSeriesPlot extends SeriesPlot {
     protected d3RenderMarkers(plot:d3Base, data:DataSet) {
         const shape = this.markerShape();
         const defaults = this.defaults;
-        const popup = this.cfg.graph.popup;
+        const popup = this.cfg.components.popup;
         if (defaults.marker.rendered) {
             plot.select('.markers').selectAll(shape)
                 .data(data.rows, d => d[0]) // bind to first DataVal, rather than to DataRow, iterate over rows
@@ -186,7 +191,7 @@ export abstract class CartSeriesPlot extends SeriesPlot {
 
     protected d3RenderLabels(plot:d3Base, data:DataSet):void {
         const defaults = this.defaults;
-        const popup = this.cfg.graph.popup;
+        const popup = this.cfg.components.popup;
         if (defaults.label.rendered) {
             plot.select('.label').selectAll("text")
                 .data(data.rows, (d:any[]) => d[0]) // bind to first DataVal, rather than to DataRow, iterate over rows

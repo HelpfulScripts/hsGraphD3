@@ -9,7 +9,7 @@
  * Each of these can be modified via changing the {@link Settings default settings}.
  * 
  * ## Usage
- * `graph.series.add('line', {x:<x-col>, y:<y-col>, , ...<dim>:<ValueDef>});`
+ * `graph.add('line', {x:<x-col>, y:<y-col>, , ...<dim>:<ValueDef>});`
  * - `<dim>` is the semantic dimension to set. See {@link CartSeriesPlot.CartSeriesDimensions CartSeriesDimensions} for valid dimensions. 
  * - `<ValueDef>` is the {@link SeriesPlot.ValueDef value definition}. 
  * 
@@ -23,9 +23,9 @@
  *          ['5/1/17', 0.6, -0.2,   0.1], ['7/1/18', 0.8, 0.3, 0.5], ['1/1/19', 1,   0.2, 0.4]]
  * };
  * 
- * const graph = new hsGraphD3.GraphCartesian(root);
- * graph.series.add('line', {x:'time', y:'volume', r:'costs'});
- * graph.series.add('line', {x:'time', y:()=>0.5});
+ * const graph = new hsGraphD3.Graph(root);
+ * graph.add('line', {x:'time', y:'volume', r:'costs'});
+ * graph.add('line', {x:'time', y:()=>0.5});
  * graph.render(data);
  * 
  * </file>
@@ -38,8 +38,8 @@
  * let defaults;
  * 
  * function createGraph(svgRoot) {
- *      const graph = new hsGraphD3.GraphCartesian(svgRoot);
- *      graph.series.add('line', {x:'time', y:'volume', r:'costs'});
+ *      const graph = new hsGraphD3.Graph(svgRoot);
+ *      graph.add('line', {x:'time', y:'volume', r:'costs'});
  *      return graph.series.defaults[0];
  * }
  * 

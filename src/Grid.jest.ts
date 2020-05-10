@@ -22,13 +22,13 @@ const data:DataSet = {
 };
 
 function createGraph(root:any) {
-    const graph = new hsGraphD3.GraphCartesian(root);
+    const graph = new hsGraphD3.Graph(root);
     graph.isRendered = () => true;
     graph.axes.defaults.hor.numTicksMinor = 10;
     graph.axes.defaults.hor.numTicksMajor = 2;
     graph.axes.defaults.ver.numTicksMinor = 10;
     graph.axes.defaults.ver.numTicksMajor = 2;
-    graph.series.add('line', {x:'xval', y:'yval', r:'rval'});
+    graph.add('line', {x:'xval', y:'yval', r:'rval'});
     return graph;
 }
 
@@ -37,7 +37,7 @@ describe('Grid', () => {
         const root = window.document.createElement("div");
         root.style.width = `${clientWidth}px`;
         root.style.height = "300px";
-        let graph:hsGraphD3.GraphCartesian;
+        let graph:hsGraphD3.Graph;
         beforeEach(() => graph = createGraph(root));
         it('should plot grid', () => {
             graph.render(data);
@@ -48,7 +48,7 @@ describe('Grid', () => {
         const root = window.document.createElement("div");
         root.style.width = `${clientWidth}px`;
         root.style.height = "300px";
-        let graph:hsGraphD3.GraphCartesian;
+        let graph:hsGraphD3.Graph;
         beforeEach(() => graph = createGraph(root));
         it('should not plot vertical grid', () => {
             graph.grids.defaults.ver.major.rendered = false;

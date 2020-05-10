@@ -19,7 +19,7 @@ Helpful Scripts D3 convenience wrappers for simple plotting.
 ## Usage
 Create a data set to plot. The first row contains column names: 
 ```
-import { GraphCartesian } from 'hsgraphd3';
+import { Graph } from 'hsgraphd3';
 
 const data = {
     colNames: ['date', 'time', 'volume', 'costs'], 
@@ -38,8 +38,8 @@ Create the graph and define the series to plot, using the column names:
 ```
 const root = document.root;
 
-const graph = new GraphCartesian(root);
-graph.addSeries('bubble', {x:'time', y:'volume', r:'costs'});
+const graph = new Graph(root);
+graph.add('bubble', {x:'time', y:'volume', r:'costs'});
 ```
 
 Optionally, adjust some settings. See <a href='https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.Settings' target=_blank>Configuration Defaults</a> for a list of all available settings.
@@ -68,7 +68,7 @@ See an [example](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/0) 
 ## Series Definitions
 Series are defined via the pattern
 ```
-graph.addSeries(<type>, {<dim>:<ValueDef>, ...});
+graph.add(<type>, {<dim>:<ValueDef>, ...});
 ```
 - `<type>` defines the type of the plot. For plot types see [ordinal series](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.plots.OrdinalSeriesPlot), [numeric series](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.plots.NumericSeriesPlot) and [polar series](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.plots.PolarSeriesPlot).
 - `<dim>` valid series dims are defined as extensions of [SeriesDimensions](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.SeriesPlot.SeriesDimensions), for example for [CartesianSeriesDimensions](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.CartSeriesPlot.CartSeriesDimensions) or [PolarSeriesDimensions](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.PolarSeriesPlot.PolarSeriesDimensions).
@@ -81,14 +81,14 @@ graph.addSeries(<type>, {<dim>:<ValueDef>, ...});
 ### Example: [Column plot](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/hsGraphD3.plots.Column)
 Side-by-side columns with data-driven popups and labels:
 ```
-graph.series.add('column', {x:'State', y:'costs', label:'State', popup:'costs'});
-graph.series.add('column', {x:'State', y:'volume', popup:'volume'});
+graph.add('column', {x:'State', y:'costs', label:'State', popup:'costs'});
+graph.add('column', {x:'State', y:'volume', popup:'volume'});
 
 graph.scales.defaults.dims.hor.ordinal.gap = 0.25;
 ```
 
 Stacked columns with inline-calculated item label strings:
 ```
-graph.series.add('column', {x:'State', y:'costs',  label:i=>`costs ${i}`,  stacked:'group1'});
-graph.series.add('column', {x:'State', y:'volume', label:_=>'volume', stacked:'group1'});
+graph.add('column', {x:'State', y:'costs',  label:i=>`costs ${i}`,  stacked:'group1'});
+graph.add('column', {x:'State', y:'volume', label:_=>'volume', stacked:'group1'});
 ```
