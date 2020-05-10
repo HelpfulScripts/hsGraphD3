@@ -25,6 +25,7 @@ import { DataSet }              from "./Graph";
 import { GraphCfg }             from "./GraphComponent";
 import { d3Base }               from "./Settings";
 import { defaultStroke }        from "./Settings";
+import { SeriesPlotScaled } from './SeriesPlotScaled';
 
 export interface CartDimensions extends GraphDimensions { 
     hor:ValueDef[]; 
@@ -65,7 +66,7 @@ export interface CartSeriesDimensions extends SeriesDimensions {
 /**
  * Abstract base class for all cartesian plots.
  */
-export abstract class SeriesPlotCartesian extends SeriesPlot {
+export abstract class SeriesPlotCartesian extends SeriesPlotScaled {
     /** the main data line  */
     protected line: string;         // d3Line<number[]>;
 
@@ -91,7 +92,7 @@ export abstract class SeriesPlotCartesian extends SeriesPlot {
     }
 
     /** 
-     * Set the defaults for the series. Called during `addSeries`.
+     * Set the defaults for the series. Called during `series.add`.
      * */
     public getDefaults(): SeriesPlotDefaults {
         const def = super.getDefaults();
@@ -111,26 +112,9 @@ export abstract class SeriesPlotCartesian extends SeriesPlot {
         return def;
     }
 
-    /**
-     * Returns an accessor function to access the numeric value in a data row. 
-     * @param dim the semantic dimension ('hor', 'ver', 'size') in which to aggregate
-     * @param v data column value definition
-     * @param colNames 
-     */
-    accessor(v:ValueDef, colNames:string[], useStack=true):AccessFn {
-        if (useStack && this.dims.stacked) {
-            // stackDim = is 'v' a stackable dimension?
-            const stackDim = this.dimensions[this.abscissa==='hor'? 'ver' : 'hor'].indexOf(v)>=0;
-            const abscissaCol = {hor:this.dims.x, ver:this.dims.y}[this.abscissa];
-            if (stackDim && typeof abscissaCol === 'string') {
-                const stackIndex = colNames.indexOf(this.dims.stacked);
-                const fn = super.accessor(v, colNames);
-                return (row, rowIndex) => <number>row[stackIndex] + <number>fn(row, rowIndex);
-            }
-        }
-        return super.accessor(v, colNames);
-    }
-
+    getStackDim(v:ValueDef) { return this.dimensions[this.abscissa==='hor'? 'ver' : 'hor'].indexOf(v)>=0; }
+    getAbscissaCol() { return {hor:this.dims.x, ver:this.dims.y}[this.abscissa]; }
+    getOrdinateCol() { return {hor:this.dims.y, ver:this.dims.x}[this.abscissa]; }
 
     //---------- lifecylce methods --------------------
 
@@ -144,23 +128,6 @@ export abstract class SeriesPlotCartesian extends SeriesPlot {
         } else {
             if (!this.dims.y) { this.dims.y = (i:number)=> i; }
         }
-    }
-
-    public preRender(data:DataSet): void {
-        super.preRender(data);
-        this.clearStack(data);
-        this.line = undefined;
-    }
-
-    /** renders the component for the given data */
-    public renderComponent(data:DataSet): void {
-        data = { colNames: data.colNames, rows: data.rows.slice() };
-        this.updateStack(data);
-        super.renderComponent(data);
-    }
-
-    public postRender(data:DataSet): void {
-        super.postRender(data);
     }
         
     //---------- support methods during lifecylce --------------------
@@ -187,9 +154,6 @@ export abstract class SeriesPlotCartesian extends SeriesPlot {
         return this.getPathElement(plot, '.line').attr('d', (d:any) => this.line);
     }
 
-
-    protected abstract d3RenderFill(plot:d3Base, data:DataSet):void;
-
     protected d3RenderLabels(plot:d3Base, data:DataSet):void {
         const defaults = this.defaults;
         const popup = this.cfg.components.popup;
@@ -200,52 +164,6 @@ export abstract class SeriesPlotCartesian extends SeriesPlot {
                 .call(popup.addListener.bind(popup), this.d3RenderPopup(data))
                 .transition(this.cfg.transition) 
                 .call(this.d3DrawLabels.bind(this), data, defaults);
-        }
-    }
-
-    protected abstract d3DrawMarker(markers:d3Base, data:DataSet, defaults:SeriesPlotDefaults):void;
-
-    protected abstract d3DrawLabels(labels:d3Base, data:DataSet, defaults:SeriesPlotDefaults):void;
-
-    protected getPathElement(plot:d3Base, cls:string):any {
-        return plot.select(cls).selectAll('path').transition(this.cfg.transition);
-    }
-
-    protected abstract getPath(rows:DataRow[], colNames:string[], yDef?: ValueDef, useStack?:boolean):string;
-
-    //---------- stack methods --------------------
-
-    /** clears the stack for this cycle before any series rendering happens. */
-    public clearStack(data:DataSet) {
-        const group = this.dims.stacked;
-        if (group) {
-            if (data.colNames.indexOf(group) < 0) { 
-                data.colNames.push(group); 
-            }
-            const stackCol = data.colNames.indexOf(group);
-            data.rows.forEach(row => row[stackCol] = 0);
-            this.cfg.stack[this.dims.stacked] = {};
-        }
-    }
-    
-    // /** Create a stack group column if necessary, initializing it to all zeros. */
-    // protected intializeStackGroup(data:DataSet) { }
-
-    /** update stack after rendering series. */
-    protected updateStack(data:DataSet) {
-        const group = this.dims.stacked;
-        if (group) {
-            const stack = this.cfg.stack[group];
-            const stackCol = data.colNames.indexOf(group);
-            const abscissaCol = <string>{hor:this.dims.x, ver:this.dims.y}[this.abscissa];
-            const abscissaIndex = data.colNames.indexOf(abscissaCol);
-            const ordinateCol = <string>{hor:this.dims.y, ver:this.dims.x}[this.abscissa];
-            const ordinateIndex = data.colNames.indexOf(ordinateCol);
-            data.rows.forEach(row => {
-                const abscissaKey = ''+row[abscissaIndex];
-                row[stackCol] = <number>stack[''+abscissaKey] || 0;
-                stack[''+abscissaKey] = (stack[''+abscissaKey]||0) + <number>row[ordinateIndex];
-            });
         }
     }
 }

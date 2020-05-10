@@ -45,6 +45,7 @@ import { schemeDark2 }          from 'd3';
 import { PolarPlotDefaults }    from './SeriesPlotPolar';
 import { scaleDefault }         from './Scale';
 import { SystemType } from './Scales';
+import { SeriesPlotScaled } from './SeriesPlotScaled';
 
 
 type PlotFactory = (cfg:GraphCfg, seriesName:string, dims:SeriesDimensions) => SeriesPlot;
@@ -142,17 +143,17 @@ export class Series extends GraphComponent {
     expandDomains(data:DataSet | DataSet[], domains:Domains):Domains {
         if ((<DataSet>data).colNames) {  
             // use same dataset for each series
-            this.series.forEach((s:SeriesPlot) => s.clearStack(<DataSet>data));
-            this.series.forEach((s:SeriesPlot) => s.expandDomains(<DataSet>data, domains));
+            this.series.forEach((s:SeriesPlotScaled) => s.clearStack?s.clearStack(<DataSet>data) : '');
+            this.series.forEach((s:SeriesPlotScaled) => s.expandDomains?s.expandDomains(<DataSet>data, domains) : '');
         } else {
             // assign dataset to series based on index
-            this.series.forEach((s:SeriesPlot, i:number) => {
+            this.series.forEach((s:SeriesPlotScaled, i:number) => {
                 const dataSet = data[i % (<DataSet[]>data).length];
-                s.clearStack(dataSet);
+                if (s.clearStack) { s.clearStack(dataSet); }
             });
-            this.series.forEach((s:SeriesPlot, i:number) => {
+            this.series.forEach((s:SeriesPlotScaled, i:number) => {
                 const dataSet = data[i % (<DataSet[]>data).length];
-                s.expandDomains(dataSet, domains);
+                if (s.expandDomains) { s.expandDomains(dataSet, domains); }
             });
         }
         return domains;

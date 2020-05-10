@@ -134,7 +134,7 @@
 <p id=111 class="line"><span>&nbsp;111</span>import&nbsp;{&nbsp;Log&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'hsutil'</quote>;&nbsp;const&nbsp;log&nbsp;=&nbsp;new&nbsp;Log(<quote>'Voronoi'</quote>);</p>
 <p id=112 class="line"><span>&nbsp;112</span>import&nbsp;{&nbsp;Delaunay}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>"d3-delaunay"</quote>;</p>
 <p id=113 class="line"><span>&nbsp;113</span>import&nbsp;{&nbsp;Voronoi&nbsp;as&nbsp;d3Voronoi}&nbsp;&nbsp;from&nbsp;<quote>"d3-delaunay"</quote>;</p>
-<p id=114 class="line"><span>&nbsp;114</span>import&nbsp;{&nbsp;NumericSeriesPlot&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../NumericSeriesPlot'</quote>;</p>
+<p id=114 class="line"><span>&nbsp;114</span>import&nbsp;{&nbsp;SeriesPlotNumeric&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../SeriesPlotNumeric'</quote>;</p>
 <p id=115 class="line"><span>&nbsp;115</span>import&nbsp;{&nbsp;CartSeriesDimensions&nbsp;}&nbsp;from&nbsp;<quote>'../SeriesPlotCartesian'</quote>;</p>
 <p id=116 class="line"><span>&nbsp;116</span>import&nbsp;{&nbsp;NumericDataSet&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../Graph'</quote>;</p>
 <p id=117 class="line"><span>&nbsp;117</span>import&nbsp;{&nbsp;d3Base&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../Settings'</quote>;</p>
@@ -144,7 +144,7 @@
 <p id=121 class="line"><span>&nbsp;121</span></p>
 <p id=122 class="line"><span>&nbsp;122</span>Series.register(<quote>'voronoi'</quote>,&nbsp;(cfg:GraphCfg,&nbsp;sName:string,&nbsp;dims:CartSeriesDimensions)&nbsp;=>&nbsp;new&nbsp;Voronoi(cfg,&nbsp;sName,&nbsp;dims));</p>
 <p id=123 class="line"><span>&nbsp;123</span></p>
-<p id=124 class="line"><span>&nbsp;124</span>export&nbsp;class&nbsp;Voronoi&nbsp;extends&nbsp;NumericSeriesPlot&nbsp;{</p>
+<p id=124 class="line"><span>&nbsp;124</span>export&nbsp;class&nbsp;Voronoi&nbsp;extends&nbsp;SeriesPlotNumeric&nbsp;{</p>
 <p id=125 class="line"><span>&nbsp;125</span>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;voronoi:&nbsp;d3Voronoi<number>;</p>
 <p id=126 class="line"><span>&nbsp;126</span></p>
 <p id=127 class="line"><span>&nbsp;127</span>&nbsp;&nbsp;&nbsp;&nbsp;getDefaults():&nbsp;SeriesPlotDefaults&nbsp;{</p>

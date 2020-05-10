@@ -64,7 +64,7 @@
  /** */
 
 import { Log }                  from 'hsutil'; const log = new Log('Line');
-import { NumericSeriesPlot }    from '../NumericSeriesPlot';
+import { SeriesPlotNumeric }    from '../SeriesPlotNumeric';
 import { CartSeriesDimensions } from '../SeriesPlotCartesian';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { GraphCfg}              from '../GraphComponent';
@@ -72,7 +72,7 @@ import { Series }               from '../Series';
 
 Series.register('line', (cfg:GraphCfg, sName:string, dims: CartSeriesDimensions) => new Line(cfg, sName, dims));
 
-export class Line extends NumericSeriesPlot {
+export class Line extends SeriesPlotNumeric {
     getDefaults(): SeriesPlotDefaults {
         const def = super.getDefaults();
         def.line.rendered   = true;

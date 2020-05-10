@@ -111,7 +111,7 @@
 import { Log }                  from 'hsutil'; const log = new Log('Voronoi');
 import { Delaunay}              from "d3-delaunay";
 import { Voronoi as d3Voronoi}  from "d3-delaunay";
-import { NumericSeriesPlot }    from '../NumericSeriesPlot';
+import { SeriesPlotNumeric }    from '../SeriesPlotNumeric';
 import { CartSeriesDimensions } from '../SeriesPlotCartesian';
 import { NumericDataSet }       from '../Graph';
 import { d3Base }               from '../Settings';
@@ -121,7 +121,7 @@ import { Series }               from '../Series';
 
 Series.register('voronoi', (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions) => new Voronoi(cfg, sName, dims));
 
-export class Voronoi extends NumericSeriesPlot {
+export class Voronoi extends SeriesPlotNumeric {
     private voronoi: d3Voronoi<number>;
 
     getDefaults(): SeriesPlotDefaults {

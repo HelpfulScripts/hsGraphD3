@@ -30,7 +30,7 @@ import { Series }               from './Series';
 /**
  * Abstract base class of a  cartesian series plot. 
  */
-export abstract class OrdinalSeriesPlot extends SeriesPlotCartesian { 
+export abstract class SeriesPlotOrdinal extends SeriesPlotCartesian { 
     /** used  */
     protected cache = { x:<number[]>[], x0:<number[]>[], y:<number[]>[], y0:<number[]>[] };
 

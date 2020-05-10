@@ -94,7 +94,7 @@
  /** */
 
 import { Log }                  from 'hsutil'; const log = new Log('Area');
-import { NumericSeriesPlot }    from '../NumericSeriesPlot';
+import { SeriesPlotNumeric }    from '../SeriesPlotNumeric';
 import { CartSeriesDimensions } from '../SeriesPlotCartesian';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { GraphCfg}              from '../GraphComponent';
@@ -102,7 +102,7 @@ import { Series }               from '../Series';
 
 Series.register('area', (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions) => new Area(cfg, sName, dims));
  
-export class Area extends NumericSeriesPlot {
+export class Area extends SeriesPlotNumeric {
     getDefaults(): SeriesPlotDefaults {
         const def = super.getDefaults();
         def.area.rendered = true;

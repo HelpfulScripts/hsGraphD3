@@ -191,43 +191,6 @@ export abstract class SeriesPlot {
         return def;
     }
 
-    public expandDomains(dataSet:DataSet, domains:Domains) {
-        this.updateStack(dataSet);
-        const dims:GraphDimensions = this.dimensions;
-        Object.keys(dims).map(dim => { // dim='hor', 'ver', size'
-            const useStack = dim!=='size';  // donst stack-scale marker sizes
-
-            const type = this.cfg.graph.defaults.scales.dims[dim].type;
-            dims[dim].map(colName => { if (colName!==undefined) { 
-                const valueFn = this.accessor(colName, dataSet.colNames, useStack);
-                switch(type) {
-                    case 'ordinal':     
-                        domains[dim] = this.expandOrdinalDomain(dataSet, <OrdDomain>domains[dim] || [], valueFn); 
-                        break;
-                    default:            
-                        domains[dim] = this.expandNumDomain(dataSet, <NumDomain>domains[dim] || [1e99, -1e99], valueFn);
-                }
-            }});
-        });
-    }
-    
-    protected expandNumDomain(dataSet:DataSet, domain:NumDomain, fn:(row?:DataRow, i?:number) => DataVal):NumDomain {
-        return <NumDomain>dataSet.rows.reduce((dom:NumDomain, row:DataRow, i:number):NumDomain => {
-            const val = <number>fn(row, i);
-            dom[0] = Math.min(val, dom[0]);
-            dom[1] = Math.max(val, dom[1]);
-            return dom;
-        }, domain);
-    }
-    
-    protected expandOrdinalDomain(dataSet:DataSet, domain:OrdDomain, fn:(row?:DataRow, i?:number) => DataVal):OrdDomain {
-        return <OrdDomain>dataSet.rows.reduce((dom:OrdDomain, row:DataRow, i:number):OrdDomain => {
-            const val = <string>fn(row, i);
-            if (dom.indexOf(val) < 0) { dom.push(val); }
-            return dom;
-        }, domain);
-    }
-
     /**
      * Returns an accessor function `(row:DataVal[], rowIndex:Index) => DataVal` to access the numeric value in a data row.
      * The type of `v` determines how to access the value: 
@@ -406,13 +369,5 @@ export abstract class SeriesPlot {
     protected abstract d3RenderLine(plot:d3Base, data:DataSet):void;
     protected abstract d3RenderFill(plot:d3Base, data:DataSet):void;
     protected abstract d3RenderLabels(plot:d3Base, data:DataSet):void;
-
-    //---------- stack methods --------------------
-
-    /** clears the stack for this cycle before any series rendering happens. */
-    public abstract clearStack(data:DataSet):void;
-    
-    /** update stack after rendering series. */
-    protected abstract updateStack(data:DataSet):void ;
 }
 

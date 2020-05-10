@@ -77,7 +77,7 @@ import { NumDomain }            from '../Graph';
 import { DataSet }              from '../Graph';
 import { Domains }              from '../Graph';
 import { Series }               from '../Series';
-import { NumericSeriesPlot }    from '../NumericSeriesPlot';
+import { SeriesPlotNumeric }    from '../SeriesPlotNumeric';
 import { CartSeriesDimensions } from '../SeriesPlotCartesian';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { d3Base }               from '../Settings';
@@ -85,7 +85,7 @@ import { GraphCfg }             from '../GraphComponent';
  
 Series.register('timeseries',   (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions) => new TimeSeries(cfg, sName, dims));
 
-export class TimeSeries extends NumericSeriesPlot {
+export class TimeSeries extends SeriesPlotNumeric {
     /**
      * plot constructor
      * @param cx string column name for x-center coordinates

@@ -35,7 +35,7 @@ import { SeriesPlotCartesian }       from './SeriesPlotCartesian';
 /**
  * Abstract base class of a  cartesian series plot. 
  */
-export abstract class NumericSeriesPlot extends SeriesPlotCartesian { 
+export abstract class SeriesPlotNumeric extends SeriesPlotCartesian { 
 
     //---------- lifecylce methods --------------------
 

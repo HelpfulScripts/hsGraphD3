@@ -159,13 +159,13 @@
 <p id=136 class="line"><span>&nbsp;136</span>import&nbsp;{&nbsp;CartSeriesDimensions&nbsp;}&nbsp;from&nbsp;<quote>'../SeriesPlotCartesian'</quote>;</p>
 <p id=137 class="line"><span>&nbsp;137</span>import&nbsp;{&nbsp;GraphCfg}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../GraphComponent'</quote>;</p>
 <p id=138 class="line"><span>&nbsp;138</span>import&nbsp;{&nbsp;Series&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../Series'</quote>;</p>
-<p id=139 class="line"><span>&nbsp;139</span>import&nbsp;{&nbsp;OrdinalSeriesPlot&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../OrdinalSeriesPlot'</quote>;</p>
+<p id=139 class="line"><span>&nbsp;139</span>import&nbsp;{&nbsp;SeriesPlotOrdinal&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../SeriesPlotOrdinal'</quote>;</p>
 <p id=140 class="line"><span>&nbsp;140</span>import&nbsp;{&nbsp;SeriesPlotDefaults&nbsp;}&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../SeriesPlot'</quote>;</p>
 <p id=141 class="line"><span>&nbsp;141</span></p>
 <p id=142 class="line"><span>&nbsp;142</span>Series.register(<quote>'column'</quote>,&nbsp;(cfg:GraphCfg,&nbsp;sName:string,&nbsp;dims:CartSeriesDimensions)&nbsp;=>&nbsp;new&nbsp;Column(cfg,&nbsp;sName,&nbsp;dims));</p>
 <p id=143 class="line"><span>&nbsp;143</span></p>
 <p id=144 class="line"><span>&nbsp;144</span></p>
-<p id=145 class="line"><span>&nbsp;145</span>export&nbsp;class&nbsp;Column&nbsp;extends&nbsp;OrdinalSeriesPlot&nbsp;{</p>
+<p id=145 class="line"><span>&nbsp;145</span>export&nbsp;class&nbsp;Column&nbsp;extends&nbsp;SeriesPlotOrdinal&nbsp;{</p>
 <p id=146 class="line"><span>&nbsp;146</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;abscissa:<quote>'hor'</quote>|<quote>'ver'</quote>=&nbsp;<quote>'hor'</quote>;</p>
 <p id=147 class="line"><span>&nbsp;147</span></p>
 <p id=148 class="line"><span>&nbsp;148</span>&nbsp;&nbsp;&nbsp;&nbsp;getDefaults():&nbsp;SeriesPlotDefaults&nbsp;{</p>

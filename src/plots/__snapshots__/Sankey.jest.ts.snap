@@ -35,85 +35,26 @@ exports[`Sankey should plot sankey 1`] = `
     >
       <g
         class="hor-major-Grid"
-        fill-opacity="0"
-        stroke="#444"
-        stroke-dasharray="none"
-        stroke-opacity="1"
-        stroke-width="1"
       />
       <g
         class="hor-minor-Grid"
-        fill-opacity="0"
-        stroke="#eee"
-        stroke-dasharray="none"
-        stroke-opacity="1"
-        stroke-width="1"
       />
       <g
         class="ver-major-Grid"
-        fill-opacity="0"
-        stroke="#444"
-        stroke-dasharray="none"
-        stroke-opacity="1"
-        stroke-width="1"
       />
       <g
         class="ver-minor-Grid"
-        fill-opacity="0"
-        stroke="#eee"
-        stroke-dasharray="none"
-        stroke-opacity="1"
-        stroke-width="1"
       />
     </g>
     <g
       class="axes"
-      color="currentColor"
     >
       <g
         class="horAxis"
-        color="currentColor"
-        fill="currentColor"
-        fill-opacity="0"
-        font-family="sans-serif"
-        font-size="16px"
-        font-style="normal"
-        font-weight="100"
-        stroke="currentColor"
-        stroke-dasharray="none"
-        stroke-opacity="1"
-        stroke-width="1"
-        text-anchor="middle"
-        transform="translate(0, NaN)"
-      >
-        <path
-          class="domain"
-          d="M20.5,5V0.5H980.5V5"
-          stroke="currentColor"
-        />
-      </g>
+      />
       <g
         class="verAxis"
-        color="currentColor"
-        fill="currentColor"
-        fill-opacity="0"
-        font-family="sans-serif"
-        font-size="16px"
-        font-style="normal"
-        font-weight="100"
-        stroke="currentColor"
-        stroke-dasharray="none"
-        stroke-opacity="1"
-        stroke-width="1"
-        text-anchor="end"
-        transform="translate(undefined, 0)"
-      >
-        <path
-          class="domain"
-          d="M-5,670.5H0.5V20.5H-5"
-          stroke="currentColor"
-        />
-      </g>
+      />
     </g>
     <g
       class="title"
@@ -130,29 +71,113 @@ exports[`Sankey should plot sankey 1`] = `
         <g
           class="area"
           fill="currentColor"
-          fill-opacity="0.5"
+          fill-opacity="0"
         >
           <path />
           <path
             color="#1f77b4"
-            d="M40,280C260,280,260,280,480,280"
+            d="M40,110C260,110,260,110,480,110"
             stroke="currentColor"
-            stroke-width="520"
+            stroke-width="180"
             style="mix-blend-mode: multiply;"
           >
             <title>
-              a → sheep
+              a → sheep:45
             </title>
           </path>
           <path
             color="#2ca02c"
-            d="M500,280C720,280,720,280,940,280"
+            d="M500,190C720,190,720,190,940,190"
             stroke="currentColor"
-            stroke-width="520"
+            stroke-width="340"
             style="mix-blend-mode: multiply;"
           >
             <title>
-              sheep → one
+              sheep → one:85
+            </title>
+          </path>
+          <path
+            color="#d62728"
+            d="M40,629.9999999999999C260,629.9999999999999,260,630,480,630"
+            stroke="currentColor"
+            stroke-width="60"
+            style="mix-blend-mode: multiply;"
+          >
+            <title>
+              b → wolf:15
+            </title>
+          </path>
+          <path
+            color="#8c564b"
+            d="M500,538C720,538,720,390,940,390"
+            stroke="currentColor"
+            stroke-width="60"
+            style="mix-blend-mode: multiply;"
+          >
+            <title>
+              wolf → one:15
+            </title>
+          </path>
+          <path
+            color="#7f7f7f"
+            d="M40,364C260,364,260,324,480,324"
+            stroke="currentColor"
+            stroke-width="248"
+            style="mix-blend-mode: multiply;"
+          >
+            <title>
+              c → sheep:62
+            </title>
+          </path>
+          <path
+            color="#bcbd22"
+            d="M500,404C720,404,720,484,940,484"
+            stroke="currentColor"
+            stroke-width="88"
+            style="mix-blend-mode: multiply;"
+          >
+            <title>
+              sheep → two:22
+            </title>
+          </path>
+          <path
+            d="M40,534C260,534,260,554,480,554"
+            stroke="currentColor"
+            stroke-width="92"
+            style="mix-blend-mode: multiply;"
+          >
+            <title>
+              c → wolf:23
+            </title>
+          </path>
+          <path
+            d="M500,614C720,614,720,614,940,614"
+            stroke="currentColor"
+            stroke-width="92"
+            style="mix-blend-mode: multiply;"
+          >
+            <title>
+              wolf → three:23
+            </title>
+          </path>
+          <path
+            d="M40,210C260,210,260,478.00000000000006,480,478.00000000000006"
+            stroke="currentColor"
+            stroke-width="20"
+            style="mix-blend-mode: multiply;"
+          >
+            <title>
+              a → fence:5
+            </title>
+          </path>
+          <path
+            d="M500,478.00000000000006C720,478.00000000000006,720,558,940,558"
+            stroke="currentColor"
+            stroke-width="20"
+            style="mix-blend-mode: multiply;"
+          >
+            <title>
+              fence → three:5
             </title>
           </path>
         </g>
@@ -169,7 +194,7 @@ exports[`Sankey should plot sankey 1`] = `
             class="popup"
             color="#1f77b4"
             fill="currentColor"
-            height="520"
+            height="200.00000000000003"
             opacity="0.75"
             width="20"
             x="20"
@@ -179,7 +204,7 @@ exports[`Sankey should plot sankey 1`] = `
             class="popup"
             color="#2ca02c"
             fill="currentColor"
-            height="520"
+            height="428.00000000000006"
             opacity="0.75"
             width="20"
             x="480"
@@ -189,7 +214,7 @@ exports[`Sankey should plot sankey 1`] = `
             class="popup"
             color="#d62728"
             fill="currentColor"
-            height="520"
+            height="400"
             opacity="0.75"
             width="20"
             x="940"
@@ -199,58 +224,58 @@ exports[`Sankey should plot sankey 1`] = `
             class="popup"
             color="#8c564b"
             fill="currentColor"
-            height="0"
+            height="60.000000000000114"
             opacity="0.75"
             width="20"
-            x="940"
-            y="560"
+            x="20"
+            y="599.9999999999999"
           />
           <rect
             class="popup"
             color="#7f7f7f"
             fill="currentColor"
-            height="0"
+            height="151.99999999999994"
             opacity="0.75"
             width="20"
-            x="940"
-            y="580"
+            x="480"
+            y="508.00000000000006"
           />
           <rect
             class="popup"
             color="#bcbd22"
             fill="currentColor"
-            height="0"
+            height="339.9999999999999"
             opacity="0.75"
             width="20"
-            x="940"
-            y="600"
+            x="20"
+            y="240.00000000000003"
           />
           <rect
             class="popup"
             fill="currentColor"
-            height="0"
+            height="88"
             opacity="0.75"
             width="20"
             x="940"
-            y="620"
+            y="440"
           />
           <rect
             class="popup"
             fill="currentColor"
-            height="0"
+            height="112.00000000000011"
             opacity="0.75"
             width="20"
             x="940"
-            y="640"
+            y="548"
           />
           <rect
             class="popup"
             fill="currentColor"
-            height="0"
+            height="20"
             opacity="0.75"
             width="20"
-            x="940"
-            y="660"
+            x="480"
+            y="468.00000000000006"
           />
         </g>
       </g>

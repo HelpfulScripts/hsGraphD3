@@ -24,6 +24,46 @@
  * graph.render(data);
  * </file>
  * </example>
+ * 
+ * ## Example 2: Left aligned
+ * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
+ * <file name='script.js'>
+ * const data = {
+ *    colNames:['from', 'to', 'count'], 
+ *    rows:[['a', 'sheep', 45], ['sheep', 'one',   45],
+ *          ['b', 'one',  15], 
+ *          ['c', 'sheep', 22], ['sheep', 'two',   22],
+ *          ['c', 'sheep', 40], ['sheep', 'one',   40], 
+ *          ['c', 'cow',  23],  ['wolf',  'three', 23], 
+ *          ['a', 'fence',  5], ['fence', 'three',  5]
+ *    ]
+ * };
+ * const graph = new hsGraphD3.Graph(root);
+ * graph.add('sankey', {keys:['from', 'to'], value:'count', color:'cat10'});
+ * graph.defaults.series.series0.align = 'left';
+ * graph.render(data);
+ * </file>
+ * </example>
+ * 
+ * ## Example 3: Right aligned
+ * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
+ * <file name='script.js'>
+ * const data = {
+ *    colNames:['from', 'to', 'count'], 
+ *    rows:[['a', 'sheep', 45], ['sheep', 'one',   45],
+ *          ['b', 'one',  15], 
+ *          ['c', 'sheep', 22], ['sheep', 'two',   22],
+ *          ['c', 'sheep', 40], ['sheep', 'one',   40], 
+ *          ['c', 'cow',  23],  ['wolf',  'three', 23], 
+ *          ['a', 'fence',  5], ['fence', 'three',  5]
+ *    ]
+ * };
+ * const graph = new hsGraphD3.Graph(root);
+ * graph.add('sankey', {keys:['from', 'to'], value:'count', color:'cat10'});
+ * graph.defaults.series.series0.align = 'right';
+ * graph.render(data);
+ * </file>
+ * </example>
  */
 
  /** */
@@ -41,13 +81,17 @@ import { sankey as d3Sankey }   from "d3-sankey";
 import { SankeyNodeMinimal }    from "d3-sankey";
 import { SankeyLinkMinimal }    from "d3-sankey";
 import { sankeyLinkHorizontal } from "d3-sankey";
+import { sankeyLeft }           from "d3-sankey";
+import { sankeyRight }          from "d3-sankey";
+import { sankeyCenter }         from "d3-sankey";
+import { sankeyJustify }        from "d3-sankey";
 
 Series.register('sankey', (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions) => new Sankey(cfg, sName, dims));
   
 export interface SankeyDefaults extends SeriesPlotDefaults {
     width: number;
     padding: number;
-    align: 'left' | 'right' | 'middle' | 'justified';
+    align: 'left' | 'right' | 'center' | 'justified';
 }
 
 interface Nodes {
@@ -60,6 +104,7 @@ export class Sankey extends SeriesPlot {
     nodes:SankeyNodeMinimal<{}, {}>[];
     links:SankeyLinkMinimal<{}, {}>[];
     sankey:any;
+    align = sankeyJustify;
 
     constructor(cfg:GraphCfg, seriesName:string, dims:CartSeriesDimensions) {
         super(cfg, seriesName, dims);
@@ -101,13 +146,18 @@ export class Sankey extends SeriesPlot {
     public preRender(data:DataSet): void {
         super.preRender(data);
         const margin = this.cfg.graph.defaults.scales.margin;
-        
+        switch((<SankeyDefaults>this.defaults).align) {
+            case 'left':        this.align = sankeyLeft; break;
+            case 'right':       this.align = sankeyRight; break;
+            case 'center':      this.align = sankeyCenter; break;
+            case 'justified':   this.align = sankeyJustify; break;
+        }
         if (this.sankey) {
             this.sankey.update(this.createNodesAndLinks(data))
         } else {
             this.sankey = d3Sankey()
                 .nodeId((d:any) => d.name)
-                // .nodeAlign(d3[`sankey${align[0].toUpperCase()}${align.slice(1)}`])
+                .nodeAlign(this.align)
                 .nodeWidth((<SankeyDefaults>this.defaults).width)
                 .nodePadding((<SankeyDefaults>this.defaults).padding)
                 .extent([[margin.left, margin.top], [this.cfg.viewPort.width - margin.left - margin.right, this.cfg.viewPort.height - margin.top - margin.bottom]]);
@@ -180,6 +230,7 @@ export class Sankey extends SeriesPlot {
         const defaults = this.defaults;
         if (defaults.area.rendered) {
             plot.select('.area')
+                .attr('fill-opacity', 0)
                 .selectAll("g")
                 .data(this.links)
                 .join("path")
@@ -189,7 +240,7 @@ export class Sankey extends SeriesPlot {
                     .attr("stroke-width", d => Math.max(1, d.width))
                     .call(this.d3FillColors.bind(this), data, defaults)
                     .append("title")
-                    .text((d:any) => `${d.source.name} → ${d.target.name}:${this.links[d.source.name+'-'+d.target.name].value}`);
+                    .text((d:any) => `${d.source.name} → ${d.target.name}:${d.value}`);
         }
     }
 
@@ -221,8 +272,6 @@ export class Sankey extends SeriesPlot {
                .attr("width", (d:any) => d.x1 - d.x0)
                .attr("fill", defaults.marker.fill.color)
                .attr("opacity", defaults.marker.fill.opacity);
-                // .append("title")
-                //     .text((d:any) => d.name);
     }
 
     /**
@@ -234,3 +283,13 @@ export class Sankey extends SeriesPlot {
     }
 }
   
+
+/*
+
+
+M149,328
+C209,328,209,275,268,275
+
+M536,204
+C774,204,774,291,1012,291
+*/

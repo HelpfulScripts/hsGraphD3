@@ -119,13 +119,13 @@ import { Log }                  from 'hsutil'; const log = new Log('Column');
 import { CartSeriesDimensions } from '../SeriesPlotCartesian';
 import { GraphCfg}              from '../GraphComponent';
 import { Series }               from '../Series';
-import { OrdinalSeriesPlot }    from '../OrdinalSeriesPlot';
+import { SeriesPlotOrdinal }    from '../SeriesPlotOrdinal';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 
 Series.register('bar', (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions) => new Bar(cfg, sName, dims));
 
 
-export class Bar extends OrdinalSeriesPlot {
+export class Bar extends SeriesPlotOrdinal {
     protected abscissa:'hor'|'ver' = 'ver';
 
     getDefaults(): SeriesPlotDefaults {

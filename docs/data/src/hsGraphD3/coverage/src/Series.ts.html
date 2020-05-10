@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">82.02% </span>
+                <span class="strong">80.22% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>73/89</span>
+                <span class='fraction'>73/91</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">67.5% </span>
+                <span class="strong">62.5% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>27/40</span>
+                <span class='fraction'>30/48</span>
             </div>
         
             
@@ -291,7 +291,8 @@
 <a name='L232'></a><a href='#L232'>232</a>
 <a name='L233'></a><a href='#L233'>233</a>
 <a name='L234'></a><a href='#L234'>234</a>
-<a name='L235'></a><a href='#L235'>235</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L235'></a><a href='#L235'>235</a>
+<a name='L236'></a><a href='#L236'>236</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -337,6 +338,7 @@
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -411,7 +413,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">31x</span>
+<span class="cline-any cline-yes">32x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -572,6 +574,7 @@ import { schemeDark2 }          from 'd3';
 import { PolarPlotDefaults }    from './SeriesPlotPolar';
 import { scaleDefault }         from './Scale';
 import { SystemType } from './Scales';
+import { SeriesPlotScaled } from './SeriesPlotScaled';
 &nbsp;
 &nbsp;
 type PlotFactory = (cfg:GraphCfg, seriesName:string, dims:SeriesDimensions) =&gt; SeriesPlot;
@@ -669,17 +672,17 @@ export class Series extends GraphComponent {
     expandDomains(data:DataSet | DataSet[], domains:Domains):Domains {
         <span class="missing-if-branch" title="else path not taken" >E</span>if ((&lt;DataSet&gt;data).colNames) {  
             // use same dataset for each series
-            this.series.forEach((s:SeriesPlot) =&gt; s.clearStack(&lt;DataSet&gt;data));
-            this.series.forEach((s:SeriesPlot) =&gt; s.expandDomains(&lt;DataSet&gt;data, domains));
+            this.series.forEach((s:SeriesPlotScaled) =&gt; s.clearStack?s.clearStack(&lt;DataSet&gt;data) : <span class="branch-1 cbranch-no" title="branch not covered" >'')</span>;
+            this.series.forEach((s:SeriesPlotScaled) =&gt; s.expandDomains?s.expandDomains(&lt;DataSet&gt;data, domains) : '');
         } else {
             // assign dataset to series based on index
-<span class="cstat-no" title="statement not covered" >            this.series.forEach(<span class="fstat-no" title="function not covered" >(s</span>:SeriesPlot, i:number) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            this.series.forEach(<span class="fstat-no" title="function not covered" >(s</span>:SeriesPlotScaled, i:number) =&gt; {</span>
                 const dataSet = <span class="cstat-no" title="statement not covered" >data[i % (&lt;DataSet[]&gt;data).length];</span>
-<span class="cstat-no" title="statement not covered" >                s.clearStack(dataSet);</span>
+<span class="cstat-no" title="statement not covered" >                if (s.clearStack) { <span class="cstat-no" title="statement not covered" >s.clearStack(dataSet); </span>}</span>
             });
-<span class="cstat-no" title="statement not covered" >            this.series.forEach(<span class="fstat-no" title="function not covered" >(s</span>:SeriesPlot, i:number) =&gt; {</span>
+<span class="cstat-no" title="statement not covered" >            this.series.forEach(<span class="fstat-no" title="function not covered" >(s</span>:SeriesPlotScaled, i:number) =&gt; {</span>
                 const dataSet = <span class="cstat-no" title="statement not covered" >data[i % (&lt;DataSet[]&gt;data).length];</span>
-<span class="cstat-no" title="statement not covered" >                s.expandDomains(dataSet, domains);</span>
+<span class="cstat-no" title="statement not covered" >                if (s.expandDomains) { <span class="cstat-no" title="statement not covered" >s.expandDomains(dataSet, domains); </span>}</span>
             });
         }
         return domains;

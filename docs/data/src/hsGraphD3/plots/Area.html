@@ -117,7 +117,7 @@
 <p id=94 class="line"><span>&nbsp;&nbsp;94</span>&nbsp;<comment>/**&nbsp;*/</comment></p>
 <p id=95 class="line"><span>&nbsp;&nbsp;95</span></p>
 <p id=96 class="line"><span>&nbsp;&nbsp;96</span>import&nbsp;{&nbsp;Log&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'hsutil'</quote>;&nbsp;const&nbsp;log&nbsp;=&nbsp;new&nbsp;Log(<quote>'Area'</quote>);</p>
-<p id=97 class="line"><span>&nbsp;&nbsp;97</span>import&nbsp;{&nbsp;NumericSeriesPlot&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../NumericSeriesPlot'</quote>;</p>
+<p id=97 class="line"><span>&nbsp;&nbsp;97</span>import&nbsp;{&nbsp;SeriesPlotNumeric&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../SeriesPlotNumeric'</quote>;</p>
 <p id=98 class="line"><span>&nbsp;&nbsp;98</span>import&nbsp;{&nbsp;CartSeriesDimensions&nbsp;}&nbsp;from&nbsp;<quote>'../SeriesPlotCartesian'</quote>;</p>
 <p id=99 class="line"><span>&nbsp;&nbsp;99</span>import&nbsp;{&nbsp;SeriesPlotDefaults&nbsp;}&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../SeriesPlot'</quote>;</p>
 <p id=100 class="line"><span>&nbsp;100</span>import&nbsp;{&nbsp;GraphCfg}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../GraphComponent'</quote>;</p>
@@ -125,7 +125,7 @@
 <p id=102 class="line"><span>&nbsp;102</span></p>
 <p id=103 class="line"><span>&nbsp;103</span>Series.register(<quote>'area'</quote>,&nbsp;(cfg:GraphCfg,&nbsp;sName:string,&nbsp;dims:CartSeriesDimensions)&nbsp;=>&nbsp;new&nbsp;Area(cfg,&nbsp;sName,&nbsp;dims));</p>
 <p id=104 class="line"><span>&nbsp;104</span>&nbsp;</p>
-<p id=105 class="line"><span>&nbsp;105</span>export&nbsp;class&nbsp;Area&nbsp;extends&nbsp;NumericSeriesPlot&nbsp;{</p>
+<p id=105 class="line"><span>&nbsp;105</span>export&nbsp;class&nbsp;Area&nbsp;extends&nbsp;SeriesPlotNumeric&nbsp;{</p>
 <p id=106 class="line"><span>&nbsp;106</span>&nbsp;&nbsp;&nbsp;&nbsp;getDefaults():&nbsp;SeriesPlotDefaults&nbsp;{</p>
 <p id=107 class="line"><span>&nbsp;107</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;def&nbsp;=&nbsp;super.getDefaults();</p>
 <p id=108 class="line"><span>&nbsp;108</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;def.area.rendered&nbsp;=&nbsp;true;</p>

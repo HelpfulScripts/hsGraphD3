@@ -2,6 +2,7 @@ import * as hsGraphD3   from '../';
 import * as d3          from 'd3';
 import { DataSet }      from '../Graph';
 import { TextHAlign, TextVAlign } from '../Settings';
+import { SankeyDefaults } from './Sankey';
 
 let clientWidth = 300;
 const root = window.document.createElement("div");
@@ -31,6 +32,7 @@ describe('Sankey', () => {
     beforeAll(() => {
         graph = createGraph(root);
         graph.add('sankey', {keys:['from', 'via', 'to'], value:'count', color:'cat10'});
+        (<SankeyDefaults>graph.defaults.series.series0).align = 'left';
         graph.render(data);
     });
     it('should plot sankey', () => expect(root).toMatchSnapshot());

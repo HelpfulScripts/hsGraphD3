@@ -65,7 +65,7 @@
 
 import { Log }                  from 'hsutil'; const log = new Log('Bubble');
 import { DataSet }              from '../Graph';
-import { NumericSeriesPlot }    from '../NumericSeriesPlot';
+import { SeriesPlotNumeric }    from '../SeriesPlotNumeric';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { CartSeriesDimensions } from '../SeriesPlotCartesian';
 import { GraphCfg}              from '../GraphComponent';
@@ -73,7 +73,7 @@ import { Series }               from '../Series';
 
 Series.register('bubble', (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions) => new Bubble(cfg, sName, dims));
 
-export class Bubble extends NumericSeriesPlot {
+export class Bubble extends SeriesPlotNumeric {
     getDefaults(): SeriesPlotDefaults {
         const def = super.getDefaults();
         def.area.rendered = false;
