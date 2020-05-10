@@ -22,7 +22,7 @@ import { DataSet }              from './Graph';
 import { Domains }              from './Graph';
 import { d3Base, textPos }      from './Settings';
 import { Label }                from './Settings';
-import { CartSeriesPlot }       from './CartSeriesPlot';
+import { SeriesPlotCartesian }       from './SeriesPlotCartesian';
 import { SeriesPlotDefaults }   from './SeriesPlot';
 import { text }                 from './SeriesPlot';
 import { Series }               from './Series';
@@ -30,7 +30,7 @@ import { Series }               from './Series';
 /**
  * Abstract base class of a  cartesian series plot. 
  */
-export abstract class OrdinalSeriesPlot extends CartSeriesPlot { 
+export abstract class OrdinalSeriesPlot extends SeriesPlotCartesian { 
     /** used  */
     protected cache = { x:<number[]>[], x0:<number[]>[], y:<number[]>[], y0:<number[]>[] };
 

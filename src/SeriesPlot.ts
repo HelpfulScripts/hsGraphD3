@@ -28,6 +28,7 @@ import { setLabel }             from "./Settings";
 import { setArea }              from "./Settings";
 import { setStroke }            from "./Settings";
 import { setFill }              from "./Settings";
+import { SystemType } from './Scales';
 
 export type d3Selection = d3.Selection<BaseType, unknown, BaseType, unknown>; 
 
@@ -150,15 +151,16 @@ export abstract class SeriesPlot {
      * determines the required type of graph for this lot:  
      * - 'cartesian': plot on a cartesian x/y coordinate system 
      * - 'polar': plot on a polar r/phi coordinate system
+     * - 'none': plot on a non-metric graph such as `sankey`
      */
-    protected type: 'polar' | 'cartesian';
+    protected type: SystemType;
 
 
     constructor(cfg:GraphCfg, seriesName:string, dims:SeriesDimensions) {
         this.cfg = cfg; 
         this.seriesKey = seriesName;
         this._dims = dims;
-        this.type = 'cartesian';
+        this.type = 'none';
     }
     
     public get key() { return this.seriesKey; }

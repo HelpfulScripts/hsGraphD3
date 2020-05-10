@@ -133,7 +133,7 @@
  /** */
 
 import { Log }                  from 'hsutil'; const log = new Log('Column');
-import { CartSeriesDimensions } from '../CartSeriesPlot';
+import { CartSeriesDimensions } from '../SeriesPlotCartesian';
 import { GraphCfg}              from '../GraphComponent';
 import { Series }               from '../Series';
 import { OrdinalSeriesPlot }    from '../OrdinalSeriesPlot';

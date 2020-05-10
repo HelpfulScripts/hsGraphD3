@@ -1,6 +1,6 @@
 export *    from './Graph';
 export *    from './plots/Voronoi';
-export *    from './PolarSeriesPlot';
+export *    from './SeriesPlotPolar';
 export *    from './Scale';
 export *    from './Series';
 

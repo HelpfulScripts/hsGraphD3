@@ -93,9 +93,9 @@ import { Log }                  from 'hsutil'; const log = new Log('Pie');
 import { ValueDef, text }       from '../SeriesPlot';
 import { GraphCfg}              from '../GraphComponent';
 import { Series }               from '../Series';
-import { PolarSeriesPlot }      from '../PolarSeriesPlot';
-import { PolarPlotDefaults }    from '../PolarSeriesPlot';
-import { PolarSeriesDimensions }from '../PolarSeriesPlot';
+import { SeriesPlotPolar }      from '../SeriesPlotPolar';
+import { PolarPlotDefaults }    from '../SeriesPlotPolar';
+import { PolarSeriesDimensions }from '../SeriesPlotPolar';
 import { Label }                from '../Settings';
 import { d3Base }               from '../Settings';
 import { textPos }              from '../Settings';
@@ -105,7 +105,7 @@ import { arc as d3Arc }         from 'd3';
  
 Series.register('pie', (cfg:GraphCfg, sName:string, dims: PolarSeriesDimensions) => new Pie(cfg, sName, dims));
 
-export class Pie extends PolarSeriesPlot {
+export class Pie extends SeriesPlotPolar {
     constructor(cfg:GraphCfg, seriesName:string, dims:PolarSeriesDimensions) {
         super(cfg, seriesName, dims);
         this.abscissa = 'rad';

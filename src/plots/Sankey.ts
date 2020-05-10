@@ -29,18 +29,14 @@
  /** */
 
 import { Log }                  from 'hsutil'; const log = new Log('Sankey');
-import { uniquefy }             from 'hsutil';
 import { SeriesPlot }           from '../SeriesPlot';
-import { CartSeriesDimensions } from '../CartSeriesPlot';
+import { CartSeriesDimensions } from '../SeriesPlotCartesian';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { GraphCfg}              from '../GraphComponent';
 import { Series }               from '../Series';
-import { schemes }              from "../Settings";
-import { DataSet, AccessFn, DataVal }              from "../Graph";
+import { DataSet, AccessFn }    from "../Graph";
 import { GraphDimensions }      from "../Graph";
-import { Domains }              from "../Graph";
 import { d3Base }               from "../Settings";
-import { format as d3format}    from 'd3';
 import { sankey as d3Sankey }   from "d3-sankey";
 import { SankeyNodeMinimal }    from "d3-sankey";
 import { SankeyLinkMinimal }    from "d3-sankey";
@@ -51,6 +47,7 @@ Series.register('sankey', (cfg:GraphCfg, sName:string, dims:CartSeriesDimensions
 export interface SankeyDefaults extends SeriesPlotDefaults {
     width: number;
     padding: number;
+    align: 'left' | 'right' | 'middle' | 'justified';
 }
 
 interface Nodes {
@@ -64,6 +61,11 @@ export class Sankey extends SeriesPlot {
     links:SankeyLinkMinimal<{}, {}>[];
     sankey:any;
 
+    constructor(cfg:GraphCfg, seriesName:string, dims:CartSeriesDimensions) {
+        super(cfg, seriesName, dims);
+        this.type = 'none';
+    }
+
     getDefaults(): SankeyDefaults {
         const def = <SankeyDefaults>super.getDefaults();
         def.area.rendered = true;
@@ -72,6 +74,7 @@ export class Sankey extends SeriesPlot {
         def.label.rendered = false;
         def.width   = 20;
         def.padding = 20;
+        def.align   = 'justified'; 
         return def;
     } 
 
@@ -127,7 +130,7 @@ export class Sankey extends SeriesPlot {
                 const d = keys[i];
                 if (!nodes.names[r[s]]) { nodes.push(nodes.names[r[s]] = { name: r[s]})}
                 if (!nodes.names[r[d]]) { nodes.push(nodes.names[r[d]] = { name: r[d]})}
-                const key = `${s}-${d}`;
+                const key = `${r[s]}-${r[d]}`;
                 if (!links.myKeys[key]) {
                     links.push(links.myKeys[key] = {
                         source: r[s],
@@ -136,7 +139,7 @@ export class Sankey extends SeriesPlot {
                         value: 0
                     });
                 }
-                links.myKeys[key].value = r[v];
+                links.myKeys[key].value += r[v];
             }
         });
         return {
@@ -186,7 +189,7 @@ export class Sankey extends SeriesPlot {
                     .attr("stroke-width", d => Math.max(1, d.width))
                     .call(this.d3FillColors.bind(this), data, defaults)
                     .append("title")
-                    .text((d:any) => `${d.source.name} → ${d.target.name}`);
+                    .text((d:any) => `${d.source.name} → ${d.target.name}:${this.links[d.source.name+'-'+d.target.name].value}`);
         }
     }
 

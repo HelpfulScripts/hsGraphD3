@@ -143,11 +143,9 @@ export interface PolarDimensions extends GraphDimensions {
 /**
  * Abstract base class for all cartesian plots.
  */
-export abstract class PolarSeriesPlot extends SeriesPlot {
+export abstract class SeriesPlotPolar extends SeriesPlot {
     /** the main data line  */
     protected line: string;         // d3Line<number[]>;
-
-    // protected popupDiv:d3Base;
 
     constructor(cfg:GraphCfg, seriesName:string, dims:PolarSeriesDimensions) {
         super(cfg, seriesName, dims);

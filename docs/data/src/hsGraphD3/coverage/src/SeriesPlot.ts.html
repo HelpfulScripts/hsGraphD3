@@ -473,7 +473,9 @@
 <a name='L414'></a><a href='#L414'>414</a>
 <a name='L415'></a><a href='#L415'>415</a>
 <a name='L416'></a><a href='#L416'>416</a>
-<a name='L417'></a><a href='#L417'>417</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L417'></a><a href='#L417'>417</a>
+<a name='L418'></a><a href='#L418'>418</a>
+<a name='L419'></a><a href='#L419'>419</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -503,6 +505,7 @@
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -603,6 +606,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -782,16 +786,16 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">10x</span>
+<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -870,7 +874,7 @@
 <span class="cline-any cline-yes">32x</span>
 <span class="cline-any cline-yes">32x</span>
 <span class="cline-any cline-yes">32x</span>
-<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">31x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -919,6 +923,7 @@ import { setLabel }             from "./Settings";
 import { setArea }              from "./Settings";
 import { setStroke }            from "./Settings";
 import { setFill }              from "./Settings";
+import { SystemType } from './Scales';
 &nbsp;
 export type d3Selection = d3.Selection&lt;BaseType, unknown, BaseType, unknown&gt;; 
 &nbsp;
@@ -1041,15 +1046,16 @@ export abstract class SeriesPlot {
      * determines the required type of graph for this lot:  
      * - 'cartesian': plot on a cartesian x/y coordinate system 
      * - 'polar': plot on a polar r/phi coordinate system
+     * - 'none': plot on a non-metric graph such as `sankey`
      */
-    protected type: 'polar' | 'cartesian';
+    protected type: SystemType;
 &nbsp;
 &nbsp;
     constructor(cfg:GraphCfg, seriesName:string, dims:SeriesDimensions) {
         this.cfg = cfg; 
         this.seriesKey = seriesName;
         this._dims = dims;
-        this.type = 'cartesian';
+        this.type = 'none';
     }
     
     public get key() { return this.seriesKey; }

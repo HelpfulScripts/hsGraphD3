@@ -29,13 +29,13 @@ import { Domains }              from './Graph';
 import { d3Base }               from './Settings';
 import { Label }                from './Settings';
 import { textPos }              from './Settings';
-import { CartSeriesPlot }       from './CartSeriesPlot';
+import { SeriesPlotCartesian }       from './SeriesPlotCartesian';
 
 
 /**
  * Abstract base class of a  cartesian series plot. 
  */
-export abstract class NumericSeriesPlot extends CartSeriesPlot { 
+export abstract class NumericSeriesPlot extends SeriesPlotCartesian { 
 
     //---------- lifecylce methods --------------------
 

@@ -42,8 +42,9 @@ import { SeriesPlot }           from './SeriesPlot';
 import { SeriesPlotDefaults }   from './SeriesPlot';
 import { SeriesDimensions }     from './SeriesPlot';
 import { schemeDark2 }          from 'd3';
-import { PolarPlotDefaults }    from './PolarSeriesPlot';
+import { PolarPlotDefaults }    from './SeriesPlotPolar';
 import { scaleDefault }         from './Scale';
+import { SystemType } from './Scales';
 
 
 type PlotFactory = (cfg:GraphCfg, seriesName:string, dims:SeriesDimensions) => SeriesPlot;
@@ -186,7 +187,7 @@ export class Series extends GraphComponent {
         }
     }
 
-    makeGraphType(graphType:'polar' | 'cartesian') {
+    makeGraphType(graphType: SystemType) {
         const scalesDefaults = this.cfg.graph.defaults.scales;
         switch(graphType) {
             case 'polar':
@@ -207,7 +208,6 @@ export class Series extends GraphComponent {
                 } 
                 break;
             case 'cartesian':
-            default:
                 if (!scalesDefaults.type) {
                     log.debug(`creating cartesian graph type`);
                     scalesDefaults.type = 'cartesian';
@@ -217,7 +217,19 @@ export class Series extends GraphComponent {
                 } else if (scalesDefaults.type !== 'cartesian') {
                     return false;
                 } 
-        }
+                break;
+            case 'none':
+                if (!scalesDefaults.type) {
+                    log.debug(`creating non-metric graph type`);
+                    scalesDefaults.type = 'none';
+                    this.cfg.graph.defaults.axes.rendered = false;
+                    this.cfg.graph.defaults.grids.rendered = false;
+                } else if (scalesDefaults.type !== 'none') {
+                    return false;
+                }
+                break;
+            default:
+            }
         return true;
     }
 }

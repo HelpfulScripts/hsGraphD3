@@ -65,7 +65,7 @@ export interface CartSeriesDimensions extends SeriesDimensions {
 /**
  * Abstract base class for all cartesian plots.
  */
-export abstract class CartSeriesPlot extends SeriesPlot {
+export abstract class SeriesPlotCartesian extends SeriesPlot {
     /** the main data line  */
     protected line: string;         // d3Line<number[]>;
 
@@ -73,6 +73,7 @@ export abstract class CartSeriesPlot extends SeriesPlot {
 
     constructor(cfg:GraphCfg, seriesName:string, dims:CartSeriesDimensions) {
         super(cfg, seriesName, dims);
+        this.type = 'cartesian';
     }
 
     protected get dims(): CartSeriesDimensions { return <CartSeriesDimensions>super.dims; }

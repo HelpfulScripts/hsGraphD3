@@ -67,7 +67,7 @@ import { Log }                  from 'hsutil'; const log = new Log('Bubble');
 import { DataSet }              from '../Graph';
 import { NumericSeriesPlot }    from '../NumericSeriesPlot';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
-import { CartSeriesDimensions } from '../CartSeriesPlot';
+import { CartSeriesDimensions } from '../SeriesPlotCartesian';
 import { GraphCfg}              from '../GraphComponent';
 import { Series }               from '../Series';
 

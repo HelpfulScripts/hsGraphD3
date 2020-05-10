@@ -116,9 +116,9 @@
 <p id=93 class="line"><span>&nbsp;&nbsp;93</span>import&nbsp;{&nbsp;ValueDef,&nbsp;text&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../SeriesPlot'</quote>;</p>
 <p id=94 class="line"><span>&nbsp;&nbsp;94</span>import&nbsp;{&nbsp;GraphCfg}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../GraphComponent'</quote>;</p>
 <p id=95 class="line"><span>&nbsp;&nbsp;95</span>import&nbsp;{&nbsp;Series&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../Series'</quote>;</p>
-<p id=96 class="line"><span>&nbsp;&nbsp;96</span>import&nbsp;{&nbsp;PolarSeriesPlot&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../PolarSeriesPlot'</quote>;</p>
-<p id=97 class="line"><span>&nbsp;&nbsp;97</span>import&nbsp;{&nbsp;PolarPlotDefaults&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../PolarSeriesPlot'</quote>;</p>
-<p id=98 class="line"><span>&nbsp;&nbsp;98</span>import&nbsp;{&nbsp;PolarSeriesDimensions&nbsp;}from&nbsp;<quote>'../PolarSeriesPlot'</quote>;</p>
+<p id=96 class="line"><span>&nbsp;&nbsp;96</span>import&nbsp;{&nbsp;SeriesPlotPolar&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../SeriesPlotPolar'</quote>;</p>
+<p id=97 class="line"><span>&nbsp;&nbsp;97</span>import&nbsp;{&nbsp;PolarPlotDefaults&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../SeriesPlotPolar'</quote>;</p>
+<p id=98 class="line"><span>&nbsp;&nbsp;98</span>import&nbsp;{&nbsp;PolarSeriesDimensions&nbsp;}from&nbsp;<quote>'../SeriesPlotPolar'</quote>;</p>
 <p id=99 class="line"><span>&nbsp;&nbsp;99</span>import&nbsp;{&nbsp;Label&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../Settings'</quote>;</p>
 <p id=100 class="line"><span>&nbsp;100</span>import&nbsp;{&nbsp;d3Base&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../Settings'</quote>;</p>
 <p id=101 class="line"><span>&nbsp;101</span>import&nbsp;{&nbsp;textPos&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'../Settings'</quote>;</p>
@@ -128,7 +128,7 @@
 <p id=105 class="line"><span>&nbsp;105</span>&nbsp;</p>
 <p id=106 class="line"><span>&nbsp;106</span>Series.register(<quote>'pie'</quote>,&nbsp;(cfg:GraphCfg,&nbsp;sName:string,&nbsp;dims:&nbsp;PolarSeriesDimensions)&nbsp;=>&nbsp;new&nbsp;Pie(cfg,&nbsp;sName,&nbsp;dims));</p>
 <p id=107 class="line"><span>&nbsp;107</span></p>
-<p id=108 class="line"><span>&nbsp;108</span>export&nbsp;class&nbsp;Pie&nbsp;extends&nbsp;PolarSeriesPlot&nbsp;{</p>
+<p id=108 class="line"><span>&nbsp;108</span>export&nbsp;class&nbsp;Pie&nbsp;extends&nbsp;SeriesPlotPolar&nbsp;{</p>
 <p id=109 class="line"><span>&nbsp;109</span>&nbsp;&nbsp;&nbsp;&nbsp;constructor(cfg:GraphCfg,&nbsp;seriesName:string,&nbsp;dims:PolarSeriesDimensions)&nbsp;{</p>
 <p id=110 class="line"><span>&nbsp;110</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;super(cfg,&nbsp;seriesName,&nbsp;dims);</p>
 <p id=111 class="line"><span>&nbsp;111</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.abscissa&nbsp;=&nbsp;<quote>'rad'</quote>;</p>

@@ -23,8 +23,10 @@ import { Domain }               from './Graph';
 export interface ScalesDefaults extends ComponentDefaults {
     margin: { left:number; top:number; right:number; bottom:number; };
     dims: ScaleDefaultsDims;
-    type: 'polar' | 'cartesian';
+    type: SystemType;
 }
+
+export type SystemType = 'polar' | 'cartesian' | 'none';
 
 /**
  * 
@@ -59,11 +61,13 @@ export class Scales extends GraphComponent {
                 this.createScale('rad', this.cumulativeDomains.rad, [0, Math.min(vp.height-margins.bottom-margins.top, vp.width-margins.left-margins.right)/2]);    
                 break;
             case 'cartesian':
-            default:
                 this.createScale('hor', this.cumulativeDomains.hor, [margins.left,  vp.width-margins.right]);
                 this.createScale('ver', this.cumulativeDomains.ver, [vp.height-margins.bottom, margins.top]);
                 this.createScale('size', this.cumulativeDomains.size);
-        }
+                break;
+            case 'none':
+            default:
+            }
     } 
 
     public preRender(data:DataSet | DataSet[]): void {
