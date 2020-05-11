@@ -1,7 +1,7 @@
 /**
  * # Line Plot
  * 
- * plots a 2D line. Defers to {@link NumericSeriesPlot NumericSeriesPlot} to render plot elements and uses the 
+ * plots a 2D line. Defers to {@link SeriesPlotNumeric SeriesPlotNumeric} to render plot elements and uses the 
  * default configuration to
  * - show the plot line
  * - hide the plot markers

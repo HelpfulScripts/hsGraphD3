@@ -1,12 +1,12 @@
 /**
- * # CartSeriesPlot
+ * # SeriesPlotCartesian
  * 
  * Abstract base class for all series plot types on cartesian coordinates.
  * To create a series plot, add the desired plot type to the graph:
  * ```
  * graph.add(<type>, {<dim>: <ValueDef>, ...});
  * ``` 
- * - `<type>` is one of the registered types. See plot types for {@link plots.OrdinalSeriesPlot ordinal series} and {@link plots.NumericSeriesPlot numeric series}.
+ * - `<type>` is one of the registered types. See plot types for {@link plots.OrdinalSeriesPlot ordinal series} and {@link plots.SeriesPlotNumeric numeric series}.
  * - `<dim>` is the semantic dimension to set. See {@link CartSeriesPlot.CartSeriesDimensions CartSeriesDimensions} for valid dimensions. 
  * - `<ValueDef>` is the {@link SeriesPlot.ValueDef value definition}. 
  */
@@ -15,12 +15,10 @@
 /** */
 
 import { Log }                  from 'hsutil'; const log = new Log('CartSeriesPlot');
-import { SeriesPlot }           from "./SeriesPlot";
 import { SeriesPlotDefaults }   from "./SeriesPlot";
 import { SeriesDimensions }     from "./SeriesPlot";
 import { ValueDef }             from "./SeriesPlot";
-import { DataRow, GraphDimensions }              from "./Graph";
-import { AccessFn }             from "./Graph";
+import { GraphDimensions }      from "./Graph";
 import { DataSet }              from "./Graph";
 import { GraphCfg }             from "./GraphComponent";
 import { d3Base }               from "./Settings";
@@ -96,6 +94,7 @@ export abstract class SeriesPlotCartesian extends SeriesPlotScaled {
      * */
     public getDefaults(): SeriesPlotDefaults {
         const def = super.getDefaults();
+
         if (this.dims.r)    { 
             def.marker.rendered = true; 
             def.marker.stroke = defaultStroke(1);
@@ -136,14 +135,21 @@ export abstract class SeriesPlotCartesian extends SeriesPlotScaled {
         const shape = this.markerShape();
         const defaults = this.defaults;
         const popup = this.cfg.components.popup;
+        const transition = defaults.transition? this.cfg.transition : undefined;
         if (defaults.marker.rendered) {
-            plot.select('.markers').selectAll(shape)
+            const joint = plot.select('.markers').selectAll(shape)
                 .data(data.rows, d => d[0]) // bind to first DataVal, rather than to DataRow, iterate over rows
                 .join(shape)              
-                .call(popup.addListener.bind(popup), this.d3RenderPopup(data))
-                .transition(this.cfg.transition)
+                .call(popup.addListener.bind(popup), this.d3RenderPopup(data));
+            if (transition) {
+                joint.transition(transition)
                 .call(this.d3DrawMarker.bind(this), data, defaults)
                 .call(this.d3MarkerColors.bind(this), data, defaults);
+            } else {
+                joint
+                .call(this.d3DrawMarker.bind(this), data, defaults)
+                .call(this.d3MarkerColors.bind(this), data, defaults);
+            }
         }
     }
 
@@ -157,12 +163,13 @@ export abstract class SeriesPlotCartesian extends SeriesPlotScaled {
     protected d3RenderLabels(plot:d3Base, data:DataSet):void {
         const defaults = this.defaults;
         const popup = this.cfg.components.popup;
+        const transition = this.defaults.transition? this.cfg.transition : undefined;
         if (defaults.label.rendered) {
             plot.select('.label').selectAll("text")
                 .data(data.rows, (d:any[]) => d[0]) // bind to first DataVal, rather than to DataRow, iterate over rows
                 .join('text')                       
                 .call(popup.addListener.bind(popup), this.d3RenderPopup(data))
-                .transition(this.cfg.transition) 
+                .transition(transition) 
                 .call(this.d3DrawLabels.bind(this), data, defaults);
         }
     }

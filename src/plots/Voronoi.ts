@@ -41,6 +41,7 @@
  *     series.series1.marker.size = 1;
  *     series.series1.marker.stroke.width = 0;
  *     series.series1.marker.fill.color = '#000';
+ *     series.series1.transition = false;
  *     grids.rendered = false;
  *     scales.margin.bottom = 0;
  *     scales.margin.left = 0;

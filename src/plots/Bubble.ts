@@ -1,12 +1,12 @@
 /**
  * # Bubble Plot
  * 
- * ### Usage
+ * ## Usage
  * `graph.add('bubble', {x:<x-col>, y:<y-col>, r:<size-col>});`
  * - `<dim>`: the semantic dimension to set. See {@link CartSeriesPlot.CartSeriesDimensions CartSeriesDimensions} for valid dimensions. 
  * - `<ValueDef>`: the {@link SeriesPlot.ValueDef value definition}. 
  * 
- * ### Example
+ * ## Example
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
  * <file name='script.js'>
  * // create data set:
@@ -31,7 +31,7 @@
  * </example>
  * 
  * 
- * ### Bubble plot Default Settings:
+ * ## Bubble plot Default Settings:
  * <example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
  * <file name='script.js'>
  * const log = new hsUtil.Log('');

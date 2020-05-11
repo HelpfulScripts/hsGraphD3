@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95.83% </span>
+                <span class="strong">94.34% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>46/48</span>
+                <span class='fraction'>50/53</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">81.82% </span>
+                <span class="strong">75% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>18/22</span>
+                <span class='fraction'>21/28</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">97.83% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>41/41</span>
+                <span class='fraction'>45/46</span>
             </div>
         
             
@@ -226,7 +226,14 @@
 <a name='L167'></a><a href='#L167'>167</a>
 <a name='L168'></a><a href='#L168'>168</a>
 <a name='L169'></a><a href='#L169'>169</a>
-<a name='L170'></a><a href='#L170'>170</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L170'></a><a href='#L170'>170</a>
+<a name='L171'></a><a href='#L171'>171</a>
+<a name='L172'></a><a href='#L172'>172</a>
+<a name='L173'></a><a href='#L173'>173</a>
+<a name='L174'></a><a href='#L174'>174</a>
+<a name='L175'></a><a href='#L175'>175</a>
+<a name='L176'></a><a href='#L176'>176</a>
+<a name='L177'></a><a href='#L177'>177</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -243,8 +250,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -324,6 +329,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">28x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">28x</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">8x</span>
@@ -366,9 +372,16 @@
 <span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-yes">72x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -383,6 +396,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">8x</span>
 <span class="cline-any cline-yes">8x</span>
@@ -396,14 +410,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
- * # CartSeriesPlot
+ * # SeriesPlotCartesian
  * 
  * Abstract base class for all series plot types on cartesian coordinates.
  * To create a series plot, add the desired plot type to the graph:
  * ```
  * graph.add(&lt;type&gt;, {&lt;dim&gt;: &lt;ValueDef&gt;, ...});
  * ``` 
- * - `&lt;type&gt;` is one of the registered types. See plot types for {@link plots.OrdinalSeriesPlot ordinal series} and {@link plots.NumericSeriesPlot numeric series}.
+ * - `&lt;type&gt;` is one of the registered types. See plot types for {@link plots.OrdinalSeriesPlot ordinal series} and {@link plots.SeriesPlotNumeric numeric series}.
  * - `&lt;dim&gt;` is the semantic dimension to set. See {@link CartSeriesPlot.CartSeriesDimensions CartSeriesDimensions} for valid dimensions. 
  * - `&lt;ValueDef&gt;` is the {@link SeriesPlot.ValueDef value definition}. 
  */
@@ -412,12 +426,10 @@
 /** */
 &nbsp;
 import { Log }                  from 'hsutil'; const log = new Log('CartSeriesPlot');
-import { SeriesPlot }           from "./SeriesPlot";
 import { SeriesPlotDefaults }   from "./SeriesPlot";
 import { SeriesDimensions }     from "./SeriesPlot";
 import { ValueDef }             from "./SeriesPlot";
-import { DataRow, GraphDimensions }              from "./Graph";
-import { AccessFn }             from "./Graph";
+import { GraphDimensions }      from "./Graph";
 import { DataSet }              from "./Graph";
 import { GraphCfg }             from "./GraphComponent";
 import { d3Base }               from "./Settings";
@@ -493,6 +505,7 @@ export abstract class SeriesPlotCartesian extends SeriesPlotScaled {
      * */
     public getDefaults(): SeriesPlotDefaults {
         const def = super.getDefaults();
+&nbsp;
         if (this.dims.r)    { 
             def.marker.rendered = true; 
             def.marker.stroke = defaultStroke(1);
@@ -533,14 +546,21 @@ export abstract class SeriesPlotCartesian extends SeriesPlotScaled {
         const shape = this.markerShape();
         const defaults = this.defaults;
         const popup = this.cfg.components.popup;
+        const transition = defaults.transition? this.cfg.transition : <span class="branch-1 cbranch-no" title="branch not covered" >undefined;</span>
         <span class="missing-if-branch" title="else path not taken" >E</span>if (defaults.marker.rendered) {
-            plot.select('.markers').selectAll(shape)
+            const joint = plot.select('.markers').selectAll(shape)
                 .data(data.rows, d =&gt; d[0]) // bind to first DataVal, rather than to DataRow, iterate over rows
                 .join(shape)              
-                .call(popup.addListener.bind(popup), this.d3RenderPopup(data))
-                .transition(this.cfg.transition)
+                .call(popup.addListener.bind(popup), this.d3RenderPopup(data));
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (transition) {
+                joint.transition(transition)
                 .call(this.d3DrawMarker.bind(this), data, defaults)
                 .call(this.d3MarkerColors.bind(this), data, defaults);
+            } else {
+<span class="cstat-no" title="statement not covered" >                joint</span>
+                .call(this.d3DrawMarker.bind(this), data, defaults)
+                .call(this.d3MarkerColors.bind(this), data, defaults);
+            }
         }
     }
 &nbsp;
@@ -554,12 +574,13 @@ export abstract class SeriesPlotCartesian extends SeriesPlotScaled {
     protected d3RenderLabels(plot:d3Base, data:DataSet):void {
         const defaults = this.defaults;
         const popup = this.cfg.components.popup;
+        const transition = this.defaults.transition? this.cfg.transition : <span class="branch-1 cbranch-no" title="branch not covered" >undefined;</span>
         <span class="missing-if-branch" title="else path not taken" >E</span>if (defaults.label.rendered) {
             plot.select('.label').selectAll("text")
                 .data(data.rows, (d:any[]) =&gt; d[0]) // bind to first DataVal, rather than to DataRow, iterate over rows
                 .join('text')                       
                 .call(popup.addListener.bind(popup), this.d3RenderPopup(data))
-                .transition(this.cfg.transition) 
+                .transition(transition) 
                 .call(this.d3DrawLabels.bind(this), data, defaults);
         }
     }

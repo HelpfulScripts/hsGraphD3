@@ -1,5 +1,5 @@
 /**
- * # NumericSeriesPlot
+ * # SeriesPlotNumeric
  * 
  * Abstract base class for all numeric series plot types, i.e. plots with numeric coordinates
  * To create a series plot, add the desired plot type to the graph:
@@ -17,7 +17,7 @@
  */
 
 /** */
-import { Log }                  from 'hsutil'; const log = new Log('NumericSeriesPlot');
+import { Log }                  from 'hsutil'; const log = new Log('SeriesPlotNumeric');
 import { line as d3line}        from 'd3';
 import { curveCatmullRom }      from 'd3';
 import { NumericDataSet }       from './Graph';
@@ -25,7 +25,6 @@ import { DataSet }              from './Graph';
 import { NumericDataRow }       from './Graph';
 import { ValueDef, text }       from './SeriesPlot';
 import { SeriesPlotDefaults }   from './SeriesPlot';
-import { Domains }              from './Graph';
 import { d3Base }               from './Settings';
 import { Label }                from './Settings';
 import { textPos }              from './Settings';

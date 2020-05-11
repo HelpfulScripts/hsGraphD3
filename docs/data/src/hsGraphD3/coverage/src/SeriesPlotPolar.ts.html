@@ -260,9 +260,7 @@
 <a name='L201'></a><a href='#L201'>201</a>
 <a name='L202'></a><a href='#L202'>202</a>
 <a name='L203'></a><a href='#L203'>203</a>
-<a name='L204'></a><a href='#L204'>204</a>
-<a name='L205'></a><a href='#L205'>205</a>
-<a name='L206'></a><a href='#L206'>206</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L204'></a><a href='#L204'>204</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -355,8 +353,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -468,7 +464,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
- * # PolarSeriesPlot
+ * # SeriesPlotPolar
  * 
  * Abstract base class for all series plot types on polar coordinates.
  * To create a series plot, add the desired plot type to the graph:
@@ -477,7 +473,7 @@
  * ``` 
  * - `&lt;type&gt;` is one of the registered types: 
  *     - &amp;nbsp; {@link plots.Pie `pie`} a pie chart
- * - `&lt;dim&gt;` is the semantic dimension to set. See {@link PolarSeriesPlot.PolarSeriesDimensions PolarSeriesDimensions} for valid dimensions. 
+ * - `&lt;dim&gt;` is the semantic dimension to set. See {@link SeriesPlotPolar.PolarSeriesDimensions PolarSeriesDimensions} for valid dimensions. 
  * - `&lt;ValueDef&gt;` is the {@link SeriesPlot.ValueDef value definition}. 
  * 
  * ### Example:
@@ -559,13 +555,11 @@
 &nbsp;
 /** */
 &nbsp;
-import { Log }                  from 'hsutil'; const log = new Log('PolarSeriesPlot');
-import { SeriesPlot }           from "./SeriesPlot";
+import { Log }                  from 'hsutil'; const log = new Log('SeriesPlotPolar');
 import { SeriesPlotDefaults }   from "./SeriesPlot";
 import { SeriesDimensions }     from "./SeriesPlot";
 import { ValueDef }             from "./SeriesPlot";
-import { DataRow, GraphDimensions }              from "./Graph";
-import { AccessFn }             from "./Graph";
+import { GraphDimensions }      from "./Graph";
 import { DataSet }              from "./Graph";
 import { Domains }              from "./Graph";
 import { GraphCfg }             from "./GraphComponent";

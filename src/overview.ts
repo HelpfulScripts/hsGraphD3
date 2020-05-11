@@ -29,9 +29,18 @@ Helpful Scripts Graph convenience wrapper for D3js.
  * `graph.render(data);`
  * 
  * To dynamically update the graph to new data, call the {@link Graph.RenderChain `update`} method.
- * See {@link CartExamples cartesian examples} and {@link PolarExamples polar examples}
  * 
- * ### Using {@link SeriesPlot.SeriesDimensions Labels, Popups, Colors, }
+ * #### Using {@link SeriesPlot.SeriesDimensions Labels, Popups, Colors, }
+ * 
+ * ## Available Plots:
+ * - **Cartesian plots:** {@link CartExamples examples}
+ *     - line and scatter plots: {@link plots.Line Line}, {@link plots.Area Area}, {@link plots.Bubble Bubble}, {@link plots.TimeSeries TimeSeries}
+ *     - categorical plots: {@link plots.Bar Bar}, {@link plots.Column Column}
+ *     - compound plots: {@link plots.Voronoi Voronoi}, 
+ * - **Polar plots:** {@link PolarExamples examples}
+ *     - pie and doughnut plots: {@link plots.Pie Pie}, 
+ * - **non-metric plots**
+ *     - Sankey plots: {@link plots.Sankey Sankey}, 
  * 
  * ## Data
  * Data is provided either in table form
@@ -50,6 +59,7 @@ Helpful Scripts Graph convenience wrapper for D3js.
  *    rows:   <number|string|Date>[][];
  * }
  * ```
+ * 
  * 
  * ## Example 1: {@link plots.Bubble `bubble`} chart
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>

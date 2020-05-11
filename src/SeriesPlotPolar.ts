@@ -1,5 +1,5 @@
 /**
- * # PolarSeriesPlot
+ * # SeriesPlotPolar
  * 
  * Abstract base class for all series plot types on polar coordinates.
  * To create a series plot, add the desired plot type to the graph:
@@ -8,7 +8,7 @@
  * ``` 
  * - `<type>` is one of the registered types: 
  *     - &nbsp; {@link plots.Pie `pie`} a pie chart
- * - `<dim>` is the semantic dimension to set. See {@link PolarSeriesPlot.PolarSeriesDimensions PolarSeriesDimensions} for valid dimensions. 
+ * - `<dim>` is the semantic dimension to set. See {@link SeriesPlotPolar.PolarSeriesDimensions PolarSeriesDimensions} for valid dimensions. 
  * - `<ValueDef>` is the {@link SeriesPlot.ValueDef value definition}. 
  * 
  * ### Example:
@@ -90,13 +90,11 @@
 
 /** */
 
-import { Log }                  from 'hsutil'; const log = new Log('PolarSeriesPlot');
-import { SeriesPlot }           from "./SeriesPlot";
+import { Log }                  from 'hsutil'; const log = new Log('SeriesPlotPolar');
 import { SeriesPlotDefaults }   from "./SeriesPlot";
 import { SeriesDimensions }     from "./SeriesPlot";
 import { ValueDef }             from "./SeriesPlot";
-import { DataRow, GraphDimensions }              from "./Graph";
-import { AccessFn }             from "./Graph";
+import { GraphDimensions }      from "./Graph";
 import { DataSet }              from "./Graph";
 import { Domains }              from "./Graph";
 import { GraphCfg }             from "./GraphComponent";

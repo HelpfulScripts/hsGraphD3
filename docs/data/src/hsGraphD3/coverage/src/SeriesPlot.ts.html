@@ -429,23 +429,20 @@
 <a name='L370'></a><a href='#L370'>370</a>
 <a name='L371'></a><a href='#L371'>371</a>
 <a name='L372'></a><a href='#L372'>372</a>
-<a name='L373'></a><a href='#L373'>373</a>
-<a name='L374'></a><a href='#L374'>374</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L373'></a><a href='#L373'>373</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -459,7 +456,7 @@
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
-<span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -595,7 +592,7 @@
 <span class="cline-any cline-yes">32x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">190x</span>
+<span class="cline-any cline-yes">215x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">32x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -603,13 +600,14 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">149x</span>
+<span class="cline-any cline-yes">174x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -809,6 +807,7 @@
 /**  */
 import { Log }                  from 'hsutil'; const log = new Log('SeriesPlot');
 import { BaseType }             from 'd3';
+import { format as d3format}    from 'd3';
 import { d3Base, Index }        from "./Settings";
 import { defaultLine }          from "./Settings";
 import { defaultMarker }        from "./Settings";
@@ -816,33 +815,30 @@ import { Label }                from "./Settings";
 import { defaultLabel }         from "./Settings";
 import { schemes }              from "./Settings";
 import { defaultArea }          from "./Settings";
-import { GraphCfg }             from "./GraphComponent";
 import { Area }                 from "./Settings";
 import { Line }                 from "./Settings";
 import { Marker }               from "./Settings";
+import { GraphCfg }             from "./GraphComponent";
 import { DataSet }              from "./Graph";
 import { DataVal }              from "./Graph";
 import { AccessFn }             from "./Graph";
 import { DataRow }              from "./Graph";
-import { NumDomain }            from "./Graph";
-import { OrdDomain }            from "./Graph";
-import { Domains }              from "./Graph";
 import { GraphDimensions }      from "./Graph";
-import { format as d3format}    from 'd3';
 import { setLabel }             from "./Settings";
 import { setArea }              from "./Settings";
 import { setStroke }            from "./Settings";
 import { setFill }              from "./Settings";
-import { SystemType } from './Scales';
+import { SystemType }           from './Scales';
 &nbsp;
 export type d3Selection = d3.Selection&lt;BaseType, unknown, BaseType, unknown&gt;; 
 &nbsp;
 export interface SeriesPlotDefaults {
-    dims:   SeriesDimensions;
-    area:   Area;
-    line:   Line;
-    marker: Marker;
-    label:  Label;
+    dims:       SeriesDimensions;
+    area:       Area;
+    line:       Line;
+    marker:     Marker;
+    label:      Label;
+    transition: boolean;
 }
 &nbsp;
 /**
@@ -987,7 +983,8 @@ export abstract class SeriesPlot {
             line:   defaultLine(5),
             marker: defaultMarker(),
             area:   defaultArea(),
-            label:  defaultLabel()
+            label:  defaultLabel(),
+            transition: true
         };
         def.line.rendered = false;
         def.marker.rendered = false;

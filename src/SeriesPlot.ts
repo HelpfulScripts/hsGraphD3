@@ -4,6 +4,7 @@
 /**  */
 import { Log }                  from 'hsutil'; const log = new Log('SeriesPlot');
 import { BaseType }             from 'd3';
+import { format as d3format}    from 'd3';
 import { d3Base, Index }        from "./Settings";
 import { defaultLine }          from "./Settings";
 import { defaultMarker }        from "./Settings";
@@ -11,33 +12,30 @@ import { Label }                from "./Settings";
 import { defaultLabel }         from "./Settings";
 import { schemes }              from "./Settings";
 import { defaultArea }          from "./Settings";
-import { GraphCfg }             from "./GraphComponent";
 import { Area }                 from "./Settings";
 import { Line }                 from "./Settings";
 import { Marker }               from "./Settings";
+import { GraphCfg }             from "./GraphComponent";
 import { DataSet }              from "./Graph";
 import { DataVal }              from "./Graph";
 import { AccessFn }             from "./Graph";
 import { DataRow }              from "./Graph";
-import { NumDomain }            from "./Graph";
-import { OrdDomain }            from "./Graph";
-import { Domains }              from "./Graph";
 import { GraphDimensions }      from "./Graph";
-import { format as d3format}    from 'd3';
 import { setLabel }             from "./Settings";
 import { setArea }              from "./Settings";
 import { setStroke }            from "./Settings";
 import { setFill }              from "./Settings";
-import { SystemType } from './Scales';
+import { SystemType }           from './Scales';
 
 export type d3Selection = d3.Selection<BaseType, unknown, BaseType, unknown>; 
 
 export interface SeriesPlotDefaults {
-    dims:   SeriesDimensions;
-    area:   Area;
-    line:   Line;
-    marker: Marker;
-    label:  Label;
+    dims:       SeriesDimensions;
+    area:       Area;
+    line:       Line;
+    marker:     Marker;
+    label:      Label;
+    transition: boolean;
 }
 
 /**
@@ -182,7 +180,8 @@ export abstract class SeriesPlot {
             line:   defaultLine(5),
             marker: defaultMarker(),
             area:   defaultArea(),
-            label:  defaultLabel()
+            label:  defaultLabel(),
+            transition: true
         };
         def.line.rendered = false;
         def.marker.rendered = false;

@@ -1,5 +1,5 @@
 /**
- * # OrdinalSeriesPlot
+ * # SeriesPlotOrdinal
  * 
  * Abstract base class for all ordinal series plot types, i.e. plots with a ordinal abscissa and a numeric ordinate.
  * To create a series plot, add the desired plot type to the graph:
@@ -19,7 +19,6 @@ import { DataRow }              from './Graph';
 import { DataVal }              from './Graph';
 import { NumDomain }            from './Graph';
 import { DataSet }              from './Graph';
-import { Domains }              from './Graph';
 import { d3Base, textPos }      from './Settings';
 import { Label }                from './Settings';
 import { SeriesPlotCartesian }       from './SeriesPlotCartesian';

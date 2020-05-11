@@ -5,7 +5,7 @@
  * 
  * ## Usage
  * `graph.add('pie', {phi:<angle-col>, ...<dim>:<ValueDef>});`
- * - `<dim>` is the semantic dimension to set. See {@link PolarSeriesPlot.PolarSeriesDimensions PolarSeriesDimensions} for valid dimensions. 
+ * - `<dim>` is the semantic dimension to set. See {@link SeriesPlotPolar.PolarSeriesDimensions PolarSeriesDimensions} for valid dimensions. 
  * - `<ValueDef>` is the {@link SeriesPlot.ValueDef value definition}. 
  * 
  * ## Example

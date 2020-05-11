@@ -1,4 +1,6 @@
-
+/**
+ * # SeriesPlotScaled
+ */
 
 import { SeriesPlot, ValueDef, SeriesPlotDefaults } from "./SeriesPlot";
 import { DataSet, OrdDomain, DataRow, DataVal, NumDomain, GraphDimensions, Domains, AccessFn } from "./Graph";
@@ -105,7 +107,8 @@ export abstract class SeriesPlotScaled extends SeriesPlot {
     protected abstract d3DrawLabels(labels:d3Base, data:DataSet, defaults:SeriesPlotDefaults):void;
 
     protected getPathElement(svg:d3Base, cls:string):any {
-        return svg.select(cls).selectAll('path').transition(this.cfg.transition);
+        const transition = this.defaults.transition? this.cfg.transition : undefined;
+        return svg.select(cls).selectAll('path').transition(transition);
     }
 
     protected abstract getPath(rows:DataRow[], colNames:string[], yDef?: ValueDef, useStack?:boolean):string;

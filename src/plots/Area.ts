@@ -1,14 +1,6 @@
 /**
  * # Area Plot
  * 
- * plots a 2D area. Defers to {@link NumericSeriesPlot NumericSeriesPlot} to render plot elements and uses the 
- * default configuration to
- * - hide the plot line
- * - hide the plot markers
- * - show the plot area
- * Each of these can be modified via changing the {@link Settings default settings}.
-
- * 
  * ## Usage
  * `graph.add('area', {x:<x-col>, y:<y-col>, ...<dim>:<ValueDef>});`
  * - `<dim>` is the semantic dimension to set. See {@link CartSeriesPlot.CartSeriesDimensions CartSeriesDimensions} for valid dimensions. 
@@ -60,7 +52,7 @@
  * </file>
  * </example>
  * 
- * ### Area plot Default Settings:
+ * ## Area plot Default Settings:
  * <example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
  * <file name='script.js'>
  * const log = new hsUtil.Log('');
