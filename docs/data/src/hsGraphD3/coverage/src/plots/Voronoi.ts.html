@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">62.5% </span>
+                <span class="strong">95% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>25/40</span>
-            </div>
-        
-            
-            <div class='fl pad1y space-right2'>
-                <span class="strong">30% </span>
-                <span class="quiet">Branches</span>
-                <span class='fraction'>3/10</span>
+                <span class='fraction'>38/40</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">60% </span>
-                <span class="quiet">Functions</span>
+                <span class="quiet">Branches</span>
                 <span class='fraction'>6/10</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">63.89% </span>
+                <span class="strong">100% </span>
+                <span class="quiet">Functions</span>
+                <span class='fraction'>10/10</span>
+            </div>
+        
+            
+            <div class='fl pad1y space-right2'>
+                <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>23/36</span>
+                <span class='fraction'>36/36</span>
             </div>
         
             
@@ -55,7 +55,7 @@
             Press <em>n</em> or <em>j</em> to go to the next uncovered block, <em>b</em>, <em>p</em> or <em>k</em> for the previous block.
         </p>
     </div>
-    <div class='status-line medium'></div>
+    <div class='status-line high'></div>
     <pre><table class="coverage">
 <tr><td class="line-count quiet"><a name='L1'></a><a href='#L1'>1</a>
 <a name='L2'></a><a href='#L2'>2</a>
@@ -416,31 +416,31 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">/**
@@ -608,17 +608,17 @@ export class Voronoi extends SeriesPlotNumeric {
      * @param sample 
      * @param anchors 
      */
-<span class="fstat-no" title="function not covered" >    static </span>nearest(sample:number[], anchors:number[][]) {
-        let best = <span class="cstat-no" title="statement not covered" >0;</span>
-        let dist = <span class="cstat-no" title="statement not covered" >1e99;</span>
-<span class="cstat-no" title="statement not covered" >        anchors.forEach(<span class="fstat-no" title="function not covered" >(r</span>, i) =&gt; {</span>
-            const d = <span class="cstat-no" title="statement not covered" >Math.pow(r[0] - sample[0], 2) + Math.pow(r[1] - sample[1], 2);</span>
-<span class="cstat-no" title="statement not covered" >            if (d &lt; dist) {</span>
-<span class="cstat-no" title="statement not covered" >                dist = d;</span>
-<span class="cstat-no" title="statement not covered" >                best = i;</span>
+    static nearest(sample:number[], anchors:number[][]) {
+        let best = 0;
+        let dist = 1e99;
+        anchors.forEach((r, i) =&gt; {
+            const d = Math.pow(r[0] - sample[0], 2) + Math.pow(r[1] - sample[1], 2);
+            if (d &lt; dist) {
+                dist = d;
+                best = i;
             }
         });
-<span class="cstat-no" title="statement not covered" >        return best;</span>
+        return best;
     }
     
     /**
@@ -627,13 +627,13 @@ export class Voronoi extends SeriesPlotNumeric {
      * @param weight 
      * @return the centroid vector as an array
      */
-<span class="fstat-no" title="function not covered" >    static </span>centroid(samples:number[][]) {
-        const sum = <span class="cstat-no" title="statement not covered" >samples.reduce(<span class="fstat-no" title="function not covered" >(a</span>cc, s) =&gt; { </span>
-<span class="cstat-no" title="statement not covered" >            acc[0] += s[0]; </span>
-<span class="cstat-no" title="statement not covered" >            acc[1] += s[1]; </span>
-<span class="cstat-no" title="statement not covered" >            return acc; </span>
+    static centroid(samples:number[][]) {
+        const sum = samples.reduce((acc, s) =&gt; { 
+            acc[0] += s[0]; 
+            acc[1] += s[1]; 
+            return acc; 
         }, [0, 0]);
-<span class="cstat-no" title="statement not covered" >        return samples.length? [sum[0]/samples.length, sum[1]/samples.length] : [0,0];</span>
+        return samples.length? [sum[0]/samples.length, sum[1]/samples.length] : <span class="branch-1 cbranch-no" title="branch not covered" >[0,0];</span>
     }
 } 
 &nbsp;</pre></td></tr></table></pre>

@@ -1,8 +1,8 @@
 import * as hsGraphD3       from '../';
 import * as d3              from 'd3';
 import { Graph, DataSet }   from '../Graph';
-import { Log }              from 'hsnode';
- const log = new Log('Voronoi.jest');
+import { Log }              from 'hsnode'; const log = new Log('Voronoi.jest');
+import { Voronoi }          from './Voronoi';
 
 
 let clientWidth = 300;
@@ -56,4 +56,17 @@ describe('Voronoi', () => {
     it('should plot voronoi diagram', () => 
         expect(root).toMatchSnapshot()
     );
+
+    it('should get centroids', () => {
+        const samples = [[0,1], [2,3]];
+        const c = Voronoi.centroid(samples);
+        expect(c.join(', ')).toBe([1, 2].join(', '));
+    });
+
+    it('should get nearest', () => {
+        const sample = [0,1];
+        const anchors = [[0,1], [2,3]];
+        const best = Voronoi.nearest(sample, anchors);
+        expect(best).toBe(0);
+    });
 });

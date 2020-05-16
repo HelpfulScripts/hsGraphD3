@@ -37,6 +37,7 @@ describe('Pie labels', () => {
         graph.add('pie', {phi:'costs', label:i=>i});
         graph.add('pie', {phi:'costs', label:i=>i});
         graph.defaults.series[0].label.xpos = 0.5;
+        graph.title.text = `Pie Graph`;
         graph.render(data);
     });
     it('should plot pie', () => expect(root).toMatchSnapshot());
