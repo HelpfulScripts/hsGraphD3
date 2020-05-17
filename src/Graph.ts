@@ -621,7 +621,7 @@ export class Graph extends GraphBase {
         // if (this.root && this.root.clientWidth > 0) {
         if (this.root) {
             if (this.root.clientWidth !== client.width || this.root.clientHeight !== client.height) {
-                log.debug(`resizing svg for ${this.root.id}: [${client.width} x ${client.height}] -> [${this.root.clientWidth} x ${this.root.clientHeight}]`);
+                log.debug(()=>`resizing svg for ${this.root.id}: [${client.width} x ${client.height}] -> [${this.root.clientWidth} x ${this.root.clientHeight}]`);
                 client.width = this.root.clientWidth;
                 client.height = this.root.clientHeight;
                 vp.width = 2*this.root.clientWidth;

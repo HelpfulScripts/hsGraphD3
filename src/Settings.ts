@@ -37,7 +37,7 @@
  *      const svgRoot = root.getElementsByClassName('myGraph');
  *      if (svgRoot && svgRoot.length && !defaults) { 
  *          const colors = ['#800', '#080', '#008'];
- *          defaults = log.inspect(createGraph(svgRoot[0]), null)
+ *          defaults = log.inspect(createGraph(svgRoot[0]))
  *              .replace(/\n/g, '<br>')
  *      }
  *   } 
