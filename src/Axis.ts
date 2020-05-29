@@ -17,7 +17,7 @@
  *      if (svgRoot && svgRoot.length && !defaults) { 
  *          const colors = ['#800', '#080', '#008'];
  *          defaults = log
- *              .inspect(new hsGraphD3.Graph(svgRoot[0]).defaults.axes, null, '   ', colors)
+ *              .inspect(new hsGraphD3.Graph(svgRoot[0]).defaults.axes)
  *              .replace(/\n/g, '<br>')
  *      }
  *   } 
@@ -28,6 +28,7 @@
 
 /** */
 import { format }           from 'd3';
+import { timeFormat }       from 'd3';
 import { Log }              from 'hsutil'; const log = new Log('Axis');
 import { GraphComponent }   from './GraphComponent'; 
 import { GraphCfg }         from './GraphComponent';
@@ -167,6 +168,7 @@ export class Axis {
         this.setTransform(scales);
         const axis:any = this.getD3Axis(scales, axisDef);
         const scale = scales[this.dir];
+        axis.tickFormat(timeFormat("%b %d, %Y"));
         // axis.ticks(scale.tickCountMinor);
         this.svg.transition(trans).call(axis);
 

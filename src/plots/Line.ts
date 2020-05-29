@@ -30,6 +30,22 @@
  * 
  * </file>
  * </example>
+ * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
+ * <file name='script.js'>
+ * // create data set:
+ * const data = {
+ *    colNames:['date', 'time', 'volume', 'costs'], 
+ *    rows:[[new Date('1/1/14'), -1,   0.2, 0.3], [new Date('1/1/16'), 0.2, 0.7, 0.2], [new Date('9/1/16'), 0.4, 0.1, 0.3],
+ *          [new Date('5/1/17'), 0.6, -0.2, 0.1], [new Date('7/1/18'), 0.8, 0.3, 0.5], [new Date('1/1/19'), 1,   0.2, 0.4]]
+ * };
+ * 
+ * const graph = new hsGraphD3.Graph(root);
+ * graph.add('line', {x:'date', y:'volume', r:'costs'});
+ * graph.add('line', {x:'date', y:()=>0.5});
+ * graph.render(data);
+ * 
+ * </file>
+ * </example>
  * 
  * ### Line plot Default Settings:
  * <example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>

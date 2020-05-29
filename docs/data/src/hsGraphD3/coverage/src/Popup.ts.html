@@ -405,7 +405,7 @@
  * &lt;example height=200px libs={hsGraphD3:'hsGraphD3'}&gt;
  * &lt;file name='script.js'&gt;
  * // create popup content:
- * const popup = (rowIndex) =&gt; `${data.rows[rowIndex][0]}: ${data.rows[rowIndex][3]}`;
+ * const popup = (rowIndex) =&gt; `${data.rows[rowIndex][0]}: &lt;b&gt;${data.rows[rowIndex][3]}&lt;/b&gt;`;
  * 
  * // create data set:
  * const data = {
@@ -448,7 +448,7 @@
  *      if (svgRoot &amp;&amp; svgRoot.length &amp;&amp; !defaults) { 
  *          const colors = ['#800', '#080', '#008'];
  *          defaults = log
- *              .inspect(new hsGraphD3.Graph(svgRoot[0]).defaults.popup, null, '   ', colors)
+ *              .inspect(new hsGraphD3.Graph(svgRoot[0]).defaults.popup, {})
  *              .replace(/\n/g, '&lt;br&gt;')
  *      }
  *   } 

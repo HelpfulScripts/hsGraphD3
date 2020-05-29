@@ -98,7 +98,7 @@ export type ValueDef = string|number|ValueFn|string[];
  * @param rowIndex the index of the row in the {@link Graph.DataSet `DataSet's`} rows array. 
  * @return the value of type `DataVal` to use for the row.
  */
-export interface ValueFn { (rowIndex:Index): DataVal; }
+export interface ValueFn { (rowIndex:Index, row?:DataRow): DataVal; }
 
 /**
  * coverts a `DataVal` to a `string`
@@ -193,7 +193,7 @@ export abstract class SeriesPlot {
     /**
      * Returns an accessor function `(row:DataVal[], rowIndex:Index) => DataVal` to access the numeric value in a data row.
      * The type of `v` determines how to access the value: 
-     * - If `v` is a function it will be valuated for the provided `row` and `rowIndex` to return the result.
+     * - If `v` is a function it will be valuated for the provided `rowIndex` and `row` to return the result.
      * - If `v` is a number it will be returned as constant result.
      * - If `v` is a string and contained in `colNames` it specifies the column to index in `row` 
      * @param v the `ValueDef` specifying the value
@@ -204,7 +204,7 @@ export abstract class SeriesPlot {
      */
     protected accessor(v:ValueDef, colNames:string[], useStack=true):(row:DataRow, rowIndex:Index) => DataVal {
         switch (typeof(v)) {
-            case 'function':return (row, rowIndex) => (<ValueFn>v)(rowIndex);
+            case 'function':return (row, rowIndex) => (<ValueFn>v)(rowIndex, row);
             case 'number':  return () => <DataVal>v;
             case 'string':
             default:        const c = colNames.indexOf(''+v); 

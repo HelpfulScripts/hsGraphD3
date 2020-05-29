@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">73.88% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>99/132</span>
+                <span class='fraction'>99/134</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">48.94% </span>
+                <span class="strong">48.98% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>23/47</span>
+                <span class='fraction'>24/49</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">69.57% </span>
+                <span class="strong">66.67% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>32/46</span>
+                <span class='fraction'>32/48</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75.21% </span>
+                <span class="strong">74.59% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>91/121</span>
+                <span class='fraction'>91/122</span>
             </div>
         
             
@@ -712,7 +712,8 @@
 <a name='L653'></a><a href='#L653'>653</a>
 <a name='L654'></a><a href='#L654'>654</a>
 <a name='L655'></a><a href='#L655'>655</a>
-<a name='L656'></a><a href='#L656'>656</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L656'></a><a href='#L656'>656</a>
+<a name='L657'></a><a href='#L657'>657</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -837,6 +838,7 @@
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1423,7 +1425,7 @@
  *      if (svgRoot &amp;&amp; svgRoot.length &amp;&amp; !defaults) { 
  *          const colors = ['#800', '#080', '#008'];
  *          defaults = log
- *              .inspect(new hsGraphD3.Graph(svgRoot[0]).defaults.graph, null, '   ', colors)
+ *              .inspect(new hsGraphD3.Graph(svgRoot[0]).defaults.graph)
  *              .replace(/\n/g, '&lt;br&gt;')
  *      }
  *   } 
@@ -1492,6 +1494,7 @@ import { ValueDef, SeriesDimensions }             from "./SeriesPlot";
 const easings = {
     easeLinear: easeLinear,
     easeCubic:  easeCubic,
+    easeNone: <span class="fstat-no" title="function not covered" >()=</span>&gt;<span class="cstat-no" title="statement not covered" >1</span>
 };
 /** 
  * The standard width of the viewport, in viewport coordinates. 
@@ -1520,7 +1523,7 @@ export interface GraphComponentDefaults extends ComponentDefaults {
         duration:   number; // in ms
 &nbsp;
         /** the easing function used for trsansitions */
-        easing:     'easeCubic' | 'easeLinear'; 
+        easing:     'easeCubic' | 'easeLinear' | 'easeNone'; 
     };
 }
 &nbsp;
@@ -1827,7 +1830,7 @@ export class Graph extends GraphBase {
         const transitionDef = this.defaults.graph.transition;
         const graph = this;
 &nbsp;
-        const easing = easings[transitionDef.easing];
+        const easing = easings[transitionDef.easing || <span class="branch-1 cbranch-no" title="branch not covered" >'easeNone']</span>;
         this.cfg.transition = this.cfg.baseSVG.transition().duration(transitionDef.duration).ease(easing);
 &nbsp;
         Graph.addGraph(graph.root.id, <span class="fstat-no" title="function not covered" >() =</span>&gt; {   // called upon resize
@@ -1990,7 +1993,7 @@ export class Graph extends GraphBase {
         // if (this.root &amp;&amp; this.root.clientWidth &gt; 0) {
         <span class="missing-if-branch" title="else path not taken" >E</span>if (this.root) {
             <span class="missing-if-branch" title="if path not taken" >I</span>if (this.root.clientWidth !== client.width || this.root.clientHeight !== client.height) {
-<span class="cstat-no" title="statement not covered" >                log.debug(`resizing svg for ${this.root.id}: [${client.width} x ${client.height}] -&gt; [${this.root.clientWidth} x ${this.root.clientHeight}]`);</span>
+<span class="cstat-no" title="statement not covered" >                log.debug(<span class="fstat-no" title="function not covered" >()=</span>&gt;<span class="cstat-no" title="statement not covered" >`resizing svg for ${this.root.id}: [${client.width} x ${client.height}] -&gt; [${this.root.clientWidth} x ${this.root.clientHeight}]`)</span>;</span>
 <span class="cstat-no" title="statement not covered" >                client.width = this.root.clientWidth;</span>
 <span class="cstat-no" title="statement not covered" >                client.height = this.root.clientHeight;</span>
 <span class="cstat-no" title="statement not covered" >                vp.width = 2*this.root.clientWidth;</span>

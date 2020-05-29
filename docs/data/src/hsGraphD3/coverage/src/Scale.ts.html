@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">81.71% </span>
+                <span class="strong">81.48% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>67/82</span>
+                <span class='fraction'>66/81</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">82.61% </span>
+                <span class="strong">82.09% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>57/69</span>
+                <span class='fraction'>55/67</span>
             </div>
         
             
@@ -346,10 +346,7 @@
 <a name='L287'></a><a href='#L287'>287</a>
 <a name='L288'></a><a href='#L288'>288</a>
 <a name='L289'></a><a href='#L289'>289</a>
-<a name='L290'></a><a href='#L290'>290</a>
-<a name='L291'></a><a href='#L291'>291</a>
-<a name='L292'></a><a href='#L292'>292</a>
-<a name='L293'></a><a href='#L293'>293</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L290'></a><a href='#L290'>290</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -509,7 +506,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">49x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2168x</span>
+<span class="cline-any cline-yes">2136x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -535,7 +532,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">49x</span>
-<span class="cline-any cline-yes">2168x</span>
+<span class="cline-any cline-yes">2136x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">49x</span>
 <span class="cline-any cline-yes">49x</span>
@@ -553,10 +550,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">49x</span>
 <span class="cline-any cline-yes">54x</span>
-<span class="cline-any cline-yes">54x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -683,8 +677,8 @@
  *   oncreate: () =&gt; {
  *      const svgRoot = root.getElementsByClassName('myGraph');
  *      if (svgRoot &amp;&amp; svgRoot.length &amp;&amp; !defaults) { 
- *          const colors = ['#800', '#080', '#008'];
- *          defaults = log.inspect(createGraph(svgRoot[0]), null, '   ', colors)
+ *          //const colors = ['#800', '#080', '#008'];
+ *          defaults = log.inspect(createGraph(svgRoot[0]))
  *              .replace(/\n/g, '&lt;br&gt;')
  *      }
  *   } 
@@ -845,10 +839,7 @@ abstract class BaseScale {
 &nbsp;
     protected abstract getType():string; 
 &nbsp;
-    protected getTicks() { return (count:number) =&gt; {
-        const ticks = this.d3Scale.ticks(count); 
-        return ticks;
-    };}
+    protected getTicks() { return (count:number) =&gt; this.d3Scale.ticks(count) }
 &nbsp;
     protected <span class="fstat-no" title="function not covered" >getDomain(</span>):Domain { <span class="cstat-no" title="statement not covered" >return this.d3Scale.domain(); </span>}
     

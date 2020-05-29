@@ -15,12 +15,12 @@ d3.selection.prototype.ease         = function(){ return this; };
 
 const data:DataSet = {
     colNames: 
-        ['xval', 'yval'],
+        ['time', 'yval'],
     rows : [
-        [-1,      15,     15],
-        [0.2,      2,     23],
-        [3,       28,     30],
-        [7.5,     13,      8]
+        ['1/1/20',      15,     15],
+        ['3/1/20',      2,     23],
+        ['6/1/20',       28,     30],
+        ['9/1/20',     13,      8]
     ]
 };
 
@@ -39,7 +39,7 @@ describe('TimeSeries', () => {
     let graph:hsGraphD3.Graph;
     beforeAll(() => {
         graph = createGraph(root);
-        graph.add('timeseries', {x:'xval', y:'yval'});
+        graph.add('timeseries', {x:'time', y:'yval'});
         graph.series.defaults['series0'].marker.rendered = true;
         graph.series.defaults['series0'].area.rendered = true;
         graph.render(data);

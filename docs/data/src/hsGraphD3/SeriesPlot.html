@@ -121,7 +121,7 @@
 <p id=98 class="line"><span>&nbsp;&nbsp;98</span><comment>&nbsp;*&nbsp;@param&nbsp;rowIndex&nbsp;the&nbsp;index&nbsp;of&nbsp;the&nbsp;row&nbsp;in&nbsp;the&nbsp;{@link&nbsp;Graph.DataSet&nbsp;`DataSet<quote>'s`}&nbsp;rows&nbsp;array.&nbsp;</comment></p>
 <p id=99 class="line"><span>&nbsp;&nbsp;99</span><comment>&nbsp;*&nbsp;@return&nbsp;the&nbsp;value&nbsp;of&nbsp;type&nbsp;`DataVal`&nbsp;to&nbsp;use&nbsp;for&nbsp;the&nbsp;row.</comment></p>
 <p id=100 class="line"><span>&nbsp;100</span><comment>&nbsp;*/</comment></p>
-<p id=101 class="line"><span>&nbsp;101</span>export&nbsp;interface&nbsp;ValueFn&nbsp;{&nbsp;(rowIndex:Index):&nbsp;DataVal;&nbsp;}</p>
+<p id=101 class="line"><span>&nbsp;101</span>export&nbsp;interface&nbsp;ValueFn&nbsp;{&nbsp;(rowIndex:Index,&nbsp;row?:DataRow):&nbsp;DataVal;&nbsp;}</p>
 <p id=102 class="line"><span>&nbsp;102</span></p>
 <p id=103 class="line"><span>&nbsp;103</span><comment>/**</comment></p>
 <p id=104 class="line"><span>&nbsp;104</span><comment>&nbsp;*&nbsp;coverts&nbsp;a&nbsp;`DataVal`&nbsp;to&nbsp;a&nbsp;`string`</comment></p>
@@ -216,7 +216,7 @@
 <p id=193 class="line"><span>&nbsp;193</span>&nbsp;&nbsp;&nbsp;&nbsp;<comment>/**</comment></p>
 <p id=194 class="line"><span>&nbsp;194</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Returns&nbsp;an&nbsp;accessor&nbsp;function&nbsp;`(row:DataVal[],&nbsp;rowIndex:Index)&nbsp;=>&nbsp;DataVal`&nbsp;to&nbsp;access&nbsp;the&nbsp;numeric&nbsp;value&nbsp;in&nbsp;a&nbsp;data&nbsp;row.</comment></p>
 <p id=195 class="line"><span>&nbsp;195</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;The&nbsp;type&nbsp;of&nbsp;`v`&nbsp;determines&nbsp;how&nbsp;to&nbsp;access&nbsp;the&nbsp;value:&nbsp;</comment></p>
-<p id=196 class="line"><span>&nbsp;196</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;-&nbsp;If&nbsp;`v`&nbsp;is&nbsp;a&nbsp;function&nbsp;it&nbsp;will&nbsp;be&nbsp;valuated&nbsp;for&nbsp;the&nbsp;provided&nbsp;`row`&nbsp;and&nbsp;`rowIndex`&nbsp;to&nbsp;return&nbsp;the&nbsp;result.</comment></p>
+<p id=196 class="line"><span>&nbsp;196</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;-&nbsp;If&nbsp;`v`&nbsp;is&nbsp;a&nbsp;function&nbsp;it&nbsp;will&nbsp;be&nbsp;valuated&nbsp;for&nbsp;the&nbsp;provided&nbsp;`rowIndex`&nbsp;and&nbsp;`row`&nbsp;to&nbsp;return&nbsp;the&nbsp;result.</comment></p>
 <p id=197 class="line"><span>&nbsp;197</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;-&nbsp;If&nbsp;`v`&nbsp;is&nbsp;a&nbsp;number&nbsp;it&nbsp;will&nbsp;be&nbsp;returned&nbsp;as&nbsp;constant&nbsp;result.</comment></p>
 <p id=198 class="line"><span>&nbsp;198</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;-&nbsp;If&nbsp;`v`&nbsp;is&nbsp;a&nbsp;string&nbsp;and&nbsp;contained&nbsp;in&nbsp;`colNames`&nbsp;it&nbsp;specifies&nbsp;the&nbsp;column&nbsp;to&nbsp;index&nbsp;in&nbsp;`row`&nbsp;</comment></p>
 <p id=199 class="line"><span>&nbsp;199</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;v&nbsp;the&nbsp;`ValueDef`&nbsp;specifying&nbsp;the&nbsp;value</comment></p>
@@ -227,7 +227,7 @@
 <p id=204 class="line"><span>&nbsp;204</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</comment></p>
 <p id=205 class="line"><span>&nbsp;205</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;accessor(v:ValueDef,&nbsp;colNames:string[],&nbsp;useStack=true):(row:DataRow,&nbsp;rowIndex:Index)&nbsp;=>&nbsp;DataVal&nbsp;{</p>
 <p id=206 class="line"><span>&nbsp;206</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;switch&nbsp;(typeof(v))&nbsp;{</p>
-<p id=207 class="line"><span>&nbsp;207</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;<quote>'function'</quote>:return&nbsp;(row,&nbsp;rowIndex)&nbsp;=>&nbsp;(<ValueFn>v)(rowIndex);</p>
+<p id=207 class="line"><span>&nbsp;207</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;<quote>'function'</quote>:return&nbsp;(row,&nbsp;rowIndex)&nbsp;=>&nbsp;(<ValueFn>v)(rowIndex,&nbsp;row);</p>
 <p id=208 class="line"><span>&nbsp;208</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;<quote>'number'</quote>:&nbsp;&nbsp;return&nbsp;()&nbsp;=>&nbsp;<DataVal>v;</p>
 <p id=209 class="line"><span>&nbsp;209</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;case&nbsp;<quote>'string'</quote>:</p>
 <p id=210 class="line"><span>&nbsp;210</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;default:&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;c&nbsp;=&nbsp;colNames.indexOf(<quote>''</quote>+v);&nbsp;</p>

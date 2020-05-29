@@ -54,7 +54,7 @@
  *      if (svgRoot && svgRoot.length && !defaults) { 
  *          const colors = ['#800', '#080', '#008'];
  *          defaults = log
- *              .inspect(new hsGraphD3.Graph(svgRoot[0]).defaults.graph, null, '   ', colors)
+ *              .inspect(new hsGraphD3.Graph(svgRoot[0]).defaults.graph)
  *              .replace(/\n/g, '<br>')
  *      }
  *   } 
@@ -123,6 +123,7 @@ import { ValueDef, SeriesDimensions }             from "./SeriesPlot";
 const easings = {
     easeLinear: easeLinear,
     easeCubic:  easeCubic,
+    easeNone: ()=>1
 };
 /** 
  * The standard width of the viewport, in viewport coordinates. 
@@ -151,7 +152,7 @@ export interface GraphComponentDefaults extends ComponentDefaults {
         duration:   number; // in ms
 
         /** the easing function used for trsansitions */
-        easing:     'easeCubic' | 'easeLinear'; 
+        easing:     'easeCubic' | 'easeLinear' | 'easeNone'; 
     };
 }
 
@@ -458,7 +459,7 @@ export class Graph extends GraphBase {
         const transitionDef = this.defaults.graph.transition;
         const graph = this;
 
-        const easing = easings[transitionDef.easing];
+        const easing = easings[transitionDef.easing || 'easeNone'];
         this.cfg.transition = this.cfg.baseSVG.transition().duration(transitionDef.duration).ease(easing);
 
         Graph.addGraph(graph.root.id, () => {   // called upon resize

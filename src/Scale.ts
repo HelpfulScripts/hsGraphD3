@@ -202,10 +202,7 @@ abstract class BaseScale {
 
     protected abstract getType():string; 
 
-    protected getTicks() { return (count:number) => {
-        const ticks = this.d3Scale.ticks(count); 
-        return ticks;
-    };}
+    protected getTicks() { return (count:number) => this.d3Scale.ticks(count) }
 
     protected getDomain():Domain { return this.d3Scale.domain(); }
     

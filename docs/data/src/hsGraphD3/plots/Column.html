@@ -140,12 +140,12 @@
 <p id=117 class="line"><span>&nbsp;117</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;oncreate:&nbsp;()&nbsp;=>&nbsp;{</comment></p>
 <p id=118 class="line"><span>&nbsp;118</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;svgRoot&nbsp;=&nbsp;root.getElementsByClassName(<quote>'myGraph'</quote>);</comment></p>
 <p id=119 class="line"><span>&nbsp;119</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(svgRoot&nbsp;&&&nbsp;svgRoot.length&nbsp;&&&nbsp;!defaults)&nbsp;{&nbsp;</comment></p>
-<p id=120 class="line"><span>&nbsp;120</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;colors&nbsp;=&nbsp;[<quote>'#800'</quote>,&nbsp;<quote>'#080'</quote>,&nbsp;<quote>'#008'</quote>];</comment></p>
-<p id=121 class="line"><span>&nbsp;121</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;graph&nbsp;=&nbsp;createGraph(svgRoot[0]);</comment></p>
+<p id=120 class="line"><span>&nbsp;120</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<comment>//const&nbsp;colors&nbsp;=&nbsp;[<quote>'#800'</quote>,&nbsp;<quote>'#080'</quote>,&nbsp;<quote>'#008'</quote>];</comment></comment></p>
+<p id=121 class="line"><span>&nbsp;121</span><comment><comment></comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;graph&nbsp;=&nbsp;createGraph(svgRoot[0]);</comment></p>
 <p id=122 class="line"><span>&nbsp;122</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;defaults&nbsp;=&nbsp;`<b>graph.series.defaults&nbsp;=&nbsp;</b>`&nbsp;+</comment></p>
-<p id=123 class="line"><span>&nbsp;123</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`${log.inspect(graph.series.defaults,&nbsp;null,&nbsp;<quote>'&nbsp;&nbsp;&nbsp;'</quote>,&nbsp;colors).replace(/\n/g,&nbsp;<quote>'<br>'</quote>)}`&nbsp;+</comment></p>
+<p id=123 class="line"><span>&nbsp;123</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`${log.inspect(graph.series.defaults,&nbsp;{}).replace(/\n/g,&nbsp;<quote>'<br>'</quote>)}`&nbsp;+</comment></p>
 <p id=124 class="line"><span>&nbsp;124</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`<br><br><b>graph.scales.defaults.dims&nbsp;=&nbsp;</b>`&nbsp;+</comment></p>
-<p id=125 class="line"><span>&nbsp;125</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`${log.inspect(graph.scales.defaults.dims,&nbsp;null,&nbsp;<quote>'&nbsp;&nbsp;&nbsp;'</quote>,&nbsp;colors).replace(/\n/g,&nbsp;<quote>'<br>'</quote>)}`;</comment></p>
+<p id=125 class="line"><span>&nbsp;125</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`${log.inspect(graph.scales.defaults.dims,&nbsp;{}).replace(/\n/g,&nbsp;<quote>'<br>'</quote>)}`;</comment></p>
 <p id=126 class="line"><span>&nbsp;126</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</comment></p>
 <p id=127 class="line"><span>&nbsp;127</span><comment>&nbsp;*&nbsp;&nbsp;&nbsp;}&nbsp;</comment></p>
 <p id=128 class="line"><span>&nbsp;128</span><comment>&nbsp;*&nbsp;});</comment></p>

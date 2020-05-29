@@ -484,12 +484,12 @@
  *   oncreate: () =&gt; {
  *      const svgRoot = root.getElementsByClassName('myGraph');
  *      if (svgRoot &amp;&amp; svgRoot.length &amp;&amp; !defaults) { 
- *          const colors = ['#800', '#080', '#008'];
+ *          //const colors = ['#800', '#080', '#008'];
  *          const graph = createGraph(svgRoot[0]);
  *          defaults = `&lt;b&gt;graph.series.defaults = &lt;/b&gt;` +
- *              `${log.inspect(graph.series.defaults, null, '   ', colors).replace(/\n/g, '&lt;br&gt;')}` +
+ *              `${log.inspect(graph.series.defaults, {}).replace(/\n/g, '&lt;br&gt;')}` +
  *              `&lt;br&gt;&lt;br&gt;&lt;b&gt;graph.scales.defaults.dims = &lt;/b&gt;` +
- *              `${log.inspect(graph.scales.defaults.dims, null, '   ', colors).replace(/\n/g, '&lt;br&gt;')}`;
+ *              `${log.inspect(graph.scales.defaults.dims, {}).replace(/\n/g, '&lt;br&gt;')}`;
  *      }
  *   } 
  * });

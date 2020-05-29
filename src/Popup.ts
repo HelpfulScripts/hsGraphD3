@@ -49,7 +49,7 @@
  *      if (svgRoot && svgRoot.length && !defaults) { 
  *          const colors = ['#800', '#080', '#008'];
  *          defaults = log
- *              .inspect(new hsGraphD3.Graph(svgRoot[0]).defaults.popup, null, '   ', colors)
+ *              .inspect(new hsGraphD3.Graph(svgRoot[0]).defaults.popup, {})
  *              .replace(/\n/g, '<br>')
  *      }
  *   } 

@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.46% </span>
+                <span class="strong">89.62% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>92/104</span>
+                <span class='fraction'>95/106</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75.86% </span>
+                <span class="strong">77.59% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>44/58</span>
+                <span class='fraction'>45/58</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">89.47% </span>
+                <span class="strong">89.69% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>85/95</span>
+                <span class='fraction'>87/97</span>
             </div>
         
             
@@ -296,7 +296,9 @@
 <a name='L237'></a><a href='#L237'>237</a>
 <a name='L238'></a><a href='#L238'>238</a>
 <a name='L239'></a><a href='#L239'>239</a>
-<a name='L240'></a><a href='#L240'>240</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L240'></a><a href='#L240'>240</a>
+<a name='L241'></a><a href='#L241'>241</a>
+<a name='L242'></a><a href='#L242'>242</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -325,6 +327,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
@@ -465,6 +468,7 @@
 <span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-yes">30x</span>
+<span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">30x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -554,7 +558,7 @@
  *      if (svgRoot &amp;&amp; svgRoot.length &amp;&amp; !defaults) { 
  *          const colors = ['#800', '#080', '#008'];
  *          defaults = log
- *              .inspect(new hsGraphD3.Graph(svgRoot[0]).defaults.axes, null, '   ', colors)
+ *              .inspect(new hsGraphD3.Graph(svgRoot[0]).defaults.axes)
  *              .replace(/\n/g, '&lt;br&gt;')
  *      }
  *   } 
@@ -565,6 +569,7 @@
 &nbsp;
 /** */
 import { format }           from 'd3';
+import { timeFormat }       from 'd3';
 import { Log }              from 'hsutil'; const log = new Log('Axis');
 import { GraphComponent }   from './GraphComponent'; 
 import { GraphCfg }         from './GraphComponent';
@@ -704,6 +709,7 @@ export class Axis {
         this.setTransform(scales);
         const axis:any = this.getD3Axis(scales, axisDef);
         const scale = scales[this.dir];
+        axis.tickFormat(timeFormat("%b %d, %Y"));
         // axis.ticks(scale.tickCountMinor);
         this.svg.transition(trans).call(axis);
 &nbsp;
@@ -753,7 +759,7 @@ export class Axis {
             } else <span class="missing-if-branch" title="if path not taken" >I</span>if (crossing &gt; this.cfg.viewPort.width-margins.right) {
 <span class="cstat-no" title="statement not covered" >                crossing = this.cfg.viewPort.width-margins.right;</span>
             }
-            <span class="missing-if-branch" title="if path not taken" >I</span>if (isNaN(d) || isNaN(crossing)) { <span class="cstat-no" title="statement not covered" >log.warn(`Axis.setTransform ver: d=${d}, cr=${crossing}`); </span>}
+            if (isNaN(d) || isNaN(crossing)) { log.warn(`Axis.setTransform ver: d=${d}, cr=${crossing}`); }
             this.svg.transition(trans).attr("transform", `translate(${crossing}, ${d})`);
         }
     }
