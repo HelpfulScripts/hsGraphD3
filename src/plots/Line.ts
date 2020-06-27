@@ -42,6 +42,7 @@
  * const graph = new hsGraphD3.Graph(root);
  * graph.add('line', {x:'date', y:'volume', r:'costs'});
  * graph.add('line', {x:'date', y:()=>0.5});
+ * graph.defaults.scales.dims.hor.type = 'time';
  * graph.render(data);
  * 
  * </file>

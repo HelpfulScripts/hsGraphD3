@@ -39,11 +39,6 @@ function createGraph(root:any) {
     return graph;
 }
 
-// function update(data:DataSet, done:()=>void) {
-//     done();
-//     return false;
-// }
-
 
 describe('Line', () => {
     let graph:hsGraphD3.Graph;
@@ -52,12 +47,9 @@ describe('Line', () => {
         beforeAll(() => {
             jest.useFakeTimers();
             graph = createGraph(root);
-            // jest.runAllTimers();
             graph.add('line', {x:'xval', y:'yval', r:'rval', popup:null});
-            // jest.runAllTimers();
             graph.axes.defaults.color = '#666';
             graph.render(data); //  .update(200, (data:DataSet) => update(data, done));
-            // jest.runAllTimers();
         });
         it(`should have 'line' registered`, () =>
             expect(graph.seriesTypes).toContain('line')

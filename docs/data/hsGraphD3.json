@@ -8,7 +8,7 @@
 			"id": 1910,
 			"name": "\"Axis\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -1701,7 +1701,7 @@
 			"id": 1001,
 			"name": "\"Canvas\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -2432,7 +2432,7 @@
 			"id": 1984,
 			"name": "\"CartExamples\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -2453,7 +2453,7 @@
 			"id": 1106,
 			"name": "\"Graph\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -6766,7 +6766,7 @@
 			"id": 1311,
 			"name": "\"GraphComponent\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -22126,7 +22126,7 @@
 			"id": 944,
 			"name": "\"Grid\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -23500,7 +23500,7 @@
 			"id": 3641,
 			"name": "\"PolarExamples\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -23521,14 +23521,14 @@
 			"id": 1029,
 			"name": "\"Popup\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Popup.ts",
 			"comment": {
 				"shortText": "# Popup component\nrenders popups for mouseovers in the graph.",
-				"text": "### Example\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n// create popup content:\nconst popup = (rowIndex) => `${data.rows[rowIndex][0]}: <b>${data.rows[rowIndex][3]}</b>`;\n\n// create data set:\nconst data = {\n   colNames: ['date', 'time', 'volume', 'costs'],\n   rows:[    ['1/1/14', -1,     0.2,      0.3],\n             ['1/1/16', 0.2,    0.7,      0.2],\n             ['9/1/16', 0.4,    0.1,      0.3],\n             ['5/1/17', 0.6,   -0.2,      0.1],\n             ['7/1/18', 0.8,    0.3,      0.5],\n             ['1/1/19', 1,      0.2,      0.4]]\n};\n\n// setup and plot the data:\nconst graph = new hsGraphD3.Graph(root);\ngraph.add('bubble', {x:'time', y:'volume', r:'costs'});\ngraph.add('bubble', {x:'time', y:'costs', r:'volume', popup: popup, label: popup});\nwith (graph.defaults.series[1].label) {\n     xpos = 'right';\n     inside = false;\n}\ngraph.title.text = 'Popup examples';\ngraph.render(data);\n\n</file>\n</example>\n\n### Popup Default Settings:\n<example height=300px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = new hsUtil.Log('');\nlet defaults;\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.popup.defaults = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = log\n             .inspect(new hsGraphD3.Graph(svgRoot[0]).defaults.popup, {})\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
+				"text": "### Example\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n// create popup content:\nconst popup = (rowIndex) => `${data.rows[rowIndex][0]}: ${data.rows[rowIndex][3]}`;\n\n// create data set:\nconst data = {\n   colNames: ['date', 'time', 'volume', 'costs'],\n   rows:[    ['1/1/14', -1,     0.2,      0.3],\n             ['1/1/16', 0.2,    0.7,      0.2],\n             ['9/1/16', 0.4,    0.1,      0.3],\n             ['5/1/17', 0.6,   -0.2,      0.1],\n             ['7/1/18', 0.8,    0.3,      0.5],\n             ['1/1/19', 1,      0.2,      0.4]]\n};\n\n// setup and plot the data:\nconst graph = new hsGraphD3.Graph(root);\ngraph.add('bubble', {x:'time', y:'volume', r:'costs'});\ngraph.add('bubble', {x:'time', y:'costs', r:'volume', popup: popup, label: popup});\nwith (graph.defaults.series[1].label) {\n     xpos = 'right';\n     inside = false;\n}\ngraph.title.text = 'Popup examples';\ngraph.render(data);\n\n</file>\n</example>\n\n### Popup Default Settings:\n<example height=300px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = new hsUtil.Log('');\nlet defaults;\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.popup.defaults = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = log\n             .inspect(new hsGraphD3.Graph(svgRoot[0]).defaults.popup, {})\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
 			},
 			"children": [
 				{
@@ -24518,7 +24518,7 @@
 			"id": 218,
 			"name": "\"Scale\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -29332,7 +29332,7 @@
 			"id": 441,
 			"name": "\"Scales\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -30637,7 +30637,7 @@
 			"id": 883,
 			"name": "\"Series\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -31950,7 +31950,7 @@
 			"id": 500,
 			"name": "\"SeriesPlot\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -33924,7 +33924,7 @@
 			"id": 1985,
 			"name": "\"SeriesPlotCartesian\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -37065,7 +37065,7 @@
 			"id": 2132,
 			"name": "\"SeriesPlotNumeric\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -39877,7 +39877,7 @@
 			"id": 2920,
 			"name": "\"SeriesPlotOrdinal\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -42983,7 +42983,7 @@
 			"id": 729,
 			"name": "\"SeriesPlotPolar\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -46339,7 +46339,7 @@
 			"id": 600,
 			"name": "\"SeriesPlotScaled\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -48775,14 +48775,14 @@
 			"id": 1,
 			"name": "\"Settings\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Settings.ts",
 			"comment": {
 				"shortText": "# Configuration Defaults",
-				"text": "provides `type` aliases, `interfaces`, and support functions to generate default settings for {@link GraphComponent GraphComponents}.\n\nEach `graph` instance maintains its own copy of component settings.\nThe setting are initialized during construction and can be modified as needed.\n`graph` provides two paths to access and modify setting:\n- `graph.defaults.<component>.<subselector>` provides a central access to collection of\nall component settings via the `graph's` default getter. The table below lists all settings\navailable under `graph.defaults`.\n- Each `GraphComponent` provides access to the component's default settings via `<component>.defaults.<subselector>`.\nThese are also accessible via the `graph's` `defaults` getter.\n\nFor example, the `canvas` settings can be accessed via `graph.canvas.defaults` and\n`grpah.defaults.canvas`;\n\n### Accessible format setting and defaults (for a cartesian graph):\n<example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = new hsUtil.Log('');\nlet defaults;\n\nfunction createGraph(svgRoot) {\n     const graph = new hsGraphD3.Graph(svgRoot);\n     graph.add('column', 'time', 'volume', 'costs');\n     graph.canvas.defaults.stroke.width = 7.8; // odd number, should appear on the left\n     return graph.defaults;\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace; font-size:14px'}, [\n     m('div', m.trust('graph.defaults = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = log.inspect(createGraph(svgRoot[0]))\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
+				"text": "provides `type` aliases, `interfaces`, and support functions to generate default settings for {@link GraphComponent GraphComponents}.\n\nEach `graph` instance maintains its own copy of component settings.\nThe setting are initialized during construction and can be modified as needed.\n`graph` provides two paths to access and modify setting:\n- `graph.defaults.<component>.<subselector>` provides a central access to collection of\nall component settings via the `graph's` default getter. The table below lists all settings\navailable under `graph.defaults`.\n- Each `GraphComponent` provides access to the component's default settings via `<component>.defaults.<subselector>`.\nThese are also accessible via the `graph's` `defaults` getter.\n\nFor example, the `canvas` settings can be accessed via `graph.canvas.defaults` and\n`grpah.defaults.canvas`;\n\n### Accessible format setting and defaults (for a cartesian graph):\n<example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = new hsUtil.Log('');\nlet defaults;\n\nfunction createGraph(svgRoot) {\n     const graph = new hsGraphD3.Graph(svgRoot);\n     graph.add('column', 'time', 'volume', 'costs');\n     graph.canvas.defaults.stroke.width = 7.8; // odd number, should appear on the left\n     return graph.defaults;\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace; font-size:14px'}, [\n     m('div', m.trust('graph.defaults = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         const colors = ['#800', '#080', '#008'];\n         defaults = log.inspect(createGraph(svgRoot[0]), {})\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
 			},
 			"children": [
 				{
@@ -53409,7 +53409,7 @@
 			"id": 1073,
 			"name": "\"Title\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -54248,7 +54248,7 @@
 			"id": 3593,
 			"name": "\"index\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -54770,7 +54770,7 @@
 			"id": 3639,
 			"name": "\"overview\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -54791,7 +54791,7 @@
 			"id": 2660,
 			"name": "\"plots/Area\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -57628,7 +57628,7 @@
 			"id": 3207,
 			"name": "\"plots/Bar\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -60694,7 +60694,7 @@
 			"id": 2400,
 			"name": "\"plots/Bubble\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -63531,7 +63531,7 @@
 			"id": 3640,
 			"name": "\"plots/Chord\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -63548,7 +63548,7 @@
 			"id": 3067,
 			"name": "\"plots/Column\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -66614,14 +66614,14 @@
 			"id": 2530,
 			"name": "\"plots/Line\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
 			"originalName": "/Users/sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/Line.ts",
 			"comment": {
 				"shortText": "# Line Plot",
-				"text": "plots a 2D line. Defers to {@link SeriesPlotNumeric SeriesPlotNumeric} to render plot elements and uses the\ndefault configuration to\n- show the plot line\n- hide the plot markers\n- hide the plot area\nEach of these can be modified via changing the {@link Settings default settings}.\n\n## Usage\n`graph.add('line', {x:<x-col>, y:<y-col>, , ...<dim>:<ValueDef>});`\n- `<dim>` is the semantic dimension to set. See {@link CartSeriesPlot.CartSeriesDimensions CartSeriesDimensions} for valid dimensions.\n- `<ValueDef>` is the {@link SeriesPlot.ValueDef value definition}.\n\n## Example\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n// create data set:\nconst data = {\n   colNames:['date', 'time', 'volume', 'costs'],\n   rows:[['1/1/14', -1,  0.2, 0.3], ['1/1/16', 0.2, 0.7, 0.2], ['9/1/16', 0.4, 0.1, 0.3],\n         ['5/1/17', 0.6, -0.2,   0.1], ['7/1/18', 0.8, 0.3, 0.5], ['1/1/19', 1,   0.2, 0.4]]\n};\n\nconst graph = new hsGraphD3.Graph(root);\ngraph.add('line', {x:'time', y:'volume', r:'costs'});\ngraph.add('line', {x:'time', y:()=>0.5});\ngraph.render(data);\n\n</file>\n</example>\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n// create data set:\nconst data = {\n   colNames:['date', 'time', 'volume', 'costs'],\n   rows:[[new Date('1/1/14'), -1,   0.2, 0.3], [new Date('1/1/16'), 0.2, 0.7, 0.2], [new Date('9/1/16'), 0.4, 0.1, 0.3],\n         [new Date('5/1/17'), 0.6, -0.2, 0.1], [new Date('7/1/18'), 0.8, 0.3, 0.5], [new Date('1/1/19'), 1,   0.2, 0.4]]\n};\n\nconst graph = new hsGraphD3.Graph(root);\ngraph.add('line', {x:'date', y:'volume', r:'costs'});\ngraph.add('line', {x:'date', y:()=>0.5});\ngraph.render(data);\n\n</file>\n</example>\n\n### Line plot Default Settings:\n<example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = new hsUtil.Log('');\nlet defaults;\n\nfunction createGraph(svgRoot) {\n     const graph = new hsGraphD3.Graph(svgRoot);\n     graph.add('line', {x:'time', y:'volume', r:'costs'});\n     return graph.series.defaults[0];\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.series.defaults[0] = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         //const colors = ['#800', '#080', '#008'];\n         defaults = log.inspect(createGraph(svgRoot[0]), {})\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
+				"text": "plots a 2D line. Defers to {@link SeriesPlotNumeric SeriesPlotNumeric} to render plot elements and uses the\ndefault configuration to\n- show the plot line\n- hide the plot markers\n- hide the plot area\nEach of these can be modified via changing the {@link Settings default settings}.\n\n## Usage\n`graph.add('line', {x:<x-col>, y:<y-col>, , ...<dim>:<ValueDef>});`\n- `<dim>` is the semantic dimension to set. See {@link CartSeriesPlot.CartSeriesDimensions CartSeriesDimensions} for valid dimensions.\n- `<ValueDef>` is the {@link SeriesPlot.ValueDef value definition}.\n\n## Example\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n// create data set:\nconst data = {\n   colNames:['date', 'time', 'volume', 'costs'],\n   rows:[['1/1/14', -1,  0.2, 0.3], ['1/1/16', 0.2, 0.7, 0.2], ['9/1/16', 0.4, 0.1, 0.3],\n         ['5/1/17', 0.6, -0.2,   0.1], ['7/1/18', 0.8, 0.3, 0.5], ['1/1/19', 1,   0.2, 0.4]]\n};\n\nconst graph = new hsGraphD3.Graph(root);\ngraph.add('line', {x:'time', y:'volume', r:'costs'});\ngraph.add('line', {x:'time', y:()=>0.5});\ngraph.render(data);\n\n</file>\n</example>\n<example height=200px libs={hsGraphD3:'hsGraphD3'}>\n<file name='script.js'>\n// create data set:\nconst data = {\n   colNames:['date', 'time', 'volume', 'costs'],\n   rows:[[new Date('1/1/14'), -1,   0.2, 0.3], [new Date('1/1/16'), 0.2, 0.7, 0.2], [new Date('9/1/16'), 0.4, 0.1, 0.3],\n         [new Date('5/1/17'), 0.6, -0.2, 0.1], [new Date('7/1/18'), 0.8, 0.3, 0.5], [new Date('1/1/19'), 1,   0.2, 0.4]]\n};\n\nconst graph = new hsGraphD3.Graph(root);\ngraph.add('line', {x:'date', y:'volume', r:'costs'});\ngraph.add('line', {x:'date', y:()=>0.5});\ngraph.defaults.scales.dims.hor.type = 'time';\ngraph.render(data);\n\n</file>\n</example>\n\n### Line plot Default Settings:\n<example height=600px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>\n<file name='script.js'>\nconst log = new hsUtil.Log('');\nlet defaults;\n\nfunction createGraph(svgRoot) {\n     const graph = new hsGraphD3.Graph(svgRoot);\n     graph.add('line', {x:'time', y:'volume', r:'costs'});\n     return graph.series.defaults[0];\n}\n\nm.mount(root, {\n  view:() => m('div', {style:'background-color:#eee; font-family:Monospace'}, [\n     m('div', m.trust('graph.series.defaults[0] = ' + defaults)),\n     m('div.myGraph', '')\n  ]),\n  oncreate: () => {\n     const svgRoot = root.getElementsByClassName('myGraph');\n     if (svgRoot && svgRoot.length && !defaults) {\n         //const colors = ['#800', '#080', '#008'];\n         defaults = log.inspect(createGraph(svgRoot[0]), {})\n             .replace(/\\n/g, '<br>')\n     }\n  }\n});\n</file>\n</example>\n"
 			},
 			"children": [
 				{
@@ -68576,7 +68576,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/Line.ts",
-									"line": 92,
+									"line": 93,
 									"character": 15
 								}
 							],
@@ -69389,7 +69389,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/Line.ts",
-							"line": 91,
+							"line": 92,
 							"character": 17
 						}
 					],
@@ -69412,7 +69412,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/Line.ts",
-							"line": 82,
+							"line": 83,
 							"character": 56
 						}
 					],
@@ -69451,7 +69451,7 @@
 			"id": 3463,
 			"name": "\"plots/Pie\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -72202,7 +72202,7 @@
 			"id": 3347,
 			"name": "\"plots/Sankey\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -74603,7 +74603,7 @@
 			"id": 2790,
 			"name": "\"plots/TimeSeries\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -77382,7 +77382,7 @@
 			"id": 2262,
 			"name": "\"plots/Voronoi\"",
 			"kind": 1,
-			"kindString": "External module",
+			"kindString": "Module",
 			"flags": {
 				"isExported": true
 			},
@@ -80362,7 +80362,7 @@
 	],
 	"groups": [
 		{
-			"title": "External modules",
+			"title": "Modules",
 			"kind": 1,
 			"children": [
 				1910,
