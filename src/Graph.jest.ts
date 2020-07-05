@@ -1,5 +1,5 @@
-import { Graph }            from './Graph';
-import m from "mithril";
+import { Graph }    from './Graph';
+import m            from "mithril";
 
 const root = window.document.createElement("div");
 
@@ -18,7 +18,7 @@ const data = {
 describe('Label', () => {
     describe('should have DOM structure', () => {
         beforeAll(() => {
-            m.mount(root, { view: () => m(Graph, {
+            m.mount(root, { view: () => m(<any>Graph, {
                 rootID: root,
                 define: (graph:Graph) => {
                    graph.add('line', {y:'yval'});

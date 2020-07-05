@@ -99,7 +99,8 @@ import { select as d3Select}    from 'd3';
 import { easeLinear}            from 'd3';
 import { easeCubic}             from 'd3';
 
-import { GraphBase, GraphComponent}             from './GraphComponent';
+import { GraphBase}             from './GraphComponent';
+import { GraphComponent}        from './GraphComponent';
 import { Components }           from './GraphComponent';
 import { ComponentDefaults}     from './GraphComponent';
 import { GraphCfg}              from './GraphComponent';
@@ -113,12 +114,13 @@ import { Grids }                from './Grid';
 import { GridsDefaults }        from './Grid';
 import { Canvas }               from './Canvas';
 import { CanvasDefaults }       from './Canvas';
-import { d3Base, Index }               from './Settings';
+import { d3Base, Index }            from './Settings';
 import { Popup }                from './Popup';
 import { PopupDefaults }        from './Popup';
 import { Title }                from './Title';
 import { TitleDefaults }        from './Title';
-import { ValueDef, SeriesDimensions }             from "./SeriesPlot";
+import { ValueDef }             from "./SeriesPlot";
+import { SeriesDimensions }     from "./SeriesPlot";
 
 const easings = {
     easeLinear: easeLinear,
@@ -297,14 +299,39 @@ export interface LifecycleCalls {
 }
 
 
-export interface Vnode {
+// export interface Vnode {
+//     dom: HTMLElement;
+//     attrs: {
+//         define: (graph:Graph)=>void;
+//         data: DataSet;
+//         updatePeriod: number;
+//         updateCallback: RenderCallback;
+//     };
+// }
+
+interface Lifecycle<Attrs, State> {
+    oninit?(this: State, vnode: Vnode<Attrs, State>): any;
+    oncreate?(this: State, vnode: Vnode<Attrs, State>): any;
+    onbeforeremove?(this: State, vnode: Vnode<Attrs, State>): Promise<any> | void;
+    onremove?(this: State, vnode: Vnode<Attrs, State>): any;
+    onbeforeupdate?(this: State, vnode: Vnode<Attrs, State>, old: Vnode<Attrs, State>): boolean | void;
+    onupdate?(this: State, vnode: Vnode<Attrs, State>): any;
+    [_: number]: any;
+}
+
+interface Vnode<Attrs = {}, State extends Lifecycle<Attrs, State> = {}> {
     dom: HTMLElement;
+    tag: string;
     attrs: {
         define: (graph:Graph)=>void;
         data: DataSet;
         updatePeriod: number;
         updateCallback: RenderCallback;
     };
+    state: State;
+    key?: string | number;
+    children?: any;
+    text?: string | number | boolean;
 }
 
 

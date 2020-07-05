@@ -1,4 +1,5 @@
 {
     "dependencies":[],
-    "type": "lib"
+    "type": "lib",
+    "lib": "hsGraphD3"
 }
