@@ -75,7 +75,6 @@ import { Log }                  from 'hsutil'; const log = new Log('TimeSeries')
 import { NumericDataSet }       from '../Graph';
 import { NumDomain }            from '../Graph';
 import { DataSet }              from '../Graph';
-import { Domains }              from '../Graph';
 import { Series }               from '../Series';
 import { SeriesPlotNumeric }    from '../SeriesPlotNumeric';
 import { CartSeriesDimensions } from '../SeriesPlotCartesian';

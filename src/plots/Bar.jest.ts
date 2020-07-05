@@ -1,8 +1,6 @@
 import * as hsGraphD3           from '../';
 import * as d3                  from 'd3';
 import { DataSet }              from '../Graph';
-import { SeriesPlotDefaults }   from '../SeriesPlot';
-import { AxesDefaults } from '../Axis';
 
 let clientWidth = 300;
 const root = window.document.createElement("div");

@@ -1,6 +1,6 @@
 {
 	"id": 0,
-	"name": "hsGraphD3",
+	"name": "hsGraphd3",
 	"kind": 0,
 	"flags": {},
 	"children": [
@@ -191,7 +191,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 92,
+									"line": 91,
 									"character": 17
 								}
 							],
@@ -221,7 +221,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 124,
+									"line": 123,
 									"character": 17
 								}
 							],
@@ -1793,7 +1793,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 92,
+									"line": 91,
 									"character": 17
 								}
 							],
@@ -1823,7 +1823,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 124,
+									"line": 123,
 									"character": 17
 								}
 							],
@@ -2607,7 +2607,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 92,
+									"line": 91,
 									"character": 17
 								}
 							],
@@ -3128,7 +3128,7 @@
 													"sources": [
 														{
 															"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-															"line": 61,
+															"line": 60,
 															"character": 14
 														}
 													],
@@ -3149,7 +3149,7 @@
 													"sources": [
 														{
 															"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-															"line": 58,
+															"line": 57,
 															"character": 12
 														}
 													],
@@ -3170,7 +3170,7 @@
 													"sources": [
 														{
 															"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-															"line": 59,
+															"line": 58,
 															"character": 12
 														}
 													],
@@ -3191,7 +3191,7 @@
 													"sources": [
 														{
 															"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-															"line": 60,
+															"line": 59,
 															"character": 13
 														}
 													],
@@ -6826,7 +6826,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 92,
+									"line": 91,
 									"character": 28
 								}
 							]
@@ -6846,7 +6846,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 92,
+									"line": 91,
 									"character": 17
 								}
 							],
@@ -6889,7 +6889,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 102,
+									"line": 101,
 									"character": 25
 								}
 							]
@@ -6925,7 +6925,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 99,
+									"line": 98,
 									"character": 27
 								}
 							]
@@ -6981,7 +6981,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 107,
+									"line": 106,
 									"character": 23
 								}
 							],
@@ -7050,7 +7050,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 116,
+									"line": 115,
 									"character": 23
 								}
 							],
@@ -7124,7 +7124,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 110,
+									"line": 109,
 									"character": 22
 								}
 							],
@@ -7198,7 +7198,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 113,
+									"line": 112,
 									"character": 28
 								}
 							],
@@ -7246,7 +7246,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-							"line": 90,
+							"line": 89,
 							"character": 31
 						}
 					],
@@ -7344,7 +7344,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 124,
+									"line": 123,
 									"character": 26
 								}
 							],
@@ -7369,7 +7369,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 92,
+									"line": 91,
 									"character": 17
 								}
 							],
@@ -7399,7 +7399,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 124,
+									"line": 123,
 									"character": 17
 								}
 							],
@@ -7441,7 +7441,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 137,
+									"line": 136,
 									"character": 30
 								}
 							]
@@ -7484,7 +7484,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 102,
+									"line": 101,
 									"character": 25
 								}
 							],
@@ -7530,7 +7530,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 99,
+									"line": 98,
 									"character": 27
 								}
 							],
@@ -7596,7 +7596,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 107,
+									"line": 106,
 									"character": 23
 								}
 							],
@@ -7675,7 +7675,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 116,
+									"line": 115,
 									"character": 23
 								}
 							],
@@ -7759,7 +7759,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 110,
+									"line": 109,
 									"character": 22
 								}
 							],
@@ -7843,7 +7843,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 113,
+									"line": 112,
 									"character": 28
 								}
 							],
@@ -7898,7 +7898,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-							"line": 122,
+							"line": 121,
 							"character": 36
 						}
 					],
@@ -7968,7 +7968,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-							"line": 87,
+							"line": 86,
 							"character": 34
 						}
 					],
@@ -8045,7 +8045,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 33,
+									"line": 32,
 									"character": 8
 								}
 							],
@@ -8066,7 +8066,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 31,
+									"line": 30,
 									"character": 10
 								}
 							],
@@ -8087,7 +8087,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 32,
+									"line": 31,
 									"character": 9
 								}
 							],
@@ -8108,7 +8108,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 36,
+									"line": 35,
 									"character": 9
 								}
 							],
@@ -8129,7 +8129,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 30,
+									"line": 29,
 									"character": 10
 								}
 							],
@@ -8150,7 +8150,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 34,
+									"line": 33,
 									"character": 10
 								}
 							],
@@ -8171,7 +8171,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 35,
+									"line": 34,
 									"character": 9
 								}
 							],
@@ -8200,7 +8200,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-							"line": 29,
+							"line": 28,
 							"character": 27
 						}
 					]
@@ -8231,7 +8231,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 45,
+									"line": 44,
 									"character": 11
 								}
 							],
@@ -8255,7 +8255,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 54,
+									"line": 53,
 									"character": 10
 								}
 							],
@@ -8281,7 +8281,7 @@
 											"sources": [
 												{
 													"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-													"line": 54,
+													"line": 53,
 													"character": 55
 												}
 											],
@@ -8302,7 +8302,7 @@
 											"sources": [
 												{
 													"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-													"line": 54,
+													"line": 53,
 													"character": 41
 												}
 											],
@@ -8323,7 +8323,7 @@
 											"sources": [
 												{
 													"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-													"line": 54,
+													"line": 53,
 													"character": 19
 												}
 											],
@@ -8344,7 +8344,7 @@
 											"sources": [
 												{
 													"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-													"line": 54,
+													"line": 53,
 													"character": 28
 												}
 											],
@@ -8370,7 +8370,7 @@
 									"sources": [
 										{
 											"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-											"line": 54,
+											"line": 53,
 											"character": 11
 										}
 									]
@@ -8391,7 +8391,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 51,
+									"line": 50,
 									"character": 14
 								}
 							],
@@ -8415,7 +8415,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 48,
+									"line": 47,
 									"character": 9
 								}
 							],
@@ -8439,7 +8439,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 78,
+									"line": 77,
 									"character": 9
 								}
 							],
@@ -8520,7 +8520,7 @@
 													"sources": [
 														{
 															"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-															"line": 78,
+															"line": 77,
 															"character": 28
 														}
 													]
@@ -8531,7 +8531,7 @@
 									"sources": [
 										{
 											"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-											"line": 78,
+											"line": 77,
 											"character": 10
 										}
 									]
@@ -8552,7 +8552,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 81,
+									"line": 80,
 									"character": 14
 								}
 							],
@@ -8575,7 +8575,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 57,
+									"line": 56,
 									"character": 12
 								}
 							],
@@ -8601,7 +8601,7 @@
 											"sources": [
 												{
 													"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-													"line": 61,
+													"line": 60,
 													"character": 14
 												}
 											],
@@ -8622,7 +8622,7 @@
 											"sources": [
 												{
 													"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-													"line": 58,
+													"line": 57,
 													"character": 12
 												}
 											],
@@ -8643,7 +8643,7 @@
 											"sources": [
 												{
 													"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-													"line": 59,
+													"line": 58,
 													"character": 12
 												}
 											],
@@ -8664,7 +8664,7 @@
 											"sources": [
 												{
 													"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-													"line": 60,
+													"line": 59,
 													"character": 13
 												}
 											],
@@ -8690,7 +8690,7 @@
 									"sources": [
 										{
 											"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-											"line": 57,
+											"line": 56,
 											"character": 13
 										}
 									]
@@ -8716,7 +8716,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-							"line": 43,
+							"line": 42,
 							"character": 25
 						}
 					]
@@ -15365,7 +15365,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-							"line": 24,
+							"line": 23,
 							"character": 35
 						}
 					],
@@ -22038,7 +22038,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-							"line": 23,
+							"line": 22,
 							"character": 33
 						}
 					],
@@ -22076,7 +22076,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-							"line": 27,
+							"line": 26,
 							"character": 10
 						}
 					],
@@ -22545,7 +22545,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 92,
+									"line": 91,
 									"character": 17
 								}
 							],
@@ -22575,7 +22575,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 124,
+									"line": 123,
 									"character": 17
 								}
 							],
@@ -23613,7 +23613,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 92,
+									"line": 91,
 									"character": 17
 								}
 							],
@@ -23643,7 +23643,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 124,
+									"line": 123,
 									"character": 17
 								}
 							],
@@ -29398,7 +29398,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-									"line": 47,
+									"line": 44,
 									"character": 46
 								}
 							],
@@ -29423,7 +29423,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 92,
+									"line": 91,
 									"character": 17
 								}
 							],
@@ -29450,7 +29450,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-									"line": 47,
+									"line": 44,
 									"character": 31
 								}
 							],
@@ -29472,7 +29472,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-									"line": 45,
+									"line": 42,
 									"character": 18
 								}
 							],
@@ -29520,7 +29520,7 @@
 									"sources": [
 										{
 											"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-											"line": 45,
+											"line": 42,
 											"character": 19
 										}
 									]
@@ -29542,7 +29542,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 124,
+									"line": 123,
 									"character": 17
 								}
 							],
@@ -29569,7 +29569,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-									"line": 43,
+									"line": 40,
 									"character": 15
 								}
 							],
@@ -29611,7 +29611,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-									"line": 51,
+									"line": 48,
 									"character": 28
 								}
 							],
@@ -29654,7 +29654,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-									"line": 52,
+									"line": 49,
 									"character": 23
 								}
 							],
@@ -29730,7 +29730,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-									"line": 53,
+									"line": 50,
 									"character": 24
 								}
 							]
@@ -29771,7 +29771,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-									"line": 83,
+									"line": 80,
 									"character": 25
 								}
 							],
@@ -29865,7 +29865,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-									"line": 97,
+									"line": 94,
 									"character": 22
 								}
 							]
@@ -29926,7 +29926,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-									"line": 125,
+									"line": 122,
 									"character": 22
 								}
 							]
@@ -29963,7 +29963,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-									"line": 55,
+									"line": 52,
 									"character": 21
 								}
 							],
@@ -30010,7 +30010,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-									"line": 80,
+									"line": 77,
 									"character": 21
 								}
 							],
@@ -30091,7 +30091,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-									"line": 73,
+									"line": 70,
 									"character": 20
 								}
 							],
@@ -30138,7 +30138,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-									"line": 79,
+									"line": 76,
 									"character": 26
 								}
 							],
@@ -30209,7 +30209,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-									"line": 115,
+									"line": 112,
 									"character": 23
 								}
 							]
@@ -30261,7 +30261,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-							"line": 42,
+							"line": 39,
 							"character": 19
 						}
 					],
@@ -30324,7 +30324,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-							"line": 34,
+							"line": 31,
 							"character": 34
 						}
 					]
@@ -30352,7 +30352,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-									"line": 25,
+									"line": 22,
 									"character": 8
 								}
 							],
@@ -30373,7 +30373,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-									"line": 24,
+									"line": 21,
 									"character": 10
 								}
 							],
@@ -30399,7 +30399,7 @@
 											"sources": [
 												{
 													"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-													"line": 24,
+													"line": 21,
 													"character": 59
 												}
 											],
@@ -30419,7 +30419,7 @@
 											"sources": [
 												{
 													"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-													"line": 24,
+													"line": 21,
 													"character": 18
 												}
 											],
@@ -30439,7 +30439,7 @@
 											"sources": [
 												{
 													"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-													"line": 24,
+													"line": 21,
 													"character": 44
 												}
 											],
@@ -30459,7 +30459,7 @@
 											"sources": [
 												{
 													"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-													"line": 24,
+													"line": 21,
 													"character": 30
 												}
 											],
@@ -30484,7 +30484,7 @@
 									"sources": [
 										{
 											"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-											"line": 24,
+											"line": 21,
 											"character": 11
 										}
 									]
@@ -30502,7 +30502,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-									"line": 26,
+									"line": 23,
 									"character": 8
 								}
 							],
@@ -30527,7 +30527,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-							"line": 23,
+							"line": 20,
 							"character": 31
 						}
 					],
@@ -30550,7 +30550,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-							"line": 29,
+							"line": 26,
 							"character": 22
 						}
 					],
@@ -30583,7 +30583,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Scales.ts",
-							"line": 7,
+							"line": 4,
 							"character": 56
 						}
 					],
@@ -30732,7 +30732,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 92,
+									"line": 91,
 									"character": 17
 								}
 							],
@@ -30788,7 +30788,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 124,
+									"line": 123,
 									"character": 17
 								}
 							],
@@ -53501,7 +53501,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 92,
+									"line": 91,
 									"character": 17
 								}
 							],
@@ -53531,7 +53531,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/GraphComponent.ts",
-									"line": 124,
+									"line": 123,
 									"character": 17
 								}
 							],
@@ -62656,7 +62656,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/Bubble.ts",
-									"line": 77,
+									"line": 76,
 									"character": 15
 								}
 							],
@@ -63469,7 +63469,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/Bubble.ts",
-							"line": 76,
+							"line": 75,
 							"character": 19
 						}
 					],
@@ -74703,7 +74703,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/TimeSeries.ts",
-									"line": 88,
+									"line": 87,
 									"character": 51
 								}
 							],
@@ -75760,7 +75760,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/TimeSeries.ts",
-									"line": 156,
+									"line": 155,
 									"character": 16
 								}
 							],
@@ -75913,7 +75913,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/TimeSeries.ts",
-									"line": 146,
+									"line": 145,
 									"character": 16
 								}
 							],
@@ -75984,7 +75984,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/TimeSeries.ts",
-									"line": 123,
+									"line": 122,
 									"character": 19
 								}
 							],
@@ -76528,7 +76528,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/TimeSeries.ts",
-									"line": 99,
+									"line": 98,
 									"character": 15
 								}
 							],
@@ -76795,7 +76795,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/TimeSeries.ts",
-									"line": 142,
+									"line": 141,
 									"character": 18
 								}
 							],
@@ -76933,7 +76933,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/TimeSeries.ts",
-									"line": 107,
+									"line": 106,
 									"character": 14
 								}
 							],
@@ -77110,7 +77110,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/TimeSeries.ts",
-									"line": 111,
+									"line": 110,
 									"character": 13
 								}
 							],
@@ -77320,7 +77320,7 @@
 					"sources": [
 						{
 							"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/plots/TimeSeries.ts",
-							"line": 88,
+							"line": 87,
 							"character": 23
 						}
 					],

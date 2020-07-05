@@ -2,7 +2,6 @@ import * as hsGraphD3   from '../';
 import { Log }          from 'hsnode';
 import * as d3 from 'd3';
 import { DataSet }      from '../Graph';
-import { AxesDefaults } from '../Axis';
 import { TextHAlign, TextVAlign } from '../Settings';
 
 const root = window.document.createElement("div");

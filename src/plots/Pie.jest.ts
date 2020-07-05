@@ -1,7 +1,6 @@
 import * as hsGraphD3   from '../';
 import * as d3          from 'd3';
 import { DataSet }      from '../Graph';
-import { TextHAlign, TextVAlign } from '../Settings';
 
 let clientWidth = 300;
 const root = window.document.createElement("div");

@@ -52,7 +52,7 @@
 
  /** */
 import { Log }                  from 'hsutil'; const log = new Log('Scale');
-import { UnitVp, defaultText }  from './Settings';
+import { UnitVp }  from './Settings';
 import * as d3                  from 'd3'; 
 import { Domain }               from './Graph';
 import { TimeDomain }           from './Graph';

@@ -5,7 +5,6 @@
 /** */
 
 import { DataSet, Graph }   from './Graph';
-import { Domains }          from './Graph';
 import { LifecycleCalls }   from './Graph';
 import { d3Base }           from './Settings';
 import { UnitVp }           from './Settings';

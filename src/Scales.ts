@@ -1,9 +1,6 @@
 
 
 
-
-
-
 import { Log }                  from 'hsutil'; const log = new Log('Scales');
 import { GraphComponent }       from './GraphComponent'; 
 import { ComponentDefaults }    from './GraphComponent'; 
