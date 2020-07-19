@@ -1,11 +1,11 @@
 {
     "name": "hsgraphd3",
-    "main": "./cjs/index.js",
-    "module": "./esm/index.js",
+    "main": "./bin/cjs/index.js",
+    "module": "./bin/esm/index.js",
     "files": [
         "bin/"
     ],
-    "types": "./esm/index.d.ts",
+    "types": "./bin/esm/index.d.ts",
     "type": "module",
     "scripts": {
         "grunt": "grunt --gruntfile Gruntfile.cjs",
