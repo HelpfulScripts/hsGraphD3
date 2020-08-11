@@ -161,6 +161,7 @@ abstract class BaseScale {
     scaleFn(x:DataVal):any { return this.d3Scale(x); }
     
     getScale():Scale {
+        const hsScale = this;
         function _range():Range;
         function _range(r: Range): Scale;
         function _range(r?:Range): any { 
@@ -176,6 +177,7 @@ abstract class BaseScale {
         function _domain(d: Domain): Scale;
         function _domain(d?:any):any { 
             if (d!==undefined) {
+                d = hsScale.getDomain(d);
                 d3Scale.domain(d);
                 return scale;
             } else {
@@ -194,7 +196,8 @@ abstract class BaseScale {
         scale.tickCountMajor = 2;
         scale.tickCountMinor = 10;
 
-        scale.domain(this.getDomain());
+        // scale.domain(this.getDomain());
+        scale.domain([]);
         scale.range(this.getRange());
         scale.type = this.getType;
         return scale;
@@ -204,7 +207,7 @@ abstract class BaseScale {
 
     protected getTicks() { return (count:number) => this.d3Scale.ticks(count) }
 
-    protected getDomain():Domain { return this.d3Scale.domain(); }
+    protected getDomain(domain:Domain):Domain { return this.d3Scale.domain(); }
     
     getRange():Range {
         const rangeDef = this.scaleDef.range;
@@ -236,8 +239,8 @@ export class BandScale extends BaseScale {
     //     return () => this.d3Scale.domain(); 
     // }
 
-    protected getDomain():Domain { 
-        return this.domain || []; 
+    protected getDomain(domain:Domain):Domain { 
+        return domain || []; 
     }
 }
 
@@ -251,12 +254,18 @@ export class TimeScale extends BaseScale {
 
     protected getTicks() { return (count:number) => this.d3Scale.ticks(count).map((d:number) => new Date(d)); }
 
-    protected getDomain():TimeDomain {
-        const domDef = <NumDomDefaults>this.scaleDef.domain;
-        return [
-            new Date(this.domain && domDef.min === 'auto'? this.domain[0] : domDef.min),
-            new Date(this.domain && domDef.max === 'auto'? this.domain[1] : domDef.max)
-        ];
+    protected getDomain(domain:Domain):Domain {
+        if (domain && domain[0]) {
+            const domDef = <NumDomDefaults>this.scaleDef.domain;
+            if (domain && (<Date>domain[0]).getTime) {
+                domain = [(<Date>domain[0]).getTime(), (<Date>domain[1]).getTime()];
+            }
+            return <NumDomain>[
+                (domain && domDef.min === 'auto')? domain[0] : domDef.min,
+                (domain && domDef.max === 'auto')? domain[1] : domDef.max
+            ];
+        }
+        return domain;
     }
 }
 
@@ -267,12 +276,15 @@ class NumberScale extends BaseScale {
 
     protected getType() { return 'number'; }
 
-    protected getDomain():NumDomain {
-        const domDef = <NumDomDefaults>this.scaleDef.domain;
-        return <NumDomain>[
-            (this.domain && domDef.min === 'auto'? this.domain[0] : domDef.min),
-            (this.domain && domDef.max === 'auto'? this.domain[1] : domDef.max)
-        ];
+    protected getDomain(domain:NumDomain):NumDomain {
+        if (domain && domain[0]) {
+            const domDef = <NumDomDefaults>this.scaleDef.domain;
+            return <NumDomain>[
+                (domain && domDef.min === 'auto')? domain[0] : domDef.min,
+                (domain && domDef.max === 'auto')? domain[1] : domDef.max
+            ];
+        }
+        return domain;
     }
 }
 

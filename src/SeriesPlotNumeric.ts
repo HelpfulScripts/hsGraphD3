@@ -108,13 +108,14 @@ export abstract class SeriesPlotNumeric extends SeriesPlotCartesian {
      * @param yDef a constant (defaults to 0), or the data column to render from
      */
     protected getPath(rows:NumericDataRow[], colNames:string[], yDef: ValueDef = () => 0, useStack=true):string {
+        const smooth = this.defaults.line.smoothing;
         const scales = this.cfg.components.scales.scaleDims;
         const xAccess = this.accessor(this.dims.x, colNames, useStack);
         const yAccess = this.accessor(yDef, colNames, useStack);
         const line = d3line()
             .x((d:number[], i:number) => scales.hor(xAccess(d, i)))
             .y((d:number[], i:number) => scales.ver(yAccess(d, i)))
-            .curve(curveCatmullRom.alpha(0.2));
+            .curve(curveCatmullRom.alpha(smooth));
         return line(<[number, number][]>rows);
     }
 }

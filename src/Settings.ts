@@ -108,7 +108,7 @@ export type Share           = number;
 export interface Rendered {
     rendered: boolean;
 }
-export interface Line extends Stroke, Rendered {}
+export interface Line extends Stroke, Rendered { smoothing: number; }
 export interface Area extends Fill, Rendered { border: Stroke; }
 export interface Marker extends MarkerStyle, Rendered {}
 export interface Text extends TextStyle, Rendered {}
@@ -267,6 +267,7 @@ export const defaultStroke = (width:UnitVp, color:Color='currentColor'):Stroke =
 
 export const defaultLine = (width:UnitVp, color:Color='currentColor'):Line => {
     const def:any = defaultStroke(width, color);
+    def.smoothing = 0.5;
     def.rendered = true;
     return def;
 };

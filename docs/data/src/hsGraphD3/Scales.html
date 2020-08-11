@@ -139,16 +139,17 @@
 <p id=116 class="line"><span>&nbsp;116</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;domain[0]&nbsp;=&nbsp;0;</p>
 <p id=117 class="line"><span>&nbsp;117</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
 <p id=118 class="line"><span>&nbsp;118</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-<p id=119 class="line"><span>&nbsp;119</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.scales[name].domain(domain);</p>
-<p id=120 class="line"><span>&nbsp;120</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-<p id=121 class="line"><span>&nbsp;121</span></p>
-<p id=122 class="line"><span>&nbsp;122</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;cumulate(data:DataSet&nbsp;|&nbsp;DataSet[])&nbsp;{</p>
-<p id=123 class="line"><span>&nbsp;123</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;dims&nbsp;=&nbsp;this.defaults.dims;</p>
-<p id=124 class="line"><span>&nbsp;124</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;dom&nbsp;=&nbsp;this.cumulativeDomains;</p>
-<p id=125 class="line"><span>&nbsp;125</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Object.keys(dims).forEach(dim&nbsp;=>&nbsp;dom[dim]&nbsp;&nbsp;=&nbsp;(dom[dim]&nbsp;&nbsp;&&&nbsp;dims[dim].aggregateOverTime)?&nbsp;&nbsp;dom[dim]&nbsp;&nbsp;:&nbsp;undefined)</p>
-<p id=126 class="line"><span>&nbsp;126</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.cfg.components.series.expandDomains(data,&nbsp;this.cumulativeDomains);</p>
-<p id=127 class="line"><span>&nbsp;127</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-<p id=128 class="line"><span>&nbsp;128</span>}</p>
-<p id=129 class="line"><span>&nbsp;129</span></p></code></div>
+<p id=119 class="line"><span>&nbsp;119</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;def&nbsp;=&nbsp;this.defaults.dims[name];</p>
+<p id=120 class="line"><span>&nbsp;120</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.scales[name].domain(domain);</p>
+<p id=121 class="line"><span>&nbsp;121</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=122 class="line"><span>&nbsp;122</span></p>
+<p id=123 class="line"><span>&nbsp;123</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;cumulate(data:DataSet&nbsp;|&nbsp;DataSet[])&nbsp;{</p>
+<p id=124 class="line"><span>&nbsp;124</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;dims&nbsp;=&nbsp;this.defaults.dims;</p>
+<p id=125 class="line"><span>&nbsp;125</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;dom&nbsp;=&nbsp;this.cumulativeDomains;</p>
+<p id=126 class="line"><span>&nbsp;126</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Object.keys(dims).forEach(dim&nbsp;=>&nbsp;dom[dim]&nbsp;&nbsp;=&nbsp;(dom[dim]&nbsp;&nbsp;&&&nbsp;dims[dim].aggregateOverTime)?&nbsp;&nbsp;dom[dim]&nbsp;&nbsp;:&nbsp;undefined)</p>
+<p id=127 class="line"><span>&nbsp;127</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.cfg.components.series.expandDomains(data,&nbsp;this.cumulativeDomains);</p>
+<p id=128 class="line"><span>&nbsp;128</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=129 class="line"><span>&nbsp;129</span>}</p>
+<p id=130 class="line"><span>&nbsp;130</span></p></code></div>
                 </body>
             

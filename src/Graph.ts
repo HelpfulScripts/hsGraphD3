@@ -114,7 +114,7 @@ import { Grids }                from './Grid';
 import { GridsDefaults }        from './Grid';
 import { Canvas }               from './Canvas';
 import { CanvasDefaults }       from './Canvas';
-import { d3Base, Index }            from './Settings';
+import { d3Base, Index }        from './Settings';
 import { Popup }                from './Popup';
 import { PopupDefaults }        from './Popup';
 import { Title }                from './Title';

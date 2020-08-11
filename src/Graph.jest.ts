@@ -1,7 +1,7 @@
 import { Graph }    from './Graph';
 import m            from "mithril";
 
-const root = window.document.createElement("div");
+const root = window.document.createElement("div#theRoot");
 
 const data = {
     colNames: 
@@ -20,6 +20,23 @@ describe('Label', () => {
         beforeAll(() => {
             m.mount(root, { view: () => m(<any>Graph, {
                 rootID: root,
+                define: (graph:Graph) => {
+                   graph.add('line', {y:'yval'});
+                },
+                data: data
+            })});
+        });
+        it ('matches', () => {
+            expect(root).toMatchSnapshot();
+        });
+    });
+});
+
+describe('Label', () => {
+    describe('should have DOM structure', () => {
+        beforeAll(() => {
+            m.mount(root, { view: () => m(<any>Graph, {
+                rootID: 'theRoot',
                 define: (graph:Graph) => {
                    graph.add('line', {y:'yval'});
                 },

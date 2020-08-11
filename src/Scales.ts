@@ -116,6 +116,7 @@ export class Scales extends GraphComponent {
                 domain[0] = 0;
             }
         }
+        const def = this.defaults.dims[name];
         this.scales[name].domain(domain);
     }
 

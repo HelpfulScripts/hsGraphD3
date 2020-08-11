@@ -131,17 +131,18 @@
 <p id=108 class="line"><span>&nbsp;108</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;yDef&nbsp;a&nbsp;constant&nbsp;(defaults&nbsp;to&nbsp;0),&nbsp;or&nbsp;the&nbsp;data&nbsp;column&nbsp;to&nbsp;render&nbsp;from</comment></p>
 <p id=109 class="line"><span>&nbsp;109</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</comment></p>
 <p id=110 class="line"><span>&nbsp;110</span>&nbsp;&nbsp;&nbsp;&nbsp;protected&nbsp;getPath(rows:NumericDataRow[],&nbsp;colNames:string[],&nbsp;yDef:&nbsp;ValueDef&nbsp;=&nbsp;()&nbsp;=>&nbsp;0,&nbsp;useStack=true):string&nbsp;{</p>
-<p id=111 class="line"><span>&nbsp;111</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;scales&nbsp;=&nbsp;this.cfg.components.scales.scaleDims;</p>
-<p id=112 class="line"><span>&nbsp;112</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;xAccess&nbsp;=&nbsp;this.accessor(this.dims.x,&nbsp;colNames,&nbsp;useStack);</p>
-<p id=113 class="line"><span>&nbsp;113</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;yAccess&nbsp;=&nbsp;this.accessor(yDef,&nbsp;colNames,&nbsp;useStack);</p>
-<p id=114 class="line"><span>&nbsp;114</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;line&nbsp;=&nbsp;d3line()</p>
-<p id=115 class="line"><span>&nbsp;115</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.x((d:number[],&nbsp;i:number)&nbsp;=>&nbsp;scales.hor(xAccess(d,&nbsp;i)))</p>
-<p id=116 class="line"><span>&nbsp;116</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.y((d:number[],&nbsp;i:number)&nbsp;=>&nbsp;scales.ver(yAccess(d,&nbsp;i)))</p>
-<p id=117 class="line"><span>&nbsp;117</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.curve(curveCatmullRom.alpha(0.2));</p>
-<p id=118 class="line"><span>&nbsp;118</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;line(<[number,&nbsp;number][]>rows);</p>
-<p id=119 class="line"><span>&nbsp;119</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-<p id=120 class="line"><span>&nbsp;120</span>}</p>
-<p id=121 class="line"><span>&nbsp;121</span></p>
-<p id=122 class="line"><span>&nbsp;122</span></p></code></div>
+<p id=111 class="line"><span>&nbsp;111</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;smooth&nbsp;=&nbsp;this.defaults.line.smoothing;</p>
+<p id=112 class="line"><span>&nbsp;112</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;scales&nbsp;=&nbsp;this.cfg.components.scales.scaleDims;</p>
+<p id=113 class="line"><span>&nbsp;113</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;xAccess&nbsp;=&nbsp;this.accessor(this.dims.x,&nbsp;colNames,&nbsp;useStack);</p>
+<p id=114 class="line"><span>&nbsp;114</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;yAccess&nbsp;=&nbsp;this.accessor(yDef,&nbsp;colNames,&nbsp;useStack);</p>
+<p id=115 class="line"><span>&nbsp;115</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;line&nbsp;=&nbsp;d3line()</p>
+<p id=116 class="line"><span>&nbsp;116</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.x((d:number[],&nbsp;i:number)&nbsp;=>&nbsp;scales.hor(xAccess(d,&nbsp;i)))</p>
+<p id=117 class="line"><span>&nbsp;117</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.y((d:number[],&nbsp;i:number)&nbsp;=>&nbsp;scales.ver(yAccess(d,&nbsp;i)))</p>
+<p id=118 class="line"><span>&nbsp;118</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.curve(curveCatmullRom.alpha(smooth));</p>
+<p id=119 class="line"><span>&nbsp;119</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;line(<[number,&nbsp;number][]>rows);</p>
+<p id=120 class="line"><span>&nbsp;120</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=121 class="line"><span>&nbsp;121</span>}</p>
+<p id=122 class="line"><span>&nbsp;122</span></p>
+<p id=123 class="line"><span>&nbsp;123</span></p></code></div>
                 </body>
             
