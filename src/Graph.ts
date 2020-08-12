@@ -495,7 +495,8 @@ export class Graph extends GraphBase {
                 graph.renderLifecycle(data);
             }, 0);
         });
-        graph.renderLifecycle(data);
+        try { graph.renderLifecycle(data); }
+        catch(e) { log.warn(`rendering lifecycle: ${e}`); }
         
         return { update: graph.updateFn(data)};
     }
