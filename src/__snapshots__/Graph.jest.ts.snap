@@ -1,3 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`Label should have DOM structure matches 1`] = `<div />`;
+
+exports[`Label should have DOM structure matches 2`] = `<div />`;

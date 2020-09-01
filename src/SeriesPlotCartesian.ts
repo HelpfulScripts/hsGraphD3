@@ -23,7 +23,7 @@ import { DataSet }              from "./Graph";
 import { GraphCfg }             from "./GraphComponent";
 import { d3Base }               from "./Settings";
 import { defaultStroke }        from "./Settings";
-import { SeriesPlotScaled } from './SeriesPlotScaled';
+import { SeriesPlotScaled }     from './SeriesPlotScaled';
 
 export interface CartDimensions extends GraphDimensions { 
     hor:ValueDef[]; 

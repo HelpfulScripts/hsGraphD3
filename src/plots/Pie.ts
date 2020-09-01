@@ -84,6 +84,9 @@
  *   } 
  * });
  * </file>
+ * <file name='style.css'>
+ * .exampleGrid { background-color:#eee; }
+ * </file>
  * </example>
  */
 

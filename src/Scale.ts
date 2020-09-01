@@ -51,13 +51,12 @@
  */
 
  /** */
-import { Log }                  from 'hsutil'; const log = new Log('Scale');
-import { UnitVp }  from './Settings';
-import * as d3                  from 'd3'; 
-import { Domain }               from './Graph';
-import { TimeDomain }           from './Graph';
-import { NumDomain }            from './Graph';
-import { DataVal }              from './Graph';
+import { Log }          from 'hsutil'; const log = new Log('Scale');
+import { UnitVp }       from './Settings';
+import * as d3          from 'd3'; 
+import { Domain }       from './Graph';
+import { NumDomain }    from './Graph';
+import { DataVal }      from './Graph';
 
 
 interface ScaleFn {

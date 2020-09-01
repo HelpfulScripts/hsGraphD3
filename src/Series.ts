@@ -44,8 +44,8 @@ import { SeriesDimensions }     from './SeriesPlot';
 import { schemeDark2 }          from 'd3';
 import { PolarPlotDefaults }    from './SeriesPlotPolar';
 import { scaleDefault }         from './Scale';
-import { SystemType } from './Scales';
-import { SeriesPlotScaled } from './SeriesPlotScaled';
+import { SystemType }           from './Scales';
+import { SeriesPlotScaled }     from './SeriesPlotScaled';
 
 
 type PlotFactory = (cfg:GraphCfg, seriesName:string, dims:SeriesDimensions) => SeriesPlot;

@@ -10,7 +10,7 @@ import { ScaleDefaults }        from './Scale';
 import { NoScale, BandScale }   from './Scale';
 import { TimeScale }            from './Scale';
 import { LogScale, LinearScale }from './Scale';
-import { Domains, DataSet }              from './Graph';
+import { Domains, DataSet }     from './Graph';
 
 import { Domain }               from './Graph';
 

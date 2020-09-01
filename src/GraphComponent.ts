@@ -10,13 +10,13 @@ import { d3Base }           from './Settings';
 import { UnitVp }           from './Settings';
 import { Selection }        from 'd3';
 import { BaseType }         from 'd3';
-import { Scales } from './Scales';
-import { Canvas } from './Canvas';
-import { Grids } from './Grid';
-import { Axes } from './Axis';
-import { Series } from './Series';
-import { Title } from './Title';
-import { Popup } from './Popup';
+import { Scales }           from './Scales';
+import { Canvas }           from './Canvas';
+import { Grids }            from './Grid';
+import { Axes }             from './Axis';
+import { Series }           from './Series';
+import { Title }            from './Title';
+import { Popup }            from './Popup';
 
 
 export interface SVGLineSelection extends Selection<SVGLineElement, number, BaseType, unknown> {}

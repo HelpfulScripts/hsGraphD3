@@ -1,7 +1,7 @@
 import { Graph }    from './Graph';
 import m            from "mithril";
 
-const root = window.document.createElement("div#theRoot");
+const root = window.document.createElement("div");
 
 const data = {
     colNames: 
