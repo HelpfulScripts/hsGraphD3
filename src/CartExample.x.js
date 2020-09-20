@@ -176,7 +176,7 @@ const updateTS = (data) => {
 }
 
 m.mount(root, {
-    view:() => m(hsWidget.GridRows, { template: `50px repeat(${content.length}, 130px)` }, [
+    view:() => m(hsWidget.Grid, { rows: `50px repeat(${content.length}, 130px)` }, [
         m('div', {style:'background-color:white;'}),
         ...content.map(fn => m(nodeGraph(fn)))
     ]),
