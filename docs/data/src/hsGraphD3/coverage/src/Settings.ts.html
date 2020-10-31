@@ -466,7 +466,9 @@
 <a name='L407'></a><a href='#L407'>407</a>
 <a name='L408'></a><a href='#L408'>408</a>
 <a name='L409'></a><a href='#L409'>409</a>
-<a name='L410'></a><a href='#L410'>410</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L410'></a><a href='#L410'>410</a>
+<a name='L411'></a><a href='#L411'>411</a>
+<a name='L412'></a><a href='#L412'>412</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -538,6 +540,8 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -982,10 +986,12 @@ export type Share           = number;
 &nbsp;
 //---------- interfaces --------------
 &nbsp;
+export type Smoothing = 'catmull05' | 'linear' | 'stepAfter';
+&nbsp;
 export interface Rendered {
     rendered: boolean;
 }
-export interface Line extends Stroke, Rendered { smoothing: number; }
+export interface Line extends Stroke, Rendered { smoothing: Smoothing; }
 export interface Area extends Fill, Rendered { border: Stroke; }
 export interface Marker extends MarkerStyle, Rendered {}
 export interface Text extends TextStyle, Rendered {}
@@ -1143,8 +1149,8 @@ export const defaultStroke = (width:UnitVp, color:Color='currentColor'):Stroke =
 };
 &nbsp;
 export const defaultLine = (width:UnitVp, color:Color='currentColor'):Line =&gt; {
-    const def:any = defaultStroke(width, color);
-    def.smoothing = 0.5;
+    const def = &lt;Line&gt;defaultStroke(width, color);
+    def.smoothing = 'catmull05';
     def.rendered = true;
     return def;
 };

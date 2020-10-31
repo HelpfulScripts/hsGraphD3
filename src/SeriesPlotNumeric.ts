@@ -19,7 +19,8 @@
 /** */
 import { Log }                  from 'hsutil'; const log = new Log('SeriesPlotNumeric');
 import { line as d3line}        from 'd3';
-import { curveCatmullRom }      from 'd3';
+import { curveCatmullRom, curveLinear, curveStepAfter }      
+                                from 'd3';
 import { NumericDataSet }       from './Graph';
 import { DataSet }              from './Graph';
 import { NumericDataRow }       from './Graph';
@@ -30,6 +31,11 @@ import { Label }                from './Settings';
 import { textPos }              from './Settings';
 import { SeriesPlotCartesian }       from './SeriesPlotCartesian';
 
+const curves = {
+    catmull05:  curveCatmullRom.alpha(0.5),
+    linear:     curveLinear,
+    stepAfter:  curveStepAfter
+}
 
 /**
  * Abstract base class of a  cartesian series plot. 
@@ -115,7 +121,7 @@ export abstract class SeriesPlotNumeric extends SeriesPlotCartesian {
         const line = d3line()
             .x((d:number[], i:number) => scales.hor(xAccess(d, i)))
             .y((d:number[], i:number) => scales.ver(yAccess(d, i)))
-            .curve(curveCatmullRom.alpha(smooth));
+            .curve(curves[smooth]);
         return line(<[number, number][]>rows);
     }
 }

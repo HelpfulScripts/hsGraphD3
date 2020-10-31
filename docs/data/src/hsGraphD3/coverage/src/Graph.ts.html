@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">73.98% </span>
+                <span class="strong">74.19% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>91/123</span>
+                <span class='fraction'>92/124</span>
             </div>
         
             
@@ -741,7 +741,8 @@
 <a name='L682'></a><a href='#L682'>682</a>
 <a name='L683'></a><a href='#L683'>683</a>
 <a name='L684'></a><a href='#L684'>684</a>
-<a name='L685'></a><a href='#L685'>685</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L685'></a><a href='#L685'>685</a>
+<a name='L686'></a><a href='#L686'>686</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1117,8 +1118,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1239,7 +1238,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1803,11 +1805,9 @@ export class Graph extends GraphBase {
 <span class="cstat-no" title="statement not covered" >        Object.keys(Graph.graphs).forEach(<span class="fstat-no" title="function not covered" >g </span>=&gt; <span class="cstat-no" title="statement not covered" >Graph.graphs[g]())</span>;</span>
     }
     
-&nbsp;
     //------------ instance variables  -------------------
     /** the HTML root element to attach the render tree to. */
     protected root:any;
-&nbsp;
 &nbsp;
     /** tracks whether components have been initialized. */
     private initialized = false;
@@ -1922,8 +1922,11 @@ export class Graph extends GraphBase {
 <span class="cstat-no" title="statement not covered" >                graph.renderLifecycle(data);</span>
             }, 0);
         });
-        try { graph.renderLifecycle(data); }
-        catch(e) { <span class="cstat-no" title="statement not covered" >log.warn(`rendering lifecycle: ${e}`); </span>}
+        try { 
+            graph.renderLifecycle(data); 
+        } catch(e) { 
+<span class="cstat-no" title="statement not covered" >            log.warn(`rendering lifecycle: ${e}`); </span>
+        }
         
         return { update: graph.updateFn(data)};
     }

@@ -376,11 +376,9 @@ export class Graph extends GraphBase {
         Object.keys(Graph.graphs).forEach(g => Graph.graphs[g]());
     }
     
-
     //------------ instance variables  -------------------
     /** the HTML root element to attach the render tree to. */
     protected root:any;
-
 
     /** tracks whether components have been initialized. */
     private initialized = false;
@@ -495,8 +493,11 @@ export class Graph extends GraphBase {
                 graph.renderLifecycle(data);
             }, 0);
         });
-        try { graph.renderLifecycle(data); }
-        catch(e) { log.warn(`rendering lifecycle: ${e}`); }
+        try { 
+            graph.renderLifecycle(data); 
+        } catch(e) { 
+            log.warn(`rendering lifecycle: ${e}`); 
+        }
         
         return { update: graph.updateFn(data)};
     }
