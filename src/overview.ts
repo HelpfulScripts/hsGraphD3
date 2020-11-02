@@ -7,7 +7,7 @@ Helpful Scripts Graph convenience wrapper for D3js.
 [![npm version](https://badge.fury.io/js/hsgraphd3.svg)](https://badge.fury.io/js/hsgraphd3)
 [![GitHub](https://img.shields.io/badge/GitHub-hsGraphD3-blue.svg)](https://github.com/helpfulscripts/hsgraphd3)
 [![docs](https://img.shields.io/badge/hsDocs-hsGraphD3-blue.svg)](https://helpfulscripts.github.io/hsGraphD3/#!/api/hsGraphD3/0)
-[![Build Status](https://travis-ci.org/HelpfulScripts/hsGraphD3.svg?branch=master)](https://travis-ci.org/HelpfulScripts/hsGraphD3)
+[![Build Status](https://travis-ci.com/HelpfulScripts/hsGraphD3.svg?branch=master)](https://travis-ci.com/HelpfulScripts/hsGraphD3)
 [![Dependencies Status](https://david-dm.org/helpfulscripts/hsgraphd3.svg)](https://david-dm.org/helpfulscripts/hsgraphd3)
 [![codecov](https://codecov.io/gh/HelpfulScripts/hsGraphD3/branch/master/graph/badge.svg)](https://codecov.io/gh/HelpfulScripts/hsGraphD3)
 [![Known Vulnerabilities](https://snyk.io/test/github/HelpfulScripts/hsGraphD3/badge.svg?targetFile=package.json)](https://snyk.io/test/github/HelpfulScripts/hsGraphD3?targetFile=package.json)
