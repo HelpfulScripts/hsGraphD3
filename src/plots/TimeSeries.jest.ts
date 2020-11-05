@@ -40,7 +40,7 @@ describe('TimeSeries', () => {
         graph.add('timeseries', {x:'time', y:'yval'});
         graph.series.defaults['series0'].marker.rendered = true;
         graph.series.defaults['series0'].area.rendered = true;
-        graph.defaults.graph.transition.easing = 'easeNone';
+        graph.grids.defaults.rendered = false;
         graph.render(data);
     });
     it('should plot timeSeries', () =>
