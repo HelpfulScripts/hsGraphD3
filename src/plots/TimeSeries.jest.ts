@@ -41,6 +41,7 @@ describe('TimeSeries', () => {
         graph.series.defaults['series0'].marker.rendered = true;
         graph.series.defaults['series0'].area.rendered = true;
         graph.grids.defaults.rendered = false;
+        graph.axes.defaults.hor.tickMarks.rendered = false;
         graph.render(data);
     });
     it('should plot timeSeries', () =>

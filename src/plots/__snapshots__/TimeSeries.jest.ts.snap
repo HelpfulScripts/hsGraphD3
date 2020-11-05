@@ -77,11 +77,8 @@ exports[`TimeSeries should plot timeSeries 1`] = `
           transform="translate(440.5,0)"
         >
           <line
-            fill-opacity="0"
             stroke="currentColor"
-            stroke-dasharray="none"
-            stroke-opacity="1"
-            stroke-width="2"
+            style="visibility: hidden"
             y2="5"
           />
           <text
