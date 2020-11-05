@@ -40,8 +40,8 @@ describe('TimeSeries', () => {
         graph.add('timeseries', {x:'time', y:'yval'});
         graph.series.defaults['series0'].marker.rendered = true;
         graph.series.defaults['series0'].area.rendered = true;
-        graph.grids.defaults.rendered = false;
-        graph.axes.defaults.hor.tickMarks.rendered = false;
+        graph.grids.defaults.rendered = false;      // avoids slight scaling offsets in github CI
+        graph.axes.defaults.hor.rendered = false;   // avoids slight scaling offsets in github CI
         graph.render(data);
     });
     it('should plot timeSeries', () =>
