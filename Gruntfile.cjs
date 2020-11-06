@@ -99,7 +99,6 @@ function make(grunt) {
     grunt.registerTask('default',       ['product']);	
     grunt.registerTask('dev',           ['buildDev']);
     grunt.registerTask('product',       ['buildMin']);	
-    // grunt.registerTask('travis',        ['build-base', (type === 'node')?'':'webpack:appProd', 'test']); // exlude node-apps from webPack to avoid webpack error
     grunt.registerTask('ci',            ['build-base', 'ts:cjs', 'test', 'coverageReport']); 
     grunt.registerTask('help',          ['h']);	
 
