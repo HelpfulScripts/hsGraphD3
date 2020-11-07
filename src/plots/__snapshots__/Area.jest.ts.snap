@@ -1088,7 +1088,7 @@ exports[`Area labels should plot area 1`] = `
             fill="currentColor"
             y="8"
           >
-            -1
+            −1
           </text>
         </g>
         <g
@@ -1508,7 +1508,7 @@ exports[`Area labels should plot area 1`] = `
             fill="currentColor"
             y="8"
           >
-            -1
+            −1
           </text>
         </g>
         <g
@@ -2491,7 +2491,7 @@ exports[`Area labels should plot area 2`] = `
             fill="currentColor"
             y="8"
           >
-            -1
+            −1
           </text>
         </g>
         <g
@@ -2911,7 +2911,7 @@ exports[`Area labels should plot area 2`] = `
             fill="currentColor"
             y="8"
           >
-            -1
+            −1
           </text>
         </g>
         <g
@@ -3481,7 +3481,7 @@ exports[`Area labels should plot area 2`] = `
             fill="currentColor"
             y="8"
           >
-            -1
+            −1
           </text>
         </g>
         <g
@@ -4342,7 +4342,7 @@ exports[`Area volume vs time should plot area 1`] = `
             fill="currentColor"
             y="8"
           >
-            -1
+            −1
           </text>
         </g>
         <g

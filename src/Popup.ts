@@ -68,7 +68,7 @@ import { defaultTextStyle }     from './Settings';
 import { TextStyle }            from './Settings';
 import { Area }                 from './Settings';
 import { AccessFn }             from './Graph';
-import { select, event }        from 'd3';
+import { select }               from 'd3';
  
 export interface PopupDefaults extends ComponentDefaults { 
     rendered:   boolean;
@@ -123,11 +123,11 @@ export class Popup extends GraphComponent {
         };
     }
 
-    private movePopup() {
+    private movePopup(event:any) {
         const o = this.defaults.offset;
         this.svg
-            .style('left', `${event.x+o.xPx}px`)		
-            .style('top',  `${(event.y+o.yPx)}px`);
+            .style('left', `${event.pageX+o.xPx}px`)		
+            .style('top',  `${(event.pageY+o.yPx)}px`);
     }					
 
     private hidePopup() {

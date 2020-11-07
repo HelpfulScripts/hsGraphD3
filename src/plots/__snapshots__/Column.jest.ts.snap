@@ -333,7 +333,7 @@ exports[`Column should plot column 1`] = `
             fill="currentColor"
             x="-8"
           >
-            -1
+            −1
           </text>
         </g>
         <g

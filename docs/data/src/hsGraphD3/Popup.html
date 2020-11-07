@@ -91,7 +91,7 @@
 <p id=68 class="line"><span>&nbsp;&nbsp;68</span>import&nbsp;{&nbsp;TextStyle&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Settings'</quote>;</p>
 <p id=69 class="line"><span>&nbsp;&nbsp;69</span>import&nbsp;{&nbsp;Area&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Settings'</quote>;</p>
 <p id=70 class="line"><span>&nbsp;&nbsp;70</span>import&nbsp;{&nbsp;AccessFn&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'./Graph'</quote>;</p>
-<p id=71 class="line"><span>&nbsp;&nbsp;71</span>import&nbsp;{&nbsp;select,&nbsp;event&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'d3'</quote>;</p>
+<p id=71 class="line"><span>&nbsp;&nbsp;71</span>import&nbsp;{&nbsp;select&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;from&nbsp;<quote>'d3'</quote>;</p>
 <p id=72 class="line"><span>&nbsp;&nbsp;72</span>&nbsp;</p>
 <p id=73 class="line"><span>&nbsp;&nbsp;73</span>export&nbsp;interface&nbsp;PopupDefaults&nbsp;extends&nbsp;ComponentDefaults&nbsp;{&nbsp;</p>
 <p id=74 class="line"><span>&nbsp;&nbsp;74</span>&nbsp;&nbsp;&nbsp;&nbsp;rendered:&nbsp;&nbsp;&nbsp;boolean;</p>
@@ -146,11 +146,11 @@
 <p id=123 class="line"><span>&nbsp;123</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</p>
 <p id=124 class="line"><span>&nbsp;124</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
 <p id=125 class="line"><span>&nbsp;125</span></p>
-<p id=126 class="line"><span>&nbsp;126</span>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;movePopup()&nbsp;{</p>
+<p id=126 class="line"><span>&nbsp;126</span>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;movePopup(event:any)&nbsp;{</p>
 <p id=127 class="line"><span>&nbsp;127</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;o&nbsp;=&nbsp;this.defaults.offset;</p>
 <p id=128 class="line"><span>&nbsp;128</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.svg</p>
-<p id=129 class="line"><span>&nbsp;129</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.style(<quote>'left'</quote>,&nbsp;`${event.x+o.xPx}px`)		</p>
-<p id=130 class="line"><span>&nbsp;130</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.style(<quote>'top'</quote>,&nbsp;&nbsp;`${(event.y+o.yPx)}px`);</p>
+<p id=129 class="line"><span>&nbsp;129</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.style(<quote>'left'</quote>,&nbsp;`${event.pageX+o.xPx}px`)		</p>
+<p id=130 class="line"><span>&nbsp;130</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.style(<quote>'top'</quote>,&nbsp;&nbsp;`${(event.pageY+o.yPx)}px`);</p>
 <p id=131 class="line"><span>&nbsp;131</span>&nbsp;&nbsp;&nbsp;&nbsp;}					</p>
 <p id=132 class="line"><span>&nbsp;132</span></p>
 <p id=133 class="line"><span>&nbsp;133</span>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;hidePopup()&nbsp;{</p>
