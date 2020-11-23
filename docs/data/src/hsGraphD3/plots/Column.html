@@ -87,7 +87,7 @@
 <p id=64 class="line"><span>&nbsp;&nbsp;64</span><comment>&nbsp;*&nbsp;</comment></p>
 <p id=65 class="line"><span>&nbsp;&nbsp;65</span><comment>&nbsp;*&nbsp;<comment>//&nbsp;setup&nbsp;and&nbsp;plot&nbsp;the&nbsp;data:</comment></comment></p>
 <p id=66 class="line"><span>&nbsp;&nbsp;66</span><comment><comment></comment>&nbsp;*&nbsp;const&nbsp;graph&nbsp;=&nbsp;new&nbsp;hsGraphD3.Graph(root);</comment></p>
-<p id=67 class="line"><span>&nbsp;&nbsp;67</span><comment>&nbsp;*&nbsp;graph.add(<quote>'column'</quote>,&nbsp;{x:<quote>'State'</quote>,&nbsp;y:<quote>'costs'</quote>,&nbsp;&nbsp;stacked:<quote>'group1'</quote>,&nbsp;label:i=&gt;`costs&nbsp;${i}`});</comment></p>
+<p id=67 class="line"><span>&nbsp;&nbsp;67</span><comment>&nbsp;*&nbsp;graph.add(<quote>'column'</quote>,&nbsp;{x:<quote>'State'</quote>,&nbsp;y:<quote>'costs'</quote>,&nbsp;&nbsp;stacked:<quote>'group1'</quote>,&nbsp;label:(row,i)=&gt;`costs&nbsp;${i}`});</comment></p>
 <p id=68 class="line"><span>&nbsp;&nbsp;68</span><comment>&nbsp;*&nbsp;graph.add(<quote>'column'</quote>,&nbsp;{x:<quote>'State'</quote>,&nbsp;y:<quote>'volume'</quote>,&nbsp;stacked:<quote>'group1'</quote>,&nbsp;label:<quote>'volume'</quote>});</comment></p>
 <p id=69 class="line"><span>&nbsp;&nbsp;69</span><comment>&nbsp;*&nbsp;graph.scales.defaults.dims.hor.ordinal.gap&nbsp;=&nbsp;0.25;</comment></p>
 <p id=70 class="line"><span>&nbsp;&nbsp;70</span><comment>&nbsp;*&nbsp;with&nbsp;(graph.series.defaults)&nbsp;{</comment></p>

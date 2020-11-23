@@ -67,7 +67,7 @@ describe('Area labels', () => {
     beforeAll(() => {
         graph = createGraph(root);
         graph.add('area', {x:'time', y:'volume', label:'time'});
-        graph.add('area', {x:'time', y:'volume', label:i=>i});
+        graph.add('area', {x:'time', y:'volume', label:(row, i)=>i});
         graph.render(data);
     });
     it('should plot area', () => expect(root).toMatchSnapshot());
@@ -78,7 +78,7 @@ describe('Area labels', () => {
     beforeAll(() => {
         graph = createGraph(root);
         graph.add('area', {x:'time', y:'volume', color:'time'});
-        graph.add('area', {x:'time', y:'volume', color:i=>i});
+        graph.add('area', {x:'time', y:'volume', color:(row, i)=>i});
         graph.add('area', {x:'time', y:'volume', color:'greens'});
         graph.add('area', {x:'time', y:'volume', color:'#f00'});
         graph.render(data);

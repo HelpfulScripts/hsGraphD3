@@ -81,13 +81,13 @@ const content = [
 
      graph => { 
          graph.add('column', {x:'item', y:'Joe', label:'item'});
-         graph.add('column', {x:'item', y:'Mary', label:i=>i});
+         graph.add('column', {x:'item', y:'Mary', label:(row,i)=>i});
          graph.title.text = `'column' graph`;
          graph.render(data).update(2000);
      }, 
 
      graph => { 
-         graph.add('column', {x:'item', y:'Joe', stacked:'myGroup', label:i=>`<${i}>`});
+         graph.add('column', {x:'item', y:'Joe', stacked:'myGroup', label:(row,i)=>`<${i}>`});
          graph.add('column', {x:'item', y:'Mary', stacked:'myGroup', label:5});
          graph.title.text = `stacked 'column' graph`;
          graph.render(data).update(2000);
@@ -95,7 +95,7 @@ const content = [
 
 
      graph => { 
-         graph.add('column', {x:'item', y:'Mary', color:i=>i});
+         graph.add('column', {x:'item', y:'Mary', color:(row,i)=>i});
          graph.title.text = `'default colored column' graph`;
          graph.render(data).update(2000);
      }, 

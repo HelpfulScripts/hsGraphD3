@@ -170,6 +170,10 @@ export interface DataSet {
     rows: DataRow[];
 }
 
+export interface DataSetFn {
+    (): DataSet;
+}
+
 export interface NumericDataSet extends DataSet {
     colNames: string[];
     rows: NumericDataRow[];
@@ -212,7 +216,7 @@ export type      OrdDomain = string[];
  * If the function returns `false`, no further callbacks will be initiated
  */
 export interface RenderCallback {
-    (data:DataSet | DataSet[]): boolean|void;
+    (data:DataSet | DataSet[] | DataSetFn): boolean|void;
 }
 
 export interface AccessFn {
@@ -298,17 +302,6 @@ export interface LifecycleCalls {
     postRender(data:DataSet | DataSet[], domains:Domains): void;
 }
 
-
-// export interface Vnode {
-//     dom: HTMLElement;
-//     attrs: {
-//         define: (graph:Graph)=>void;
-//         data: DataSet;
-//         updatePeriod: number;
-//         updateCallback: RenderCallback;
-//     };
-// }
-
 interface Lifecycle<Attrs, State> {
     oninit?(this: State, vnode: Vnode<Attrs, State>): any;
     oncreate?(this: State, vnode: Vnode<Attrs, State>): any;
@@ -324,7 +317,7 @@ interface Vnode<Attrs = {}, State extends Lifecycle<Attrs, State> = {}> {
     tag: string;
     attrs: {
         define: (graph:Graph)=>void;
-        data: DataSet;
+        data: DataSet | DataSet[] | DataSetFn;
         updatePeriod: number;
         updateCallback: RenderCallback;
     };
@@ -375,6 +368,12 @@ export class Graph extends GraphBase {
     private static resizeGraphs() {
         Object.keys(Graph.graphs).forEach(g => Graph.graphs[g]());
     }
+
+    // public static renderGraphs():number {
+    //     const graphs = Object.keys(Graph.graphs);
+    //     graphs.forEach(g => Graph.graphs[g]());
+    //     return graphs.length;
+    // }
     
     //------------ instance variables  -------------------
     /** the HTML root element to attach the render tree to. */
@@ -443,17 +442,37 @@ export class Graph extends GraphBase {
         }
     }
 
+    public reinitialize() {
+        log.info('*** reinitialized')
+        this.initialized = false;
+    }
+
     public get componentType() { return Graph.type; }
 
-    public get defaults(): GraphDefaults { return this.graphDefaults; }
+    public get defaults(): GraphDefaults { try {
+        return this.graphDefaults; 
+    } catch(e) {
+        log.warn(`setting a default: ${e}\n${e.stack}`);
+    }}  
 
     /** returns the types of all registered `Series` */
     public get seriesTypes():string[] {
         return Series.types;
     }
 
-    public add(type:string, dims:SeriesDimensions) {
-        this.cfg.components.series.add(type, dims);
+    /** adds a new plot series and returns an ID that can be used in `remove()`, or `-1` in case of an error. */
+    public add(type:string, dims:SeriesDimensions):number {
+        return this.cfg.components.series.add(type, dims);
+        this.reinitialize();
+    }
+
+    /** 
+     * removes a series by the `id` given in `add()`. 
+     * If `id` is missing, or negative, all series will be removed.
+     */
+    public remove(id?:number) {
+        this.cfg.components.series.remove(id);
+        this.reinitialize();
     }
 
     /**
@@ -477,10 +496,10 @@ export class Graph extends GraphBase {
      * to render all added series. Otherwise `data` can be specified as `DataSet[]` to provide a
      * different data source to each of the series. The series' index is used to index the list,
      * starting with 0 in the order of adding it to the graph. 
-     * If there are more series than data sets ion the list, indexing will restart at index 0.
+     * If there are more series than data sets in the list, indexing will restart at index 0.
      * @return a `RenderChain`.
      */
-    public render(data:DataSet | DataSet[]):RenderChain {
+    public render(data:DataSet | DataSet[] | DataSetFn):RenderChain {
         const transitionDef = this.defaults.graph.transition;
         const graph = this;
 
@@ -496,7 +515,7 @@ export class Graph extends GraphBase {
         try { 
             graph.renderLifecycle(data); 
         } catch(e) { 
-            log.warn(`rendering lifecycle: ${e}`); 
+            log.warn(`rendering lifecycle: ${e}\n${e.stack}`); 
         }
         
         return { update: graph.updateFn(data)};
@@ -569,17 +588,22 @@ export class Graph extends GraphBase {
         comps.forEach(comp => comp?comp.postRender(data):'');
     } 
 
-    renderLifecycle(data:DataSet | DataSet[]) {
+    renderLifecycle(data:DataSet | DataSet[] | DataSetFn) {
         const isRendered = this.isRendered();
         if (isRendered) {
-            if (!this.initialized) {
-                this.initialize(this.cfg.baseSVG);
-                this.initialized = true;
+            // resolve `data()` if a function; including adding / removing series
+            const fixedData = typeof data === 'function'? data() : data;
+            if (fixedData) {
+                // (re)-initialize if needed
+                if (!this.initialized) {
+                    this.initialize(this.cfg.baseSVG);
+                    this.initialized = true;
+                }
+                this.scales.initialize();
+                this.preRender(fixedData);
+                this.renderComponent(fixedData);
+                this.postRender(fixedData);
             }
-            // const scalesDefaults = <ScalesDefaults>this.defaults['scales'];
-            this.preRender(data);
-            this.renderComponent(data);
-            this.postRender(data);
         } else {
             Graph.removeGraph(this.root.id);
         }
@@ -591,7 +615,7 @@ export class Graph extends GraphBase {
         return this.cfg.viewPort;
     }
 
-    private updateFn(data:DataSet | DataSet[]) {
+    private updateFn(data:DataSet | DataSet[] | DataSetFn) {
         const graphDef = this.defaults.graph;
         const graph = this;
         return (duration:number, callback?:RenderCallback):void => {

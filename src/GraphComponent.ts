@@ -132,6 +132,11 @@ export abstract class GraphComponent extends GraphBase {
         }
     }
 
+    initialize(svg:d3Base) {
+        this.svg.selectAll('g').remove();
+    }
+
+
     /** returns the component type as a string name */
     abstract get componentType(): string;
 }

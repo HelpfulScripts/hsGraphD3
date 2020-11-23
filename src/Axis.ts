@@ -208,8 +208,11 @@ export class Axis {
                 this.pos = 'top';
             }
             crossing += ((oscale.type()==='ordinal')? oscale.step() : 0);
-            if (isNaN(d) || isNaN(crossing)) { log.warn(`Axis.setTransform hor: d=${d}, cr=${crossing}`); }
-            this.svg.transition(trans).attr("transform", `translate(${d}, ${crossing})`);
+            if (isNaN(d) || isNaN(crossing)) { 
+                log.warn(`Axis.setTransform hor: d=${d}, cr=${crossing}`); 
+            } else {
+                this.svg.transition(trans).attr("transform", `translate(${d}, ${crossing})`);
+            }
         } else {
             this.pos = 'left';
             if (crossing < margins.left) {
@@ -218,8 +221,11 @@ export class Axis {
             } else if (crossing > this.cfg.viewPort.width-margins.right) {
                 crossing = this.cfg.viewPort.width-margins.right;
             }
-            if (isNaN(d) || isNaN(crossing)) { log.warn(`Axis.setTransform ver: d=${d}, cr=${crossing}`); }
-            this.svg.transition(trans).attr("transform", `translate(${crossing}, ${d})`);
+            if (isNaN(d) || isNaN(crossing)) { 
+                log.warn(`Axis.setTransform ver: d=${d}, cr=${crossing}`); 
+            } else {
+                this.svg.transition(trans).attr("transform", `translate(${crossing}, ${d})`);
+            }
         }
     }
 

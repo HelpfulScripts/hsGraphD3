@@ -110,11 +110,10 @@ export class Scales extends GraphComponent {
     }
 
     protected setDomain(name:string, domain: Domain) {
-        if (domain && domain.length===2 && !isNaN(<number>domain[0]) && !isNaN(<number>domain[1])) {
-            if (domain[0]>0 && domain[0]===domain[1]) {
-                // log.info(`expanding ${name} from [${domain[0]},${domain[1]}] to [0, ${domain[1]}]`);
-                domain[0] = 0;
-            }
+        if (domain && domain.length===2) {
+            if (isNaN(<number>domain[0])) { domain[0] = 0; }
+            if (isNaN(<number>domain[1])) { domain[1] = 0; }
+            if (domain[0]>0 && domain[0]===domain[1]) { domain[0] = 0; }
         }
         const def = this.defaults.dims[name];
         this.scales[name].domain(domain);

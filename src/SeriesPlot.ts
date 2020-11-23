@@ -98,7 +98,7 @@ export type ValueDef = string|number|ValueFn|string[];
  * @param rowIndex the index of the row in the {@link Graph.DataSet `DataSet's`} rows array. 
  * @return the value of type `DataVal` to use for the row.
  */
-export interface ValueFn { (rowIndex:Index, row?:DataRow): DataVal; }
+export interface ValueFn { (row:DataRow, rowIndex?:Index): DataVal; }
 
 /**
  * coverts a `DataVal` to a `string`
@@ -204,12 +204,12 @@ export abstract class SeriesPlot {
      */
     protected accessor(v:ValueDef, colNames:string[], useStack=true):(row:DataRow, rowIndex:Index) => DataVal {
         switch (typeof(v)) {
-            case 'function':return (row, rowIndex) => (<ValueFn>v)(rowIndex, row);
+            case 'function':return (row, rowIndex) => (<ValueFn>v)(row, rowIndex);
             case 'number':  return () => <DataVal>v;
             case 'string':
             default:        const c = colNames.indexOf(''+v); 
                             // try row.data[c] (as passed by d3.arc), then row[c]
-                            return (row) => row['data']? row['data'][c] : row[c];
+                            return row => row['data']? row['data'][c] : row[c];
         }
     }
 
@@ -241,10 +241,11 @@ export abstract class SeriesPlot {
      * @param numRows the number of data rows
      */
     protected d3MarkerColors(items:d3Base, data:DataSet, defaults:SeriesPlotDefaults) {
+        const colors = this.dims.color;
         function getColor(d:number[], i:number):string  {
             const scheme = schemes[defaults.marker.scheme];
             if (typeof colors === 'function') {
-                const color = colors(i);
+                const color = colors(d, i);
                 return typeof color === 'number'? scheme((color % 10) / 10) : <string>color;
             } else if (typeof colors === 'string') {
                 const col = data.colNames.indexOf(colors);
@@ -261,7 +262,6 @@ export abstract class SeriesPlot {
                 return '#f00';
             }
         }
-        const colors = this.dims.color;
         if (colors) {
             // items.attr('stroke', getColor)
             //      .attr('fill', getColor);
@@ -273,7 +273,7 @@ export abstract class SeriesPlot {
         function getColor(d:number[], i:number):string  {
             const scheme = schemes[defaults.marker.scheme];
             if (typeof colors === 'function') {
-                const color = colors(i);
+                const color = colors(d, i);
                 return typeof color === 'number'? scheme((color % 10) / 10) : <string>color;
             } else if (typeof colors === 'string') {
                 const col = data.colNames.indexOf(colors);

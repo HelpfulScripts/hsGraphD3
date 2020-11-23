@@ -169,8 +169,9 @@ export class Series extends GraphComponent {
      * see {@link Series.SeriesDimensions `SeriesDimensions`}
      * @param type type of plot to use, e.g. 'bubble' or 'scatter', See {@link Series `Series`} for available plots to use.
      * @param dims an object literal specifying the {@link Series.SeriesDimensions `SeriesDimensions`} to use. 
+     * @return a series ID that can be used in `remove()`, or `-1` if an error occurred
      */
-    add(type:string, dims:SeriesDimensions):SeriesPlot {
+    add(type:string, dims:SeriesDimensions):number {
         const seriesCreator = Series.seriesCreatorMap[type];
         if (seriesCreator) {
             const series = seriesCreator(this.cfg, `${Series.type}${this.series.length}`, dims);
@@ -179,12 +180,25 @@ export class Series extends GraphComponent {
             } else {
                 const index = this.series.length;
                 this.defaults[index] = this.defaults[series.key] = series.getDefaults();
-                this.series.push(series);
                 log.debug(()=>`added ${series.graphType} ${type} series ${index} on '${Object.keys(dims).map(d=>d+': '+dims[d]).join(', ')}'`);
+                return this.series.push(series)-1;
             }
-            return series;
         } else {
             log.error(`unknown plot type ${type}; available types are:\n   '${Object.keys(Series.seriesCreatorMap).join("'\n   '")}'`);
+        }
+        return -1;
+    }
+
+    remove(id:number) {
+        if (id >= 0) {
+            const key = this.series[id].key;
+            const seriesSVG = this.svg.selectAll(`.${this.componentType} .${key}`);
+            seriesSVG.remove();
+            this.series.splice(id, 1);
+        } else {
+            this.series = [];
+            const seriesSVG = this.svg.selectAll(`.${this.componentType} g`)
+            seriesSVG.remove();
         }
     }
 

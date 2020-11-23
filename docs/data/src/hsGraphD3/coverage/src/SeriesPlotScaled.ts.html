@@ -25,14 +25,14 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>62/62</span>
+                <span class='fraction'>65/65</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">96.77% </span>
+                <span class="strong">94.29% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>30/31</span>
+                <span class='fraction'>33/35</span>
             </div>
         
             
@@ -46,7 +46,7 @@
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>58/58</span>
+                <span class='fraction'>60/60</span>
             </div>
         
             
@@ -206,7 +206,10 @@
 <a name='L147'></a><a href='#L147'>147</a>
 <a name='L148'></a><a href='#L148'>148</a>
 <a name='L149'></a><a href='#L149'>149</a>
-<a name='L150'></a><a href='#L150'>150</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L150'></a><a href='#L150'>150</a>
+<a name='L151'></a><a href='#L151'>151</a>
+<a name='L152'></a><a href='#L152'>152</a>
+<a name='L153'></a><a href='#L153'>153</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -270,6 +273,9 @@
 <span class="cline-any cline-yes">340x</span>
 <span class="cline-any cline-yes">340x</span>
 <span class="cline-any cline-yes">340x</span>
+<span class="cline-any cline-yes">340x</span>
+<span class="cline-any cline-yes">340x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">340x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -416,9 +422,12 @@ export abstract class SeriesPlotScaled extends SeriesPlot {
     
     protected expandNumDomain(dataSet:DataSet, domain:NumDomain, fn:(row?:DataRow, i?:number) =&gt; DataVal):NumDomain {
         return &lt;NumDomain&gt;dataSet.rows.reduce((dom:NumDomain, row:DataRow, i:number):NumDomain =&gt; {
-            const val = &lt;number&gt;fn(row, i);
-            dom[0] = Math.min(val, dom[0]);
-            dom[1] = Math.max(val, dom[1]);
+            let val = fn(row, i);
+            if (val instanceof Date) { val = val.getTime(); }
+            <span class="missing-if-branch" title="else path not taken" >E</span>if (!isNaN(&lt;number&gt;val)) {
+                dom[0] = Math.min(&lt;number&gt;val, dom[0]);
+                dom[1] = Math.max(&lt;number&gt;val, dom[1]);
+            }
             return dom;
         }, domain);
     }

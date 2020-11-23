@@ -534,9 +534,9 @@ export abstract class SeriesPlotCartesian extends SeriesPlotScaled {
 &nbsp;
         // if abscissa data is missing, use implicit index as data
         if (this.abscissa === 'hor') {
-            if (!this.dims.x) { this.dims.x = (i:number)=&gt; i; }
+            if (!this.dims.x) { this.dims.x = (row:any[], i:number)=&gt; i; }
         } else {
-            <span class="missing-if-branch" title="if path not taken" >I</span>if (!this.dims.y) { <span class="cstat-no" title="statement not covered" >this.dims.y = <span class="fstat-no" title="function not covered" >(i</span>:number)=&gt; <span class="cstat-no" title="statement not covered" >i;</span> </span>}
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (!this.dims.y) { <span class="cstat-no" title="statement not covered" >this.dims.y = <span class="fstat-no" title="function not covered" >(r</span>ow:any[], i:number)=&gt; <span class="cstat-no" title="statement not covered" >i;</span> </span>}
         }
     }
         

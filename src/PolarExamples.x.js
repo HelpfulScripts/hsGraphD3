@@ -56,7 +56,7 @@ const content = [
 
 
      graph => {
-         graph.add('pie', {phi:'Mary', r0:0.5, color:i=>i});
+         graph.add('pie', {phi:'Mary', r0:0.5, color:(row,i)=>i});
          graph.title.text = `colored 'doughnut' graph`;
          setDefaults(graph, 0.02)
          graph.render(data);
@@ -70,7 +70,7 @@ const content = [
 
 
      graph => {
-         graph.add('pie', {r:'Joe', r0:0.7, color:i=>i});
+         graph.add('pie', {r:'Joe', r0:0.7, color:(row, i)=>i});
          graph.title.text = `dynamic pie: outward and inward radials`;
          setDefaults(graph, 0.02)
          graph.render(data).update(2000, update);

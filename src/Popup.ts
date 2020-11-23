@@ -6,7 +6,7 @@
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
  * <file name='script.js'>
  * // create popup content:
- * const popup = (rowIndex) => `${data.rows[rowIndex][0]}: ${data.rows[rowIndex][3]}`;
+ * const popup = (row) => `${data.row[0]}: ${data.row[3]}`;
  * 
  * // create data set:
  * const data = {
@@ -107,7 +107,7 @@ export class Popup extends GraphComponent {
     public addListener(items:d3Base, popupAccess:AccessFn) {
         items
             .classed(`popup`, true)
-            .on('mouseenter', this.showPopup(popupAccess).bind(this))
+            .on('mouseenter', e=> this.showPopup(popupAccess).bind(this)(e.currentTarget.__data__))
             .on('mousemove', this.movePopup.bind(this))
             .on('mouseleave', this.hidePopup.bind(this));
     }
@@ -141,6 +141,7 @@ export class Popup extends GraphComponent {
         const def = this.defaults;
         const parentID = (<any>this.cfg.baseSVG)._groups[0][0].parentElement.id;
         if (parentID) {
+            select(`#${parentID} .tooltip`).remove();
             this.svg = select(`#${parentID}`).append('div');
             this.svg.attr('id', 'tooltip').attr('style', `
                 position: fixed;

@@ -64,7 +64,7 @@
  * 
  * // setup and plot the data:
  * const graph = new hsGraphD3.Graph(root);
- * graph.add('column', {x:'State', y:'costs',  stacked:'group1', label:i=>`costs ${i}`});
+ * graph.add('column', {x:'State', y:'costs',  stacked:'group1', label:(row,i)=>`costs ${i}`});
  * graph.add('column', {x:'State', y:'volume', stacked:'group1', label:'volume'});
  * graph.scales.defaults.dims.hor.ordinal.gap = 0.25;
  * with (graph.series.defaults) {

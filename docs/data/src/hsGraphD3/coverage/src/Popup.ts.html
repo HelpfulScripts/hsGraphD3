@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75.86% </span>
+                <span class="strong">67.74% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>22/29</span>
+                <span class='fraction'>21/31</span>
             </div>
         
             
@@ -37,16 +37,16 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">69.23% </span>
+                <span class="strong">57.14% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>9/13</span>
+                <span class='fraction'>8/14</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">75% </span>
+                <span class="strong">66.67% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>21/28</span>
+                <span class='fraction'>20/30</span>
             </div>
         
             
@@ -227,7 +227,8 @@
 <a name='L168'></a><a href='#L168'>168</a>
 <a name='L169'></a><a href='#L169'>169</a>
 <a name='L170'></a><a href='#L170'>170</a>
-<a name='L171'></a><a href='#L171'>171</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L171'></a><a href='#L171'>171</a>
+<a name='L172'></a><a href='#L172'>172</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -336,13 +337,13 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">29x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -370,6 +371,7 @@
 <span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -405,7 +407,7 @@
  * &lt;example height=200px libs={hsGraphD3:'hsGraphD3'}&gt;
  * &lt;file name='script.js'&gt;
  * // create popup content:
- * const popup = (rowIndex) =&gt; `${data.rows[rowIndex][0]}: ${data.rows[rowIndex][3]}`;
+ * const popup = (row) =&gt; `${data.row[0]}: ${data.row[3]}`;
  * 
  * // create data set:
  * const data = {
@@ -506,13 +508,13 @@ export class Popup extends GraphComponent {
     public addListener(items:d3Base, popupAccess:AccessFn) {
         items
             .classed(`popup`, true)
-            .on('mouseenter', this.showPopup(popupAccess).bind(this))
+            .on('mouseenter', <span class="fstat-no" title="function not covered" >e=</span>&gt; <span class="cstat-no" title="statement not covered" >this.showPopup(popupAccess).bind(this)(e.currentTarget.__data__))</span>
             .on('mousemove', this.movePopup.bind(this))
             .on('mouseleave', this.hidePopup.bind(this));
     }
     
-    private showPopup(popupAccess:AccessFn) { 
-        return <span class="fstat-no" title="function not covered" >(d</span>:number[], i:number) =&gt; {	
+    private <span class="fstat-no" title="function not covered" >showPopup(</span>popupAccess:AccessFn) { 
+<span class="cstat-no" title="statement not covered" >        return <span class="fstat-no" title="function not covered" >(d</span>:number[], i:number) =&gt; {	</span>
 <span class="cstat-no" title="statement not covered" >            this.svg</span>
             .html(&lt;string&gt;popupAccess(d,i))	
             .transition()		
@@ -540,6 +542,7 @@ export class Popup extends GraphComponent {
         const def = this.defaults;
         const parentID = (&lt;any&gt;this.cfg.baseSVG)._groups[0][0].parentElement.id;
         <span class="missing-if-branch" title="if path not taken" >I</span>if (parentID) {
+<span class="cstat-no" title="statement not covered" >            select(`#${parentID} .tooltip`).remove();</span>
 <span class="cstat-no" title="statement not covered" >            this.svg = select(`#${parentID}`).append('div');</span>
 <span class="cstat-no" title="statement not covered" >            this.svg.attr('id', 'tooltip').attr('style', `</span>
                 position: fixed;

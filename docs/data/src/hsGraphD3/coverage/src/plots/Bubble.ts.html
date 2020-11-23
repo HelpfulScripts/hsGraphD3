@@ -247,7 +247,7 @@
  * 
  * // setup and plot the data:
  * const graph = new hsGraphD3.Graph(root);
- * graph.add('bubble', {x:'time', y:'volume', r:'costs', label:i=&gt;i});
+ * graph.add('bubble', {x:'time', y:'volume', r:'costs', label:(row,i)=&gt;i});
  * graph.series.defaults[0].label.xpos = 'center';
  * graph.series.defaults[0].label.ypos = 'bottom';
  * graph.render(data);

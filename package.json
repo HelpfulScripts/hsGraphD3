@@ -2,9 +2,7 @@
     "name": "hsgraphd3",
     "main": "./bin/cjs/index.js",
     "module": "./bin/esm/index.js",
-    "files": [
-        "bin/"
-    ],
+    "files": ["bin/"],
     "types": "./bin/esm/index.d.ts",
     "type": "module",
     "scripts": {
@@ -61,7 +59,7 @@
         "jest": "^26.x.x",
         "ts-jest": "26.x.x",
         "eslint": "^6.8.0",
-        "terser-webpack-plugin": "3.0.x",
+        "terser-webpack-plugin": "5.x.x",
         "typedoc": "^0.17.6",
         "typescript": "4.x.x",
         "webpack": "5.x.x"

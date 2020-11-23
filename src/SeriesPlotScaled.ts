@@ -59,9 +59,12 @@ export abstract class SeriesPlotScaled extends SeriesPlot {
     
     protected expandNumDomain(dataSet:DataSet, domain:NumDomain, fn:(row?:DataRow, i?:number) => DataVal):NumDomain {
         return <NumDomain>dataSet.rows.reduce((dom:NumDomain, row:DataRow, i:number):NumDomain => {
-            const val = <number>fn(row, i);
-            dom[0] = Math.min(val, dom[0]);
-            dom[1] = Math.max(val, dom[1]);
+            let val = fn(row, i);
+            if (val instanceof Date) { val = val.getTime(); }
+            if (!isNaN(<number>val)) {
+                dom[0] = Math.min(<number>val, dom[0]);
+                dom[1] = Math.max(<number>val, dom[1]);
+            }
             return dom;
         }, domain);
     }

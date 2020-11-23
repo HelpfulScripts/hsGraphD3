@@ -123,9 +123,9 @@ export abstract class SeriesPlotCartesian extends SeriesPlotScaled {
 
         // if abscissa data is missing, use implicit index as data
         if (this.abscissa === 'hor') {
-            if (!this.dims.x) { this.dims.x = (i:number)=> i; }
+            if (!this.dims.x) { this.dims.x = (row:any[], i:number)=> i; }
         } else {
-            if (!this.dims.y) { this.dims.y = (i:number)=> i; }
+            if (!this.dims.y) { this.dims.y = (row:any[], i:number)=> i; }
         }
     }
         

@@ -38,7 +38,7 @@ describe('Column', () => {
         graph.add('column', {x:'State', y:'volume', color:'volume', label:'State'});
         graph.add('column', {x:'State', y:'volume', color:'greens'});
         graph.add('column', {x:'State', y:'volume', color:5});
-        graph.add('column', {x:'State', y:'volume', color:row=>row});
+        graph.add('column', {x:'State', y:'volume', color:(row,i)=>i});
         graph.series.defaults['series0'].line.rendered = true;
         graph.render(data);
     });

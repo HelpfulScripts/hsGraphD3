@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">89.8% </span>
+                <span class="strong">88% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>88/98</span>
+                <span class='fraction'>88/100</span>
             </div>
         
             
@@ -301,7 +301,13 @@
 <a name='L242'></a><a href='#L242'>242</a>
 <a name='L243'></a><a href='#L243'>243</a>
 <a name='L244'></a><a href='#L244'>244</a>
-<a name='L245'></a><a href='#L245'>245</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L245'></a><a href='#L245'>245</a>
+<a name='L246'></a><a href='#L246'>246</a>
+<a name='L247'></a><a href='#L247'>247</a>
+<a name='L248'></a><a href='#L248'>248</a>
+<a name='L249'></a><a href='#L249'>249</a>
+<a name='L250'></a><a href='#L250'>250</a>
+<a name='L251'></a><a href='#L251'>251</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -512,8 +518,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-yes">14x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">14x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-yes">15x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -522,7 +531,10 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">15x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -755,8 +767,11 @@ export class Axis {
 <span class="cstat-no" title="statement not covered" >                this.pos = 'top';</span>
             }
             crossing += ((oscale.type()==='ordinal')? oscale.step() : 0);
-            <span class="missing-if-branch" title="if path not taken" >I</span>if (isNaN(d) || isNaN(crossing)) { <span class="cstat-no" title="statement not covered" >log.warn(`Axis.setTransform hor: d=${d}, cr=${crossing}`); </span>}
-            this.svg.transition(trans).attr("transform", `translate(${d}, ${crossing})`);
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (isNaN(d) || isNaN(crossing)) { 
+<span class="cstat-no" title="statement not covered" >                log.warn(`Axis.setTransform hor: d=${d}, cr=${crossing}`); </span>
+            } else {
+                this.svg.transition(trans).attr("transform", `translate(${d}, ${crossing})`);
+            }
         } else {
             this.pos = 'left';
             <span class="missing-if-branch" title="if path not taken" >I</span>if (crossing &lt; margins.left) {
@@ -765,8 +780,11 @@ export class Axis {
             } else <span class="missing-if-branch" title="if path not taken" >I</span>if (crossing &gt; this.cfg.viewPort.width-margins.right) {
 <span class="cstat-no" title="statement not covered" >                crossing = this.cfg.viewPort.width-margins.right;</span>
             }
-            <span class="missing-if-branch" title="if path not taken" >I</span>if (isNaN(d) || isNaN(crossing)) { <span class="cstat-no" title="statement not covered" >log.warn(`Axis.setTransform ver: d=${d}, cr=${crossing}`); </span>}
-            this.svg.transition(trans).attr("transform", `translate(${crossing}, ${d})`);
+            <span class="missing-if-branch" title="if path not taken" >I</span>if (isNaN(d) || isNaN(crossing)) { 
+<span class="cstat-no" title="statement not covered" >                log.warn(`Axis.setTransform ver: d=${d}, cr=${crossing}`); </span>
+            } else {
+                this.svg.transition(trans).attr("transform", `translate(${crossing}, ${d})`);
+            }
         }
     }
 &nbsp;
