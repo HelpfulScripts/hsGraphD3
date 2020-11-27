@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.39% </span>
+                <span class="strong">85.25% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>99/112</span>
+                <span class='fraction'>104/122</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">70.15% </span>
+                <span class="strong">64% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>47/67</span>
+                <span class='fraction'>48/75</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">95.24% </span>
+                <span class="strong">87.5% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>20/21</span>
+                <span class='fraction'>21/24</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">88.24% </span>
+                <span class="strong">87.04% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>90/102</span>
+                <span class='fraction'>94/108</span>
             </div>
         
             
@@ -429,7 +429,19 @@
 <a name='L370'></a><a href='#L370'>370</a>
 <a name='L371'></a><a href='#L371'>371</a>
 <a name='L372'></a><a href='#L372'>372</a>
-<a name='L373'></a><a href='#L373'>373</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L373'></a><a href='#L373'>373</a>
+<a name='L374'></a><a href='#L374'>374</a>
+<a name='L375'></a><a href='#L375'>375</a>
+<a name='L376'></a><a href='#L376'>376</a>
+<a name='L377'></a><a href='#L377'>377</a>
+<a name='L378'></a><a href='#L378'>378</a>
+<a name='L379'></a><a href='#L379'>379</a>
+<a name='L380'></a><a href='#L380'>380</a>
+<a name='L381'></a><a href='#L381'>381</a>
+<a name='L382'></a><a href='#L382'>382</a>
+<a name='L383'></a><a href='#L383'>383</a>
+<a name='L384'></a><a href='#L384'>384</a>
+<a name='L385'></a><a href='#L385'>385</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -456,6 +468,8 @@
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -614,6 +628,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">32x</span>
 <span class="cline-any cline-yes">32x</span>
 <span class="cline-any cline-yes">32x</span>
@@ -745,11 +760,19 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">32x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -786,6 +809,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">32x</span>
 <span class="cline-any cline-yes">32x</span>
 <span class="cline-any cline-yes">32x</span>
 <span class="cline-any cline-yes">32x</span>
@@ -839,6 +863,8 @@ export interface SeriesPlotDefaults {
     marker:     Marker;
     label:      Label;
     transition: boolean;
+    /** a popup showing the line or area variable name */
+    popup:      boolean;
 }
 &nbsp;
 /**
@@ -984,6 +1010,7 @@ export abstract class SeriesPlot {
             marker: defaultMarker(),
             area:   defaultArea(),
             label:  defaultLabel(),
+            popup:  true,
             transition: true
         };
         def.line.rendered = false;
@@ -1110,18 +1137,26 @@ export abstract class SeriesPlot {
             const format = d3format('.4r');
             const popupAccess = this.accessor(this.dims.popup, data.colNames, false);
             const abscissa = this.dimensions[this.abscissa][0];
-            const absAccess     = this.accessor(abscissa, data.colNames, false);
+            const absAccess = this.accessor(abscissa, data.colNames, false);
             // if dims x present, reflect its column nname; else use 'index'
             const absName = typeof abscissa === 'string'? abscissa : this.abscissa;
             return <span class="fstat-no" title="function not covered" >(r</span>:DataVal[], i:number) =&gt; {
                 let val = <span class="cstat-no" title="statement not covered" >popupAccess(r,i);</span>
 <span class="cstat-no" title="statement not covered" >                if (typeof val === 'number') { <span class="cstat-no" title="statement not covered" >val = format(val); </span>}</span>
+                let abs = <span class="cstat-no" title="statement not covered" >absAccess(r,i);</span>
+<span class="cstat-no" title="statement not covered" >                if (typeof abs === 'number') { <span class="cstat-no" title="statement not covered" >abs = format(abs); </span>}</span>
 <span class="cstat-no" title="statement not covered" >                return typeof this.dims.popup === 'function' ? popupAccess(r,i) :`</span>
                     ${this.dims.popup} = ${val}&lt;br&gt;
                     ${absName} = ${absAccess(r,i)}
                 `;
             };
         }
+    }
+&nbsp;
+    protected d3SeriesPopup() {
+        const popup = this.cfg.components.popup;
+        popup.addListener(this.svg.select('.line').selectAll('path'), <span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >typeof this.dims.y === 'string'? this.dims.y : 'y-coordinate')</span>;
+        popup.addListener(this.svg.select('.area').selectAll('path'), <span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >typeof this.dims.y === 'string'? this.dims.y : 'y-coordinate')</span>;
     }
 &nbsp;
 &nbsp;
@@ -1163,6 +1198,7 @@ export abstract class SeriesPlot {
         if (defaults.line.rendered)   { this.svg.call(this.d3RenderLine.bind(this), data); }
         if (defaults.area.rendered)   { this.svg.call(this.d3RenderFill.bind(this), data); }
         if (defaults.label.rendered)  { this.svg.call(this.d3RenderLabels.bind(this), data); }
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (defaults.popup)           { this.svg.call(this.d3SeriesPopup.bind(this)); }
     }
 &nbsp;
     public postRender(data:DataSet): void {}

@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">98.04% </span>
+                <span class="strong">97.78% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>50/51</span>
+                <span class='fraction'>44/45</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">86.36% </span>
+                <span class="strong">88.89% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>19/22</span>
+                <span class='fraction'>16/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">94.44% </span>
+                <span class="strong">93.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>17/18</span>
+                <span class='fraction'>14/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">97.92% </span>
+                <span class="strong">97.67% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>47/48</span>
+                <span class='fraction'>42/43</span>
             </div>
         
             
@@ -174,18 +174,7 @@
 <a name='L115'></a><a href='#L115'>115</a>
 <a name='L116'></a><a href='#L116'>116</a>
 <a name='L117'></a><a href='#L117'>117</a>
-<a name='L118'></a><a href='#L118'>118</a>
-<a name='L119'></a><a href='#L119'>119</a>
-<a name='L120'></a><a href='#L120'>120</a>
-<a name='L121'></a><a href='#L121'>121</a>
-<a name='L122'></a><a href='#L122'>122</a>
-<a name='L123'></a><a href='#L123'>123</a>
-<a name='L124'></a><a href='#L124'>124</a>
-<a name='L125'></a><a href='#L125'>125</a>
-<a name='L126'></a><a href='#L126'>126</a>
-<a name='L127'></a><a href='#L127'>127</a>
-<a name='L128'></a><a href='#L128'>128</a>
-<a name='L129'></a><a href='#L129'>129</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L118'></a><a href='#L118'>118</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -243,17 +232,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">9x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-yes">10x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">10x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -336,7 +314,7 @@ import { Log }                  from 'hsutil'; const log = new Log('SeriesPlotNu
 import { line as d3line}        from 'd3';
 import { curveCatmullRom, curveLinear, curveStepAfter }      
                                 from 'd3';
-import { NumericDataSet }       from './Graph';
+import { AccessFn, DataRow, DataVal, NumericDataSet }       from './Graph';
 import { DataSet }              from './Graph';
 import { NumericDataRow }       from './Graph';
 import { ValueDef, text }       from './SeriesPlot';
@@ -372,17 +350,6 @@ export abstract class SeriesPlotNumeric extends SeriesPlotCartesian {
     }
 &nbsp;
     //---------- support methods during lifecylce --------------------
-&nbsp;
-    protected markerShape() { return 'circle'; }
-&nbsp;
-    protected d3RenderFill(plot:d3Base, data:NumericDataSet) {
-        // const scales = this.cfg.components.scales.scaleDims;
-        let line = this.line = this.line || this.getPath(data.rows, data.colNames, this.dims.y);
-        <span class="missing-if-branch" title="else path not taken" >E</span>if (this.dims.y0!==undefined) {
-            line += `L` + this.getPath(data.rows.reverse(), data.colNames, this.dims.y0, false).slice(1); // replace first 'M' with 'L'
-        }
-        return this.getPathElement(plot, '.area').attr('d', (d:any) =&gt; line);
-    }
 &nbsp;
 &nbsp;
     //-------------------
@@ -428,7 +395,7 @@ export abstract class SeriesPlotNumeric extends SeriesPlotCartesian {
      * @param rows the data rows set to render from
      * @param yDef a constant (defaults to 0), or the data column to render from
      */
-    protected getPath(rows:NumericDataRow[], colNames:string[], yDef: ValueDef = <span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >0,</span></span> useStack=true):string {
+    protected getPath(rows:DataRow[], colNames:string[], yDef: ValueDef = <span class="fstat-no" title="function not covered" ><span class="branch-0 cbranch-no" title="branch not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >0,</span></span> useStack=true):string {
         const smooth = this.defaults.line.smoothing;
         const scales = this.cfg.components.scales.scaleDims;
         const xAccess = this.accessor(this.dims.x, colNames, useStack);

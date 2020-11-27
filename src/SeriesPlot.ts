@@ -36,6 +36,8 @@ export interface SeriesPlotDefaults {
     marker:     Marker;
     label:      Label;
     transition: boolean;
+    /** a popup showing the line or area variable name */
+    popup:      boolean;
 }
 
 /**
@@ -181,6 +183,7 @@ export abstract class SeriesPlot {
             marker: defaultMarker(),
             area:   defaultArea(),
             label:  defaultLabel(),
+            popup:  true,
             transition: true
         };
         def.line.rendered = false;
@@ -307,18 +310,26 @@ export abstract class SeriesPlot {
             const format = d3format('.4r');
             const popupAccess = this.accessor(this.dims.popup, data.colNames, false);
             const abscissa = this.dimensions[this.abscissa][0];
-            const absAccess     = this.accessor(abscissa, data.colNames, false);
+            const absAccess = this.accessor(abscissa, data.colNames, false);
             // if dims x present, reflect its column nname; else use 'index'
             const absName = typeof abscissa === 'string'? abscissa : this.abscissa;
             return (r:DataVal[], i:number) => {
                 let val = popupAccess(r,i);
                 if (typeof val === 'number') { val = format(val); }
+                let abs = absAccess(r,i);
+                if (typeof abs === 'number') { abs = format(abs); }
                 return typeof this.dims.popup === 'function' ? popupAccess(r,i) :`
                     ${this.dims.popup} = ${val}<br>
                     ${absName} = ${absAccess(r,i)}
                 `;
             };
         }
+    }
+
+    protected d3SeriesPopup() {
+        const popup = this.cfg.components.popup;
+        popup.addListener(this.svg.select('.line').selectAll('path'), () => typeof this.dims.y === 'string'? this.dims.y : 'y-coordinate');
+        popup.addListener(this.svg.select('.area').selectAll('path'), () => typeof this.dims.y === 'string'? this.dims.y : 'y-coordinate');
     }
 
 
@@ -360,6 +371,7 @@ export abstract class SeriesPlot {
         if (defaults.line.rendered)   { this.svg.call(this.d3RenderLine.bind(this), data); }
         if (defaults.area.rendered)   { this.svg.call(this.d3RenderFill.bind(this), data); }
         if (defaults.label.rendered)  { this.svg.call(this.d3RenderLabels.bind(this), data); }
+        if (defaults.popup)           { this.svg.call(this.d3SeriesPopup.bind(this)); }
     }
 
     public postRender(data:DataSet): void {}

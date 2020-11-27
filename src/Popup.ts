@@ -6,7 +6,8 @@
  * <example height=200px libs={hsGraphD3:'hsGraphD3'}>
  * <file name='script.js'>
  * // create popup content:
- * const popup = (row) => `${data.row[0]}: ${data.row[3]}`;
+ * const popup = (row) => `${row[0]}: ${row[3]}`;
+ * const label = (row) => `Costs = ${row[3]}`;
  * 
  * // create data set:
  * const data = {
@@ -22,7 +23,7 @@
  * // setup and plot the data:
  * const graph = new hsGraphD3.Graph(root);
  * graph.add('bubble', {x:'time', y:'volume', r:'costs'});
- * graph.add('bubble', {x:'time', y:'costs', r:'volume', popup: popup, label: popup});
+ * graph.add('bubble', {x:'time', y:'costs', r:'volume', popup: popup, label: label});
  * with (graph.defaults.series[1].label) {
  *      xpos = 'right';
  *      inside = false;

@@ -401,6 +401,7 @@ exports[`Column should plot column 1`] = `
           stroke-width="1"
         >
           <path
+            class="popup"
             d="M68 670L96 670L228 280L256 280L388 215L416 215L548 150L576 150L708 85L736 85L868 20L896 20"
           />
         </g>

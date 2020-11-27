@@ -228,7 +228,9 @@
 <a name='L169'></a><a href='#L169'>169</a>
 <a name='L170'></a><a href='#L170'>170</a>
 <a name='L171'></a><a href='#L171'>171</a>
-<a name='L172'></a><a href='#L172'>172</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L172'></a><a href='#L172'>172</a>
+<a name='L173'></a><a href='#L173'>173</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -335,7 +337,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">29x</span>
+<span class="cline-any cline-yes">93x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -407,7 +409,8 @@
  * &lt;example height=200px libs={hsGraphD3:'hsGraphD3'}&gt;
  * &lt;file name='script.js'&gt;
  * // create popup content:
- * const popup = (row) =&gt; `${data.row[0]}: ${data.row[3]}`;
+ * const popup = (row) =&gt; `${row[0]}: ${row[3]}`;
+ * const label = (row) =&gt; `Costs = ${row[3]}`;
  * 
  * // create data set:
  * const data = {
@@ -423,7 +426,7 @@
  * // setup and plot the data:
  * const graph = new hsGraphD3.Graph(root);
  * graph.add('bubble', {x:'time', y:'volume', r:'costs'});
- * graph.add('bubble', {x:'time', y:'costs', r:'volume', popup: popup, label: popup});
+ * graph.add('bubble', {x:'time', y:'costs', r:'volume', popup: popup, label: label});
  * with (graph.defaults.series[1].label) {
  *      xpos = 'right';
  *      inside = false;

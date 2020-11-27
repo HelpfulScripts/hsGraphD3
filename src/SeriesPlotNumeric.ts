@@ -21,7 +21,7 @@ import { Log }                  from 'hsutil'; const log = new Log('SeriesPlotNu
 import { line as d3line}        from 'd3';
 import { curveCatmullRom, curveLinear, curveStepAfter }      
                                 from 'd3';
-import { NumericDataSet }       from './Graph';
+import { AccessFn, DataRow, DataVal, NumericDataSet }       from './Graph';
 import { DataSet }              from './Graph';
 import { NumericDataRow }       from './Graph';
 import { ValueDef, text }       from './SeriesPlot';
@@ -57,17 +57,6 @@ export abstract class SeriesPlotNumeric extends SeriesPlotCartesian {
     }
 
     //---------- support methods during lifecylce --------------------
-
-    protected markerShape() { return 'circle'; }
-
-    protected d3RenderFill(plot:d3Base, data:NumericDataSet) {
-        // const scales = this.cfg.components.scales.scaleDims;
-        let line = this.line = this.line || this.getPath(data.rows, data.colNames, this.dims.y);
-        if (this.dims.y0!==undefined) {
-            line += `L` + this.getPath(data.rows.reverse(), data.colNames, this.dims.y0, false).slice(1); // replace first 'M' with 'L'
-        }
-        return this.getPathElement(plot, '.area').attr('d', (d:any) => line);
-    }
 
 
     //-------------------
@@ -113,7 +102,7 @@ export abstract class SeriesPlotNumeric extends SeriesPlotCartesian {
      * @param rows the data rows set to render from
      * @param yDef a constant (defaults to 0), or the data column to render from
      */
-    protected getPath(rows:NumericDataRow[], colNames:string[], yDef: ValueDef = () => 0, useStack=true):string {
+    protected getPath(rows:DataRow[], colNames:string[], yDef: ValueDef = () => 0, useStack=true):string {
         const smooth = this.defaults.line.smoothing;
         const scales = this.cfg.components.scales.scaleDims;
         const xAccess = this.accessor(this.dims.x, colNames, useStack);

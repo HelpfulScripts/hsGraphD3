@@ -73,8 +73,11 @@ exports[`Sankey should plot sankey 1`] = `
           fill="currentColor"
           fill-opacity="0"
         >
-          <path />
           <path
+            class="popup"
+          />
+          <path
+            class="popup"
             color="#1f77b4"
             d="M40,110C260,110,260,110,480,110"
             stroke="currentColor"
@@ -86,6 +89,7 @@ exports[`Sankey should plot sankey 1`] = `
             </title>
           </path>
           <path
+            class="popup"
             color="#2ca02c"
             d="M500,190C720,190,720,190,940,190"
             stroke="currentColor"
@@ -97,6 +101,7 @@ exports[`Sankey should plot sankey 1`] = `
             </title>
           </path>
           <path
+            class="popup"
             color="#d62728"
             d="M40,629.9999999999999C260,629.9999999999999,260,630,480,630"
             stroke="currentColor"
@@ -108,6 +113,7 @@ exports[`Sankey should plot sankey 1`] = `
             </title>
           </path>
           <path
+            class="popup"
             color="#8c564b"
             d="M500,538C720,538,720,390,940,390"
             stroke="currentColor"
@@ -119,6 +125,7 @@ exports[`Sankey should plot sankey 1`] = `
             </title>
           </path>
           <path
+            class="popup"
             color="#7f7f7f"
             d="M40,364C260,364,260,324,480,324"
             stroke="currentColor"
@@ -130,6 +137,7 @@ exports[`Sankey should plot sankey 1`] = `
             </title>
           </path>
           <path
+            class="popup"
             color="#bcbd22"
             d="M500,404C720,404,720,484,940,484"
             stroke="currentColor"
@@ -141,6 +149,7 @@ exports[`Sankey should plot sankey 1`] = `
             </title>
           </path>
           <path
+            class="popup"
             d="M40,534C260,534,260,554,480,554"
             stroke="currentColor"
             stroke-width="92"
@@ -151,6 +160,7 @@ exports[`Sankey should plot sankey 1`] = `
             </title>
           </path>
           <path
+            class="popup"
             d="M500,614C720,614,720,614,940,614"
             stroke="currentColor"
             stroke-width="92"
@@ -161,6 +171,7 @@ exports[`Sankey should plot sankey 1`] = `
             </title>
           </path>
           <path
+            class="popup"
             d="M40,210C260,210,260,478.00000000000006,480,478.00000000000006"
             stroke="currentColor"
             stroke-width="20"
@@ -171,6 +182,7 @@ exports[`Sankey should plot sankey 1`] = `
             </title>
           </path>
           <path
+            class="popup"
             d="M500,478.00000000000006C720,478.00000000000006,720,558,940,558"
             stroke="currentColor"
             stroke-width="20"

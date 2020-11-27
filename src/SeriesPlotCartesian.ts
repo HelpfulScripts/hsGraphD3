@@ -131,6 +131,8 @@ export abstract class SeriesPlotCartesian extends SeriesPlotScaled {
         
     //---------- support methods during lifecylce --------------------
 
+    protected markerShape() { return 'circle'; }
+
     protected d3RenderMarkers(plot:d3Base, data:DataSet) {
         const shape = this.markerShape();
         const defaults = this.defaults;
@@ -153,7 +155,17 @@ export abstract class SeriesPlotCartesian extends SeriesPlotScaled {
         }
     }
 
-    protected abstract markerShape():string;
+    protected d3RenderFill(plot:d3Base, data:DataSet) {
+        // const scales = this.cfg.components.scales.scaleDims;
+        const popup = this.cfg.components.popup;
+        let line = this.line = this.line || this.getPath(data.rows, data.colNames, this.dims.y);
+        if (this.dims.y0!==undefined) {
+            line += `L` + this.getPath(data.rows.reverse(), data.colNames, this.dims.y0, false).slice(1); // replace first 'M' with 'L'
+        }
+        // popup.addListener(plot.select('.area').selectAll('path'), () => typeof this.dims.y === 'string'? this.dims.y : 'y-coordinate');
+        return this.getPathElement(plot, '.area').attr('d', (d:any) => line)
+    }
+
 
     protected d3RenderLine(plot:d3Base, data:DataSet) {
         this.line = this.line || this.getPath(data.rows, data.colNames, this.dims.y);
