@@ -220,7 +220,7 @@ export interface RenderCallback {
 }
 
 export interface AccessFn {
-    (dataRow:DataVal[], rowIndex:Index): DataVal;
+    (dataRow:DataVal[], rowIndex:Index, ...args:any): DataVal;
 }
 
 

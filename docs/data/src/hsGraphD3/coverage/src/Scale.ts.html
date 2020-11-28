@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">78.65% </span>
+                <span class="strong">78.89% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>70/89</span>
+                <span class='fraction'>71/90</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">78.67% </span>
+                <span class="strong">78.95% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>59/75</span>
+                <span class='fraction'>60/76</span>
             </div>
         
             
@@ -357,7 +357,9 @@
 <a name='L298'></a><a href='#L298'>298</a>
 <a name='L299'></a><a href='#L299'>299</a>
 <a name='L300'></a><a href='#L300'>300</a>
-<a name='L301'></a><a href='#L301'>301</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L301'></a><a href='#L301'>301</a>
+<a name='L302'></a><a href='#L302'>302</a>
+<a name='L303'></a><a href='#L303'>303</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -413,6 +415,7 @@
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -546,6 +549,7 @@
 <span class="cline-any cline-yes">98x</span>
 <span class="cline-any cline-yes">2071x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">98x</span>
 <span class="cline-any cline-yes">98x</span>
 <span class="cline-any cline-yes">98x</span>
 <span class="cline-any cline-yes">98x</span>
@@ -726,6 +730,7 @@ interface ScaleFn {
 export type Range  = [UnitVp, UnitVp];
 &nbsp;
 export interface Scale extends ScaleFn {
+    invert(x:number):any;
     copy(): this;
     range(): Range;
     range(range: Range): this;
@@ -846,6 +851,7 @@ abstract class BaseScale {
         const d3Scale = this.d3Scale;
         const scale:Scale = (x:DataVal) =&gt; this.scaleFn(x);
     
+        scale.invert = &lt;(x:number)=&gt;any&gt;d3Scale.invert;
         scale.range = _range;
         scale.domain = _domain;
         scale.copy = <span class="fstat-no" title="function not covered" >():Scale =</span>&gt; <span class="cstat-no" title="statement not covered" >d3Scale.copy();</span>

@@ -73,9 +73,7 @@ exports[`Sankey should plot sankey 1`] = `
           fill="currentColor"
           fill-opacity="0"
         >
-          <path
-            class="popup"
-          />
+          <path />
           <path
             class="popup"
             color="#1f77b4"
@@ -83,11 +81,7 @@ exports[`Sankey should plot sankey 1`] = `
             stroke="currentColor"
             stroke-width="180"
             style="mix-blend-mode: multiply;"
-          >
-            <title>
-              a → sheep:45
-            </title>
-          </path>
+          />
           <path
             class="popup"
             color="#2ca02c"
@@ -95,11 +89,7 @@ exports[`Sankey should plot sankey 1`] = `
             stroke="currentColor"
             stroke-width="340"
             style="mix-blend-mode: multiply;"
-          >
-            <title>
-              sheep → one:85
-            </title>
-          </path>
+          />
           <path
             class="popup"
             color="#d62728"
@@ -107,11 +97,7 @@ exports[`Sankey should plot sankey 1`] = `
             stroke="currentColor"
             stroke-width="60"
             style="mix-blend-mode: multiply;"
-          >
-            <title>
-              b → wolf:15
-            </title>
-          </path>
+          />
           <path
             class="popup"
             color="#8c564b"
@@ -119,11 +105,7 @@ exports[`Sankey should plot sankey 1`] = `
             stroke="currentColor"
             stroke-width="60"
             style="mix-blend-mode: multiply;"
-          >
-            <title>
-              wolf → one:15
-            </title>
-          </path>
+          />
           <path
             class="popup"
             color="#7f7f7f"
@@ -131,11 +113,7 @@ exports[`Sankey should plot sankey 1`] = `
             stroke="currentColor"
             stroke-width="248"
             style="mix-blend-mode: multiply;"
-          >
-            <title>
-              c → sheep:62
-            </title>
-          </path>
+          />
           <path
             class="popup"
             color="#bcbd22"
@@ -143,55 +121,35 @@ exports[`Sankey should plot sankey 1`] = `
             stroke="currentColor"
             stroke-width="88"
             style="mix-blend-mode: multiply;"
-          >
-            <title>
-              sheep → two:22
-            </title>
-          </path>
+          />
           <path
             class="popup"
             d="M40,534C260,534,260,554,480,554"
             stroke="currentColor"
             stroke-width="92"
             style="mix-blend-mode: multiply;"
-          >
-            <title>
-              c → wolf:23
-            </title>
-          </path>
+          />
           <path
             class="popup"
             d="M500,614C720,614,720,614,940,614"
             stroke="currentColor"
             stroke-width="92"
             style="mix-blend-mode: multiply;"
-          >
-            <title>
-              wolf → three:23
-            </title>
-          </path>
+          />
           <path
             class="popup"
             d="M40,210C260,210,260,478.00000000000006,480,478.00000000000006"
             stroke="currentColor"
             stroke-width="20"
             style="mix-blend-mode: multiply;"
-          >
-            <title>
-              a → fence:5
-            </title>
-          </path>
+          />
           <path
             class="popup"
             d="M500,478.00000000000006C720,478.00000000000006,720,558,940,558"
             stroke="currentColor"
             stroke-width="20"
             style="mix-blend-mode: multiply;"
-          >
-            <title>
-              fence → three:5
-            </title>
-          </path>
+          />
         </g>
         <g
           class="markers"

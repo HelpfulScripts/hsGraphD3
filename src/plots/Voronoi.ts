@@ -147,7 +147,7 @@ export class Voronoi extends SeriesPlotNumeric {
         super.renderComponent(data);
     }
 
-    protected d3RenderLine(svg:d3Base, data:NumericDataSet) {
+    protected d3RenderLine(svg:d3Base, data:NumericDataSet):any {
         const defaults = this.defaults.line;
         if (defaults.rendered) {
             const path = svg.selectAll('path')

@@ -131,27 +131,27 @@
 <p id=108 class="line"><span>&nbsp;108</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;addListener(items:d3Base,&nbsp;popupAccess:AccessFn)&nbsp;{</p>
 <p id=109 class="line"><span>&nbsp;109</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;items</p>
 <p id=110 class="line"><span>&nbsp;110</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.classed(`popup`,&nbsp;true)</p>
-<p id=111 class="line"><span>&nbsp;111</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.on(<quote>'mouseenter'</quote>,&nbsp;e=&gt;&nbsp;this.showPopup(popupAccess).bind(this)(e.currentTarget.__data__))</p>
-<p id=112 class="line"><span>&nbsp;112</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.on(<quote>'mousemove'</quote>,&nbsp;this.movePopup.bind(this))</p>
+<p id=111 class="line"><span>&nbsp;111</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.on(<quote>'mouseenter'</quote>,&nbsp;e=&gt;&nbsp;this.showPopup(popupAccess).bind(this)(e.currentTarget.__data__,&nbsp;undefined,&nbsp;e.layerX))</p>
+<p id=112 class="line"><span>&nbsp;112</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.on(<quote>'mousemove'</quote>,&nbsp;&nbsp;e=&gt;&nbsp;this.movePopup(popupAccess,&nbsp;e).bind(this)(e.currentTarget.__data__,&nbsp;undefined,&nbsp;e.layerX))</p>
 <p id=113 class="line"><span>&nbsp;113</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.on(<quote>'mouseleave'</quote>,&nbsp;this.hidePopup.bind(this));</p>
 <p id=114 class="line"><span>&nbsp;114</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
 <p id=115 class="line"><span>&nbsp;115</span>&nbsp;&nbsp;&nbsp;&nbsp;</p>
 <p id=116 class="line"><span>&nbsp;116</span>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;showPopup(popupAccess:AccessFn)&nbsp;{&nbsp;</p>
-<p id=117 class="line"><span>&nbsp;117</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;(d:number[],&nbsp;i:number)&nbsp;=&gt;&nbsp;{	</p>
-<p id=118 class="line"><span>&nbsp;118</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.svg</p>
-<p id=119 class="line"><span>&nbsp;119</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.html(&lt;string&gt;popupAccess(d,i))	</p>
-<p id=120 class="line"><span>&nbsp;120</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.transition()		</p>
-<p id=121 class="line"><span>&nbsp;121</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.duration(100)		</p>
-<p id=122 class="line"><span>&nbsp;122</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.style(<quote>'opacity'</quote>,&nbsp;this.defaults.fill.opacity)	</p>
-<p id=123 class="line"><span>&nbsp;123</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;;		</p>
-<p id=124 class="line"><span>&nbsp;124</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;};</p>
-<p id=125 class="line"><span>&nbsp;125</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-<p id=126 class="line"><span>&nbsp;126</span></p>
-<p id=127 class="line"><span>&nbsp;127</span>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;movePopup(event:any)&nbsp;{</p>
-<p id=128 class="line"><span>&nbsp;128</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;o&nbsp;=&nbsp;this.defaults.offset;</p>
-<p id=129 class="line"><span>&nbsp;129</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.svg</p>
-<p id=130 class="line"><span>&nbsp;130</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.style(<quote>'left'</quote>,&nbsp;`${event.pageX+o.xPx}px`)		</p>
-<p id=131 class="line"><span>&nbsp;131</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.style(<quote>'top'</quote>,&nbsp;&nbsp;`${(event.pageY+o.yPx)}px`);</p>
+<p id=117 class="line"><span>&nbsp;117</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;p&nbsp;=&nbsp;this;</p>
+<p id=118 class="line"><span>&nbsp;118</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;scale&nbsp;=&nbsp;this.cfg.components.scales.scaleDims.hor;</p>
+<p id=119 class="line"><span>&nbsp;119</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;(d:number[],&nbsp;i:number,&nbsp;xpos:number)&nbsp;=&gt;&nbsp;p.svg</p>
+<p id=120 class="line"><span>&nbsp;120</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.html(&lt;string&gt;popupAccess(d,i,&nbsp;scale?.invert(xpos)??xpos))</p>
+<p id=121 class="line"><span>&nbsp;121</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.transition()		</p>
+<p id=122 class="line"><span>&nbsp;122</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.duration(100)		</p>
+<p id=123 class="line"><span>&nbsp;123</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.style(<quote>'opacity'</quote>,&nbsp;this.defaults.fill.opacity);		</p>
+<p id=124 class="line"><span>&nbsp;124</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=125 class="line"><span>&nbsp;125</span></p>
+<p id=126 class="line"><span>&nbsp;126</span>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;movePopup(popupAccess:AccessFn,&nbsp;event:any)&nbsp;{</p>
+<p id=127 class="line"><span>&nbsp;127</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;o&nbsp;=&nbsp;this.defaults.offset;</p>
+<p id=128 class="line"><span>&nbsp;128</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.svg</p>
+<p id=129 class="line"><span>&nbsp;129</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.style(<quote>'left'</quote>,&nbsp;`${event.pageX+o.xPx}px`)		</p>
+<p id=130 class="line"><span>&nbsp;130</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.style(<quote>'top'</quote>,&nbsp;&nbsp;`${(event.pageY+o.yPx)}px`);</p>
+<p id=131 class="line"><span>&nbsp;131</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;this.showPopup(popupAccess);</p>
 <p id=132 class="line"><span>&nbsp;132</span>&nbsp;&nbsp;&nbsp;&nbsp;}					</p>
 <p id=133 class="line"><span>&nbsp;133</span></p>
 <p id=134 class="line"><span>&nbsp;134</span>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;hidePopup()&nbsp;{</p>

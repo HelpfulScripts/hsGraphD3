@@ -19,8 +19,9 @@
  *          ['c', 'sheep', 'one', 40], ['c', 'wolf', 'three', 23], ['a', 'fence', 'three', 5]
  *    ]
  * };
+ * const popup = (row) => row? row.join(' ') : '*?*'
  * const graph = new hsGraphD3.Graph(root);
- * graph.add('sankey', {keys:['from', 'via', 'to'], value:'count', color:'cat10'});
+ * graph.add('sankey', {keys:['from', 'via', 'to'], value:'count', color:'cat10', popup:popup});
  * graph.render(data);
  * </file>
  * </example>
@@ -69,7 +70,7 @@
  /** */
 
 import { Log }                  from 'hsutil'; const log = new Log('Sankey');
-import { SeriesPlot }           from '../SeriesPlot';
+import { d3Transition, SeriesPlot }           from '../SeriesPlot';
 import { CartSeriesDimensions } from '../SeriesPlotCartesian';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
 import { GraphCfg}              from '../GraphComponent';
@@ -219,17 +220,18 @@ export class Sankey extends SeriesPlot {
                 .selectAll("rect")
                 .data(this.nodes)
                 .join("rect")
-                .call(popup.addListener.bind(popup), this.d3RenderPopup(data))
+                .call(popup.addListener.bind(popup), this.d3RenderMarkerPopup())
                 .transition(this.cfg.transition)
                 .call(this.d3DrawMarker.bind(this), data, defaults)
                 .call(this.d3MarkerColors.bind(this), data, defaults);
         }
     }
 
-    protected d3RenderFill(plot:d3Base, data:DataSet) {
+    protected d3RenderFill(plot:d3Base, data:DataSet):d3Transition {
+        const popup = this.cfg.components.popup;
         const defaults = this.defaults;
         if (defaults.area.rendered) {
-            plot.select('.area')
+            return plot.select('.area')
                 .attr('fill-opacity', 0)
                 .selectAll("g")
                 .data(this.links)
@@ -238,10 +240,10 @@ export class Sankey extends SeriesPlot {
                     .attr("d", sankeyLinkHorizontal())
                     .attr("stroke", d => defaults.line.color)
                     .attr("stroke-width", d => Math.max(1, d.width))
+                    .call(popup.addListener.bind(popup), this.d3RenderMarkerPopup())
+                    .transition(this.cfg.transition)
                     .call(this.d3FillColors.bind(this), data, defaults)
-                    .append("title")
-                    .text((d:any) => `${d.source.name} → ${d.target.name}:${d.value}`);
-        }
+       }
     }
 
     protected d3RenderLabels(plot:d3Base, data:DataSet):void {
@@ -262,8 +264,7 @@ export class Sankey extends SeriesPlot {
             }
     }
 
-    protected d3RenderLine(plot:d3Base, data:DataSet) {
-    }
+    protected d3RenderLine(plot:d3Base, data:DataSet):d3Transition { return undefined; }
 
     protected d3DrawMarker(markers:d3Base, data:DataSet, defaults:SeriesPlotDefaults) {
         markers.attr("x", (d:any) => d.x0)
@@ -278,8 +279,8 @@ export class Sankey extends SeriesPlot {
      * formats the popup string to display
      * @param colNames 
      */
-    protected d3RenderPopup(data:DataSet):AccessFn {
-        return (r:any) => r.name || '???';
+    protected d3RenderMarkerPopup():AccessFn {
+        return (r:any) => r.name || `${r.source.name} → ${r.target.name}:${r.value}`;
     }
 }
   

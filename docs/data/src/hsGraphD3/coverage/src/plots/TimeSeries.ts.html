@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">93.62% </span>
+                <span class="strong">94.23% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>44/47</span>
+                <span class='fraction'>49/52</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">55.56% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>6/12</span>
+                <span class='fraction'>10/18</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>10/10</span>
+                <span class='fraction'>11/11</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
                 <span class="strong">100% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>40/40</span>
+                <span class='fraction'>45/45</span>
             </div>
         
             
@@ -222,7 +222,12 @@
 <a name='L163'></a><a href='#L163'>163</a>
 <a name='L164'></a><a href='#L164'>164</a>
 <a name='L165'></a><a href='#L165'>165</a>
-<a name='L166'></a><a href='#L166'>166</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L166'></a><a href='#L166'>166</a>
+<a name='L167'></a><a href='#L167'>167</a>
+<a name='L168'></a><a href='#L168'>168</a>
+<a name='L169'></a><a href='#L169'>169</a>
+<a name='L170'></a><a href='#L170'>170</a>
+<a name='L171'></a><a href='#L171'>171</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -299,8 +304,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">11x</span>
 <span class="cline-any cline-yes">11x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -363,7 +370,15 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -371,14 +386,9 @@
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -461,6 +471,7 @@
  /** */
 &nbsp;
 import { Log }                  from 'hsutil'; const log = new Log('TimeSeries');
+import { Transition, BaseType}  from 'd3';
 import { NumericDataSet }       from '../Graph';
 import { NumDomain }            from '../Graph';
 import { DataSet }              from '../Graph';
@@ -468,6 +479,7 @@ import { Series }               from '../Series';
 import { SeriesPlotNumeric }    from '../SeriesPlotNumeric';
 import { CartSeriesDimensions } from '../SeriesPlotCartesian';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
+import { d3Transition }         from '../SeriesPlot';
 import { d3Base }               from '../Settings';
 import { GraphCfg }             from '../GraphComponent'; 
  
@@ -527,25 +539,28 @@ export class TimeSeries extends SeriesPlotNumeric {
         }
     }
 &nbsp;
-    getPathElement(svg:d3Base, cls:string):any {
-        return svg.select(cls).selectAll('path');
-    }
-&nbsp;
-    d3RenderLine(svg:d3Base, data:DataSet) {
+    d3RenderLine(svg:d3Base, data:DataSet):d3Transition {
         const x = data.colNames.indexOf(&lt;string&gt;this.dims.x);
         const xUnit = &lt;number&gt;data.rows[1][x] - &lt;number&gt;data.rows[0][x];
         const scales = this.cfg.components.scales.scaleDims;
-        return super.d3RenderLine(svg, data)
+        this.line = this.line || this.getPath(data.rows, data.colNames, this.dims.y);
+        return svg.select('.line').selectAll('path')
+            .attr('d', (d:any) =&gt; this.line)
             .attr('transform', `translate(${scales.hor(xUnit) - scales.hor(0)})`)
             .transition(this.cfg.transition)
             .attr('transform', `translate(0)`);
     }
 &nbsp;
-    d3RenderFill(svg:d3Base, data:NumericDataSet) {
+    d3RenderFill(svg:d3Base, data:NumericDataSet):d3Transition {
         const x = data.colNames.indexOf(&lt;string&gt;this.dims.x);
         const xUnit = data.rows[1][x] - data.rows[0][x];
         const scales = this.cfg.components.scales.scaleDims;
-        return super.d3RenderFill(svg, data)
+        let line = this.line = this.line || <span class="branch-1 cbranch-no" title="branch not covered" >this.getPath(data.rows, data.colNames, this.dims.y);</span>
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (this.dims.y0!==undefined) {
+            line += `L` + this.getPath(data.rows.reverse(), data.colNames, this.dims.y0, false).slice(1); // replace first 'M' with 'L'
+        }
+        return svg.select('.area').selectAll('path')
+            .attr('d', (d:any) =&gt; line)
             .attr('transform', `translate(${scales.hor(xUnit) - scales.hor(0)})`)
             .transition(this.cfg.transition)
             .attr('transform', `translate(0)`);

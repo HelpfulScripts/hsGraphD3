@@ -15,7 +15,7 @@
 /** */
 
 import { Log }                  from 'hsutil'; const log = new Log('CartSeriesPlot');
-import { SeriesPlotDefaults }   from "./SeriesPlot";
+import { d3Transition, SeriesPlotDefaults }   from "./SeriesPlot";
 import { SeriesDimensions }     from "./SeriesPlot";
 import { ValueDef }             from "./SeriesPlot";
 import { GraphDimensions }      from "./Graph";
@@ -142,7 +142,7 @@ export abstract class SeriesPlotCartesian extends SeriesPlotScaled {
             const joint = plot.select('.markers').selectAll(shape)
                 .data(data.rows, d => d[0]) // bind to first DataVal, rather than to DataRow, iterate over rows
                 .join(shape)              
-                .call(popup.addListener.bind(popup), this.d3RenderPopup(data));
+                .call(popup.addListener.bind(popup), this.d3RenderMarkerPopup(data));
             if (transition) {
                 joint.transition(transition)
                 .call(this.d3DrawMarker.bind(this), data, defaults)
@@ -155,21 +155,27 @@ export abstract class SeriesPlotCartesian extends SeriesPlotScaled {
         }
     }
 
-    protected d3RenderFill(plot:d3Base, data:DataSet) {
+    protected d3RenderFill(plot:d3Base, data:DataSet):d3Transition {
         // const scales = this.cfg.components.scales.scaleDims;
         const popup = this.cfg.components.popup;
+        const transition = this.defaults.transition? this.cfg.transition : undefined;
         let line = this.line = this.line || this.getPath(data.rows, data.colNames, this.dims.y);
         if (this.dims.y0!==undefined) {
             line += `L` + this.getPath(data.rows.reverse(), data.colNames, this.dims.y0, false).slice(1); // replace first 'M' with 'L'
         }
-        // popup.addListener(plot.select('.area').selectAll('path'), () => typeof this.dims.y === 'string'? this.dims.y : 'y-coordinate');
-        return this.getPathElement(plot, '.area').attr('d', (d:any) => line)
+        popup.addListener(this.svg.select('.area').selectAll('path'), this.d3RenderMarkerPopup(data));
+        return plot.select('.area').selectAll('path')
+            .transition(transition)
+            .attr('d', (d:any) => line)
     }
 
 
-    protected d3RenderLine(plot:d3Base, data:DataSet) {
-        this.line = this.line || this.getPath(data.rows, data.colNames, this.dims.y);
-        return this.getPathElement(plot, '.line').attr('d', (d:any) => this.line);
+    protected d3RenderLine(plot:d3Base, data:DataSet):d3Transition {
+        const transition = this.defaults.transition? this.cfg.transition : undefined;
+        let line = this.line = this.line || this.getPath(data.rows, data.colNames, this.dims.y);
+        return plot.select('.line').selectAll('path')
+            .transition(transition)
+            .attr('d', (d:any) => line)
     }
 
     protected d3RenderLabels(plot:d3Base, data:DataSet):void {
@@ -180,7 +186,7 @@ export abstract class SeriesPlotCartesian extends SeriesPlotScaled {
             plot.select('.label').selectAll("text")
                 .data(data.rows, (d:any[]) => d[0]) // bind to first DataVal, rather than to DataRow, iterate over rows
                 .join('text')                       
-                .call(popup.addListener.bind(popup), this.d3RenderPopup(data))
+                .call(popup.addListener.bind(popup), this.d3RenderMarkerPopup(data))
                 .transition(transition) 
                 .call(this.d3DrawLabels.bind(this), data, defaults);
         }

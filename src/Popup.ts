@@ -105,30 +105,38 @@ export class Popup extends GraphComponent {
         return defs;
     }
 
+    /**
+     * adds listeners to the `items` to enable popup messages when moused-over.
+     * @param items the items to add the listeners to
+     * @param popupAccess an `AccessFn` that produces the content of the popup. The function
+     * is passed the data row and row index in the data set for the item, as well as the horizontal range value 
+     * for the mouse position. If `items` are a series `line` or `area`, the data and index values will be `undefined`.
+     * Implementations should check for this case.
+     */
     public addListener(items:d3Base, popupAccess:AccessFn) {
         items
             .classed(`popup`, true)
-            .on('mouseenter', e=> this.showPopup(popupAccess).bind(this)(e.currentTarget.__data__))
-            .on('mousemove', this.movePopup.bind(this))
+            .on('mouseenter', e=> this.showPopup(popupAccess).bind(this)(e.currentTarget.__data__, undefined, e.layerX))
+            .on('mousemove',  e=> this.movePopup(popupAccess, e).bind(this)(e.currentTarget.__data__, undefined, e.layerX))
             .on('mouseleave', this.hidePopup.bind(this));
     }
     
     private showPopup(popupAccess:AccessFn) { 
-        return (d:number[], i:number) => {	
-            this.svg
-            .html(<string>popupAccess(d,i))	
+        const p = this;
+        const scale = this.cfg.components.scales.scaleDims.hor;
+        return (d:number[], i:number, xpos:number) => p.svg
+            .html(<string>popupAccess(d,i, scale?.invert(xpos)??xpos))
             .transition()		
             .duration(100)		
-            .style('opacity', this.defaults.fill.opacity)	
-            ;		
-        };
+            .style('opacity', this.defaults.fill.opacity);		
     }
 
-    private movePopup(event:any) {
+    private movePopup(popupAccess:AccessFn, event:any) {
         const o = this.defaults.offset;
         this.svg
             .style('left', `${event.pageX+o.xPx}px`)		
             .style('top',  `${(event.pageY+o.yPx)}px`);
+        return this.showPopup(popupAccess);
     }					
 
     private hidePopup() {

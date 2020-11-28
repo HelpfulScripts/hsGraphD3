@@ -72,6 +72,7 @@
  /** */
 
 import { Log }                  from 'hsutil'; const log = new Log('TimeSeries');
+import { Transition, BaseType}  from 'd3';
 import { NumericDataSet }       from '../Graph';
 import { NumDomain }            from '../Graph';
 import { DataSet }              from '../Graph';
@@ -79,6 +80,7 @@ import { Series }               from '../Series';
 import { SeriesPlotNumeric }    from '../SeriesPlotNumeric';
 import { CartSeriesDimensions } from '../SeriesPlotCartesian';
 import { SeriesPlotDefaults }   from '../SeriesPlot';
+import { d3Transition }         from '../SeriesPlot';
 import { d3Base }               from '../Settings';
 import { GraphCfg }             from '../GraphComponent'; 
  
@@ -138,25 +140,28 @@ export class TimeSeries extends SeriesPlotNumeric {
         }
     }
 
-    getPathElement(svg:d3Base, cls:string):any {
-        return svg.select(cls).selectAll('path');
-    }
-
-    d3RenderLine(svg:d3Base, data:DataSet) {
+    d3RenderLine(svg:d3Base, data:DataSet):d3Transition {
         const x = data.colNames.indexOf(<string>this.dims.x);
         const xUnit = <number>data.rows[1][x] - <number>data.rows[0][x];
         const scales = this.cfg.components.scales.scaleDims;
-        return super.d3RenderLine(svg, data)
+        this.line = this.line || this.getPath(data.rows, data.colNames, this.dims.y);
+        return svg.select('.line').selectAll('path')
+            .attr('d', (d:any) => this.line)
             .attr('transform', `translate(${scales.hor(xUnit) - scales.hor(0)})`)
             .transition(this.cfg.transition)
             .attr('transform', `translate(0)`);
     }
 
-    d3RenderFill(svg:d3Base, data:NumericDataSet) {
+    d3RenderFill(svg:d3Base, data:NumericDataSet):d3Transition {
         const x = data.colNames.indexOf(<string>this.dims.x);
         const xUnit = data.rows[1][x] - data.rows[0][x];
         const scales = this.cfg.components.scales.scaleDims;
-        return super.d3RenderFill(svg, data)
+        let line = this.line = this.line || this.getPath(data.rows, data.colNames, this.dims.y);
+        if (this.dims.y0!==undefined) {
+            line += `L` + this.getPath(data.rows.reverse(), data.colNames, this.dims.y0, false).slice(1); // replace first 'M' with 'L'
+        }
+        return svg.select('.area').selectAll('path')
+            .attr('d', (d:any) => line)
             .attr('transform', `translate(${scales.hor(xUnit) - scales.hor(0)})`)
             .transition(this.cfg.transition)
             .attr('transform', `translate(0)`);

@@ -374,7 +374,6 @@ exports[`Bar should plot bar 1`] = `
           stroke-width="1"
         >
           <path
-            class="popup"
             d="M500 669L500 594L740 560L740 485L452 452L452 377L308 344L308 269L548 235L548 160L500 127L500 52"
           />
         </g>

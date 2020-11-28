@@ -22,7 +22,7 @@ import { DataSet }              from './Graph';
 import { d3Base, textPos }      from './Settings';
 import { Label }                from './Settings';
 import { SeriesPlotCartesian }       from './SeriesPlotCartesian';
-import { SeriesPlotDefaults }   from './SeriesPlot';
+import { d3Transition, SeriesPlotDefaults }   from './SeriesPlot';
 import { text }                 from './SeriesPlot';
 import { Series }               from './Series';
 
@@ -75,13 +75,15 @@ export abstract class SeriesPlotOrdinal extends SeriesPlotCartesian {
 
     protected markerShape() { return 'rect'; }
 
-    protected d3RenderLine(plot:d3Base, data:DataSet) {
+    protected d3RenderLine(plot:d3Base, data:DataSet):d3Transition {
+        const transition = this.defaults.transition? this.cfg.transition : undefined;
         const line = this.getPath(data.rows, data.colNames);
-        return this.getPathElement(plot, '.line').attr('d', (d:any) => line);
+        return plot.select('.line').selectAll('path')
+            .transition(transition)
+            .attr('d', (d:any) => line)
     }
 
-    protected d3RenderFill(plot:d3Base, data:DataSet) {
-    }
+    protected d3RenderFill(plot:d3Base, data:DataSet):d3Transition { return undefined; }
     
     private getParams(colNames:string[]):any[] {
         const scales = this.cfg.components.scales;

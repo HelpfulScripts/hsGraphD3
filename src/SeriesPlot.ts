@@ -3,8 +3,8 @@
 
 /**  */
 import { Log }                  from 'hsutil'; const log = new Log('SeriesPlot');
-import { BaseType }             from 'd3';
 import { format as d3format}    from 'd3';
+import { BaseType}              from 'd3';
 import { d3Base, Index }        from "./Settings";
 import { defaultLine }          from "./Settings";
 import { defaultMarker }        from "./Settings";
@@ -28,6 +28,7 @@ import { setFill }              from "./Settings";
 import { SystemType }           from './Scales';
 
 export type d3Selection = d3.Selection<BaseType, unknown, BaseType, unknown>; 
+export type d3Transition = d3.Transition<BaseType, unknown, BaseType, unknown>; 
 
 export interface SeriesPlotDefaults {
     dims:       SeriesDimensions;
@@ -100,7 +101,7 @@ export type ValueDef = string|number|ValueFn|string[];
  * @param rowIndex the index of the row in the {@link Graph.DataSet `DataSet's`} rows array. 
  * @return the value of type `DataVal` to use for the row.
  */
-export interface ValueFn { (row:DataRow, rowIndex?:Index): DataVal; }
+export interface ValueFn { (row:DataRow, rowIndex:Index, ...args:any[]): DataVal; }
 
 /**
  * coverts a `DataVal` to a `string`
@@ -205,14 +206,19 @@ export abstract class SeriesPlot {
      * that returns a `DataVal` value. The function
      * receives a `DataRow` and the index of the row in the `DataSet` as a parameter. 
      */
-    protected accessor(v:ValueDef, colNames:string[], useStack=true):(row:DataRow, rowIndex:Index) => DataVal {
+    protected accessor(v:ValueDef, colNames:string[], useStack=true):(row:DataRow, rowIndex:Index, ...args:any[]) => DataVal {
         switch (typeof(v)) {
-            case 'function':return (row, rowIndex) => (<ValueFn>v)(row, rowIndex);
+            case 'function': return (row, rowIndex, ...args) => { try { 
+                return v(row, rowIndex, ...args); 
+            } catch(e) { 
+                log.warn(`accessor function returned error ${e}`);
+                return 0;
+            }};
             case 'number':  return () => <DataVal>v;
             case 'string':
             default:        const c = colNames.indexOf(''+v); 
                             // try row.data[c] (as passed by d3.arc), then row[c]
-                            return row => row['data']? row['data'][c] : row[c];
+                            return row => row? (row['data']? row['data'][c] : row[c]) : '???';
         }
     }
 
@@ -305,7 +311,7 @@ export abstract class SeriesPlot {
      * formats the popup string to display
      * @param colNames 
      */
-    protected d3RenderPopup(data:DataSet):AccessFn {
+    protected d3RenderMarkerPopup(data:DataSet):AccessFn {
         if (this.dims.popup) {
             const format = d3format('.4r');
             const popupAccess = this.accessor(this.dims.popup, data.colNames, false);
@@ -313,23 +319,15 @@ export abstract class SeriesPlot {
             const absAccess = this.accessor(abscissa, data.colNames, false);
             // if dims x present, reflect its column nname; else use 'index'
             const absName = typeof abscissa === 'string'? abscissa : this.abscissa;
-            return (r:DataVal[], i:number) => {
-                let val = popupAccess(r,i);
+            return (r:DataVal[], i:number, xpos:number) => {
+                let val = popupAccess(r, i, xpos);
                 if (typeof val === 'number') { val = format(val); }
-                let abs = absAccess(r,i);
+                let abs = absAccess(r, i, xpos);
                 if (typeof abs === 'number') { abs = format(abs); }
-                return typeof this.dims.popup === 'function' ? popupAccess(r,i) :`
-                    ${this.dims.popup} = ${val}<br>
-                    ${absName} = ${absAccess(r,i)}
-                `;
+                return typeof this.dims.popup === 'function' ? val :
+                    `${this.dims.popup} = ${val}<br>${absName} = ${abs}`;
             };
         }
-    }
-
-    protected d3SeriesPopup() {
-        const popup = this.cfg.components.popup;
-        popup.addListener(this.svg.select('.line').selectAll('path'), () => typeof this.dims.y === 'string'? this.dims.y : 'y-coordinate');
-        popup.addListener(this.svg.select('.area').selectAll('path'), () => typeof this.dims.y === 'string'? this.dims.y : 'y-coordinate');
     }
 
 
@@ -371,14 +369,13 @@ export abstract class SeriesPlot {
         if (defaults.line.rendered)   { this.svg.call(this.d3RenderLine.bind(this), data); }
         if (defaults.area.rendered)   { this.svg.call(this.d3RenderFill.bind(this), data); }
         if (defaults.label.rendered)  { this.svg.call(this.d3RenderLabels.bind(this), data); }
-        if (defaults.popup)           { this.svg.call(this.d3SeriesPopup.bind(this)); }
     }
 
     public postRender(data:DataSet): void {}
 
     protected abstract d3RenderMarkers(plot:d3Base, data:DataSet):void;
-    protected abstract d3RenderLine(plot:d3Base, data:DataSet):void;
-    protected abstract d3RenderFill(plot:d3Base, data:DataSet):void;
+    protected abstract d3RenderLine(plot:d3Base, data:DataSet):d3Transition;
+    protected abstract d3RenderFill(plot:d3Base, data:DataSet):d3Transition;
     protected abstract d3RenderLabels(plot:d3Base, data:DataSet):void;
 }
 

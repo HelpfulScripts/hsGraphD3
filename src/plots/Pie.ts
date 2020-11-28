@@ -93,7 +93,8 @@
  /** */
 
 import { Log }                  from 'hsutil'; const log = new Log('Pie');
-import { ValueDef, text }       from '../SeriesPlot';
+import { ValueDef, text, d3Transition }       
+                                from '../SeriesPlot';
 import { GraphCfg}              from '../GraphComponent';
 import { Series }               from '../Series';
 import { SeriesPlotPolar }      from '../SeriesPlotPolar';
@@ -138,7 +139,7 @@ export class Pie extends SeriesPlotPolar {
             plot.select('.markers').selectAll(shape)
                 .data(pie(<any>data.rows), (d:any) => d.data[3]) // bind to first DataVal, rather than to DataRow, iterate over rows
                 .join(shape)                  
-                .call(popup.addListener.bind(popup), this.d3RenderPopup(data))
+                .call(popup.addListener.bind(popup), this.d3RenderMarkerPopup(data))
                 .transition(this.cfg.transition) // draw markers
                 .call(this.d3DrawMarker.bind(this), data, defaults)
                 .call(this.d3MarkerColors.bind(this), data, defaults);
@@ -146,10 +147,10 @@ export class Pie extends SeriesPlotPolar {
     }
 
     /** no line for pies. */
-    protected d3RenderLine(plot:d3Base, data:DataSet) {}
+    protected d3RenderLine(plot:d3Base, data:DataSet):d3Transition { return undefined;}
 
     /** no fill for pies. */
-    protected d3RenderFill(plot:d3Base, data:DataSet) {}
+    protected d3RenderFill(plot:d3Base, data:DataSet):d3Transition { return undefined;}
 
 
     protected d3RenderLabels(plot:d3Base, data:DataSet):void {
@@ -162,7 +163,7 @@ export class Pie extends SeriesPlotPolar {
             plot.select('.label').selectAll('text')
                 .data(arcs, d => d[0]) // bind to first DataVal, rather than to DataRow, iterate over rows
                 .join('text')              
-                .call(popup.addListener.bind(popup), this.d3RenderPopup(data))
+                .call(popup.addListener.bind(popup), this.d3RenderMarkerPopup(data))
                 .transition(this.cfg.transition) // draw markers
                 .call(this.d3DrawLabels.bind(this), data, defaults);
         }

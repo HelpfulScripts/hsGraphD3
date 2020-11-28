@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">92.75% </span>
+                <span class="strong">92.14% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>128/138</span>
+                <span class='fraction'>129/140</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">93.75% </span>
+                <span class="strong">91.18% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>30/32</span>
+                <span class='fraction'>31/34</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">100% </span>
+                <span class="strong">99.12% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>111/111</span>
+                <span class='fraction'>113/114</span>
             </div>
         
             
@@ -275,7 +275,9 @@
 <a name='L216'></a><a href='#L216'>216</a>
 <a name='L217'></a><a href='#L217'>217</a>
 <a name='L218'></a><a href='#L218'>218</a>
-<a name='L219'></a><a href='#L219'>219</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L219'></a><a href='#L219'>219</a>
+<a name='L220'></a><a href='#L220'>220</a>
+<a name='L221'></a><a href='#L221'>221</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -355,10 +357,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">9x</span>
@@ -517,7 +521,7 @@ import { DataSet }              from './Graph';
 import { d3Base, textPos }      from './Settings';
 import { Label }                from './Settings';
 import { SeriesPlotCartesian }       from './SeriesPlotCartesian';
-import { SeriesPlotDefaults }   from './SeriesPlot';
+import { d3Transition, SeriesPlotDefaults }   from './SeriesPlot';
 import { text }                 from './SeriesPlot';
 import { Series }               from './Series';
 &nbsp;
@@ -570,13 +574,15 @@ export abstract class SeriesPlotOrdinal extends SeriesPlotCartesian {
 &nbsp;
     protected markerShape() { return 'rect'; }
 &nbsp;
-    protected d3RenderLine(plot:d3Base, data:DataSet) {
+    protected d3RenderLine(plot:d3Base, data:DataSet):d3Transition {
+        const transition = this.defaults.transition? this.cfg.transition : <span class="branch-1 cbranch-no" title="branch not covered" >undefined;</span>
         const line = this.getPath(data.rows, data.colNames);
-        return this.getPathElement(plot, '.line').attr('d', (d:any) =&gt; line);
+        return plot.select('.line').selectAll('path')
+            .transition(transition)
+            .attr('d', (d:any) =&gt; line)
     }
 &nbsp;
-    protected <span class="fstat-no" title="function not covered" >d3RenderFill(</span>plot:d3Base, data:DataSet) {
-    }
+    protected <span class="fstat-no" title="function not covered" >d3RenderFill(</span>plot:d3Base, data:DataSet):d3Transition { <span class="cstat-no" title="statement not covered" >return undefined; </span>}
     
     private getParams(colNames:string[]):any[] {
         const scales = this.cfg.components.scales;

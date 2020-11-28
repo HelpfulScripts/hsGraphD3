@@ -67,6 +67,7 @@ interface ScaleFn {
 export type Range  = [UnitVp, UnitVp];
 
 export interface Scale extends ScaleFn {
+    invert(x:number):any;
     copy(): this;
     range(): Range;
     range(range: Range): this;
@@ -187,6 +188,7 @@ abstract class BaseScale {
         const d3Scale = this.d3Scale;
         const scale:Scale = (x:DataVal) => this.scaleFn(x);
     
+        scale.invert = <(x:number)=>any>d3Scale.invert;
         scale.range = _range;
         scale.domain = _domain;
         scale.copy = ():Scale => d3Scale.copy();

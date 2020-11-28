@@ -23,30 +23,30 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">67.74% </span>
+                <span class="strong">60% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>21/31</span>
+                <span class='fraction'>21/35</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">50% </span>
+                <span class="strong">25% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>1/2</span>
+                <span class='fraction'>1/4</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">57.14% </span>
+                <span class="strong">53.33% </span>
                 <span class="quiet">Functions</span>
-                <span class='fraction'>8/14</span>
+                <span class='fraction'>8/15</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">66.67% </span>
+                <span class="strong">60.61% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>20/30</span>
+                <span class='fraction'>20/33</span>
             </div>
         
             
@@ -337,13 +337,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">93x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-no">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">39x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -351,6 +345,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -360,6 +359,7 @@
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -511,27 +511,27 @@ export class Popup extends GraphComponent {
     public addListener(items:d3Base, popupAccess:AccessFn) {
         items
             .classed(`popup`, true)
-            .on('mouseenter', <span class="fstat-no" title="function not covered" >e=</span>&gt; <span class="cstat-no" title="statement not covered" >this.showPopup(popupAccess).bind(this)(e.currentTarget.__data__))</span>
-            .on('mousemove', this.movePopup.bind(this))
+            .on('mouseenter', <span class="fstat-no" title="function not covered" >e=</span>&gt; <span class="cstat-no" title="statement not covered" >this.showPopup(popupAccess).bind(this)(e.currentTarget.__data__, undefined, e.layerX))</span>
+            .on('mousemove',  <span class="fstat-no" title="function not covered" >e=</span>&gt; <span class="cstat-no" title="statement not covered" >this.movePopup(popupAccess, e).bind(this)(e.currentTarget.__data__, undefined, e.layerX))</span>
             .on('mouseleave', this.hidePopup.bind(this));
     }
     
     private <span class="fstat-no" title="function not covered" >showPopup(</span>popupAccess:AccessFn) { 
-<span class="cstat-no" title="statement not covered" >        return <span class="fstat-no" title="function not covered" >(d</span>:number[], i:number) =&gt; {	</span>
-<span class="cstat-no" title="statement not covered" >            this.svg</span>
-            .html(&lt;string&gt;popupAccess(d,i))	
+        const p = <span class="cstat-no" title="statement not covered" >this;</span>
+        const scale = <span class="cstat-no" title="statement not covered" >this.cfg.components.scales.scaleDims.hor;</span>
+<span class="cstat-no" title="statement not covered" >        return <span class="fstat-no" title="function not covered" >(d</span>:number[], i:number, xpos:number) =&gt; <span class="cstat-no" title="statement not covered" >p.svg</span></span>
+            .html(&lt;string&gt;popupAccess(d,i, scale?.invert(xpos)??xpos))
             .transition()		
             .duration(100)		
-            .style('opacity', this.defaults.fill.opacity)	
-            ;		
-        };
+            .style('opacity', this.defaults.fill.opacity);		
     }
 &nbsp;
-    private <span class="fstat-no" title="function not covered" >movePopup(</span>event:any) {
+    private <span class="fstat-no" title="function not covered" >movePopup(</span>popupAccess:AccessFn, event:any) {
         const o = <span class="cstat-no" title="statement not covered" >this.defaults.offset;</span>
 <span class="cstat-no" title="statement not covered" >        this.svg</span>
             .style('left', `${event.pageX+o.xPx}px`)		
             .style('top',  `${(event.pageY+o.yPx)}px`);
+<span class="cstat-no" title="statement not covered" >        return this.showPopup(popupAccess);</span>
     }					
 &nbsp;
     private <span class="fstat-no" title="function not covered" >hidePopup(</span>) {
