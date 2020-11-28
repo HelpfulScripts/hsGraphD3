@@ -65,6 +65,10 @@ export class Grids extends GraphComponent {
     };
     constructor(cfg:GraphCfg) {
         super(cfg, Grids.type);
+        this.grids.hor.major = new Grid(this.cfg, Direction.horizontal, MajorMinor.major);
+        this.grids.hor.minor = new Grid(this.cfg, Direction.horizontal, MajorMinor.minor);
+        this.grids.ver.major = new Grid(this.cfg, Direction.vertical, MajorMinor.major);
+        this.grids.ver.minor = new Grid(this.cfg, Direction.vertical, MajorMinor.minor);
     }
 
     public get componentType() { return Grids.type; }
@@ -86,10 +90,10 @@ export class Grids extends GraphComponent {
     }
 
     public initialize(svg:d3Base): void {
-        this.grids['hor']['major'] = new Grid(this.cfg, Direction.horizontal, MajorMinor.major);
-        this.grids['hor']['minor'] = new Grid(this.cfg, Direction.horizontal, MajorMinor.minor);
-        this.grids['ver']['major'] = new Grid(this.cfg, Direction.vertical, MajorMinor.major);
-        this.grids['ver']['minor'] = new Grid(this.cfg, Direction.vertical, MajorMinor.minor);
+        // this.grids['hor']['major'] = this.grids['hor']['major'] ?? new Grid(this.cfg, Direction.horizontal, MajorMinor.major);
+        // this.grids['hor']['minor'] = this.grids['hor']['minor'] ?? new Grid(this.cfg, Direction.horizontal, MajorMinor.minor);
+        // this.grids['ver']['major'] = this.grids['ver']['major'] ?? new Grid(this.cfg, Direction.vertical, MajorMinor.major);
+        // this.grids['ver']['minor'] = this.grids['ver']['minor'] ?? new Grid(this.cfg, Direction.vertical, MajorMinor.minor);
     } 
 
     public preRender(): void {} 
@@ -113,7 +117,9 @@ export class Grid {
     constructor(protected cfg:GraphCfg, protected dir:Direction, protected type=MajorMinor.major) {
         const baseClass = `${dir}-${type}-Grid`;
         this.hor = this.dir===Direction.horizontal;
-        this.svg = cfg.baseSVG.select('.grids').append('g').classed(baseClass, true);
+        this.svg = cfg.baseSVG.select('.grids').append('g');
+        this.svg.classed(baseClass, true);
+        // log.info(`>>> created ${baseClass}`)
     }
 
     renderComponent() {

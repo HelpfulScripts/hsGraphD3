@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">97.92% </span>
+                <span class="strong">97.96% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>47/48</span>
+                <span class='fraction'>48/49</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">97.73% </span>
+                <span class="strong">97.78% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>43/44</span>
+                <span class='fraction'>44/45</span>
             </div>
         
             
@@ -198,7 +198,13 @@
 <a name='L139'></a><a href='#L139'>139</a>
 <a name='L140'></a><a href='#L140'>140</a>
 <a name='L141'></a><a href='#L141'>141</a>
-<a name='L142'></a><a href='#L142'>142</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L142'></a><a href='#L142'>142</a>
+<a name='L143'></a><a href='#L143'>143</a>
+<a name='L144'></a><a href='#L144'>144</a>
+<a name='L145'></a><a href='#L145'>145</a>
+<a name='L146'></a><a href='#L146'>146</a>
+<a name='L147'></a><a href='#L147'>147</a>
+<a name='L148'></a><a href='#L148'>148</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -264,6 +270,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
+<span class="cline-any cline-yes">19x</span>
 <span class="cline-any cline-yes">19x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -286,10 +296,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">18x</span>
-<span class="cline-any cline-yes">18x</span>
-<span class="cline-any cline-yes">18x</span>
-<span class="cline-any cline-yes">18x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -310,10 +320,12 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">72x</span>
-<span class="cline-any cline-yes">72x</span>
-<span class="cline-any cline-yes">72x</span>
-<span class="cline-any cline-yes">72x</span>
+<span class="cline-any cline-yes">76x</span>
+<span class="cline-any cline-yes">76x</span>
+<span class="cline-any cline-yes">76x</span>
+<span class="cline-any cline-yes">76x</span>
+<span class="cline-any cline-yes">76x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -406,6 +418,10 @@ export class Grids extends GraphComponent {
     };
     constructor(cfg:GraphCfg) {
         super(cfg, Grids.type);
+        this.grids.hor.major = new Grid(this.cfg, Direction.horizontal, MajorMinor.major);
+        this.grids.hor.minor = new Grid(this.cfg, Direction.horizontal, MajorMinor.minor);
+        this.grids.ver.major = new Grid(this.cfg, Direction.vertical, MajorMinor.major);
+        this.grids.ver.minor = new Grid(this.cfg, Direction.vertical, MajorMinor.minor);
     }
 &nbsp;
 <span class="fstat-no" title="function not covered" >    public get c</span>omponentType() { <span class="cstat-no" title="statement not covered" >return Grids.type; </span>}
@@ -427,10 +443,10 @@ export class Grids extends GraphComponent {
     }
 &nbsp;
     public initialize(svg:d3Base): void {
-        this.grids['hor']['major'] = new Grid(this.cfg, Direction.horizontal, MajorMinor.major);
-        this.grids['hor']['minor'] = new Grid(this.cfg, Direction.horizontal, MajorMinor.minor);
-        this.grids['ver']['major'] = new Grid(this.cfg, Direction.vertical, MajorMinor.major);
-        this.grids['ver']['minor'] = new Grid(this.cfg, Direction.vertical, MajorMinor.minor);
+        // this.grids['hor']['major'] = this.grids['hor']['major'] ?? new Grid(this.cfg, Direction.horizontal, MajorMinor.major);
+        // this.grids['hor']['minor'] = this.grids['hor']['minor'] ?? new Grid(this.cfg, Direction.horizontal, MajorMinor.minor);
+        // this.grids['ver']['major'] = this.grids['ver']['major'] ?? new Grid(this.cfg, Direction.vertical, MajorMinor.major);
+        // this.grids['ver']['minor'] = this.grids['ver']['minor'] ?? new Grid(this.cfg, Direction.vertical, MajorMinor.minor);
     } 
 &nbsp;
     public preRender(): void {} 
@@ -454,7 +470,9 @@ export class Grid {
     constructor(protected cfg:GraphCfg, protected dir:Direction, protected type=<span class="branch-0 cbranch-no" title="branch not covered" >MajorMinor.major)</span> {
         const baseClass = `${dir}-${type}-Grid`;
         this.hor = this.dir===Direction.horizontal;
-        this.svg = cfg.baseSVG.select('.grids').append('g').classed(baseClass, true);
+        this.svg = cfg.baseSVG.select('.grids').append('g');
+        this.svg.classed(baseClass, true);
+        // log.info(`&gt;&gt;&gt; created ${baseClass}`)
     }
 &nbsp;
     renderComponent() {
