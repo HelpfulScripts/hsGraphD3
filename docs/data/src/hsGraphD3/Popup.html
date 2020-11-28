@@ -128,71 +128,79 @@
 <p id=105 class="line"><span>&nbsp;105</span><comment></comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;defs;</p>
 <p id=106 class="line"><span>&nbsp;106</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
 <p id=107 class="line"><span>&nbsp;107</span></p>
-<p id=108 class="line"><span>&nbsp;108</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;addListener(items:d3Base,&nbsp;popupAccess:AccessFn)&nbsp;{</p>
-<p id=109 class="line"><span>&nbsp;109</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;items</p>
-<p id=110 class="line"><span>&nbsp;110</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.classed(`popup`,&nbsp;true)</p>
-<p id=111 class="line"><span>&nbsp;111</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.on(<quote>'mouseenter'</quote>,&nbsp;e=&gt;&nbsp;this.showPopup(popupAccess).bind(this)(e.currentTarget.__data__,&nbsp;undefined,&nbsp;e.layerX))</p>
-<p id=112 class="line"><span>&nbsp;112</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.on(<quote>'mousemove'</quote>,&nbsp;&nbsp;e=&gt;&nbsp;this.movePopup(popupAccess,&nbsp;e).bind(this)(e.currentTarget.__data__,&nbsp;undefined,&nbsp;e.layerX))</p>
-<p id=113 class="line"><span>&nbsp;113</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.on(<quote>'mouseleave'</quote>,&nbsp;this.hidePopup.bind(this));</p>
-<p id=114 class="line"><span>&nbsp;114</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-<p id=115 class="line"><span>&nbsp;115</span>&nbsp;&nbsp;&nbsp;&nbsp;</p>
-<p id=116 class="line"><span>&nbsp;116</span>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;showPopup(popupAccess:AccessFn)&nbsp;{&nbsp;</p>
-<p id=117 class="line"><span>&nbsp;117</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;p&nbsp;=&nbsp;this;</p>
-<p id=118 class="line"><span>&nbsp;118</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;scale&nbsp;=&nbsp;this.cfg.components.scales.scaleDims.hor;</p>
-<p id=119 class="line"><span>&nbsp;119</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;(d:number[],&nbsp;i:number,&nbsp;xpos:number)&nbsp;=&gt;&nbsp;p.svg</p>
-<p id=120 class="line"><span>&nbsp;120</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.html(&lt;string&gt;popupAccess(d,i,&nbsp;scale?.invert(xpos)??xpos))</p>
-<p id=121 class="line"><span>&nbsp;121</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.transition()		</p>
-<p id=122 class="line"><span>&nbsp;122</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.duration(100)		</p>
-<p id=123 class="line"><span>&nbsp;123</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.style(<quote>'opacity'</quote>,&nbsp;this.defaults.fill.opacity);		</p>
-<p id=124 class="line"><span>&nbsp;124</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-<p id=125 class="line"><span>&nbsp;125</span></p>
-<p id=126 class="line"><span>&nbsp;126</span>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;movePopup(popupAccess:AccessFn,&nbsp;event:any)&nbsp;{</p>
-<p id=127 class="line"><span>&nbsp;127</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;o&nbsp;=&nbsp;this.defaults.offset;</p>
-<p id=128 class="line"><span>&nbsp;128</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.svg</p>
-<p id=129 class="line"><span>&nbsp;129</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.style(<quote>'left'</quote>,&nbsp;`${event.pageX+o.xPx}px`)		</p>
-<p id=130 class="line"><span>&nbsp;130</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.style(<quote>'top'</quote>,&nbsp;&nbsp;`${(event.pageY+o.yPx)}px`);</p>
-<p id=131 class="line"><span>&nbsp;131</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;this.showPopup(popupAccess);</p>
-<p id=132 class="line"><span>&nbsp;132</span>&nbsp;&nbsp;&nbsp;&nbsp;}					</p>
+<p id=108 class="line"><span>&nbsp;108</span>&nbsp;&nbsp;&nbsp;&nbsp;<comment>/**</comment></p>
+<p id=109 class="line"><span>&nbsp;109</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;adds&nbsp;listeners&nbsp;to&nbsp;the&nbsp;`items`&nbsp;to&nbsp;enable&nbsp;popup&nbsp;messages&nbsp;when&nbsp;moused-over.</comment></p>
+<p id=110 class="line"><span>&nbsp;110</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;items&nbsp;the&nbsp;items&nbsp;to&nbsp;add&nbsp;the&nbsp;listeners&nbsp;to</comment></p>
+<p id=111 class="line"><span>&nbsp;111</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;@param&nbsp;popupAccess&nbsp;an&nbsp;`AccessFn`&nbsp;that&nbsp;produces&nbsp;the&nbsp;content&nbsp;of&nbsp;the&nbsp;popup.&nbsp;The&nbsp;function</comment></p>
+<p id=112 class="line"><span>&nbsp;112</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;is&nbsp;passed&nbsp;the&nbsp;data&nbsp;row&nbsp;and&nbsp;row&nbsp;index&nbsp;in&nbsp;the&nbsp;data&nbsp;set&nbsp;for&nbsp;the&nbsp;item,&nbsp;as&nbsp;well&nbsp;as&nbsp;the&nbsp;horizontal&nbsp;range&nbsp;value&nbsp;</comment></p>
+<p id=113 class="line"><span>&nbsp;113</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;for&nbsp;the&nbsp;mouse&nbsp;position.&nbsp;If&nbsp;`items`&nbsp;are&nbsp;a&nbsp;series&nbsp;`line`&nbsp;or&nbsp;`area`,&nbsp;the&nbsp;data&nbsp;and&nbsp;index&nbsp;values&nbsp;will&nbsp;be&nbsp;`undefined`.</comment></p>
+<p id=114 class="line"><span>&nbsp;114</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*&nbsp;Implementations&nbsp;should&nbsp;check&nbsp;for&nbsp;this&nbsp;case.</comment></p>
+<p id=115 class="line"><span>&nbsp;115</span><comment>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;*/</comment></p>
+<p id=116 class="line"><span>&nbsp;116</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;addListener(items:d3Base,&nbsp;popupAccess:AccessFn)&nbsp;{</p>
+<p id=117 class="line"><span>&nbsp;117</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;items</p>
+<p id=118 class="line"><span>&nbsp;118</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.classed(`popup`,&nbsp;true)</p>
+<p id=119 class="line"><span>&nbsp;119</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.on(<quote>'mouseenter'</quote>,&nbsp;e=&gt;&nbsp;this.showPopup(popupAccess).bind(this)(e.currentTarget.__data__,&nbsp;undefined,&nbsp;e.layerX))</p>
+<p id=120 class="line"><span>&nbsp;120</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.on(<quote>'mousemove'</quote>,&nbsp;&nbsp;e=&gt;&nbsp;this.movePopup(popupAccess,&nbsp;e).bind(this)(e.currentTarget.__data__,&nbsp;undefined,&nbsp;e.layerX))</p>
+<p id=121 class="line"><span>&nbsp;121</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.on(<quote>'mouseleave'</quote>,&nbsp;this.hidePopup.bind(this));</p>
+<p id=122 class="line"><span>&nbsp;122</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=123 class="line"><span>&nbsp;123</span>&nbsp;&nbsp;&nbsp;&nbsp;</p>
+<p id=124 class="line"><span>&nbsp;124</span>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;showPopup(popupAccess:AccessFn)&nbsp;{&nbsp;</p>
+<p id=125 class="line"><span>&nbsp;125</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;p&nbsp;=&nbsp;this;</p>
+<p id=126 class="line"><span>&nbsp;126</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;scale&nbsp;=&nbsp;this.cfg.components.scales.scaleDims.hor;</p>
+<p id=127 class="line"><span>&nbsp;127</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;(d:number[],&nbsp;i:number,&nbsp;xpos:number)&nbsp;=&gt;&nbsp;p.svg</p>
+<p id=128 class="line"><span>&nbsp;128</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.html(&lt;string&gt;popupAccess(d,i,&nbsp;scale?.invert(xpos)??xpos))</p>
+<p id=129 class="line"><span>&nbsp;129</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.transition()		</p>
+<p id=130 class="line"><span>&nbsp;130</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.duration(100)		</p>
+<p id=131 class="line"><span>&nbsp;131</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.style(<quote>'opacity'</quote>,&nbsp;this.defaults.fill.opacity);		</p>
+<p id=132 class="line"><span>&nbsp;132</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
 <p id=133 class="line"><span>&nbsp;133</span></p>
-<p id=134 class="line"><span>&nbsp;134</span>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;hidePopup()&nbsp;{</p>
-<p id=135 class="line"><span>&nbsp;135</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.svg</p>
-<p id=136 class="line"><span>&nbsp;136</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.transition()		</p>
-<p id=137 class="line"><span>&nbsp;137</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.duration(500)		</p>
-<p id=138 class="line"><span>&nbsp;138</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.style(<quote>'opacity'</quote>,&nbsp;0);	</p>
-<p id=139 class="line"><span>&nbsp;139</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-<p id=140 class="line"><span>&nbsp;140</span></p>
-<p id=141 class="line"><span>&nbsp;141</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;initialize(svg:d3Base):&nbsp;void&nbsp;{</p>
-<p id=142 class="line"><span>&nbsp;142</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;def&nbsp;=&nbsp;this.defaults;</p>
-<p id=143 class="line"><span>&nbsp;143</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;parentID&nbsp;=&nbsp;(&lt;any&gt;this.cfg.baseSVG)._groups[0][0].parentElement.id;</p>
-<p id=144 class="line"><span>&nbsp;144</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(parentID)&nbsp;{</p>
-<p id=145 class="line"><span>&nbsp;145</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;select(`#${parentID}&nbsp;.tooltip`).remove();</p>
-<p id=146 class="line"><span>&nbsp;146</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.svg&nbsp;=&nbsp;select(`#${parentID}`).append(<quote>'div'</quote>);</p>
-<p id=147 class="line"><span>&nbsp;147</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.svg.attr(<quote>'id'</quote>,&nbsp;<quote>'tooltip'</quote>).attr(<quote>'style'</quote>,&nbsp;`</p>
-<p id=148 class="line"><span>&nbsp;148</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;position:&nbsp;fixed;</p>
-<p id=149 class="line"><span>&nbsp;149</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding:&nbsp;5px;</p>
-<p id=150 class="line"><span>&nbsp;150</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:&nbsp;${def.fill.color};</p>
-<p id=151 class="line"><span>&nbsp;151</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border:&nbsp;${def.fill.border.width}px&nbsp;solid&nbsp;${def.fill.border.color};</p>
-<p id=152 class="line"><span>&nbsp;152</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border-radius:&nbsp;5px;</p>
-<p id=153 class="line"><span>&nbsp;153</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color:&nbsp;${def.style.color};</p>
-<p id=154 class="line"><span>&nbsp;154</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-family:&nbsp;${def.style.font.family};</p>
-<p id=155 class="line"><span>&nbsp;155</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-size:&nbsp;${def.style.font.size};</p>
-<p id=156 class="line"><span>&nbsp;156</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-style:&nbsp;${def.style.font.style};</p>
-<p id=157 class="line"><span>&nbsp;157</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-weight:&nbsp;${def.style.font.weight};</p>
-<p id=158 class="line"><span>&nbsp;158</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-align:&nbsp;center;</p>
-<p id=159 class="line"><span>&nbsp;159</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line-height:&nbsp;1.2em;</p>
-<p id=160 class="line"><span>&nbsp;160</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`)</p>
-<p id=161 class="line"><span>&nbsp;161</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.style(<quote>'opacity'</quote>,&nbsp;0);</p>
-<p id=162 class="line"><span>&nbsp;162</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{</p>
-<p id=163 class="line"><span>&nbsp;163</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.svg&nbsp;=&nbsp;undefined;</p>
-<p id=164 class="line"><span>&nbsp;164</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-<p id=165 class="line"><span>&nbsp;165</span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;</p>
-<p id=166 class="line"><span>&nbsp;166</span>&nbsp;</p>
-<p id=167 class="line"><span>&nbsp;167</span>&nbsp;&nbsp;&nbsp;&nbsp;preRender():&nbsp;void&nbsp;{}&nbsp;</p>
-<p id=168 class="line"><span>&nbsp;168</span></p>
-<p id=169 class="line"><span>&nbsp;169</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;renderComponent()&nbsp;{</p>
-<p id=170 class="line"><span>&nbsp;170</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
-<p id=171 class="line"><span>&nbsp;171</span></p>
-<p id=172 class="line"><span>&nbsp;172</span>&nbsp;&nbsp;&nbsp;&nbsp;postRender():&nbsp;void&nbsp;{}&nbsp;</p>
-<p id=173 class="line"><span>&nbsp;173</span>}</p></code></div>
+<p id=134 class="line"><span>&nbsp;134</span>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;movePopup(popupAccess:AccessFn,&nbsp;event:any)&nbsp;{</p>
+<p id=135 class="line"><span>&nbsp;135</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;o&nbsp;=&nbsp;this.defaults.offset;</p>
+<p id=136 class="line"><span>&nbsp;136</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.svg</p>
+<p id=137 class="line"><span>&nbsp;137</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.style(<quote>'left'</quote>,&nbsp;`${event.pageX+o.xPx}px`)		</p>
+<p id=138 class="line"><span>&nbsp;138</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.style(<quote>'top'</quote>,&nbsp;&nbsp;`${(event.pageY+o.yPx)}px`);</p>
+<p id=139 class="line"><span>&nbsp;139</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;this.showPopup(popupAccess);</p>
+<p id=140 class="line"><span>&nbsp;140</span>&nbsp;&nbsp;&nbsp;&nbsp;}					</p>
+<p id=141 class="line"><span>&nbsp;141</span></p>
+<p id=142 class="line"><span>&nbsp;142</span>&nbsp;&nbsp;&nbsp;&nbsp;private&nbsp;hidePopup()&nbsp;{</p>
+<p id=143 class="line"><span>&nbsp;143</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.svg</p>
+<p id=144 class="line"><span>&nbsp;144</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.transition()		</p>
+<p id=145 class="line"><span>&nbsp;145</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.duration(500)		</p>
+<p id=146 class="line"><span>&nbsp;146</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.style(<quote>'opacity'</quote>,&nbsp;0);	</p>
+<p id=147 class="line"><span>&nbsp;147</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=148 class="line"><span>&nbsp;148</span></p>
+<p id=149 class="line"><span>&nbsp;149</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;initialize(svg:d3Base):&nbsp;void&nbsp;{</p>
+<p id=150 class="line"><span>&nbsp;150</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;def&nbsp;=&nbsp;this.defaults;</p>
+<p id=151 class="line"><span>&nbsp;151</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const&nbsp;parentID&nbsp;=&nbsp;(&lt;any&gt;this.cfg.baseSVG)._groups[0][0].parentElement.id;</p>
+<p id=152 class="line"><span>&nbsp;152</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;if&nbsp;(parentID)&nbsp;{</p>
+<p id=153 class="line"><span>&nbsp;153</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;select(`#${parentID}&nbsp;.tooltip`).remove();</p>
+<p id=154 class="line"><span>&nbsp;154</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.svg&nbsp;=&nbsp;select(`#${parentID}`).append(<quote>'div'</quote>);</p>
+<p id=155 class="line"><span>&nbsp;155</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.svg.attr(<quote>'id'</quote>,&nbsp;<quote>'tooltip'</quote>).attr(<quote>'style'</quote>,&nbsp;`</p>
+<p id=156 class="line"><span>&nbsp;156</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;position:&nbsp;fixed;</p>
+<p id=157 class="line"><span>&nbsp;157</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;padding:&nbsp;5px;</p>
+<p id=158 class="line"><span>&nbsp;158</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;background-color:&nbsp;${def.fill.color};</p>
+<p id=159 class="line"><span>&nbsp;159</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border:&nbsp;${def.fill.border.width}px&nbsp;solid&nbsp;${def.fill.border.color};</p>
+<p id=160 class="line"><span>&nbsp;160</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;border-radius:&nbsp;5px;</p>
+<p id=161 class="line"><span>&nbsp;161</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color:&nbsp;${def.style.color};</p>
+<p id=162 class="line"><span>&nbsp;162</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-family:&nbsp;${def.style.font.family};</p>
+<p id=163 class="line"><span>&nbsp;163</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-size:&nbsp;${def.style.font.size};</p>
+<p id=164 class="line"><span>&nbsp;164</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-style:&nbsp;${def.style.font.style};</p>
+<p id=165 class="line"><span>&nbsp;165</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;font-weight:&nbsp;${def.style.font.weight};</p>
+<p id=166 class="line"><span>&nbsp;166</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;text-align:&nbsp;center;</p>
+<p id=167 class="line"><span>&nbsp;167</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;line-height:&nbsp;1.2em;</p>
+<p id=168 class="line"><span>&nbsp;168</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;`)</p>
+<p id=169 class="line"><span>&nbsp;169</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;.style(<quote>'opacity'</quote>,&nbsp;0);</p>
+<p id=170 class="line"><span>&nbsp;170</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;else&nbsp;{</p>
+<p id=171 class="line"><span>&nbsp;171</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;this.svg&nbsp;=&nbsp;undefined;</p>
+<p id=172 class="line"><span>&nbsp;172</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=173 class="line"><span>&nbsp;173</span>&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;</p>
+<p id=174 class="line"><span>&nbsp;174</span>&nbsp;</p>
+<p id=175 class="line"><span>&nbsp;175</span>&nbsp;&nbsp;&nbsp;&nbsp;preRender():&nbsp;void&nbsp;{}&nbsp;</p>
+<p id=176 class="line"><span>&nbsp;176</span></p>
+<p id=177 class="line"><span>&nbsp;177</span>&nbsp;&nbsp;&nbsp;&nbsp;public&nbsp;renderComponent()&nbsp;{</p>
+<p id=178 class="line"><span>&nbsp;178</span>&nbsp;&nbsp;&nbsp;&nbsp;}</p>
+<p id=179 class="line"><span>&nbsp;179</span></p>
+<p id=180 class="line"><span>&nbsp;180</span>&nbsp;&nbsp;&nbsp;&nbsp;postRender():&nbsp;void&nbsp;{}&nbsp;</p>
+<p id=181 class="line"><span>&nbsp;181</span>}</p></code></div>
                 </body>
             

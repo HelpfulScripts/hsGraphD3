@@ -26472,6 +26472,9 @@
 									"flags": {
 										"isExported": true
 									},
+									"comment": {
+										"shortText": "adds listeners to the `items` to enable popup messages when moused-over."
+									},
 									"parameters": [
 										{
 											"id": 1062,
@@ -26480,6 +26483,9 @@
 											"kindString": "Parameter",
 											"flags": {
 												"isExported": true
+											},
+											"comment": {
+												"text": "the items to add the listeners to"
 											},
 											"type": {
 												"type": "reference",
@@ -26494,6 +26500,9 @@
 											"kindString": "Parameter",
 											"flags": {
 												"isExported": true
+											},
+											"comment": {
+												"text": "an `AccessFn` that produces the content of the popup. The function\nis passed the data row and row index in the data set for the item, as well as the horizontal range value\nfor the mouse position. If `items` are a series `line` or `area`, the data and index values will be `undefined`.\nImplementations should check for this case.\n"
 											},
 											"type": {
 												"type": "reference",
@@ -26511,7 +26520,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Popup.ts",
-									"line": 108,
+									"line": 116,
 									"character": 22
 								}
 							]
@@ -26586,7 +26595,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Popup.ts",
-									"line": 134,
+									"line": 142,
 									"character": 21
 								}
 							]
@@ -26644,7 +26653,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Popup.ts",
-									"line": 141,
+									"line": 149,
 									"character": 21
 								}
 							],
@@ -26715,7 +26724,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Popup.ts",
-									"line": 126,
+									"line": 134,
 									"character": 21
 								}
 							]
@@ -26751,7 +26760,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Popup.ts",
-									"line": 172,
+									"line": 180,
 									"character": 14
 								}
 							],
@@ -26797,7 +26806,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Popup.ts",
-									"line": 167,
+									"line": 175,
 									"character": 13
 								}
 							],
@@ -26844,7 +26853,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Popup.ts",
-									"line": 169,
+									"line": 177,
 									"character": 26
 								}
 							],
@@ -26902,7 +26911,7 @@
 							"sources": [
 								{
 									"fileName": "sth1pal/Documents/Development/JavaScript/nodejs/ts6/dev/hsLibs/d3/hsGraphD3/src/Popup.ts",
-									"line": 116,
+									"line": 124,
 									"character": 21
 								}
 							]
