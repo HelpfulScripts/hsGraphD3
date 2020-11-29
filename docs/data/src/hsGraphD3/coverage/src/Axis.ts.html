@@ -307,7 +307,13 @@
 <a name='L248'></a><a href='#L248'>248</a>
 <a name='L249'></a><a href='#L249'>249</a>
 <a name='L250'></a><a href='#L250'>250</a>
-<a name='L251'></a><a href='#L251'>251</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L251'></a><a href='#L251'>251</a>
+<a name='L252'></a><a href='#L252'>252</a>
+<a name='L253'></a><a href='#L253'>253</a>
+<a name='L254'></a><a href='#L254'>254</a>
+<a name='L255'></a><a href='#L255'>255</a>
+<a name='L256'></a><a href='#L256'>256</a>
+<a name='L257'></a><a href='#L257'>257</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -337,21 +343,30 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-yes">12x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">12x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">12x</span>
@@ -478,9 +493,6 @@
 <span class="cline-any cline-yes">29x</span>
 <span class="cline-any cline-yes">29x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">29x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">29x</span>
 <span class="cline-any cline-yes">29x</span>
 <span class="cline-any cline-no">&nbsp;</span>
@@ -586,8 +598,8 @@
  */
 &nbsp;
 /** */
-import { format }           from 'd3';
-import { timeFormat }       from 'd3';
+import { formatLocale, timeFormat }           
+                            from 'd3';
 import { Log }              from 'hsutil'; const log = new Log('Axis');
 import { GraphComponent }   from './GraphComponent'; 
 import { GraphCfg }         from './GraphComponent';
@@ -602,6 +614,15 @@ import { defaultText }      from './Settings';
 import { Line }             from './Settings';
 import { Text }             from './Settings';
 import { DataVal }          from './Graph';
+&nbsp;
+export const locale = formatLocale({
+    decimal: ".",
+    thousands: " ",
+    grouping: [3],
+    currency: ['','TEUR']
+});
+&nbsp;
+const fmtNum = locale.format(',.4~s');
 &nbsp;
 &nbsp;
 const pixPerMajorTick = 200;
@@ -726,9 +747,6 @@ export class Axis {
         const scales = this.cfg.components.scales.scaleDims;
         this.setTransform(scales);
         const axis:any = this.getD3Axis(scales, axisDef);
-        const scale = scales[this.dir];
-        // axis.tickFormat(timeFormat("%b %d, %Y"));
-        // axis.ticks(scale.tickCountMinor);
         this.svg.transition(trans).call(axis);
 &nbsp;
         this.svg.attr('color', axisDef.color);
@@ -794,13 +812,13 @@ export class Axis {
         if (this.dir===Direction.horizontal) {
             axis = scales.hor.axis(this.pos);
             ticks = scales.hor.tickCountMajor;
-            if (scales.hor.type() === 'number') { axis.tickFormat(format('~g')); }  
+            if (scales.hor.type() === 'number') { axis.tickFormat(fmtNum); }  
             else <span class="missing-if-branch" title="if path not taken" >I</span>if (scales.hor.type() === 'time') { <span class="cstat-no" title="statement not covered" >axis.tickFormat(timeFormat("%b %d, %Y")); </span>}   
 &nbsp;
         } else {
             axis = scales.ver.axis(this.pos);
             ticks = scales.ver.tickCountMajor;
-            if (scales.ver.type() === 'number') { axis.tickFormat(format('~g')); }
+            if (scales.ver.type() === 'number') { axis.tickFormat(fmtNum); }
             else <span class="missing-if-branch" title="if path not taken" >I</span>if (scales.ver.type() === 'time') { <span class="cstat-no" title="statement not covered" >axis.tickFormat(timeFormat("%b %d, %Y")); </span>}   
         }
         axis.ticks(ticks);

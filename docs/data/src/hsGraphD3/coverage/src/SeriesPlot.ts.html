@@ -1039,7 +1039,7 @@ export abstract class SeriesPlot {
             case 'string':
             default:        const c = colNames.indexOf(''+v); 
                             // try row.data[c] (as passed by d3.arc), then row[c]
-                            return row =&gt; row? (row['data']? <span class="branch-0 cbranch-no" title="branch not covered" >row['data'][c] </span>: row[c]) : <span class="branch-1 cbranch-no" title="branch not covered" >'???';</span>
+                            return row =&gt; row? (row['data']? <span class="branch-0 cbranch-no" title="branch not covered" >row['data'][c] </span>: row[c]) : <span class="branch-1 cbranch-no" title="branch not covered" >'';</span>
         }
     }
 &nbsp;

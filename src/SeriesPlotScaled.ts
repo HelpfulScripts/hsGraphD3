@@ -2,7 +2,8 @@
  * # SeriesPlotScaled
  */
 
-import { SeriesPlot, ValueDef, SeriesPlotDefaults, d3Transition } from "./SeriesPlot";
+import { Log }              from 'hsutil'; const log = new Log('SeriesPlotScaled');
+import { SeriesPlot, ValueDef, SeriesPlotDefaults } from "./SeriesPlot";
 import { DataSet, OrdDomain, DataRow, DataVal, NumDomain, GraphDimensions, Domains, AccessFn } from "./Graph";
 import { d3Base } from "./Settings";
 
@@ -86,9 +87,13 @@ export abstract class SeriesPlotScaled extends SeriesPlot {
 
     /** renders the component for the given data */
     public renderComponent(data:DataSet): void {
-        data = { colNames: data.colNames, rows: data.rows.slice() };
-        this.updateStack(data);
-        super.renderComponent(data);
+        try {
+            data = { colNames: data.colNames, rows: data.rows.slice() };
+            this.updateStack(data);
+            super.renderComponent(data);
+        } catch(e) {
+            log.warn(`${this.seriesKey}: ${e}`);
+        }
     }
 
     public postRender(data:DataSet): void {

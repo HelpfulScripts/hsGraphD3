@@ -23,16 +23,16 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">71.92% </span>
+                <span class="strong">71.62% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>105/146</span>
+                <span class='fraction'>106/148</span>
             </div>
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">49.06% </span>
+                <span class="strong">49.02% </span>
                 <span class="quiet">Branches</span>
-                <span class='fraction'>26/53</span>
+                <span class='fraction'>25/51</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">72.39% </span>
+                <span class="strong">71.53% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>97/134</span>
+                <span class='fraction'>98/137</span>
             </div>
         
             
@@ -766,7 +766,14 @@
 <a name='L707'></a><a href='#L707'>707</a>
 <a name='L708'></a><a href='#L708'>708</a>
 <a name='L709'></a><a href='#L709'>709</a>
-<a name='L710'></a><a href='#L710'>710</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L710'></a><a href='#L710'>710</a>
+<a name='L711'></a><a href='#L711'>711</a>
+<a name='L712'></a><a href='#L712'>712</a>
+<a name='L713'></a><a href='#L713'>713</a>
+<a name='L714'></a><a href='#L714'>714</a>
+<a name='L715'></a><a href='#L715'>715</a>
+<a name='L716'></a><a href='#L716'>716</a>
+<a name='L717'></a><a href='#L717'>717</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1211,6 +1218,7 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1231,7 +1239,6 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">32x</span>
-<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1348,6 +1355,10 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-yes">126x</span>
+<span class="cline-any cline-yes">126x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1399,6 +1410,9 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -1907,7 +1921,7 @@ export class Graph extends GraphBase {
         if (root &amp;&amp; (&lt;HTMLElement&gt;root).baseURI) { this.create(&lt;HTMLElement&gt;root); }
     }
 &nbsp;
-    public create(root:HTMLElement) {
+    private create(root:HTMLElement) {
         this.root = root;
         <span class="missing-if-branch" title="else path not taken" >E</span>if (this.root) {
             this.cfg.baseSVG = this.createBaseSVG(this.cfg); 
@@ -1922,6 +1936,7 @@ export class Graph extends GraphBase {
     public <span class="fstat-no" title="function not covered" >reinitialize(</span>) {
 <span class="cstat-no" title="statement not covered" >        log.info('*** reinitialized')</span>
 <span class="cstat-no" title="statement not covered" >        this.initialized = false;</span>
+<span class="cstat-no" title="statement not covered" >        Graph.resizeGraphs();</span>
     }
 &nbsp;
     public get componentType() { return Graph.type; }
@@ -1940,7 +1955,6 @@ export class Graph extends GraphBase {
     /** adds a new plot series and returns an ID that can be used in `remove()`, or `-1` in case of an error. */
     public add(type:string, dims:SeriesDimensions):number {
         return this.cfg.components.series.add(type, dims);
-<span class="cstat-no" title="statement not covered" >        this.reinitialize();</span>
     }
 &nbsp;
     /** 
@@ -2056,7 +2070,11 @@ export class Graph extends GraphBase {
     /** renders the component. */
     renderComponent(data:DataSet | DataSet[]): void {
         const comps = (&lt;GraphComponent[]&gt;&lt;unknown&gt;this.cfg.components);
-        comps.forEach(comp =&gt; comp?comp.renderComponent(data):<span class="branch-1 cbranch-no" title="branch not covered" >'')</span>;
+        comps.forEach(comp =&gt; { try {
+            comp?.renderComponent(data)
+        } catch(e) {
+<span class="cstat-no" title="statement not covered" >            log.warn(`rendering Graph comp: ${e}`)</span>
+        }})
     } 
 &nbsp;
     /** renders the component. */
@@ -2107,7 +2125,10 @@ export class Graph extends GraphBase {
                     }
                 }
                 catch(e) { <span class="cstat-no" title="statement not covered" >log.warn(`error in callback: ${e}`); </span>}
-<span class="cstat-no" title="statement not covered" >                setTimeout(<span class="fstat-no" title="function not covered" >() =</span>&gt; <span class="cstat-no" title="statement not covered" >graph.renderLifecycle(data),</span>0); </span> // render on the next event loop pass, outside the transition listener.
+<span class="cstat-no" title="statement not covered" >                setTimeout(<span class="fstat-no" title="function not covered" >() =</span>&gt; {</span>
+<span class="cstat-no" title="statement not covered" >                    graph.renderLifecycle(data)</span>
+&nbsp;
+                },0);  // render on the next event loop pass, outside the transition listener.
             }
 <span class="cstat-no" title="statement not covered" >            graph.cfg.transition.on('end', listener); </span>
         };

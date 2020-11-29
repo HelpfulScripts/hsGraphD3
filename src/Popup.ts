@@ -125,7 +125,7 @@ export class Popup extends GraphComponent {
         const p = this;
         const scale = this.cfg.components.scales.scaleDims.hor;
         return (d:number[], i:number, xpos:number) => p.svg
-            .html(<string>popupAccess(d,i, scale?.invert(xpos)??xpos))
+            .html(<string>popupAccess(d,i, scale?.invert? scale.invert(xpos) : xpos))
             .transition()		
             .duration(100)		
             .style('opacity', this.defaults.fill.opacity);		

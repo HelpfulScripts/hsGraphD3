@@ -23,9 +23,9 @@
         <div class='clearfix'>
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">72.73% </span>
+                <span class="strong">72.28% </span>
                 <span class="quiet">Statements</span>
-                <span class='fraction'>72/99</span>
+                <span class='fraction'>73/101</span>
             </div>
         
             
@@ -44,9 +44,9 @@
         
             
             <div class='fl pad1y space-right2'>
-                <span class="strong">74.44% </span>
+                <span class="strong">73.63% </span>
                 <span class="quiet">Lines</span>
-                <span class='fraction'>67/90</span>
+                <span class='fraction'>67/91</span>
             </div>
         
             
@@ -306,7 +306,10 @@
 <a name='L247'></a><a href='#L247'>247</a>
 <a name='L248'></a><a href='#L248'>248</a>
 <a name='L249'></a><a href='#L249'>249</a>
-<a name='L250'></a><a href='#L250'>250</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<a name='L250'></a><a href='#L250'>250</a>
+<a name='L251'></a><a href='#L251'>251</a>
+<a name='L252'></a><a href='#L252'>252</a>
+<a name='L253'></a><a href='#L253'>253</a></td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -421,8 +424,11 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">18x</span>
 <span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-yes">32x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -670,8 +676,11 @@ export class Series extends GraphComponent {
      * in the order they were regeistered.
      */
     public renderComponent(data:DataSet | DataSet[]) {
-        this.series.forEach((s:SeriesPlot, i:number) =&gt; {
+        this.series.forEach((s:SeriesPlot, i:number) =&gt; { try {
             s.renderComponent((&lt;DataSet&gt;data).colNames? data : <span class="branch-1 cbranch-no" title="branch not covered" >data[i % this.series.length])</span>;
+        } catch(e) {
+<span class="cstat-no" title="statement not covered" >            log.warn(`series ${s.key}: ${e}\n${e.stack}`)</span>
+        }
         });
     }
 &nbsp;

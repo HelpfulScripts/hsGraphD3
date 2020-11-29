@@ -133,7 +133,7 @@ export abstract class GraphComponent extends GraphBase {
     }
 
     initialize(svg:d3Base) {
-        this.svg.selectAll('g').remove();
+        // this.svg.selectAll('g').remove();
     }
 
 

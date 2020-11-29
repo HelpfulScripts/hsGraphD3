@@ -430,7 +430,7 @@ export class Graph extends GraphBase {
         if (root && (<HTMLElement>root).baseURI) { this.create(<HTMLElement>root); }
     }
 
-    public create(root:HTMLElement) {
+    private create(root:HTMLElement) {
         this.root = root;
         if (this.root) {
             this.cfg.baseSVG = this.createBaseSVG(this.cfg); 
@@ -445,6 +445,7 @@ export class Graph extends GraphBase {
     public reinitialize() {
         log.info('*** reinitialized')
         this.initialized = false;
+        Graph.resizeGraphs();
     }
 
     public get componentType() { return Graph.type; }
@@ -463,7 +464,6 @@ export class Graph extends GraphBase {
     /** adds a new plot series and returns an ID that can be used in `remove()`, or `-1` in case of an error. */
     public add(type:string, dims:SeriesDimensions):number {
         return this.cfg.components.series.add(type, dims);
-        this.reinitialize();
     }
 
     /** 
@@ -579,7 +579,11 @@ export class Graph extends GraphBase {
     /** renders the component. */
     renderComponent(data:DataSet | DataSet[]): void {
         const comps = (<GraphComponent[]><unknown>this.cfg.components);
-        comps.forEach(comp => comp?comp.renderComponent(data):'');
+        comps.forEach(comp => { try {
+            comp?.renderComponent(data)
+        } catch(e) {
+            log.warn(`rendering Graph comp: ${e}`)
+        }})
     } 
 
     /** renders the component. */
@@ -630,7 +634,10 @@ export class Graph extends GraphBase {
                     }
                 }
                 catch(e) { log.warn(`error in callback: ${e}`); }
-                setTimeout(() => graph.renderLifecycle(data),0);  // render on the next event loop pass, outside the transition listener.
+                setTimeout(() => {
+                    graph.renderLifecycle(data)
+
+                },0);  // render on the next event loop pass, outside the transition listener.
             }
             graph.cfg.transition.on('end', listener); 
         };

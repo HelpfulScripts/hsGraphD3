@@ -113,8 +113,11 @@ export class Series extends GraphComponent {
      * in the order they were regeistered.
      */
     public renderComponent(data:DataSet | DataSet[]) {
-        this.series.forEach((s:SeriesPlot, i:number) => {
+        this.series.forEach((s:SeriesPlot, i:number) => { try {
             s.renderComponent((<DataSet>data).colNames? data : data[i % this.series.length]);
+        } catch(e) {
+            log.warn(`series ${s.key}: ${e}\n${e.stack}`)
+        }
         });
     }
 

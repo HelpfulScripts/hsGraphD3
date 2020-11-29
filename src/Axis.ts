@@ -27,8 +27,8 @@
  */
 
 /** */
-import { format }           from 'd3';
-import { timeFormat }       from 'd3';
+import { formatLocale, timeFormat }           
+                            from 'd3';
 import { Log }              from 'hsutil'; const log = new Log('Axis');
 import { GraphComponent }   from './GraphComponent'; 
 import { GraphCfg }         from './GraphComponent';
@@ -43,6 +43,15 @@ import { defaultText }      from './Settings';
 import { Line }             from './Settings';
 import { Text }             from './Settings';
 import { DataVal }          from './Graph';
+
+export const locale = formatLocale({
+    decimal: ".",
+    thousands: " ",
+    grouping: [3],
+    currency: ['','TEUR']
+});
+
+const fmtNum = locale.format(',.4~s');
 
 
 const pixPerMajorTick = 200;
@@ -167,9 +176,6 @@ export class Axis {
         const scales = this.cfg.components.scales.scaleDims;
         this.setTransform(scales);
         const axis:any = this.getD3Axis(scales, axisDef);
-        const scale = scales[this.dir];
-        // axis.tickFormat(timeFormat("%b %d, %Y"));
-        // axis.ticks(scale.tickCountMinor);
         this.svg.transition(trans).call(axis);
 
         this.svg.attr('color', axisDef.color);
@@ -235,13 +241,13 @@ export class Axis {
         if (this.dir===Direction.horizontal) {
             axis = scales.hor.axis(this.pos);
             ticks = scales.hor.tickCountMajor;
-            if (scales.hor.type() === 'number') { axis.tickFormat(format('~g')); }  
+            if (scales.hor.type() === 'number') { axis.tickFormat(fmtNum); }  
             else if (scales.hor.type() === 'time') { axis.tickFormat(timeFormat("%b %d, %Y")); }   
 
         } else {
             axis = scales.ver.axis(this.pos);
             ticks = scales.ver.tickCountMajor;
-            if (scales.ver.type() === 'number') { axis.tickFormat(format('~g')); }
+            if (scales.ver.type() === 'number') { axis.tickFormat(fmtNum); }
             else if (scales.ver.type() === 'time') { axis.tickFormat(timeFormat("%b %d, %Y")); }   
         }
         axis.ticks(ticks);

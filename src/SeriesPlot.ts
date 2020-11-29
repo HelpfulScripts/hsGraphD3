@@ -218,7 +218,7 @@ export abstract class SeriesPlot {
             case 'string':
             default:        const c = colNames.indexOf(''+v); 
                             // try row.data[c] (as passed by d3.arc), then row[c]
-                            return row => row? (row['data']? row['data'][c] : row[c]) : '???';
+                            return row => row? (row['data']? row['data'][c] : row[c]) : '';
         }
     }
 

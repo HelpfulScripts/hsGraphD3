@@ -65,10 +65,10 @@ export class Grids extends GraphComponent {
     };
     constructor(cfg:GraphCfg) {
         super(cfg, Grids.type);
-        this.grids.hor.major = new Grid(this.cfg, Direction.horizontal, MajorMinor.major);
-        this.grids.hor.minor = new Grid(this.cfg, Direction.horizontal, MajorMinor.minor);
-        this.grids.ver.major = new Grid(this.cfg, Direction.vertical, MajorMinor.major);
-        this.grids.ver.minor = new Grid(this.cfg, Direction.vertical, MajorMinor.minor);
+        this.grids.hor.major = new Grid(cfg, Direction.horizontal, MajorMinor.major);
+        this.grids.hor.minor = new Grid(cfg, Direction.horizontal, MajorMinor.minor);
+        this.grids.ver.major = new Grid(cfg, Direction.vertical, MajorMinor.major);
+        this.grids.ver.minor = new Grid(cfg, Direction.vertical, MajorMinor.minor);
     }
 
     public get componentType() { return Grids.type; }
@@ -90,20 +90,16 @@ export class Grids extends GraphComponent {
     }
 
     public initialize(svg:d3Base): void {
-        // this.grids['hor']['major'] = this.grids['hor']['major'] ?? new Grid(this.cfg, Direction.horizontal, MajorMinor.major);
-        // this.grids['hor']['minor'] = this.grids['hor']['minor'] ?? new Grid(this.cfg, Direction.horizontal, MajorMinor.minor);
-        // this.grids['ver']['major'] = this.grids['ver']['major'] ?? new Grid(this.cfg, Direction.vertical, MajorMinor.major);
-        // this.grids['ver']['minor'] = this.grids['ver']['minor'] ?? new Grid(this.cfg, Direction.vertical, MajorMinor.minor);
     } 
 
     public preRender(): void {} 
 
     public renderComponent() {
         if (this.cfg.graph.defaults.grids.rendered) {
-            this.grids['hor']['major'].renderComponent();
-            this.grids['hor']['minor'].renderComponent();
-            this.grids['ver']['major'].renderComponent();
-            this.grids['ver']['minor'].renderComponent();    
+            this.grids.hor.major.renderComponent();
+            this.grids.hor.minor.renderComponent();
+            this.grids.ver.major.renderComponent();
+            this.grids.ver.minor.renderComponent();    
         }
     }
 
@@ -133,16 +129,22 @@ export class Grid {
                 { range:  scaleX.range(), scale:  scaleY,   dim: { fix:'x', var:'y'}}   // hor grid
               : { range:  scaleY.range(), scale:  scaleX,   dim: { fix:'y', var:'x'}};  // ver grid
             const count = this.type===MajorMinor.major? c.scale.tickCountMajor : c.scale.tickCountMinor;
-            const gridlines:SVGLineSelection = <SVGLineSelection>this.svg.selectAll("line").data(c.scale.ticks(count), d => <any>d);
-            gridlines.exit().remove();          // remove unneeded lines
-            gridlines.enter().append('line')    // add new lines
-                .attr(`${c.dim.fix}1`, c.range[0])
-                .attr(`${c.dim.fix}2`, c.range[1])
-                .attr(`${c.dim.var}1`, d => c.scale(<number>d))
-                .attr(`${c.dim.var}2`, d => c.scale(<number>d))
-            .merge(gridlines).transition(trans)
-                .attr(`${c.dim.var}1`, d => c.scale(<number>d))
-                .attr(`${c.dim.var}2`, d => c.scale(<number>d));
+            try { 
+                this.svg.selectAll("line")
+                .data(c.scale.ticks(count), d => <any>d)
+                .join(
+                    enter => enter.append('line')
+                        .attr(`${c.dim.fix}1`, c.range[0])
+                        .attr(`${c.dim.fix}2`, c.range[1]),         
+                    update => update,                 
+                    exit => exit.remove(),
+                )
+                .transition(trans)
+                    .attr(`${c.dim.var}1`, d => c.scale(<number>d))
+                    .attr(`${c.dim.var}2`, d => c.scale(<number>d))
+            } catch(e) {
+                log.warn(`${this.type} ${this.hor?'hor':'ver'} grid: ${e}`)
+            }
         }
     }
 }
