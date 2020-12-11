@@ -39,6 +39,7 @@ module.exports = (grunt) => {
 
 
 const launchJest = () => require('child_process').spawnSync('./node_modules/.bin/jest',  ['-c=jest.config.json', '-i'], {stdio: 'inherit'});
+const commit     = () => require('child_process').spawnSync('git',  ['commit', '-m version bump"', '-a'], {stdio: 'inherit'});
 
 function make(grunt) {
     const cfg = require('./gruntCfg.json');
@@ -60,8 +61,6 @@ function make(grunt) {
     grunt.loadNpmTasks('@vamship/grunt-typedoc');
     grunt.loadNpmTasks('grunt-ts');
     grunt.loadNpmTasks('grunt-webpack');
-    // grunt.loadNpmTasks('jest');
-    grunt.loadNpmTasks('grunt-coveralls');
 
     //------ Add Doc Tasks
     grunt.registerTask('noTask', []);
@@ -73,6 +72,7 @@ function make(grunt) {
     //------ Add Test Tasks
     grunt.registerTask('ospec', () => { require('child_process').spawnSync('./node_modules/.bin/ospec', {stdio: 'inherit'}); });
     grunt.registerTask('jest',  () => launchJest().status===0)
+    grunt.registerTask('commit',  () => commit().status===0)
     grunt.registerTask('test', ['clean:cov', 'jest', 'copy:coverage', 'cleanupCoverage']); 
     
     //------ Add Coverage Reporting
@@ -97,6 +97,7 @@ function make(grunt) {
 
     //------ Entry-point MultiTasks
     grunt.registerTask('default',       ['product']);	
+    grunt.registerTask('publish',       ['product', 'commit']);	
     grunt.registerTask('dev',           ['buildDev']);
     grunt.registerTask('product',       ['buildMin']);	
     grunt.registerTask('ci',            ['build-base', 'ts:cjs', 'test', 'coverageReport']); 
@@ -325,13 +326,6 @@ function make(grunt) {
                 dest:''
             }
         },
-        coveralls: {
-            options: { force: true },
-            main: {
-                src: `docs/data/src/lcov.info`
-            }
-        },
-
         watch: {
             dependencies: {
                 files: dependencies.map(d => `./node_modules/${d.toLowerCase()}/bin/${d}.js`),

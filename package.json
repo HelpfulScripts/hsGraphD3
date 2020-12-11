@@ -9,7 +9,7 @@
     "type": "module",
     "scripts": {
         "grunt": "grunt --gruntfile Gruntfile.cjs",
-        "prepublishOnly": "npm run grunt",
+        "prepublishOnly": "npm run grunt publish",
         "postpublish": "npm version patch"
     },
     "version": "1.3.5",
