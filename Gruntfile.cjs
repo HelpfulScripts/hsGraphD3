@@ -84,14 +84,14 @@ function make(grunt) {
     grunt.registerTask('build-css',     ['less']);
     grunt.registerTask('build-base',    ['clean:dist', 'clean:docs', 'build-html', 'build-css', 'copy:bin']);
     switch(type) {
-        case 'node':grunt.registerTask('buildMin', ['build-base', 'ts:esm', 'ts:cjs', 'doc', 'stage', 'test']);
+        case 'node':grunt.registerTask('buildMin', ['build-base', 'ts:esm', 'ts:cjs', 'doc', 'stage', 'test', 'coverageReport']);
                     grunt.registerTask('buildDev', ['build-base', 'ts:esm', 'ts:cjs', 'stage']);
                     break;
-        case 'lib': grunt.registerTask('buildMin', ['build-base', 'ts:esm', 'ts:cjs', 'webpack:appDev', 'webpack:appProd', 'doc', 'stage', 'test']);
+        case 'lib': grunt.registerTask('buildMin', ['build-base', 'ts:esm', 'ts:cjs', 'webpack:appDev', 'webpack:appProd', 'doc', 'stage', 'test', 'coverageReport']);
                     grunt.registerTask('buildDev', ['build-base', 'ts:esm', 'ts:cjs', 'webpack:appDev', 'stage']);
                     break;
         case 'app': 
-        default:    grunt.registerTask('buildMin', ['build-base', 'ts:esm', 'webpack:appDev', 'webpack:appProd', 'doc', 'stage', 'test']);
+        default:    grunt.registerTask('buildMin', ['build-base', 'ts:esm', 'webpack:appDev', 'webpack:appProd', 'doc', 'stage', 'test', 'coverageReport']);
                     grunt.registerTask('buildDev', ['build-base', 'ts:esm', 'webpack:appDev', 'stage']);
     }
 
@@ -99,6 +99,7 @@ function make(grunt) {
     grunt.registerTask('default',       ['product']);	
     grunt.registerTask('publish',       ['product', 'commit']);	
     grunt.registerTask('dev',           ['buildDev']);
+    grunt.registerTask('build',         ['product']);	
     grunt.registerTask('product',       ['buildMin']);	
     grunt.registerTask('ci',            ['build-base', 'ts:cjs', 'test', 'coverageReport']); 
     grunt.registerTask('help',          ['h']);	

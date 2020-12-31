@@ -1,5 +1,5 @@
 /**
- * # Axis class
+ * # Axis class 
  * 
  * ### Axes Default Settings:
  * <example height=300px libs={hsGraphD3:'hsGraphD3', hsUtil:'hsUtil'}>
