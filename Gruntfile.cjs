@@ -72,7 +72,7 @@ function make(grunt) {
     //------ Add Test Tasks
     grunt.registerTask('ospec', () => { require('child_process').spawnSync('./node_modules/.bin/ospec', {stdio: 'inherit'}); });
     grunt.registerTask('jest',  () => launchJest().status===0)
-    grunt.registerTask('commit',  () => commit().status===0)
+    grunt.registerTask('commit',  () => [0,commit().status][0])
     grunt.registerTask('test', ['clean:cov', 'jest', 'copy:coverage', 'cleanupCoverage']); 
     
     //------ Add Coverage Reporting
